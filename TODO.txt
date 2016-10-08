@@ -1,0 +1,16 @@
+=== Features ===
+-- Post
+-- Post Category
+-- Post Type
+-- Event Scheduling
+-- Online Ticket (include payment)
+-- Multi-language
+-- Slug-able url
+
+=== TODO ===
+-- Use metronic template to the backend
+-- Create user management
+-- ACL
+-- Create post category management
+-- Create post management
+-- Research about tinyMCE
