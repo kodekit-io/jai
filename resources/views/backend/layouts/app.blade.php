@@ -23,10 +23,20 @@
     <link href="{!! asset('assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css') !!}" rel="stylesheet" type="text/css" />
     <!-- END GLOBAL MANDATORY STYLES -->
 
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    @section('page-level-style-plugins')
+    @show
+    <!-- END PAGE LEVEL PLUGINS -->
+
     <!-- BEGIN THEME GLOBAL STYLES -->
     <link href="{!! asset('assets/global/css/components-rounded.min.css') !!}" rel="stylesheet" id="style_components" type="text/css" />
-    <link href="{!! asset('assets/global/css/plugins.min.css') !!}" rel="stylesheet" type="text/css" />
+    <link href="{!! asset('assets/global/css/plugins.css') !!}" rel="stylesheet" type="text/css" />
     <!-- END THEME GLOBAL STYLES -->
+
+    <!-- BEGIN PAGE LEVEL STYLES -->
+    @section('page-level-styles')
+    @show
+    <!-- END PAGE LEVEL STYLES -->
 
     <!-- BEGIN THEME LAYOUT STYLES -->
     <link href="{!! asset('assets/layouts/layout/css/layout.min.css"') !!}" rel="stylesheet" type="text/css" />
@@ -37,7 +47,7 @@
     <link rel="shortcut icon" href="favicon.ico" /> </head>
 <!-- END HEAD -->
 
-<body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
+<body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid page-content-white">
 
 <div class="page-wrapper">
     <!-- BEGIN HEADER -->
@@ -57,20 +67,7 @@
         <!-- END SIDEBAR -->
         <!-- BEGIN CONTENT -->
         <div class="page-content-wrapper">
-            <!-- BEGIN CONTENT BODY -->
-            <div class="page-content">
-                <!-- BEGIN PAGE HEADER-->
-                <!-- BEGIN PAGE TITLE-->
-                <h1 class="page-title"> Blank Page Layout
-                    <small>blank page layout</small>
-                </h1>
-                <!-- END PAGE TITLE-->
-                <!-- END PAGE HEADER-->
-                <div class="note note-info">
-                    <p> A black page template with a minimal dependency assets to use as a base for any custom page you create </p>
-                </div>
-            </div>
-            <!-- END CONTENT BODY -->
+            @yield('content')
         </div>
         <!-- END CONTENT -->
 
@@ -78,9 +75,8 @@
     <!-- END CONTAINER -->
     <!-- BEGIN FOOTER -->
     <div class="page-footer">
-        <div class="page-footer-inner"> 2016 &copy; Metronic Theme By
-            <a target="_blank" href="http://keenthemes.com">Keenthemes</a> &nbsp;|&nbsp;
-            <a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" title="Purchase Metronic just for 27$ and get lifetime updates for free" target="_blank">Purchase Metronic!</a>
+        <div class="page-footer-inner"> {!! date('Y') !!} &copy; Jakarta Aquarium Indonesia By
+            <a target="_blank" href="#">[K]odekit</a>
         </div>
         <div class="scroll-to-top">
             <i class="icon-arrow-up"></i>
@@ -102,9 +98,17 @@
 <script src="{!! asset('assets/global/plugins/jquery.blockui.min.js') !!}" type="text/javascript"></script>
 <script src="{!! asset('assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js') !!}" type="text/javascript"></script>
 <!-- END CORE PLUGINS -->
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+@section('page-level-plugins')
+@show
+<!-- END PAGE LEVEL PLUGINS -->
 <!-- BEGIN THEME GLOBAL SCRIPTS -->
 <script src="{!! asset('assets/global/scripts/app.min.js') !!}" type="text/javascript"></script>
 <!-- END THEME GLOBAL SCRIPTS -->
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+@section('page-level-scripts')
+@show
+<!-- END PAGE LEVEL SCRIPTS -->
 <!-- BEGIN THEME LAYOUT SCRIPTS -->
 <script src="{!! asset('assets/layouts/layout/scripts/layout.min.js') !!}" type="text/javascript"></script>
 <script src="{!! asset('assets/layouts/layout/scripts/demo.min.js') !!}" type="text/javascript"></script>

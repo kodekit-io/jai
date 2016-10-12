@@ -5,6 +5,7 @@ namespace App\Service;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Lavary\Menu\Builder;
 use Lavary\Menu\Item;
 use Menu as LavaryMenu;
@@ -46,13 +47,12 @@ class MenuGenerator
                 }
 
                 if ($request->is($menu->link)) {
-                    $theMenu->get($menu->name)->data('activated', 'active');
+                    // $theMenu->item($menu->name)->data('activated', 'active');
+                    $theMenu->item($menu->name)->active();
                     $this->activateItem($theMenu, $menu->id);
                 }
             }
         });
-
-        // var_dump($menu);
 
         return $menu;
     }
@@ -66,12 +66,14 @@ class MenuGenerator
     {
         $menu = $this->menuService->getMenuById($menuId);
 
-        if (!$first) {
-            $item->get($menu->name)->data('activated', 'active');
+        if (! $first) {
+            // $item->item($menu->name)->data('activated', 'active');
+            $item->item($menu->name)->active();
         }
 
         if ($menu->parent_id != '' && $menu->parent_id != '0') {
             $this->activateItem($item, $menu->parent_id, false);
         }
+
     }
 }

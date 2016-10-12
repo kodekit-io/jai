@@ -64,7 +64,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Jakarta',
 
     /*
     |--------------------------------------------------------------------------
@@ -120,7 +120,7 @@ return [
     |
     */
 
-    'log' => env('APP_LOG', 'single'),
+    'log' => env('APP_LOG', 'daily'),
 
     'log_level' => env('APP_LOG_LEVEL', 'debug'),
 
@@ -183,6 +183,8 @@ return [
         Spatie\Permission\PermissionServiceProvider::class,
 
         Lavary\Menu\ServiceProvider::class,
+
+        Yajra\Datatables\DatatablesServiceProvider::class,
 
     ],
 

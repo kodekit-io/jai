@@ -924,7 +924,7 @@ table.dataTable thead td {
   outline: none !important; }
 
 table.dataTable.no-footer {
-  border-bottom-color: #e7ecf1; }
+  border-bottom-color: #e7ecf1 !important; }
 
 table.dataTable tr.heading > th {
   background-color: #fbfcfd; }
