@@ -11,10 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::get('/tiny', function() {
     return view('tiny-test');
 });
@@ -23,6 +19,11 @@ Route::get('/tiny-image-manager', function() {
     return view('tiny-image-manager');
 });
 
-Route::get('/jai-backend', function() {
-    return view('backend.dashboard');
+Auth::routes();
+
+Route::group(['prefix' => 'jai-backend', 'middleware' => ['menu','auth']], function () {
+    Route::get('/', function ()    {
+        // Uses Auth Middleware
+        return view('backend.dashboard');
+    });
 });

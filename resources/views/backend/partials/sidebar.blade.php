@@ -36,48 +36,52 @@
             </form>
             <!-- END RESPONSIVE QUICK SEARCH FORM -->
         </li>
-        <li class="nav-item start ">
-            <a href="javascript:;" class="nav-link">
-                <i class="icon-home"></i>
-                <span class="title">Dashboard</span>
-            </a>
-        </li>
-        <li class="heading">
-            <h3 class="uppercase">Features</h3>
-        </li>
-        <li class="nav-item  ">
-            <a href="javascript:;" class="nav-link nav-toggle">
-                <i class="fa fa-newspaper-o"></i>
-                <span class="title">News &amp; Blog</span>
-                <span class="arrow"></span>
-            </a>
-            <ul class="sub-menu">
-                <li class="nav-item  ">
-                    <a href="ui_colors.html" class="nav-link ">
-                        <span class="title">Add News</span>
-                    </a>
-                </li>
-                <li class="nav-item  ">
-                    <a href="ui_general.html" class="nav-link ">
-                        <span class="title">Add Blog</span>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li class="nav-item  ">
-            <a href="javascript:;" class="nav-link nav-toggle">
-                <i class="icon-puzzle"></i>
-                <span class="title">Components</span>
-                <span class="arrow"></span>
-            </a>
-            <ul class="sub-menu">
-                <li class="nav-item  ">
-                    <a href="components_date_time_pickers.html" class="nav-link ">
-                        <span class="title">Date & Time Pickers</span>
-                    </a>
-                </li>
-            </ul>
-        </li>
+
+        @include('backend.partials.menu', array('items' => $menu->roots()))
+
+
+        {{--<li class="nav-item start ">--}}
+            {{--<a href="javascript:;" class="nav-link">--}}
+                {{--<i class="icon-home"></i>--}}
+                {{--<span class="title">Dashboard</span>--}}
+            {{--</a>--}}
+        {{--</li>--}}
+        {{--<li class="heading">--}}
+            {{--<h3 class="uppercase">Features</h3>--}}
+        {{--</li>--}}
+        {{--<li class="nav-item  ">--}}
+            {{--<a href="javascript:;" class="nav-link nav-toggle">--}}
+                {{--<i class="fa fa-newspaper-o"></i>--}}
+                {{--<span class="title">News &amp; Blog</span>--}}
+                {{--<span class="arrow"></span>--}}
+            {{--</a>--}}
+            {{--<ul class="sub-menu">--}}
+                {{--<li class="nav-item  ">--}}
+                    {{--<a href="ui_colors.html" class="nav-link ">--}}
+                        {{--<span class="title">Add News</span>--}}
+                    {{--</a>--}}
+                {{--</li>--}}
+                {{--<li class="nav-item  ">--}}
+                    {{--<a href="ui_general.html" class="nav-link ">--}}
+                        {{--<span class="title">Add Blog</span>--}}
+                    {{--</a>--}}
+                {{--</li>--}}
+            {{--</ul>--}}
+        {{--</li>--}}
+        {{--<li class="nav-item  ">--}}
+            {{--<a href="javascript:;" class="nav-link nav-toggle">--}}
+                {{--<i class="icon-puzzle"></i>--}}
+                {{--<span class="title">Components</span>--}}
+                {{--<span class="arrow"></span>--}}
+            {{--</a>--}}
+            {{--<ul class="sub-menu">--}}
+                {{--<li class="nav-item  ">--}}
+                    {{--<a href="components_date_time_pickers.html" class="nav-link ">--}}
+                        {{--<span class="title">Date & Time Pickers</span>--}}
+                    {{--</a>--}}
+                {{--</li>--}}
+            {{--</ul>--}}
+        {{--</li>--}}
     </ul>
     <!-- END SIDEBAR MENU -->
     <!-- END SIDEBAR MENU -->
