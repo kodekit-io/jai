@@ -10,7 +10,6 @@ class Category extends Model
     use Sluggable;
 
     protected $fillable = ['name', 'slug', 'post_type_id'];
-    protected $slugField = 'slug';
 
     /**
      * Get the route key for the model.

@@ -2,9 +2,12 @@
 
 namespace App\Models;
 
+use App\Models\Traits\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 
 class PostType extends Model
 {
-    //
+    use Sluggable;
+
+    protected $fillable = ['name', 'slug'];
 }

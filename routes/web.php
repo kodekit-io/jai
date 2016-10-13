@@ -21,6 +21,11 @@ Route::get('/tiny-image-manager', function() {
     return view('tiny-image-manager');
 });
 
+Route::get('/category/{category}', function(\App\Models\Category $category){
+    var_dump($category->name);
+});
+
+
 Auth::routes();
 
 Route::group(['prefix' => $backendUrl, 'middleware' => ['menu','auth','authorize']], function () {
@@ -60,6 +65,14 @@ Route::group(['prefix' => $backendUrl, 'middleware' => ['menu','auth','authorize
     Route::get('/category/{id}/edit', 'CategoryController@edit')->name('category.edit');
     Route::post('/category/{id}/update', 'CategoryController@update')->name('category.edit');
     Route::get('/category/{id}/delete', 'CategoryController@destroy')->name('category.delete');
+
+    // Post Type
+    Route::get('/post-type', 'PostTypeController@index')->name('post-type');
+    Route::get('/post-type/add', 'PostTypeController@create')->name('post-type.add');
+    Route::post('/post-type/save', 'PostTypeController@store')->name('post-type.add');
+    Route::get('/post-type/{id}/edit', 'PostTypeController@edit')->name('post-type.edit');
+    Route::post('/post-type/{id}/update', 'PostTypeController@update')->name('post-type.edit');
+    Route::get('/post-type/{id}/delete', 'PostTypeController@destroy')->name('post-type.delete');
 });
 
 
@@ -68,13 +81,10 @@ Route::group(['prefix' => $backendUrl, 'middleware' => ['auth']], function () {
     Route::get('/role-data', 'RoleController@anyData')->name('role.data' );
     Route::get('/permission-data', 'PermissionController@anyData')->name('permission.data' );
     Route::get('/category-data', 'CategoryController@anyData')->name('category.data' );
+    Route::get('/post-type-data', 'PostTypeController@anyData')->name('post-type.data' );
 
     Route::post('/get-slug/{model}', function(\Illuminate\Http\Request $request, $model) {
         $title = $request->input('title');
-        return getSlugOnModelByTitle($title, $model);
-    });
-
-    Route::get('/test-slug/{model}/{title}', function($model, $title) {
         return getSlugOnModelByTitle($title, $model);
     });
 

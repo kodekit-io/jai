@@ -12,6 +12,8 @@
 -- Use metronic template to the backend (DONE)
 -- Create user management (DONE)
 -- ACL (DONE)
--- Create post category management
+-- Create post category management (DONE)
+---- Check slug when store the data, generate if blank
+-- Create category
 -- Create post management
 -- Research about tinyMCE
