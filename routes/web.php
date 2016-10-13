@@ -52,6 +52,14 @@ Route::group(['prefix' => $backendUrl, 'middleware' => ['menu','auth','authorize
     Route::get('/permission/{id}/edit', 'PermissionController@edit')->name('permission.edit');
     Route::post('/permission/{id}/update', 'PermissionController@update')->name('permission.edit');
     Route::get('/permission/{id}/delete', 'PermissionController@destroy')->name('permission.delete');
+
+    // Category
+    Route::get('/category', 'CategoryController@index')->name('category');
+    Route::get('/category/add', 'CategoryController@create')->name('category.add');
+    Route::post('/category/save', 'CategoryController@store')->name('category.add');
+    Route::get('/category/{id}/edit', 'CategoryController@edit')->name('category.edit');
+    Route::post('/category/{id}/update', 'CategoryController@update')->name('category.edit');
+    Route::get('/category/{id}/delete', 'CategoryController@destroy')->name('category.delete');
 });
 
 
@@ -59,4 +67,15 @@ Route::group(['prefix' => $backendUrl, 'middleware' => ['auth']], function () {
     Route::get('/user-data', 'UserController@anyData')->name('user.data' );
     Route::get('/role-data', 'RoleController@anyData')->name('role.data' );
     Route::get('/permission-data', 'PermissionController@anyData')->name('permission.data' );
+    Route::get('/category-data', 'CategoryController@anyData')->name('category.data' );
+
+    Route::post('/get-slug/{model}', function(\Illuminate\Http\Request $request, $model) {
+        $title = $request->input('title');
+        return getSlugOnModelByTitle($title, $model);
+    });
+
+    Route::get('/test-slug/{model}/{title}', function($model, $title) {
+        return getSlugOnModelByTitle($title, $model);
+    });
+
 });

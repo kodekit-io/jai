@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\RoleStore;
 use App\Http\Requests\RoleUpdate;
-use App\Service\DataMessage;
+use App\Service\Traits\DataMessage;
 use App\Service\Role;
 use Illuminate\Http\Request;
 

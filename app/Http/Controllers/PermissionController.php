@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PermissionStore;
 use App\Http\Requests\PermissionUpdate;
-use App\Service\DataMessage;
+use App\Service\Traits\DataMessage;
 use App\Service\Permission;
 use Illuminate\Http\Request;
 

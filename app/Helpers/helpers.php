@@ -1,10 +1,37 @@
 <?php
+use App\Models;
+
 if (! function_exists('backendUrl')) {
     function backendUrl($destination)
     {
         $urlConfig = config('misc.backend.url');
         $url = $urlConfig . '/' . $destination;
         return url($url);
+    }
+}
+
+if (! function_exists('getSlugOnModelByTitle')) {
+    /**
+     * @param $title
+     * @param $model
+     * @param int $iterator
+     * @return string
+     */
+    function getSlugOnModelByTitle($title, $model, $iterator = 1)
+    {
+        $tempTitle = $title;
+
+        if ($iterator > 1) {
+            $tempTitle = $title . ' ' . $iterator;
+        }
+
+        $slug = str_slug($tempTitle, '-');
+        $tempModel = 'App\\Models\\' . $model;
+        if ((new $tempModel())->findBySlug($slug)) {
+            $slug = getSlugOnModelByTitle($title, $model, ++$iterator);
+        }
+
+        return $slug;
     }
 }
 

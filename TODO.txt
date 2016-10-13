@@ -1,16 +1,17 @@
 === Features ===
 -- Post
--- Post Category
 -- Post Type
+-- Post Category (nested)
 -- Event Scheduling
 -- Online Ticket (include payment)
 -- Multi-language
 -- Slug-able url
+-- Most viewed filter
 
 === TODO ===
--- Use metronic template to the backend
--- Create user management
--- ACL
+-- Use metronic template to the backend (DONE)
+-- Create user management (DONE)
+-- ACL (DONE)
 -- Create post category management
 -- Create post management
 -- Research about tinyMCE
