@@ -23,34 +23,34 @@ Route::get('/tiny-image-manager', function() {
 
 Auth::routes();
 
-Route::group(['prefix' => $backendUrl, 'middleware' => ['menu','auth']], function () {
+Route::group(['prefix' => $backendUrl, 'middleware' => ['menu','auth','authorize']], function () {
     Route::get('/', function ()    {
         // Uses Auth Middleware
         return view('backend.dashboard');
-    });
+    })->name('dashboard');
 
     // User
     Route::get('/user', 'UserController@index')->name('user');
     Route::get('/user/add', 'UserController@create')->name('user.add');
-    Route::post('/user/save', 'UserController@store')->name('user.save');
+    Route::post('/user/save', 'UserController@store')->name('user.add');
     Route::get('/user/{id}/edit', 'UserController@edit')->name('user.edit');
-    Route::post('/user/{id}/update', 'UserController@update')->name('user.update');
+    Route::post('/user/{id}/update', 'UserController@update')->name('user.edit');
     Route::get('/user/{id}/delete', 'UserController@destroy')->name('user.delete');
 
     // Role
     Route::get('/role', 'RoleController@index')->name('role');
     Route::get('/role/add', 'RoleController@create')->name('role.add');
-    Route::post('/role/save', 'RoleController@store')->name('role.save');
+    Route::post('/role/save', 'RoleController@store')->name('role.add');
     Route::get('/role/{id}/edit', 'RoleController@edit')->name('role.edit');
-    Route::post('/role/{id}/update', 'RoleController@update')->name('role.update');
+    Route::post('/role/{id}/update', 'RoleController@update')->name('role.edit');
     Route::get('/role/{id}/delete', 'RoleController@destroy')->name('role.delete');
 
     // Permission
     Route::get('/permission', 'PermissionController@index')->name('permission');
     Route::get('/permission/add', 'PermissionController@create')->name('permission.add');
-    Route::post('/permission/save', 'PermissionController@store')->name('permission.save');
+    Route::post('/permission/save', 'PermissionController@store')->name('permission.add');
     Route::get('/permission/{id}/edit', 'PermissionController@edit')->name('permission.edit');
-    Route::post('/permission/{id}/update', 'PermissionController@update')->name('permission.update');
+    Route::post('/permission/{id}/update', 'PermissionController@update')->name('permission.edit');
     Route::get('/permission/{id}/delete', 'PermissionController@destroy')->name('permission.delete');
 });
 
