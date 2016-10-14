@@ -2,29 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UserStore;
-use App\Http\Requests\UserUpdate;
+use App\Http\Requests\PostTypeStore;
+use App\Http\Requests\PostTypeUpdate;
+use App\Service\PostType;
 use App\Service\Traits\DataMessage;
-use App\Service\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-class UserController extends Controller
+class PostTypeController extends Controller
 {
     use DataMessage;
 
-    private $userService;
+    /**
+     * @var PostType
+     */
+    private $postTypeService;
 
     /**
-     * UserController constructor.
-     * @param User $userService
+     * PostTypeController constructor.
      */
-    public function __construct(User $userService)
+    public function __construct(PostType $postTypeService)
     {
-        $this->userService = $userService;
+        $this->postTypeService = $postTypeService;
     }
-
 
     /**
      * Display a listing of the resource.
@@ -33,7 +34,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('backend.users.list');
+        return view('backend.post-types.list');
     }
 
     /**
@@ -43,7 +44,7 @@ class UserController extends Controller
      */
     public function anyData()
     {
-        return $this->userService->datatableData();
+        return $this->postTypeService->datatableData();
     }
 
     /**
@@ -53,21 +54,20 @@ class UserController extends Controller
      */
     public function create()
     {
-        $data['roles'] = $this->userService->role()->all();
-        return view('backend.users.add', $data);
+        return view('backend.post-types.add');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param UserStore $request
+     * @param PostTypeStore $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserStore $request)
+    public function store(PostTypeStore $request)
     {
-        $this->userService->store($request->except('_token'));
+        $this->postTypeService->store($request->except(['_token']));
 
-        return backendRedirect('user')->with($this->getMessage('store'));
+        return backendRedirect('post-type')->with($this->getMessage('store'));
     }
 
     /**
@@ -89,25 +89,23 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $data['user'] = $this->userService->getUserById($id);
-        $data['roles'] = $this->userService->role()->all();
-        $data['selectedRoles'] = $this->userService->selectedRoles($id);
+        $data['postType'] = $this->postTypeService->getPostTypeById($id);
 
-        return view('backend.users.edit', $data);
+        return view('backend.post-types.edit', $data);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param UserUpdate $request
+     * @param PostTypeUpdate $request
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserUpdate $request, $id)
+    public function update(PostTypeUpdate $request, $id)
     {
-        $this->userService->update($id, $request->only(['name', 'email', 'sites', 'roles']));
+        $this->postTypeService->update($id, $request->except(['_token']));
 
-        return backendRedirect('user')->with($this->getMessage('update'));
+        return backendRedirect('post-type')->with($this->getMessage('update'));
     }
 
     /**
@@ -118,8 +116,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $this->userService->destroy($id);
+        $this->postTypeService->destroy($id);
 
-        return backendRedirect('user')->with($this->getMessage('delete'));
+        return backendRedirect('post-type')->with($this->getMessage('delete'));
     }
 }

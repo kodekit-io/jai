@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use App\Service\Traits\DatatableParameters;
 use Spatie\Permission\Models\Role as RoleModel;
 
 class Role

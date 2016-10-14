@@ -3,6 +3,12 @@
 @section('content')
     <!-- BEGIN CONTENT BODY -->
     <div class="page-content">
+        @if ($errors->has('unauthorized'))
+            <div class="alert alert-danger alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                <strong>Oops!</strong> {!! $errors->first('unauthorized') !!}
+            </div>
+        @endif
         <!-- BEGIN PAGE HEADER-->
         <!-- BEGIN PAGE TITLE-->
         <h1 class="page-title"> Blank Page Layout

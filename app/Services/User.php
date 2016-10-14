@@ -3,6 +3,7 @@
 namespace App\Service;
 
 use App\Models\User as UserModel;
+use App\Service\Traits\DatatableParameters;
 
 class User
 {

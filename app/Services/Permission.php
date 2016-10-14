@@ -3,6 +3,7 @@
 namespace App\Service;
 
 
+use App\Service\Traits\DatatableParameters;
 use Spatie\Permission\Models\Permission as PermissionModel;
 
 class Permission

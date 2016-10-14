@@ -2,29 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UserStore;
-use App\Http\Requests\UserUpdate;
+use App\Http\Requests\CategoryStore;
+use App\Service\Category;
 use App\Service\Traits\DataMessage;
-use App\Service\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-class UserController extends Controller
+class CategoryController extends Controller
 {
     use DataMessage;
 
-    private $userService;
+    /**
+     * @var Category
+     */
+    private $categoryService;
 
     /**
-     * UserController constructor.
-     * @param User $userService
+     * CategoryController constructor.
+     * @param Category $categoryService
      */
-    public function __construct(User $userService)
+    public function __construct(Category $categoryService)
     {
-        $this->userService = $userService;
+        $this->categoryService = $categoryService;
     }
-
 
     /**
      * Display a listing of the resource.
@@ -33,7 +34,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('backend.users.list');
+        return view('backend.categories.list');
     }
 
     /**
@@ -43,7 +44,7 @@ class UserController extends Controller
      */
     public function anyData()
     {
-        return $this->userService->datatableData();
+        return $this->categoryService->datatableData();
     }
 
     /**
@@ -53,21 +54,20 @@ class UserController extends Controller
      */
     public function create()
     {
-        $data['roles'] = $this->userService->role()->all();
-        return view('backend.users.add', $data);
+        return view('backend.categories.add');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param UserStore $request
+     * @param CategoryStore $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserStore $request)
+    public function store(CategoryStore $request)
     {
-        $this->userService->store($request->except('_token'));
+        $this->categoryService->store(1, $request->except('_token'));
 
-        return backendRedirect('user')->with($this->getMessage('store'));
+        return backendRedirect('category')->with($this->getMessage('store'));
     }
 
     /**
@@ -89,25 +89,23 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $data['user'] = $this->userService->getUserById($id);
-        $data['roles'] = $this->userService->role()->all();
-        $data['selectedRoles'] = $this->userService->selectedRoles($id);
+        $data['category'] = $this->categoryService->getCategoryById($id);
 
-        return view('backend.users.edit', $data);
+        return view('backend.categories.edit', $data);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param UserUpdate $request
-     * @param  int $id
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserUpdate $request, $id)
+    public function update(Request $request, $id)
     {
-        $this->userService->update($id, $request->only(['name', 'email', 'sites', 'roles']));
+        $this->categoryService->update($id, $request->except(['_token']));
 
-        return backendRedirect('user')->with($this->getMessage('update'));
+        return backendRedirect('category')->with($this->getMessage('update'));
     }
 
     /**
@@ -118,8 +116,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $this->userService->destroy($id);
+        $this->categoryService->destroy($id);
 
-        return backendRedirect('user')->with($this->getMessage('delete'));
+        return backendRedirect('category')->with($this->getMessage('delete'));
     }
 }
