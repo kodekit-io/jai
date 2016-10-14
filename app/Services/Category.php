@@ -9,7 +9,7 @@ class Category
 {
     use DatatableParameters;
 
-    protected $baseUrl = 'category';
+    protected $baseUrl = 'post-category';
 
     public function datatableData()
     {
@@ -77,6 +77,13 @@ class Category
             $fields['selected'] = $defaultValue;
         }
         return $form->dbSelect($categories, $name, $fields, ['class' => 'form-control', 'id' => 'post-type']);
+    }
+
+    public function findByPostTypeName($name)
+    {
+        return CategoryModel::whereHas('postType', function ($query) use ($name) {
+            $query->where('name', $name);
+        })->get();
     }
 
 }

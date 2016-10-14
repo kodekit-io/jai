@@ -13,7 +13,7 @@
 -- Create user management (DONE)
 -- ACL (DONE)
 -- Create post category management (DONE)
----- Check slug when store the data, generate if blank
--- Create category
+---- Check slug when store the data, generate if blank (DONE)
+-- Create category (DONE)
 -- Create post management
 -- Research about tinyMCE

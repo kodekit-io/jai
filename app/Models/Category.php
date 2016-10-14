@@ -21,6 +21,11 @@ class Category extends Model
         return 'slug';
     }
 
+    public function posts()
+    {
+        return $this->belongsToMany(Post::class, 'post_has_categories');
+    }
+
     public function postType()
     {
         return $this->belongsTo(PostType::class);
