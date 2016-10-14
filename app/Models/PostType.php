@@ -10,4 +10,9 @@ class PostType extends Model
     use Sluggable;
 
     protected $fillable = ['name', 'slug'];
+
+    public function categories()
+    {
+        return $this->hasMany(Category::class);
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CategoryStore;
 use App\Service\Category;
+use App\Service\PostType;
 use App\Service\Traits\DataMessage;
 use Illuminate\Http\Request;
 
@@ -17,14 +18,19 @@ class CategoryController extends Controller
      * @var Category
      */
     private $categoryService;
+    /**
+     * @var PostType
+     */
+    private $postTypeService;
 
     /**
      * CategoryController constructor.
      * @param Category $categoryService
      */
-    public function __construct(Category $categoryService)
+    public function __construct(Category $categoryService, PostType $postTypeService)
     {
         $this->categoryService = $categoryService;
+        $this->postTypeService = $postTypeService;
     }
 
     /**
@@ -34,7 +40,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('backend.categories.list');
+        return view('backend.posts.list-category');
     }
 
     /**
@@ -54,7 +60,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('backend.categories.add');
+        // $data['postTypeSelect'] = $this->postTypeService->postTypeSelect('post_type_id');
+        $data['categorySelect'] = $this->categoryService->categorySelect('parent_id');
+        return view('backend.posts.add-category', $data);
     }
 
     /**
@@ -65,9 +73,9 @@ class CategoryController extends Controller
      */
     public function store(CategoryStore $request)
     {
-        $this->categoryService->store(1, $request->except('_token'));
+        $this->categoryService->store($request->except('_token'));
 
-        return backendRedirect('category')->with($this->getMessage('store'));
+        return backendRedirect('post-category')->with($this->getMessage('store'));
     }
 
     /**
@@ -89,9 +97,11 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $data['category'] = $this->categoryService->getCategoryById($id);
-
-        return view('backend.categories.edit', $data);
+        $category = $this->categoryService->getCategoryById($id);
+        $data['category'] = $category;
+        // $data['postTypeSelect'] = $this->postTypeService->postTypeSelect('post_type_id', $category->post_type_id);
+        $data['categorySelect'] = $this->categoryService->categorySelect('parent_id', $category->parent_id);
+        return view('backend.posts.edit-category', $data);
     }
 
     /**
@@ -105,7 +115,7 @@ class CategoryController extends Controller
     {
         $this->categoryService->update($id, $request->except(['_token']));
 
-        return backendRedirect('category')->with($this->getMessage('update'));
+        return backendRedirect('post-category')->with($this->getMessage('update'));
     }
 
     /**
@@ -118,6 +128,6 @@ class CategoryController extends Controller
     {
         $this->categoryService->destroy($id);
 
-        return backendRedirect('category')->with($this->getMessage('delete'));
+        return backendRedirect('post-category')->with($this->getMessage('delete'));
     }
 }

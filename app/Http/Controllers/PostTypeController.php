@@ -6,7 +6,6 @@ use App\Http\Requests\PostTypeStore;
 use App\Http\Requests\PostTypeUpdate;
 use App\Service\PostType;
 use App\Service\Traits\DataMessage;
-use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
