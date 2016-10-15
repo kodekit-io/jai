@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Service\Category;
 use App\Service\Post;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -58,6 +59,7 @@ class PostController extends Controller
     public function create()
     {
         $data['categories'] = $this->categoryService->findByPostTypeName('post');
+        $data['currentDateTime'] = Carbon::now()->format('d-F-Y - H:i');
         return view('backend.posts.add', $data);
     }
 

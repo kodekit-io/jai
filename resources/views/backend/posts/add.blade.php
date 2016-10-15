@@ -1,6 +1,9 @@
 @extends('backend.layouts.app')
 
 @section('page-level-styles')
+    <link href="{!! asset('/assets/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css') !!}" rel="stylesheet" type="text/css" />
+    <link href="{!! asset('assets/global/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css') !!}" rel="stylesheet" type="text/css" />
+    <link href="{!! asset('assets/global/plugins/bootstrap-modal/css/bootstrap-modal.css') !!}" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('content')
@@ -38,95 +41,28 @@
                                                 <span class="help-block">{!! $errors->first('name') !!}</span>
                                             @endif
                                         </div>
-                                        <div class="form-group @if ($errors->has('slug')) has-error @endif">
-                                            <label>Slug</label>
-                                            <input type="text" id="slug" name="slug" class="form-control" placeholder="Slug" value="{!! old('slug') !!}" readonly>
-                                            @if ($errors->has('slug'))
-                                                <span class="help-block">{!! $errors->first('slug') !!}</span>
-                                            @endif
-                                        </div>
-                                        <div class="form-group">
+                                        <div class="form-group @if ($errors->has('content')) has-error @endif">
                                             <label>Content</label>
                                             <textarea id="content"></textarea>
+                                            @if ($errors->has('content'))
+                                                <span class="help-block">{!! $errors->first('content') !!}</span>
+                                            @endif
                                         </div>
                                     </div>
                                     {{--end of main center--}}
 
-                                    {{--sidebar--}}
-                                    <div class="col-md-4">
-                                        {{--publish--}}
-                                        <div class="col-md-12">
-                                            <div class="portlet light bordered">
-                                                <div class="portlet-title">
-                                                    <div class="caption"><i class="fa fa-gift"></i> Publisher</div>
-                                                    <div class="tools">
-                                                        <a href="javascript:;" class="collapse" data-original-title="" title=""></a>
-                                                    </div>
-                                                </div>
-                                                <div class="portlet-body">
-                                                    <div class="form-group">
-                                                        <label>Publish Date</label>
-                                                        <div class="input-group date form_datetime">
-                                                            <input type="text" size="16" readonly class="form-control">
-                                                            <span class="input-group-btn">
-                                                                <button class="btn default date-set" type="button">
-                                                                    <i class="fa fa-calendar"></i>
-                                                                </button>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                    <input type="submit" class="btn btn-default" value="Submit">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        {{--end of publish--}}
-
-                                        {{--category--}}
-                                        <div class="col-md-12">
-                                            <div class="portlet light bordered">
-                                                {{--portlet title--}}
-                                                <div class="portlet-title">
-                                                    <div class="caption"><i class="icon-pin"></i> <span class="caption-subject"> Categories</span></div>
-                                                    <div class="tools">
-                                                        <a href="javascript:;" class="collapse" data-original-title="" title=""></a>
-                                                    </div>
-                                                </div>
-                                                {{--end of portlet title--}}
-                                                {{--portlet body--}}
-                                                <div class="portlet-body tabbable-custom ">
-                                                    <ul class="nav nav-tabs">
-                                                        <li class="active">
-                                                            <a href="#portlet_tab1" data-toggle="tab"> Categories </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#portlet_tab2" data-toggle="tab"> Most Used </a>
-                                                        </li>
-                                                    </ul>
-                                                    <div class="tab-content">
-                                                        <div class="tab-pane active" id="portlet_tab1">
-                                                            <div class="scroller" style="height: 200px;">
-                                                                <h4>Tab 1 Content</h4>
-                                                            </div>
-                                                        </div>
-                                                        <div class="tab-pane" id="portlet_tab2">
-                                                            <div class="scroller" style="height: 200px;">
-                                                                <h4>Tab 2 Content</h4>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                {{--end of portlet body--}}
-                                            </div>
-                                        </div>
-                                        {{--end of category--}}
-                                    </div>
-                                    {{--end of sidebar--}}
+                                    @include('backend.posts.sidebar')
 
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
+
+                {{--modal--}}
+                <div id="ajax-modal" class="modal container fade" tabindex="-1"> </div>
+                {{--end of modal--}}
+
             </div>
         </div>
     </div>
@@ -140,6 +76,9 @@
 @endsection
 
 @section('page-level-scripts')
+    <script src="{!! asset('assets/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js') !!}" type="text/javascript"></script>
+    <script src="{!! asset('assets/global/plugins/bootstrap-modal/js/bootstrap-modalmanager.js') !!}" type="text/javascript"></script>
+    <script src="{!! asset('assets/global/plugins/bootstrap-modal/js/bootstrap-modal.js') !!}" type="text/javascript"></script>
     <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
     <script>
         tinymce.init({
@@ -151,8 +90,28 @@
             toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
             toolbar2: 'print preview media | forecolor backcolor emoticons',
             image_advtab: true,
-            menubar: false
+            menubar: false,
+            height : "400"
         });
+        $(".form_datetime").datetimepicker({
+            autoclose: true,
+            isRTL: App.isRTL(),
+            format: "dd-MM-yyyy - hh:ii",
+            pickerPosition: (App.isRTL() ? "bottom-right" : "bottom-left")
+        });
+
+        //ajax demo:
+        var $modal = $('#ajax-modal');
+        $('#ajax-demo').on('click', function(){
+            // create the backdrop and wait for next modal to be triggered
+            $('body').modalmanager('loading');
+            var el = $(this);
+
+            $modal.load(el.attr('data-url'), '', function(){
+                $modal.modal();
+            });
+        });
+
     </script>
     <script type="text/javascript">
         $( "#name" ).focusout(function() {
