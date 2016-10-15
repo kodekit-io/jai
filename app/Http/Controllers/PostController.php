@@ -2,28 +2,33 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\PostTypeStore;
-use App\Http\Requests\PostTypeUpdate;
-use App\Service\PostType;
-use App\Service\Traits\DataMessage;
+use App\Service\Category;
+use App\Service\Post;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-class PostTypeController extends Controller
+class PostController extends Controller
 {
-    use DataMessage;
+    /**
+     * @var Post
+     */
+    private $postService;
+    /**
+     * @var Category
+     */
+    private $categoryService;
 
     /**
-     * @var PostType
+     * PostController constructor.
+     * @param Post $postService
+     * @param Category $categoryService
      */
-    private $postTypeService;
-
-    /**
-     * PostTypeController constructor.
-     */
-    public function __construct(PostType $postTypeService)
+    public function __construct(Post $postService, Category $categoryService)
     {
-        $this->postTypeService = $postTypeService;
+        $this->postService = $postService;
+        $this->categoryService = $categoryService;
     }
 
     /**
@@ -33,7 +38,7 @@ class PostTypeController extends Controller
      */
     public function index()
     {
-        return view('backend.post-types.list');
+        return view('backend.posts.list');
     }
 
     /**
@@ -43,7 +48,7 @@ class PostTypeController extends Controller
      */
     public function anyData()
     {
-        return $this->postTypeService->datatableData();
+        return $this->postService->datatableData();
     }
 
     /**
@@ -53,20 +58,20 @@ class PostTypeController extends Controller
      */
     public function create()
     {
-        return view('backend.post-types.add');
+        $data['categories'] = $this->categoryService->findByPostTypeName('post');
+        $data['currentDateTime'] = Carbon::now()->format('d-F-Y - H:i');
+        return view('backend.posts.add', $data);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param PostTypeStore $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PostTypeStore $request)
+    public function store(Request $request)
     {
-        $this->postTypeService->store($request->except(['_token']));
-
-        return backendRedirect('post-type')->with($this->getMessage('store'));
+        //
     }
 
     /**
@@ -88,23 +93,19 @@ class PostTypeController extends Controller
      */
     public function edit($id)
     {
-        $data['postType'] = $this->postTypeService->getPostTypeById($id);
-
-        return view('backend.post-types.edit', $data);
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param PostTypeUpdate $request
-     * @param  int $id
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(PostTypeUpdate $request, $id)
+    public function update(Request $request, $id)
     {
-        $this->postTypeService->update($id, $request->except(['_token']));
-
-        return backendRedirect('post-type')->with($this->getMessage('update'));
+        //
     }
 
     /**
@@ -115,8 +116,6 @@ class PostTypeController extends Controller
      */
     public function destroy($id)
     {
-        $this->postTypeService->destroy($id);
-
-        return backendRedirect('post-type')->with($this->getMessage('delete'));
+        //
     }
 }

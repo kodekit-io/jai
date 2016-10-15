@@ -11,6 +11,9 @@
 |
 */
 
+
+use Illuminate\Support\Facades\Log;
+
 $backendUrl = config('misc.backend.url');
 
 Route::get('/tiny', function() {
@@ -18,7 +21,39 @@ Route::get('/tiny', function() {
 });
 
 Route::get('/tiny-image-manager', function() {
-    return view('tiny-image-manager');
+    return view('backend.file-manager');
+});
+
+Route::get('/get-image/{imageId}', function() {
+    return asset('uploads/nina-1.jpg');
+});
+
+Route::post('/upload-image', function(\Illuminate\Http\Request $request) {
+    $imageSrc = $request->input('image_src');
+    Log::warning($imageSrc);
+    $image = Intervention\Image\Facades\Image::make($imageSrc);
+    $image->save(storage_path('app/public/test.jpg'));
+});
+
+Route::get('get-images', function() {
+    $images = collect([
+        'images' => [
+            'http://placehold.it/150x150',
+            'http://placehold.it/150x150',
+            'http://placehold.it/150x150',
+            'http://placehold.it/150x150',
+            'http://placehold.it/150x150',
+            'http://placehold.it/150x150',
+            'http://placehold.it/150x150',
+            'http://placehold.it/150x150',
+            'http://placehold.it/150x150',
+            'http://placehold.it/150x150',
+            'http://placehold.it/150x150',
+            'http://placehold.it/150x150',
+        ]
+    ])->toJson();
+
+    return $images;
 });
 
 Route::get('/category/{category}', function(\App\Models\Category $category){
@@ -58,14 +93,6 @@ Route::group(['prefix' => $backendUrl, 'middleware' => ['menu','auth','authorize
     Route::post('/permission/{id}/update', 'PermissionController@update')->name('permission.edit');
     Route::get('/permission/{id}/delete', 'PermissionController@destroy')->name('permission.delete');
 
-    // Category
-    Route::get('/category', 'CategoryController@index')->name('category');
-    Route::get('/category/add', 'CategoryController@create')->name('category.add');
-    Route::post('/category/save', 'CategoryController@store')->name('category.add');
-    Route::get('/category/{id}/edit', 'CategoryController@edit')->name('category.edit');
-    Route::post('/category/{id}/update', 'CategoryController@update')->name('category.edit');
-    Route::get('/category/{id}/delete', 'CategoryController@destroy')->name('category.delete');
-
     // Post Type
     Route::get('/post-type', 'PostTypeController@index')->name('post-type');
     Route::get('/post-type/add', 'PostTypeController@create')->name('post-type.add');
@@ -73,6 +100,22 @@ Route::group(['prefix' => $backendUrl, 'middleware' => ['menu','auth','authorize
     Route::get('/post-type/{id}/edit', 'PostTypeController@edit')->name('post-type.edit');
     Route::post('/post-type/{id}/update', 'PostTypeController@update')->name('post-type.edit');
     Route::get('/post-type/{id}/delete', 'PostTypeController@destroy')->name('post-type.delete');
+
+    // Post Category
+    Route::get('/post-category', 'CategoryController@index')->name('post-category');
+    Route::get('/post-category/add', 'CategoryController@create')->name('post-category.add');
+    Route::post('/post-category/save', 'CategoryController@store')->name('post-category.add');
+    Route::get('/post-category/{id}/edit', 'CategoryController@edit')->name('post-category.edit');
+    Route::post('/post-category/{id}/update', 'CategoryController@update')->name('post-category.edit');
+    Route::get('/post-category/{id}/delete', 'CategoryController@destroy')->name('post-category.delete');
+
+    // Post Category
+    Route::get('/post', 'PostController@index')->name('post');
+    Route::get('/post/add', 'PostController@create')->name('post.add');
+    Route::post('/post/save', 'PostController@store')->name('post.add');
+    Route::get('/post/{id}/edit', 'PostController@edit')->name('post.edit');
+    Route::post('/post/{id}/update', 'PostController@update')->name('post.edit');
+    Route::get('/post/{id}/delete', 'PostController@destroy')->name('post.delete');
 });
 
 
@@ -80,7 +123,8 @@ Route::group(['prefix' => $backendUrl, 'middleware' => ['auth']], function () {
     Route::get('/user-data', 'UserController@anyData')->name('user.data' );
     Route::get('/role-data', 'RoleController@anyData')->name('role.data' );
     Route::get('/permission-data', 'PermissionController@anyData')->name('permission.data' );
-    Route::get('/category-data', 'CategoryController@anyData')->name('category.data' );
+    Route::get('/post-category-data', 'CategoryController@anyData')->name('post-category.data' );
+    Route::get('/post-data', 'PostController@anyData')->name('post.data' );
     Route::get('/post-type-data', 'PostTypeController@anyData')->name('post-type.data' );
 
     Route::post('/get-slug/{model}', function(\Illuminate\Http\Request $request, $model) {

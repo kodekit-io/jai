@@ -52,4 +52,18 @@ class PostType
     {
         PostTypeModel::destroy($id);
     }
+
+    public function postTypeSelect($name, $defaultValue = null)
+    {
+        $form = new FormGenerator();
+        $postTypes = $this->all();
+        $fields = [
+            'id' => 'id',
+            'value' => 'name'
+        ];
+        if (!is_null($defaultValue)) {
+            $fields['selected'] = $defaultValue;
+        }
+        return $form->dbSelect($postTypes, $name, $fields, ['class' => 'form-control', 'id' => 'post-type']);
+    }
 }
