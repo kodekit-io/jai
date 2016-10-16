@@ -1,0 +1,197 @@
+@extends('layouts.default')
+
+@section('content')
+@include('includes.homeslide')
+
+<section id="whatson" class="ja-home-section">
+	<ul class="uk-list uk-list-space ja-side-banner">
+		<li><a href="#!" title=""><img src="{!! asset('frontend/img/banner-ticket.png') !!}" /></a></li>
+		<li><a href="#!" title=""><img src="{!! asset('frontend/img/banner-promo.png') !!}" /></a></li>
+	</ul>
+	<div class="uk-container uk-container-center">
+		<h3 class="ja-title ja-title__blue light-blue-text text-darken-4 uk-margin-large-bottom">What's On</h3>
+		<?php //Whatson Posts ?>
+		<ul class="uk-list uk-list-space">
+			<li class="ja-post">
+				<div class="uk-grid">
+					<div class="uk-width-medium-1-2">
+						<a href="#!" class="ja-post--img" style="background-image: url(https://scontent-sin6-1.cdninstagram.com/t51.2885-15/e35/13398821_254807328227391_196141175_n.jpg?ig_cache_key=MTI3NjgxMjAyMjc4NTY4NDk2Mg%3D%3D.2)">Learn more</a>
+					</div>
+					<div class="uk-width-medium-1-2">
+						<div class="ja-post--content">
+							<h5 class="ja-post--title"><a href="#!" title="Eiusmod Tempor Praesenti sed Value Incidia Sparkle Magnuse Doredomain Melrose at Bellami Dolore.">Eiusmod Tempor Praesenti sed Value Incidia Sparkle Magnuse Doredomain Melrose at Bellami Dolore.</a></h5>
+							<p class="uk-margin-remove">At vero eos et accusamus et iusto odyssey madeline dignissimos ducimus qui.</p>
+							<a class="ja-post--link"><i class="uk-icon-chevron-right"></i></a>
+						</div>
+					</div>
+				</div>
+			</li>
+			<li class="ja-post">
+				<div class="uk-grid">
+					<div class="uk-width-medium-1-2">
+						<a href="#!" class="ja-post--img" style="background-image: url(https://scontent-sin6-1.cdninstagram.com/t51.2885-15/e35/14719605_197005060733899_5029678252923289600_n.jpg?ig_cache_key=MTM2MDI3OTU0MTMwMjM3MTEwOA%3D%3D.2)">Learn more</a>
+					</div>
+					<div class="uk-width-medium-1-2">
+						<div class="ja-post--content">
+							<h5 class="ja-post--title"><a href="#!" title="Eiusmod Tempor Praesenti sed Value Incidia Sparkle Magnuse Doredomain Melrose at Bellami Dolore.">Eiusmod Tempor Praesenti sed Value Incidia Sparkle Magnuse Doredomain Melrose at Bellami Dolore.</a></h5>
+							<p class="uk-margin-remove">At vero eos et accusamus et iusto odyssey madeline dignissimos ducimus qui.</p>
+							<a class="ja-post--link"><i class="uk-icon-chevron-right"></i></a>
+						</div>
+					</div>
+				</div>
+			</li>
+			<li class="ja-post">
+				<div class="uk-grid">
+					<div class="uk-width-medium-1-2">
+						<a href="#!" class="ja-post--img" style="background-image: url(https://scontent-sin6-1.cdninstagram.com/t51.2885-15/e35/14449213_191901171238778_241706762120462336_n.jpg?ig_cache_key=MTM0NTA1NjQ0MTk3MDUyNjMwMg%3D%3D.2)">Learn more</a>
+					</div>
+					<div class="uk-width-medium-1-2">
+						<div class="ja-post--content">
+							<h5 class="ja-post--title"><a href="#!" title="Eiusmod Tempor Praesenti sed Value Incidia Sparkle Magnuse Doredomain Melrose at Bellami Dolore.">Eiusmod Tempor Praesenti sed Value Incidia Sparkle Magnuse Doredomain Melrose at Bellami Dolore.</a></h5>
+							<p class="uk-margin-remove">At vero eos et accusamus et iusto odyssey madeline dignissimos ducimus qui.</p>
+							<a class="ja-post--link"><i class="uk-icon-chevron-right"></i></a>
+						</div>
+					</div>
+				</div>
+			</li>
+			<li class="ja-post">
+				<div class="uk-grid">
+					<div class="uk-width-medium-1-2">
+						<a href="#!" class="ja-post--img" style="background-image: url(https://scontent-sin6-1.cdninstagram.com/t51.2885-15/e35/14099775_1262366833781875_349081681_n.jpg?ig_cache_key=MTMyMTU1MDYzOTE1NDc2OTU4Nw%3D%3D.2)">Learn more</a>
+					</div>
+					<div class="uk-width-medium-1-2">
+						<div class="ja-post--content">
+							<h5 class="ja-post--title"><a href="#!" title="Eiusmod Tempor Praesenti sed Value Incidia Sparkle Magnuse Doredomain Melrose at Bellami Dolore.">Eiusmod Tempor Praesenti sed Value Incidia Sparkle Magnuse Doredomain Melrose at Bellami Dolore.</a></h5>
+							<p class="uk-margin-remove">At vero eos et accusamus et iusto odyssey madeline dignissimos ducimus qui.</p>
+							<a class="ja-post--link"><i class="uk-icon-chevron-right"></i></a>
+						</div>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+</section>
+<section id="sightseeing" class="ja-home-section uk-hidden-small">
+	<div class="uk-overlay-background ja-overlay"></div>
+	<div class="uk-container uk-container-center white-text">
+		<h3 class="ja-title ja-title__orange uk-margin-large-bottom white-text">Sightseeing</h3>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidale laborum et dolorem magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation autem.</p>
+
+		<ul class="uk-grid uk-grid-collapse">
+			<li class="uk-width-2-5">
+				<span>Contains more than</span>
+				<h2 class="font-intro amber-text text-darken-1 uk-margin-remove">14,820 ANIMALS</h2>
+				<span>in sea water, freshwater and land</span>
+			</li>
+			<li class="uk-width-1-2">
+				<span>Holds more than</span>
+				<h2 class="font-intro amber-text text-darken-1 uk-margin-remove">120 PROGRAMS</h2>
+				<span>for attractions and edutainment in a year</span>
+			</li>
+			<li class="uk-width-2-5">
+				<span>Located in the large</span>
+				<h2 class="font-intro amber-text text-darken-1 uk-margin-remove">LEISURE DISTRICTS</h2>
+				<span>include 3 malls, hotels and parks</span>
+			</li>
+			<li class="uk-width-1-2">
+				<span>Will hangout with</span>
+				<h2 class="font-intro amber-text text-darken-1 uk-margin-remove">A MILLION VISITORS</h2>
+				<span>in a year</span>
+			</li>
+		</ul>
+	</div>
+</section>
+<section id="themoment" class="ja-home-section">
+	<div class="uk-container uk-container-center">
+		<h3 class="ja-title ja-title__blue light-blue-text text-darken-4 uk-margin-large-bottom">The Moment</h3>
+		<?php //The Moments ?>
+		<ul class="uk-grid uk-grid-collapse uk-grid-width-1-2 uk-grid-width-medium-1-3">
+			<li>
+				<a class="uk-vertical-align" style="background-image: url(https://scontent-sin6-1.cdninstagram.com/t51.2885-15/e35/14726416_519228651603618_6547434921265201152_n.jpg?ig_cache_key=MTM2MTUyMDM1MTUxNTU1MDA4Mw%3D%3D.2)">
+					<div class="uk-vertical-align-middle">
+
+					</div>
+				</a>
+			</li>
+			<li>
+				<a class="uk-vertical-align" style="background-image: url()">
+					<div class="uk-vertical-align-middle">
+						Come to find out and enjoy your great moments at the aquarium!
+					</div>
+				</a>
+			</li>
+			<li>
+				<a class="uk-vertical-align" style="background-image: url(https://scontent-sin6-1.cdninstagram.com/t51.2885-15/s640x640/sh0.08/e35/13397565_582605318588903_30300940_n.jpg?ig_cache_key=MTI3NzEyMjk5ODMxNjc3ODk1Nw%3D%3D.2)">
+					<div class="uk-vertical-align-middle">
+
+					</div>
+				</a>
+			</li>
+			<li>
+				<a class="uk-vertical-align" style="background-image: url()">
+					<div class="uk-vertical-align-middle">
+						<i class="uk-icon-instagram teal-text uk-icon-large uk-margin-bottom"></i><br>
+						#JAKARTAAQUARIUM<br>
+						Share your great moments with us on Instagram!
+					</div>
+				</a>
+			</li>
+
+			<li>
+				<a class="uk-vertical-align" style="background-image: url(https://scontent-sin6-1.cdninstagram.com/t51.2885-15/e35/14705107_196280684133214_1208691904053510144_n.jpg?ig_cache_key=MTM2MTQ4MDQ3MTQzNTA2Njk3OQ%3D%3D.2)">
+					<div class="uk-vertical-align-middle">
+
+					</div>
+				</a>
+			</li>
+			<li>
+				<a class="uk-vertical-align" style="background-image: url(https://scontent-sin6-1.cdninstagram.com/t51.2885-15/e35/14624455_1651937268431126_8432737066684514304_n.jpg?ig_cache_key=MTM2MTQ5NDI2NDE5MzkxNjMyMA%3D%3D.2)">
+					<div class="uk-vertical-align-middle">
+
+					</div>
+				</a>
+			</li>
+			<li>
+				<a class="uk-vertical-align" style="background-image: url(https://scontent-sin6-1.cdninstagram.com/t51.2885-15/e35/14478519_1752247551691686_1452266654825185280_n.jpg?ig_cache_key=MTM2MTM3Mjg3MDAyMTc4NzgwNA%3D%3D.2)">
+					<div class="uk-vertical-align-middle">
+
+					</div>
+				</a>
+			</li>
+			<li>
+				<a class="uk-vertical-align" style="background-image: url(https://scontent-sin6-1.cdninstagram.com/t51.2885-15/e35/14606940_186909541717211_6510452349448749056_n.jpg?ig_cache_key=MTM1NzI4OTQ4NTkyNjI2ODkyNA%3D%3D.2)">
+					<div class="uk-vertical-align-middle">
+
+					</div>
+				</a>
+			</li>
+			<li>
+				<a class="uk-vertical-align" style="background-image: url()">
+					<div class="uk-vertical-align-middle">
+						<i class="uk-icon-tripadvisor teal-text uk-icon-large uk-margin-bottom"></i><br>
+						<span class="uk-text-large">"It's kinda cool display in Indonesia!"</span><br>
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+					</div>
+				</a>
+			</li>
+		</ul>
+	</div>
+</section>
+<section id="getapp" class="ja-home-section">
+	<div class="uk-container uk-container-center">
+		<div class="uk-grid uk-hidden-small">
+			<div class="uk-width-1-3">
+				<img src="{!! asset('frontend/img/mobile-app.png') !!}" alt="Get The App" />
+			</div>
+			<div class="uk-width-2-3">
+				<h3 class="ja-title ja-title__blue light-blue-text text-darken-4 uk-margin-large-bottom">Get The App</h3>
+				<p>Download free Jakarta Aquarium app now! Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+				<p><a href="#!" title="Download on The App Store"><img src="{!! asset('frontend/img/download-store.png') !!}" alt="Download on The App Store" /></a>
+				<a href="#!" title="Get it on Google Play"><img src="{!! asset('frontend/img/download-play.png') !!}" alt="Get it on Google Play" /></a></p>
+			</div>
+		</div>
+		<a href="#!" title="Get Mobile App" class="uk-visible-small"><img src="{!! asset('frontend/img/banner-getmobile.png') !!}" alt="Get Mobile App" /></a>
+	</div>
+</section>
+
+@endsection

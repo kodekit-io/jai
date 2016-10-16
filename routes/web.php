@@ -16,6 +16,11 @@ use Illuminate\Support\Facades\Log;
 
 $backendUrl = config('misc.backend.url');
 
+Route::get('/', function()
+{
+    return View::make('frontend.home');
+});
+
 Route::get('/tiny', function() {
     return view('tiny-test');
 });
