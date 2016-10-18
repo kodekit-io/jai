@@ -88,8 +88,9 @@
             {{--end of portlet title--}}
             {{--portlet body--}}
             <div class="portlet-body tabbable-custom ">
+                <input type="hidden" id="featured_image_id" name="featured_image_id">
                 <img src="" id="featured_image">
-                <a id="ajax-demo" data-url="{!! url('tiny-image-manager') !!}" data-toggle="modal"> Set image </a>
+                <a id="ajax-demo" data-url="{!! backendUrl('tiny-image-manager') !!}" data-toggle="modal"> Set image </a>
             </div>
             {{--end of portlet body--}}
         </div>

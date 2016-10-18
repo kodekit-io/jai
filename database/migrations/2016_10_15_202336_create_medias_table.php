@@ -13,16 +13,45 @@ class CreateMediasTable extends Migration
      */
     public function up()
     {
-        Schema::create('medias', function (Blueprint $table) {
+        Schema::create('media', function (Blueprint $table) {
             Schema::dropIfExists('media');
             $table->increments('id');
             $table->string('title');
             $table->string('file_name');
+            $table->text('description')->nullable();
+            $table->timestamps();
+        });
+
+        Schema::create('media_sizes', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('media_id')->unsigned();
+            $table->string('title');
+            $table->string('path');
             $table->string('mime_type')->nullable();
             $table->integer('width')->default(0);
             $table->integer('height')->default(0);
-            $table->text('description')->nullable();
-            $table->timestamps();
+
+            $table->foreign('media_id')
+                ->references('id')
+                ->on('media')
+                ->onDelete('cascade');
+        });
+
+        Schema::create('post_has_medias', function(Blueprint $table) {
+            $table->integer('post_id')->unsigned();
+            $table->integer('media_id')->unsigned();
+
+            $table->foreign('post_id')
+                ->references('id')
+                ->on('posts')
+                ->onDelete('cascade');
+
+            $table->foreign('media_id')
+                ->references('id')
+                ->on('media')
+                ->onDelete('cascade');
+
+            $table->primary(['post_id', 'media_id']);
         });
     }
 
@@ -33,9 +62,8 @@ class CreateMediasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('medias');
-        Schema::create('media', function (Blueprint $table) {
-            $table->increments('id');
-        });
+        Schema::dropIfExists('post_has_medias');
+        Schema::dropIfExists('media_sizes');
+        Schema::dropIfExists('media');
     }
 }
