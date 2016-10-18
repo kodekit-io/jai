@@ -21,44 +21,8 @@ Route::get('/', function()
     return View::make('frontend.home');
 });
 
-Route::get('/tiny', function() {
-    return view('tiny-test');
-});
-
-Route::get('/tiny-image-manager', function() {
-    return view('backend.file-manager');
-});
-
 Route::get('/get-image/{imageId}', function() {
     return asset('uploads/nina-1.jpg');
-});
-
-Route::post('/upload-image', function(\Illuminate\Http\Request $request) {
-    $imageSrc = $request->input('image_src');
-    Log::warning($imageSrc);
-    $image = Intervention\Image\Facades\Image::make($imageSrc);
-    $image->save(storage_path('app/public/test.jpg'));
-});
-
-Route::get('get-images', function() {
-    $images = collect([
-        'images' => [
-            'http://placehold.it/150x150',
-            'http://placehold.it/150x150',
-            'http://placehold.it/150x150',
-            'http://placehold.it/150x150',
-            'http://placehold.it/150x150',
-            'http://placehold.it/150x150',
-            'http://placehold.it/150x150',
-            'http://placehold.it/150x150',
-            'http://placehold.it/150x150',
-            'http://placehold.it/150x150',
-            'http://placehold.it/150x150',
-            'http://placehold.it/150x150',
-        ]
-    ])->toJson();
-
-    return $images;
 });
 
 Route::get('/category/{category}', function(\App\Models\Category $category){
@@ -136,5 +100,13 @@ Route::group(['prefix' => $backendUrl, 'middleware' => ['auth']], function () {
         $title = $request->input('title');
         return getSlugOnModelByTitle($title, $model);
     });
+
+    Route::get('/tiny-image-manager', function() {
+        return view('backend.file-manager');
+    });
+
+    Route::post('/upload-image', 'MediaController@saveImage');
+
+    Route::post('get-images', 'MediaController@getMedia');
 
 });

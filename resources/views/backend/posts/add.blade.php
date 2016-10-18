@@ -43,7 +43,7 @@
                                         </div>
                                         <div class="form-group @if ($errors->has('content')) has-error @endif">
                                             <label>Content</label>
-                                            <textarea id="content"></textarea>
+                                            <textarea name="content" id="content"></textarea>
                                             @if ($errors->has('content'))
                                                 <span class="help-block">{!! $errors->first('content') !!}</span>
                                             @endif

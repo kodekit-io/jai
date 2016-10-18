@@ -18,11 +18,7 @@
                 <div class="row">
                     <div class="col-md-8">
                         <div class="row image-gallery">
-                            <div class="col-xs-6 col-md-3">
-                                <a href="#" class="thumbnail">
-                                    <img width="200" image-id="1" src="{!! asset('uploads/nina-1.jpg') !!}" alt="" class="img-thumbnail">
-                                </a>
-                            </div>
+
                         </div>
                     </div>
                     <div class="col-md-4 text-center">
@@ -37,6 +33,11 @@
 </div>
 
 <script>
+    jQuery(document).ready(function() {
+        loadImagesToList();
+    });
+
+    var baseUrl = '{!! url('/') !!}';
 
     function previewFile() {
         var file    = document.querySelector('input[type=file]').files[0];
@@ -45,17 +46,20 @@
         reader.addEventListener("load", function () {
             $.ajax({
                 method: "POST",
-                url: "{!! url('upload-image') !!}",
+                url: "{!! backendUrl('upload-image') !!}",
                 data: {
                     _token: '{!! csrf_token() !!}',
-                    image_src: reader.result
+                    image_src: reader.result,
+                    image_name: file.name
                 }
             })
-            .done(function( msg ) {
+            .done(function( image ) {
+                var imageData = jQuery.parseJSON(image);
                 $('.nav-tabs a[href="#media"]').tab('show');
                 var preview = $('#image_preview');
                 preview.attr('src', reader.result);
                 preview.attr('height', '150px');
+                preview.attr('media-id', imageData.id);
             });
         }, false);
 
@@ -66,52 +70,50 @@
 
     jQuery('#image_setter').click(function(x) {
         var source = $('#image_preview').attr('src');
-        console.log(source);
+        var mediaId = $('#image_preview').attr('media-id');
+        $('#featured_image_id').val(mediaId);
         $('#featured_image').attr('src', source);
         $('#featured_image').attr('width', '200px');
+        $('#ajax-modal').modal('hide');
     });
 
     jQuery('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
         var target = $(e.target).attr("href") // activated tab
         if (target == '#media') {
-            $.ajax({
-                method: "GET",
-                url: "{!! url('get-images') !!}",
-                data: {
-                    _token: '{!! csrf_token() !!}'
-                }
-            })
-            .done(function( result ) {
-                var images = jQuery.parseJSON(result);
-                var image_container = $('.image-gallery');
-                image_container.html('');
-                for (var i = 0; i < images.images.length; i++) {
-                    // console.log(images.images[i]);
-                    var image = '<div class="col-xs-6 col-md-3">' +
-                            '<a href="#" class="thumbnail">' +
-                            '<img width="200" image-id="1" src="' + images.images[i] +'" alt="" class="img-thumbnail" onclick="thumbClicked(this)">' +
-                            '</a></div>';
-                    image_container.append(image);
-                }
-            });
+            loadImagesToList();
         }
     });
 
-    function thumbClicked(source) {
-        var imageSrc = $(source).attr('src');
-        var preview = $('#image_preview');
-        preview.attr('src', imageSrc);
-        preview.attr('height', '150px');
-        var i = new Image();
-        i.src = preview.attr('src');
+    function loadImagesToList() {
+        $.ajax({
+            method: "POST",
+            url: "{!! backendUrl('get-images') !!}",
+            data: {
+                _token: '{!! csrf_token() !!}'
+            }
+        })
+        .done(function( result ) {
+            var images = jQuery.parseJSON(result);
+            var image_container = $('.image-gallery');
+            image_container.html('');
+            for (var i = 0; i < images.length; i++) {
+                var imagePath = images[i].media_sizes[0].path;
+                var mediaId = images[i].id;
+                var image = '<div class="col-xs-6 col-md-3">' +
+                        '<a href="#" class="thumbnail">' +
+                        '<img width="200" image-id="1" src="' + baseUrl + '/' + imagePath +'" media-id="'+ mediaId +'" alt="" class="img-thumbnail" onclick="thumbClicked(this)">' +
+                        '</a></div>';
+                image_container.append(image);
+            }
+        });
     }
 
-    jQuery('.img-thumbnail').on('click', function() {
-        var imageSrc = $(this).attr('src');
+    function thumbClicked(source) {
+        var imageSrc = $(source).attr('src');
+        var mediaId = $(source).attr('media-id');
         var preview = $('#image_preview');
         preview.attr('src', imageSrc);
         preview.attr('height', '150px');
-        var i = new Image();
-        i.src = preview.attr('src');
-    });
+        preview.attr('media-id', mediaId);
+    }
 </script>

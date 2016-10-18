@@ -1,6 +1,15 @@
 <?php
 use App\Models;
 
+if (! function_exists('str_cleaner')) {
+    function str_cleaner($string)
+    {
+        $string = str_replace(' ', '-', $string); // Replaces all spaces with hyphens.
+
+        return preg_replace('/[^A-Za-z0-9\-.]/', '', $string); // Removes special chars.
+    }
+}
+
 if (! function_exists('backendUrl')) {
     function backendUrl($destination)
     {
