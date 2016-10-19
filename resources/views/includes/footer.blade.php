@@ -2,14 +2,17 @@
 			<div class="uk-container uk-container-center">
 				<div class="uk-grid uk-grid-divider">
 					<div class="uk-width-medium-2-3">
-						<ul class="uk-subnav uk-subnav-line uk-hidden-small">
+						<ul class="uk-subnav uk-subnav-line uk-hidden-small uk-margin-bottom-remove">
 							<li><a href="#!" title="">Aquarium Map</a></li>
 							<li><a href="#!" title="">Career with Us</a></li>
 							<li><a href="#!" title="">Media Room</a></li>
+						</ul>
+						<ul class="uk-subnav uk-subnav-line uk-hidden-small uk-margin-bottom-remove">
 							<li><a href="#!" title="">Privacy Policy</a></li>
 							<li><a href="#!" title="">Term of Use</a></li>
 						</ul>
-						<p class="uk-margin-remove">Copyright &copy; <?php echo date('Y'); ?> Jakarta Aquarium Indonesia. All Rights Reserved.</p>
+						<p class="uk-margin-remove">Copyright &copy; <?php echo date('Y'); ?> Jakarta Aquarium Indonesia.
+							<br>All Rights Reserved.</p>
 					</div>
 					<div class="uk-width-medium-1-3">
 						Endorsed by Taman Safari Indonesia and Aquawalk Sdn. Bhd.

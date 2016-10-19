@@ -15,6 +15,13 @@ return array(
     |
     */
 
-    'driver' => 'gd'
+    'driver' => 'gd',
+
+    'sizes' => [
+        ['width' => 200, 'height' => 200],
+        ['width' => 150, 'height' => 150],
+        ['width' => 500, 'height' => 500],
+        ['width' => 500, 'height' => 300]
+    ]
 
 );

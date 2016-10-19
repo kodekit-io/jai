@@ -48,7 +48,7 @@
 			<li class="uk-active"><a href="#!">English</a></li>
 			<li><a href="#!">Indonesia</a></li>
 		</ul>
-		<div class="ja-info uk-visible-small">
+		<div class="ja-info uk-hidden">
 			<p>Today: Sat, Oct 15 2016<br>
 			OPEN 08.00AM - 09.00PM</p>
 		</div>

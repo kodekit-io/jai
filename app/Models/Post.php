@@ -17,4 +17,14 @@ class Post extends Model
     {
         return $this->belongsTo(PostType::class);
     }
+
+    /**
+     * A post may have multiple medias.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function medias()
+    {
+        return $this->belongsToMany(Media::class, 'post_has_medias');
+    }
 }
