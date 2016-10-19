@@ -107,6 +107,8 @@ Route::group(['prefix' => $backendUrl, 'middleware' => ['auth']], function () {
 
     Route::post('/upload-image', 'MediaController@saveImage');
 
+    Route::post('upload-image-handler', 'MediaController@uploadImageHandler');
+
     Route::post('get-images', 'MediaController@getMedia');
 
 });

@@ -188,6 +188,8 @@ return [
 
         Collective\Html\HtmlServiceProvider::class,
 
+        JildertMiedema\LaravelPlupload\LaravelPluploadServiceProvider::class,
+
     ],
 
     /*
@@ -240,6 +242,7 @@ return [
         'Menu' => Lavary\Menu\Facade::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+        'Plupload' => JildertMiedema\LaravelPlupload\Facades\Plupload::class,
     ],
 
 ];

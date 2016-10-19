@@ -114,6 +114,9 @@
 
     </script>
     <script type="text/javascript">
+        $(document).ready(function() {
+            $('#remove-featured').hide();
+        });
         $( "#name" ).focusout(function() {
             name = $('#name').val();
             if (name.length > 3) {
@@ -128,6 +131,11 @@
                     $('#slug').val(msg);
                 });
             }
+        });
+        $('#remove-featured').click(function() {
+            $('#featured_image_id').val('');
+            $('#featured_image').attr('src', '');
+            $(this).hide();
         });
     </script>
 @endsection
