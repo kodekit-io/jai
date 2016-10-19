@@ -21,7 +21,7 @@
 		<a href="#!" class="uk-icon-google-plus"></a>
 		<a href="#!" class="uk-icon-linkedin"></a>
 	</div>
-	<div class="ja-info uk-hidden-small">
+	<div class="ja-info uk-hidden">
 		<p>Opening Hours</p>
 		<p>Weekday<br>
 		08.00AM - 07.00PM</p>
