@@ -93,12 +93,12 @@
         $('#ajax-modal').modal('hide');
     });
 
-    jQuery('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-        var target = $(e.target).attr("href") // activated tab
-        if (target == '#media') {
-            loadImagesToList();
-        }
-    });
+//    jQuery('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+//        var target = $(e.target).attr("href") // activated tab
+//        if (target == '#media') {
+//            loadImagesToList();
+//        }
+//    });
 
 </script>
 
@@ -136,7 +136,7 @@
                 // console.log(response);
                 if (response.result.status && response.result.status == 'OK') {
                     var id = response.id;
-                    preview.attr('src', smallImageUrl + response.result.filename);
+                    preview.attr('src', featuredImageUrl + response.result.filename);
                     preview.attr('media-id', response.result.mediaId);
                     preview.attr('media-filename', response.result.filename);
                     loadImagesToList();
