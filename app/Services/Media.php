@@ -77,12 +77,16 @@ class Media
     public function saveImage($file)
     {
         $imageName = $file->getClientOriginalName();
+        $folder = 'uploads/post/';
+        if (! File::exists(public_path($folder))) {
+            File::makeDirectory(public_path($folder), 0775, true, true);
+        }
         $media = $this->mediaModel->create([
             'title' => $imageName,
             'file_name' => $imageName
         ]);
         $image = Image::make($file);
-        $publicUrl = 'uploads/post/' . $imageName;
+        $publicUrl = $folder . $imageName;
         $imagePath = public_path($publicUrl);
         $image->save($imagePath);
         return [
