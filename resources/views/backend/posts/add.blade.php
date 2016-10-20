@@ -34,11 +34,11 @@
 
                                     {{--main form--}}
                                     <div class="col-md-8">
-                                        <div class="form-group @if ($errors->has('name')) has-error @endif">
-                                            <label>Name</label>
-                                            <input type="text" id="name" name="name" class="form-control" placeholder="Name" value="{!! old('name') !!}" autofocus>
-                                            @if ($errors->has('name'))
-                                                <span class="help-block">{!! $errors->first('name') !!}</span>
+                                        <div class="form-group @if ($errors->has('title')) has-error @endif">
+                                            <label>Title</label>
+                                            <input type="text" id="title" name="title" class="form-control" placeholder="Title" value="{!! old('title') !!}" autofocus>
+                                            @if ($errors->has('title'))
+                                                <span class="help-block">{!! $errors->first('title') !!}</span>
                                             @endif
                                         </div>
                                         <div class="form-group @if ($errors->has('content')) has-error @endif">

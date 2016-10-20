@@ -71,7 +71,9 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        var_dump($request->all());
+        $this->postService->store($request->except(['_token']));
+
+        return backendRedirect('/post');
     }
 
     /**

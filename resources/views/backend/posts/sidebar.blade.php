@@ -13,15 +13,15 @@
                 <div class="form-group">
                     <label>Publish Date</label>
                     <div class="input-group date form_datetime">
-                        <input type="text" size="16" value="{!! $currentDateTime !!}" readonly class="form-control">
-                                                            <span class="input-group-btn">
-                                                                <button class="btn default date-set" type="button">
-                                                                    <i class="fa fa-calendar"></i>
-                                                                </button>
-                                                            </span>
+                        <input type="text" name="publish_date" size="16" value="{!! $currentDateTime !!}" readonly class="form-control">
+                        <span class="input-group-btn">
+                            <button class="btn default date-set" type="button">
+                                <i class="fa fa-calendar"></i>
+                            </button>
+                        </span>
                     </div>
                 </div>
-                <input type="submit" class="btn btn-default" value="Draft"> <input type="submit" class="btn btn-default" value="Publish">
+                <input type="submit" name="status" class="btn btn-default" value="Draft"> <input type="submit" name="status" class="btn btn-default" value="Publish">
             </div>
         </div>
     </div>
