@@ -107,7 +107,7 @@ class FormGenerator
             if ($child->children) {
                 $checkbox = $space . '<label class="mt-checkbox mt-checkbox-outline"><input type="checkbox" '. $checked .' name="'.$name.'" value="'.$child->$id.'"> '.$child->$value.'<span></span></label>';
                 $checkboxes->push($checkbox);
-                $this->generateChildrenItems($checkboxes, $child, $name, $id, $value, $selected, $space);
+                $this->generateChildrenCheckbox($checkboxes, $child, $name, $id, $value, $selected, $space);
             } else {
                 $checkbox = $space . '<label class="mt-checkbox mt-checkbox-outline"><input type="checkbox" '. $checked .' name="'.$name.'" value="'.$child->$id.'"> '.$child->$value.'<span></span></label>';
                 $checkboxes->push($checkbox);
