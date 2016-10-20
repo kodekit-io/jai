@@ -63,8 +63,11 @@
                 <div class="col-lg-12">
                     <div class="form-group">
                         <div class="mt-checkbox-outline">
-                            @foreach($categories as $category)
-                                <label class="mt-checkbox mt-checkbox-outline"><input type="checkbox" name="categories[]" value="{!! $category->id!!}"> {!! $category->name !!}<span></span></label><br>
+                            {{--@foreach($categories as $category)--}}
+                                {{--<label class="mt-checkbox mt-checkbox-outline"><input type="checkbox" name="categories[]" value="{!! $category->id!!}"> {!! $category->name !!}<span></span></label><br>--}}
+                            {{--@endforeach--}}
+                            @foreach($categoryCheckboxes as $checkbox)
+                                {!! $checkbox !!}<br>
                             @endforeach
                         </div>
                     </div>
