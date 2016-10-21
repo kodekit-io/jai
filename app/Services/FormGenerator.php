@@ -78,6 +78,45 @@ class FormGenerator
         return Form::select($name, $items, $selectedValue, $options);
     }
 
+    public function nestedDbCheckbox($datas, $name, $id, $value, $selected = [])
+    {
+
+        $checkboxes = [];
+        if (! $datas->isEmpty()) {
+            $datas->sortBy('parent_id');
+            $checkboxes = collect([]);
+            foreach ($datas as $data) {
+                if ($data->parent_id == 0) {
+                    $checked = in_array($data->$id, $selected) ? 'checked' : '';
+                    $checkbox = '<label class="mt-checkbox mt-checkbox-outline"><input type="checkbox" '. $checked .' name="'.$name.'" value="'.$data->$id.'"> '. $data->$value .'<span></span></label>';
+                    $checkboxes->push($checkbox);
+                    $this->generateChildrenCheckbox($checkboxes, $data, $name, $id, $value, $selected);
+                }
+            }
+        }
+
+        return $checkboxes;
+    }
+
+    private function generateChildrenCheckbox($checkboxes, $data, $name, $id, $value, $selected, $space = '')
+    {
+        $children = $data->children()->get();
+        $space = $space . '&nbsp;&nbsp;&nbsp;&nbsp;';
+        foreach ($children as $child) {
+            $checked = in_array($child->$id, $selected) ? 'checked' : '';
+            if ($child->children) {
+                $checkbox = $space . '<label class="mt-checkbox mt-checkbox-outline"><input type="checkbox" '. $checked .' name="'.$name.'" value="'.$child->$id.'"> '.$child->$value.'<span></span></label>';
+                $checkboxes->push($checkbox);
+                $this->generateChildrenCheckbox($checkboxes, $child, $name, $id, $value, $selected, $space);
+            } else {
+                $checkbox = $space . '<label class="mt-checkbox mt-checkbox-outline"><input type="checkbox" '. $checked .' name="'.$name.'" value="'.$child->$id.'"> '.$child->$value.'<span></span></label>';
+                $checkboxes->push($checkbox);
+            }
+        }
+
+        return $checkboxes;
+    }
+
     private function generateNestedItems($datas, $id, $value)
     {
         $selects = collect([]);
@@ -95,8 +134,8 @@ class FormGenerator
     private function generateChildrenItems($selects, $data, $id, $value, $space = '')
     {
         $children = $data->children()->get();
+        $space = $space . '&nbsp;&nbsp;';
         foreach ($children as $child) {
-            $space = $space . '--';
             if ($child->children) {
                 $selects->push([$child->$id => $space . '&nbsp;' . $child->$value]);
                 $this->generateChildrenItems($selects, $child, $id, $value, $space);
@@ -105,4 +144,5 @@ class FormGenerator
             }
         }
     }
+
 }

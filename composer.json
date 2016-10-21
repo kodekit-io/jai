@@ -11,7 +11,10 @@
         "intervention/image": "^2.3",
         "lavary/laravel-menu": "^1.6",
         "yajra/laravel-datatables-oracle": "^6.19",
-        "laravelcollective/html": "^5.3"
+        "laravelcollective/html": "^5.3",
+        "intervention/imagecache": "^2.3",
+        "jildertmiedema/laravel-plupload": "^0.3.1",
+        "vinkla/instagram": "^4.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -28,7 +31,8 @@
             "App\\": "app/",
             "App\\Models\\": "app/Models/",
             "App\\Models\\Traits\\": "app/Models/Traits/",
-            "App\\Service\\": "app/Services/"
+            "App\\Service\\": "app/Services/",
+            "App\\Helpers\\": "app/Helpers/"
         },
         "files" : [
             "app/Helpers/helpers.php"

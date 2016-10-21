@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Traits\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
+    use Sluggable;
+
     protected $fillable = ['title', 'slug', 'content', 'post_type_id', 'status', 'publish_date'];
 
     public function categories()

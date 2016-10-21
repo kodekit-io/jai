@@ -58,7 +58,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        $data['categories'] = $this->categoryService->findByPostTypeName('post');
+        $data['categoryCheckboxes'] = $this->categoryService->categoryCheckbox();
         $data['currentDateTime'] = Carbon::now()->format('d-F-Y - H:i');
         return view('backend.posts.add', $data);
     }
@@ -71,7 +71,9 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        var_dump($request->all());
+        $this->postService->store($request->except(['_token']));
+
+        return backendRedirect('/post');
     }
 
     /**

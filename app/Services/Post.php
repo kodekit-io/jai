@@ -37,6 +37,30 @@ class Post
         return PostModel::all();
     }
 
+    public function store(array $inputs)
+    {
+        $title = $inputs['title'];
+        $categories = $inputs['categories'];
+        $mediaId = $inputs['featured_image_id'];
+
+        $post = PostModel::create([
+            'title' => $title,
+            'slug' => getSlugOnModelByTitle($title, 'Post'),
+            'content' => $inputs['content'],
+            'post_type_id' => 2,
+            'status' => strtoupper($inputs['status']),
+            'publish_date' => Carbon::createFromFormat('d-F-Y - H:i', $inputs['publish_date'])->format('Y-m-d H:i')
+        ]);
+
+        if (count($categories) > 0) {
+            $post->categories()->attach($categories);
+        }
+
+        if ($mediaId != '') {
+            $post->medias()->attach($mediaId);
+        }
+    }
+
     private function getCategories($post)
     {
         $categories = $post->categories;

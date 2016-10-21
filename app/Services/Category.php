@@ -79,6 +79,22 @@ class Category
         return $form->dbSelect($categories, $name, $fields, ['class' => 'form-control', 'id' => 'post-type']);
     }
 
+    public function categoryCheckbox()
+    {
+        $form = new FormGenerator();
+        $categories = $this->findByPostTypeId(2);
+        $fields = [
+            'id' => 'id',
+            'value' => 'name'
+        ];
+        return $form->nestedDbCheckbox($categories, 'categories[]', 'id', 'name');
+    }
+
+    public function findByPostTypeId($id)
+    {
+        return CategoryModel::where('post_type_id', $id)->get();
+    }
+
     public function findByPostTypeName($name)
     {
         return CategoryModel::whereHas('postType', function ($query) use ($name) {
