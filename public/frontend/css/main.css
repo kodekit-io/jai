@@ -18,20 +18,21 @@ body {
 	font-family: 'Intro', sans-serif;
 }
 /**/
-.uk-container {
-	max-width: 650px;
+.uk-container.uk-container-center {
+	padding: 0 75px 0 calc(150px + 2vw);
+	max-width: 1050px;
 }
 /**/
 .ja-nav {
 	position: fixed;
 	z-index: 1;
-	width: 175px;
-	top: 2em;
-	left: 2em;
+	width: 160px;
+	left: 2vw;
+	top: 2vw;
 }
 .ja-logo {
-	width: 175px;
-	height: 175px;
+	width: 160px;
+	height: 160px;
 	margin-bottom: 10px;
 }
 .ja-logo a {
@@ -45,8 +46,8 @@ body {
 .ja-nav-main {
 	background: #3ab0c8;
 	color: #fff;
-	width: 145px;
-	padding: 10px 15px;
+	width: 140px;
+	padding: 10px;
 	margin: 0 0 10px;
 }
 .ja-nav-main li a {
@@ -394,7 +395,7 @@ a.ja-button-outline {
 }
 #themoment ul li a {
 	display: block;
-	height: 150px;
+	height: 200px;
 	width: calc(100% - 40px);
 	padding: 20px;
 	text-align: center;
