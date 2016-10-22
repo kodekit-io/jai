@@ -12,62 +12,23 @@
 		<h3 class="ja-title ja-title__blue light-blue-text text-darken-4 uk-margin-large-bottom">What's On</h3>
 		<?php //Whatson Posts ?>
 		<ul class="uk-list uk-list-space">
+			@foreach($whatsOnContents as $whatsOn)
 			<li class="ja-post">
 				<div class="uk-grid">
 					<div class="uk-width-medium-1-2">
-						<a href="#!" class="ja-post--img" style="background-image: url(https://scontent-sin6-1.cdninstagram.com/t51.2885-15/e35/13398821_254807328227391_196141175_n.jpg?ig_cache_key=MTI3NjgxMjAyMjc4NTY4NDk2Mg%3D%3D.2)">Learn more</a>
+                        <?php $imagePath = $whatsOn->medias()->where('media_type', 'featured')->first()->file_name; ?>
+						<a href="#!" class="ja-post--img" style="background-image: url('{!! url('images/whatsOn/' . $imagePath) !!}')">Learn more</a>
 					</div>
 					<div class="uk-width-medium-1-2">
 						<div class="ja-post--content">
-							<h5 class="ja-post--title"><a href="#!" title="Eiusmod Tempor Praesenti sed Value Incidia Sparkle Magnuse Doredomain Melrose at Bellami Dolore.">Eiusmod Tempor Praesenti sed Value Incidia Sparkle Magnuse Doredomain Melrose at Bellami Dolore.</a></h5>
-							<p class="uk-margin-remove">At vero eos et accusamus et iusto odyssey madeline dignissimos ducimus qui.</p>
+							<h5 class="ja-post--title"><a href="#!" title="{!! $whatsOn->title !!}">{!! $whatsOn->title !!}</a></h5>
+							<p class="uk-margin-remove">{!! $whatsOn->content !!}</p>
 							<a class="ja-post--link"><i class="uk-icon-chevron-right"></i></a>
 						</div>
 					</div>
 				</div>
 			</li>
-			<li class="ja-post">
-				<div class="uk-grid">
-					<div class="uk-width-medium-1-2">
-						<a href="#!" class="ja-post--img" style="background-image: url(https://scontent-sin6-1.cdninstagram.com/t51.2885-15/e35/14719605_197005060733899_5029678252923289600_n.jpg?ig_cache_key=MTM2MDI3OTU0MTMwMjM3MTEwOA%3D%3D.2)">Learn more</a>
-					</div>
-					<div class="uk-width-medium-1-2">
-						<div class="ja-post--content">
-							<h5 class="ja-post--title"><a href="#!" title="Eiusmod Tempor Praesenti sed Value Incidia Sparkle Magnuse Doredomain Melrose at Bellami Dolore.">Eiusmod Tempor Praesenti sed Value Incidia Sparkle Magnuse Doredomain Melrose at Bellami Dolore.</a></h5>
-							<p class="uk-margin-remove">At vero eos et accusamus et iusto odyssey madeline dignissimos ducimus qui.</p>
-							<a class="ja-post--link"><i class="uk-icon-chevron-right"></i></a>
-						</div>
-					</div>
-				</div>
-			</li>
-			<li class="ja-post">
-				<div class="uk-grid">
-					<div class="uk-width-medium-1-2">
-						<a href="#!" class="ja-post--img" style="background-image: url(https://scontent-sin6-1.cdninstagram.com/t51.2885-15/e35/14449213_191901171238778_241706762120462336_n.jpg?ig_cache_key=MTM0NTA1NjQ0MTk3MDUyNjMwMg%3D%3D.2)">Learn more</a>
-					</div>
-					<div class="uk-width-medium-1-2">
-						<div class="ja-post--content">
-							<h5 class="ja-post--title"><a href="#!" title="Eiusmod Tempor Praesenti sed Value Incidia Sparkle Magnuse Doredomain Melrose at Bellami Dolore.">Eiusmod Tempor Praesenti sed Value Incidia Sparkle Magnuse Doredomain Melrose at Bellami Dolore.</a></h5>
-							<p class="uk-margin-remove">At vero eos et accusamus et iusto odyssey madeline dignissimos ducimus qui.</p>
-							<a class="ja-post--link"><i class="uk-icon-chevron-right"></i></a>
-						</div>
-					</div>
-				</div>
-			</li>
-			<li class="ja-post">
-				<div class="uk-grid">
-					<div class="uk-width-medium-1-2">
-						<a href="#!" class="ja-post--img" style="background-image: url(https://scontent-sin6-1.cdninstagram.com/t51.2885-15/e35/14099775_1262366833781875_349081681_n.jpg?ig_cache_key=MTMyMTU1MDYzOTE1NDc2OTU4Nw%3D%3D.2)">Learn more</a>
-					</div>
-					<div class="uk-width-medium-1-2">
-						<div class="ja-post--content">
-							<h5 class="ja-post--title"><a href="#!" title="Eiusmod Tempor Praesenti sed Value Incidia Sparkle Magnuse Doredomain Melrose at Bellami Dolore.">Eiusmod Tempor Praesenti sed Value Incidia Sparkle Magnuse Doredomain Melrose at Bellami Dolore.</a></h5>
-							<p class="uk-margin-remove">At vero eos et accusamus et iusto odyssey madeline dignissimos ducimus qui.</p>
-							<a class="ja-post--link"><i class="uk-icon-chevron-right"></i></a>
-						</div>
-					</div>
-				</div>
-			</li>
+			@endforeach
 		</ul>
 	</div>
 </section>

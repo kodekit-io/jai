@@ -47,7 +47,7 @@ class Post
             'title' => $title,
             'slug' => getSlugOnModelByTitle($title, 'Post'),
             'content' => $inputs['content'],
-            'post_type_id' => 2,
+            'post_type_id' => 1,
             'status' => strtoupper($inputs['status']),
             'publish_date' => Carbon::createFromFormat('d-F-Y - H:i', $inputs['publish_date'])->format('Y-m-d H:i')
         ]);
@@ -66,5 +66,35 @@ class Post
         $categories = $post->categories;
         $plucked = array_pluck($categories, 'name');
         return implode(", ", $plucked);
+    }
+
+    public function getPosts(array $params)
+    {
+        $posts = PostModel::where('id', '>', 0);
+
+        // search by post_type
+        if (isset($params['post_type_id'])) {
+            $posts = $posts->where('post_type_id', $params['post_type_id']);
+        }
+
+        // search by category
+        if (isset($params['category_id'])) {
+            $categoryId = $params['category_id'];
+            $posts = $posts->whereHas('categories', function($query) use ($categoryId) {
+                $query->where('category_id', $categoryId);
+            });
+        }
+
+        // search by status
+        if (isset($params['status'])) {
+            $posts = $posts->where('status', $params['status']);
+        }
+
+        return $posts->get();
+    }
+
+    public function findById($id)
+    {
+        return PostModel::find($id);
     }
 }

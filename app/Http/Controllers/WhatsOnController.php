@@ -4,12 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Service\Category;
 use App\Service\Post;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-class PostController extends Controller
+class WhatsOnController extends Controller
 {
     /**
      * @var Post
@@ -42,25 +41,13 @@ class PostController extends Controller
     }
 
     /**
-     * Process datatables ajax request.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function anyData()
-    {
-        return $this->postService->datatableData();
-    }
-
-    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        $data['categoryCheckboxes'] = $this->categoryService->categoryCheckbox('categories[]', 1);
-        $data['currentDateTime'] = Carbon::now()->format('d-F-Y - H:i');
-        return view('backend.posts.add', $data);
+        //
     }
 
     /**
@@ -71,9 +58,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $this->postService->store($request->except(['_token']));
-
-        return backendRedirect('post');
+        //
     }
 
     /**
@@ -95,13 +80,7 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        $post = $this->postService->findById($id);
-        $data['post'] = $post;
-        $selectedCategories = $post->categories->pluck('id')->all();
-        $data['categoryCheckboxes'] = $this->categoryService->categoryCheckbox('categories[]', 1, $selectedCategories);
-        $data['publishDate'] = Carbon::createFromFormat('Y-m-d H:i:s', $post->publish_date)->format('d-F-Y - H:i');
-        $data['featuredImage'] = $post->medias()->where('media_type', 'featured')->first();
-        return view('backend.posts.edit', $data);
+        //
     }
 
     /**
@@ -113,7 +92,7 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        var_dump($request->input());
+        //
     }
 
     /**
