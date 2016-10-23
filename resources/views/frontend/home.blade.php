@@ -13,6 +13,7 @@
 		<?php //Whatson Posts ?>
 		<ul class="uk-list uk-list-space">
 			@foreach($whatsOnContents as $whatsOn)
+            <?php $postDetail = $whatsOn->details()->first(); ?>
 			<li class="ja-post">
 				<div class="uk-grid">
 					<div class="uk-width-medium-1-2">
@@ -21,8 +22,8 @@
 					</div>
 					<div class="uk-width-medium-1-2">
 						<div class="ja-post--content">
-							<h5 class="ja-post--title"><a href="#!" title="{!! $whatsOn->title !!}">{!! $whatsOn->title !!}</a></h5>
-							<p class="uk-margin-remove">{!! $whatsOn->content !!}</p>
+							<h5 class="ja-post--title"><a href="#!" title="{!! $postDetail->title !!}">{!! $postDetail->title !!}</a></h5>
+							<p class="uk-margin-remove">{!! $postDetail->content !!}</p>
 							<a class="ja-post--link"><i class="uk-icon-chevron-right"></i></a>
 						</div>
 					</div>

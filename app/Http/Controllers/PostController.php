@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Service\Category;
 use App\Service\Post;
+use App\Service\Traits\DataMessage;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -11,6 +12,8 @@ use App\Http\Requests;
 
 class PostController extends Controller
 {
+    use DataMessage;
+
     /**
      * @var Post
      */
@@ -73,7 +76,7 @@ class PostController extends Controller
     {
         $this->postService->store($request->except(['_token']));
 
-        return backendRedirect('post');
+        return backendRedirect('post')->with($this->getMessage('store'));
     }
 
     /**
@@ -113,7 +116,9 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        var_dump($request->input());
+        $this->postService->update($id, $request->except(['_token']));
+
+        return backendRedirect('post')->with($this->getMessage('update'));
     }
 
     /**

@@ -113,5 +113,5 @@ Route::group(['prefix' => $backendUrl, 'middleware' => ['auth']], function () {
 
 Route::group(['middleware' => ['lang']], function () {
     Route::get('/{lang?}', 'FrontEndController@homepage');
-    Route::get('/{lang?}/{contentSlug}', 'FrontEndController@homepage');
+    Route::get('/{lang?}/news/{slug}', 'FrontEndController@homepage');
 });

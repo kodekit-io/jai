@@ -22,14 +22,17 @@ class FrontEndController extends Controller
         $this->postService = $postService;
     }
 
-    public function homepage($lang = null)
+    public function homepage($lang)
     {
         $params = [
             'category_id' => 2,
             'status' => 'publish',
-            'post_type_id' => 1
+            'post_type_id' => 1,
+            'lang' => $lang
         ];
-        $data['whatsOnContents'] = $this->postService->getPosts($params);
+        $data['whatsOnContents'] = $this->postService->getPostsWithDetail($params);
+        // $post = $data['whatsOnContents'];
+        // var_dump($post->first()->details()->where('lang', 'en')->first()->title); exit;
 
         return view('frontend.home', $data);
     }

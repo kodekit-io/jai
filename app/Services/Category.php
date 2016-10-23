@@ -84,7 +84,7 @@ class Category
         return $form->dbSelect($categories, $name, $fields, ['class' => 'form-control', 'id' => 'post-type']);
     }
 
-    public function categoryCheckbox($name, $postTypeId, $selected)
+    public function categoryCheckbox($name, $postTypeId, $selected = [])
     {
         $form = new FormGenerator();
         $categories = $this->getCategoriesByPostType($postTypeId);
