@@ -13,17 +13,16 @@
 		<?php //Whatson Posts ?>
 		<ul class="uk-list uk-list-space">
 			@foreach($whatsOnContents as $whatsOn)
-            <?php $postDetail = $whatsOn->details()->first(); ?>
 			<li class="ja-post">
 				<div class="uk-grid">
 					<div class="uk-width-medium-1-2">
-                        <?php $imagePath = $whatsOn->medias()->where('media_type', 'featured')->first()->file_name; ?>
+                        <?php $imagePath = getMediaByPostId($whatsOn->id)->file_name; ?>
 						<a href="#!" class="ja-post--img" style="background-image: url('{!! url('images/whatsOn/' . $imagePath) !!}')">Learn more</a>
 					</div>
 					<div class="uk-width-medium-1-2">
 						<div class="ja-post--content">
-							<h5 class="ja-post--title"><a href="#!" title="{!! $postDetail->title !!}">{!! $postDetail->title !!}</a></h5>
-							<p class="uk-margin-remove">{!! $postDetail->content !!}</p>
+							<h5 class="ja-post--title"><a href="#!" title="{!! $whatsOn->title !!}">{!! $whatsOn->title !!}</a></h5>
+							<p class="uk-margin-remove">{!! $whatsOn->content !!}</p>
 							<a class="ja-post--link"><i class="uk-icon-chevron-right"></i></a>
 						</div>
 					</div>

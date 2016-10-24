@@ -30,9 +30,8 @@ class FrontEndController extends Controller
             'post_type_id' => 1,
             'lang' => $lang
         ];
-        $data['whatsOnContents'] = $this->postService->getPostsWithDetail($params);
-        // $post = $data['whatsOnContents'];
-        // var_dump($post->first()->details()->where('lang', 'en')->first()->title); exit;
+        $post = $this->postService->getPostsWithDetail($params);
+        $data['whatsOnContents'] = $post;
 
         return view('frontend.home', $data);
     }

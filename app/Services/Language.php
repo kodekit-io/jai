@@ -22,4 +22,9 @@ class Language
         return false;
 
     }
+
+    public function getAvailableLanguages()
+    {
+        return config('languages.languages');
+    }
 }

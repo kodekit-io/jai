@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Service\Category;
+use App\Service\Language;
 use App\Service\Post;
 use App\Service\Traits\DataMessage;
 use Carbon\Carbon;
@@ -22,16 +23,21 @@ class PostController extends Controller
      * @var Category
      */
     private $categoryService;
+    /**
+     * @var Language
+     */
+    private $languageService;
 
     /**
      * PostController constructor.
      * @param Post $postService
      * @param Category $categoryService
      */
-    public function __construct(Post $postService, Category $categoryService)
+    public function __construct(Post $postService, Category $categoryService, Language $languageService)
     {
         $this->postService = $postService;
         $this->categoryService = $categoryService;
+        $this->languageService = $languageService;
     }
 
     /**
@@ -63,6 +69,8 @@ class PostController extends Controller
     {
         $data['categoryCheckboxes'] = $this->categoryService->categoryCheckbox('categories[]', 1);
         $data['currentDateTime'] = Carbon::now()->format('d-F-Y - H:i');
+        $data['langs'] = $this->languageService->getAvailableLanguages();
+        $data['defaultLang'] = $this->languageService->getDefaultLanguage();
         return view('backend.posts.add', $data);
     }
 
@@ -74,6 +82,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        // var_dump($request->except(['_token'])); exit;
         $this->postService->store($request->except(['_token']));
 
         return backendRedirect('post')->with($this->getMessage('store'));
@@ -100,6 +109,8 @@ class PostController extends Controller
     {
         $post = $this->postService->findById($id);
         $data['post'] = $post;
+        $data['langs'] = $this->languageService->getAvailableLanguages();
+        $data['defaultLang'] = $this->languageService->getDefaultLanguage();
         $selectedCategories = $post->categories->pluck('id')->all();
         $data['categoryCheckboxes'] = $this->categoryService->categoryCheckbox('categories[]', 1, $selectedCategories);
         $data['publishDate'] = Carbon::createFromFormat('Y-m-d H:i:s', $post->publish_date)->format('d-F-Y - H:i');

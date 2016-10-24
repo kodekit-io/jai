@@ -73,6 +73,14 @@ Route::group(['prefix' => $backendUrl, 'middleware' => ['menu','auth','authorize
     Route::post('/post/{id}/update', 'PostController@update')->name('post.edit');
     Route::get('/post/{id}/delete', 'PostController@destroy')->name('post.delete');
 
+    // Slider
+    Route::get('/slider', 'SliderController@index')->name('slider');
+    Route::get('/slider/add', 'SliderController@create')->name('slider.add');
+    Route::post('/slider/save', 'SliderController@store')->name('slider.add');
+    Route::get('/slider/{id}/edit', 'SliderController@edit')->name('slider.edit');
+    Route::post('/slider/{id}/update', 'SliderController@update')->name('slider.edit');
+    Route::get('/slider/{id}/delete', 'SliderController@destroy')->name('slider.delete');
+
     // What's on
     Route::get('/whats-on', 'WhatsOnController@index')->name('whats-on');
     Route::get('/whats-on/add', 'WhatsOnController@create')->name('whats-on.add');

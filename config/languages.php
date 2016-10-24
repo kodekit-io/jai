@@ -5,12 +5,14 @@ return [
     'languages' =>
         [
             'en' => [
+                'code' => 'en',
                 'title' => 'English',
-                'flag' => 'en.jpg'
+                'flag' => 'en.jpg',
             ],
             'id' => [
+                'code' => 'id',
                 'title' => 'Bahasa Indonesia',
-                'flag' => 'id.jpg'
+                'flag' => 'id.jpg',
             ]
         ]
 ];

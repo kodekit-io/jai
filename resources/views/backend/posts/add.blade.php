@@ -15,16 +15,23 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="portlet light bordered">
-                    <div class="portlet-title">
+                    <div class="portlet-title tabbable-line">
                         <div class="caption font-dark">
                             <i class="icon-user font-dark"></i>
                             <span class="caption-subject bold uppercase"> Add Post</span>
                         </div>
-                        <div class="actions">
-                            <a class="btn btn-xs sbold green" href="{!! backendUrl('post') !!}">
-                                <i class="fa fa-arrow-left"></i> Back
-                            </a>
-                        </div>
+                        <ul class="nav nav-tabs">
+                            @foreach($langs as $lang)
+                            <li @if($lang['code'] == $defaultLang) class="active" @endif>
+                                <a href="#{!! $lang['code'] !!}" data-toggle="tab"> {!! $lang['title'] !!} </a>
+                            </li>
+                            @endforeach
+                        </ul>
+                        {{--<div class="actions">--}}
+                            {{--<a class="btn btn-xs sbold green" href="{!! backendUrl('post') !!}">--}}
+                                {{--<i class="fa fa-arrow-left"></i> Back--}}
+                            {{--</a>--}}
+                        {{--</div>--}}
                     </div>
                     <div class="portlet-body">
                         <form role="form" action="{!! backendUrl('post/save') !!}" method="post" >
@@ -34,22 +41,9 @@
 
                                     {{--main form--}}
                                     <div class="col-md-8">
-                                        <div class="form-group @if ($errors->has('title')) has-error @endif">
-                                            <label>Title</label>
-                                            <input type="text" id="title" name="title" class="form-control" placeholder="Title" value="{!! old('title') !!}" autofocus>
-                                            @if ($errors->has('title'))
-                                                <span class="help-block">{!! $errors->first('title') !!}</span>
-                                            @endif
-                                        </div>
-                                        <div class="form-group @if ($errors->has('content')) has-error @endif">
-                                            <label>Content</label>
-                                            <textarea name="content" id="content"></textarea>
-                                            @if ($errors->has('content'))
-                                                <span class="help-block">{!! $errors->first('content') !!}</span>
-                                            @endif
-                                        </div>
+                                        @include('backend.posts.content')
                                     </div>
-                                    {{--end of main center--}}
+                                    {{--end of main form--}}
 
                                     @include('backend.posts.sidebar')
 

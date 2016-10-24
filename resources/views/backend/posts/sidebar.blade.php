@@ -21,7 +21,7 @@
                         </span>
                     </div>
                 </div>
-                <input type="submit" name="status" class="btn btn-default" value="Draft"> <input type="submit" name="status" class="btn btn-default" value="Publish">
+                <a href="{!! backendUrl('post') !!}" class="btn btn-sm sbold green">Back</a> <input type="submit" name="status" class="btn btn-sm btn-default" value="Draft"> <input type="submit" name="status" class="btn btn-sm btn-default" value="Publish">
             </div>
         </div>
     </div>

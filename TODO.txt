@@ -24,7 +24,10 @@
 
 -- Create multilanguage feature
 ---- using uri ex : http://jai.com/en/content-slug-here and http://jai.com/id/content-slug-here
----- add languages configuration
--- Edit post
--- Create pages management
+-- Add language options when create the content (DONE)
+-- Add language options when edit the content (DONE)
+
 -- Slider management
+-- Add author on post/page
+-- Add notification when there are any blank languages whe publish the content
+-- Create pages management

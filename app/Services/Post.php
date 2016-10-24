@@ -6,6 +6,7 @@ namespace App\Service;
 use App\Models\Post as PostModel;
 use App\Service\Traits\DatatableParameters;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class Post
 {
@@ -45,7 +46,6 @@ class Post
 
     public function store(array $inputs)
     {
-        $title = $inputs['title'];
         $categories = $inputs['categories'];
         $mediaId = $inputs['featured_image_id'];
 
@@ -55,12 +55,15 @@ class Post
             'publish_date' => Carbon::createFromFormat('d-F-Y - H:i', $inputs['publish_date'])->format('Y-m-d H:i')
         ]);
 
-        $post->details()->create([
-            'title' => $title,
-            'slug' => getSlugOnModelByTitle($title, 'PostDetail'),
-            'content' => $inputs['content'],
-            'lang' => 'en'
-        ]);
+        foreach ($inputs['title'] as $lang => $title) {
+            $content = $inputs['content'][$lang];
+            $post->details()->create([
+                'title' => $title,
+                'slug' => getSlugOnModelByTitle($title, 'PostDetail'),
+                'content' => $content,
+                'lang' => $lang
+            ]);
+        }
 
         if (count($categories) > 0) {
             $post->categories()->attach($categories);
@@ -125,27 +128,34 @@ class Post
 
     public function getPostsWithDetail(array $params)
     {
-        $posts = PostModel::with('details');
+        $query = DB::table('posts')
+                    ->join('post_details', 'posts.id', '=', 'post_details.post_id')
+                    ->join('post_has_categories', 'posts.id', '=', 'post_has_categories.post_id');
+
+        // search by lang
+        if (isset($params['lang'])) {
+            $lang = $params['lang'];
+            $query = $query->where('post_details.lang', $lang);
+        }
 
         // search by post_type
         if (isset($params['post_type_id'])) {
-            $posts = $posts->where('post_type_id', $params['post_type_id']);
+            $query = $query->where('posts.post_type_id', $params['post_type_id']);
         }
 
         // search by category
         if (isset($params['category_id'])) {
             $categoryId = $params['category_id'];
-            $posts = $posts->whereHas('categories', function($query) use ($categoryId) {
-                $query->where('category_id', $categoryId);
-            });
+            $query = $query->where('post_has_categories.category_id', $categoryId);
         }
 
         // search by status
         if (isset($params['status'])) {
-            $posts = $posts->where('status', $params['status']);
+            $query = $query->where('posts.status', $params['status']);
         }
 
-        return $posts->get();
+        return $query->get();
+
     }
 
     public function findById($id)
@@ -156,11 +166,20 @@ class Post
     public function update($id, array $inputs)
     {
         $post = PostModel::find($id);
-        $post->title = $inputs['title'];
-        $post->content = $inputs['content'];
         $post->publish_date = Carbon::createFromFormat('d-F-Y - H:i', $inputs['publish_date'])->format('Y-m-d H:i');
         $post->status = strtoupper($inputs['status']);
         $post->save();
+
+        $post->details()->delete();
+        foreach ($inputs['title'] as $lang => $title) {
+            $content = $inputs['content'][$lang];
+            $post->details()->create([
+                'lang' => $lang,
+                'title' => $title,
+                'slug' => getSlugOnModelByTitle($title, 'PostDetail'),
+                'content' => $content,
+            ]);
+        }
 
         $categories = $inputs['categories'];
         if (count($categories) > 0) {
