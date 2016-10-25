@@ -15,7 +15,28 @@ class PostType
     public function datatableData()
     {
         $postTypes = $this->all();
-        $actions = $this->actionParameters(['edit','delete']);
+        // $actions = $this->actionParameters(['edit','delete']);
+        $isDeletable = function ($collection) {
+            if ($collection->id == 1) {
+                return false;
+            }
+            return true;
+        };
+        $actions = [
+            'edit' => [
+                'title'     => 'Edit',
+                'link'      => backendUrl($this->baseUrl . '/%s' . '/edit'),
+                'class'     => 'btn btn-xs btn-default',
+                'icon'      => 'fa fa-edit'
+            ],
+            'delete' => [
+                'title'     => 'Delete',
+                'link'      => backendUrl($this->baseUrl . '/%s' . '/delete'),
+                'class'     => 'btn btn-xs btn-default btn-delete',
+                'icon'      => 'fa fa-times',
+                'whereClause' => $isDeletable,
+            ]
+        ];
 
         return (new DatatableGenerator($postTypes))
             ->addActions($actions)

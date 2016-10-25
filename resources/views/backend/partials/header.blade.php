@@ -3,8 +3,10 @@
     <div class="page-header-inner ">
         <!-- BEGIN LOGO -->
         <div class="page-logo">
-            <a href="index.html">
-                <img src="{!! asset('assets/layouts/layout/img/logo.png') !!}" alt="logo" class="logo-default" /> </a>
+            <a href="{!! backendUrl('') !!}">
+                {{--<img src="{!! asset('assets/layouts/layout/img/logo.png') !!}" alt="logo" class="logo-default" /> --}}
+                <span></span>
+            </a>
             <div class="menu-toggler sidebar-toggler">
                 <span></span>
             </div>

@@ -38,9 +38,10 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($postTypeId)
     {
-        return view('backend.posts.list-category');
+        $data['postTypeId'] = $postTypeId;
+        return view('backend.categories.list', $data);
     }
 
     /**
@@ -48,9 +49,9 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function anyData()
+    public function anyData($postTypeId)
     {
-        return $this->categoryService->datatableData();
+        return $this->categoryService->datatableData($postTypeId);
     }
 
     /**
@@ -58,11 +59,11 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($postTypeId)
     {
-        // $data['postTypeSelect'] = $this->postTypeService->postTypeSelect('post_type_id');
-        $data['categorySelect'] = $this->categoryService->categorySelect('parent_id');
-        return view('backend.posts.add-category', $data);
+        $data['categorySelect'] = $this->categoryService->categorySelect('parent_id', $postTypeId);
+        $data['postTypeId'] = $postTypeId;
+        return view('backend.categories.add', $data);
     }
 
     /**
@@ -71,22 +72,11 @@ class CategoryController extends Controller
      * @param CategoryStore $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CategoryStore $request)
+    public function store(CategoryStore $request, $postTypeId)
     {
-        $this->categoryService->store($request->except('_token'));
+        $this->categoryService->store($postTypeId, $request->except('_token'));
 
-        return backendRedirect('post-category')->with($this->getMessage('store'));
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        return backendRedirect('post-category/'. $postTypeId)->with($this->getMessage('store'));
     }
 
     /**
@@ -95,13 +85,13 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($postTypeId, $id)
     {
         $category = $this->categoryService->getCategoryById($id);
         $data['category'] = $category;
-        // $data['postTypeSelect'] = $this->postTypeService->postTypeSelect('post_type_id', $category->post_type_id);
-        $data['categorySelect'] = $this->categoryService->categorySelect('parent_id', $category->parent_id);
-        return view('backend.posts.edit-category', $data);
+        $data['postTypeId'] = $postTypeId;
+        $data['categorySelect'] = $this->categoryService->categorySelect('parent_id', $postTypeId, $category->parent_id);
+        return view('backend.categories.edit', $data);
     }
 
     /**
@@ -111,11 +101,11 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $postTypeId, $id)
     {
-        $this->categoryService->update($id, $request->except(['_token']));
+        $this->categoryService->update($postTypeId, $id, $request->except(['_token']));
 
-        return backendRedirect('post-category')->with($this->getMessage('update'));
+        return backendRedirect('post-category/'. $postTypeId)->with($this->getMessage('update'));
     }
 
     /**
@@ -124,10 +114,31 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($postTypeId, $id)
     {
+        if ($this->categoryService->hasPost($id)) {
+            return backendRedirect('post-category/' . $postTypeId .'/' . $id .'/transfer');
+        }
+
         $this->categoryService->destroy($id);
 
-        return backendRedirect('post-category')->with($this->getMessage('delete'));
+        return backendRedirect('post-category/'. $postTypeId)->with($this->getMessage('delete'));
+    }
+
+    public function transfer($postTypeId, $id)
+    {
+        $data['postTypeId'] = $postTypeId;
+        $data['id'] = $id;
+        $data['categorySelect'] = $this->categoryService->categorySelect('transfer_to', $postTypeId, null, $id);
+        return view('backend.categories.transfer', $data);
+    }
+
+    public function transferThenDelete(Request $request, $postTypeId, $id)
+    {
+        $this->categoryService->transferPostsTo($id, $request->input(['transfer_to']));
+
+        $this->categoryService->destroy($id);
+
+        return backendRedirect('post-category/'. $postTypeId)->with($this->getMessage('delete'));
     }
 }

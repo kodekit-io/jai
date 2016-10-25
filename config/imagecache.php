@@ -57,6 +57,7 @@ return array(
         'medium' => 'Intervention\Image\Templates\Medium',
         'large' => 'Intervention\Image\Templates\Large',
         'featured' => 'App\Helpers\Featured',
+        'whatsOn' => 'App\Helpers\WhatsOn',
     ),
 
     /*

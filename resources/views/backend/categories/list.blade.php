@@ -17,7 +17,7 @@
                             <span class="caption-subject bold uppercase"> Category List</span>
                         </div>
                         <div class="actions">
-                            <a class="btn btn-xs sbold green" href="{!! backendUrl('post-category/add') !!}">
+                            <a class="btn btn-xs sbold green" href="{!! backendUrl('post-category/' . $postTypeId .'/add') !!}">
                                 <i class="fa fa-plus"></i> Add New
                             </a>
                         </div>
@@ -61,7 +61,7 @@
             $('#sample_1').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: '{!! route('post-category.data') !!}',
+                ajax: '{!! backendUrl('post-category-data/' . $postTypeId) !!}',
                 columns: [
                     { data: 'id', name: 'id', "width": "100px" },
                     { data: 'name', name: 'name' },

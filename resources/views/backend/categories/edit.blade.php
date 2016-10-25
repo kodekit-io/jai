@@ -18,13 +18,13 @@
                             <span class="caption-subject bold uppercase"> Edit Category</span>
                         </div>
                         <div class="actions">
-                            <a class="btn btn-xs sbold green" href="{!! backendUrl('post-category') !!}">
+                            <a class="btn btn-xs sbold green" href="{!! backendUrl('post-category/'. $postTypeId) !!}">
                                 <i class="fa fa-arrow-left"></i> Back
                             </a>
                         </div>
                     </div>
                     <div class="portlet-body">
-                        <form role="form" action="{!! backendUrl('post-category/' . $category->id . '/update') !!}" method="post" >
+                        <form role="form" action="{!! backendUrl('post-category/'. $postTypeId .'/'. $category->id . '/update') !!}" method="post" >
                             {{ csrf_field() }}
                             <div class="form-body">
                                 <div class="row">

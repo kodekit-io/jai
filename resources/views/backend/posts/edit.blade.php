@@ -4,66 +4,66 @@
     <link href="{!! asset('/assets/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css') !!}" rel="stylesheet" type="text/css" />
     <link href="{!! asset('assets/global/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css') !!}" rel="stylesheet" type="text/css" />
     <link href="{!! asset('assets/global/plugins/bootstrap-modal/css/bootstrap-modal.css') !!}" rel="stylesheet" type="text/css" />
-@endsection
+    @endsection
 
-@section('content')
-        <!-- BEGIN CONTENT -->
-<div class="page-content-wrapper">
+    @section('content')
+            <!-- BEGIN CONTENT -->
+    <div class="page-content-wrapper">
 
-    <!-- BEGIN CONTENT BODY -->
-    <div class="page-content">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="portlet light bordered">
-                    <div class="portlet-title tabbable-line">
-                        <div class="caption font-dark">
-                            <i class="icon-user font-dark"></i>
-                            <span class="caption-subject bold uppercase"> Add Post</span>
-                        </div>
-                        <ul class="nav nav-tabs">
-                            @foreach($langs as $lang)
-                            <li @if($lang['code'] == $defaultLang) class="active" @endif>
-                                <a href="#{!! $lang['code'] !!}" data-toggle="tab"> {!! $lang['title'] !!} </a>
-                            </li>
-                            @endforeach
-                        </ul>
-                        {{--<div class="actions">--}}
-                            {{--<a class="btn btn-xs sbold green" href="{!! backendUrl('post') !!}">--}}
-                                {{--<i class="fa fa-arrow-left"></i> Back--}}
-                            {{--</a>--}}
-                        {{--</div>--}}
-                    </div>
-                    <div class="portlet-body">
-                        <form role="form" action="{!! backendUrl('post/save') !!}" method="post" >
-                            {{ csrf_field() }}
-                            <div class="form-body">
-                                <div class="row">
-
-                                    {{--main form--}}
-                                    <div class="col-md-8">
-                                        @include('backend.posts.content')
-                                    </div>
-                                    {{--end of main form--}}
-
-                                    @include('backend.posts.sidebar')
-
-                                </div>
+        <!-- BEGIN CONTENT BODY -->
+        <div class="page-content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="portlet light bordered">
+                        <div class="portlet-title tabbable-line">
+                            <div class="caption font-dark">
+                                <i class="icon-user font-dark"></i>
+                                <span class="caption-subject bold uppercase"> Edit Post</span>
                             </div>
-                        </form>
+                            <ul class="nav nav-tabs">
+                                @foreach($langs as $lang)
+                                    <li @if($lang['code'] == $defaultLang) class="active" @endif>
+                                        <a href="#{!! $lang['code'] !!}" data-toggle="tab"> {!! $lang['title'] !!} </a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                            {{--<div class="actions">--}}
+                                {{--<a class="btn btn-xs sbold green" href="{!! backendUrl('post') !!}">--}}
+                                    {{--<i class="fa fa-arrow-left"></i> Back--}}
+                                {{--</a>--}}
+                            {{--</div>--}}
+                        </div>
+                        <div class="portlet-body">
+                            <form role="form" action="{!! backendUrl('post/' . $post->id . '/update') !!}" method="post" >
+                                {{ csrf_field() }}
+                                <div class="form-body">
+                                    <div class="row">
+
+                                        {{--main form--}}
+                                        <div class="col-md-8">
+                                            @include('backend.posts.content-edit')
+                                        </div>
+                                        {{--end of main form--}}
+
+                                        @include('backend.posts.sidebar-edit')
+
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
+
+                    {{--modal--}}
+                    <div id="ajax-modal" class="modal container fade" tabindex="-1"> </div>
+                    {{--end of modal--}}
+
                 </div>
-
-                {{--modal--}}
-                <div id="ajax-modal" class="modal container fade" tabindex="-1"> </div>
-                {{--end of modal--}}
-
             </div>
         </div>
-    </div>
-    <!-- END CONTENT BODY -->
+        <!-- END CONTENT BODY -->
 
-</div>
-<!-- END CONTENT -->
+    </div>
+    <!-- END CONTENT -->
 @endsection
 
 @section('page-level-plugins')

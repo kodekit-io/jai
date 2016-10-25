@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    use Sluggable;
 
     protected $fillable = ['title', 'slug', 'content', 'post_type_id', 'status', 'publish_date'];
 
@@ -19,6 +18,11 @@ class Post extends Model
     public function postType()
     {
         return $this->belongsTo(PostType::class);
+    }
+
+    public function details()
+    {
+        return $this->hasMany(PostDetail::class);
     }
 
     /**

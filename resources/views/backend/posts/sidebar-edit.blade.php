@@ -13,7 +13,7 @@
                 <div class="form-group">
                     <label>Publish Date</label>
                     <div class="input-group date form_datetime">
-                        <input type="text" name="publish_date" size="16" value="{!! $currentDateTime !!}" readonly class="form-control">
+                        <input type="text" name="publish_date" size="16" value="{!! $publishDate !!}" readonly class="form-control">
                         <span class="input-group-btn">
                             <button class="btn default date-set" type="button">
                                 <i class="fa fa-calendar"></i>
@@ -40,32 +40,9 @@
             {{--end of portlet title--}}
             {{--portlet body--}}
             <div class="portlet-body tabbable-custom ">
-                {{--<ul class="nav nav-tabs">--}}
-                {{--<li class="active">--}}
-                {{--<a href="#portlet_tab1" data-toggle="tab"> Categories </a>--}}
-                {{--</li>--}}
-                {{--<li>--}}
-                {{--<a href="#portlet_tab2" data-toggle="tab"> Most Used </a>--}}
-                {{--</li>--}}
-                {{--</ul>--}}
-                {{--<div class="tab-content">--}}
-                {{--<div class="tab-pane active" id="portlet_tab1">--}}
-                {{--<div class="scroller" style="height: 200px;">--}}
-                {{--<h4>Tab 1 Content</h4>--}}
-                {{--</div>--}}
-                {{--</div>--}}
-                {{--<div class="tab-pane" id="portlet_tab2">--}}
-                {{--<div class="scroller" style="height: 200px;">--}}
-                {{--<h4>Tab 2 Content</h4>--}}
-                {{--</div>--}}
-                {{--</div>--}}
-                {{--</div>--}}
                 <div class="col-lg-12">
                     <div class="form-group">
                         <div class="mt-checkbox-outline">
-                            {{--@foreach($categories as $category)--}}
-                                {{--<label class="mt-checkbox mt-checkbox-outline"><input type="checkbox" name="categories[]" value="{!! $category->id!!}"> {!! $category->name !!}<span></span></label><br>--}}
-                            {{--@endforeach--}}
                             @foreach($categoryCheckboxes as $checkbox)
                                 {!! $checkbox !!}<br>
                             @endforeach
@@ -91,8 +68,8 @@
             {{--end of portlet title--}}
             {{--portlet body--}}
             <div class="portlet-body tabbable-custom ">
-                <input type="hidden" id="featured_image_id" name="featured_image_id">
-                <img src="" id="featured_image"><br>
+                <input type="hidden" id="featured_image_id" name="featured_image_id" value="{!! $featuredImage->id !!}">
+                <img src="{!! url('images/featured/' . $featuredImage->file_name) !!}" id="featured_image"><br>
                 <a id="ajax-demo" data-url="{!! backendUrl('tiny-image-manager') !!}" data-toggle="modal"> Set image </a>
                 <a id="remove-featured"> Remove image </a>
             </div>

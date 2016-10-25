@@ -54,5 +54,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'menu' => \App\Http\Middleware\MenuGenerator::class,
         'authorize' => \App\Http\Middleware\Authorize::class,
+        'lang' => \App\Http\Middleware\Language::class,
     ];
 }
