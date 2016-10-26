@@ -119,6 +119,12 @@ Route::group(['prefix' => $backendUrl, 'middleware' => ['auth']], function () {
 });
 
 
+//buat nanang
+Route::get('/about-us', function() {
+    // nanti buat page views/frontend/about-us.blade.php
+    return view('frontend.about-us');
+});
+
 
 Route::group(['middleware' => ['lang']], function () {
     Route::get('/{lang?}', 'FrontEndController@homepage');
