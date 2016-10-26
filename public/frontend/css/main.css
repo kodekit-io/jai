@@ -56,20 +56,48 @@ body {
 	display: block;
 	line-height: 18px;
 }
+.ja-nav-main li a:hover {
+	text-decoration: none;
+}
+.ja-nav-main li.active>a {
+	color: #005da6;
+	border-bottom: 1px solid #005da6;
+}
+.ja-nav-sub li a {
+	color: #fff;
+	padding: 0;
+	padding: 5px 0 5px 10px;
+	display: block;
+}
 .ja-icon-about {
-	background: url(../img/i-about.png) no-repeat left 5px;
+	background: url(../img/i-nav-sprite.png) no-repeat 0px 5px;
 }
-.ja-icon-attract {
-	background: url(../img/i-attract.png) no-repeat left 15px;
-}
-.ja-icon-edu {
-	background: url(../img/i-edu.png) no-repeat left 15px;
+.ja-icon-about:hover, .active .ja-icon-about {
+	background: url(../img/i-nav-sprite.png) no-repeat 0px -245px;
 }
 .ja-icon-loc {
-	background: url(../img/i-loc.png) no-repeat left 5px;
+	background: url(../img/i-nav-sprite.png) no-repeat 0px -45px;
+}
+.ja-icon-loc:hover, .active .ja-icon-loc {
+	background: url(../img/i-nav-sprite.png) no-repeat 0px -295px;
+}
+.ja-icon-attract {
+	background: url(../img/i-nav-sprite.png) no-repeat 0px -85px;
+}
+.ja-icon-attract:hover, .active .ja-icon-attract {
+	background: url(../img/i-nav-sprite.png) no-repeat 0px -335px;
+}
+.ja-icon-edu {
+	background: url(../img/i-nav-sprite.png) no-repeat 0px -135px;
+}
+.ja-icon-edu:hover, .active .ja-icon-edu {
+	background: url(../img/i-nav-sprite.png) no-repeat 0px -385px;
 }
 .ja-icon-news {
-	background: url(../img/i-news.png) no-repeat left 5px;
+	background: url(../img/i-nav-sprite.png) no-repeat 0px -195px;
+}
+.ja-icon-news:hover, .active .ja-icon-news {
+	background: url(../img/i-nav-sprite.png) no-repeat 0px -445px;
 }
 .ja-nav-main li a:hover {
 	color: #005da6;
@@ -150,6 +178,7 @@ body {
 	top:0;
 	width: 100%;
 	height: 100vh;
+	background: #005da6;
 }
 .ja-slideshow .uk-slideshow {
 	z-index: 0;
@@ -281,7 +310,9 @@ a.ja-button-outline {
 .ja-side-banner {
 	position: absolute;
 	right: 10px;
+	width: 75px !important;
 	top: 11em;
+	z-index: 10;
 }
 .ja-title {
 	font-family: 'Intro', 'Helvetica Neue', sans-serif;
@@ -479,6 +510,7 @@ a.ja-button-outline {
 		margin: 0;
 		border-top: 1px solid rgba(255, 255, 255, 0.5);
 	}
+
 	.ja-icon-attract {
 		background: url(../img/i-attract.png) no-repeat left 5px;
 	}

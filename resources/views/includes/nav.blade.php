@@ -4,7 +4,15 @@
 	<a href="#" class="uk-visible-small ja-mobmenu" data-uk-toggle="{target:'.ja-mobhide',cls:'uk-hidden-small',animation:'uk-animation-slide-fade, uk-animation-fade'}"><i class="uk-icon-bars"></i></a>
 	<ul class="uk-list ja-nav-main ja-mobhide uk-hidden-small">
 		<li><a href="#!" title="About Us" class="ja-icon-about">About Us</a></li>
-		<li><a href="#!" title="Plan Your Visit" class="ja-icon-loc">Plan Your Visit</a></li>
+		<li>
+			<a href="#!" title="Plan Your Visit" class="ja-icon-loc" data-uk-toggle={target:'#subvisit'}>Plan Your Visit</a>
+			<ul id="subvisit" class="uk-list uk-hidden ja-nav-sub uk-margin-small-top">
+				<li><a href="#!" title="Ticket &amp; Hours">Ticket &amp; Hours</a></li>
+				<li><a href="#!" title="Special Packages">Special Packages</a></li>
+				<li><a href="#!" title="Show Time">Show Time</a></li>
+				<li><a href="#!" title="Location">Location</a></li>
+			</ul>
+		</li>
 		<li><a href="#!" title="Attractions and Experience" class="ja-icon-attract">Attractions and Experience</a></li>
 		<li><a href="#!" title="Education and Conservation" class="ja-icon-edu">Education and Conservation</a></li>
 		<li><a href="#!" title="News and Blog" class="ja-icon-news">News and Blog</a></li>
