@@ -27,7 +27,8 @@
 -- Add language options when create the content (DONE)
 -- Add language options when edit the content (DONE)
 
--- Slider management
+-- Slider management (DONE)
+
 -- Add author on post/page
 -- Add notification when there are any blank languages whe publish the content
 -- Create pages management

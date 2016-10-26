@@ -4,14 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class SliderDetail extends Model
+class SliderItem extends Model
 {
-    protected $fillable = ['slider_id', 'content', 'link', 'image_path'];
-
+    protected $fillable = [ 'slider_id', 'lang', 'content', 'link', 'file_name', 'order' ];
     public $timestamps = false;
 
     public function slider()
     {
         return $this->belongsTo(Slider::class);
     }
+
 }

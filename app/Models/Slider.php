@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Slider extends Model
 {
-    protected $fillable = [ 'name', 'user_id' ];
+    protected $fillable = [ 'title', 'user_id', 'publish_date' ];
 
-    public function details()
+    public function items()
     {
-        return $this->hasMany(SliderDetail::class);
+        return $this->hasMany(SliderItem::class);
     }
 }

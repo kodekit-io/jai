@@ -98,6 +98,7 @@ Route::group(['prefix' => $backendUrl, 'middleware' => ['auth']], function () {
     Route::get('/permission-data', 'PermissionController@anyData')->name('permission.data' );
     Route::get('/post-category-data/{postTypeId}', 'CategoryController@anyData')->name('post-category.data' );
     Route::get('/post-data', 'PostController@anyData')->name('post.data' );
+    Route::get('/slider-data', 'SliderController@anyData')->name('slider.data' );
     Route::get('/post-type-data', 'PostTypeController@anyData')->name('post-type.data' );
 
     Route::post('/get-slug/{model}', function(\Illuminate\Http\Request $request, $model) {
