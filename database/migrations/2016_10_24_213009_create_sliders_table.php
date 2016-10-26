@@ -15,9 +15,20 @@ class CreateSlidersTable extends Migration
     {
         Schema::create('sliders', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('title');
             $table->integer('user_id');
+            $table->dateTime('publish_date');
             $table->timestamps();
+        });
+
+        Schema::create('slider_items', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('slider_id');
+            $table->string('lang')->default('en');
+            $table->text('content')->nullable();
+            $table->string('link')->default('#');
+            $table->string('file_name');
+            $table->integer('order')->default(0);
         });
     }
 
@@ -28,6 +39,8 @@ class CreateSlidersTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('slider_items');
+
         Schema::dropIfExists('sliders');
     }
 }

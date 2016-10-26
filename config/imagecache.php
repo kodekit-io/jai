@@ -31,8 +31,9 @@ return array(
     */
     
     'paths' => array(
-        public_path('uploads/post/500x500'),
-        public_path('uploads/post')
+//        public_path('uploads/post/500x500'),
+        public_path('uploads/post'),
+        public_path('uploads/sliders')
     ),
 
     /*
