@@ -56,7 +56,10 @@ body {
 	display: block;
 	line-height: 18px;
 }
-.ja-nav-main li a.active {
+.ja-nav-main li a:hover {
+	text-decoration: none;
+}
+.ja-nav-main li.active>a {
 	color: #005da6;
 	border-bottom: 1px solid #005da6;
 }
@@ -69,31 +72,31 @@ body {
 .ja-icon-about {
 	background: url(../img/i-nav-sprite.png) no-repeat 0px 5px;
 }
-.ja-icon-about:hover, .ja-icon-about.active {
+.ja-icon-about:hover, .active .ja-icon-about {
 	background: url(../img/i-nav-sprite.png) no-repeat 0px -245px;
 }
 .ja-icon-loc {
 	background: url(../img/i-nav-sprite.png) no-repeat 0px -45px;
 }
-.ja-icon-loc:hover, .ja-icon-loc.active {
+.ja-icon-loc:hover, .active .ja-icon-loc {
 	background: url(../img/i-nav-sprite.png) no-repeat 0px -295px;
 }
 .ja-icon-attract {
 	background: url(../img/i-nav-sprite.png) no-repeat 0px -85px;
 }
-.ja-icon-attract:hover, .ja-icon-attract.active {
+.ja-icon-attract:hover, .active .ja-icon-attract {
 	background: url(../img/i-nav-sprite.png) no-repeat 0px -335px;
 }
 .ja-icon-edu {
 	background: url(../img/i-nav-sprite.png) no-repeat 0px -135px;
 }
-.ja-icon-edu:hover, .ja-icon-edu.active {
+.ja-icon-edu:hover, .active .ja-icon-edu {
 	background: url(../img/i-nav-sprite.png) no-repeat 0px -385px;
 }
 .ja-icon-news {
 	background: url(../img/i-nav-sprite.png) no-repeat 0px -195px;
 }
-.ja-icon-news:hover, .ja-icon-news.active {
+.ja-icon-news:hover, .active .ja-icon-news {
 	background: url(../img/i-nav-sprite.png) no-repeat 0px -445px;
 }
 .ja-nav-main li a:hover {
