@@ -16,25 +16,10 @@ use Illuminate\Support\Facades\Log;
 
 $backendUrl = config('misc.backend.url');
 
-Route::get('/', function()
-{
-    return View::make('frontend.home');
-});
-
-Route::get('/get-image/{imageId}', function() {
-    return asset('uploads/nina-1.jpg');
-});
-
-Route::get('/category/{category}', function(\App\Models\Category $category){
-    var_dump($category->name);
-});
-
-
 Auth::routes();
 
 Route::group(['prefix' => $backendUrl, 'middleware' => ['menu','auth','authorize']], function () {
     Route::get('/', function ()    {
-        // Uses Auth Middleware
         return view('backend.dashboard');
     })->name('dashboard');
 
@@ -71,29 +56,49 @@ Route::group(['prefix' => $backendUrl, 'middleware' => ['menu','auth','authorize
     Route::get('/post-type/{id}/delete', 'PostTypeController@destroy')->name('post-type.delete');
 
     // Post Category
-    Route::get('/post-category', 'CategoryController@index')->name('post-category');
-    Route::get('/post-category/add', 'CategoryController@create')->name('post-category.add');
-    Route::post('/post-category/save', 'CategoryController@store')->name('post-category.add');
-    Route::get('/post-category/{id}/edit', 'CategoryController@edit')->name('post-category.edit');
-    Route::post('/post-category/{id}/update', 'CategoryController@update')->name('post-category.edit');
-    Route::get('/post-category/{id}/delete', 'CategoryController@destroy')->name('post-category.delete');
+    Route::get('/post-category/{postType}', 'CategoryController@index')->name('post-category');
+    Route::get('/post-category/{postType}/add', 'CategoryController@create')->name('post-category.add');
+    Route::post('/post-category/{postType}/save', 'CategoryController@store')->name('post-category.add');
+    Route::get('/post-category/{postType}/{id}/edit', 'CategoryController@edit')->name('post-category.edit');
+    Route::post('/post-category/{postType}/{id}/update', 'CategoryController@update')->name('post-category.edit');
+    Route::get('/post-category/{postType}/{id}/delete', 'CategoryController@destroy')->name('post-category.delete');
+    Route::get('/post-category/{postType}/{id}/transfer', 'CategoryController@transfer')->name('post-category.delete');
+    Route::post('/post-category/{postType}/{id}/transfer', 'CategoryController@transferThenDelete')->name('post-category.delete');
 
-    // Post Category
+    // Post
     Route::get('/post', 'PostController@index')->name('post');
     Route::get('/post/add', 'PostController@create')->name('post.add');
     Route::post('/post/save', 'PostController@store')->name('post.add');
     Route::get('/post/{id}/edit', 'PostController@edit')->name('post.edit');
     Route::post('/post/{id}/update', 'PostController@update')->name('post.edit');
     Route::get('/post/{id}/delete', 'PostController@destroy')->name('post.delete');
+
+    // Slider
+    Route::get('/slider', 'SliderController@index')->name('slider');
+    Route::get('/slider/add', 'SliderController@create')->name('slider.add');
+    Route::post('/slider/save', 'SliderController@store')->name('slider.add');
+    Route::get('/slider/{id}/edit', 'SliderController@edit')->name('slider.edit');
+    Route::post('/slider/{id}/update', 'SliderController@update')->name('slider.edit');
+    Route::get('/slider/{id}/delete', 'SliderController@destroy')->name('slider.delete');
+
+    // What's on
+    Route::get('/whats-on', 'WhatsOnController@index')->name('whats-on');
+    Route::get('/whats-on/add', 'WhatsOnController@create')->name('whats-on.add');
+    Route::post('/whats-on/save', 'WhatsOnController@store')->name('whats-on.add');
+    Route::get('/whats-on/{id}/edit', 'WhatsOnController@edit')->name('whats-on.edit');
+    Route::post('/whats-on/{id}/update', 'WhatsOnController@update')->name('whats-on.edit');
+    Route::get('/whats-on/{id}/delete', 'WhatsOnController@destroy')->name('whats-on.delete');
 });
 
 
+// prevent another menu generation
 Route::group(['prefix' => $backendUrl, 'middleware' => ['auth']], function () {
     Route::get('/user-data', 'UserController@anyData')->name('user.data' );
     Route::get('/role-data', 'RoleController@anyData')->name('role.data' );
     Route::get('/permission-data', 'PermissionController@anyData')->name('permission.data' );
-    Route::get('/post-category-data', 'CategoryController@anyData')->name('post-category.data' );
+    Route::get('/post-category-data/{postTypeId}', 'CategoryController@anyData')->name('post-category.data' );
     Route::get('/post-data', 'PostController@anyData')->name('post.data' );
+    Route::get('/slider-data', 'SliderController@anyData')->name('slider.data' );
     Route::get('/post-type-data', 'PostTypeController@anyData')->name('post-type.data' );
 
     Route::post('/get-slug/{model}', function(\Illuminate\Http\Request $request, $model) {
@@ -107,6 +112,15 @@ Route::group(['prefix' => $backendUrl, 'middleware' => ['auth']], function () {
 
     Route::post('/upload-image', 'MediaController@saveImage');
 
+    Route::post('upload-image-handler', 'MediaController@uploadImageHandler');
+
     Route::post('get-images', 'MediaController@getMedia');
 
+});
+
+
+
+Route::group(['middleware' => ['lang']], function () {
+    Route::get('/{lang?}', 'FrontEndController@homepage');
+    Route::get('/{lang?}/news/{slug}', 'FrontEndController@homepage');
 });

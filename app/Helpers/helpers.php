@@ -65,3 +65,12 @@ if (! function_exists('backendRedirect')) {
         return app('redirect')->to($to, $status, $headers, $secure);
     }
 }
+
+if (! function_exists('getMediaByPostId')) {
+
+    function getMediaByPostId($postId, $mediaType = 'featured')
+    {
+        $postService = new \App\Service\Post();
+        return $postService->findById($postId)->medias()->where('media_type', $mediaType)->first();
+    }
+};

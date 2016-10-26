@@ -15,16 +15,23 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="portlet light bordered">
-                    <div class="portlet-title">
+                    <div class="portlet-title tabbable-line">
                         <div class="caption font-dark">
                             <i class="icon-user font-dark"></i>
                             <span class="caption-subject bold uppercase"> Add Post</span>
                         </div>
-                        <div class="actions">
-                            <a class="btn btn-xs sbold green" href="{!! backendUrl('post') !!}">
-                                <i class="fa fa-arrow-left"></i> Back
-                            </a>
-                        </div>
+                        <ul class="nav nav-tabs">
+                            @foreach($langs as $lang)
+                            <li @if($lang['code'] == $defaultLang) class="active" @endif>
+                                <a href="#{!! $lang['code'] !!}" data-toggle="tab"> {!! $lang['title'] !!} </a>
+                            </li>
+                            @endforeach
+                        </ul>
+                        {{--<div class="actions">--}}
+                            {{--<a class="btn btn-xs sbold green" href="{!! backendUrl('post') !!}">--}}
+                                {{--<i class="fa fa-arrow-left"></i> Back--}}
+                            {{--</a>--}}
+                        {{--</div>--}}
                     </div>
                     <div class="portlet-body">
                         <form role="form" action="{!! backendUrl('post/save') !!}" method="post" >
@@ -34,22 +41,9 @@
 
                                     {{--main form--}}
                                     <div class="col-md-8">
-                                        <div class="form-group @if ($errors->has('name')) has-error @endif">
-                                            <label>Name</label>
-                                            <input type="text" id="name" name="name" class="form-control" placeholder="Name" value="{!! old('name') !!}" autofocus>
-                                            @if ($errors->has('name'))
-                                                <span class="help-block">{!! $errors->first('name') !!}</span>
-                                            @endif
-                                        </div>
-                                        <div class="form-group @if ($errors->has('content')) has-error @endif">
-                                            <label>Content</label>
-                                            <textarea name="content" id="content"></textarea>
-                                            @if ($errors->has('content'))
-                                                <span class="help-block">{!! $errors->first('content') !!}</span>
-                                            @endif
-                                        </div>
+                                        @include('backend.posts.content')
                                     </div>
-                                    {{--end of main center--}}
+                                    {{--end of main form--}}
 
                                     @include('backend.posts.sidebar')
 
@@ -86,11 +80,13 @@
             plugins: [ 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
                 'searchreplace wordcount visualblocks visualchars code fullscreen',
                 'insertdatetime media nonbreaking save table contextmenu directionality',
-                'emoticons template paste textcolor colorpicker textpattern imagetools' ],
+                'emoticons template paste textcolor colorpicker textpattern imagetools code' ],
             toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-            toolbar2: 'print preview media | forecolor backcolor emoticons',
+            toolbar2: 'print preview media | forecolor backcolor emoticons | code',
             image_advtab: true,
             menubar: false,
+            force_p_newlines : false,
+            forced_root_block : '',
             height : "400"
         });
         $(".form_datetime").datetimepicker({
@@ -114,6 +110,9 @@
 
     </script>
     <script type="text/javascript">
+        $(document).ready(function() {
+            $('#remove-featured').hide();
+        });
         $( "#name" ).focusout(function() {
             name = $('#name').val();
             if (name.length > 3) {
@@ -128,6 +127,11 @@
                     $('#slug').val(msg);
                 });
             }
+        });
+        $('#remove-featured').click(function() {
+            $('#featured_image_id').val('');
+            $('#featured_image').attr('src', '');
+            $(this).hide();
         });
     </script>
 @endsection

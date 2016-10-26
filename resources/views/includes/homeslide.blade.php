@@ -1,41 +1,25 @@
 <header class="ja-header">
-	<?php //Main Slideshow ?>
+	{{--homeslide--}}
 	<div class="ja-slideshow uk-slidenav-position" data-uk-slideshow="{autoplay:true}">
 		<ul class="uk-slideshow uk-overlay-active">
+			@foreach($sliders as $slider)
 			<li>
-				<img src="{!! asset('frontend/img/head-sample-01.jpg') !!}" />
+				<img src="{!! url('images/large/' . $slider->file_name) !!}" />
 				<div class="uk-overlay-panel uk-overlay-fade uk-overlay-background">
 					<div class="uk-container uk-container-center">
-						<h2 class="ja-slide-title">Discover Our New<br>Clownfish Tank on<br>Summer Holiday</h2>
-						<a href="#!" class="uk-button ja-button-outline" title="Learn More" style="z-index:5;position:relative;">Learn More <i class="uk-margin-small-left uk-icon-chevron-right"></i></a>
+						<h2 class="ja-slide-title">{!! $slider->content !!}</h2>
+						<a href="{!! $slider->link !!}" class="uk-button ja-button-outline" title="Learn More" style="z-index:5;position:relative;">Learn More <i class="uk-margin-small-left uk-icon-chevron-right"></i></a>
 					</div>
 				</div>
 			</li>
-			<li>
-				<img src="{!! asset('frontend/img/head-sample-02.jpg') !!}" />
-				<div class="uk-overlay-panel uk-overlay-fade uk-overlay-background">
-					<div class="uk-container uk-container-center">
-						<h2 class="ja-slide-title">Explore a Hundred<br>of beautiful jellies in a<br>dark tank</h2>
-						<a href="#!" class="uk-button ja-button-outline" title="Learn More" style="z-index:5;position:relative;">Learn More <i class="uk-margin-small-left uk-icon-chevron-right"></i></a>
-					</div>
-				</div>
-			</li>
-			<li>
-				<img src="{!! asset('frontend/img/head-sample-03.jpg') !!}" />
-				<div class="uk-overlay-panel uk-overlay-fade uk-overlay-background">
-					<div class="uk-container uk-container-center">
-						<h2 class="ja-slide-title">Here you will meet<br>face-to-face with the<br>tame predators</h2>
-						<a href="#!" class="uk-button ja-button-outline" title="Learn More" style="z-index:5;position:relative;">Learn More <i class="uk-margin-small-left uk-icon-chevron-right"></i></a>
-					</div>
-				</div>
-			</li>
+            @endforeach
 		</ul>
 		<div class="ja-slideshow-nav">
 			<div class="uk-container uk-container-center">
 				<ul class="uk-dotnav">
-					<li data-uk-slideshow-item="0"><a href=""></a></li>
-					<li data-uk-slideshow-item="1"><a href=""></a></li>
-					<li data-uk-slideshow-item="2"><a href=""></a></li>
+                    @foreach($sliders as $slider)
+					<li data-uk-slideshow-item="{!! $loop->index !!}"><a href=""></a></li>
+                    @endforeach
 				</ul>
 			</div>
 		</div>

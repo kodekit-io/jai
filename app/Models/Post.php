@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use App\Models\Traits\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
+
     protected $fillable = ['title', 'slug', 'content', 'post_type_id', 'status', 'publish_date'];
 
     public function categories()
@@ -16,6 +18,11 @@ class Post extends Model
     public function postType()
     {
         return $this->belongsTo(PostType::class);
+    }
+
+    public function details()
+    {
+        return $this->hasMany(PostDetail::class);
     }
 
     /**

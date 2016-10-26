@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Intervention\Image\Facades\Image;
+use JildertMiedema\LaravelPlupload\Facades\Plupload;
 
 class MediaController extends Controller
 {
@@ -36,5 +37,12 @@ class MediaController extends Controller
     {
         $medias = $this->mediaService->all();
         return $medias->toJson();
+    }
+
+    public function uploadImageHandler(Request $request)
+    {
+        return Plupload::receive('file', function ($file) {
+            return $this->mediaService->saveImage($file);
+        });
     }
 }

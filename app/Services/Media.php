@@ -58,17 +58,41 @@ class Media
 
     private function createFolderIfNotExists($width, $height)
     {
-        $fullPath = 'uploads/post/' . $width . 'x' . $height;
+        $widthPath = $width != '' ? $width : '000';
+        $heightPath = $height != '' ? 'x' . $height : 'x000';
+        $folderPath = 'uploads/post/' . $widthPath . $heightPath;
 
-        if (! File::exists(public_path($fullPath))) {
-            File::makeDirectory(public_path($fullPath), 0775, true, true);
+        if (! File::exists(public_path($folderPath))) {
+            File::makeDirectory(public_path($folderPath), 0775, true, true);
         }
 
-        return $fullPath;
+        return $folderPath;
     }
 
     public function all()
     {
         return MediaModel::with('mediaSizes')->orderBy('id', 'desc')->get();
+    }
+
+    public function saveImage($file)
+    {
+        $imageName = $file->getClientOriginalName();
+        $folder = 'uploads/post/';
+        if (! File::exists(public_path($folder))) {
+            File::makeDirectory(public_path($folder), 0775, true, true);
+        }
+        $media = $this->mediaModel->create([
+            'title' => $imageName,
+            'file_name' => $imageName
+        ]);
+        $image = Image::make($file);
+        $publicUrl = $folder . $imageName;
+        $imagePath = public_path($publicUrl);
+        $image->save($imagePath);
+        return [
+            'filename' => $imageName,
+            'status' => 'OK',
+            'mediaId' => $media->id,
+        ];
     }
 }

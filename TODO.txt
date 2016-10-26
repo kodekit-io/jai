@@ -1,5 +1,6 @@
 === Features ===
 -- Post
+-- Whats On
 -- Post Type
 -- Post Category (nested)
 -- Event Scheduling
@@ -15,5 +16,19 @@
 -- Create post category management (DONE)
 ---- Check slug when store the data, generate if blank (DONE)
 -- Create category (DONE)
--- Create post management
--- Research about tinyMCE
+-- Create post management (DONE)
+
+=== 20161021 ===
+-- Create whats on management (DONE)
+-- Check posts when delete the category (DONE, add transfer_to form)
+
+-- Create multilanguage feature
+---- using uri ex : http://jai.com/en/content-slug-here and http://jai.com/id/content-slug-here
+-- Add language options when create the content (DONE)
+-- Add language options when edit the content (DONE)
+
+-- Slider management (DONE)
+
+-- Add author on post/page
+-- Add notification when there are any blank languages whe publish the content
+-- Create pages management

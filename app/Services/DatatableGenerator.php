@@ -31,16 +31,17 @@ class DatatableGenerator
     {
         $this->datatable->addColumn('action', function ($collection) use ($actions) {
             $action = '<div class="text-center">';
-            $link = '';
+            $hasLink = false;
             foreach ($actions as $act) {
                 $link = $this->generateActionLink($act, $collection);
                 if ($link != '') {
                     $class = ( $act['class'] ? $act['class'] : '' );
                     $icon = ( $act['icon'] ? '<i class="' . $act['icon'] . '"></i>' : '' );
                     $action .= '<a href="' .$link. '" class="' . $class . '">' . $icon . '&nbsp;<span>' . $act['title'] . '</span></a> ';
+                    $hasLink = true;
                 }
             }
-            if ($link == '') {
+            if (! $hasLink) {
                 $action .= '-------';
             }
             $action .= '</div>';

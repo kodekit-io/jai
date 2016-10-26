@@ -6,13 +6,10 @@
 							<li><a href="#!" title="">Aquarium Map</a></li>
 							<li><a href="#!" title="">Career with Us</a></li>
 							<li><a href="#!" title="">Media Room</a></li>
-						</ul>
-						<ul class="uk-subnav uk-subnav-line uk-hidden-small uk-margin-bottom-remove">
 							<li><a href="#!" title="">Privacy Policy</a></li>
 							<li><a href="#!" title="">Term of Use</a></li>
 						</ul>
-						<p class="uk-margin-remove">Copyright &copy; <?php echo date('Y'); ?> Jakarta Aquarium Indonesia.
-							<br>All Rights Reserved.</p>
+						<p class="uk-margin-remove">Copyright &copy; <?php echo date('Y'); ?> Jakarta Aquarium Indonesia. All Rights Reserved.</p>
 					</div>
 					<div class="uk-width-medium-1-3">
 						Endorsed by Taman Safari Indonesia and Aquawalk Sdn. Bhd.
@@ -24,6 +21,7 @@
 		<script src="{!! asset('frontend/js/uikit.min.js') !!}"></script>
 		<script src="{!! asset('frontend/js/components/tooltip.min.js') !!}"></script>
 		<script src="{!! asset('frontend/js/components/slideshow.min.js') !!}"></script>
+		<script src="{!! asset('frontend/js/components/sticky.min.js') !!}"></script>
 		<script src="{!! asset('frontend/js/main.js') !!}"></script>
 	</body>
 </html>

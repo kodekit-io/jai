@@ -13,15 +13,15 @@
                 <div class="form-group">
                     <label>Publish Date</label>
                     <div class="input-group date form_datetime">
-                        <input type="text" size="16" value="{!! $currentDateTime !!}" readonly class="form-control">
-                                                            <span class="input-group-btn">
-                                                                <button class="btn default date-set" type="button">
-                                                                    <i class="fa fa-calendar"></i>
-                                                                </button>
-                                                            </span>
+                        <input type="text" name="publish_date" size="16" value="{!! $currentDateTime !!}" readonly class="form-control">
+                        <span class="input-group-btn">
+                            <button class="btn default date-set" type="button">
+                                <i class="fa fa-calendar"></i>
+                            </button>
+                        </span>
                     </div>
                 </div>
-                <input type="submit" class="btn btn-default" value="Draft"> <input type="submit" class="btn btn-default" value="Publish">
+                <a href="{!! backendUrl('post') !!}" class="btn btn-sm sbold green">Back</a> <input type="submit" name="status" class="btn btn-sm btn-default" value="Draft"> <input type="submit" name="status" class="btn btn-sm btn-default" value="Publish">
             </div>
         </div>
     </div>
@@ -63,8 +63,11 @@
                 <div class="col-lg-12">
                     <div class="form-group">
                         <div class="mt-checkbox-outline">
-                            @foreach($categories as $category)
-                                <label class="mt-checkbox mt-checkbox-outline"><input type="checkbox" name="categories[]" value="{!! $category->id!!}"> {!! $category->name !!}<span></span></label><br>
+                            {{--@foreach($categories as $category)--}}
+                                {{--<label class="mt-checkbox mt-checkbox-outline"><input type="checkbox" name="categories[]" value="{!! $category->id!!}"> {!! $category->name !!}<span></span></label><br>--}}
+                            {{--@endforeach--}}
+                            @foreach($categoryCheckboxes as $checkbox)
+                                {!! $checkbox !!}<br>
                             @endforeach
                         </div>
                     </div>
@@ -89,8 +92,9 @@
             {{--portlet body--}}
             <div class="portlet-body tabbable-custom ">
                 <input type="hidden" id="featured_image_id" name="featured_image_id">
-                <img src="" id="featured_image">
+                <img src="" id="featured_image"><br>
                 <a id="ajax-demo" data-url="{!! backendUrl('tiny-image-manager') !!}" data-toggle="modal"> Set image </a>
+                <a id="remove-featured"> Remove image </a>
             </div>
             {{--end of portlet body--}}
         </div>
