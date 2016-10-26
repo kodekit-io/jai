@@ -28,7 +28,9 @@
 -- Add language options when edit the content (DONE)
 
 -- Slider management (DONE)
+-- Create news management (DONE)
 
 -- Add author on post/page
 -- Add notification when there are any blank languages whe publish the content
 -- Create pages management
+-- Create SEO fields on post/page (at least meta-tag)

@@ -34,4 +34,9 @@ class Post extends Model
     {
         return $this->belongsToMany(Media::class, 'post_has_medias');
     }
+
+    public function metas()
+    {
+        return $this->hasMany(PostMeta::class);
+    }
 }
