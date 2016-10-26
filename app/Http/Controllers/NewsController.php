@@ -11,11 +11,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-class PostController extends Controller
+class NewsController extends Controller
 {
     use DataMessage;
-
-    protected $baseUrl = 'post';
 
     /**
      * @var Post
@@ -30,10 +28,14 @@ class PostController extends Controller
      */
     private $languageService;
 
+    protected $postType = 2;
+    protected $baseUrl = 'news';
+
     /**
      * PostController constructor.
      * @param Post $postService
      * @param Category $categoryService
+     * @param Language $languageService
      */
     public function __construct(Post $postService, Category $categoryService, Language $languageService)
     {
@@ -49,7 +51,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('backend.posts.list');
+        return view('backend.news.list');
     }
 
     /**
@@ -59,7 +61,7 @@ class PostController extends Controller
      */
     public function anyData()
     {
-        return $this->postService->datatableData();
+        return $this->postService->datatableData($this->postType, 'news');
     }
 
     /**
@@ -69,12 +71,12 @@ class PostController extends Controller
      */
     public function create()
     {
-        $data['categoryCheckboxes'] = $this->categoryService->categoryCheckbox('categories[]', 1);
+        $data['categoryCheckboxes'] = $this->categoryService->categoryCheckbox('categories[]', $this->postType);
         $data['currentDateTime'] = Carbon::now()->format('d-F-Y - H:i');
         $data['langs'] = $this->languageService->getAvailableLanguages();
         $data['defaultLang'] = $this->languageService->getDefaultLanguage();
         $data['baseUrl'] = $this->baseUrl;
-        return view('backend.posts.add', $data);
+        return view('backend.news.add', $data);
     }
 
     /**
@@ -85,10 +87,9 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        // var_dump($request->except(['_token'])); exit;
-        $this->postService->store($request->except(['_token']));
+        $this->postService->store($this->postType, $request->except(['_token']));
 
-        return backendRedirect('post')->with($this->getMessage('store'));
+        return backendRedirect($this->baseUrl)->with($this->getMessage('store'));
     }
 
     /**
@@ -104,10 +105,12 @@ class PostController extends Controller
         $data['langs'] = $this->languageService->getAvailableLanguages();
         $data['defaultLang'] = $this->languageService->getDefaultLanguage();
         $selectedCategories = $post->categories->pluck('id')->all();
-        $data['categoryCheckboxes'] = $this->categoryService->categoryCheckbox('categories[]', 1, $selectedCategories);
+        $data['categoryCheckboxes'] = $this->categoryService->categoryCheckbox('categories[]', $this->postType, $selectedCategories);
         $data['publishDate'] = Carbon::createFromFormat('Y-m-d H:i:s', $post->publish_date)->format('d-F-Y - H:i');
         $data['featuredImage'] = $post->medias()->where('media_type', 'featured')->first();
-        return view('backend.posts.edit', $data);
+        $data['baseUrl'] = $this->baseUrl;
+
+        return view('backend.news.edit', $data);
     }
 
     /**
@@ -121,7 +124,7 @@ class PostController extends Controller
     {
         $this->postService->update($id, $request->except(['_token']));
 
-        return backendRedirect('post')->with($this->getMessage('update'));
+        return backendRedirect($this->baseUrl)->with($this->getMessage('update'));
     }
 
     /**
@@ -132,6 +135,8 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->postService->destroy($id);
+
+        return backendRedirect($this->baseUrl)->with($this->getMessage('delete'));
     }
 }

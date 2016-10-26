@@ -12,12 +12,13 @@ class Post
 {
     use DatatableParameters;
 
-    protected $baseUrl = 'post';
+    protected $baseUrl = '';
 
-    public function datatableData()
+    public function datatableData($postType = 1, $baseUrl = 'post')
     {
+        $this->baseUrl = $baseUrl;
         $params = [
-            'post_type_id' => 1
+            'post_type_id' => $postType
         ];
         $posts = $this->getPosts($params);
         $actions = $this->actionParameters(['edit','delete']);
@@ -44,13 +45,13 @@ class Post
         return PostModel::with('details')->get();
     }
 
-    public function store(array $inputs)
+    public function store($postTypeId = 1, array $inputs)
     {
         $categories = $inputs['categories'];
         $mediaId = $inputs['featured_image_id'];
 
         $post = PostModel::create([
-            'post_type_id' => 1,
+            'post_type_id' => $postTypeId,
             'status' => strtoupper($inputs['status']),
             'publish_date' => Carbon::createFromFormat('d-F-Y - H:i', $inputs['publish_date'])->format('Y-m-d H:i')
         ]);
@@ -190,5 +191,10 @@ class Post
         if ($mediaId != '') {
             $post->medias()->sync([$mediaId]);
         }
+    }
+
+    public function destroy($id)
+    {
+        PostModel::destroy($id);
     }
 }
