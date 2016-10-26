@@ -4,7 +4,7 @@
 @include('includes.homeslide')
 
 <section id="whatson" class="ja-home-section">
-	<ul class="uk-list uk-list-space ja-side-banner">
+	<ul class="uk-list uk-list-space ja-side-banner" data-uk-sticky="{top:250}">
 		<li><a href="#!" title=""><img src="{!! asset('frontend/img/banner-ticket.png') !!}" /></a></li>
 		<li><a href="#!" title=""><img src="{!! asset('frontend/img/banner-promo.png') !!}" /></a></li>
 	</ul>
