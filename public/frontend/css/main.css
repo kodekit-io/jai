@@ -14,7 +14,14 @@ body {
 	display: flex;
 	flex-direction: column;
 }
-
+::selection {
+	background: #00acc1;
+	color: #fff;
+}
+::-moz-selection {
+	background: #00acc1;
+	color: #fff;
+}
 .font-intro-book {
 	font-family: 'Intro Book', sans-serif;
 }
@@ -23,7 +30,7 @@ body {
 }
 /**/
 .uk-container.uk-container-center {
-	padding: 0 75px 0 calc(150px + 2vw);
+	padding: 0 75px 0 calc(160px + 2vw);
 	max-width: 1050px;
 }
 /**/
@@ -40,7 +47,7 @@ body {
 	margin-bottom: 10px;
 }
 .ja-logo a {
-	background: #005da6 url(../img/logo.png) center center no-repeat;
+	background: url(../img/logo.png) center center no-repeat;
 	background-size: 75%;
 	display: block;
 	width: 100%;
