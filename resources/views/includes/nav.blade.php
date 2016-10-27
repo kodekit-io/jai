@@ -7,15 +7,15 @@
 		<li>
 			<a href="#!" title="Plan Your Visit" class="ja-icon-loc" data-uk-toggle={target:'#subvisit'}>Plan Your Visit</a>
 			<ul id="subvisit" class="uk-list uk-hidden ja-nav-sub uk-margin-small-top">
-				<li><a href="#!" title="Ticket &amp; Hours">Ticket &amp; Hours</a></li>
-				<li><a href="#!" title="Special Packages">Special Packages</a></li>
-				<li><a href="#!" title="Show Time">Show Time</a></li>
-				<li><a href="#!" title="Location">Location</a></li>
+				<li><a href="{!! lang_url('ticket-hours') !!}" title="Ticket &amp; Hours">Ticket &amp; Hours</a></li>
+				<li><a href="{!! lang_url('special-packages') !!}" title="Special Packages">Special Packages</a></li>
+				<li><a href="{!! lang_url('show-time') !!}" title="Show Time">Show Time</a></li>
+				<li><a href="{!! lang_url('location') !!}" title="Location">Location</a></li>
 			</ul>
 		</li>
-		<li><a href="#!" title="Attractions and Experience" class="ja-icon-attract">Attractions and Experience</a></li>
-		<li><a href="#!" title="Education and Conservation" class="ja-icon-edu">Education and Conservation</a></li>
-		<li><a href="#!" title="News and Blog" class="ja-icon-news">News and Blog</a></li>
+		<li><a href="{!! lang_url('attractions-experience') !!}" title="Attractions and Experience" class="ja-icon-attract">Attractions and Experience</a></li>
+		<li><a href="{!! lang_url('education-conservation') !!}" title="Education and Conservation" class="ja-icon-edu">Education and Conservation</a></li>
+		<li><a href="{!! lang_url('news-blog') !!}" title="News and Blog" class="ja-icon-news">News and Blog</a></li>
 	</ul>
 	<form class="ja-searchform cyan darken-1 ja-mobhide uk-hidden-small">
 		<input type="text" placeholder="Search">

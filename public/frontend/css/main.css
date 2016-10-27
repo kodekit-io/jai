@@ -522,6 +522,11 @@ a.ja-button-outline {
 .ja-about__content {
 	padding: 4em 3em;
 }
+.ja-404 {
+	height: calc(100vh - 100px);
+	position: relative;
+	background: #e4eaed;
+}
 @media (max-width: 768px) {
 	.ja-nav {
 		position: fixed;
