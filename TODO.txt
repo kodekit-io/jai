@@ -30,6 +30,8 @@
 -- Slider management (DONE)
 -- Create news management (DONE)
 
+-- Create holiday list
+-- Create package/product
 -- Add author on post/page
 -- Add notification when there are any blank languages whe publish the content
 -- Create pages management
