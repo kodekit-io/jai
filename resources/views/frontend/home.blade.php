@@ -4,10 +4,7 @@
 @include('includes.homeslide')
 
 <section id="whatson" class="ja-home-section">
-	<ul class="uk-list uk-list-space ja-side-banner" data-uk-sticky="{top:250}">
-		<li><a href="#!" title=""><img src="{!! asset('frontend/img/banner-ticket.png') !!}" /></a></li>
-		<li><a href="#!" title=""><img src="{!! asset('frontend/img/banner-promo.png') !!}" /></a></li>
-	</ul>
+	@include('includes.sidebanner')
 	<div class="uk-container uk-container-center">
 		<h3 class="ja-title ja-title__blue light-blue-text text-darken-4 uk-margin-large-bottom">What's On</h3>
 		<?php //Whatson Posts ?>
