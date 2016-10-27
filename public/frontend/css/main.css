@@ -309,11 +309,14 @@ a.ja-button-outline {
 	background: #e4eaed;
 }
 .ja-side-banner {
-	position: absolute;
+	position: fixed;
 	right: 10px;
 	width: 75px !important;
 	top: 200px;
 	z-index: 10;
+}
+.ja-home-section .ja-side-banner {
+	position: absolute;
 }
 .ja-title {
 	font-family: 'Intro', 'Helvetica Neue', sans-serif;
