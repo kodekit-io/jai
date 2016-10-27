@@ -56,4 +56,8 @@ class FrontEndController extends Controller
     {
         return view('frontend.about-us');
     }
+
+    public function ticket($lang) {
+        return view('frontend.ticket-hours');
+    }
 }
