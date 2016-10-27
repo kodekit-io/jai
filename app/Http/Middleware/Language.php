@@ -40,6 +40,9 @@ class Language
 
         $segments = $request->segments();
 
+        // set lang session
+        session(['lang' => $lang]);
+
         $langSwitcher = $this->languageService->generateLangSwitcher($lang, $segments);
 
         View::share('gLangSwitcher', $langSwitcher);

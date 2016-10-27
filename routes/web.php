@@ -135,12 +135,11 @@ Route::group(['prefix' => $backendUrl, 'middleware' => ['auth']], function () {
 });
 
 
-Route::get('/about-us', function() {
-    return view('frontend.about-us');
-});
+
 
 
 Route::group(['middleware' => ['lang']], function () {
+    Route::get('/{lang?}/about-us', 'FrontEndController@aboutUs');
     Route::get('/{lang?}', 'FrontEndController@homepage');
     Route::get('/{lang?}/news/{slug}', 'FrontEndController@homepage');
 });

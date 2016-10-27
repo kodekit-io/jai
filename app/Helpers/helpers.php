@@ -74,3 +74,12 @@ if (! function_exists('getMediaByPostId')) {
         return $postService->findById($postId)->medias()->where('media_type', $mediaType)->first();
     }
 };
+
+if (! function_exists('lang_url')) {
+
+    function lang_url($url) {
+        $currentLang = session('lang');
+        return url($currentLang . '/' . $url);
+    }
+
+}

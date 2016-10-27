@@ -46,11 +46,14 @@ class FrontEndController extends Controller
         ];
         $sliders = $this->sliderService->getSliderWithItems($sliderParams);
 
-//        var_dump($sliders); exit;
-
         $data['whatsOnContents'] = $post;
         $data['sliders'] = $sliders;
 
         return view('frontend.home', $data);
+    }
+
+    public function aboutUs($lang)
+    {
+        return view('frontend.about-us');
     }
 }

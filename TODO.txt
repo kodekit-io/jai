@@ -32,7 +32,7 @@
 -- Create holiday list (DONE)
 -- Add author on post/page (DONE)
 
--- Lang switcher on frontend
+-- Lang switcher on frontend and set session in middleware, create function to create autolang link lang_url('about-us')
 -- Advanced search on post, news
 -- Add whats on checkbox on news
 -- Create package/product
