@@ -81,6 +81,14 @@ Route::group(['prefix' => $backendUrl, 'middleware' => ['menu','auth','authorize
     Route::post('/slider/{id}/update', 'SliderController@update')->name('slider.edit');
     Route::get('/slider/{id}/delete', 'SliderController@destroy')->name('slider.delete');
 
+    // News
+    Route::get('/news', 'NewsController@index')->name('news');
+    Route::get('/news/add', 'NewsController@create')->name('news.add');
+    Route::post('/news/save', 'NewsController@store')->name('news.add');
+    Route::get('/news/{id}/edit', 'NewsController@edit')->name('news.edit');
+    Route::post('/news/{id}/update', 'NewsController@update')->name('news.edit');
+    Route::get('/news/{id}/delete', 'NewsController@destroy')->name('news.delete');
+
     // What's on
     Route::get('/whats-on', 'WhatsOnController@index')->name('whats-on');
     Route::get('/whats-on/add', 'WhatsOnController@create')->name('whats-on.add');
@@ -98,6 +106,7 @@ Route::group(['prefix' => $backendUrl, 'middleware' => ['auth']], function () {
     Route::get('/permission-data', 'PermissionController@anyData')->name('permission.data' );
     Route::get('/post-category-data/{postTypeId}', 'CategoryController@anyData')->name('post-category.data' );
     Route::get('/post-data', 'PostController@anyData')->name('post.data' );
+    Route::get('/news-data', 'NewsController@anyData')->name('news.data' );
     Route::get('/slider-data', 'SliderController@anyData')->name('slider.data' );
     Route::get('/post-type-data', 'PostTypeController@anyData')->name('post-type.data' );
 
@@ -111,13 +120,15 @@ Route::group(['prefix' => $backendUrl, 'middleware' => ['auth']], function () {
     });
 
     Route::post('/upload-image', 'MediaController@saveImage');
-
     Route::post('upload-image-handler', 'MediaController@uploadImageHandler');
-
     Route::post('get-images', 'MediaController@getMedia');
 
 });
 
+
+Route::get('/about-us', function() {
+    return view('frontend.about-us');
+});
 
 
 Route::group(['middleware' => ['lang']], function () {

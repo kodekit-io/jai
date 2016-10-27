@@ -10,7 +10,11 @@
 body {
 	font-family: 'Intro Book', 'Helvetica Neue', sans-serif;
 	position: relative;
+	min-height: 100%;
+	display: flex;
+	flex-direction: column;
 }
+
 .font-intro-book {
 	font-family: 'Intro Book', sans-serif;
 }
@@ -28,7 +32,7 @@ body {
 	z-index: 1;
 	width: 160px;
 	left: 2vw;
-	top: 2vw;
+	top: 30px;
 }
 .ja-logo {
 	width: 160px;
@@ -44,7 +48,6 @@ body {
 	text-indent: -999em;
 }
 .ja-nav-main {
-	background: #3ab0c8;
 	color: #fff;
 	width: 140px;
 	padding: 10px;
@@ -104,7 +107,6 @@ body {
 }
 
 .ja-searchform {
-	background: #3ab0c8;
 	padding: 6px 10px;
 	display: block;
 	margin: 0 0 10px;
@@ -146,7 +148,6 @@ body {
 	color: #fff;
 }
 .ja-socmed {
-	background: #3ab0c8;
 	padding: 6px 10px;
 	display: block;
 	margin-bottom: 10px;
@@ -284,7 +285,7 @@ a.ja-button-outline {
 }
 .ja-slideshow-banner .uk-slidenav-previous,
 .ja-slideshow-banner .uk-slidenav-next {
-    display: block;
+    /*display: block;*/
 	font-size: 2em;
 }
 .ja-slideshow-banner.uk-slidenav-position .uk-slidenav-previous {
@@ -311,16 +312,19 @@ a.ja-button-outline {
 	position: absolute;
 	right: 10px;
 	width: 75px !important;
-	top: 11em;
+	top: 200px;
 	z-index: 10;
 }
 .ja-title {
 	font-family: 'Intro', 'Helvetica Neue', sans-serif;
 	text-transform: uppercase;
-	font-size: 2em;
+	font-size: 28px;
 	font-weight: bold;
 	line-height: 1.2em;
 	position: relative;
+}
+.ja-title__alt {
+	font-size: 24px;
 }
 .ja-title__blue:after {
 	content: "";
@@ -341,6 +345,11 @@ a.ja-button-outline {
 	top: 100%;
 	left: 0;
 	background: url(../img/line-title-orange.png) no-repeat left center;
+}
+.ja-title__orange.uk-text-center:after {
+	width: 180px;
+	left: 50%;
+	margin-left: -75px;
 }
 #whatson {
 	background: #e4eaed url(../img/bg-section-whats.png) repeat-x center bottom;
@@ -474,6 +483,34 @@ a.ja-button-outline {
 }
 .ja-footer ul li a {
 	color: inherit;
+}
+
+/**/
+.ja-header-about {
+	height: 600px;
+	background-image: url(../img/about-header.jpg);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+}
+.ja-header-about .uk-container {
+	padding-top: 200px;
+}
+.ja-about-intro {
+	background: rgba(0, 0, 0, 0.7);
+	height: calc(400px - 5em);
+	padding: 2.5em;
+	text-align: center;
+	font-size: 2em;
+	line-height: 1.5em;
+	color: #fff;
+}
+.ja-about {
+	background: #e4eaed url(../img/bg-section-about.png) no-repeat top center;
+}
+.ja-about__content {
+	padding: 4em 3em;
 }
 @media (max-width: 768px) {
 	.ja-nav {
