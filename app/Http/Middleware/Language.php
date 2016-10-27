@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Service\Language as LanguageService;
 use Closure;
+use Illuminate\Support\Facades\View;
 
 class Language
 {
@@ -37,9 +38,14 @@ class Language
             return redirect('/' . $defaultLanguage);
         }
 
+        $segments = $request->segments();
+
+        $langSwitcher = $this->languageService->generateLangSwitcher($lang, $segments);
+
+        View::share('gLangSwitcher', $langSwitcher);
+
         // lang is exists ??
         if (! $this->languageService->isLanguageExists($lang)) {
-            $segments = $request->segments();
             $segments[0] = $defaultLanguage;
             $redirectUrl = url('');
             foreach ($segments as $segment) {

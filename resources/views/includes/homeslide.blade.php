@@ -29,8 +29,9 @@
 	<div class="ja-header-content uk-container uk-container-center">
 		<ul class="uk-subnav ja-lang">
 			<li>Language:</li>
-			<li class="uk-active"><a href="#!">English</a></li>
-			<li><a href="#!">Indonesia</a></li>
+			{{--<li class="uk-active"><a href="#!">English</a></li>--}}
+			{{--<li><a href="#!">Indonesia</a></li>--}}
+			{!! $gLangSwitcher !!}
 		</ul>
 		<div class="ja-info uk-hidden">
 			<p>Today: Sat, Oct 15 2016<br>
