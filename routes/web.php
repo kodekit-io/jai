@@ -96,6 +96,14 @@ Route::group(['prefix' => $backendUrl, 'middleware' => ['menu','auth','authorize
     Route::get('/whats-on/{id}/edit', 'WhatsOnController@edit')->name('whats-on.edit');
     Route::post('/whats-on/{id}/update', 'WhatsOnController@update')->name('whats-on.edit');
     Route::get('/whats-on/{id}/delete', 'WhatsOnController@destroy')->name('whats-on.delete');
+
+    // Holiday
+    Route::get('/holiday', 'HolidayController@index')->name('holiday');
+    Route::get('/holiday/add', 'HolidayController@create')->name('holiday');
+    Route::post('/holiday/save', 'HolidayController@store')->name('holiday');
+    Route::get('/holiday/{id}/edit', 'HolidayController@edit')->name('holiday');
+    Route::post('/holiday/{id}/update', 'HolidayController@update')->name('holiday');
+    Route::get('/holiday/{id}/delete', 'HolidayController@destroy')->name('holiday');
 });
 
 
@@ -103,6 +111,7 @@ Route::group(['prefix' => $backendUrl, 'middleware' => ['menu','auth','authorize
 Route::group(['prefix' => $backendUrl, 'middleware' => ['auth']], function () {
     Route::get('/user-data', 'UserController@anyData')->name('user.data' );
     Route::get('/role-data', 'RoleController@anyData')->name('role.data' );
+    Route::get('/holiday-data', 'HolidayController@anyData')->name('holiday.data' );
     Route::get('/permission-data', 'PermissionController@anyData')->name('permission.data' );
     Route::get('/post-category-data/{postTypeId}', 'CategoryController@anyData')->name('post-category.data' );
     Route::get('/post-data', 'PostController@anyData')->name('post.data' );
@@ -126,12 +135,11 @@ Route::group(['prefix' => $backendUrl, 'middleware' => ['auth']], function () {
 });
 
 
-Route::get('/about-us', function() {
-    return view('frontend.about-us');
-});
+
 
 
 Route::group(['middleware' => ['lang']], function () {
+    Route::get('/{lang?}/about-us', 'FrontEndController@aboutUs');
     Route::get('/{lang?}', 'FrontEndController@homepage');
     Route::get('/{lang?}/news/{slug}', 'FrontEndController@homepage');
 });

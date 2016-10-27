@@ -36,6 +36,7 @@
                                 <th>Title</th>
                                 <th>Categories</th>
                                 <th>Date</th>
+                                <th>Author</th>
                                 <th>Status</th>
                                 <th class="text-center">Action</th>
                             </tr>
@@ -68,6 +69,7 @@
                     { data: 'title', name: 'title', "width": "250px" },
                     { data: 'categories', name: 'categories' },
                     { data: 'post_date', name: 'post_date' },
+                    { data: 'author', name: 'author' },
                     { data: 'post_status', name: 'post_status' },
                     { data: 'action', name: 'action', orderable: false, searchable: false, "width": "150px" }
                 ]

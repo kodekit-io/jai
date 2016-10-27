@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
 
-    protected $fillable = ['title', 'slug', 'content', 'post_type_id', 'status', 'publish_date'];
+    protected $fillable = ['title', 'slug', 'content', 'post_type_id', 'status', 'publish_date', 'created_by'];
 
     public function categories()
     {
@@ -38,5 +38,10 @@ class Post extends Model
     public function metas()
     {
         return $this->hasMany(PostMeta::class);
+    }
+
+    public function author()
+    {
+        return $this->belongsTo(User::class, 'created_by');
     }
 }

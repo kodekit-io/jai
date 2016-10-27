@@ -16,6 +16,7 @@ class PostController extends Controller
     use DataMessage;
 
     protected $baseUrl = 'post';
+    protected $postType = 1;
 
     /**
      * @var Post
@@ -86,9 +87,9 @@ class PostController extends Controller
     public function store(Request $request)
     {
         // var_dump($request->except(['_token'])); exit;
-        $this->postService->store($request->except(['_token']));
+        $this->postService->store($this->postType, $request->except(['_token']));
 
-        return backendRedirect('post')->with($this->getMessage('store'));
+        return backendRedirect($this->baseUrl)->with($this->getMessage('store'));
     }
 
     /**
@@ -107,6 +108,7 @@ class PostController extends Controller
         $data['categoryCheckboxes'] = $this->categoryService->categoryCheckbox('categories[]', 1, $selectedCategories);
         $data['publishDate'] = Carbon::createFromFormat('Y-m-d H:i:s', $post->publish_date)->format('d-F-Y - H:i');
         $data['featuredImage'] = $post->medias()->where('media_type', 'featured')->first();
+        $data['baseUrl'] = $this->baseUrl;
         return view('backend.posts.edit', $data);
     }
 
@@ -121,7 +123,7 @@ class PostController extends Controller
     {
         $this->postService->update($id, $request->except(['_token']));
 
-        return backendRedirect('post')->with($this->getMessage('update'));
+        return backendRedirect($this->baseUrl)->with($this->getMessage('update'));
     }
 
     /**
@@ -132,6 +134,8 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->postService->destroy($id);
+
+        return backendRedirect($this->baseUrl)->with($this->getMessage('delete'));
     }
 }

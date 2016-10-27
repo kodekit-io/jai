@@ -6,6 +6,7 @@ namespace App\Service;
 use App\Models\Post as PostModel;
 use App\Service\Traits\DatatableParameters;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class Post
@@ -34,6 +35,9 @@ class Post
             ->addColumn('post_date', function($post) {
                 return Carbon::createFromFormat('Y-m-d H:i:s', $post->created_at)->format('j-M-y H:i:s');
             })
+            ->addColumn('author', function($post) {
+                return $post->author->name;
+            })
             ->addColumn('post_status', function($post) {
                 return strtoupper($post->status);
             })
@@ -53,6 +57,7 @@ class Post
         $post = PostModel::create([
             'post_type_id' => $postTypeId,
             'status' => strtoupper($inputs['status']),
+            'created_by' => Auth::user()->id,
             'publish_date' => Carbon::createFromFormat('d-F-Y - H:i', $inputs['publish_date'])->format('Y-m-d H:i')
         ]);
 
