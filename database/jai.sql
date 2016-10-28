@@ -44,7 +44,7 @@ CREATE TABLE `holidays` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `holidays` */
 
@@ -58,7 +58,7 @@ CREATE TABLE `media` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `media` */
 
@@ -70,6 +70,8 @@ insert  into `media`(`id`,`title`,`file_name`,`description`,`created_at`,`update
 insert  into `media`(`id`,`title`,`file_name`,`description`,`created_at`,`updated_at`) values (48,'river.jpg','river.jpg',NULL,'2016-10-21 20:25:05','2016-10-21 20:25:05');
 insert  into `media`(`id`,`title`,`file_name`,`description`,`created_at`,`updated_at`) values (49,'boat.jpg','boat.jpg',NULL,'2016-10-21 20:25:37','2016-10-21 20:25:37');
 insert  into `media`(`id`,`title`,`file_name`,`description`,`created_at`,`updated_at`) values (50,'test.jpg','test.jpg',NULL,'2016-10-22 18:08:10','2016-10-22 18:08:10');
+insert  into `media`(`id`,`title`,`file_name`,`description`,`created_at`,`updated_at`) values (51,'head-sample-03.jpg','head-sample-03.jpg',NULL,'2016-10-28 15:09:59','2016-10-28 15:09:59');
+insert  into `media`(`id`,`title`,`file_name`,`description`,`created_at`,`updated_at`) values (52,'head-sample-01.jpg','head-sample-01.jpg',NULL,'2016-10-28 15:10:46','2016-10-28 15:10:46');
 
 /*Table structure for table `media_sizes` */
 
@@ -248,10 +250,12 @@ insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (1
 insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (17,'id','Far far away, behind the word mountains, far from the countries Vokalia and Consonantia','far-far-away-behind-the-word-mountains-far-from-the-countries-vokalia-and-consonantia-2','Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. <br />Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar. The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn&rsquo;t listen. <br />She packed her seven versalia, put her initial into the belt and made herself on the way. When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. <br />Pityful a rethoric question ran over her cheek, then');
 insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (18,'en','Ini title english','ini-title-english','content english');
 insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (18,'id','Title bahasa','title-bahasa','content bahasa');
-insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (19,'en','News Test','news-test','News test');
-insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (19,'id','Test news','test-news','Test news');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (19,'en','HERE YOU WILL MEET FACE-TO-FACE WITH THE TAME PREDATORS','here-you-will-meet-face-to-face-with-the-tame-predators','News test');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (19,'id','DISINI KALIAN AKAN BERHADAPANG LANGSUNG DENGAN HIU PREDATOR','disini-kalian-akan-berhadapang-langsung-dengan-hiu-predator','Test news');
 insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (21,'en','AH MENG AND FAMILY REVEL IN NEW HANGOUT AT SINGAPORE ZOO','ah-meng-and-family-revel-in-new-hangout-at-singapore-zoo','Singapore Zoo introduced their flagship orangutans to a new free-ranging area earlier this month, to complement the Ah Meng-zing experience, which happens every weekend this June. Overlooking the picturesque Upper Seletar Reservoir, the new space features hammocks and interconnecting vines for the orangutans to explore. An average of five orangutans hang out in the area daily to enjoy the treetop haven, while guests walking underneath them stop to gaze in wonder at the charismatic apes above. <br />Guests have one final weekend to enjoy the Ah Meng-zing experience, where Singapore Zoo transforms into a living classroom to show visitors, parents and children alike, the small things they can do to help save the planet and the animals that share it. Visitors can discover and appreciate wildlife through a diverse range of activities, including meet and greet sessions with larger than life mascots, inventive craft workshops, and enlightening animal enrichment trails. For more information about the June holiday activities');
 insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (21,'id','AH MENG AND FAMILY REVEL IN NEW HANGOUT AT SINGAPORE ZOO','ah-meng-and-family-revel-in-new-hangout-at-singapore-zoo-2','Singapore Zoo introduced their flagship orangutans to a new free-ranging area earlier this month, to complement the Ah Meng-zing experience, which happens every weekend this June. Overlooking the picturesque Upper Seletar Reservoir, the new space features hammocks and interconnecting vines for the orangutans to explore. An average of five orangutans hang out in the area daily to enjoy the treetop haven, while guests walking underneath them stop to gaze in wonder at the charismatic apes above. <br />Guests have one final weekend to enjoy the Ah Meng-zing experience, where Singapore Zoo transforms into a living classroom to show visitors, parents and children alike, the small things they can do to help save the planet and the animals that share it. Visitors can discover and appreciate wildlife through a diverse range of activities, including meet and greet sessions with larger than life mascots, inventive craft workshops, and enlightening animal enrichment trails. For more information about the June holiday activities');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (24,'en','XPLORE A HUNDRED OF BEAUTIFUL JELLIES IN A DARK TANK','xplore-a-hundred-of-beautiful-jellies-in-a-dark-tank','English Content');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (24,'id','DISINI KALIAN AKAN BERTEMU DENGAN FINDING DORI','disini-kalian-akan-bertemu-dengan-finding-dori','Content bahasa');
 
 /*Table structure for table `post_has_categories` */
 
@@ -271,6 +275,7 @@ insert  into `post_has_categories`(`post_id`,`category_id`) values (17,2);
 insert  into `post_has_categories`(`post_id`,`category_id`) values (18,2);
 insert  into `post_has_categories`(`post_id`,`category_id`) values (21,2);
 insert  into `post_has_categories`(`post_id`,`category_id`) values (19,3);
+insert  into `post_has_categories`(`post_id`,`category_id`) values (24,3);
 
 /*Table structure for table `post_has_medias` */
 
@@ -288,8 +293,9 @@ CREATE TABLE `post_has_medias` (
 
 insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (17,48,'featured');
 insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (18,45,'featured');
-insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (19,46,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (19,51,'featured');
 insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (21,47,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (24,47,'featured');
 
 /*Table structure for table `post_metas` */
 
@@ -301,9 +307,12 @@ CREATE TABLE `post_metas` (
   PRIMARY KEY (`id`),
   KEY `post_metas_post_id_foreign` (`post_id`),
   CONSTRAINT `post_metas_post_id_foreign` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `post_metas` */
+
+insert  into `post_metas`(`id`,`post_id`,`meta_key`,`meta_value`) values (4,19,'whats_on','1');
+insert  into `post_metas`(`id`,`post_id`,`meta_key`,`meta_value`) values (5,24,'whats_on','1');
 
 /*Table structure for table `post_types` */
 
@@ -319,7 +328,7 @@ CREATE TABLE `post_types` (
 /*Data for the table `post_types` */
 
 insert  into `post_types`(`id`,`name`,`slug`,`created_at`,`updated_at`) values (1,'Post','post','2016-10-13 18:32:05','2016-10-13 18:32:05');
-insert  into `post_types`(`id`,`name`,`slug`,`created_at`,`updated_at`) values (2,'Page','page','2016-10-26 18:44:06','2016-10-26 18:44:06');
+insert  into `post_types`(`id`,`name`,`slug`,`created_at`,`updated_at`) values (2,'News','news','2016-10-26 18:44:06','2016-10-26 18:44:06');
 insert  into `post_types`(`id`,`name`,`slug`,`created_at`,`updated_at`) values (3,'Event','event','2016-10-13 20:13:53','2016-10-13 20:13:53');
 
 /*Table structure for table `posts` */
@@ -333,14 +342,15 @@ CREATE TABLE `posts` (
   `publish_date` timestamp NULL DEFAULT NULL,
   `created_by` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `posts` */
 
 insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (17,1,'2016-10-22 19:20:17','2016-10-27 18:34:17','PUBLISH','2016-10-22 19:19:00',1);
 insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (18,1,'2016-10-24 11:40:55','2016-10-24 18:15:16','PUBLISH','2016-10-24 11:35:00',1);
-insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (19,2,'2016-10-27 18:22:34','2016-10-27 18:22:34','PUBLISH','2016-10-27 18:22:00',1);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (19,2,'2016-10-27 18:22:34','2016-10-28 15:10:06','PUBLISH','2016-10-27 18:22:00',1);
 insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (21,1,'2016-10-27 18:33:36','2016-10-27 18:33:36','PUBLISH','2016-10-27 18:32:00',3);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (24,2,'2016-10-28 14:31:20','2016-10-28 15:13:18','PUBLISH','2016-10-28 14:30:00',3);
 
 /*Table structure for table `role_has_permissions` */
 
@@ -453,7 +463,7 @@ CREATE TABLE `sessions` (
 
 /*Data for the table `sessions` */
 
-insert  into `sessions`(`id`,`user_id`,`ip_address`,`user_agent`,`payload`,`last_activity`) values ('fcHqOBfN7N6OxsbuNVn6OBomR7MD5WqvtAejLhXk',3,'192.168.10.1','Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36','YTo4OntzOjY6Il90b2tlbiI7czo0MDoiakswNmlYeTRZck42Yk96YlkxMTN0a3gybVNiRWlMZEMzSTBlSnpvTyI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjE3OiJodHRwOi8vamFpLmRldi9pZCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjM7czo0OiJsYW5nIjtzOjI6ImlkIjtpOjA7czo0OiJsYW5nIjtzOjk6Il9zZjJfbWV0YSI7YTozOntzOjE6InUiO2k6MTQ3NzU3MDQ4NjtzOjE6ImMiO2k6MTQ3NzU2NzA0MjtzOjE6ImwiO3M6MToiMCI7fX0=',1477570486);
+insert  into `sessions`(`id`,`user_id`,`ip_address`,`user_agent`,`payload`,`last_activity`) values ('9IvAiIkA4S826Isr77EzEc5fej5bIAddnllQ92y8',3,'192.168.10.1','Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36','YTo3OntzOjY6Il90b2tlbiI7czo0MDoiTHMwck1wNDdIY0pDOGs1aGljaHZCbUN3bnBBeXdoeGJXUHd2VTYwQyI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjE3OiJodHRwOi8vamFpLmRldi9pZCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjM7czo0OiJsYW5nIjtzOjI6ImlkIjtzOjk6Il9zZjJfbWV0YSI7YTozOntzOjE6InUiO2k6MTQ3NzY0MzExNztzOjE6ImMiO2k6MTQ3NzYzNzU3MjtzOjE6ImwiO3M6MToiMCI7fX0=',1477643117);
 
 /*Table structure for table `slider_items` */
 
