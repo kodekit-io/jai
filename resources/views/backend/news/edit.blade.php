@@ -40,7 +40,47 @@
                                         </div>
                                         {{--end of main form--}}
 
-                                        @include('backend.posts.sidebar-edit')
+                                        <div class="col-md-4">
+                                            {{--publish--}}
+                                            <div class="col-md-12">
+                                                <div class="portlet light bordered">
+                                                    <div class="portlet-title">
+                                                        <div class="caption"><i class="fa fa-gift"></i> Publisher</div>
+                                                        <div class="tools">
+                                                            <a href="javascript:;" class="collapse" data-original-title="" title=""></a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="portlet-body">
+                                                        <div class="form-group">
+                                                            <label>Publish Date</label>
+                                                            <div class="input-group date form_datetime">
+                                                                <input type="text" name="publish_date" size="16" value="{!! $publishDate !!}" readonly class="form-control">
+                                                                <span class="input-group-btn">
+                                                                    <button class="btn default date-set" type="button">
+                                                                        <i class="fa fa-calendar"></i>
+                                                                    </button>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <div class="mt-checkbox-outline">
+                                                                <label class="mt-checkbox mt-checkbox-outline">
+                                                                    <input type="checkbox" @if ($whatsOn) checked @endif name="whats_on" value="1"> What's on content
+                                                                    <span></span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <a href="{!! backendUrl($baseUrl) !!}" class="btn btn-sm sbold green">Back</a> <input type="submit" name="status" class="btn btn-sm btn-default" value="Draft"> <input type="submit" name="status" class="btn btn-sm btn-default" value="Publish">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{--end of publish--}}
+
+                                            @include('backend.partials.category-edit-box')
+
+                                            @include('backend.partials.featured-edit-box')
+
+                                        </div>
 
                                     </div>
                                 </div>
