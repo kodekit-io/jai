@@ -117,14 +117,13 @@ class Post
             $post->medias()->sync([$mediaId]);
         }
 
+        $post->metas()->where('meta_key', 'whats_on')->where('meta_value', 1)->delete();
         $whatsOn = isset($inputs['whats_on']) ? $inputs['whats_on'] : '0' ;
         if ($whatsOn == 1) {
             $post->metas()->create([
                 'meta_key' => 'whats_on',
                 'meta_value' => 1
             ]);
-        } else {
-            $post->metas()->where('meta_key', 'whats_on')->where('meta_value', 1)->delete();
         }
     }
 
