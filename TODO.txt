@@ -33,9 +33,11 @@
 -- Add author on post/page (DONE)
 -- Lang switcher on frontend and set session in middleware, create function to create autolang link lang_url('about-us') (DONE)
 -- Add whats on checkbox on news (DONE)
+-- Create package/product (DONE)
 
+-- Check featured, when edit->submit, image didn;t store to db
 -- Advanced search on post, news
--- Create package/product
+
 -- Add notification when there are any blank languages whe publish the content
 -- Create pages management
 -- Create SEO fields on post/page (at least meta-tag)

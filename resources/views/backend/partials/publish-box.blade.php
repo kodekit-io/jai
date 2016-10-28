@@ -12,11 +12,11 @@
                 <label>Publish Date</label>
                 <div class="input-group date form_datetime">
                     <input type="text" name="publish_date" size="16" value="{!! $currentDateTime !!}" readonly class="form-control">
-                        <span class="input-group-btn">
-                            <button class="btn default date-set" type="button">
-                                <i class="fa fa-calendar"></i>
-                            </button>
-                        </span>
+                    <span class="input-group-btn">
+                        <button class="btn default date-set" type="button">
+                            <i class="fa fa-calendar"></i>
+                        </button>
+                    </span>
                 </div>
             </div>
             <a href="{!! backendUrl($baseUrl) !!}" class="btn btn-sm sbold green">Back</a> <input type="submit" name="status" class="btn btn-sm btn-default" value="Draft"> <input type="submit" name="status" class="btn btn-sm btn-default" value="Publish">
