@@ -89,6 +89,14 @@ Route::group(['prefix' => $backendUrl, 'middleware' => ['menu','auth','authorize
     Route::post('/news/{id}/update', 'NewsController@update')->name('news.edit');
     Route::get('/news/{id}/delete', 'NewsController@destroy')->name('news.delete');
 
+    // Package
+    Route::get('/package', 'PackageController@index')->name('package');
+    Route::get('/package/add', 'PackageController@create')->name('package.add');
+    Route::post('/package/save', 'PackageController@store')->name('package.add');
+    Route::get('/package/{id}/edit', 'PackageController@edit')->name('package.edit');
+    Route::post('/package/{id}/update', 'PackageController@update')->name('package.edit');
+    Route::get('/package/{id}/delete', 'PackageController@destroy')->name('package.delete');
+
     // What's on
     Route::get('/whats-on', 'WhatsOnController@index')->name('whats-on');
     Route::get('/whats-on/add', 'WhatsOnController@create')->name('whats-on.add');
@@ -115,6 +123,7 @@ Route::group(['prefix' => $backendUrl, 'middleware' => ['auth']], function () {
     Route::get('/permission-data', 'PermissionController@anyData')->name('permission.data' );
     Route::get('/post-category-data/{postTypeId}', 'CategoryController@anyData')->name('post-category.data' );
     Route::get('/post-data', 'PostController@anyData')->name('post.data' );
+    Route::get('/package-data', 'PackageController@anyData')->name('package.data' );
     Route::get('/news-data', 'NewsController@anyData')->name('news.data' );
     Route::get('/slider-data', 'SliderController@anyData')->name('slider.data' );
     Route::get('/post-type-data', 'PostTypeController@anyData')->name('post-type.data' );

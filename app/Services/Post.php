@@ -51,8 +51,10 @@ class Post
 
     public function store($postTypeId = 1, array $inputs)
     {
-        $categories = $inputs['categories'];
-        $mediaId = $inputs['featured_image_id'];
+        // var_dump($inputs); exit;
+        $categories = isset($inputs['categories']) ? $inputs['categories'] : [];
+        $mediaId = isset($inputs['featured_image_id']) ? $inputs['featured_image_id'] : '' ;
+        $whatsOn = isset($inputs['whats_on']) ? true : false ;
 
         $post = PostModel::create([
             'post_type_id' => $postTypeId,
@@ -71,13 +73,63 @@ class Post
             ]);
         }
 
-        if (count($categories) > 0) {
+        if ($whatsOn) {
+            $post->metas()->create([
+                'meta_key' => 'whats_on',
+                'meta_value' => 1
+            ]);
+        }
+
+        if ($categories && count($categories) > 0) {
             $post->categories()->attach($categories);
         }
 
         if ($mediaId != '') {
             $post->medias()->attach($mediaId, ['media_type' => 'featured']);
         }
+    }
+
+    public function update($id, array $inputs)
+    {
+        $post = PostModel::find($id);
+        $post->publish_date = Carbon::createFromFormat('d-F-Y - H:i', $inputs['publish_date'])->format('Y-m-d H:i');
+        $post->status = strtoupper($inputs['status']);
+        $post->save();
+
+        $post->details()->delete();
+        foreach ($inputs['title'] as $lang => $title) {
+            $content = $inputs['content'][$lang];
+            $post->details()->create([
+                'lang' => $lang,
+                'title' => $title,
+                'slug' => getSlugOnModelByTitle($title, 'PostDetail'),
+                'content' => $content,
+            ]);
+        }
+
+        $categories = isset($inputs['categories']) ? $inputs['categories'] : [];
+        if (count($categories) > 0) {
+            $post->categories()->sync($categories);
+        }
+
+        $mediaId = isset($inputs['featured_image_id']) ? $inputs['featured_image_id'] : '' ;
+        if ($mediaId != '') {
+            $post->medias()->sync([$mediaId]);
+        }
+
+        $post->metas()->where('meta_key', 'whats_on')->where('meta_value', 1)->delete();
+        $whatsOn = isset($inputs['whats_on']) ? $inputs['whats_on'] : '0' ;
+        if ($whatsOn == 1) {
+            $post->metas()->create([
+                'meta_key' => 'whats_on',
+                'meta_value' => 1
+            ]);
+        }
+    }
+
+    public function destroy($id)
+    {
+        PostModel::destroy($id);
     }
 
     private function getCategories($post)
@@ -136,7 +188,21 @@ class Post
     {
         $query = DB::table('posts')
                     ->join('post_details', 'posts.id', '=', 'post_details.post_id')
-                    ->join('post_has_categories', 'posts.id', '=', 'post_has_categories.post_id');
+                    ->join('post_has_categories', 'posts.id', '=', 'post_has_categories.post_id')
+                    ->select('posts.*', 'post_details.*');
+
+        // search by meta
+        if (isset($params['meta'])) {
+            $meta = $params['meta'];
+            $metaKey = $meta['key'];
+            $metaOperator = $meta['operator'];
+            $metaValue = $meta['value'];
+
+            $query = $query->join('post_metas', 'posts.id', '=', 'post_metas.post_id')
+                ->where('meta_key', '=', $metaKey)
+                ->where('meta_value', $metaOperator, $metaValue)
+                ->addSelect('post_metas.meta_value');
+        }
 
         // search by lang
         if (isset($params['lang'])) {
@@ -160,6 +226,8 @@ class Post
             $query = $query->where('posts.status', $params['status']);
         }
 
+        // $query->select('posts.*');
+
         return $query->get();
 
     }
@@ -169,37 +237,4 @@ class Post
         return PostModel::find($id);
     }
 
-    public function update($id, array $inputs)
-    {
-        $post = PostModel::find($id);
-        $post->publish_date = Carbon::createFromFormat('d-F-Y - H:i', $inputs['publish_date'])->format('Y-m-d H:i');
-        $post->status = strtoupper($inputs['status']);
-        $post->save();
-
-        $post->details()->delete();
-        foreach ($inputs['title'] as $lang => $title) {
-            $content = $inputs['content'][$lang];
-            $post->details()->create([
-                'lang' => $lang,
-                'title' => $title,
-                'slug' => getSlugOnModelByTitle($title, 'PostDetail'),
-                'content' => $content,
-            ]);
-        }
-
-        $categories = $inputs['categories'];
-        if (count($categories) > 0) {
-            $post->categories()->sync($categories);
-        }
-
-        $mediaId = $inputs['featured_image_id'];
-        if ($mediaId != '') {
-            $post->medias()->sync([$mediaId]);
-        }
-    }
-
-    public function destroy($id)
-    {
-        PostModel::destroy($id);
-    }
 }

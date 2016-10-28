@@ -108,6 +108,7 @@ class NewsController extends Controller
         $data['categoryCheckboxes'] = $this->categoryService->categoryCheckbox('categories[]', $this->postType, $selectedCategories);
         $data['publishDate'] = Carbon::createFromFormat('Y-m-d H:i:s', $post->publish_date)->format('d-F-Y - H:i');
         $data['featuredImage'] = $post->medias()->where('media_type', 'featured')->first();
+        $data['whatsOn'] = $post->metas()->where('meta_key', 'whats_on')->where('meta_value', 1)->count();
         $data['baseUrl'] = $this->baseUrl;
 
         return view('backend.news.edit', $data);
