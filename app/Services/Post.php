@@ -189,7 +189,21 @@ class Post
     {
         $query = DB::table('posts')
                     ->join('post_details', 'posts.id', '=', 'post_details.post_id')
-                    ->join('post_has_categories', 'posts.id', '=', 'post_has_categories.post_id');
+                    ->join('post_has_categories', 'posts.id', '=', 'post_has_categories.post_id')
+                    ->select('posts.*', 'post_details.*');
+
+        // search by meta
+        if (isset($params['meta'])) {
+            $meta = $params['meta'];
+            $metaKey = $meta['key'];
+            $metaOperator = $meta['operator'];
+            $metaValue = $meta['value'];
+
+            $query = $query->join('post_metas', 'posts.id', '=', 'post_metas.post_id')
+                ->where('meta_key', '=', $metaKey)
+                ->where('meta_value', $metaOperator, $metaValue)
+                ->addSelect('post_metas.meta_value');
+        }
 
         // search by lang
         if (isset($params['lang'])) {
@@ -212,6 +226,8 @@ class Post
         if (isset($params['status'])) {
             $query = $query->where('posts.status', $params['status']);
         }
+
+        // $query->select('posts.*');
 
         return $query->get();
 

@@ -33,10 +33,14 @@ class FrontEndController extends Controller
     public function homepage($lang)
     {
         $params = [
-            'category_id' => 2,
             'status' => 'publish',
-            'post_type_id' => 1,
-            'lang' => $lang
+            'post_type_id' => 2,
+            'lang' => $lang,
+            'meta' => [
+                'key' => 'whats_on',
+                'operator' => '=',
+                'value' => '1'
+            ]
         ];
         $post = $this->postService->getPostsWithDetail($params);
 
