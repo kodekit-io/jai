@@ -141,6 +141,7 @@ Route::group(['prefix' => $backendUrl, 'middleware' => ['auth']], function () {
 Route::group(['middleware' => ['lang']], function () {
     Route::get('/{lang?}/about-us', 'FrontEndController@aboutUs');
     Route::get('/{lang?}/ticket-hours', 'FrontEndController@ticket');
+    Route::get('/{lang?}/book-detail', 'FrontEndController@bookticket');
     Route::get('/{lang?}', 'FrontEndController@homepage');
     Route::get('/{lang?}/news/{slug}', 'FrontEndController@homepage');
 });

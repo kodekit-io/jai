@@ -60,4 +60,7 @@ class FrontEndController extends Controller
     public function ticket($lang) {
         return view('frontend.ticket-hours');
     }
+    public function bookticket($lang) {
+        return view('frontend.book-detail');
+    }
 }
