@@ -21,7 +21,8 @@
 		<script src="{!! asset('frontend/js/uikit.min.js') !!}"></script>
 		<script src="{!! asset('frontend/js/components/tooltip.min.js') !!}"></script>
 		<script src="{!! asset('frontend/js/components/slideshow.min.js') !!}"></script>
-		<script src="{!! asset('frontend/js/components/sticky.min.js') !!}"></script>
 		<script src="{!! asset('frontend/js/main.js') !!}"></script>
+		@section('page-level-scripts')
+		@show
 	</body>
 </html>
