@@ -18,26 +18,49 @@
 -- Create category (DONE)
 -- Create post management (DONE)
 
-=== 20161021 ===
+
 -- Create whats on management (DONE)
 -- Check posts when delete the category (DONE, add transfer_to form)
-
 -- Create multilanguage feature
 ---- using uri ex : http://jai.com/en/content-slug-here and http://jai.com/id/content-slug-here
 -- Add language options when create the content (DONE)
 -- Add language options when edit the content (DONE)
-
 -- Slider management (DONE)
 -- Create news management (DONE)
 -- Create holiday list (DONE)
 -- Add author on post/page (DONE)
--- Lang switcher on frontend and set session in middleware, create function to create autolang link lang_url('about-us') (DONE)
--- Add whats on checkbox on news (DONE)
+-- Lang switcher on frontend and set session in middleware, create function to generate autolang link lang_url('about-us') (DONE)
+-- Add "whats on" checkbox on news (DONE)
 -- Create package/product (DONE)
+-- Check featured, when edit->submit, image didn;t store to db (DONE)
 
--- Check featured, when edit->submit, image didn;t store to db
+-- Create showtime with following types :
+---- regular showtime
+---- particular showtime
+---- limited showtime
+
+-- Create attraction and experience with following categories :
+---- Attractions
+---- Experience
+---- Shows
+---- Dining
+---- Shopping
+
+-- Create media room with following categories :
+---- Animals
+---- Conservation
+---- Events
+---- Research
+---- Leadership
+
+-- Create career management with following fields:
+---- Position
+---- Department
+---- Job Description
+---- Due date / active date
+---- Contact Person
+
 -- Advanced search on post, news
-
 -- Add notification when there are any blank languages whe publish the content
 -- Create pages management
--- Create SEO fields on post/page (at least meta-tag)
+-- Create SEO fields on post/page (at least meta-tag) ==> use post_metas table
