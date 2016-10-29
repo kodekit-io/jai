@@ -13,6 +13,10 @@ body {
 	min-height: 100%;
 	display: flex;
 	flex-direction: column;
+	background: #e4eaed;
+}
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Intro', 'Helvetica Neue', sans-serif;
 }
 ::selection {
 	background: #00acc1;
@@ -319,7 +323,7 @@ a.ja-button-outline {
 	position: fixed;
 	right: 10px;
 	width: 75px !important;
-	top: 200px;
+	top: 185px;
 	z-index: 10;
 }
 .ja-home-section .ja-side-banner {
@@ -522,10 +526,106 @@ a.ja-button-outline {
 .ja-about__content {
 	padding: 4em 3em;
 }
+.ja-header-ticket {
+	height: 160px;
+	padding-top: 30px;
+	margin-bottom: 10px;
+}
+.ja-ticket {
+	background: #e4eaed url(../img/bg-section-whats.png) repeat-x center bottom;
+}
+.ja-ticket__content {
+	padding: 2em;
+	background: #fff;
+}
+.ja-ticket .uk-panel-box {
+	background: none;
+	border: 2px solid #ffb300;
+}
+.ja-ticket .uk-accordion-content {
+	border-bottom: 1px solid #00acc1;
+	margin-bottom: 1em;
+}
+.ja-ticket .uk-accordion-title {
+	border-bottom: 1px solid #00acc1;
+	padding-bottom: 10px;
+	cursor: pointer;
+	color: #01579b;
+	position: relative;
+	margin-top: 0;
+}
+.ja-ticket .uk-accordion-title:after {
+	content: "\f078";
+	font-family: "FontAwesome";
+	display: inline-block;
+	float: right;
+	color: #00acc1;
+}
+.ja-ticket .uk-accordion-title.uk-active:after {
+	content: "\f00d";
+	font-family: "FontAwesome";
+	display: inline-block;
+	float: right;
+	color: #00acc1;
+}
+.ja-ticket .uk-accordion-title:hover,
+.ja-ticket .uk-accordion-title:hover:after {
+	color: #ffb300;
+}
+
+.ja-ticket label, .ja-ticket input[type="text"], .ja-ticket input[type="text"]:disabled {
+	height: 40px;
+	line-height: 40px;
+	border: 1px solid #00acc1;
+	display: block;
+	background: #fff;
+	padding: 0 1em;
+	float: left;
+}
+.uk-form-row.uk-margin-remove + .uk-form-row.uk-margin-remove label,
+.uk-form-row.uk-margin-remove + .uk-form-row.uk-margin-remove input[type="text"] {
+	border-top: 1px solid #fff;
+}
+.ja-ticket input[type="text"]:disabled {
+	color: #111 !important;
+}
+.ja-ticket label {
+	color: #00acc1;
+	height: 38px;
+	min-width: 150px;
+	border-right: none;
+}
+.ja-ticket input[type="text"] {
+	width: 343px;
+}
+.ja-ticket input[type="text"]#visitor, .ja-ticket input[type="text"]#visitorchild {
+	width: 60px;
+}
+.ja-ticket label i {
+	display: inline-block;
+	width: 24px;
+	height: 38px;
+	line-height: 38px;
+	float: left;
+	text-align: center;
+	margin-right: 10px;
+	font-size: 1.2em;
+}
+.ja-adult {
+	background: url(../img/i-adult.png) no-repeat center left;
+}
+.ja-child {
+	background: url(../img/i-child.png) no-repeat center left;
+}
+.ja-ticket button:hover {
+	color: #fff !important;
+}
+
 .ja-404 {
 	height: calc(100vh - 100px);
 	position: relative;
 	background: #e4eaed;
+	z-index: 0;
 }
 @media (max-width: 768px) {
 	.ja-nav {
