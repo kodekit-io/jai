@@ -92,4 +92,9 @@ class FrontEndController extends Controller
     {
         return view('frontend.book-detail');
     }
+
+    public function specialpackages($lang)
+    {
+        return view('frontend.special-packages');
+    }
 }
