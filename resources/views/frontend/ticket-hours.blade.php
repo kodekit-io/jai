@@ -3,6 +3,7 @@
 @section('page-level-styles')
     <link rel="stylesheet" href="{!! asset('frontend/css/components/datepicker.min.css') !!}" />
 @endsection
+
 @section('content')
 
 <header class="ja-header-ticket uk-vertical-align">
@@ -25,7 +26,9 @@
                     <p>Come and meet sharks, turtles, jellyfish, octopuses, seahorses, otters, and other beautiful animals. The Jakarta Aquarium is suited to all ages and interests. Purchasing tickets online is a great way to speed up your access to all that the Jakarta Aquarium has to offer.</p>
 
                     <p>Ticket Price:<br>
-                    Weekday  IDR 200.000   |   Weekend  IDR 250.000</p>
+                    General Admission : Weekday  IDR 200.000   |   Weekend  IDR 250.000<br>
+                    Package A : Weekday  IDR 200.000   |   Weekend  IDR 250.000<br>
+                    Package B : Weekday  IDR 200.000   |   Weekend  IDR 250.000</p>
 
                     <form class="uk-form uk-margin-top uk-margin-bottom" action="{!! lang_url('book-detail') !!}">
                         <div class="uk-form-row">
@@ -33,11 +36,18 @@
                             <input id="date" type="text" data-uk-datepicker="{format:'dddd, DD-MM-YYYY'}">
                         </div>
                         <div class="uk-form-row">
+                            <label for="package">Package</label>
+                            <select name="package">
+                                <option value="1">General Admission</option>
+                                <option value="1">Package A</option>
+                                <option value="1">Package B</option>
+                            </select>
+                        </div>
+                        <div class="uk-form-row">
                             <label for="visitor"><i class="ja-adult"></i>Visitor</label>
-                            <input id="visitor" type="text" placeholder="2">
-
-                            <label for="visitorchild" class="uk-margin-left"><i class="ja-child"></i>Babies (<2 years, Free)</label>
-                            <input id="visitorchild" type="text" placeholder="2">
+                            <input id="visitor" type="number" placeholder="0">
+                            {{--<label for="visitorchild" class="uk-margin-left"><i class="ja-child"></i>Babies (<2 years, Free)</label>--}}
+                            {{--<input id="visitorchild" type="number" placeholder="">--}}
                         </div>
                         <div class="uk-form-row">
                             <label for="promo"><i class="uk-icon-tag"></i>Promo</label>

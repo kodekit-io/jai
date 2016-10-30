@@ -33,27 +33,39 @@
 -- Add "whats on" checkbox on news (DONE)
 -- Create package/product (DONE)
 -- Check featured, when edit->submit, image didn;t store to db (DONE)
-
--- Add general submission checkbox on package form to grouping the package
-
--- Create showtime with following types :
----- regular showtime
----- particular showtime
----- limited showtime
-
--- Create attraction and experience with following categories :
+-- Create attraction and experience with following categories : (DONE)
 ---- Attractions
 ---- Experience
 ---- Shows
 ---- Dining
 ---- Shopping
 
--- Create media room with following categories :
+-- Create media room with following categories : (DONE)
 ---- Animals
 ---- Conservation
 ---- Events
 ---- Research
 ---- Leadership
+
+-- Add general submission checkbox on package form to grouping the package (DONE)
+
+
+-- Create show with following fields :
+-- show
+---- id
+---- type (regular showtime,particular showtime,limited showtime)
+---- created_by
+-- show_details
+---- show_id
+---- lang
+---- title
+---- description
+-- show_schedules
+---- show_id
+---- start_date
+---- end_date
+---- start_time
+---- end_time
 
 -- Create career management with following fields:
 ---- Position

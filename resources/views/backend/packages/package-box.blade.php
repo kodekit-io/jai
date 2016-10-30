@@ -11,7 +11,14 @@
         {{--end of portlet title--}}
         {{--portlet body--}}
         <div class="portlet-body tabbable-custom ">
-
+            <div class="mt-checkbox-outline form-group">
+                <label class="mt-checkbox mt-checkbox-outline">
+                    <input type="checkbox" name="is_general_admission"
+                           @if (isset($package->is_general_admission) && $package->is_general_admission == 1) checked @endif
+                           value="1"> General Admission ?
+                    <span></span>
+                </label>
+            </div>
             <div class="form-group">
                 <label>Package Type :</label>
                 {!! $packageSelect !!}
