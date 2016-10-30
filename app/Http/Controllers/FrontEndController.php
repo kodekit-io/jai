@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Service\Package;
 use App\Service\Post;
 use App\Service\Slider;
 use Illuminate\Http\Request;
@@ -18,16 +19,22 @@ class FrontEndController extends Controller
      * @var Slider
      */
     private $sliderService;
+    /**
+     * @var Package
+     */
+    private $packageService;
 
     /**
      * FrontEndController constructor.
      * @param Post $postService
      * @param Slider $sliderService
+     * @param Package $packageService
      */
-    public function __construct(Post $postService, Slider $sliderService)
+    public function __construct(Post $postService, Slider $sliderService, Package $packageService)
     {
         $this->postService = $postService;
         $this->sliderService = $sliderService;
+        $this->packageService = $packageService;
     }
 
     public function homepage($lang)
@@ -61,10 +68,28 @@ class FrontEndController extends Controller
         return view('frontend.about-us');
     }
 
-    public function ticket($lang) {
-        return view('frontend.ticket-hours');
+    public function ticket($lang)
+    {
+        $generalAdmissionParams = [
+            'lang' => $lang,
+            'is_general_admission' => true
+        ];
+        $generalPackages = $this->packageService->getPackages($generalAdmissionParams);
+
+        $otherPackageParams = [
+            'lang' => $lang,
+            'is_general_admission' => true
+        ];
+        $otherPackages = $this->packageService->getPackages($otherPackageParams);
+
+        $data['generalPackages'] = $generalPackages;
+        $data['otherPackages'] = $otherPackages;
+
+        return view('frontend.ticket-hours', $data);
     }
-    public function bookticket($lang) {
+
+    public function bookticket($lang)
+    {
         return view('frontend.book-detail');
     }
 }

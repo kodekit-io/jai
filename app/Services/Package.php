@@ -41,12 +41,14 @@ class Package
 
     public function store(array $inputs)
     {
+        $generalAdmission = isset($inputs['is_general_admission']) ? 1 : 0;
         $package = PackageModel::create([
             'package_type_id' => $inputs['package_type_id'],
             'normal_price' => $inputs['normal_price'],
             'weekend_price' => $inputs['weekend_price'],
             'holiday_price' => $inputs['holiday_price'],
-            'created_by' => Auth::user()->id
+            'created_by' => Auth::user()->id,
+            'is_general_admission' => $generalAdmission
         ]);
 
         foreach ($inputs['title'] as $lang => $title) {
@@ -72,12 +74,14 @@ class Package
 
     public function update($id, array $inputs)
     {
+        $generalAdmission = isset($inputs['is_general_admission']) ? 1 : 0;
         $package = PackageModel::find($id);
         $package->package_type_id = $inputs['package_type_id'];
         $package->normal_price = $inputs['normal_price'];
         $package->weekend_price = $inputs['weekend_price'];
         $package->holiday_price = $inputs['holiday_price'];
         $package->created_by = Auth::user()->id;
+        $package->is_general_admission = $generalAdmission;
         $package->save();
 
         $package->details()->delete();
@@ -116,5 +120,10 @@ class Package
     public function getPackageType()
     {
         return $this->packageType;
+    }
+
+    public function getPackages(array $params)
+    {
+        return '';
     }
 }

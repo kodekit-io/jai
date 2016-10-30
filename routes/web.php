@@ -73,6 +73,22 @@ Route::group(['prefix' => $backendUrl, 'middleware' => ['menu','auth','authorize
     Route::post('/post/{id}/update', 'PostController@update')->name('post.edit');
     Route::get('/post/{id}/delete', 'PostController@destroy')->name('post.delete');
 
+    // Attraction
+    Route::get('/attraction', 'AttractionController@index')->name('attraction');
+    Route::get('/attraction/add', 'AttractionController@create')->name('attraction.add');
+    Route::post('/attraction/save', 'AttractionController@store')->name('attraction.add');
+    Route::get('/attraction/{id}/edit', 'AttractionController@edit')->name('attraction.edit');
+    Route::post('/attraction/{id}/update', 'AttractionController@update')->name('attraction.edit');
+    Route::get('/attraction/{id}/delete', 'AttractionController@destroy')->name('attraction.delete');
+
+    // Media Room
+    Route::get('/media-room', 'MediaRoomController@index')->name('media-room');
+    Route::get('/media-room/add', 'MediaRoomController@create')->name('media-room.add');
+    Route::post('/media-room/save', 'MediaRoomController@store')->name('media-room.add');
+    Route::get('/media-room/{id}/edit', 'MediaRoomController@edit')->name('media-room.edit');
+    Route::post('/media-room/{id}/update', 'MediaRoomController@update')->name('media-room.edit');
+    Route::get('/media-room/{id}/delete', 'MediaRoomController@destroy')->name('media-room.delete');
+
     // Slider
     Route::get('/slider', 'SliderController@index')->name('slider');
     Route::get('/slider/add', 'SliderController@create')->name('slider.add');
@@ -117,16 +133,18 @@ Route::group(['prefix' => $backendUrl, 'middleware' => ['menu','auth','authorize
 
 // prevent another menu generation
 Route::group(['prefix' => $backendUrl, 'middleware' => ['auth']], function () {
-    Route::get('/user-data', 'UserController@anyData')->name('user.data' );
-    Route::get('/role-data', 'RoleController@anyData')->name('role.data' );
-    Route::get('/holiday-data', 'HolidayController@anyData')->name('holiday.data' );
-    Route::get('/permission-data', 'PermissionController@anyData')->name('permission.data' );
-    Route::get('/post-category-data/{postTypeId}', 'CategoryController@anyData')->name('post-category.data' );
-    Route::get('/post-data', 'PostController@anyData')->name('post.data' );
-    Route::get('/package-data', 'PackageController@anyData')->name('package.data' );
+    Route::get('/user-data', 'UserController@anyData')->name('user.data');
+    Route::get('/role-data', 'RoleController@anyData')->name('role.data');
+    Route::get('/holiday-data', 'HolidayController@anyData')->name('holiday.data');
+    Route::get('/permission-data', 'PermissionController@anyData')->name('permission.data');
+    Route::get('/post-category-data/{postTypeId}', 'CategoryController@anyData')->name('post-category.data');
+    Route::get('/post-data', 'PostController@anyData')->name('post.data');
+    Route::get('/attraction-data', 'AttractionController@anyData')->name('attraction.data');
+    Route::get('/media-room-data', 'MediaRoomController@anyData')->name('media-room.data');
+    Route::get('/package-data', 'PackageController@anyData')->name('package.data');
     Route::get('/news-data', 'NewsController@anyData')->name('news.data' );
-    Route::get('/slider-data', 'SliderController@anyData')->name('slider.data' );
-    Route::get('/post-type-data', 'PostTypeController@anyData')->name('post-type.data' );
+    Route::get('/slider-data', 'SliderController@anyData')->name('slider.data');
+    Route::get('/post-type-data', 'PostTypeController@anyData')->name('post-type.data');
 
     Route::post('/get-slug/{model}', function(\Illuminate\Http\Request $request, $model) {
         $title = $request->input('title');
