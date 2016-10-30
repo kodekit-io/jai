@@ -24,7 +24,7 @@ CREATE TABLE `categories` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `parent_id` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `categories` */
 
@@ -32,6 +32,16 @@ insert  into `categories`(`id`,`post_type_id`,`name`,`slug`,`description`,`creat
 insert  into `categories`(`id`,`post_type_id`,`name`,`slug`,`description`,`created_at`,`updated_at`,`parent_id`) values (2,1,'What\'s On','whats-on',NULL,'2016-10-22 09:59:54','2016-10-22 09:59:54',0);
 insert  into `categories`(`id`,`post_type_id`,`name`,`slug`,`description`,`created_at`,`updated_at`,`parent_id`) values (3,2,'Test Category','test-category',NULL,NULL,NULL,0);
 insert  into `categories`(`id`,`post_type_id`,`name`,`slug`,`description`,`created_at`,`updated_at`,`parent_id`) values (15,1,'Coba','coba',NULL,'2016-10-22 10:46:19','2016-10-22 10:46:19',0);
+insert  into `categories`(`id`,`post_type_id`,`name`,`slug`,`description`,`created_at`,`updated_at`,`parent_id`) values (16,3,'Attraction','attraction',NULL,NULL,NULL,0);
+insert  into `categories`(`id`,`post_type_id`,`name`,`slug`,`description`,`created_at`,`updated_at`,`parent_id`) values (17,3,'Experience','experience',NULL,NULL,NULL,0);
+insert  into `categories`(`id`,`post_type_id`,`name`,`slug`,`description`,`created_at`,`updated_at`,`parent_id`) values (18,3,'Shows','shows',NULL,NULL,NULL,0);
+insert  into `categories`(`id`,`post_type_id`,`name`,`slug`,`description`,`created_at`,`updated_at`,`parent_id`) values (19,3,'Dining','dining',NULL,NULL,NULL,0);
+insert  into `categories`(`id`,`post_type_id`,`name`,`slug`,`description`,`created_at`,`updated_at`,`parent_id`) values (20,3,'Shopping','shopping',NULL,NULL,NULL,0);
+insert  into `categories`(`id`,`post_type_id`,`name`,`slug`,`description`,`created_at`,`updated_at`,`parent_id`) values (21,4,'Animals','animals',NULL,NULL,NULL,0);
+insert  into `categories`(`id`,`post_type_id`,`name`,`slug`,`description`,`created_at`,`updated_at`,`parent_id`) values (22,4,'Conservation','conservation',NULL,NULL,NULL,0);
+insert  into `categories`(`id`,`post_type_id`,`name`,`slug`,`description`,`created_at`,`updated_at`,`parent_id`) values (23,4,'Event','event',NULL,NULL,NULL,0);
+insert  into `categories`(`id`,`post_type_id`,`name`,`slug`,`description`,`created_at`,`updated_at`,`parent_id`) values (24,4,'Research','research',NULL,NULL,NULL,0);
+insert  into `categories`(`id`,`post_type_id`,`name`,`slug`,`description`,`created_at`,`updated_at`,`parent_id`) values (25,4,'Leadership','leadership',NULL,NULL,NULL,0);
 
 /*Table structure for table `coupons` */
 
@@ -61,7 +71,7 @@ CREATE TABLE `holidays` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `holidays` */
 
@@ -130,7 +140,7 @@ CREATE TABLE `menus` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `order` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `menus` */
 
@@ -155,6 +165,12 @@ insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon
 insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`) values (25,'package.list','Package List','jai-backend/package',24,'package',NULL,NULL,NULL,NULL,100);
 insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`) values (26,'package.add','Add Package','jai-backend/package/add',24,'package.add',NULL,NULL,NULL,NULL,200);
 insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`) values (27,'holidays','Holiday Management','jai-backend/holiday',24,'holiday',NULL,NULL,NULL,NULL,500);
+insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`) values (28,'attractions','Attraction &amp; Experience','javascript:;',0,'attraction','fa fa-rocket',NULL,NULL,NULL,500);
+insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`) values (29,'attraction.list','Attraction List','jai-backend/attraction',28,'attraction',NULL,NULL,NULL,NULL,100);
+insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`) values (30,'attraction.add','Add Attraction','jai-backend/attraction/add',28,'attraction.add',NULL,NULL,NULL,NULL,200);
+insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`) values (31,'media-room','Media Room','javascript:;',0,'media-room','fa fa-bullhorn',NULL,NULL,NULL,600);
+insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`) values (32,'media-room.list','Media Room List','jai-backend/media-room',31,'media-room',NULL,NULL,NULL,NULL,100);
+insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`) values (33,'media-room.add','Add Media Room','jai-backend/media-room/add',31,'media-room.add',NULL,NULL,NULL,NULL,200);
 
 /*Table structure for table `migrations` */
 
@@ -188,6 +204,7 @@ insert  into `migrations`(`migration`,`batch`) values ('2016_10_26_185546_create
 insert  into `migrations`(`migration`,`batch`) values ('2016_10_27_133403_create_holidays_table',19);
 insert  into `migrations`(`migration`,`batch`) values ('2016_10_27_181417_add_created_by_on_posts',20);
 insert  into `migrations`(`migration`,`batch`) values ('2016_10_28_192728_create_packages_table',21);
+insert  into `migrations`(`migration`,`batch`) values ('2016_10_30_112407_add_is_general_admission_on_package',22);
 
 /*Table structure for table `package_details` */
 
@@ -201,14 +218,16 @@ CREATE TABLE `package_details` (
   PRIMARY KEY (`id`),
   KEY `package_details_package_id_foreign` (`package_id`),
   CONSTRAINT `package_details_package_id_foreign` FOREIGN KEY (`package_id`) REFERENCES `packages` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `package_details` */
 
-insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (1,1,'en','General Admission','general-admission','Meet sharks, turtles, jellyfish and other animals');
-insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (2,1,'id','Paket Umum','paket-umum','Temui hiu, kura-kura, ubur-ubur, gurita dan binatang lainnya.');
-insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (5,3,'en','Package A','package-a','Admission + 5D Theater');
-insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (6,3,'id','Paket A','paket-a','Pendaftaran + 5D Theater');
+insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (13,3,'en','Package A','package-a','Admission + 5D Theater');
+insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (14,3,'id','Paket A','paket-a','Pendaftaran + 5D Theater');
+insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (15,1,'en','General Admission','general-admission','Meet sharks, turtles, jellyfish and other animals');
+insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (16,1,'id','Paket Umum','paket-umum','Temui hiu, kura-kura, ubur-ubur, gurita dan binatang lainnya.');
+insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (17,4,'en','Package B','package-b','General admission + 5D + Diving');
+insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (18,4,'id','Paket B','paket-b','Pendaftaran + 5D + Diving');
 
 /*Table structure for table `package_has_coupons` */
 
@@ -232,15 +251,17 @@ CREATE TABLE `packages` (
   `weekend_price` double NOT NULL DEFAULT '0',
   `holiday_price` double NOT NULL DEFAULT '0',
   `created_by` int(11) NOT NULL,
+  `is_general_admission` int(11) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `packages` */
 
-insert  into `packages`(`id`,`package_type_id`,`normal_price`,`weekend_price`,`holiday_price`,`created_by`,`created_at`,`updated_at`) values (1,1,100000,200000,200000,3,'2016-10-28 21:59:22','2016-10-28 21:59:22');
-insert  into `packages`(`id`,`package_type_id`,`normal_price`,`weekend_price`,`holiday_price`,`created_by`,`created_at`,`updated_at`) values (3,1,400000,450000,450000,3,'2016-10-28 22:10:11','2016-10-28 22:10:11');
+insert  into `packages`(`id`,`package_type_id`,`normal_price`,`weekend_price`,`holiday_price`,`created_by`,`is_general_admission`,`created_at`,`updated_at`) values (1,1,100000,150000,150000,3,1,'2016-10-28 21:59:22','2016-10-30 11:31:07');
+insert  into `packages`(`id`,`package_type_id`,`normal_price`,`weekend_price`,`holiday_price`,`created_by`,`is_general_admission`,`created_at`,`updated_at`) values (3,1,400000,450000,450000,3,1,'2016-10-28 22:10:11','2016-10-30 11:31:01');
+insert  into `packages`(`id`,`package_type_id`,`normal_price`,`weekend_price`,`holiday_price`,`created_by`,`is_general_admission`,`created_at`,`updated_at`) values (4,1,400000,500000,500000,3,1,'2016-10-30 11:31:58','2016-10-30 11:31:58');
 
 /*Table structure for table `password_resets` */
 
@@ -263,7 +284,7 @@ CREATE TABLE `permissions` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `permissions_name_unique` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `permissions` */
 
@@ -311,6 +332,16 @@ insert  into `permissions`(`id`,`name`,`created_at`,`updated_at`) values (45,'pa
 insert  into `permissions`(`id`,`name`,`created_at`,`updated_at`) values (46,'package.edit','2016-10-27 13:17:51','2016-10-27 13:17:51');
 insert  into `permissions`(`id`,`name`,`created_at`,`updated_at`) values (47,'package.delete','2016-10-27 13:17:57','2016-10-27 13:17:57');
 insert  into `permissions`(`id`,`name`,`created_at`,`updated_at`) values (48,'holiday','2016-10-27 13:31:05','2016-10-27 13:31:05');
+insert  into `permissions`(`id`,`name`,`created_at`,`updated_at`) values (49,'attraction','2016-10-30 13:12:05','2016-10-30 13:12:05');
+insert  into `permissions`(`id`,`name`,`created_at`,`updated_at`) values (50,'attraction.add','2016-10-30 13:12:13','2016-10-30 13:12:13');
+insert  into `permissions`(`id`,`name`,`created_at`,`updated_at`) values (51,'attraction.edit','2016-10-30 13:12:20','2016-10-30 13:12:20');
+insert  into `permissions`(`id`,`name`,`created_at`,`updated_at`) values (52,'attraction.delete','2016-10-30 13:12:27','2016-10-30 13:12:27');
+insert  into `permissions`(`id`,`name`,`created_at`,`updated_at`) values (53,'attraction-category','2016-10-30 13:12:36','2016-10-30 13:12:36');
+insert  into `permissions`(`id`,`name`,`created_at`,`updated_at`) values (54,'media-room','2016-10-30 13:56:51','2016-10-30 13:56:51');
+insert  into `permissions`(`id`,`name`,`created_at`,`updated_at`) values (55,'media-room.add','2016-10-30 13:56:56','2016-10-30 13:56:56');
+insert  into `permissions`(`id`,`name`,`created_at`,`updated_at`) values (56,'media-room.edit','2016-10-30 13:57:01','2016-10-30 13:57:01');
+insert  into `permissions`(`id`,`name`,`created_at`,`updated_at`) values (57,'media-room.delete','2016-10-30 13:57:08','2016-10-30 13:57:08');
+insert  into `permissions`(`id`,`name`,`created_at`,`updated_at`) values (58,'media-room-category','2016-10-30 13:57:14','2016-10-30 13:57:14');
 
 /*Table structure for table `post_details` */
 
@@ -336,6 +367,10 @@ insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (2
 insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (21,'id','AH MENG AND FAMILY REVEL IN NEW HANGOUT AT SINGAPORE ZOO','ah-meng-and-family-revel-in-new-hangout-at-singapore-zoo-2','Singapore Zoo introduced their flagship orangutans to a new free-ranging area earlier this month, to complement the Ah Meng-zing experience, which happens every weekend this June. Overlooking the picturesque Upper Seletar Reservoir, the new space features hammocks and interconnecting vines for the orangutans to explore. An average of five orangutans hang out in the area daily to enjoy the treetop haven, while guests walking underneath them stop to gaze in wonder at the charismatic apes above. <br />Guests have one final weekend to enjoy the Ah Meng-zing experience, where Singapore Zoo transforms into a living classroom to show visitors, parents and children alike, the small things they can do to help save the planet and the animals that share it. Visitors can discover and appreciate wildlife through a diverse range of activities, including meet and greet sessions with larger than life mascots, inventive craft workshops, and enlightening animal enrichment trails. For more information about the June holiday activities');
 insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (24,'en','XPLORE A HUNDRED OF BEAUTIFUL JELLIES IN A DARK TANK','xplore-a-hundred-of-beautiful-jellies-in-a-dark-tank','English Content');
 insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (24,'id','DISINI KALIAN AKAN BERTEMU DENGAN FINDING DORI','disini-kalian-akan-bertemu-dengan-finding-dori','Content bahasa');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (26,'en','Aquarium','aquarium-2','Aquarium content');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (26,'id','Akuarium','akuarium-2','Konten akuarium');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (27,'en','English Media','english-media','English media content');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (27,'id','Media Indonesia','media-indonesia','Konten media indonesia');
 
 /*Table structure for table `post_has_categories` */
 
@@ -356,6 +391,12 @@ insert  into `post_has_categories`(`post_id`,`category_id`) values (18,2);
 insert  into `post_has_categories`(`post_id`,`category_id`) values (21,2);
 insert  into `post_has_categories`(`post_id`,`category_id`) values (19,3);
 insert  into `post_has_categories`(`post_id`,`category_id`) values (24,3);
+insert  into `post_has_categories`(`post_id`,`category_id`) values (26,16);
+insert  into `post_has_categories`(`post_id`,`category_id`) values (26,17);
+insert  into `post_has_categories`(`post_id`,`category_id`) values (26,18);
+insert  into `post_has_categories`(`post_id`,`category_id`) values (27,22);
+insert  into `post_has_categories`(`post_id`,`category_id`) values (27,23);
+insert  into `post_has_categories`(`post_id`,`category_id`) values (27,25);
 
 /*Table structure for table `post_has_medias` */
 
@@ -376,6 +417,8 @@ insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (18,45,
 insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (19,51,'featured');
 insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (21,47,'featured');
 insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (24,47,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (26,46,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (27,50,'featured');
 
 /*Table structure for table `post_metas` */
 
@@ -409,7 +452,7 @@ CREATE TABLE `post_types` (
 
 insert  into `post_types`(`id`,`name`,`slug`,`created_at`,`updated_at`) values (1,'Post','post','2016-10-13 18:32:05','2016-10-13 18:32:05');
 insert  into `post_types`(`id`,`name`,`slug`,`created_at`,`updated_at`) values (2,'News','news','2016-10-26 18:44:06','2016-10-26 18:44:06');
-insert  into `post_types`(`id`,`name`,`slug`,`created_at`,`updated_at`) values (3,'Event','event','2016-10-13 20:13:53','2016-10-13 20:13:53');
+insert  into `post_types`(`id`,`name`,`slug`,`created_at`,`updated_at`) values (3,'Attraction and Experience','attraction-and-experience','2016-10-13 20:13:53','2016-10-13 20:13:53');
 
 /*Table structure for table `posts` */
 
@@ -422,7 +465,7 @@ CREATE TABLE `posts` (
   `publish_date` timestamp NULL DEFAULT NULL,
   `created_by` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `posts` */
 
@@ -431,6 +474,8 @@ insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`pub
 insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (19,2,'2016-10-27 18:22:34','2016-10-28 15:10:06','PUBLISH','2016-10-27 18:22:00',1);
 insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (21,1,'2016-10-27 18:33:36','2016-10-27 18:33:36','PUBLISH','2016-10-27 18:32:00',1);
 insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (24,2,'2016-10-28 14:31:20','2016-10-28 22:04:10','PUBLISH','2016-10-28 14:30:00',1);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (26,3,'2016-10-30 13:44:10','2016-10-30 13:44:10','PUBLISH','2016-10-30 13:42:00',3);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (27,4,'2016-10-30 14:03:50','2016-10-30 14:03:50','PUBLISH','2016-10-30 14:03:00',3);
 
 /*Table structure for table `role_has_permissions` */
 
@@ -489,6 +534,16 @@ insert  into `role_has_permissions`(`permission_id`,`role_id`) values (45,1);
 insert  into `role_has_permissions`(`permission_id`,`role_id`) values (46,1);
 insert  into `role_has_permissions`(`permission_id`,`role_id`) values (47,1);
 insert  into `role_has_permissions`(`permission_id`,`role_id`) values (48,1);
+insert  into `role_has_permissions`(`permission_id`,`role_id`) values (49,1);
+insert  into `role_has_permissions`(`permission_id`,`role_id`) values (50,1);
+insert  into `role_has_permissions`(`permission_id`,`role_id`) values (51,1);
+insert  into `role_has_permissions`(`permission_id`,`role_id`) values (52,1);
+insert  into `role_has_permissions`(`permission_id`,`role_id`) values (53,1);
+insert  into `role_has_permissions`(`permission_id`,`role_id`) values (54,1);
+insert  into `role_has_permissions`(`permission_id`,`role_id`) values (55,1);
+insert  into `role_has_permissions`(`permission_id`,`role_id`) values (56,1);
+insert  into `role_has_permissions`(`permission_id`,`role_id`) values (57,1);
+insert  into `role_has_permissions`(`permission_id`,`role_id`) values (58,1);
 insert  into `role_has_permissions`(`permission_id`,`role_id`) values (1,3);
 insert  into `role_has_permissions`(`permission_id`,`role_id`) values (2,3);
 insert  into `role_has_permissions`(`permission_id`,`role_id`) values (3,3);
@@ -543,7 +598,7 @@ CREATE TABLE `sessions` (
 
 /*Data for the table `sessions` */
 
-insert  into `sessions`(`id`,`user_id`,`ip_address`,`user_agent`,`payload`,`last_activity`) values ('4d8Ode8wUUoNfw2jWyJOe1JSyIjKHoIV9ozeGgWM',3,'192.168.10.1','Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36','YTo3OntzOjY6Il90b2tlbiI7czo0MDoiUDFKRFQ0QUYzNm9iUjM3NG1iVnRvQ05uaG9GVjBaOE52eDM2M1RMTCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzQ6Imh0dHA6Ly9qYWkuZGV2L2phaS1iYWNrZW5kL3BhY2thZ2UiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjQ6ImxhbmciO3M6MjoiaWQiO3M6MzoidXJsIjthOjA6e31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTozO3M6OToiX3NmMl9tZXRhIjthOjM6e3M6MToidSI7aToxNDc3NjY3NDEyO3M6MToiYyI7aToxNDc3NjU1NzI5O3M6MToibCI7czoxOiIwIjt9fQ==',1477667412);
+insert  into `sessions`(`id`,`user_id`,`ip_address`,`user_agent`,`payload`,`last_activity`) values ('aK3BLNOrdITAl2TS5kHpCFjz76NosT4IcxtloVyk',3,'192.168.10.1','Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36','YTo2OntzOjY6Il90b2tlbiI7czo0MDoieTNSTVVqQmREZlhqSmN5MkhkZkhzdTF6ZWRTOFZPVjBpaXJqcGZmbSI7czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MztzOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czoyNjoiaHR0cDovL2phaS5kZXYvamFpLWJhY2tlbmQiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjQ6ImxhbmciO3M6MjoiaWQiO3M6OToiX3NmMl9tZXRhIjthOjM6e3M6MToidSI7aToxNDc3ODExMDgwO3M6MToiYyI7aToxNDc3ODAxMDU0O3M6MToibCI7czoxOiIwIjt9fQ==',1477811080);
 
 /*Table structure for table `slider_items` */
 
