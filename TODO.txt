@@ -34,6 +34,8 @@
 -- Create package/product (DONE)
 -- Check featured, when edit->submit, image didn;t store to db (DONE)
 
+-- Add general submission checkbox on package form to grouping the package
+
 -- Create showtime with following types :
 ---- regular showtime
 ---- particular showtime
