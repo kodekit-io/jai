@@ -553,6 +553,7 @@ a.ja-button-outline {
 	color: #01579b;
 	position: relative;
 	margin-top: 0;
+	text-transform: uppercase;
 }
 .ja-ticket .uk-accordion-title:after {
 	content: "\f078";
