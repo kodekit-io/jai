@@ -97,4 +97,16 @@ class FrontEndController extends Controller
     {
         return view('frontend.special-packages');
     }
+    public function showtime($lang)
+    {
+        return view('frontend.showtime');
+    }
+    public function location($lang)
+    {
+        return view('frontend.location');
+    }
+    public function locationmap($lang)
+    {
+        return view('frontend.location-map');
+    }
 }
