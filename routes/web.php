@@ -170,6 +170,9 @@ Route::group(['middleware' => ['lang']], function () {
     Route::get('/{lang?}/ticket-hours', 'FrontEndController@ticket');
     Route::get('/{lang?}/book-detail', 'FrontEndController@bookticket');
     Route::get('/{lang?}/special-packages', 'FrontEndController@specialpackages');
+    Route::get('/{lang?}/show-time', 'FrontEndController@showtime');
+    Route::get('/{lang?}/location', 'FrontEndController@location');
+    Route::get('/{lang?}/location-map', 'FrontEndController@locationmap');
 
     Route::get('/{lang?}', 'FrontEndController@homepage');
     Route::get('/{lang?}/news/{slug}', 'FrontEndController@homepage');

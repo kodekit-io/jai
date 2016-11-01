@@ -38,6 +38,9 @@ h1, h2, h3, h4, h5, h6 {
 	max-width: 1050px;
 }
 /**/
+.ja-bold {
+	font-family: 'Intro Bold';
+}
 .ja-nav {
 	position: fixed;
 	z-index: 1;
@@ -340,6 +343,9 @@ a.ja-button-outline {
 .ja-title__alt {
 	font-size: 24px;
 }
+.ja-title__large {
+	font-size: 32px;
+}
 .ja-title__blue:after {
 	content: "";
 	height: 6px;
@@ -620,6 +626,89 @@ a.ja-button-outline {
 }
 .ja-ticket button:hover {
 	color: #fff !important;
+}
+
+/**/
+.ja-header-showtime {
+	height: 600px;
+	background-image: url(../img/showtime-header.jpg);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+}
+.ja-showtime-intro {
+	padding-top: 400px;
+	font-size: 1.5em;
+	line-height: 1.5em;
+	color: #fff;
+}
+.ja-showtime {
+	background: #e4eaed url(../img/bg-section-whats.png) repeat-x center bottom;
+}
+.ja-showtime-list {
+	border-top: 2px solid #00bcd4;
+}
+.ja-showtime-list>li {
+	margin-top: 0 !important;
+	border-top: none !important;
+	border-bottom: 1px solid #ddd;
+}
+.ja-showtime__all,
+.ja-showtime__part,
+.ja-showtime__limited {
+	padding-top: 1em !important;
+	padding-bottom: 1em !important;
+}
+.ja-showtime__all {
+	border-left: 5px solid #8bc34a;
+}
+.ja-showtime__part {
+	border-left: 5px solid #ffc107;
+}
+.ja-showtime__limited {
+	border-left: 5px solid #e91e63;
+}
+.ja-map {
+	min-height: 450px;
+}
+.ja-icon-facility {
+	width: 50px;
+	height: 50px;
+	margin-right: .5em;
+	float: left;
+}
+.ja-icon-facility.park {
+	background: url(../img/i-facility_park.png) no-repeat center center;
+}
+.ja-icon-facility.vip {
+	background: url(../img/i-facility_vip.png) no-repeat center center;
+}
+.ja-icon-facility.bike {
+	background: url(../img/i-facility_bike.png) no-repeat center center;
+}
+.ja-icon-facility.bus {
+	background: url(../img/i-facility_bus.png) no-repeat center center;
+}
+.ja-icon-facility.shuttle {
+	background: url(../img/i-facility_shuttle.png) no-repeat center center;
+}
+.ja-icon-facility.taxi {
+	background: url(../img/i-facility_taxi.png) no-repeat center center;
+}
+.ja-icon-facility.wheelchair {
+	background: url(../img/i-facility_wheelchair.png) no-repeat center center;
+}
+.uk-subnav li {
+	cursor: pointer;
+}
+.uk-subnav li.uk-active {
+	color: #00bcd4;
+}
+.ja-button {
+	padding: 3px 12px 0;
+	line-height: 27px;
+	min-height: 27px;
 }
 
 .ja-404 {
