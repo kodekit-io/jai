@@ -78,7 +78,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 .ja-nav-main li.active>a {
 	color: #005da6;
-	border-bottom: 1px solid #005da6;
+
+}
+.ja-nav-sub {
+	border-top: 1px solid #005da6;
+	padding-top: 10px;
+	margin-top: 0px;
 }
 .ja-nav-sub li a {
 	color: #fff;
@@ -86,6 +91,7 @@ h1, h2, h3, h4, h5, h6 {
 	padding: 5px 0 5px 10px;
 	display: block;
 }
+
 .ja-icon-about {
 	background: url(../img/i-nav-sprite.png) no-repeat 0px 5px;
 }
