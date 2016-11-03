@@ -37,7 +37,7 @@ class FrontEndController extends Controller
         $this->packageService = $packageService;
     }
 
-    public function homepage($lang)
+    public function homePage($lang)
     {
         $params = [
             'status' => 'publish',
@@ -57,7 +57,7 @@ class FrontEndController extends Controller
         ];
         $sliders = $this->sliderService->getSliderWithItems($sliderParams);
 
-        $data['whatsOnContents'] = $post;
+        $data['whatsOnContents'] = $post->get();
         $data['sliders'] = $sliders;
 
         return view('frontend.home', $data);
@@ -88,32 +88,60 @@ class FrontEndController extends Controller
         return view('frontend.ticket-hours', $data);
     }
 
-    public function bookticket($lang)
+    public function bookTicket($lang)
     {
         return view('frontend.book-detail');
     }
 
-    public function specialpackages($lang)
+    public function specialPackages($lang)
     {
-        return view('frontend.special-packages');
+        $params = [
+            'package_type_id' => 2,
+            'lang' => $lang
+        ];
+        $packages = $this->packageService->getPackages($params);
+        $data['packages'] = $packages;
+
+        return view('frontend.special-packages', $data);
     }
-    public function showtime($lang)
+
+    public function showTime($lang)
     {
         return view('frontend.showtime');
     }
+
     public function location($lang)
     {
         return view('frontend.location');
     }
-    public function locationmap($lang)
+
+    public function locationMap($lang)
     {
         return view('frontend.location-map');
     }
-    public function news($lang)
+
+    public function news($lang, $page = 1)
     {
-        return view('frontend.news');
+        $featuredParams = $this->postService->getFeaturedPostParams($lang);
+        $featuredPosts = $this->postService->getPostsWithDetail($featuredParams);
+
+        $featuredIds = $featuredPosts->pluck('id');
+
+        $newsParams = $this->postService->getNewsParams($lang, $featuredIds);
+        $news = $this->postService->getPostsWithDetail($newsParams);
+
+
+        $newsPaginated = $news->paginate(5);
+//        $newsPaginated->setCurrentPage($page, 0);
+//        var_dump($newsPaginated); exit;
+        $newsPaginated->setPath('news-blog');
+        $data['featuredPosts'] = $featuredPosts->get();
+        $data['news'] =$newsPaginated;
+
+        return view('frontend.news', $data);
     }
-    public function newsdetails($lang)
+
+    public function newsDetail($lang)
     {
         return view('frontend.news-details');
     }

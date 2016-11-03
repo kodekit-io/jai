@@ -1,6 +1,6 @@
 /*
 SQLyog Community
-MySQL - 5.7.12 : Database - jai
+MySQL - 5.7.12-0ubuntu1.1 : Database - jai
 *********************************************************************
 */
 
@@ -93,7 +93,7 @@ CREATE TABLE `media` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `media` */
 
@@ -107,6 +107,9 @@ insert  into `media`(`id`,`title`,`file_name`,`description`,`created_at`,`update
 insert  into `media`(`id`,`title`,`file_name`,`description`,`created_at`,`updated_at`) values (50,'test.jpg','test.jpg',NULL,'2016-10-22 18:08:10','2016-10-22 18:08:10');
 insert  into `media`(`id`,`title`,`file_name`,`description`,`created_at`,`updated_at`) values (51,'head-sample-03.jpg','head-sample-03.jpg',NULL,'2016-10-28 15:09:59','2016-10-28 15:09:59');
 insert  into `media`(`id`,`title`,`file_name`,`description`,`created_at`,`updated_at`) values (52,'head-sample-01.jpg','head-sample-01.jpg',NULL,'2016-10-28 15:10:46','2016-10-28 15:10:46');
+insert  into `media`(`id`,`title`,`file_name`,`description`,`created_at`,`updated_at`) values (53,'about-header.jpg','about-header.jpg',NULL,'2016-11-02 19:32:31','2016-11-02 19:32:31');
+insert  into `media`(`id`,`title`,`file_name`,`description`,`created_at`,`updated_at`) values (54,'bg-section-sight.png','bg-section-sight.png',NULL,'2016-11-02 19:32:36','2016-11-02 19:32:36');
+insert  into `media`(`id`,`title`,`file_name`,`description`,`created_at`,`updated_at`) values (55,'img-sample-01.jpg','img-sample-01.jpg',NULL,'2016-11-02 19:32:48','2016-11-02 19:32:48');
 
 /*Table structure for table `media_sizes` */
 
@@ -140,7 +143,7 @@ CREATE TABLE `menus` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `order` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `menus` */
 
@@ -171,6 +174,9 @@ insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon
 insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`) values (31,'media-room','Media Room','javascript:;',0,'media-room','fa fa-bullhorn',NULL,NULL,NULL,600);
 insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`) values (32,'media-room.list','Media Room List','jai-backend/media-room',31,'media-room',NULL,NULL,NULL,NULL,100);
 insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`) values (33,'media-room.add','Add Media Room','jai-backend/media-room/add',31,'media-room.add',NULL,NULL,NULL,NULL,200);
+insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`) values (34,'showtime','Show Time','javascript:;',0,'showtime','fa fa-clock-o',NULL,NULL,NULL,700);
+insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`) values (35,'showtime.list','Show Time List','jai-backend/show-time',34,'showtime',NULL,NULL,NULL,NULL,100);
+insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`) values (36,'showtime.add','Add Show Time','jai-backend/show-time/add',34,'showtime.add',NULL,NULL,NULL,NULL,200);
 
 /*Table structure for table `migrations` */
 
@@ -205,6 +211,8 @@ insert  into `migrations`(`migration`,`batch`) values ('2016_10_27_133403_create
 insert  into `migrations`(`migration`,`batch`) values ('2016_10_27_181417_add_created_by_on_posts',20);
 insert  into `migrations`(`migration`,`batch`) values ('2016_10_28_192728_create_packages_table',21);
 insert  into `migrations`(`migration`,`batch`) values ('2016_10_30_112407_add_is_general_admission_on_package',22);
+insert  into `migrations`(`migration`,`batch`) values ('2016_10_30_120042_create_shows_table',23);
+insert  into `migrations`(`migration`,`batch`) values ('2016_11_01_201700_create_package_has_medias',24);
 
 /*Table structure for table `package_details` */
 
@@ -218,16 +226,22 @@ CREATE TABLE `package_details` (
   PRIMARY KEY (`id`),
   KEY `package_details_package_id_foreign` (`package_id`),
   CONSTRAINT `package_details_package_id_foreign` FOREIGN KEY (`package_id`) REFERENCES `packages` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `package_details` */
 
-insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (13,3,'en','Package A','package-a','Admission + 5D Theater');
-insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (14,3,'id','Paket A','paket-a','Pendaftaran + 5D Theater');
 insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (15,1,'en','General Admission','general-admission','Meet sharks, turtles, jellyfish and other animals');
 insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (16,1,'id','Paket Umum','paket-umum','Temui hiu, kura-kura, ubur-ubur, gurita dan binatang lainnya.');
 insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (17,4,'en','Package B','package-b','General admission + 5D + Diving');
 insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (18,4,'id','Paket B','paket-b','Pendaftaran + 5D + Diving');
+insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (29,3,'en','Package A','package-a','At vero eos et accusamus et iusto odio madeline dignis imosse ducma quisa. Ut enim ad minim veniam, quis nostrud quirelle exercitation ullamco ullamco accusamus et iusto cupidatat non proident. Set ed ut perspiciatis laboris nisi ut aliquip ex eamus commodo consequat. <br />Duis aute irure dignis imosse ducmation quisa cillum fugiat Extravaganza nulla pariatur. Excepteur sint exercitation ullamco accusamus et iusto cupidatat non proident. Set ed ut perspiciatis, unde omnis iste natus laboris nisi ut aliquip ex ea commodo consequat error sit voluptatem accusantium iusto cupidatat non proident doloremque requiem et dolore magnam accusamus et iusto odio voluptatem.');
+insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (30,3,'id','Paket A','paket-a','At vero eos et accusamus et iusto odio madeline dignis imosse ducma quisa. Ut enim ad minim veniam, quis nostrud quirelle exercitation ullamco ullamco accusamus et iusto cupidatat non proident. Set ed ut perspiciatis laboris nisi ut aliquip ex eamus commodo consequat. <br />Duis aute irure dignis imosse ducmation quisa cillum fugiat Extravaganza nulla pariatur. Excepteur sint exercitation ullamco accusamus et iusto cupidatat non proident. Set ed ut perspiciatis, unde omnis iste natus laboris nisi ut aliquip ex ea commodo consequat error sit voluptatem accusantium iusto cupidatat non proident doloremque requiem et dolore magnam accusamus et iusto odio voluptatem.');
+insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (33,6,'en','Camp Program','camp-program','Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. <br />Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. <br />Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.');
+insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (34,6,'id','Program Camp','program-camp','Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. <br />Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. <br />Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.');
+insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (35,5,'en','School Program','school-program','At vero eos et accusamus et iusto odio madeline dignis imosse ducma quisa. Ut enim ad minim veniam, quis nostrud quirelle exercitation ullamco ullamco accusamus et iusto cupidatat non proident. Set ed ut perspiciatis laboris nisi ut aliquip ex eamus commodo consequat. Duis aute irure dignis imosse ducmation quisa cillum fugiat Extravaganza nulla pariatur. <br />Excepteur sint exercitation ullamco accusamus et iusto cupidatat non proident. Set ed ut perspiciatis, unde omnis iste natus laboris nisi ut aliquip ex ea commodo consequat error sit voluptatem accusantium iusto cupidatat non proident doloremque requiem et dolore magnam accusamus et iusto odio voluptatem');
+insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (36,5,'id','Program Sekolah','program-sekolah','At vero eos et accusamus et iusto odio madeline dignis imosse ducma quisa. Ut enim ad minim veniam, quis nostrud quirelle exercitation ullamco ullamco accusamus et iusto cupidatat non proident. Set ed ut perspiciatis laboris nisi ut aliquip ex eamus commodo consequat. Duis aute irure dignis imosse ducmation quisa cillum fugiat Extravaganza nulla pariatur. <br /> Excepteur sint exercitation ullamco accusamus et iusto cupidatat non proident. Set ed ut perspiciatis, unde omnis iste natus laboris nisi ut aliquip ex ea commodo consequat error sit voluptatem accusantium iusto cupidatat non proident doloremque requiem et dolore magnam accusamus et iusto odio voluptatem');
+insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (39,7,'en','Combo Package','combo-package','The aquarium is one of Indonesia\'s most unforgettable group activities! Groups of 10 or more people receive discounted admission to the aquarium! Pre-booking is required at least 7 days in advance as groups must be pre-qualified before receiving this rate.&nbsp;');
+insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (40,7,'id','Paket Kombo','paket-kombo','The aquarium is one of Indonesia\'s most unforgettable group activities! Groups of 10 or more people receive discounted admission to the aquarium! Pre-booking is required at least 7 days in advance as groups must be pre-qualified before receiving this rate.&nbsp;');
 
 /*Table structure for table `package_has_coupons` */
 
@@ -242,6 +256,23 @@ CREATE TABLE `package_has_coupons` (
 
 /*Data for the table `package_has_coupons` */
 
+/*Table structure for table `package_has_medias` */
+
+CREATE TABLE `package_has_medias` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `package_id` int(10) unsigned NOT NULL,
+  `media_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `package_has_medias_package_id_foreign` (`package_id`),
+  CONSTRAINT `package_has_medias_package_id_foreign` FOREIGN KEY (`package_id`) REFERENCES `packages` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+/*Data for the table `package_has_medias` */
+
+insert  into `package_has_medias`(`id`,`package_id`,`media_id`) values (4,6,53);
+insert  into `package_has_medias`(`id`,`package_id`,`media_id`) values (5,5,55);
+insert  into `package_has_medias`(`id`,`package_id`,`media_id`) values (6,7,54);
+
 /*Table structure for table `packages` */
 
 CREATE TABLE `packages` (
@@ -255,13 +286,16 @@ CREATE TABLE `packages` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `packages` */
 
 insert  into `packages`(`id`,`package_type_id`,`normal_price`,`weekend_price`,`holiday_price`,`created_by`,`is_general_admission`,`created_at`,`updated_at`) values (1,1,100000,150000,150000,3,1,'2016-10-28 21:59:22','2016-10-30 11:31:07');
 insert  into `packages`(`id`,`package_type_id`,`normal_price`,`weekend_price`,`holiday_price`,`created_by`,`is_general_admission`,`created_at`,`updated_at`) values (3,1,400000,450000,450000,3,1,'2016-10-28 22:10:11','2016-10-30 11:31:01');
 insert  into `packages`(`id`,`package_type_id`,`normal_price`,`weekend_price`,`holiday_price`,`created_by`,`is_general_admission`,`created_at`,`updated_at`) values (4,1,400000,500000,500000,3,1,'2016-10-30 11:31:58','2016-10-30 11:31:58');
+insert  into `packages`(`id`,`package_type_id`,`normal_price`,`weekend_price`,`holiday_price`,`created_by`,`is_general_admission`,`created_at`,`updated_at`) values (5,2,0,0,0,3,0,'2016-11-01 19:59:03','2016-11-01 19:59:03');
+insert  into `packages`(`id`,`package_type_id`,`normal_price`,`weekend_price`,`holiday_price`,`created_by`,`is_general_admission`,`created_at`,`updated_at`) values (6,2,0,0,0,3,0,'2016-11-01 20:00:47','2016-11-01 20:00:47');
+insert  into `packages`(`id`,`package_type_id`,`normal_price`,`weekend_price`,`holiday_price`,`created_by`,`is_general_admission`,`created_at`,`updated_at`) values (7,2,0,0,0,3,0,'2016-11-01 20:02:02','2016-11-01 20:02:02');
 
 /*Table structure for table `password_resets` */
 
@@ -284,7 +318,7 @@ CREATE TABLE `permissions` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `permissions_name_unique` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `permissions` */
 
@@ -342,6 +376,10 @@ insert  into `permissions`(`id`,`name`,`created_at`,`updated_at`) values (55,'me
 insert  into `permissions`(`id`,`name`,`created_at`,`updated_at`) values (56,'media-room.edit','2016-10-30 13:57:01','2016-10-30 13:57:01');
 insert  into `permissions`(`id`,`name`,`created_at`,`updated_at`) values (57,'media-room.delete','2016-10-30 13:57:08','2016-10-30 13:57:08');
 insert  into `permissions`(`id`,`name`,`created_at`,`updated_at`) values (58,'media-room-category','2016-10-30 13:57:14','2016-10-30 13:57:14');
+insert  into `permissions`(`id`,`name`,`created_at`,`updated_at`) values (59,'showtime','2016-11-02 20:30:02','2016-11-02 20:30:02');
+insert  into `permissions`(`id`,`name`,`created_at`,`updated_at`) values (60,'showtime.add','2016-11-02 20:30:07','2016-11-02 20:30:07');
+insert  into `permissions`(`id`,`name`,`created_at`,`updated_at`) values (61,'showtime.edit','2016-11-02 20:30:13','2016-11-02 20:30:23');
+insert  into `permissions`(`id`,`name`,`created_at`,`updated_at`) values (62,'showtime.delete','2016-11-02 20:30:32','2016-11-02 20:30:32');
 
 /*Table structure for table `post_details` */
 
@@ -363,14 +401,106 @@ insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (1
 insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (18,'id','Title bahasa','title-bahasa','content bahasa');
 insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (19,'en','HERE YOU WILL MEET FACE-TO-FACE WITH THE TAME PREDATORS','here-you-will-meet-face-to-face-with-the-tame-predators','News test');
 insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (19,'id','DISINI KALIAN AKAN BERHADAPANG LANGSUNG DENGAN HIU PREDATOR','disini-kalian-akan-berhadapang-langsung-dengan-hiu-predator','Test news');
-insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (21,'en','AH MENG AND FAMILY REVEL IN NEW HANGOUT AT SINGAPORE ZOO','ah-meng-and-family-revel-in-new-hangout-at-singapore-zoo','Singapore Zoo introduced their flagship orangutans to a new free-ranging area earlier this month, to complement the Ah Meng-zing experience, which happens every weekend this June. Overlooking the picturesque Upper Seletar Reservoir, the new space features hammocks and interconnecting vines for the orangutans to explore. An average of five orangutans hang out in the area daily to enjoy the treetop haven, while guests walking underneath them stop to gaze in wonder at the charismatic apes above. <br />Guests have one final weekend to enjoy the Ah Meng-zing experience, where Singapore Zoo transforms into a living classroom to show visitors, parents and children alike, the small things they can do to help save the planet and the animals that share it. Visitors can discover and appreciate wildlife through a diverse range of activities, including meet and greet sessions with larger than life mascots, inventive craft workshops, and enlightening animal enrichment trails. For more information about the June holiday activities');
-insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (21,'id','AH MENG AND FAMILY REVEL IN NEW HANGOUT AT SINGAPORE ZOO','ah-meng-and-family-revel-in-new-hangout-at-singapore-zoo-2','Singapore Zoo introduced their flagship orangutans to a new free-ranging area earlier this month, to complement the Ah Meng-zing experience, which happens every weekend this June. Overlooking the picturesque Upper Seletar Reservoir, the new space features hammocks and interconnecting vines for the orangutans to explore. An average of five orangutans hang out in the area daily to enjoy the treetop haven, while guests walking underneath them stop to gaze in wonder at the charismatic apes above. <br />Guests have one final weekend to enjoy the Ah Meng-zing experience, where Singapore Zoo transforms into a living classroom to show visitors, parents and children alike, the small things they can do to help save the planet and the animals that share it. Visitors can discover and appreciate wildlife through a diverse range of activities, including meet and greet sessions with larger than life mascots, inventive craft workshops, and enlightening animal enrichment trails. For more information about the June holiday activities');
-insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (24,'en','XPLORE A HUNDRED OF BEAUTIFUL JELLIES IN A DARK TANK','xplore-a-hundred-of-beautiful-jellies-in-a-dark-tank','English Content');
-insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (24,'id','DISINI KALIAN AKAN BERTEMU DENGAN FINDING DORI','disini-kalian-akan-bertemu-dengan-finding-dori','Content bahasa');
-insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (26,'en','Aquarium','aquarium-2','Aquarium content');
-insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (26,'id','Akuarium','akuarium-2','Konten akuarium');
-insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (27,'en','English Media','english-media','English media content');
-insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (27,'id','Media Indonesia','media-indonesia','Konten media indonesia');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (20,'en','Eius qui ut officia ut cupiditate sit.','eius-qui-ut-officia-ut-cupiditate-sit','I don\'t believe it,\' said the Mock Turtle. \'No, no! The adventures first,\' said the Mock Turtle to sing this:-- \'Beautiful Soup, so rich and green, Waiting in a melancholy tone: \'it doesn\'t seem to be\"--or if you\'d like it very much,\' said the.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (20,'id','Eius qui ut officia ut cupiditate sit.','eius-qui-ut-officia-ut-cupiditate-sit-2','I don\'t believe it,\' said the Mock Turtle. \'No, no! The adventures first,\' said the Mock Turtle to sing this:-- \'Beautiful Soup, so rich and green, Waiting in a melancholy tone: \'it doesn\'t seem to be\"--or if you\'d like it very much,\' said the.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (21,'en','Totam necessitatibus molestiae iusto ratione dolore ea.','totam-necessitatibus-molestiae-iusto-ratione-dolore-ea','King put on his knee, and looking at the top of his pocket, and was going on shrinking rapidly: she soon made out that she was in such long ringlets, and mine doesn\'t go in ringlets at all; however, she went on, half to itself, \'Oh dear! Oh dear!.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (21,'id','Totam necessitatibus molestiae iusto ratione dolore ea.','totam-necessitatibus-molestiae-iusto-ratione-dolore-ea-2','King put on his knee, and looking at the top of his pocket, and was going on shrinking rapidly: she soon made out that she was in such long ringlets, and mine doesn\'t go in ringlets at all; however, she went on, half to itself, \'Oh dear! Oh dear!.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (22,'en','Voluptatem quam dolorum inventore cum accusamus aut ea.','voluptatem-quam-dolorum-inventore-cum-accusamus-aut-ea','Alice, whose thoughts were still running on the spot.\' This did not seem to see the earth takes twenty-four hours to turn into a doze; but, on being pinched by the time she heard a little bit of stick, and tumbled head over heels in its sleep.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (22,'id','Voluptatem quam dolorum inventore cum accusamus aut ea.','voluptatem-quam-dolorum-inventore-cum-accusamus-aut-ea','Alice, whose thoughts were still running on the spot.\' This did not seem to see the earth takes twenty-four hours to turn into a doze; but, on being pinched by the time she heard a little bit of stick, and tumbled head over heels in its sleep.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (23,'en','Laborum ut dolor eveniet aperiam sit hic et et.','laborum-ut-dolor-eveniet-aperiam-sit-hic-et-et','Alice, \'shall I NEVER get any older than I am so VERY wide, but she could not help thinking there MUST be more to come, so she went back to the table for it, he was speaking, and this was the BEST butter,\' the March Hare. \'He denies it,\' said.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (23,'id','Laborum ut dolor eveniet aperiam sit hic et et.','laborum-ut-dolor-eveniet-aperiam-sit-hic-et-et','Alice, \'shall I NEVER get any older than I am so VERY wide, but she could not help thinking there MUST be more to come, so she went back to the table for it, he was speaking, and this was the BEST butter,\' the March Hare. \'He denies it,\' said.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (24,'en','Quasi quidem harum accusantium harum itaque voluptas harum modi.','quasi-quidem-harum-accusantium-harum-itaque-voluptas-harum-modi','Alice said; but was dreadfully puzzled by the way to explain it as you might knock, and I never understood what it was: she was getting very sleepy; \'and they all looked so good, that it had made. \'He took me for his housemaid,\' she said these.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (24,'id','Quasi quidem harum accusantium harum itaque voluptas harum modi.','quasi-quidem-harum-accusantium-harum-itaque-voluptas-harum-modi','Alice said; but was dreadfully puzzled by the way to explain it as you might knock, and I never understood what it was: she was getting very sleepy; \'and they all looked so good, that it had made. \'He took me for his housemaid,\' she said these.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (25,'en','Molestias eaque sit nisi qui ut.','molestias-eaque-sit-nisi-qui-ut','I will prosecute YOU.--Come, I\'ll take no denial; We must have got into it), and sometimes shorter, until she made out that it was all ridges and furrows; the balls were live hedgehogs, the mallets live flamingoes, and the shrill voice of the.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (25,'id','Molestias eaque sit nisi qui ut.','molestias-eaque-sit-nisi-qui-ut','I will prosecute YOU.--Come, I\'ll take no denial; We must have got into it), and sometimes shorter, until she made out that it was all ridges and furrows; the balls were live hedgehogs, the mallets live flamingoes, and the shrill voice of the.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (26,'en','Omnis qui natus fuga ab.','omnis-qui-natus-fuga-ab','Queen, \'Really, my dear, and that if you like!\' the Duchess to play with, and oh! ever so many lessons to learn! Oh, I shouldn\'t want YOURS: I don\'t know,\' he went on all the while, and fighting for the hot day made her look up in such a curious.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (26,'id','Omnis qui natus fuga ab.','omnis-qui-natus-fuga-ab','Queen, \'Really, my dear, and that if you like!\' the Duchess to play with, and oh! ever so many lessons to learn! Oh, I shouldn\'t want YOURS: I don\'t know,\' he went on all the while, and fighting for the hot day made her look up in such a curious.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (27,'en','Enim deleniti recusandae consequatur aut voluptates et iusto.','enim-deleniti-recusandae-consequatur-aut-voluptates-et-iusto','Alice\'s shoulder, and it sat down in a hot tureen! Who for such a nice soft thing to get in?\' asked Alice again, in a confused way, \'Prizes! Prizes!\' Alice had been of late much accustomed to usurpation and conquest. Edwin and Morcar, the earls of.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (27,'id','Enim deleniti recusandae consequatur aut voluptates et iusto.','enim-deleniti-recusandae-consequatur-aut-voluptates-et-iusto','Alice\'s shoulder, and it sat down in a hot tureen! Who for such a nice soft thing to get in?\' asked Alice again, in a confused way, \'Prizes! Prizes!\' Alice had been of late much accustomed to usurpation and conquest. Edwin and Morcar, the earls of.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (28,'en','Quia est molestiae consequatur enim.','quia-est-molestiae-consequatur-enim','Kings and Queens, and among them Alice recognised the White Rabbit was no label this time with great curiosity. \'It\'s a friend of mine--a Cheshire Cat,\' said Alice: \'three inches is such a new idea to Alice, and she thought it must be collected at.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (28,'id','Quia est molestiae consequatur enim.','quia-est-molestiae-consequatur-enim','Kings and Queens, and among them Alice recognised the White Rabbit was no label this time with great curiosity. \'It\'s a friend of mine--a Cheshire Cat,\' said Alice: \'three inches is such a new idea to Alice, and she thought it must be collected at.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (29,'en','Error est consequatur sunt recusandae consectetur.','error-est-consequatur-sunt-recusandae-consectetur','You grant that?\' \'I suppose so,\' said the Queen, who had followed him into the sky all the jurymen on to himself in an offended tone, \'so I should be free of them even when they liked, so that her shoulders were nowhere to be afraid of them!\' \'And.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (29,'id','Error est consequatur sunt recusandae consectetur.','error-est-consequatur-sunt-recusandae-consectetur','You grant that?\' \'I suppose so,\' said the Queen, who had followed him into the sky all the jurymen on to himself in an offended tone, \'so I should be free of them even when they liked, so that her shoulders were nowhere to be afraid of them!\' \'And.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (30,'en','Dolorem quia non necessitatibus quia.','dolorem-quia-non-necessitatibus-quia','Alice; \'only, as it\'s asleep, I suppose you\'ll be telling me next that you have to go on. \'And so these three little sisters--they were learning to draw,\' the Dormouse shook itself, and began picking them up again as she remembered trying to make.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (30,'id','Dolorem quia non necessitatibus quia.','dolorem-quia-non-necessitatibus-quia','Alice; \'only, as it\'s asleep, I suppose you\'ll be telling me next that you have to go on. \'And so these three little sisters--they were learning to draw,\' the Dormouse shook itself, and began picking them up again as she remembered trying to make.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (31,'en','Aut error at ut voluptatem eum inventore labore.','aut-error-at-ut-voluptatem-eum-inventore-labore','Why, I haven\'t had a vague sort of way to fly up into the teapot. \'At any rate I\'ll never go THERE again!\' said Alice to herself, \'it would be very likely it can be,\' said the March Hare went on. \'Would you like to show you! A little bright-eyed.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (31,'id','Aut error at ut voluptatem eum inventore labore.','aut-error-at-ut-voluptatem-eum-inventore-labore','Why, I haven\'t had a vague sort of way to fly up into the teapot. \'At any rate I\'ll never go THERE again!\' said Alice to herself, \'it would be very likely it can be,\' said the March Hare went on. \'Would you like to show you! A little bright-eyed.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (32,'en','Fugiat ad rerum qui id quibusdam voluptas in.','fugiat-ad-rerum-qui-id-quibusdam-voluptas-in','There could be NO mistake about it: it was neither more nor less than no time she\'d have everybody executed, all round. \'But she must have imitated somebody else\'s hand,\' said the King, rubbing his hands; \'so now let the jury--\' \'If any one left.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (32,'id','Fugiat ad rerum qui id quibusdam voluptas in.','fugiat-ad-rerum-qui-id-quibusdam-voluptas-in','There could be NO mistake about it: it was neither more nor less than no time she\'d have everybody executed, all round. \'But she must have imitated somebody else\'s hand,\' said the King, rubbing his hands; \'so now let the jury--\' \'If any one left.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (33,'en','Consequatur et enim recusandae.','consequatur-et-enim-recusandae','So she set to work shaking him and punching him in the long hall, and close to the conclusion that it might end, you know,\' said Alice, who had been (Before she had brought herself down to the Knave of Hearts, who only bowed and smiled in reply..');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (33,'id','Consequatur et enim recusandae.','consequatur-et-enim-recusandae','So she set to work shaking him and punching him in the long hall, and close to the conclusion that it might end, you know,\' said Alice, who had been (Before she had brought herself down to the Knave of Hearts, who only bowed and smiled in reply..');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (34,'en','Aut cum dolor rerum ipsum.','aut-cum-dolor-rerum-ipsum','Mock Turtle, \'they--you\'ve seen them, of course?\' \'Yes,\' said Alice a good way off, panting, with its wings. \'Serpent!\' screamed the Gryphon. \'Turn a somersault in the book,\' said the Hatter, and, just as well as she came in with the Dormouse..');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (34,'id','Aut cum dolor rerum ipsum.','aut-cum-dolor-rerum-ipsum','Mock Turtle, \'they--you\'ve seen them, of course?\' \'Yes,\' said Alice a good way off, panting, with its wings. \'Serpent!\' screamed the Gryphon. \'Turn a somersault in the book,\' said the Hatter, and, just as well as she came in with the Dormouse..');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (35,'en','Et atque voluptatem repudiandae qui consectetur.','et-atque-voluptatem-repudiandae-qui-consectetur','I tell you!\' But she went on: \'--that begins with an M, such as mouse-traps, and the great question certainly was, what? Alice looked down into its mouth again, and she sat down with wonder at the beginning,\' the King eagerly, and he checked.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (35,'id','Et atque voluptatem repudiandae qui consectetur.','et-atque-voluptatem-repudiandae-qui-consectetur','I tell you!\' But she went on: \'--that begins with an M, such as mouse-traps, and the great question certainly was, what? Alice looked down into its mouth again, and she sat down with wonder at the beginning,\' the King eagerly, and he checked.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (36,'en','Consequatur asperiores qui sed consequatur atque officia.','consequatur-asperiores-qui-sed-consequatur-atque-officia','Lory, who at last it unfolded its arms, took the watch and looked at it uneasily, shaking it every now and then, and holding it to half-past one as long as you are; secondly, because they\'re making such a noise inside, no one listening, this time,.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (36,'id','Consequatur asperiores qui sed consequatur atque officia.','consequatur-asperiores-qui-sed-consequatur-atque-officia','Lory, who at last it unfolded its arms, took the watch and looked at it uneasily, shaking it every now and then, and holding it to half-past one as long as you are; secondly, because they\'re making such a noise inside, no one listening, this time,.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (37,'en','Tempore odit officia tempora maxime ut inventore veniam quibusdam.','tempore-odit-officia-tempora-maxime-ut-inventore-veniam-quibusdam','Alice; \'I can\'t explain MYSELF, I\'m afraid, sir\' said Alice, \'how am I then? Tell me that first, and then said \'The fourth.\' \'Two days wrong!\' sighed the Lory, with a melancholy air, and, after waiting till she was considering in her life, and had.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (37,'id','Tempore odit officia tempora maxime ut inventore veniam quibusdam.','tempore-odit-officia-tempora-maxime-ut-inventore-veniam-quibusdam','Alice; \'I can\'t explain MYSELF, I\'m afraid, sir\' said Alice, \'how am I then? Tell me that first, and then said \'The fourth.\' \'Two days wrong!\' sighed the Lory, with a melancholy air, and, after waiting till she was considering in her life, and had.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (38,'en','Eaque laudantium quia et ea.','eaque-laudantium-quia-et-ea','William\'s conduct at first she thought of herself, \'I wonder what CAN have happened to me! I\'LL soon make you grow shorter.\' \'One side of the thing at all. \'But perhaps he can\'t help that,\' said the Hatter. \'He won\'t stand beating. Now, if you only.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (38,'id','Eaque laudantium quia et ea.','eaque-laudantium-quia-et-ea','William\'s conduct at first she thought of herself, \'I wonder what CAN have happened to me! I\'LL soon make you grow shorter.\' \'One side of the thing at all. \'But perhaps he can\'t help that,\' said the Hatter. \'He won\'t stand beating. Now, if you only.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (39,'en','Ipsum quis numquam veniam qui autem id qui aliquam.','ipsum-quis-numquam-veniam-qui-autem-id-qui-aliquam','So she sat still and said to the cur, \"Such a trial, dear Sir, With no jury or judge, would be very likely true.) Down, down, down. Would the fall was over. However, when they arrived, with a lobster as a drawing of a muchness?\' \'Really, now you.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (39,'id','Ipsum quis numquam veniam qui autem id qui aliquam.','ipsum-quis-numquam-veniam-qui-autem-id-qui-aliquam','So she sat still and said to the cur, \"Such a trial, dear Sir, With no jury or judge, would be very likely true.) Down, down, down. Would the fall was over. However, when they arrived, with a lobster as a drawing of a muchness?\' \'Really, now you.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (40,'en','Sunt quae voluptates dicta molestiae adipisci qui doloribus.','sunt-quae-voluptates-dicta-molestiae-adipisci-qui-doloribus','King put on her spectacles, and began smoking again. This time there were a Duck and a fall, and a bright brass plate with the other: the Duchess sang the second verse of the moment they saw her, they hurried back to the fifth bend, I think?\' he.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (40,'id','Sunt quae voluptates dicta molestiae adipisci qui doloribus.','sunt-quae-voluptates-dicta-molestiae-adipisci-qui-doloribus','King put on her spectacles, and began smoking again. This time there were a Duck and a fall, and a bright brass plate with the other: the Duchess sang the second verse of the moment they saw her, they hurried back to the fifth bend, I think?\' he.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (41,'en','Ad eius voluptas et sunt.','ad-eius-voluptas-et-sunt','However, she got back to the Cheshire Cat sitting on a three-legged stool in the wood, \'is to grow up again! Let me see: I\'ll give them a railway station.) However, she did so, very carefully, with one eye, How the Owl and the happy summer days..');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (41,'id','Ad eius voluptas et sunt.','ad-eius-voluptas-et-sunt','However, she got back to the Cheshire Cat sitting on a three-legged stool in the wood, \'is to grow up again! Let me see: I\'ll give them a railway station.) However, she did so, very carefully, with one eye, How the Owl and the happy summer days..');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (42,'en','Mollitia beatae at et.','mollitia-beatae-at-et','I eat or drink something or other; but the Dormouse began in a whisper, half afraid that she still held the pieces of mushroom in her life before, and he went on, \'and most of \'em do.\' \'I don\'t believe there\'s an atom of meaning in it, \'and what is.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (42,'id','Mollitia beatae at et.','mollitia-beatae-at-et','I eat or drink something or other; but the Dormouse began in a whisper, half afraid that she still held the pieces of mushroom in her life before, and he went on, \'and most of \'em do.\' \'I don\'t believe there\'s an atom of meaning in it, \'and what is.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (43,'en','Soluta ut sunt quisquam et.','soluta-ut-sunt-quisquam-et','Alice a little pattering of footsteps in the kitchen. \'When I\'M a Duchess,\' she said this, she came upon a little bottle that stood near the looking-glass. There was no time to hear it say, as it went, as if it please your Majesty!\' the Duchess by.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (43,'id','Soluta ut sunt quisquam et.','soluta-ut-sunt-quisquam-et','Alice a little pattering of footsteps in the kitchen. \'When I\'M a Duchess,\' she said this, she came upon a little bottle that stood near the looking-glass. There was no time to hear it say, as it went, as if it please your Majesty!\' the Duchess by.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (44,'en','Facere eius eius dicta voluptatem fugiat consequuntur tenetur.','facere-eius-eius-dicta-voluptatem-fugiat-consequuntur-tenetur','There were doors all round her, calling out in a Little Bill It was so large in the way to explain the mistake it had come to the Gryphon. \'Turn a somersault in the lap of her ever getting out of this sort of mixed flavour of cherry-tart, custard,.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (44,'id','Facere eius eius dicta voluptatem fugiat consequuntur tenetur.','facere-eius-eius-dicta-voluptatem-fugiat-consequuntur-tenetur','There were doors all round her, calling out in a Little Bill It was so large in the way to explain the mistake it had come to the Gryphon. \'Turn a somersault in the lap of her ever getting out of this sort of mixed flavour of cherry-tart, custard,.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (45,'en','Qui est sit ducimus voluptate aut occaecati non tempora.','qui-est-sit-ducimus-voluptate-aut-occaecati-non-tempora','I needn\'t be so stingy about it, you know--\' She had just upset the week before. \'Oh, I BEG your pardon!\' she exclaimed in a very difficult question. However, at last she stretched her arms folded, frowning like a thunderstorm. \'A fine day, your.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (45,'id','Qui est sit ducimus voluptate aut occaecati non tempora.','qui-est-sit-ducimus-voluptate-aut-occaecati-non-tempora','I needn\'t be so stingy about it, you know--\' She had just upset the week before. \'Oh, I BEG your pardon!\' she exclaimed in a very difficult question. However, at last she stretched her arms folded, frowning like a thunderstorm. \'A fine day, your.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (46,'en','Dolorem impedit ipsa a qui ad laudantium architecto.','dolorem-impedit-ipsa-a-qui-ad-laudantium-architecto','Hatter, and he poured a little scream of laughter. \'Oh, hush!\' the Rabbit say to itself, half to Alice. \'Only a thimble,\' said Alice indignantly. \'Ah! then yours wasn\'t a bit hurt, and she looked back once or twice she had sat down and began.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (46,'id','Dolorem impedit ipsa a qui ad laudantium architecto.','dolorem-impedit-ipsa-a-qui-ad-laudantium-architecto','Hatter, and he poured a little scream of laughter. \'Oh, hush!\' the Rabbit say to itself, half to Alice. \'Only a thimble,\' said Alice indignantly. \'Ah! then yours wasn\'t a bit hurt, and she looked back once or twice she had sat down and began.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (47,'en','Maiores soluta omnis culpa dolorum repudiandae quibusdam et.','maiores-soluta-omnis-culpa-dolorum-repudiandae-quibusdam-et','Bill\'s place for a baby: altogether Alice did not wish to offend the Dormouse began in a great deal too flustered to tell its age, there was a dispute going on rather better now,\' she added in an undertone to the other, trying every door, she found.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (47,'id','Maiores soluta omnis culpa dolorum repudiandae quibusdam et.','maiores-soluta-omnis-culpa-dolorum-repudiandae-quibusdam-et','Bill\'s place for a baby: altogether Alice did not wish to offend the Dormouse began in a great deal too flustered to tell its age, there was a dispute going on rather better now,\' she added in an undertone to the other, trying every door, she found.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (48,'en','Quis ipsam id ab velit et repellendus praesentium quae.','quis-ipsam-id-ab-velit-et-repellendus-praesentium-quae','Alice was silent. The Dormouse again took a great thistle, to keep herself from being broken. She hastily put down yet, before the end of his shrill little voice, the name of the Lizard\'s slate-pencil, and the bright flower-beds and the three.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (48,'id','Quis ipsam id ab velit et repellendus praesentium quae.','quis-ipsam-id-ab-velit-et-repellendus-praesentium-quae','Alice was silent. The Dormouse again took a great thistle, to keep herself from being broken. She hastily put down yet, before the end of his shrill little voice, the name of the Lizard\'s slate-pencil, and the bright flower-beds and the three.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (49,'en','Sunt et dolor corporis sit dolorem.','sunt-et-dolor-corporis-sit-dolorem','I suppose.\' So she sat on, with closed eyes, and half believed herself in Wonderland, though she felt that it might tell her something about the reason and all the while, till at last turned sulky, and would only say, \'I am older than you, and.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (49,'id','Sunt et dolor corporis sit dolorem.','sunt-et-dolor-corporis-sit-dolorem','I suppose.\' So she sat on, with closed eyes, and half believed herself in Wonderland, though she felt that it might tell her something about the reason and all the while, till at last turned sulky, and would only say, \'I am older than you, and.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (50,'en','Quis consequatur nostrum et sed qui nemo minima.','quis-consequatur-nostrum-et-sed-qui-nemo-minima','Queen. \'It proves nothing of the evening, beautiful Soup! Beau--ootiful Soo--oop! Beau--ootiful Soo--oop! Beau--ootiful Soo--oop! Beau--ootiful Soo--oop! Soo--oop of the bread-and-butter. Just at this corner--No, tie \'em together first--they don\'t.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (50,'id','Quis consequatur nostrum et sed qui nemo minima.','quis-consequatur-nostrum-et-sed-qui-nemo-minima','Queen. \'It proves nothing of the evening, beautiful Soup! Beau--ootiful Soo--oop! Beau--ootiful Soo--oop! Beau--ootiful Soo--oop! Beau--ootiful Soo--oop! Soo--oop of the bread-and-butter. Just at this corner--No, tie \'em together first--they don\'t.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (51,'en','Tenetur expedita ipsum sint molestiae eaque beatae culpa.','tenetur-expedita-ipsum-sint-molestiae-eaque-beatae-culpa','Alice could see her after the others. \'Are their heads down! I am so VERY wide, but she heard one of the conversation. Alice felt a very grave voice, \'until all the party sat silent and looked into its face to see it again, but it was talking in.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (51,'id','Tenetur expedita ipsum sint molestiae eaque beatae culpa.','tenetur-expedita-ipsum-sint-molestiae-eaque-beatae-culpa','Alice could see her after the others. \'Are their heads down! I am so VERY wide, but she heard one of the conversation. Alice felt a very grave voice, \'until all the party sat silent and looked into its face to see it again, but it was talking in.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (52,'en','Quia consequuntur necessitatibus vitae maxime et.','quia-consequuntur-necessitatibus-vitae-maxime-et','Alice didn\'t think that there was Mystery,\' the Mock Turtle; \'but it doesn\'t mind.\' The table was a child,\' said the young Crab, a little house in it about four inches deep and reaching half down the hall. After a time she had succeeded in getting.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (52,'id','Quia consequuntur necessitatibus vitae maxime et.','quia-consequuntur-necessitatibus-vitae-maxime-et','Alice didn\'t think that there was Mystery,\' the Mock Turtle; \'but it doesn\'t mind.\' The table was a child,\' said the young Crab, a little house in it about four inches deep and reaching half down the hall. After a time she had succeeded in getting.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (53,'en','Nihil repellat qui molestiae velit quo.','nihil-repellat-qui-molestiae-velit-quo','VERY much out of a sea of green leaves that lay far below her. \'What CAN all that stuff,\' the Mock Turtle interrupted, \'if you don\'t even know what they\'re about!\' \'Read them,\' said the Gryphon. \'I mean, what makes them so shiny?\' Alice looked very.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (53,'id','Nihil repellat qui molestiae velit quo.','nihil-repellat-qui-molestiae-velit-quo','VERY much out of a sea of green leaves that lay far below her. \'What CAN all that stuff,\' the Mock Turtle interrupted, \'if you don\'t even know what they\'re about!\' \'Read them,\' said the Gryphon. \'I mean, what makes them so shiny?\' Alice looked very.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (54,'en','Praesentium ad quod fugiat perspiciatis laudantium et.','praesentium-ad-quod-fugiat-perspiciatis-laudantium-et','Alice was beginning to end,\' said the sage, as he fumbled over the list, feeling very curious to see the Mock Turtle. \'Very much indeed,\' said Alice. \'Oh, don\'t talk about cats or dogs either, if you want to get out at all fairly,\' Alice began, in.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (54,'id','Praesentium ad quod fugiat perspiciatis laudantium et.','praesentium-ad-quod-fugiat-perspiciatis-laudantium-et','Alice was beginning to end,\' said the sage, as he fumbled over the list, feeling very curious to see the Mock Turtle. \'Very much indeed,\' said Alice. \'Oh, don\'t talk about cats or dogs either, if you want to get out at all fairly,\' Alice began, in.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (55,'en','Rerum dolor et sint doloremque.','rerum-dolor-et-sint-doloremque','Mock Turtle at last, and managed to put the Dormouse sulkily remarked, \'If you please, sir--\' The Rabbit started violently, dropped the white kid gloves in one hand and a long argument with the Queen till she was saying, and the pattern on their.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (55,'id','Rerum dolor et sint doloremque.','rerum-dolor-et-sint-doloremque','Mock Turtle at last, and managed to put the Dormouse sulkily remarked, \'If you please, sir--\' The Rabbit started violently, dropped the white kid gloves in one hand and a long argument with the Queen till she was saying, and the pattern on their.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (56,'en','Odit amet autem neque ab.','odit-amet-autem-neque-ab','DOES THE BOOTS AND SHOES.\' the Gryphon whispered in reply, \'for fear they should forget them before the officer could get away without speaking, but at last came a little before she got back to the Duchess: \'flamingoes and mustard both bite. And.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (56,'id','Odit amet autem neque ab.','odit-amet-autem-neque-ab','DOES THE BOOTS AND SHOES.\' the Gryphon whispered in reply, \'for fear they should forget them before the officer could get away without speaking, but at last came a little before she got back to the Duchess: \'flamingoes and mustard both bite. And.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (57,'en','Excepturi quam repellendus quo facere optio in.','excepturi-quam-repellendus-quo-facere-optio-in','I think?\' \'I had NOT!\' cried the Mock Turtle would be very likely it can talk: at any rate he might answer questions.--How am I to do?\' said Alice. \'Why?\' \'IT DOES THE BOOTS AND SHOES.\' the Gryphon remarked: \'because they lessen from day to such.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (57,'id','Excepturi quam repellendus quo facere optio in.','excepturi-quam-repellendus-quo-facere-optio-in','I think?\' \'I had NOT!\' cried the Mock Turtle would be very likely it can talk: at any rate he might answer questions.--How am I to do?\' said Alice. \'Why?\' \'IT DOES THE BOOTS AND SHOES.\' the Gryphon remarked: \'because they lessen from day to such.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (58,'en','Cum blanditiis quo quia ad.','cum-blanditiis-quo-quia-ad','The first thing she heard a little shriek, and went by without noticing her. Then followed the Knave of Hearts, carrying the King\'s crown on a summer day: The Knave did so, very carefully, with one foot. \'Get up!\' said the King, going up to them.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (58,'id','Cum blanditiis quo quia ad.','cum-blanditiis-quo-quia-ad','The first thing she heard a little shriek, and went by without noticing her. Then followed the Knave of Hearts, carrying the King\'s crown on a summer day: The Knave did so, very carefully, with one foot. \'Get up!\' said the King, going up to them.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (59,'en','Ea id voluptas magnam sed.','ea-id-voluptas-magnam-sed','Alice. \'It must have imitated somebody else\'s hand,\' said the Dormouse, who seemed to be lost, as she spoke, but no result seemed to have been a RED rose-tree, and we won\'t talk about cats or dogs either, if you please! \"William the Conqueror,.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (59,'id','Ea id voluptas magnam sed.','ea-id-voluptas-magnam-sed','Alice. \'It must have imitated somebody else\'s hand,\' said the Dormouse, who seemed to be lost, as she spoke, but no result seemed to have been a RED rose-tree, and we won\'t talk about cats or dogs either, if you please! \"William the Conqueror,.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (60,'en','Repellendus aspernatur iure quia dolorem rem quos a.','repellendus-aspernatur-iure-quia-dolorem-rem-quos-a','Alice. \'I\'M not a mile high,\' said Alice. \'Of course twinkling begins with an air of great dismay, and began singing in its hurry to change the subject,\' the March Hare, \'that \"I breathe when I was going to do anything but sit with its wings..');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (60,'id','Repellendus aspernatur iure quia dolorem rem quos a.','repellendus-aspernatur-iure-quia-dolorem-rem-quos-a','Alice. \'I\'M not a mile high,\' said Alice. \'Of course twinkling begins with an air of great dismay, and began singing in its hurry to change the subject,\' the March Hare, \'that \"I breathe when I was going to do anything but sit with its wings..');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (61,'en','Temporibus voluptas qui rerum blanditiis corrupti.','temporibus-voluptas-qui-rerum-blanditiis-corrupti','I wonder who will put on one side, to look at me like that!\' But she waited for a minute, nurse! But I\'ve got to?\' (Alice had been all the jurymen on to himself as he spoke, \'we were trying--\' \'I see!\' said the Hatter. \'I told you that.\' \'If I\'d.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (61,'id','Temporibus voluptas qui rerum blanditiis corrupti.','temporibus-voluptas-qui-rerum-blanditiis-corrupti','I wonder who will put on one side, to look at me like that!\' But she waited for a minute, nurse! But I\'ve got to?\' (Alice had been all the jurymen on to himself as he spoke, \'we were trying--\' \'I see!\' said the Hatter. \'I told you that.\' \'If I\'d.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (62,'en','Maiores eum quia repudiandae totam.','maiores-eum-quia-repudiandae-totam','White Rabbit, \'but it doesn\'t matter much,\' thought Alice, \'as all the right size, that it was only sobbing,\' she thought, \'till its ears have come, or at any rate I\'ll never go THERE again!\' said Alice sharply, for she was appealed to by all three.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (62,'id','Maiores eum quia repudiandae totam.','maiores-eum-quia-repudiandae-totam','White Rabbit, \'but it doesn\'t matter much,\' thought Alice, \'as all the right size, that it was only sobbing,\' she thought, \'till its ears have come, or at any rate I\'ll never go THERE again!\' said Alice sharply, for she was appealed to by all three.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (63,'en','Doloremque quia fugiat sint laborum doloribus quia suscipit magni.','doloremque-quia-fugiat-sint-laborum-doloribus-quia-suscipit-magni','This time there were a Duck and a great crowd assembled about them--all sorts of little birds and beasts, as well go back, and see what was going to begin with; and being so many lessons to learn! Oh, I shouldn\'t want YOURS: I don\'t remember.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (63,'id','Doloremque quia fugiat sint laborum doloribus quia suscipit magni.','doloremque-quia-fugiat-sint-laborum-doloribus-quia-suscipit-magni','This time there were a Duck and a great crowd assembled about them--all sorts of little birds and beasts, as well go back, and see what was going to begin with; and being so many lessons to learn! Oh, I shouldn\'t want YOURS: I don\'t remember.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (64,'en','Sit tempore consequatur qui nostrum aut.','sit-tempore-consequatur-qui-nostrum-aut','Mock Turtle, \'Drive on, old fellow! Don\'t be all day about it!\' and he says it\'s so useful, it\'s worth a hundred pounds! He says it kills all the jurymen on to the Cheshire Cat sitting on the stairs. Alice knew it was very fond of beheading people.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (64,'id','Sit tempore consequatur qui nostrum aut.','sit-tempore-consequatur-qui-nostrum-aut','Mock Turtle, \'Drive on, old fellow! Don\'t be all day about it!\' and he says it\'s so useful, it\'s worth a hundred pounds! He says it kills all the jurymen on to the Cheshire Cat sitting on the stairs. Alice knew it was very fond of beheading people.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (65,'en','Eum in et et accusamus quia ea nobis quae.','eum-in-et-et-accusamus-quia-ea-nobis-quae','Mouse looked at them with large eyes full of smoke from one end of your flamingo. Shall I try the effect: the next witness!\' said the youth, \'and your jaws are too weak For anything tougher than suet; Yet you finished the first sentence in her.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (65,'id','Eum in et et accusamus quia ea nobis quae.','eum-in-et-et-accusamus-quia-ea-nobis-quae','Mouse looked at them with large eyes full of smoke from one end of your flamingo. Shall I try the effect: the next witness!\' said the youth, \'and your jaws are too weak For anything tougher than suet; Yet you finished the first sentence in her.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (66,'en','Praesentium magnam expedita dolor et.','praesentium-magnam-expedita-dolor-et','Mock Turtle. \'And how do you want to go on. \'And so these three weeks!\' \'I\'m very sorry you\'ve been annoyed,\' said Alice, in a sulky tone, as it left no mark on the trumpet, and called out, \'Sit down, all of them attempted to explain the paper. \'If.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (66,'id','Praesentium magnam expedita dolor et.','praesentium-magnam-expedita-dolor-et','Mock Turtle. \'And how do you want to go on. \'And so these three weeks!\' \'I\'m very sorry you\'ve been annoyed,\' said Alice, in a sulky tone, as it left no mark on the trumpet, and called out, \'Sit down, all of them attempted to explain the paper. \'If.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (67,'en','Nobis dolore est porro quam.','nobis-dolore-est-porro-quam','King. \'Then it doesn\'t matter much,\' thought Alice, and, after folding his arms and frowning at the stick, running a very difficult game indeed. The players all played at once in her life; it was impossible to say anything. \'Why,\' said the Queen.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (67,'id','Nobis dolore est porro quam.','nobis-dolore-est-porro-quam','King. \'Then it doesn\'t matter much,\' thought Alice, and, after folding his arms and frowning at the stick, running a very difficult game indeed. The players all played at once in her life; it was impossible to say anything. \'Why,\' said the Queen.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (68,'en','Minus cupiditate in sapiente ad.','minus-cupiditate-in-sapiente-ad','And when I got up and saying, \'Thank you, sir, for your walk!\" \"Coming in a hurry. \'No, I\'ll look first,\' she said, without even waiting to put it right; \'not that it was out of sight. Alice remained looking thoughtfully at the mushroom for a great.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (68,'id','Minus cupiditate in sapiente ad.','minus-cupiditate-in-sapiente-ad','And when I got up and saying, \'Thank you, sir, for your walk!\" \"Coming in a hurry. \'No, I\'ll look first,\' she said, without even waiting to put it right; \'not that it was out of sight. Alice remained looking thoughtfully at the mushroom for a great.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (69,'en','Enim fugit officia repudiandae autem quo.','enim-fugit-officia-repudiandae-autem-quo','King. \'Nothing whatever,\' said Alice. \'You are,\' said the King, with an M, such as mouse-traps, and the pool a little scream of laughter. \'Oh, hush!\' the Rabbit coming to look through into the loveliest garden you ever see such a nice soft thing to.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (69,'id','Enim fugit officia repudiandae autem quo.','enim-fugit-officia-repudiandae-autem-quo','King. \'Nothing whatever,\' said Alice. \'You are,\' said the King, with an M, such as mouse-traps, and the pool a little scream of laughter. \'Oh, hush!\' the Rabbit coming to look through into the loveliest garden you ever see such a nice soft thing to.');
 
 /*Table structure for table `post_has_categories` */
 
@@ -385,18 +515,9 @@ CREATE TABLE `post_has_categories` (
 
 /*Data for the table `post_has_categories` */
 
-insert  into `post_has_categories`(`post_id`,`category_id`) values (21,1);
 insert  into `post_has_categories`(`post_id`,`category_id`) values (17,2);
 insert  into `post_has_categories`(`post_id`,`category_id`) values (18,2);
-insert  into `post_has_categories`(`post_id`,`category_id`) values (21,2);
 insert  into `post_has_categories`(`post_id`,`category_id`) values (19,3);
-insert  into `post_has_categories`(`post_id`,`category_id`) values (24,3);
-insert  into `post_has_categories`(`post_id`,`category_id`) values (26,16);
-insert  into `post_has_categories`(`post_id`,`category_id`) values (26,17);
-insert  into `post_has_categories`(`post_id`,`category_id`) values (26,18);
-insert  into `post_has_categories`(`post_id`,`category_id`) values (27,22);
-insert  into `post_has_categories`(`post_id`,`category_id`) values (27,23);
-insert  into `post_has_categories`(`post_id`,`category_id`) values (27,25);
 
 /*Table structure for table `post_has_medias` */
 
@@ -415,10 +536,56 @@ CREATE TABLE `post_has_medias` (
 insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (17,48,'featured');
 insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (18,45,'featured');
 insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (19,51,'featured');
-insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (21,47,'featured');
-insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (24,47,'featured');
-insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (26,46,'featured');
-insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (27,50,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (20,53,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (21,55,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (22,54,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (23,55,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (24,55,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (25,54,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (26,53,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (27,53,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (28,51,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (29,52,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (30,51,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (31,53,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (32,51,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (33,55,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (34,51,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (35,53,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (36,54,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (37,54,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (38,52,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (39,53,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (40,51,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (41,51,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (42,52,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (43,52,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (44,52,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (45,53,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (46,55,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (47,55,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (48,52,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (49,53,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (50,51,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (51,54,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (52,52,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (53,55,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (54,54,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (55,51,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (56,54,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (57,52,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (58,54,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (59,55,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (60,54,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (61,54,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (62,52,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (63,55,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (64,53,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (65,52,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (66,52,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (67,52,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (68,55,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (69,54,'featured');
 
 /*Table structure for table `post_metas` */
 
@@ -430,12 +597,14 @@ CREATE TABLE `post_metas` (
   PRIMARY KEY (`id`),
   KEY `post_metas_post_id_foreign` (`post_id`),
   CONSTRAINT `post_metas_post_id_foreign` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `post_metas` */
 
-insert  into `post_metas`(`id`,`post_id`,`meta_key`,`meta_value`) values (4,19,'whats_on','1');
-insert  into `post_metas`(`id`,`post_id`,`meta_key`,`meta_value`) values (6,24,'whats_on','1');
+insert  into `post_metas`(`id`,`post_id`,`meta_key`,`meta_value`) values (8,19,'whats_on','1');
+insert  into `post_metas`(`id`,`post_id`,`meta_key`,`meta_value`) values (9,19,'featured','1');
+insert  into `post_metas`(`id`,`post_id`,`meta_key`,`meta_value`) values (14,20,'featured','1');
+insert  into `post_metas`(`id`,`post_id`,`meta_key`,`meta_value`) values (15,21,'featured','1');
 
 /*Table structure for table `post_types` */
 
@@ -465,17 +634,63 @@ CREATE TABLE `posts` (
   `publish_date` timestamp NULL DEFAULT NULL,
   `created_by` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `posts` */
 
 insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (17,1,'2016-10-22 19:20:17','2016-10-27 18:34:17','PUBLISH','2016-10-22 19:19:00',1);
 insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (18,1,'2016-10-24 11:40:55','2016-10-24 18:15:16','PUBLISH','2016-10-24 11:35:00',1);
-insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (19,2,'2016-10-27 18:22:34','2016-10-28 15:10:06','PUBLISH','2016-10-27 18:22:00',1);
-insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (21,1,'2016-10-27 18:33:36','2016-10-27 18:33:36','PUBLISH','2016-10-27 18:32:00',1);
-insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (24,2,'2016-10-28 14:31:20','2016-10-28 22:04:10','PUBLISH','2016-10-28 14:30:00',1);
-insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (26,3,'2016-10-30 13:44:10','2016-10-30 13:44:10','PUBLISH','2016-10-30 13:42:00',3);
-insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (27,4,'2016-10-30 14:03:50','2016-10-30 14:03:50','PUBLISH','2016-10-30 14:03:00',3);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (19,2,'2016-10-27 18:22:34','2016-11-03 11:03:29','PUBLISH','2016-10-27 18:22:00',1);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (20,2,'2016-11-03 13:19:49','2016-11-03 13:20:11','PUBLISH','2016-11-03 00:00:00',1);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (21,2,'2016-11-03 13:19:49','2016-11-03 13:20:20','PUBLISH','2016-11-03 00:00:00',1);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (22,2,'2016-11-03 13:19:49','2016-11-03 13:19:49','PUBLISH','2016-11-03 00:00:00',1);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (23,2,'2016-11-03 13:19:49','2016-11-03 13:19:49','PUBLISH','2016-11-03 00:00:00',1);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (24,2,'2016-11-03 13:19:49','2016-11-03 13:19:49','PUBLISH','2016-11-03 00:00:00',1);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (25,2,'2016-11-03 13:19:49','2016-11-03 13:19:49','PUBLISH','2016-11-03 00:00:00',1);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (26,2,'2016-11-03 13:19:49','2016-11-03 13:19:49','PUBLISH','2016-11-03 00:00:00',1);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (27,2,'2016-11-03 13:19:49','2016-11-03 13:19:49','PUBLISH','2016-11-03 00:00:00',1);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (28,2,'2016-11-03 13:19:49','2016-11-03 13:19:49','PUBLISH','2016-11-03 00:00:00',1);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (29,2,'2016-11-03 13:19:49','2016-11-03 13:19:49','PUBLISH','2016-11-03 00:00:00',1);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (30,2,'2016-11-03 13:19:49','2016-11-03 13:19:49','PUBLISH','2016-11-03 00:00:00',1);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (31,2,'2016-11-03 13:19:49','2016-11-03 13:19:49','PUBLISH','2016-11-03 00:00:00',1);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (32,2,'2016-11-03 13:19:49','2016-11-03 13:19:49','PUBLISH','2016-11-03 00:00:00',1);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (33,2,'2016-11-03 13:19:49','2016-11-03 13:19:49','PUBLISH','2016-11-03 00:00:00',1);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (34,2,'2016-11-03 13:19:49','2016-11-03 13:19:49','PUBLISH','2016-11-03 00:00:00',1);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (35,2,'2016-11-03 13:19:49','2016-11-03 13:19:49','PUBLISH','2016-11-03 00:00:00',1);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (36,2,'2016-11-03 13:19:49','2016-11-03 13:19:49','PUBLISH','2016-11-03 00:00:00',1);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (37,2,'2016-11-03 13:19:49','2016-11-03 13:19:49','PUBLISH','2016-11-03 00:00:00',1);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (38,2,'2016-11-03 13:19:49','2016-11-03 13:19:49','PUBLISH','2016-11-03 00:00:00',1);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (39,2,'2016-11-03 13:19:49','2016-11-03 13:19:49','PUBLISH','2016-11-03 00:00:00',1);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (40,2,'2016-11-03 13:19:49','2016-11-03 13:19:49','PUBLISH','2016-11-03 00:00:00',1);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (41,2,'2016-11-03 13:19:49','2016-11-03 13:19:49','PUBLISH','2016-11-03 00:00:00',1);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (42,2,'2016-11-03 13:19:49','2016-11-03 13:19:49','PUBLISH','2016-11-03 00:00:00',1);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (43,2,'2016-11-03 13:19:49','2016-11-03 13:19:49','PUBLISH','2016-11-03 00:00:00',1);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (44,2,'2016-11-03 13:19:49','2016-11-03 13:19:49','PUBLISH','2016-11-03 00:00:00',1);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (45,2,'2016-11-03 13:19:49','2016-11-03 13:19:49','PUBLISH','2016-11-03 00:00:00',1);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (46,2,'2016-11-03 13:19:49','2016-11-03 13:19:49','PUBLISH','2016-11-03 00:00:00',1);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (47,2,'2016-11-03 13:19:49','2016-11-03 13:19:49','PUBLISH','2016-11-03 00:00:00',1);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (48,2,'2016-11-03 13:19:49','2016-11-03 13:19:49','PUBLISH','2016-11-03 00:00:00',1);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (49,2,'2016-11-03 13:19:49','2016-11-03 13:19:49','PUBLISH','2016-11-03 00:00:00',1);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (50,2,'2016-11-03 13:19:49','2016-11-03 13:19:49','PUBLISH','2016-11-03 00:00:00',1);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (51,2,'2016-11-03 13:19:49','2016-11-03 13:19:49','PUBLISH','2016-11-03 00:00:00',1);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (52,2,'2016-11-03 13:19:49','2016-11-03 13:19:49','PUBLISH','2016-11-03 00:00:00',1);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (53,2,'2016-11-03 13:19:49','2016-11-03 13:19:49','PUBLISH','2016-11-03 00:00:00',1);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (54,2,'2016-11-03 13:19:49','2016-11-03 13:19:49','PUBLISH','2016-11-03 00:00:00',1);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (55,2,'2016-11-03 13:19:49','2016-11-03 13:19:49','PUBLISH','2016-11-03 00:00:00',1);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (56,2,'2016-11-03 13:19:49','2016-11-03 13:19:49','PUBLISH','2016-11-03 00:00:00',1);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (57,2,'2016-11-03 13:19:49','2016-11-03 13:19:49','PUBLISH','2016-11-03 00:00:00',1);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (58,2,'2016-11-03 13:19:49','2016-11-03 13:19:49','PUBLISH','2016-11-03 00:00:00',1);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (59,2,'2016-11-03 13:19:49','2016-11-03 13:19:49','PUBLISH','2016-11-03 00:00:00',1);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (60,2,'2016-11-03 13:19:49','2016-11-03 13:19:49','PUBLISH','2016-11-03 00:00:00',1);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (61,2,'2016-11-03 13:19:49','2016-11-03 13:19:49','PUBLISH','2016-11-03 00:00:00',1);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (62,2,'2016-11-03 13:19:49','2016-11-03 13:19:49','PUBLISH','2016-11-03 00:00:00',1);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (63,2,'2016-11-03 13:19:49','2016-11-03 13:19:49','PUBLISH','2016-11-03 00:00:00',1);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (64,2,'2016-11-03 13:19:49','2016-11-03 13:19:49','PUBLISH','2016-11-03 00:00:00',1);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (65,2,'2016-11-03 13:19:49','2016-11-03 13:19:49','PUBLISH','2016-11-03 00:00:00',1);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (66,2,'2016-11-03 13:19:49','2016-11-03 13:19:49','PUBLISH','2016-11-03 00:00:00',1);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (67,2,'2016-11-03 13:19:49','2016-11-03 13:19:49','PUBLISH','2016-11-03 00:00:00',1);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (68,2,'2016-11-03 13:19:49','2016-11-03 13:19:49','PUBLISH','2016-11-03 00:00:00',1);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (69,2,'2016-11-03 13:19:49','2016-11-03 13:19:49','PUBLISH','2016-11-03 00:00:00',1);
 
 /*Table structure for table `role_has_permissions` */
 
@@ -544,6 +759,10 @@ insert  into `role_has_permissions`(`permission_id`,`role_id`) values (55,1);
 insert  into `role_has_permissions`(`permission_id`,`role_id`) values (56,1);
 insert  into `role_has_permissions`(`permission_id`,`role_id`) values (57,1);
 insert  into `role_has_permissions`(`permission_id`,`role_id`) values (58,1);
+insert  into `role_has_permissions`(`permission_id`,`role_id`) values (59,1);
+insert  into `role_has_permissions`(`permission_id`,`role_id`) values (60,1);
+insert  into `role_has_permissions`(`permission_id`,`role_id`) values (61,1);
+insert  into `role_has_permissions`(`permission_id`,`role_id`) values (62,1);
 insert  into `role_has_permissions`(`permission_id`,`role_id`) values (1,3);
 insert  into `role_has_permissions`(`permission_id`,`role_id`) values (2,3);
 insert  into `role_has_permissions`(`permission_id`,`role_id`) values (3,3);
@@ -598,7 +817,60 @@ CREATE TABLE `sessions` (
 
 /*Data for the table `sessions` */
 
-insert  into `sessions`(`id`,`user_id`,`ip_address`,`user_agent`,`payload`,`last_activity`) values ('aK3BLNOrdITAl2TS5kHpCFjz76NosT4IcxtloVyk',3,'192.168.10.1','Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36','YTo2OntzOjY6Il90b2tlbiI7czo0MDoieTNSTVVqQmREZlhqSmN5MkhkZkhzdTF6ZWRTOFZPVjBpaXJqcGZmbSI7czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MztzOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czoyNjoiaHR0cDovL2phaS5kZXYvamFpLWJhY2tlbmQiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjQ6ImxhbmciO3M6MjoiaWQiO3M6OToiX3NmMl9tZXRhIjthOjM6e3M6MToidSI7aToxNDc3ODExMDgwO3M6MToiYyI7aToxNDc3ODAxMDU0O3M6MToibCI7czoxOiIwIjt9fQ==',1477811080);
+insert  into `sessions`(`id`,`user_id`,`ip_address`,`user_agent`,`payload`,`last_activity`) values ('eg5G6DYt3IWJEw1UduY3gErbvPxa7gnk7jRYn02h',3,'192.168.10.1','Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36','YTo2OntzOjY6Il90b2tlbiI7czo0MDoib0ZPanY2UktCdWp1RVdocHRjUXhMalNNVWFDMWJSYzd4SllUQ0pXQSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzQ6Imh0dHA6Ly9qYWkuZGV2L2lkL25ld3MtYmxvZy9wYWdlLzMiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjQ6ImxhbmciO3M6MjoiaWQiO3M6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjM7czo5OiJfc2YyX21ldGEiO2E6Mzp7czoxOiJ1IjtpOjE0NzgxNTg0Njk7czoxOiJjIjtpOjE0NzgxNDM0MjE7czoxOiJsIjtzOjE6IjAiO319',1478158469);
+
+/*Table structure for table `show_details` */
+
+CREATE TABLE `show_details` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `show_id` int(10) unsigned NOT NULL,
+  `lang` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'en',
+  `content` text COLLATE utf8_unicode_ci,
+  PRIMARY KEY (`id`),
+  KEY `show_details_show_id_foreign` (`show_id`),
+  CONSTRAINT `show_details_show_id_foreign` FOREIGN KEY (`show_id`) REFERENCES `shows` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+/*Data for the table `show_details` */
+
+/*Table structure for table `show_times` */
+
+CREATE TABLE `show_times` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `show_id` int(10) unsigned NOT NULL,
+  `start_date` date DEFAULT NULL,
+  `end_date` date DEFAULT NULL,
+  `start_time` time NOT NULL,
+  `end_time` time DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `show_times_show_id_foreign` (`show_id`),
+  CONSTRAINT `show_times_show_id_foreign` FOREIGN KEY (`show_id`) REFERENCES `shows` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+/*Data for the table `show_times` */
+
+/*Table structure for table `show_types` */
+
+CREATE TABLE `show_types` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+/*Data for the table `show_types` */
+
+/*Table structure for table `shows` */
+
+CREATE TABLE `shows` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `show_type` int(11) NOT NULL DEFAULT '1',
+  `created_by` int(11) NOT NULL DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+/*Data for the table `shows` */
 
 /*Table structure for table `slider_items` */
 

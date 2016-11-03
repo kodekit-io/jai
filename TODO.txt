@@ -49,6 +49,9 @@
 
 -- Add general submission checkbox on package form to grouping the package (DONE)
 
+-- Add Images on package (DONE)
+
+-- Add featured checkbox on news
 
 -- Create show with following fields :
 -- show
@@ -73,6 +76,8 @@
 ---- Job Description
 ---- Due date / active date
 ---- Contact Person
+
+-- Menu link, multilang support
 
 -- Advanced search on post, news
 -- Add notification when there are any blank languages whe publish the content

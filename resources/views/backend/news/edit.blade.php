@@ -70,6 +70,14 @@
                                                                 </label>
                                                             </div>
                                                         </div>
+                                                        <div class="form-group">
+                                                            <div class="mt-checkbox-outline">
+                                                                <label class="mt-checkbox mt-checkbox-outline">
+                                                                    <input type="checkbox" @if ($featured) checked @endif name="featured" value="1"> Featured content
+                                                                    <span></span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
                                                         <a href="{!! backendUrl($baseUrl) !!}" class="btn btn-sm sbold green">Back</a> <input type="submit" name="status" class="btn btn-sm btn-default" value="Draft"> <input type="submit" name="status" class="btn btn-sm btn-default" value="Publish">
                                                     </div>
                                                 </div>

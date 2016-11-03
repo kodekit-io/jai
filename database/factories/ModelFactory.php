@@ -21,3 +21,23 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(App\Models\Post::class, function (Faker\Generator $faker) {
+    return [
+        'post_type_id' => 2,
+        'status' => 'PUBLISH',
+        'publish_date' => date('Y-m-d'),
+        'created_by' => 1
+    ];
+});
+
+$factory->define(App\Models\PostDetail::class, function (Faker\Generator $faker) {
+    $title = $faker->sentence($nbWords = 6, $variableNbWords = true);
+    $slug = str_slug($title, '-');
+    return [
+        'lang' => 'en',
+        'title' => $title,
+        'slug' => $slug,
+        'content' => $faker->realText(250, 2)
+    ];
+});

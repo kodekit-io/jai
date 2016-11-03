@@ -168,14 +168,14 @@ Route::group(['prefix' => $backendUrl, 'middleware' => ['auth']], function () {
 Route::group(['middleware' => ['lang']], function () {
     Route::get('/{lang?}/about-us', 'FrontEndController@aboutUs');
     Route::get('/{lang?}/ticket-hours', 'FrontEndController@ticket');
-    Route::get('/{lang?}/book-detail', 'FrontEndController@bookticket');
-    Route::get('/{lang?}/special-packages', 'FrontEndController@specialpackages');
-    Route::get('/{lang?}/show-time', 'FrontEndController@showtime');
+    Route::get('/{lang?}/book-detail', 'FrontEndController@bookTicket');
+    Route::get('/{lang?}/special-packages', 'FrontEndController@specialPackages');
+    Route::get('/{lang?}/show-time', 'FrontEndController@showTime');
     Route::get('/{lang?}/location', 'FrontEndController@location');
-    Route::get('/{lang?}/location-map', 'FrontEndController@locationmap');
     Route::get('/{lang?}/news-blog', 'FrontEndController@news');
-    Route::get('/{lang?}/news-details', 'FrontEndController@newsdetails');
-
-    Route::get('/{lang?}', 'FrontEndController@homepage');
-    Route::get('/{lang?}/news/{slug}', 'FrontEndController@homepage');
+    Route::get('/{lang?}/news-blog/page/{page?}', 'FrontEndController@news');
+    Route::get('/{lang?}/news-details', 'FrontEndController@newsDetail');
+    Route::get('/{lang?}/location-map', 'FrontEndController@locationMap');
+    Route::get('/{lang?}', 'FrontEndController@homePage');
+    Route::get('/{lang?}/news/{slug}', 'FrontEndController@homePage');
 });

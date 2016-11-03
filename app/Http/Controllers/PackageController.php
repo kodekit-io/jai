@@ -98,6 +98,7 @@ class PackageController extends Controller
         $data['defaultLang'] = $this->languageService->getDefaultLanguage();
         $data['publishDate'] = Carbon::createFromFormat('Y-m-d H:i:s', $package->created_at)->format('d-F-Y - H:i');
         $data['packageSelect'] = $this->packageService->packageTypeSelect('package_type_id', $package->package_type_id);
+        $data['featuredImage'] = $package->medias()->first();
         $data['baseUrl'] = 'package';
 
         return view('backend.packages.edit', $data);

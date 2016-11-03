@@ -55,6 +55,7 @@ class Post
         $categories = isset($inputs['categories']) ? $inputs['categories'] : [];
         $mediaId = isset($inputs['featured_image_id']) ? $inputs['featured_image_id'] : '' ;
         $whatsOn = isset($inputs['whats_on']) ? true : false ;
+        $featured = isset($inputs['featured']) ? true : false ;
 
         $post = PostModel::create([
             'post_type_id' => $postTypeId,
@@ -76,6 +77,13 @@ class Post
         if ($whatsOn) {
             $post->metas()->create([
                 'meta_key' => 'whats_on',
+                'meta_value' => 1
+            ]);
+        }
+
+        if ($featured) {
+            $post->metas()->create([
+                'meta_key' => 'featured',
                 'meta_value' => 1
             ]);
         }
@@ -122,6 +130,15 @@ class Post
         if ($whatsOn == 1) {
             $post->metas()->create([
                 'meta_key' => 'whats_on',
+                'meta_value' => 1
+            ]);
+        }
+
+        $post->metas()->where('meta_key', 'featured')->where('meta_value', 1)->delete();
+        $featured = isset($inputs['featured']) ? $inputs['featured'] : '0' ;
+        if ($featured == 1) {
+            $post->metas()->create([
+                'meta_key' => 'featured',
                 'meta_value' => 1
             ]);
         }
@@ -188,8 +205,10 @@ class Post
     {
         $query = DB::table('posts')
                     ->join('post_details', 'posts.id', '=', 'post_details.post_id')
-                    ->join('post_has_categories', 'posts.id', '=', 'post_has_categories.post_id')
-                    ->select('posts.*', 'post_details.*');
+                    ->leftJoin('post_has_categories', 'posts.id', '=', 'post_has_categories.post_id')
+                    ->leftJoin('post_has_medias', 'posts.id', '=', 'post_has_medias.post_id')
+                    ->leftJoin('media', 'post_has_medias.media_id', '=', 'media.id')
+                    ->select('posts.*', 'post_details.title', 'post_details.content', 'media.file_name');
 
         // search by meta
         if (isset($params['meta'])) {
@@ -226,15 +245,48 @@ class Post
             $query = $query->where('posts.status', $params['status']);
         }
 
+        // exclude some ids
+        if (isset($params['exclude'])) {
+            $query = $query->whereNotIn('posts.id', $params['exclude']);
+        }
+
         // $query->select('posts.*');
 
-        return $query->get();
+        return $query;
 
     }
 
     public function findById($id)
     {
         return PostModel::find($id);
+    }
+
+    public function getFeaturedPostParams($lang)
+    {
+        $params = [
+            'status' => 'publish',
+            'post_type_id' => 2,
+            'lang' => $lang,
+            'meta' => [
+                'key' => 'featured',
+                'operator' => '=',
+                'value' => '1'
+            ]
+        ];
+
+        return $params;
+    }
+
+    public function getNewsParams($lang, $excludeIds)
+    {
+        $params = [
+            'status' => 'publish',
+            'post_type_id' => 2,
+            'lang' => $lang,
+            'exclude' => $excludeIds
+        ];
+
+        return $params;
     }
 
 }
