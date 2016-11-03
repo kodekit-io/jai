@@ -1,10 +1,10 @@
 @extends('layouts.default')
 @section('content')
 
-<header class="ja-header-about">
+<header class="ja-header-page uk-cover-background" style="background-image: url({!! asset('frontend/img/about-header.jpg') !!})">
     <div class="uk-container uk-container-center">
         <div class="ja-overlay"></div>
-        <div class="ja-about-intro">
+        <div class="ja-header-intro">
             <h1 class="ja-title ja-title__orange uk-margin-large-bottom white-text uk-text-center">About Us</h1>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
         </div>

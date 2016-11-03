@@ -151,4 +151,14 @@ class FrontEndController extends Controller
         return view('frontend.attractions-experience');
     }
 
+    public function education($lang)
+    {
+        return view('frontend.education');
+    }
+
+    public function conservation($lang)
+    {
+        return view('frontend.conservation');
+    }
+
 }

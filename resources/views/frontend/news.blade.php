@@ -56,7 +56,7 @@
                         <li>{!! Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $newsContent->publish_date)->format('F j, Y') !!}</li>
                         <li>POSTED BY:  <span class="ja-bold">ADMIN</span></li>
                     </ul>
-                    <img  class="uk-responsive-width" src="{!! url('images/newsSlider/' . $newsContent->file_name) !!}" />
+                    <a class="ja-news__img" href="{!! lang_url('news-details') !!}" title="Learn More"><img  class="uk-responsive-width" src="{!! url('images/newsSlider/' . $newsContent->file_name) !!}" /></a>
                     <p>{!! $newsContent->content !!}</p>
                     <a href="{!! lang_url('news-details') !!}" class="uk-button ja-button amber darken-1 light-blue-text text-darken-4" title="Learn More">Learn More <i class="uk-margin-small-left uk-icon-chevron-right"></i></a>
                 </div>

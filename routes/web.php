@@ -176,6 +176,8 @@ Route::group(['middleware' => ['lang']], function () {
     Route::get('/{lang?}/news-blog/page/{page?}', 'FrontEndController@news');
     Route::get('/{lang?}/news-details', 'FrontEndController@newsDetail');
     Route::get('/{lang?}/attractions-experience', 'FrontEndController@attractions');
+    Route::get('/{lang?}/education', 'FrontEndController@education');
+    Route::get('/{lang?}/conservation', 'FrontEndController@conservation');
     Route::get('/{lang?}/location-map', 'FrontEndController@locationMap');
     Route::get('/{lang?}', 'FrontEndController@homePage');
     Route::get('/{lang?}/news/{slug}', 'FrontEndController@homePage');
