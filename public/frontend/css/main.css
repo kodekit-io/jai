@@ -769,7 +769,9 @@ h2.ja-slide-title {
 .ja-button.hover:hover {
 	background: #ffb300 !important;
 }
-
+.ja-button:hover {
+	color: #fff;
+}
 /**/
 .ja-header-news {
 	height: 160px;
