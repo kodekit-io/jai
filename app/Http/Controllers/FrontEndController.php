@@ -109,4 +109,12 @@ class FrontEndController extends Controller
     {
         return view('frontend.location-map');
     }
+    public function news($lang)
+    {
+        return view('frontend.news');
+    }
+    public function newsdetails($lang)
+    {
+        return view('frontend.news-details');
+    }
 }

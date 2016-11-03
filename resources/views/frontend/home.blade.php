@@ -154,5 +154,6 @@
 @endsection
 
 @section('page-level-scripts')
-    <script src="{!! asset('frontend/js/components/sticky.min.js') !!}"></script>
+	<script src="{!! asset('frontend/js/components/slideshow.min.js') !!}"></script>
+	<script src="{!! asset('frontend/js/components/sticky.min.js') !!}"></script>
 @endsection
