@@ -130,10 +130,10 @@ class FrontEndController extends Controller
         $newsParams = $this->postService->getNewsParams($lang, $featuredIds);
         $news = $this->postService->getPostsWithDetail($newsParams);
 
-        
+
         $newsPaginated = $news->paginate(5);
-        $newsPaginated->setCurrentPage($page, 0);
-        var_dump($newsPaginated); exit;
+//        $newsPaginated->setCurrentPage($page, 0);
+//        var_dump($newsPaginated); exit;
         $newsPaginated->setPath('news-blog');
         $data['featuredPosts'] = $featuredPosts->get();
         $data['news'] =$newsPaginated;
