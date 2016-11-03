@@ -145,4 +145,10 @@ class FrontEndController extends Controller
     {
         return view('frontend.news-details');
     }
+
+    public function attractions($lang)
+    {
+        return view('frontend.attractions-experience');
+    }
+
 }
