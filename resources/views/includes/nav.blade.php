@@ -14,7 +14,7 @@
 			</ul>
 		</li>
 		<li><a href="{!! lang_url('attractions-experience') !!}" title="Attractions and Experience" class="ja-icon-attract">Attractions and Experience</a></li>
-		<li><a href="{!! lang_url('education-conservation') !!}" title="Education and Conservation" class="ja-icon-edu">Education and Conservation</a></li>
+		<li><a href="{!! lang_url('conservation') !!}" title="Education and Conservation" class="ja-icon-edu">Education and Conservation</a></li>
 		<li><a href="{!! lang_url('news-blog') !!}" title="News" class="ja-icon-news">News</a></li>
 	</ul>
 	<form class="ja-searchform cyan darken-1 ja-mobhide uk-hidden-small">

@@ -26,7 +26,7 @@
             <li>
                 <ul class="uk-list uk-list-space">
                     <li class="ja-post uk-margin-bottom">
-        				<div class="uk-grid uk-grid-match" data-uk-grid-match>
+        				<div class="uk-grid uk-grid-collapse uk-grid-match" data-uk-grid-match>
         					<div class="uk-width-medium-2-5">
                                 <div class="ja-post--imgcover uk-cover-background" style="background-image:url({!! asset('frontend/img/img-news-01.jpg') !!})"></div>
         					</div>
@@ -39,7 +39,7 @@
         				</div>
         			</li>
                     <li class="ja-post uk-margin-bottom">
-        				<div class="uk-grid uk-grid-match" data-uk-grid-match>
+        				<div class="uk-grid uk-grid-collapse uk-grid-match" data-uk-grid-match>
         					<div class="uk-width-medium-2-5">
                                 <div class="ja-post--imgcover uk-cover-background" style="background-image:url({!! asset('frontend/img/img-news-02.jpg') !!})"></div>
         					</div>
@@ -52,7 +52,7 @@
         				</div>
         			</li>
                     <li class="ja-post uk-margin-bottom">
-        				<div class="uk-grid uk-grid-match" data-uk-grid-match>
+        				<div class="uk-grid uk-grid-collapse uk-grid-match" data-uk-grid-match>
         					<div class="uk-width-medium-2-5">
                                 <div class="ja-post--imgcover uk-cover-background" style="background-image:url({!! asset('frontend/img/img-news-03.jpg') !!})"></div>
         					</div>
@@ -65,7 +65,7 @@
         				</div>
         			</li>
                     <li class="ja-post uk-margin-bottom">
-        				<div class="uk-grid uk-grid-match" data-uk-grid-match>
+        				<div class="uk-grid uk-grid-collapse uk-grid-match" data-uk-grid-match>
         					<div class="uk-width-medium-2-5">
                                 <div class="ja-post--imgcover uk-cover-background" style="background-image:url({!! asset('frontend/img/img-news-04.jpg') !!})"></div>
         					</div>
@@ -78,7 +78,7 @@
         				</div>
         			</li>
                     <li class="ja-post uk-margin-bottom">
-        				<div class="uk-grid uk-grid-match" data-uk-grid-match>
+        				<div class="uk-grid uk-grid-collapse uk-grid-match" data-uk-grid-match>
         					<div class="uk-width-medium-2-5">
                                 <div class="ja-post--imgcover uk-cover-background" style="background-image:url({!! asset('frontend/img/img-sample-01.jpg') !!})"></div>
         					</div>
@@ -96,7 +96,7 @@
             <li>
                 <ul class="uk-list uk-list-space">
                     <li class="ja-post uk-margin-bottom">
-        				<div class="uk-grid uk-grid-match" data-uk-grid-match>
+        				<div class="uk-grid uk-grid-collapse uk-grid-match" data-uk-grid-match>
         					<div class="uk-width-medium-2-5">
                                 <div class="ja-post--imgcover uk-cover-background" style="background-image:url({!! asset('frontend/img/img-news-05.jpg') !!})"></div>
         					</div>
@@ -109,7 +109,7 @@
         				</div>
         			</li>
                     <li class="ja-post uk-margin-bottom">
-        				<div class="uk-grid uk-grid-match" data-uk-grid-match>
+        				<div class="uk-grid uk-grid-collapse uk-grid-match" data-uk-grid-match>
         					<div class="uk-width-medium-2-5">
                                 <div class="ja-post--imgcover uk-cover-background" style="background-image:url({!! asset('frontend/img/img-news-04.jpg') !!})"></div>
         					</div>
@@ -122,7 +122,7 @@
         				</div>
         			</li>
                     <li class="ja-post uk-margin-bottom">
-        				<div class="uk-grid uk-grid-match" data-uk-grid-match>
+        				<div class="uk-grid uk-grid-collapse uk-grid-match" data-uk-grid-match>
         					<div class="uk-width-medium-2-5">
                                 <div class="ja-post--imgcover uk-cover-background" style="background-image:url({!! asset('frontend/img/img-news-03.jpg') !!})"></div>
         					</div>
@@ -135,7 +135,7 @@
         				</div>
         			</li>
                     <li class="ja-post uk-margin-bottom">
-        				<div class="uk-grid uk-grid-match" data-uk-grid-match>
+        				<div class="uk-grid uk-grid-collapse uk-grid-match" data-uk-grid-match>
         					<div class="uk-width-medium-2-5">
                                 <div class="ja-post--imgcover uk-cover-background" style="background-image:url({!! asset('frontend/img/img-news-02.jpg') !!})"></div>
         					</div>
@@ -148,7 +148,7 @@
         				</div>
         			</li>
                     <li class="ja-post uk-margin-bottom">
-        				<div class="uk-grid uk-grid-match" data-uk-grid-match>
+        				<div class="uk-grid uk-grid-collapse uk-grid-match" data-uk-grid-match>
         					<div class="uk-width-medium-2-5">
                                 <div class="ja-post--imgcover uk-cover-background" style="background-image:url({!! asset('frontend/img/img-sample-02.jpg') !!})"></div>
         					</div>
@@ -166,7 +166,7 @@
             <li>
                 <ul class="uk-list uk-list-space">
                     <li class="ja-post uk-margin-bottom">
-        				<div class="uk-grid uk-grid-match" data-uk-grid-match>
+        				<div class="uk-grid uk-grid-collapse uk-grid-match" data-uk-grid-match>
         					<div class="uk-width-medium-2-5">
                                 <div class="ja-post--imgcover uk-cover-background" style="background-image:url({!! asset('frontend/img/img-news-03.jpg') !!})"></div>
         					</div>
@@ -179,7 +179,7 @@
         				</div>
         			</li>
                     <li class="ja-post uk-margin-bottom">
-        				<div class="uk-grid uk-grid-match" data-uk-grid-match>
+        				<div class="uk-grid uk-grid-collapse uk-grid-match" data-uk-grid-match>
         					<div class="uk-width-medium-2-5">
                                 <div class="ja-post--imgcover uk-cover-background" style="background-image:url({!! asset('frontend/img/img-news-01.jpg') !!})"></div>
         					</div>
@@ -192,7 +192,7 @@
         				</div>
         			</li>
                     <li class="ja-post uk-margin-bottom">
-        				<div class="uk-grid uk-grid-match" data-uk-grid-match>
+        				<div class="uk-grid uk-grid-collapse uk-grid-match" data-uk-grid-match>
         					<div class="uk-width-medium-2-5">
                                 <div class="ja-post--imgcover uk-cover-background" style="background-image:url({!! asset('frontend/img/img-news-05.jpg') !!})"></div>
         					</div>
@@ -205,7 +205,7 @@
         				</div>
         			</li>
                     <li class="ja-post uk-margin-bottom">
-        				<div class="uk-grid uk-grid-match" data-uk-grid-match>
+        				<div class="uk-grid uk-grid-collapse uk-grid-match" data-uk-grid-match>
         					<div class="uk-width-medium-2-5">
                                 <div class="ja-post--imgcover uk-cover-background" style="background-image:url({!! asset('frontend/img/img-news-04.jpg') !!})"></div>
         					</div>
@@ -218,7 +218,7 @@
         				</div>
         			</li>
                     <li class="ja-post uk-margin-bottom">
-        				<div class="uk-grid uk-grid-match" data-uk-grid-match>
+        				<div class="uk-grid uk-grid-collapse uk-grid-match" data-uk-grid-match>
         					<div class="uk-width-medium-2-5">
                                 <div class="ja-post--imgcover uk-cover-background" style="background-image:url({!! asset('frontend/img/img-sample-01.jpg') !!})"></div>
         					</div>
