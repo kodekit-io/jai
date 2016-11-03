@@ -10,7 +10,7 @@
 		<?php //Whatson Posts ?>
 		<ul class="uk-list uk-list-space">
 			@foreach($whatsOnContents as $whatsOn)
-			<li class="ja-post">
+			<li class="ja-post uk-margin-bottom">
 				<div class="uk-grid">
 					<div class="uk-width-medium-1-2">
                         <?php $imagePath = getMediaByPostId($whatsOn->id)->file_name; ?>
