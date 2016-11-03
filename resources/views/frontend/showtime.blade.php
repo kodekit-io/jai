@@ -20,7 +20,7 @@
             <li><a class="uk-icon-stop amber-text" data-uk-toggle="{target:'.ja-showtime__part'}"></a> PARTICULAR</li>
             <li><a class="uk-icon-stop pink-text" data-uk-toggle="{target:'.ja-showtime__limited'}"></a> LIMITED</li>
         </ul>
-        <ul class="uk-list uk-list-line uk-width-1-1 ja-showtime-list white uk-margin-large-bottom">
+        <ul class="uk-list uk-list-line uk-width-1-1 ja-showtime-list uk-margin-large-bottom">
             <li class="ja-showtime__all">
                 <div class="uk-grid">
                     <div class="uk-width-1-5 uk-text-right grey-text">

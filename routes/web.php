@@ -172,8 +172,9 @@ Route::group(['middleware' => ['lang']], function () {
     Route::get('/{lang?}/special-packages', 'FrontEndController@specialPackages');
     Route::get('/{lang?}/show-time', 'FrontEndController@showTime');
     Route::get('/{lang?}/location', 'FrontEndController@location');
+    Route::get('/{lang?}/news-blog', 'FrontEndController@news');
+    Route::get('/{lang?}/news-details', 'FrontEndController@newsDetail');
     Route::get('/{lang?}/location-map', 'FrontEndController@locationMap');
-
-    Route::get('/{lang?}', 'FrontEndController@homepage');
-    Route::get('/{lang?}/news/{slug}', 'FrontEndController@homepage');
+    Route::get('/{lang?}', 'FrontEndController@homePage');
+    Route::get('/{lang?}/news/{slug}', 'FrontEndController@homePage');
 });

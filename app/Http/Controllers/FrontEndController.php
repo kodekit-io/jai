@@ -37,7 +37,7 @@ class FrontEndController extends Controller
         $this->packageService = $packageService;
     }
 
-    public function homepage($lang)
+    public function homePage($lang)
     {
         $params = [
             'status' => 'publish',
@@ -118,5 +118,15 @@ class FrontEndController extends Controller
     public function locationMap($lang)
     {
         return view('frontend.location-map');
+    }
+
+    public function news($lang)
+    {
+        return view('frontend.news');
+    }
+    
+    public function newsDetail($lang)
+    {
+        return view('frontend.news-details');
     }
 }

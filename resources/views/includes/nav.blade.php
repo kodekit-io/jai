@@ -6,7 +6,7 @@
 		<li><a href="{!! lang_url('about-us') !!}" title="About Us" class="ja-icon-about">About Us</a></li>
 		<li>
 			<a href="#!" title="Plan Your Visit" class="ja-icon-loc" data-uk-toggle={target:'#subvisit'}>Plan Your Visit</a>
-			<ul id="subvisit" class="uk-list uk-hidden ja-nav-sub uk-margin-small-top">
+			<ul id="subvisit" class="uk-list uk-hidden ja-nav-sub">
 				<li><a href="{!! lang_url('ticket-hours') !!}" title="Ticket &amp; Hours">Ticket &amp; Hours</a></li>
 				<li><a href="{!! lang_url('special-packages') !!}" title="Special Packages">Special Packages</a></li>
 				<li><a href="{!! lang_url('show-time') !!}" title="Show Time">Show Time</a></li>
