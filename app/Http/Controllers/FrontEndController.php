@@ -57,7 +57,7 @@ class FrontEndController extends Controller
         ];
         $sliders = $this->sliderService->getSliderWithItems($sliderParams);
 
-        $data['whatsOnContents'] = $post;
+        $data['whatsOnContents'] = $post->get();
         $data['sliders'] = $sliders;
 
         return view('frontend.home', $data);
@@ -120,11 +120,27 @@ class FrontEndController extends Controller
         return view('frontend.location-map');
     }
 
-    public function news($lang)
+    public function news($lang, $page = 1)
     {
-        return view('frontend.news');
+        $featuredParams = $this->postService->getFeaturedPostParams($lang);
+        $featuredPosts = $this->postService->getPostsWithDetail($featuredParams);
+
+        $featuredIds = $featuredPosts->pluck('id');
+
+        $newsParams = $this->postService->getNewsParams($lang, $featuredIds);
+        $news = $this->postService->getPostsWithDetail($newsParams);
+
+        
+        $newsPaginated = $news->paginate(5);
+        $newsPaginated->setCurrentPage($page, 0);
+        var_dump($newsPaginated); exit;
+        $newsPaginated->setPath('news-blog');
+        $data['featuredPosts'] = $featuredPosts->get();
+        $data['news'] =$newsPaginated;
+
+        return view('frontend.news', $data);
     }
-    
+
     public function newsDetail($lang)
     {
         return view('frontend.news-details');

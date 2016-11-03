@@ -173,6 +173,7 @@ Route::group(['middleware' => ['lang']], function () {
     Route::get('/{lang?}/show-time', 'FrontEndController@showTime');
     Route::get('/{lang?}/location', 'FrontEndController@location');
     Route::get('/{lang?}/news-blog', 'FrontEndController@news');
+    Route::get('/{lang?}/news-blog/page/{page?}', 'FrontEndController@news');
     Route::get('/{lang?}/news-details', 'FrontEndController@newsDetail');
     Route::get('/{lang?}/location-map', 'FrontEndController@locationMap');
     Route::get('/{lang?}', 'FrontEndController@homePage');

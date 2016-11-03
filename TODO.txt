@@ -49,7 +49,9 @@
 
 -- Add general submission checkbox on package form to grouping the package (DONE)
 
--- Add Images on package
+-- Add Images on package (DONE)
+
+-- Add featured checkbox on news
 
 -- Create show with following fields :
 -- show
