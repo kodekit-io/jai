@@ -13,6 +13,11 @@ class Package extends Model
         return $this->belongsToMany(Coupons::class, 'package_has_coupons');
     }
 
+    public function medias()
+    {
+        return $this->belongsToMany(Media::class, 'package_has_medias');
+    }
+
     public function details()
     {
         return $this->hasMany(PackageDetail::class);

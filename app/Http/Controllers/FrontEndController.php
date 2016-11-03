@@ -88,24 +88,34 @@ class FrontEndController extends Controller
         return view('frontend.ticket-hours', $data);
     }
 
-    public function bookticket($lang)
+    public function bookTicket($lang)
     {
         return view('frontend.book-detail');
     }
 
-    public function specialpackages($lang)
+    public function specialPackages($lang)
     {
-        return view('frontend.special-packages');
+        $params = [
+            'package_type_id' => 2,
+            'lang' => $lang
+        ];
+        $packages = $this->packageService->getPackages($params);
+        $data['packages'] = $packages;
+
+        return view('frontend.special-packages', $data);
     }
-    public function showtime($lang)
+
+    public function showTime($lang)
     {
         return view('frontend.showtime');
     }
+
     public function location($lang)
     {
         return view('frontend.location');
     }
-    public function locationmap($lang)
+
+    public function locationMap($lang)
     {
         return view('frontend.location-map');
     }

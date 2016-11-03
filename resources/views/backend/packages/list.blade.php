@@ -34,7 +34,6 @@
                             <tr>
                                 <th>Id</th>
                                 <th>Title</th>
-                                <th>Description</th>
                                 <th>Normal Price</th>
                                 <th>Weekend Price</th>
                                 <th>Holiday Price</th>
@@ -67,7 +66,6 @@
                 columns: [
                     { data: 'id', name: 'id', "width": "50px" },
                     { data: 'title', name: 'title', "width": "250px" },
-                    { data: 'content', name: 'content' },
                     { data: 'normal_price', name: 'normal_price' },
                     { data: 'weekend_price', name: 'weekend_price' },
                     { data: 'holiday_price', name: 'holiday_price' },

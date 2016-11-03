@@ -6,6 +6,7 @@ namespace App\Service;
 use App\Models\Package as PackageModel;
 use App\Service\Traits\DatatableParameters;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class Package
 {
@@ -61,10 +62,10 @@ class Package
             ]);
         }
 
-//        $mediaId = isset($inputs['featured_image_id']) ? $inputs['featured_image_id'] : '' ;
-//        if ($mediaId != '') {
-//            $package->medias()->attach($mediaId, ['media_type' => 'featured']);
-//        }
+        $mediaId = isset($inputs['featured_image_id']) ? $inputs['featured_image_id'] : '' ;
+        if ($mediaId != '') {
+            $package->medias()->attach($mediaId);
+        }
     }
 
     public function getServiceById($id)
@@ -93,6 +94,11 @@ class Package
                 'slug' => getSlugOnModelByTitle($title, 'PackageDetail'),
                 'content' => $content,
             ]);
+        }
+
+        $mediaId = isset($inputs['featured_image_id']) ? $inputs['featured_image_id'] : '' ;
+        if ($mediaId != '') {
+            $package->medias()->sync([$mediaId]);
         }
     }
 
@@ -124,6 +130,31 @@ class Package
 
     public function getPackages(array $params)
     {
-        return '';
+        $packageField = 'package_type_id';
+        $createdByField = 'created_by';
+
+        $query = DB::table('packages')
+            ->join('package_details', 'packages.id', '=', 'package_details.package_id')
+            ->leftJoin('package_has_medias', 'packages.id', '=', 'package_has_medias.package_id')
+            ->leftJoin('media', 'package_has_medias.media_id', '=', 'media.id')
+            ->select('packages.*', 'package_details.title', 'package_details.content', 'package_details.slug', 'media.file_name');
+
+        // search by package type
+        if ( isset($params[$packageField]) ) {
+            $query->where($packageField, $params[$packageField]);
+        }
+
+        // search by creator
+        if ( isset($params[$createdByField]) ) {
+            $query->where($createdByField, $params[$createdByField]);
+        }
+
+        // search by lang
+        if (isset($params['lang'])) {
+            $lang = $params['lang'];
+            $query = $query->where('package_details.lang', $lang);
+        }
+
+        return $query->get();
     }
 }

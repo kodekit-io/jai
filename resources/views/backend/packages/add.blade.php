@@ -47,7 +47,7 @@
 
                                             @include('backend.packages.package-box')
 
-                                            {{--@include('backend.partials.featured-box')--}}
+                                            @include('backend.partials.featured-box')
 
                                         </div>
                                         {{--end of sidebar--}}
@@ -115,6 +115,24 @@
             });
 
             $('#package-type').change();
+
+            //ajax demo:
+            var $modal = $('#ajax-modal');
+            $('#ajax-demo').on('click', function(){
+                // create the backdrop and wait for next modal to be triggered
+                $('body').modalmanager('loading');
+                var el = $(this);
+
+                $modal.load(el.attr('data-url'), '', function(){
+                    $modal.modal();
+                });
+            });
+
+            $('#remove-featured').click(function() {
+                $('#featured_image_id').val('');
+                $('#featured_image').attr('src', '');
+                $(this).hide();
+            });
         });
 
     </script>

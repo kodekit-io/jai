@@ -18,6 +18,11 @@ class Media extends Model
         return $this->belongsToMany(Post::class, 'post_has_medias');
     }
 
+    public function packages()
+    {
+        return $this->belongsToMany(Package::class, 'package_has_medias');
+    }
+
     public function mediaSizes()
     {
         return $this->hasMany(MediaSize::class);
