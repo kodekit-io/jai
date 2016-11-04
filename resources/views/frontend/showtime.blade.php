@@ -15,13 +15,14 @@
     <div class="uk-container uk-container-center">
         <h1 class="ja-title ja-title__blue light-blue-text text-darken-4 uk-margin-large-top uk-margin-large-bottom">Show Time</h1>
         <p>There's always something new and exciting happening at the Jakarta Aquarium. With an ever-evolving lineup of shows, Jakarta Aquarium always has something interesting to see. Join us for a show led by our educational and entertaining interpreters to learn more about the animals that live at the Jakarta Aquarium.</p>
-        <ul class="uk-subnav uk-margin-top">
-            <li><a class="uk-icon-stop light-green-text" data-uk-toggle="{target:'.ja-showtime__all'}"></a> ALL DAYS</li>
-            <li><a class="uk-icon-stop amber-text" data-uk-toggle="{target:'.ja-showtime__part'}"></a> PARTICULAR</li>
-            <li><a class="uk-icon-stop pink-text" data-uk-toggle="{target:'.ja-showtime__limited'}"></a> LIMITED</li>
+        <ul id="filtershow" class="uk-subnav uk-margin-top">
+            <li><a href="" data-uk-filter="" data-uk-tooltip title="All Show">SHOW TIMES:</a></li>
+            <li><a href="" data-uk-filter="ja-showtime__all"><i class="uk-icon-stop light-green-text"></i> ALL DAYS</a></li>
+            <li><a href="" data-uk-filter="ja-showtime__part"><i class="uk-icon-stop amber-text"></i> PARTICULAR</a></li>
+            <li><a href="" data-uk-filter="ja-showtime__limited"><i class="uk-icon-stop pink-text"></i> LIMITED</a></li>
         </ul>
-        <ul class="uk-list uk-list-line uk-width-1-1 ja-showtime-list uk-margin-large-bottom">
-            <li class="ja-showtime__all">
+        <ul class="uk-list uk-list-line uk-width-1-1 ja-showtime-list uk-margin-large-bottom" data-uk-grid="{controls: '#filtershow'}">
+            <li class="ja-showtime__all" data-uk-filter="ja-showtime__all">
                 <div class="uk-grid">
                     <div class="uk-width-1-5 uk-text-right grey-text">
                         <h4 class="grey-text">ALL DAYS</h4>
@@ -33,7 +34,7 @@
                     </div>
                 </div>
             </li>
-            <li class="ja-showtime__part">
+            <li class="ja-showtime__part" data-uk-filter="ja-showtime__part">
                 <div class="uk-grid">
                     <div class="uk-width-1-5 uk-text-right grey-text">
                         <h4 class="grey-text">MONDAYS</h4>
@@ -45,7 +46,7 @@
                     </div>
                 </div>
             </li>
-            <li class="ja-showtime__limited">
+            <li class="ja-showtime__limited" data-uk-filter="ja-showtime__limited">
                 <div class="uk-grid">
                     <div class="uk-width-1-5 uk-text-right grey-text">
                         <h4 class="pink-text uk-margin-remove">LIMITED</h4>
@@ -58,7 +59,7 @@
                     </div>
                 </div>
             </li>
-            <li class="ja-showtime__all">
+            <li class="ja-showtime__all" data-uk-filter="ja-showtime__all">
                 <div class="uk-grid">
                     <div class="uk-width-1-5 uk-text-right grey-text">
                         <h4 class="grey-text">ALL DAYS</h4>
@@ -70,7 +71,7 @@
                     </div>
                 </div>
             </li>
-            <li class="ja-showtime__part">
+            <li class="ja-showtime__part" data-uk-filter="ja-showtime__part">
                 <div class="uk-grid">
                     <div class="uk-width-1-5 uk-text-right grey-text">
                         <h4 class="grey-text">WEDNESDAY</h4>
@@ -82,7 +83,7 @@
                     </div>
                 </div>
             </li>
-            <li class="ja-showtime__limited">
+            <li class="ja-showtime__limited" data-uk-filter="ja-showtime__limited">
                 <div class="uk-grid">
                     <div class="uk-width-1-5 uk-text-right grey-text">
                         <h4 class="pink-text uk-margin-remove">LIMITED</h4>
@@ -99,4 +100,8 @@
     </div>
 </main>
 
+@endsection
+
+@section('page-level-scripts')
+    <script src="{!! asset('frontend/js/components/grid.min.js') !!}"></script>
 @endsection

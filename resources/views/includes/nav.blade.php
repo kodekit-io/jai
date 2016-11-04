@@ -17,7 +17,7 @@
 		<li><a href="{!! lang_url('conservation') !!}" title="Education and Conservation" class="ja-icon-edu">Education and Conservation</a></li>
 		<li><a href="{!! lang_url('news-blog') !!}" title="News" class="ja-icon-news">News</a></li>
 	</ul>
-	<form class="ja-searchform cyan darken-1 ja-mobhide uk-hidden-small">
+	<form class="ja-searchform cyan darken-1 ja-mobhide uk-hidden-small" action="{!! lang_url('search-result') !!}">
 		<input type="text" placeholder="Search">
 		<input type="submit">
 	</form>

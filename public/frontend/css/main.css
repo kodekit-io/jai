@@ -774,6 +774,7 @@ h2.ja-slide-title {
 	line-height: 27px;
 	min-height: 27px;
 }
+.uk-active.ja-button,
 .uk-active .ja-button {
 	background: #00bcd4 !important;
 }
@@ -966,6 +967,62 @@ ul.ja-boxes .ja-bg_cyan {
 	left: 0;
 	z-index: 10 !important;
 }
+.ja-career {
+	background: #f4f7f8;
+}
+.ja-career-title {
+	padding: 1em 1em .7em;
+}
+.ja-career .uk-accordion-title {
+	padding: 1em 1em .7em;
+	border-bottom: 1px solid #ddd;
+	position: relative;
+	cursor: pointer;
+}
+.ja-career .uk-accordion-content {
+	padding: 1em;
+	border-bottom: 1px solid #ddd;
+}
+.ja-career .uk-accordion-title:after {
+	content: "\f0d7";
+	position: absolute;
+	right: .5em;
+	top: .5em;
+	font-family: "FontAwesome";
+	font-size: 1.5em;
+	color: #bbb;
+}
+.ja-career .uk-accordion-title.uk-active:after {
+	content: "\f0d8";
+	position: absolute;
+	right: .5em;
+	top: .5em;
+	font-family: "FontAwesome";
+	font-size: 1.5em;
+	color: #bbb;
+}
+.ja-career-footer {
+	height: 500px;
+}
+.ja-media li {
+	padding-top: 1em !important;
+	padding-bottom: 1em !important;
+	width: 100%;
+}
+.ja-media li:first-child {
+	padding-top: 0 !important;
+}
+.ja-media li:last-child {
+	padding-bottom: 0 !important;
+}
+.ja-media a:hover {
+	color: #f5b31c !important;
+	text-decoration: none;
+}
+.ja-border-top {
+	border-top: 4px solid #00acc1;
+}
+
 .ja-404 {
 	height: calc(100vh - 100px);
 	position: relative;
