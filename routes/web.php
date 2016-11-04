@@ -162,9 +162,6 @@ Route::group(['prefix' => $backendUrl, 'middleware' => ['auth']], function () {
 });
 
 
-
-
-
 Route::group(['middleware' => ['lang']], function () {
     Route::get('/{lang?}/about-us', 'FrontEndController@aboutUs');
     Route::get('/{lang?}/ticket-hours', 'FrontEndController@ticket');
@@ -179,6 +176,11 @@ Route::group(['middleware' => ['lang']], function () {
     Route::get('/{lang?}/education', 'FrontEndController@education');
     Route::get('/{lang?}/conservation', 'FrontEndController@conservation');
     Route::get('/{lang?}/location-map', 'FrontEndController@locationMap');
+    Route::get('/{lang?}/career', 'FrontEndController@career');
+    Route::get('/{lang?}/media-room', 'FrontEndController@mediaRoom');
+    Route::get('/{lang?}/privacy-policy', 'FrontEndController@privacy');
+    Route::get('/{lang?}/term-use', 'FrontEndController@term');
+
     Route::get('/{lang?}', 'FrontEndController@homePage');
     Route::get('/{lang?}/news/{slug}', 'FrontEndController@homePage');
 });

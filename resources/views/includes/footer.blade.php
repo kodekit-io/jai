@@ -3,11 +3,11 @@
 				<div class="uk-grid uk-grid-divider">
 					<div class="uk-width-medium-2-3">
 						<ul class="uk-subnav uk-subnav-line uk-hidden-small uk-margin-bottom-remove">
-							<li><a href="#!" title="">Aquarium Map</a></li>
-							<li><a href="#!" title="">Career with Us</a></li>
-							<li><a href="#!" title="">Media Room</a></li>
-							<li><a href="#!" title="">Privacy Policy</a></li>
-							<li><a href="#!" title="">Term of Use</a></li>
+							<li><a href="{!! lang_url('location-map') !!}" title="">Aquarium Map</a></li>
+							<li><a href="{!! lang_url('career') !!}" title="">Career with Us</a></li>
+							<li><a href="{!! lang_url('media-room') !!}" title="">Media Room</a></li>
+							<li><a href="{!! lang_url('privacy-policy') !!}" title="">Privacy Policy</a></li>
+							<li><a href="{!! lang_url('term-use') !!}" title="">Term of Use</a></li>
 						</ul>
 						<p class="uk-margin-remove">Copyright &copy; <?php echo date('Y'); ?> Jakarta Aquarium Indonesia. All Rights Reserved.</p>
 					</div>

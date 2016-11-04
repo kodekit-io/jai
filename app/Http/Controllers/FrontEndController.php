@@ -161,4 +161,23 @@ class FrontEndController extends Controller
         return view('frontend.conservation');
     }
 
+    public function career($lang)
+    {
+        return view('frontend.career');
+    }
+
+    public function mediaRoom($lang)
+    {
+        return view('frontend.media-room');
+    }
+
+    public function privacy($lang)
+    {
+        return view('frontend.privacy-policy');
+    }
+
+    public function term($lang)
+    {
+        return view('frontend.term-use');
+    }
 }
