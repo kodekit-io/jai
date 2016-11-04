@@ -32,7 +32,7 @@
                     <li>
                         <img  class="uk-responsive-width" src="{!! url('images/newsSlider/' . $featuredPost->file_name) !!}" />
                         <div class="uk-overlay-panel ja-featured-overlay">
-                            <h2><a href="#!">{!! $featuredPost->title !!}</a></h2>
+                            <h2 class="uk-text-uppercase"><a href="#!">{!! $featuredPost->title !!}</a></h2>
                             <a href="{!! lang_url('news-details') !!}" class="uk-button ja-button-outline" title="Learn More">Learn More <i class="uk-margin-small-left uk-icon-chevron-right"></i></a>
                             <p>{!! $featuredPost->content !!}</p>
                         </div>
@@ -51,7 +51,7 @@
             </div>
             @foreach($news as $newsContent)
                 <div class="ja-news__content uk-margin-bottom">
-                    <h2><a href="#!" class="grey-text text-darken-3">{!! $newsContent->title !!}</a></h2>
+                    <h2 class="uk-text-uppercase"><a href="#!" class="grey-text text-darken-3">{!! $newsContent->title !!}</a></h2>
                     <ul class="uk-subnav uk-subnav-line">
                         <li>{!! Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $newsContent->publish_date)->format('F j, Y') !!}</li>
                         <li>POSTED BY:  <span class="ja-bold">ADMIN</span></li>

@@ -413,6 +413,17 @@ h2.ja-slide-title {
 	left: 50%;
 	margin-left: -115px;
 }
+.ja-title__curly:after {
+	content: "";
+	height: 7px;
+	width: 100%;
+	display: inline-block;
+	position: absolute;
+	top: 100%;
+	left: 0;
+	background: url(../img/line-title-curly.png) no-repeat left center;
+}
+
 #whatson {
 	background: #e4eaed url(../img/bg-section-whats.png) repeat-x center bottom;
 }
@@ -781,7 +792,8 @@ h2.ja-slide-title {
 .ja-news, .ja-page {
 	background: #e4eaed url(../img/bg-section.png) no-repeat bottom center;
 }
-.ja-news__content {
+.ja-news__content,
+.ja-page__content {
 	padding: 2em;
 	background: #f4f7f8;
 }
