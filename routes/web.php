@@ -178,8 +178,10 @@ Route::group(['middleware' => ['lang']], function () {
     Route::get('/{lang?}/location-map', 'FrontEndController@locationMap');
     Route::get('/{lang?}/career', 'FrontEndController@career');
     Route::get('/{lang?}/media-room', 'FrontEndController@mediaRoom');
+    Route::get('/{lang?}/media-room-details', 'FrontEndController@mediaRoomDetails');
     Route::get('/{lang?}/privacy-policy', 'FrontEndController@privacy');
     Route::get('/{lang?}/term-use', 'FrontEndController@term');
+    Route::get('/{lang?}/search-result', 'FrontEndController@search');
 
     Route::get('/{lang?}', 'FrontEndController@homePage');
     Route::get('/{lang?}/news/{slug}', 'FrontEndController@homePage');

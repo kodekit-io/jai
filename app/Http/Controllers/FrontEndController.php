@@ -171,6 +171,11 @@ class FrontEndController extends Controller
         return view('frontend.media-room');
     }
 
+    public function mediaRoomDetails($lang)
+    {
+        return view('frontend.media-room-details');
+    }
+
     public function privacy($lang)
     {
         return view('frontend.privacy-policy');
@@ -179,5 +184,10 @@ class FrontEndController extends Controller
     public function term($lang)
     {
         return view('frontend.term-use');
+    }
+
+    public function search($lang)
+    {
+        return view('frontend.search-result');
     }
 }
