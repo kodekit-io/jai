@@ -1137,6 +1137,12 @@ ul.ja-boxes .ja-bg_cyan {
 	.ja-side-banner li {
 		border-top: 1px solid rgba(255, 255, 255, 0.25);
 	}
+	.ja-side-banner.uk-visible-small {
+		display: none !important;
+	}
+	.ja-home-section .ja-side-banner.uk-visible-small {
+		display: block !important;
+	}
 
 	#whatson ul {
 		margin-bottom: 0 !important;
@@ -1183,11 +1189,13 @@ ul.ja-boxes .ja-bg_cyan {
 	.ja-header-page {
 		position: relative;
 	}
-	.ja-header-intro {
-		margin-top: 25%;
+	.ja-header-intro, .ja-showtime-intro {
+		position: absolute;
+		bottom: 0;
 		padding: 10px;
 		font-size: 1em;
 		height: auto;
+		width: calc(100% - 70px);
 	}
 	.ja-header-page .ja-side-banner {
 		position: absolute !important;
@@ -1195,6 +1203,15 @@ ul.ja-boxes .ja-bg_cyan {
 		top: auto;
 		margin-bottom: 0;
 	}
-	header.ja-header-ticket {
+	header.ja-header-ticket,
+	header.ja-header-news {
+		height: 100px !important;
+	}
+	.uk-accordion-title {
+		font-size: 1em;
+	}
+	.ja-title,
+	.ja-news__content h2 {
+		font-size: 1.5em;
 	}
 }
