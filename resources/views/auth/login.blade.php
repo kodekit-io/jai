@@ -41,6 +41,7 @@
 <!-- BEGIN LOGO -->
 <div class="logo">
     {{--<a href="index.html"><img src="{!! asset('assets/pages/img/logo-big.png') !!}" alt="" /> </a>--}}
+    <a href="{!! lang_url('') !!}" title="Jakarta Aquarium"><img src="{!! asset('frontend/img/logo.png') !!}" alt="Jakarta Aquarium Indonesia" /></a>
 </div>
 <!-- END LOGO -->
 <!-- BEGIN LOGIN -->
@@ -68,6 +69,7 @@
             </label>
             <a href="{{ url('/password/reset') }}"  class="forget-password">Forgot Password?</a>
         </div>
+        <div class="copyright"> {!! date('Y') !!} &copy; Jakarta Aquarium Indonesia. </div>
     </form>
     <!-- END LOGIN FORM -->
     {{--<!-- BEGIN FORGOT PASSWORD FORM -->--}}
@@ -83,7 +85,7 @@
     {{--</form>--}}
     {{--<!-- END FORGOT PASSWORD FORM -->--}}
 </div>
-<div class="copyright"> {!! date('Y') !!} &copy; Jakarta Aquarium Indonesia. </div>
+
 <!--[if lt IE 9]>
 <script src="{!! asset('assets/global/plugins/respond.min.js') !!}"></script>
 <script src="{!! asset('assets/global/plugins/excanvas.min.js') !!}"></script>
