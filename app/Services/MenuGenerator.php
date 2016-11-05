@@ -26,7 +26,46 @@ class MenuGenerator
         $this->menuService = $menuService;
     }
 
-    function generateMenu(Request $request)
+    public function generateMenu(Request $request, $type = 'backend')
+    {
+        $function = $type .'Menu';
+        return $this->$function($request);
+    }
+
+    public function frontendMenu(Request $request)
+    {
+        $menus = $this->getFrontEndMenus();
+
+        $menu = LavaryMenu::make('FrontendMenu', function($theMenu) use ($menus, $request) {
+            foreach ($menus as $menu) {
+                // get the 1st level
+                if ($menu->parent_id == '0') {
+                    $theMenu->add($menu->display)
+                        ->nickname($menu->name)
+                        ->data(['icon_class' => $menu->icon_class, 'menu_link' => $menu->link]);
+                } else {
+                    $parentMenu = $this->menuService->getMenuById($menu->parent_id);
+                    $theMenu->get($parentMenu->name)
+                        ->add($menu->display)
+                        ->nickname($menu->name)
+                        ->data(['icon_class' => $menu->icon_class, 'menu_link' => $menu->link]);
+                }
+
+                $currentLang = session()->get('lang');
+
+                $langLink = $currentLang . '/' . $menu->link;
+                if ($request->is($langLink)) {
+                    // $theMenu->item($menu->name)->data('activated', 'active');
+                    $theMenu->item($menu->name)->active();
+                    $this->activateItem($theMenu, $menu->id);
+                }
+            }
+        });
+
+        return $menu;
+    }
+
+    function backendMenu(Request $request)
     {
         $user = Auth::user();
         $menus = $this->getMenuByUserId($user->id);
@@ -75,5 +114,10 @@ class MenuGenerator
             $this->activateItem($item, $menu->parent_id, false);
         }
 
+    }
+
+    private function getFrontEndMenus()
+    {
+        return $this->menuService->getFrontEndMenus();
     }
 }

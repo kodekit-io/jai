@@ -29,9 +29,9 @@ class MenuGenerator
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, $type)
     {
-        $menu = $this->generator->generateMenu($request);
+        $menu = $this->generator->generateMenu($request, $type);
         View::share('menu', $menu);
 
         $user = \Auth::user();

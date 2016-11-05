@@ -18,7 +18,7 @@ $backendUrl = config('misc.backend.url');
 
 Auth::routes();
 
-Route::group(['prefix' => $backendUrl, 'middleware' => ['menu','auth','authorize']], function () {
+Route::group(['prefix' => $backendUrl, 'middleware' => ['menu:backend','auth','authorize']], function () {
     Route::get('/', function ()    {
         return view('backend.dashboard');
     })->name('dashboard');
@@ -162,7 +162,7 @@ Route::group(['prefix' => $backendUrl, 'middleware' => ['auth']], function () {
 });
 
 
-Route::group(['middleware' => ['lang']], function () {
+Route::group(['middleware' => ['lang', 'menu:frontend']], function () {
     Route::get('/{lang?}/about-us', 'FrontEndController@aboutUs');
     Route::get('/{lang?}/ticket-hours', 'FrontEndController@ticket');
     Route::get('/{lang?}/book-detail', 'FrontEndController@bookTicket');

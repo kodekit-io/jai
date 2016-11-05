@@ -51,7 +51,9 @@
 
 -- Add Images on package (DONE)
 
--- Add featured checkbox on news
+-- Add featured checkbox on news (DONE)
+
+-- Highlight the active menu
 
 -- Create show with following fields :
 -- show
