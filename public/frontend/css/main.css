@@ -1029,7 +1029,17 @@ ul.ja-boxes .ja-bg_cyan {
 	background: #e4eaed;
 	z-index: 0;
 }
+
 @media (max-width: 768px) {
+	header {
+		margin-top: 110px;
+		padding-top: 0 !important;
+		margin-bottom: 0 !important;
+		height: calc(100vh - 110px) !important;
+	}
+	.uk-container.uk-container-center {
+		padding: 0 25px;
+	}
 	.ja-nav {
 		position: fixed;
 		z-index: 100;
@@ -1052,7 +1062,7 @@ ul.ja-boxes .ja-bg_cyan {
 	}
 	.ja-mobmenu {
 		display: block;
-		padding: 5px 0;
+		padding: 5px 0 2px;
 		width: 100%;
 		color: #fff;
 		text-align: center;
@@ -1084,19 +1094,22 @@ ul.ja-boxes .ja-bg_cyan {
 		border-top: 1px solid rgba(255, 255, 255, 0.5);
 		margin: 0;
 	}
+	.ja-slideshow {
+		height: 100%;
+	}
 	.ja-slideshow .uk-slideshow li .uk-container {
-		margin-top: 70vh;
+		margin-top: 50vh;
 		padding: 0;
 	}
 	.ja-slideshow-nav {
-		top: 65vh;
+		top: 45vh;
 	}
 	h2.ja-slide-title {
 		font-size: 1.2em;
 		line-height: 1.2em;
 	}
 	.ja-lang {
-		margin: 9em 0 1em;
+		margin: 2em 0 1em;
 	}
 	.ja-info {
 		background: none;
@@ -1109,10 +1122,11 @@ ul.ja-boxes .ja-bg_cyan {
 		padding: 0;
 	}
 	.ja-side-banner {
-		position: relative;
+		position: relative !important;
 		right: auto;
 		top: -2em;
-		width: 100%;
+		width: 100% !important;
+		margin-top: 0;
 	}
 	.ja-side-banner a {
 		width: 100%;
@@ -1120,6 +1134,10 @@ ul.ja-boxes .ja-bg_cyan {
 		display: block;
 		text-align: center;
 	}
+	.ja-side-banner li {
+		border-top: 1px solid rgba(255, 255, 255, 0.25);
+	}
+
 	#whatson ul {
 		margin-bottom: 0 !important;
 	}
@@ -1160,5 +1178,23 @@ ul.ja-boxes .ja-bg_cyan {
 	#getapp {
 		padding: 2em 0;
 		text-align: center;
+	}
+
+	.ja-header-page {
+		position: relative;
+	}
+	.ja-header-intro {
+		margin-top: 25%;
+		padding: 10px;
+		font-size: 1em;
+		height: auto;
+	}
+	.ja-header-page .ja-side-banner {
+		position: absolute !important;
+		bottom: 0;
+		top: auto;
+		margin-bottom: 0;
+	}
+	header.ja-header-ticket {
 	}
 }
