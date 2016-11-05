@@ -29,6 +29,7 @@ class MenuService
             ->join('role_has_permissions', 'role_has_permissions.permission_id', '=', 'permissions.id')
             ->join('roles', 'roles.id', '=', 'role_has_permissions.role_id')
             ->join('user_has_roles', 'user_has_roles.role_id', '=', 'roles.id')
+            ->where('menu_type', 'backend')
             ->where('user_has_roles.user_id', '=', $userId)
             ->select('menus.*')
             ->orderBy('parent_id', 'asc')
@@ -38,9 +39,9 @@ class MenuService
         return $menus;
     }
 
-    public function getMenus()
+    public function getMenus($type = 'backend')
     {
-        return Menu::all(['id', 'display', 'link', 'order']);
+        return Menu::where('menu_type', $type)->get();
     }
 
     public function menuSelect($data, $fields, $options = [])
@@ -83,6 +84,11 @@ class MenuService
         return (new DatatableGenerator($menus))
             ->addActions($actions)
             ->generate();
+    }
+
+    public function getFrontEndMenus()
+    {
+        return $this->getMenus('frontend');
     }
 
 }
