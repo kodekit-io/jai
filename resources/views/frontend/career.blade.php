@@ -16,7 +16,7 @@
 
         <div class="ja-career uk-margin-bottom">
             <div class="cyan darken-1 ja-career-title">
-                <h4 class="uk-grid white-text">
+                <h4 class="uk-grid uk-grid-collapse white-text">
                     <div class="uk-width-1-2">JOB POSITIONS</div>
                     <div class="uk-width-1-2">DEPARTMENT</div>
                 </h4>
