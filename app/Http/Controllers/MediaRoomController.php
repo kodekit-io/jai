@@ -60,7 +60,7 @@ class MediaRoomController extends Controller
      */
     public function anyData()
     {
-        return $this->postService->datatableData($this->postType, 'attraction');
+        return $this->postService->datatableData($this->postType, $this->baseUrl);
     }
 
     /**
