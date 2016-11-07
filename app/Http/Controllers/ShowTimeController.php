@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Service\Language;
 use App\Service\ShowTime;
 use App\Service\Traits\DataMessage;
 use Illuminate\Http\Request;
@@ -17,14 +18,20 @@ class ShowTimeController extends Controller
      * @var ShowTime
      */
     private $showTimeService;
+    /**
+     * @var Language
+     */
+    private $languageService;
 
     /**
      * ShowTimeController constructor.
      * @param ShowTime $showTimeService
+     * @param Language $languageService
      */
-    public function __construct(ShowTime $showTimeService)
+    public function __construct(ShowTime $showTimeService, Language $languageService)
     {
         $this->showTimeService = $showTimeService;
+        $this->languageService = $languageService;
     }
 
     /**
@@ -54,7 +61,13 @@ class ShowTimeController extends Controller
      */
     public function create()
     {
-        return view('backend.showtimes.add');
+        $data['langs'] = $this->languageService->getAvailableLanguages();
+        $data['defaultLang'] = $this->languageService->getDefaultLanguage();
+        $data['showTimeTypeSelect'] = $this->showTimeService->showTimeSelect('show_type');
+        $data['daySelect'] = $this->showTimeService->daySelect('day');
+        $data['baseUrl'] = $this->baseUrl;
+
+        return view('backend.showtimes.add', $data);
     }
 
     /**

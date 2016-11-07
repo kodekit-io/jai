@@ -1,4 +1,4 @@
-{{--category--}}
+{{--package--}}
 <div class="col-md-12">
     <div class="portlet light bordered">
         {{--portlet title--}}
@@ -44,4 +44,4 @@
         {{--end of portlet body--}}
     </div>
 </div>
-{{--end of category--}}
+{{--end of package--}}

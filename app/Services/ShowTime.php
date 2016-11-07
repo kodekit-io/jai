@@ -5,6 +5,8 @@ namespace App\Service;
 
 use App\Models\Show;
 use App\Service\Traits\DatatableParameters;
+use Illuminate\Support\Facades\DB;
+use Form;
 
 class ShowTime
 {
@@ -12,12 +14,22 @@ class ShowTime
 
     protected $baseUrl = 'showtime';
 
+    protected $showTimeTypes = [
+        '1' => 'All Day',
+        '2' => 'Particular',
+        '3' => 'Limited'
+    ];
+
     /**
      * @return mixed
      */
     public function datatableData()
     {
-        $shows = $this->all();
+        $params = [
+            'lang' => 'en'
+        ];
+        $shows = $this->getShows($params);
+
         $actions = $this->actionParameters(['edit', 'delete']);
         return (new DatatableGenerator($shows))
             ->addActions($actions)
@@ -61,5 +73,75 @@ class ShowTime
                 'lang' => $lang
             ]);
         }
+    }
+
+    public function getShowWithDetails(array $params)
+    {
+        $query = DB::table('shows')
+            ->join('show_details', 'shows.id', '=', 'show_details.show_id')
+            ->select('shows.*', 'show_details.title', 'show_details.slug', 'show_details.content');
+
+        if (isset($params['show_type'])) {
+            $query->where('shows.show_type', $params['show_type']);
+        }
+
+        if (isset($params['created_by'])) {
+            $query->where('created_by', $params['created_by']);
+        }
+
+        if (isset($params['lang'])) {
+            $query->where('lang', $params['lang']);
+        }
+
+        return $query;
+    }
+
+    public function getShowTimeTypes()
+    {
+        return $this->showTimeTypes;
+    }
+
+    public function getShowTimeTypeById($id)
+    {
+        return $this->showTimeTypes[$id];
+    }
+
+    public function getShows($params)
+    {
+        $shows = Show::where('id', '>', 0);
+
+        if (isset($params['show_type'])) {
+            $shows = $shows->where('show_type', $params['show_type']);
+        }
+
+        if (isset($params['created_by'])) {
+            $shows = $shows->where('created_by', $params['created_by']);
+        }
+
+        return $shows->get();
+    }
+
+    public function showTimeSelect($name, $defaultValue = null)
+    {
+        $form = new FormGenerator();
+
+        $showTimes = $this->getShowTimeTypes();
+
+        $fields = [
+            'withBlank' => true
+        ];
+
+        if (!is_null($defaultValue)) {
+            $fields['selected'] = $defaultValue;
+        }
+
+        return $form->dbSelect($showTimes, $name, $fields, ['class' => 'form-control', 'id' => 'showtime']);
+    }
+
+    public function daySelect($name, $defaultValue = null)
+    {
+        $arrDay = [ '1' => 'Sunday', '2' => 'Monday', '3' => 'Tuesday', '4' => 'Wednesday', '5' => 'Thursday', '6' => 'Friday', '7' => 'Saturday' ];
+
+        return Form::select($name, $arrDay, $defaultValue, ['class' => 'form-control']);
     }
 }
