@@ -978,6 +978,10 @@ ul.ja-boxes .ja-bg_cyan {
 	border-bottom: 1px solid #ddd;
 	position: relative;
 	cursor: pointer;
+	margin: 0;
+}
+.ja-career .uk-accordion-title > *{
+	padding: 0;
 }
 .ja-career .uk-accordion-content {
 	padding: 1em;
