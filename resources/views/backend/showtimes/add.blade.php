@@ -85,6 +85,7 @@
 
     </div>
     <!-- END CONTENT -->
+
 @endsection
 
 @section('page-level-plugins')
@@ -164,3 +165,5 @@
 
     </script>
 @endsection
+
+
