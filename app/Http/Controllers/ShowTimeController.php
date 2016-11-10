@@ -99,6 +99,7 @@ class ShowTimeController extends Controller
         $data['featuredImage'] = $show->medias()->first();
         $data['baseUrl'] = $this->baseUrl;
         $data['post'] = $show;
+        $data['show'] = $show;
 
         return view('backend.showtimes.edit', $data);
     }

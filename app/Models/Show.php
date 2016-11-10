@@ -22,4 +22,9 @@ class Show extends Model
     {
         return $this->belongsToMany(Media::class, 'show_has_medias');
     }
+
+    public function metas()
+    {
+        return $this->hasMany(ShowMeta::class);
+    }
 }

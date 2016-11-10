@@ -60,6 +60,14 @@ class Package
                 'content' => $content,
                 'lang' => $lang
             ]);
+
+            $metaDesc = isset($inputs['meta_description'][$lang]) ? $inputs['meta_description'][$lang] : '';
+            if ($metaDesc != '') {
+                $package->metas()->create([
+                    'meta_key' => 'meta_description-' . $lang,
+                    'meta_value' => $metaDesc
+                ]);
+            }
         }
 
         $mediaId = isset($inputs['featured_image_id']) ? $inputs['featured_image_id'] : '' ;
@@ -94,6 +102,15 @@ class Package
                 'slug' => getSlugOnModelByTitle($title, 'PackageDetail'),
                 'content' => $content,
             ]);
+
+            $metaDesc = isset($inputs['meta_description'][$lang]) ? $inputs['meta_description'][$lang] : '';
+            if ($metaDesc != '') {
+                $package->metas()->where('meta_key', 'meta_description-' . $lang)->delete();
+                $package->metas()->create([
+                    'meta_key' => 'meta_description-' . $lang,
+                    'meta_value' => $metaDesc
+                ]);
+            }
         }
 
         $mediaId = isset($inputs['featured_image_id']) ? $inputs['featured_image_id'] : '' ;

@@ -81,6 +81,14 @@ class ShowTime
                 'content' => $content,
                 'lang' => $lang
             ]);
+
+            $metaDesc = isset($inputs['meta_description'][$lang]) ? $inputs['meta_description'][$lang] : '';
+            if ($metaDesc != '') {
+                $show->metas()->create([
+                    'meta_key' => 'meta_description-' . $lang,
+                    'meta_value' => $metaDesc
+                ]);
+            }
         }
 
         $mediaId = isset($inputs['featured_image_id']) ? $inputs['featured_image_id'] : '' ;
@@ -115,6 +123,15 @@ class ShowTime
                 'slug' => getSlugOnModelByTitle($title, 'ShowDetail'),
                 'content' => $content,
             ]);
+
+            $metaDesc = isset($inputs['meta_description'][$lang]) ? $inputs['meta_description'][$lang] : '';
+            if ($metaDesc != '') {
+                $show->metas()->where('meta_key', 'meta_description-' . $lang)->delete();
+                $show->metas()->create([
+                    'meta_key' => 'meta_description-' . $lang,
+                    'meta_value' => $metaDesc
+                ]);
+            }
         }
 
         $mediaId = isset($inputs['featured_image_id']) ? $inputs['featured_image_id'] : '' ;
