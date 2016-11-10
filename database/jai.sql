@@ -32,11 +32,9 @@ insert  into `categories`(`id`,`post_type_id`,`name`,`slug`,`description`,`creat
 insert  into `categories`(`id`,`post_type_id`,`name`,`slug`,`description`,`created_at`,`updated_at`,`parent_id`) values (2,1,'What\'s On','whats-on',NULL,'2016-10-22 09:59:54','2016-10-22 09:59:54',0);
 insert  into `categories`(`id`,`post_type_id`,`name`,`slug`,`description`,`created_at`,`updated_at`,`parent_id`) values (3,2,'Test Category','test-category',NULL,NULL,NULL,0);
 insert  into `categories`(`id`,`post_type_id`,`name`,`slug`,`description`,`created_at`,`updated_at`,`parent_id`) values (15,1,'Coba','coba',NULL,'2016-10-22 10:46:19','2016-10-22 10:46:19',0);
-insert  into `categories`(`id`,`post_type_id`,`name`,`slug`,`description`,`created_at`,`updated_at`,`parent_id`) values (16,3,'Attraction','attraction',NULL,NULL,NULL,0);
 insert  into `categories`(`id`,`post_type_id`,`name`,`slug`,`description`,`created_at`,`updated_at`,`parent_id`) values (17,3,'Experience','experience',NULL,NULL,NULL,0);
-insert  into `categories`(`id`,`post_type_id`,`name`,`slug`,`description`,`created_at`,`updated_at`,`parent_id`) values (18,3,'Shows','shows',NULL,NULL,NULL,0);
-insert  into `categories`(`id`,`post_type_id`,`name`,`slug`,`description`,`created_at`,`updated_at`,`parent_id`) values (19,3,'Dining','dining',NULL,NULL,NULL,0);
-insert  into `categories`(`id`,`post_type_id`,`name`,`slug`,`description`,`created_at`,`updated_at`,`parent_id`) values (20,3,'Shopping','shopping',NULL,NULL,NULL,0);
+insert  into `categories`(`id`,`post_type_id`,`name`,`slug`,`description`,`created_at`,`updated_at`,`parent_id`) values (18,3,'Shows & Attraction','shows-attraction',NULL,NULL,NULL,0);
+insert  into `categories`(`id`,`post_type_id`,`name`,`slug`,`description`,`created_at`,`updated_at`,`parent_id`) values (19,3,'Dining & Shopping','dining-shopping',NULL,NULL,NULL,0);
 insert  into `categories`(`id`,`post_type_id`,`name`,`slug`,`description`,`created_at`,`updated_at`,`parent_id`) values (21,4,'Animals','animals',NULL,NULL,NULL,0);
 insert  into `categories`(`id`,`post_type_id`,`name`,`slug`,`description`,`created_at`,`updated_at`,`parent_id`) values (22,4,'Conservation','conservation',NULL,NULL,NULL,0);
 insert  into `categories`(`id`,`post_type_id`,`name`,`slug`,`description`,`created_at`,`updated_at`,`parent_id`) values (23,4,'Event','event',NULL,NULL,NULL,0);
@@ -93,7 +91,7 @@ CREATE TABLE `media` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `media` */
 
@@ -110,6 +108,7 @@ insert  into `media`(`id`,`title`,`file_name`,`description`,`created_at`,`update
 insert  into `media`(`id`,`title`,`file_name`,`description`,`created_at`,`updated_at`) values (53,'about-header.jpg','about-header.jpg',NULL,'2016-11-02 19:32:31','2016-11-02 19:32:31');
 insert  into `media`(`id`,`title`,`file_name`,`description`,`created_at`,`updated_at`) values (54,'bg-section-sight.png','bg-section-sight.png',NULL,'2016-11-02 19:32:36','2016-11-02 19:32:36');
 insert  into `media`(`id`,`title`,`file_name`,`description`,`created_at`,`updated_at`) values (55,'img-sample-01.jpg','img-sample-01.jpg',NULL,'2016-11-02 19:32:48','2016-11-02 19:32:48');
+insert  into `media`(`id`,`title`,`file_name`,`description`,`created_at`,`updated_at`) values (56,'about-header.jpg','about-header.jpg',NULL,'2016-11-05 15:42:15','2016-11-05 15:42:15');
 
 /*Table structure for table `media_sizes` */
 
@@ -176,8 +175,8 @@ insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon
 insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`,`menu_type`) values (32,'media-room.list','Media Room List','jai-backend/media-room',31,'media-room',NULL,NULL,NULL,NULL,100,'backend');
 insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`,`menu_type`) values (33,'media-room.add','Add Media Room','jai-backend/media-room/add',31,'media-room.add',NULL,NULL,NULL,NULL,200,'backend');
 insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`,`menu_type`) values (34,'showtime','Show Time','javascript:;',0,'showtime','fa fa-clock-o',NULL,NULL,NULL,700,'backend');
-insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`,`menu_type`) values (35,'showtime.list','Show Time List','jai-backend/show-time',34,'showtime',NULL,NULL,NULL,NULL,100,'backend');
-insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`,`menu_type`) values (36,'showtime.add','Add Show Time','jai-backend/show-time/add',34,'showtime.add',NULL,NULL,NULL,NULL,200,'backend');
+insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`,`menu_type`) values (35,'showtime.list','Show Time List','jai-backend/showtime',34,'showtime',NULL,NULL,NULL,NULL,100,'backend');
+insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`,`menu_type`) values (36,'showtime.add','Add Show Time','jai-backend/showtime/add',34,'showtime.add',NULL,NULL,NULL,NULL,200,'backend');
 insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`,`menu_type`) values (37,'f.about-us','About Us','about-us',0,'frontend','ja-icon-about',NULL,NULL,NULL,100,'frontend');
 insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`,`menu_type`) values (38,'f.plan','Plan Your Visit','javascript:;',0,'frontend','ja-icon-loc',NULL,NULL,NULL,200,'frontend');
 insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`,`menu_type`) values (39,'f.ticket','Ticket &amp; Hours','ticket-hours',38,'frontend',NULL,NULL,NULL,NULL,100,'frontend');
@@ -224,6 +223,7 @@ insert  into `migrations`(`migration`,`batch`) values ('2016_10_30_112407_add_is
 insert  into `migrations`(`migration`,`batch`) values ('2016_10_30_120042_create_shows_table',23);
 insert  into `migrations`(`migration`,`batch`) values ('2016_11_01_201700_create_package_has_medias',24);
 insert  into `migrations`(`migration`,`batch`) values ('2016_11_05_125956_add_menu_type_on_menus',25);
+insert  into `migrations`(`migration`,`batch`) values ('2016_11_05_152539_alter_show_tables',26);
 
 /*Table structure for table `package_details` */
 
@@ -512,6 +512,8 @@ insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (6
 insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (68,'id','Minus cupiditate in sapiente ad.','minus-cupiditate-in-sapiente-ad','And when I got up and saying, \'Thank you, sir, for your walk!\" \"Coming in a hurry. \'No, I\'ll look first,\' she said, without even waiting to put it right; \'not that it was out of sight. Alice remained looking thoughtfully at the mushroom for a great.');
 insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (69,'en','Enim fugit officia repudiandae autem quo.','enim-fugit-officia-repudiandae-autem-quo','King. \'Nothing whatever,\' said Alice. \'You are,\' said the King, with an M, such as mouse-traps, and the pool a little scream of laughter. \'Oh, hush!\' the Rabbit coming to look through into the loveliest garden you ever see such a nice soft thing to.');
 insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (69,'id','Enim fugit officia repudiandae autem quo.','enim-fugit-officia-repudiandae-autem-quo','King. \'Nothing whatever,\' said Alice. \'You are,\' said the King, with an M, such as mouse-traps, and the pool a little scream of laughter. \'Oh, hush!\' the Rabbit coming to look through into the loveliest garden you ever see such a nice soft thing to.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (70,'en','test','test','test');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (70,'id','TEst','test-2','test');
 
 /*Table structure for table `post_has_categories` */
 
@@ -529,6 +531,8 @@ CREATE TABLE `post_has_categories` (
 insert  into `post_has_categories`(`post_id`,`category_id`) values (17,2);
 insert  into `post_has_categories`(`post_id`,`category_id`) values (18,2);
 insert  into `post_has_categories`(`post_id`,`category_id`) values (19,3);
+insert  into `post_has_categories`(`post_id`,`category_id`) values (70,21);
+insert  into `post_has_categories`(`post_id`,`category_id`) values (70,22);
 
 /*Table structure for table `post_has_medias` */
 
@@ -626,13 +630,14 @@ CREATE TABLE `post_types` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `post_types` */
 
 insert  into `post_types`(`id`,`name`,`slug`,`created_at`,`updated_at`) values (1,'Post','post','2016-10-13 18:32:05','2016-10-13 18:32:05');
 insert  into `post_types`(`id`,`name`,`slug`,`created_at`,`updated_at`) values (2,'News','news','2016-10-26 18:44:06','2016-10-26 18:44:06');
 insert  into `post_types`(`id`,`name`,`slug`,`created_at`,`updated_at`) values (3,'Attraction and Experience','attraction-and-experience','2016-10-13 20:13:53','2016-10-13 20:13:53');
+insert  into `post_types`(`id`,`name`,`slug`,`created_at`,`updated_at`) values (4,'Media Room','media-room','2016-11-05 14:22:54','2016-11-05 14:22:57');
 
 /*Table structure for table `posts` */
 
@@ -645,7 +650,7 @@ CREATE TABLE `posts` (
   `publish_date` timestamp NULL DEFAULT NULL,
   `created_by` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `posts` */
 
@@ -702,6 +707,7 @@ insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`pub
 insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (67,2,'2016-11-03 13:19:49','2016-11-03 13:19:49','PUBLISH','2016-11-03 00:00:00',1);
 insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (68,2,'2016-11-03 13:19:49','2016-11-03 13:19:49','PUBLISH','2016-11-03 00:00:00',1);
 insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (69,2,'2016-11-03 13:19:49','2016-11-03 13:19:49','PUBLISH','2016-11-03 00:00:00',1);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (70,4,'2016-11-05 14:21:55','2016-11-05 14:24:09','PUBLISH','2016-11-05 14:21:00',3);
 
 /*Table structure for table `role_has_permissions` */
 
@@ -828,14 +834,15 @@ CREATE TABLE `sessions` (
 
 /*Data for the table `sessions` */
 
-insert  into `sessions`(`id`,`user_id`,`ip_address`,`user_agent`,`payload`,`last_activity`) values ('oaCW3r8u1d8WxfHcbv7L6lWXkO6mT6mKAyt3ocqT',3,'192.168.10.1','Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36','YTo2OntzOjY6Il90b2tlbiI7czo0MDoieEl3MGFLNlhoZ3hmNG5mTFg0aXZ3OEYxSW13Zm9pd3RIb0g1aHRvViI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjY6Imh0dHA6Ly9qYWkuZGV2L2phaS1iYWNrZW5kIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo0OiJsYW5nIjtzOjI6ImlkIjtzOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTozO3M6OToiX3NmMl9tZXRhIjthOjM6e3M6MToidSI7aToxNDc4MzI0ODY1O3M6MToiYyI7aToxNDc4MzIyMTQwO3M6MToibCI7czoxOiIwIjt9fQ==',1478324866);
-insert  into `sessions`(`id`,`user_id`,`ip_address`,`user_agent`,`payload`,`last_activity`) values ('sQpvvsUgl7Wl3ASXKuoO2S1bsNYwFPw6si9UdHhN',3,'192.168.10.1','Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36','YTo3OntzOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjY6Il90b2tlbiI7czo0MDoiWmZDQ2QxNHd1SlNtdUkzaXAwMUxUN0gyWWpCM0ZtSGptUE9yRFVMWiI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjI3OiJodHRwOi8vamFpLmRldi9lbi9zaG93LXRpbWUiO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTozO3M6NDoibGFuZyI7czoyOiJlbiI7czo5OiJfc2YyX21ldGEiO2E6Mzp7czoxOiJ1IjtpOjE0NzgzMjkxNzI7czoxOiJjIjtpOjE0NzgzMjIxNDA7czoxOiJsIjtzOjE6IjAiO319',1478329172);
+insert  into `sessions`(`id`,`user_id`,`ip_address`,`user_agent`,`payload`,`last_activity`) values ('jkpYaNlUawSfKsR0Uw7j26FYM21j9UkgcJ7uOOsn',3,'192.168.10.1','Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36','YTo3OntzOjY6Il90b2tlbiI7czo0MDoicURFR25MN1Z4MjRJem80VlllWVVPNGgyMXJoZHVXeGdNTUhjWEJ6UyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly9qYWkuZGV2L2phaS1iYWNrZW5kL3Nob3d0aW1lIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo0OiJsYW5nIjtzOjI6ImlkIjtzOjM6InVybCI7YTowOnt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MztzOjk6Il9zZjJfbWV0YSI7YTozOntzOjE6InUiO2k6MTQ3ODQ5Mjc3OTtzOjE6ImMiO2k6MTQ3ODQ5MjAyNTtzOjE6ImwiO3M6MToiMCI7fX0=',1478492780);
 
 /*Table structure for table `show_details` */
 
 CREATE TABLE `show_details` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `show_id` int(10) unsigned NOT NULL,
+  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `lang` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'en',
   `content` text COLLATE utf8_unicode_ci,
   PRIMARY KEY (`id`),
@@ -844,22 +851,6 @@ CREATE TABLE `show_details` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `show_details` */
-
-/*Table structure for table `show_times` */
-
-CREATE TABLE `show_times` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `show_id` int(10) unsigned NOT NULL,
-  `start_date` date DEFAULT NULL,
-  `end_date` date DEFAULT NULL,
-  `start_time` time NOT NULL,
-  `end_time` time DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `show_times_show_id_foreign` (`show_id`),
-  CONSTRAINT `show_times_show_id_foreign` FOREIGN KEY (`show_id`) REFERENCES `shows` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-/*Data for the table `show_times` */
 
 /*Table structure for table `show_types` */
 
@@ -879,6 +870,11 @@ CREATE TABLE `shows` (
   `created_by` int(11) NOT NULL DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
+  `day` int(11) DEFAULT NULL,
+  `start_date` date DEFAULT NULL,
+  `end_date` date DEFAULT NULL,
+  `start_time` time DEFAULT NULL,
+  `end_time` time DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 

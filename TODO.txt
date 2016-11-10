@@ -53,24 +53,24 @@
 
 -- Add featured checkbox on news (DONE)
 
--- Highlight the active menu
+-- Highlight the active menu (DONE)
 
--- Create show with following fields :
+-- Create show with following fields : (DONE)
 -- show
 ---- id
 ---- type (regular showtime,particular showtime,limited showtime)
+---- day
+---- start_date
+---- end_date
+---- start_time
+---- end_time
 ---- created_by
 -- show_details
 ---- show_id
 ---- lang
 ---- title
 ---- description
--- show_schedules
----- show_id
----- start_date
----- end_date
----- start_time
----- end_time
+
 
 -- Create career management with following fields:
 ---- Position

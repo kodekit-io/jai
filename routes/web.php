@@ -128,6 +128,14 @@ Route::group(['prefix' => $backendUrl, 'middleware' => ['menu:backend','auth','a
     Route::get('/holiday/{id}/edit', 'HolidayController@edit')->name('holiday');
     Route::post('/holiday/{id}/update', 'HolidayController@update')->name('holiday');
     Route::get('/holiday/{id}/delete', 'HolidayController@destroy')->name('holiday');
+
+    // Showtime
+    Route::get('/showtime', 'ShowTimeController@index')->name('showtime');
+    Route::get('/showtime/add', 'ShowTimeController@create')->name('showtime');
+    Route::post('/showtime/save', 'ShowTimeController@store')->name('showtime');
+    Route::get('/showtime/{id}/edit', 'ShowTimeController@edit')->name('showtime');
+    Route::post('/showtime/{id}/update', 'ShowTimeController@update')->name('showtime');
+    Route::get('/showtime/{id}/delete', 'ShowTimeController@destroy')->name('showtime');
 });
 
 
@@ -136,6 +144,7 @@ Route::group(['prefix' => $backendUrl, 'middleware' => ['auth']], function () {
     Route::get('/user-data', 'UserController@anyData')->name('user.data');
     Route::get('/role-data', 'RoleController@anyData')->name('role.data');
     Route::get('/holiday-data', 'HolidayController@anyData')->name('holiday.data');
+    Route::get('/showtime-data', 'ShowTimeController@anyData')->name('showtime.data');
     Route::get('/permission-data', 'PermissionController@anyData')->name('permission.data');
     Route::get('/post-category-data/{postTypeId}', 'CategoryController@anyData')->name('post-category.data');
     Route::get('/post-data', 'PostController@anyData')->name('post.data');

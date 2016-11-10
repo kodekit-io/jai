@@ -2,44 +2,35 @@
 
 namespace App\Http\Controllers;
 
-use App\Service\Category;
 use App\Service\Language;
-use App\Service\Post;
+use App\Service\ShowTime;
 use App\Service\Traits\DataMessage;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-class MediaRoomController extends Controller
+class ShowTimeController extends Controller
 {
     use DataMessage;
 
-    protected $baseUrl = 'media-room';
-    protected $postType = 4;
+    protected $baseUrl = 'showtime';
     /**
-     * @var Post
+     * @var ShowTime
      */
-    private $postService;
-    /**
-     * @var Category
-     */
-    private $categoryService;
+    private $showTimeService;
     /**
      * @var Language
      */
     private $languageService;
 
     /**
-     * MediaRoomController constructor.
-     * @param Post $postService
-     * @param Category $categoryService
+     * ShowTimeController constructor.
+     * @param ShowTime $showTimeService
      * @param Language $languageService
      */
-    public function __construct(Post $postService, Category $categoryService, Language $languageService)
+    public function __construct(ShowTime $showTimeService, Language $languageService)
     {
-        $this->postService = $postService;
-        $this->categoryService = $categoryService;
+        $this->showTimeService = $showTimeService;
         $this->languageService = $languageService;
     }
 
@@ -50,7 +41,7 @@ class MediaRoomController extends Controller
      */
     public function index()
     {
-        return view('backend.media-rooms.list');
+        return view('backend.showtimes.list');
     }
 
     /**
@@ -60,7 +51,7 @@ class MediaRoomController extends Controller
      */
     public function anyData()
     {
-        return $this->postService->datatableData($this->postType, $this->baseUrl);
+        return $this->showTimeService->datatableData();
     }
 
     /**
@@ -70,13 +61,13 @@ class MediaRoomController extends Controller
      */
     public function create()
     {
-        $data['categoryCheckboxes'] = $this->categoryService->categoryCheckbox('categories[]', $this->postType);
-        $data['currentDateTime'] = Carbon::now()->format('d-F-Y - H:i');
         $data['langs'] = $this->languageService->getAvailableLanguages();
         $data['defaultLang'] = $this->languageService->getDefaultLanguage();
+        $data['showTimeTypeSelect'] = $this->showTimeService->showTimeSelect('show_type');
+        $data['daySelect'] = $this->showTimeService->daySelect('day');
         $data['baseUrl'] = $this->baseUrl;
 
-        return view('backend.media-rooms.add', $data);
+        return view('backend.showtimes.add', $data);
     }
 
     /**
@@ -87,7 +78,7 @@ class MediaRoomController extends Controller
      */
     public function store(Request $request)
     {
-        $this->postService->store($this->postType, $request->except(['_token']));
+        $this->showTimeService->store($request->except(['_token']));
 
         return backendRedirect($this->baseUrl)->with($this->getMessage('store'));
     }
@@ -100,18 +91,16 @@ class MediaRoomController extends Controller
      */
     public function edit($id)
     {
-        $post = $this->postService->findById($id);
-        $data['post'] = $post;
+        $show = $this->showTimeService->getShowById($id);
         $data['langs'] = $this->languageService->getAvailableLanguages();
         $data['defaultLang'] = $this->languageService->getDefaultLanguage();
-        $selectedCategories = $post->categories->pluck('id')->all();
-        $data['categoryCheckboxes'] = $this->categoryService->categoryCheckbox('categories[]', $this->postType, $selectedCategories);
-        $data['publishDate'] = Carbon::createFromFormat('Y-m-d H:i:s', $post->publish_date)->format('d-F-Y - H:i');
-        $data['featuredImage'] = $post->medias()->where('media_type', 'featured')->first();
-        $data['whatsOn'] = $post->metas()->where('meta_key', 'whats_on')->where('meta_value', 1)->count();
+        $data['showTimeTypeSelect'] = $this->showTimeService->showTimeSelect('show_type', $show->show_type);
+        $data['daySelect'] = $this->showTimeService->daySelect('day', $show->day);
+        $data['featuredImage'] = $show->medias()->first();
         $data['baseUrl'] = $this->baseUrl;
+        $data['post'] = $show;
 
-        return view('backend.media-rooms.edit', $data);
+        return view('backend.showtimes.edit', $data);
     }
 
     /**
@@ -123,7 +112,7 @@ class MediaRoomController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->postService->update($id, $request->except(['_token']));
+        $this->showTimeService->update($id, $request->except(['_token']));
 
         return backendRedirect($this->baseUrl)->with($this->getMessage('update'));
     }
@@ -136,7 +125,7 @@ class MediaRoomController extends Controller
      */
     public function destroy($id)
     {
-        $this->postService->destroy($id);
+        $this->showTimeService->destroy($id);
 
         return backendRedirect($this->baseUrl)->with($this->getMessage('delete'));
     }

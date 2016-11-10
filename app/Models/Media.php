@@ -23,6 +23,11 @@ class Media extends Model
         return $this->belongsToMany(Package::class, 'package_has_medias');
     }
 
+    public function shows()
+    {
+        return $this->belongsToMany(Show::class, 'show_has_medias');
+    }
+
     public function mediaSizes()
     {
         return $this->hasMany(MediaSize::class);

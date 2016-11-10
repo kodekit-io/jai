@@ -34,4 +34,15 @@ trait DataMessage {
     {
         return ['data-not-found' => 'Data not found, please try again.'];
     }
+
+    // just alias
+    protected function destroyMessage()
+    {
+        return $this->deleteMessage();
+    }
+
+    protected function saveMessage()
+    {
+        return $this->storeMessage();
+    }
 }
