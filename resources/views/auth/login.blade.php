@@ -38,14 +38,17 @@
 <!-- END HEAD -->
 
 <body class=" login">
-<!-- BEGIN LOGO -->
-<div class="logo">
-    {{--<a href="index.html"><img src="{!! asset('assets/pages/img/logo-big.png') !!}" alt="" /> </a>--}}
-    <a href="{!! lang_url('') !!}" title="Jakarta Aquarium"><img src="{!! asset('assets/pages/img/logo.png') !!}" alt="Jakarta Aquarium Indonesia" /></a>
-</div>
-<!-- END LOGO -->
+
+<div class="ja-overlay"></div>
+
 <!-- BEGIN LOGIN -->
 <div class="content">
+    <!-- BEGIN LOGO -->
+    <div class="logo">
+        {{--<a href="index.html"><img src="{!! asset('assets/pages/img/logo-big.png') !!}" alt="" /> </a>--}}
+        <a href="{!! lang_url('') !!}" title="Jakarta Aquarium"><img src="{!! asset('frontend/img/logo.png') !!}" alt="Jakarta Aquarium Indonesia" /></a>
+    </div>
+    <!-- END LOGO -->
     <!-- BEGIN LOGIN FORM -->
     <form class="login-form" action="{{ url('/login') }}" method="post">
         {{ csrf_field() }}
