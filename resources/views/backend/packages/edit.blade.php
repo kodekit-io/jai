@@ -81,9 +81,8 @@
     <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-
             tinymce.init({
-                selector:'textarea',
+                selector:'.tinytextarea',
                 plugins: [ 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
                     'searchreplace wordcount visualblocks visualchars code fullscreen',
                     'insertdatetime media nonbreaking save table contextmenu directionality',

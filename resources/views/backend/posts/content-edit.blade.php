@@ -2,12 +2,18 @@
     @foreach($langs as $lang)
         <?php
             $detail = $post->details()->where('lang', $lang['code']);
+            $meta = $post->metas()->where('meta_key', 'meta_description-'.$lang['code']);
             $title = '';
             $content = '';
+            $metaDesc = '';
             if ($detail->count() > 0) {
                 $detail = $detail->first();
                 $title = $detail->title;
                 $content = $detail->content;
+            }
+            if ($meta->count() > 0) {
+                $meta = $meta->first();
+                $metaDesc = $meta->meta_value;
             }
         ?>
         <div class="tab-pane @if($lang['code'] == $defaultLang) active @endif" id="{!! $lang['code'] !!}">
@@ -24,11 +30,15 @@
             </div>
             <div class="form-group @if ($errors->has('content')) has-error @endif">
                 <label>Content</label>
-                <textarea name="content[{!! $lang['code'] !!}]" id="content"
+                <textarea name="content[{!! $lang['code'] !!}]" id="content" class="tinytextarea"
                           placeholder="Content ({!! $lang['title'] !!})">{!! ( old('content['.$lang['code'].']') != '' ? old('content['.$lang['code'].']') : $content ) !!}</textarea>
                 @if ($errors->has('content'))
                     <span class="help-block">{!! $errors->first('content') !!}</span>
                 @endif
+            </div>
+            <div class="form-group">
+                <label>Meta Description</label>
+                <textarea name="meta_description[{!! $lang['code'] !!}]" class="form-control">{!! ( old('meta_description['.$lang['code'].']') != '' ? old('meta_description['.$lang['code'].']') : $metaDesc ) !!}</textarea>
             </div>
         </div>
     @endforeach

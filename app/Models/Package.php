@@ -22,4 +22,9 @@ class Package extends Model
     {
         return $this->hasMany(PackageDetail::class);
     }
+
+    public function metas()
+    {
+        return $this->hasMany(PackageMeta::class);
+    }
 }

@@ -72,6 +72,14 @@ class Post
                 'content' => $content,
                 'lang' => $lang
             ]);
+
+            $metaDesc = isset($inputs['meta_description'][$lang]) ? $inputs['meta_description'][$lang] : '';
+            if ($metaDesc != '') {
+                $post->metas()->create([
+                    'meta_key' => 'meta_description-' . $lang,
+                    'meta_value' => $metaDesc
+                ]);
+            }
         }
 
         if ($whatsOn) {
@@ -113,6 +121,15 @@ class Post
                 'slug' => getSlugOnModelByTitle($title, 'PostDetail'),
                 'content' => $content,
             ]);
+
+            $metaDesc = isset($inputs['meta_description'][$lang]) ? $inputs['meta_description'][$lang] : '';
+            if ($metaDesc != '') {
+                $post->metas()->where('meta_key', 'meta_description-' . $lang)->delete();
+                $post->metas()->create([
+                    'meta_key' => 'meta_description-' . $lang,
+                    'meta_value' => $metaDesc
+                ]);
+            }
         }
 
         $categories = isset($inputs['categories']) ? $inputs['categories'] : [];

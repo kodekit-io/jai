@@ -14,11 +14,15 @@
         </div>
         <div class="form-group @if ($errors->has('content')) has-error @endif">
             <label>Content</label>
-            <textarea name="content[{!! $lang['code'] !!}]" id="content"
+            <textarea name="content[{!! $lang['code'] !!}]" id="content" class="tinytextarea"
                       placeholder="Content ({!! $lang['title'] !!})">{!! old('title['.$lang['code'].']') !!}</textarea>
             @if ($errors->has('content'))
                 <span class="help-block">{!! $errors->first('content') !!}</span>
             @endif
+        </div>
+        <div class="form-group">
+            <label>Meta Description</label>
+            <textarea name="meta_description[{!! $lang['code'] !!}]" class="form-control"></textarea>
         </div>
     </div>
     @endforeach
