@@ -1,7 +1,9 @@
 @extends('backend.layouts.app')
 
-@section('page-level-styles')
-    <link href="{!! asset('/assets/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css') !!}" rel="stylesheet" type="text/css" />
+    @section('page-level-styles')
+    <link href="{!! asset('assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css') !!}" rel="stylesheet" type="text/css" />
+    <link href="{!! asset('assets/global/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css') !!}" rel="stylesheet" type="text/css" />
+    <link href="{!! asset('assets/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css') !!}" rel="stylesheet" type="text/css" />
     <link href="{!! asset('assets/global/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css') !!}" rel="stylesheet" type="text/css" />
     <link href="{!! asset('assets/global/plugins/bootstrap-modal/css/bootstrap-modal.css') !!}" rel="stylesheet" type="text/css" />
     @endsection
@@ -29,7 +31,7 @@
                             </ul>
                         </div>
                         <div class="portlet-body">
-                            <form role="form" action="{!! backendUrl('news/' . $post->id . '/update') !!}" method="post" >
+                            <form role="form" action="{!! backendUrl('showtime/' . $post->id . '/update') !!}" method="post" >
                                 {{ csrf_field() }}
                                 <div class="form-body">
                                     <div class="row">
@@ -51,40 +53,13 @@
                                                         </div>
                                                     </div>
                                                     <div class="portlet-body">
-                                                        <div class="form-group">
-                                                            <label>Publish Date</label>
-                                                            <div class="input-group date form_datetime">
-                                                                <input type="text" name="publish_date" size="16" value="{!! $publishDate !!}" readonly class="form-control">
-                                                                <span class="input-group-btn">
-                                                                    <button class="btn default date-set" type="button">
-                                                                        <i class="fa fa-calendar"></i>
-                                                                    </button>
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <div class="mt-checkbox-outline">
-                                                                <label class="mt-checkbox mt-checkbox-outline">
-                                                                    <input type="checkbox" @if ($whatsOn) checked @endif name="whats_on" value="1"> What's on content
-                                                                    <span></span>
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <div class="mt-checkbox-outline">
-                                                                <label class="mt-checkbox mt-checkbox-outline">
-                                                                    <input type="checkbox" @if ($featured) checked @endif name="featured" value="1"> Featured content
-                                                                    <span></span>
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                        <a href="{!! backendUrl($baseUrl) !!}" class="btn btn-sm sbold green">Back</a> <input type="submit" name="status" class="btn btn-sm btn-default" value="Draft"> <input type="submit" name="status" class="btn btn-sm btn-default" value="Publish">
+                                                        <a href="{!! backendUrl($baseUrl) !!}" class="btn btn-sm sbold green">Back</a> <input type="submit" name="status" class="btn btn-sm btn-default" value="Publish">
                                                     </div>
                                                 </div>
                                             </div>
                                             {{--end of publish--}}
 
-                                            @include('backend.partials.category-edit-box')
+                                            @include('backend.showtimes.showtime-box')
 
                                             @include('backend.partials.featured-edit-box')
 
@@ -113,6 +88,8 @@
 @endsection
 
 @section('page-level-scripts')
+    <script src="{!! asset('assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js') !!}" type="text/javascript"></script>
+    <script src="{!! asset('assets/global/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js') !!}" type="text/javascript"></script>
     <script src="{!! asset('assets/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js') !!}" type="text/javascript"></script>
     <script src="{!! asset('assets/global/plugins/bootstrap-modal/js/bootstrap-modalmanager.js') !!}" type="text/javascript"></script>
     <script src="{!! asset('assets/global/plugins/bootstrap-modal/js/bootstrap-modal.js') !!}" type="text/javascript"></script>
@@ -120,6 +97,21 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $('#remove-featured').hide();
+            $('#showtime').on('change', function() {
+                var packageType = $(this).val();
+                if (packageType == 1) {
+                    $('.particular').hide();
+                    $('.limited').hide();
+                } else if (packageType == 2) {
+                    $('.particular').show();
+                    $('.limited').hide();
+                } else {
+                    $('.particular').hide();
+                    $('.limited').show();
+                    //$('.normal-type input').val(0);
+                }
+            });
+            $('#showtime').change();
         });
 
         tinymce.init({
@@ -136,11 +128,19 @@
             forced_root_block : '',
             height : "400"
         });
-        $(".form_datetime").datetimepicker({
+
+        $('.date-picker').datepicker({
+            rtl: App.isRTL(),
+            orientation: "left",
+            autoclose: true
+        });
+
+        $('.timepicker-24').timepicker({
             autoclose: true,
-            isRTL: App.isRTL(),
-            format: "dd-MM-yyyy - hh:ii",
-            pickerPosition: (App.isRTL() ? "bottom-right" : "bottom-left")
+            minuteStep: 30,
+            showSeconds: false,
+            showMeridian: false,
+            defaultTime: '10:00'
         });
 
         //ajax demo:

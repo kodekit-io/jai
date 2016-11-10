@@ -92,7 +92,13 @@ class ShowTimeController extends Controller
     public function edit($id)
     {
         $show = $this->showTimeService->getShowById($id);
-        $data['show'] = $show;
+        $data['langs'] = $this->languageService->getAvailableLanguages();
+        $data['defaultLang'] = $this->languageService->getDefaultLanguage();
+        $data['showTimeTypeSelect'] = $this->showTimeService->showTimeSelect('show_type', $show->show_type);
+        $data['daySelect'] = $this->showTimeService->daySelect('day', $show->day);
+        $data['featuredImage'] = $show->medias()->first();
+        $data['baseUrl'] = $this->baseUrl;
+        $data['post'] = $show;
 
         return view('backend.showtimes.edit', $data);
     }

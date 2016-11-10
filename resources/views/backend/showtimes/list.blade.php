@@ -32,10 +32,10 @@
                         <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1">
                             <thead>
                             <tr>
-                                <th>Id</th>
-                                <th>Type</th>
-                                <th>Title</th>
-                                <th>Content</th>
+                                <th class="text-center">Id</th>
+                                <th class="text-center">Type</th>
+                                <th class="text-center">Title</th>
+                                <th class="text-center">Content</th>
                                 <th class="text-center">Action</th>
                             </tr>
                             </thead>
@@ -64,10 +64,10 @@
                 ajax: '{!! route('showtime.data') !!}',
                 columns: [
                     { data: 'id', name: 'id', "width": "50px" },
-                    { data: 'show_type', name: 'show_type', "width": "250px" },
+                    { data: 'show_type', name: 'show_type', "width": "50px" },
                     { data: 'title', name: 'title' },
                     { data: 'content', name: 'content' },
-                    { data: 'action', name: 'action', orderable: false, searchable: false, "width": "150px" }
+                    { data: 'action', name: 'action', orderable: false, searchable: false, "width": "100px" }
                 ]
             });
         });

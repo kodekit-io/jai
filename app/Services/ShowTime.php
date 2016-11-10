@@ -32,6 +32,15 @@ class ShowTime
 
         $actions = $this->actionParameters(['edit', 'delete']);
         return (new DatatableGenerator($shows))
+            ->addColumn('show_type', function($show) {
+                return $this->showTimeTypes[$show->show_type];
+            })
+            ->addColumn('title', function($show) {
+                return $show->details()->where('lang', 'en')->first()->title;
+            })
+            ->addColumn('content', function($show) {
+                return $show->details()->where('lang', 'en')->first()->content;
+            })
             ->addActions($actions)
             ->generate();
     }
@@ -49,10 +58,10 @@ class ShowTime
     public function store(array $inputs)
     {
         $day = isset($inputs['day']) ? $inputs['day'] : '';
-        $startDate = isset($inputs['start_date']) ? $inputs['start_date'] : '';
-        $endDate = isset($inputs['end_date']) ? $inputs['end_date'] : '';
-        $startTime = isset($inputs['start_time']) ? $inputs['start_time'] : '';
-        $endTime = isset($inputs['end_time']) ? $inputs['end_time'] : '';
+        $startDate = isset($inputs['start_date']) ? ($inputs['start_date'] == '' ? '1970-01-01' : $inputs['start_date']) : '1970-01-01';
+        $endDate = isset($inputs['end_date']) ? ($inputs['end_date'] == '' ? '1970-01-01' : $inputs['end_date']) : '1970-01-01';
+        $startTime = isset($inputs['start_time']) ? ($inputs['start_time'] == '' ? '00:00' : $inputs['start_time']) : '00:00';
+//        $endTime = isset($inputs['end_time']) ? ($inputs['end_time'] == '' ? '00:00:00' : $inputs['end_time']) : '00:00:00';
 
         $show = Show::create([
             'show_type' => $inputs['show_type'],
@@ -61,17 +70,56 @@ class ShowTime
             'start_date' => $startDate,
             'end_date' => $endDate,
             'start_time' => $startTime,
-            'end_time' => $endTime
+            'end_time' => '00:00'
         ]);
 
         foreach ($inputs['title'] as $lang => $title) {
             $content = $inputs['content'][$lang];
             $show->details()->create([
                 'title' => $title,
-                'slug' => getSlugOnModelByTitle($title, 'PostDetail'),
+                'slug' => getSlugOnModelByTitle($title, 'ShowDetail'),
                 'content' => $content,
                 'lang' => $lang
             ]);
+        }
+
+        $mediaId = isset($inputs['featured_image_id']) ? $inputs['featured_image_id'] : '' ;
+        if ($mediaId != '') {
+            $show->medias()->attach($mediaId);
+        }
+    }
+
+    public function update($id, array $inputs)
+    {
+        $day = isset($inputs['day']) ? $inputs['day'] : '';
+        $startDate = isset($inputs['start_date']) ? ($inputs['start_date'] == '' ? '1970-01-01' : $inputs['start_date']) : '1970-01-01';
+        $endDate = isset($inputs['end_date']) ? ($inputs['end_date'] == '' ? '1970-01-01' : $inputs['end_date']) : '1970-01-01';
+        $startTime = isset($inputs['start_time']) ? ($inputs['start_time'] == '' ? '00:00' : $inputs['start_time']) : '00:00';
+
+        $show = Show::find($id);
+        $show->show_type = $inputs['show_type'];
+        $show->created_by = \Auth::user()->id;
+        $show->day = $day;
+        $show->start_date = $startDate;
+        $show->end_date = $endDate;
+        $show->start_time = $startTime;
+        $show->end_time = '00:00';
+        $show->save();
+
+        $show->details()->delete();
+        foreach ($inputs['title'] as $lang => $title) {
+            $content = $inputs['content'][$lang];
+            $show->details()->create([
+                'lang' => $lang,
+                'title' => $title,
+                'slug' => getSlugOnModelByTitle($title, 'ShowDetail'),
+                'content' => $content,
+            ]);
+        }
+
+        $mediaId = isset($inputs['featured_image_id']) ? $inputs['featured_image_id'] : '' ;
+        if ($mediaId != '') {
+            $show->medias()->sync([$mediaId]);
         }
     }
 
@@ -144,4 +192,10 @@ class ShowTime
 
         return Form::select($name, $arrDay, $defaultValue, ['class' => 'form-control']);
     }
+
+    public function destroy($id)
+    {
+        Show::destroy($id);
+    }
+
 }

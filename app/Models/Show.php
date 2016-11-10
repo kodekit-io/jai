@@ -12,4 +12,14 @@ class Show extends Model
     {
         return $this->hasMany(ShowDetail::class);
     }
+
+    /**
+     * A post may have multiple medias.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function medias()
+    {
+        return $this->belongsToMany(Media::class, 'show_has_medias');
+    }
 }

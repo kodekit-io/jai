@@ -55,7 +55,7 @@
 
 -- Highlight the active menu (DONE)
 
--- Create show with following fields :
+-- Create show with following fields : (DONE)
 -- show
 ---- id
 ---- type (regular showtime,particular showtime,limited showtime)

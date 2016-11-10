@@ -1,6 +1,6 @@
 @extends('backend.layouts.app')
 
-@section('page-level-styles')
+    @section('page-level-styles')
     <link href="{!! asset('assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css') !!}" rel="stylesheet" type="text/css" />
     <link href="{!! asset('assets/global/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css') !!}" rel="stylesheet" type="text/css" />
     <link href="{!! asset('assets/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css') !!}" rel="stylesheet" type="text/css" />
@@ -139,10 +139,12 @@
             autoclose: true
         });
 
-        $('.timepicker-no-seconds').timepicker({
+        $('.timepicker-24').timepicker({
             autoclose: true,
             minuteStep: 30,
-            defaultTime: '00:00 AM'
+            showSeconds: false,
+            showMeridian: false,
+            defaultTime: '10:00'
         });
 
         //ajax demo:
