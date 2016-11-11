@@ -30,7 +30,7 @@ p:last-child {
 	color: #fff;
 }
 .font-intro-book {
-	font-family: 'Intro Book', sans-serif;
+	font-family: 'Intro-Book', sans-serif;
 }
 .font-intro {
 	font-family: 'Intro', sans-serif;
@@ -42,7 +42,7 @@ p:last-child {
 }
 /**/
 .ja-bold {
-	font-family: 'Intro Bold';
+	font-family: 'Intro-Bold';
 }
 .ja-nav {
 	position: fixed;
@@ -582,7 +582,7 @@ h2.ja-slide-title {
 	font-size: 2.2rem;
 	line-height: 1.5em;
 	color: #fff;
-	font-family: 'Intro Light';
+	font-family: 'Intro-Light';
 }
 .ja-about {
 	background: #e4eaed url(../img/bg-section-about.png) no-repeat top center;
