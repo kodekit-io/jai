@@ -25,211 +25,64 @@
             <?php //tab1 ?>
             <li>
                 <ul class="uk-list uk-list-space">
+                    @foreach($experiences as $experience)
+                    <?php $imagePath = isset($experience->file_name) ? $experience->file_name : 'noimage.png'; ?>
                     <li class="ja-post uk-margin-bottom">
         				<div class="uk-grid uk-grid-collapse uk-grid-match" data-uk-grid-match>
         					<div class="uk-width-medium-2-5">
-                                <div class="ja-post--imgcover uk-cover-background" style="background-image:url({!! asset('frontend/img/img-news-01.jpg') !!})"></div>
+                                <div class="ja-post--imgcover uk-cover-background" style="background-image:url('{!! url('images/whatsOn/' . $imagePath) !!}')"></div>
         					</div>
         					<div class="uk-width-medium-3-5">
         						<div class="ja-post--content_wide">
-        							<h5 class="uk-text-uppercase">HANGING EXHIBIT</h5>
-        							<p>At vero eos et accusamus et iusto odio madeline dignis imosse ducimus qui. Ut enim ad minim veniam, quis nostrud mellark exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure cillum fugiat nulla pariatu prodiener excepteur sint occaecat cupidatat non proident.</p>
+        							<h5 class="uk-text-uppercase">{!! $experience->title !!}</h5>
+        							<p>{!! $experience->content !!}</p>
         						</div>
         					</div>
         				</div>
         			</li>
-                    <li class="ja-post uk-margin-bottom">
-        				<div class="uk-grid uk-grid-collapse uk-grid-match" data-uk-grid-match>
-        					<div class="uk-width-medium-2-5">
-                                <div class="ja-post--imgcover uk-cover-background" style="background-image:url({!! asset('frontend/img/img-news-02.jpg') !!})"></div>
-        					</div>
-        					<div class="uk-width-medium-3-5">
-        						<div class="ja-post--content_wide">
-        							<h5 class="uk-text-uppercase">ART INSTALLATIONS</h5>
-        							<p>At vero eos et accusamus et iusto odio madeline dignis imosse ducimus qui. Ut enim ad minim veniam, quis nostrud mellark exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure cillum fugiat nulla pariatu prodiener excepteur sint occaecat cupidatat non proident.</p>
-        						</div>
-        					</div>
-        				</div>
-        			</li>
-                    <li class="ja-post uk-margin-bottom">
-        				<div class="uk-grid uk-grid-collapse uk-grid-match" data-uk-grid-match>
-        					<div class="uk-width-medium-2-5">
-                                <div class="ja-post--imgcover uk-cover-background" style="background-image:url({!! asset('frontend/img/img-news-03.jpg') !!})"></div>
-        					</div>
-        					<div class="uk-width-medium-3-5">
-        						<div class="ja-post--content_wide">
-        							<h5 class="uk-text-uppercase">LIVING WITH MANGROVE</h5>
-        							<p>At vero eos et accusamus et iusto odio madeline dignis imosse ducimus qui. Ut enim ad minim veniam, quis nostrud mellark exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure cillum fugiat nulla pariatu prodiener excepteur sint occaecat cupidatat non proident.</p>
-        						</div>
-        					</div>
-        				</div>
-        			</li>
-                    <li class="ja-post uk-margin-bottom">
-        				<div class="uk-grid uk-grid-collapse uk-grid-match" data-uk-grid-match>
-        					<div class="uk-width-medium-2-5">
-                                <div class="ja-post--imgcover uk-cover-background" style="background-image:url({!! asset('frontend/img/img-news-04.jpg') !!})"></div>
-        					</div>
-        					<div class="uk-width-medium-3-5">
-        						<div class="ja-post--content_wide">
-        							<h5 class="uk-text-uppercase">OUTER REEF CAMPAIGN</h5>
-        							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        						</div>
-        					</div>
-        				</div>
-        			</li>
-                    <li class="ja-post uk-margin-bottom">
-        				<div class="uk-grid uk-grid-collapse uk-grid-match" data-uk-grid-match>
-        					<div class="uk-width-medium-2-5">
-                                <div class="ja-post--imgcover uk-cover-background" style="background-image:url({!! asset('frontend/img/img-sample-01.jpg') !!})"></div>
-        					</div>
-        					<div class="uk-width-medium-3-5">
-        						<div class="ja-post--content_wide">
-        							<h5 class="uk-text-uppercase">CLASSROOM</h5>
-        							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        						</div>
-        					</div>
-        				</div>
-        			</li>
+					@endforeach
                 </ul>
             </li>
             <?php //tab2 ?>
             <li>
                 <ul class="uk-list uk-list-space">
+                    @foreach($shows as $show)
+                    <?php $imagePath = isset($show->file_name) ? $show->file_name : 'noimage.png'; ?>
                     <li class="ja-post uk-margin-bottom">
         				<div class="uk-grid uk-grid-collapse uk-grid-match" data-uk-grid-match>
         					<div class="uk-width-medium-2-5">
-                                <div class="ja-post--imgcover uk-cover-background" style="background-image:url({!! asset('frontend/img/img-news-05.jpg') !!})"></div>
+                                <div class="ja-post--imgcover uk-cover-background" style="background-image:url('{!! url('images/whatsOn/' . $imagePath) !!}')"></div>
         					</div>
         					<div class="uk-width-medium-3-5">
         						<div class="ja-post--content_wide">
-        							<h5 class="uk-text-uppercase">the aquarium</h5>
-        							<p>At vero eos et accusamus et iusto odio madeline dignis imosse ducimus qui. Ut enim ad minim veniam, quis nostrud mellark exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure cillum fugiat nulla pariatu prodiener excepteur sint occaecat cupidatat non proident.</p>
+        							<h5 class="uk-text-uppercase">{!! $show->title !!}</h5>
+        							<p>{!! $show->content !!}</p>
         						</div>
         					</div>
         				</div>
         			</li>
-                    <li class="ja-post uk-margin-bottom">
-        				<div class="uk-grid uk-grid-collapse uk-grid-match" data-uk-grid-match>
-        					<div class="uk-width-medium-2-5">
-                                <div class="ja-post--imgcover uk-cover-background" style="background-image:url({!! asset('frontend/img/img-news-04.jpg') !!})"></div>
-        					</div>
-        					<div class="uk-width-medium-3-5">
-        						<div class="ja-post--content_wide">
-        							<h5 class="uk-text-uppercase">Dive with Sharks</h5>
-        							<p>At vero eos et accusamus et iusto odio madeline dignis imosse ducimus qui. Ut enim ad minim veniam, quis nostrud mellark exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure cillum fugiat nulla pariatu prodiener excepteur sint occaecat cupidatat non proident.</p>
-        						</div>
-        					</div>
-        				</div>
-        			</li>
-                    <li class="ja-post uk-margin-bottom">
-        				<div class="uk-grid uk-grid-collapse uk-grid-match" data-uk-grid-match>
-        					<div class="uk-width-medium-2-5">
-                                <div class="ja-post--imgcover uk-cover-background" style="background-image:url({!! asset('frontend/img/img-news-03.jpg') !!})"></div>
-        					</div>
-        					<div class="uk-width-medium-3-5">
-        						<div class="ja-post--content_wide">
-        							<h5 class="uk-text-uppercase">5D Theater</h5>
-        							<p>At vero eos et accusamus et iusto odio madeline dignis imosse ducimus qui. Ut enim ad minim veniam, quis nostrud mellark exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure cillum fugiat nulla pariatu prodiener excepteur sint occaecat cupidatat non proident.</p>
-        						</div>
-        					</div>
-        				</div>
-        			</li>
-                    <li class="ja-post uk-margin-bottom">
-        				<div class="uk-grid uk-grid-collapse uk-grid-match" data-uk-grid-match>
-        					<div class="uk-width-medium-2-5">
-                                <div class="ja-post--imgcover uk-cover-background" style="background-image:url({!! asset('frontend/img/img-news-02.jpg') !!})"></div>
-        					</div>
-        					<div class="uk-width-medium-3-5">
-        						<div class="ja-post--content_wide">
-        							<h5 class="uk-text-uppercase">SEA TREKKING</h5>
-        							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        						</div>
-        					</div>
-        				</div>
-        			</li>
-                    <li class="ja-post uk-margin-bottom">
-        				<div class="uk-grid uk-grid-collapse uk-grid-match" data-uk-grid-match>
-        					<div class="uk-width-medium-2-5">
-                                <div class="ja-post--imgcover uk-cover-background" style="background-image:url({!! asset('frontend/img/img-sample-02.jpg') !!})"></div>
-        					</div>
-        					<div class="uk-width-medium-3-5">
-        						<div class="ja-post--content_wide">
-        							<h5 class="uk-text-uppercase">FEEDING BOAT</h5>
-        							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        						</div>
-        					</div>
-        				</div>
-        			</li>
+                    @endforeach
                 </ul>
             </li>
             <?php //tab3 ?>
             <li>
                 <ul class="uk-list uk-list-space">
+                    @foreach($dinings as $dining)
+                    <?php $imagePath = isset($dining->file_name) ? $dining->file_name : 'noimage.png'; ?>
                     <li class="ja-post uk-margin-bottom">
         				<div class="uk-grid uk-grid-collapse uk-grid-match" data-uk-grid-match>
         					<div class="uk-width-medium-2-5">
-                                <div class="ja-post--imgcover uk-cover-background" style="background-image:url({!! asset('frontend/img/img-news-03.jpg') !!})"></div>
+                                <div class="ja-post--imgcover uk-cover-background" style="background-image:url('{!! url('images/whatsOn/' . $imagePath) !!}')"></div>
         					</div>
         					<div class="uk-width-medium-3-5">
         						<div class="ja-post--content_wide">
-        							<h5 class="uk-text-uppercase">THE LEGEND OF RORO KIDUL</h5>
-        							<p>At vero eos et accusamus et iusto odio madeline dignis imosse ducimus qui. Ut enim ad minim veniam, quis nostrud mellark exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure cillum fugiat nulla pariatu prodiener excepteur sint occaecat cupidatat non proident.</p>
+        							<h5 class="uk-text-uppercase">{!! $dining->title !!}</h5>
+        							<p>{!! $dining->content !!}</p>
         						</div>
         					</div>
         				</div>
         			</li>
-                    <li class="ja-post uk-margin-bottom">
-        				<div class="uk-grid uk-grid-collapse uk-grid-match" data-uk-grid-match>
-        					<div class="uk-width-medium-2-5">
-                                <div class="ja-post--imgcover uk-cover-background" style="background-image:url({!! asset('frontend/img/img-news-01.jpg') !!})"></div>
-        					</div>
-        					<div class="uk-width-medium-3-5">
-        						<div class="ja-post--content_wide">
-        							<h5 class="uk-text-uppercase">THE MERMAID SONG</h5>
-        							<p>At vero eos et accusamus et iusto odio madeline dignis imosse ducimus qui. Ut enim ad minim veniam, quis nostrud mellark exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure cillum fugiat nulla pariatu prodiener excepteur sint occaecat cupidatat non proident.</p>
-        						</div>
-        					</div>
-        				</div>
-        			</li>
-                    <li class="ja-post uk-margin-bottom">
-        				<div class="uk-grid uk-grid-collapse uk-grid-match" data-uk-grid-match>
-        					<div class="uk-width-medium-2-5">
-                                <div class="ja-post--imgcover uk-cover-background" style="background-image:url({!! asset('frontend/img/img-news-05.jpg') !!})"></div>
-        					</div>
-        					<div class="uk-width-medium-3-5">
-        						<div class="ja-post--content_wide">
-        							<h5 class="uk-text-uppercase">PIRATE SNORKEL</h5>
-        							<p>At vero eos et accusamus et iusto odio madeline dignis imosse ducimus qui. Ut enim ad minim veniam, quis nostrud mellark exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure cillum fugiat nulla pariatu prodiener excepteur sint occaecat cupidatat non proident.</p>
-        						</div>
-        					</div>
-        				</div>
-        			</li>
-                    <li class="ja-post uk-margin-bottom">
-        				<div class="uk-grid uk-grid-collapse uk-grid-match" data-uk-grid-match>
-        					<div class="uk-width-medium-2-5">
-                                <div class="ja-post--imgcover uk-cover-background" style="background-image:url({!! asset('frontend/img/img-news-04.jpg') !!})"></div>
-        					</div>
-        					<div class="uk-width-medium-3-5">
-        						<div class="ja-post--content_wide">
-        							<h5 class="uk-text-uppercase">OUTER REEF CAMPAIGN</h5>
-        							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        						</div>
-        					</div>
-        				</div>
-        			</li>
-                    <li class="ja-post uk-margin-bottom">
-        				<div class="uk-grid uk-grid-collapse uk-grid-match" data-uk-grid-match>
-        					<div class="uk-width-medium-2-5">
-                                <div class="ja-post--imgcover uk-cover-background" style="background-image:url({!! asset('frontend/img/img-sample-01.jpg') !!})"></div>
-        					</div>
-        					<div class="uk-width-medium-3-5">
-        						<div class="ja-post--content_wide">
-        							<h5 class="uk-text-uppercase">CLASSROOM</h5>
-        							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        						</div>
-        					</div>
-        				</div>
-        			</li>
+                    @endforeach
                 </ul>
             </li>
         </ul>

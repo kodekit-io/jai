@@ -73,7 +73,7 @@
 
 -- Create SEO fields on post/page (at least meta-tag) ==> use post_metas table (DONE)
 
--- Check the date on showtime management
+-- Check the date on showtime management (DONE)
 
 -- Create career management with following fields:
 ---- Position
