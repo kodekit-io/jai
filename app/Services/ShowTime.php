@@ -5,6 +5,7 @@ namespace App\Service;
 
 use App\Models\Show;
 use App\Service\Traits\DatatableParameters;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Form;
 
@@ -58,8 +59,8 @@ class ShowTime
     public function store(array $inputs)
     {
         $day = isset($inputs['day']) ? $inputs['day'] : '';
-        $startDate = isset($inputs['start_date']) ? ($inputs['start_date'] == '' ? '1970-01-01' : $inputs['start_date']) : '1970-01-01';
-        $endDate = isset($inputs['end_date']) ? ($inputs['end_date'] == '' ? '1970-01-01' : $inputs['end_date']) : '1970-01-01';
+        $startDate = isset($inputs['start_date']) ? ($inputs['start_date'] == '' ? '1970-01-01' : Carbon::createFromFormat('m/d/Y', $inputs['start_date'])->format('Y-m-d')) : '1970-01-01';
+        $endDate = isset($inputs['end_date']) ? ($inputs['end_date'] == '' ? '1970-01-01' : Carbon::createFromFormat('m/d/Y', $inputs['end_date'])->format('Y-m-d')) : '1970-01-01';
         $startTime = isset($inputs['start_time']) ? ($inputs['start_time'] == '' ? '00:00' : $inputs['start_time']) : '00:00';
 //        $endTime = isset($inputs['end_time']) ? ($inputs['end_time'] == '' ? '00:00:00' : $inputs['end_time']) : '00:00:00';
 
@@ -100,8 +101,8 @@ class ShowTime
     public function update($id, array $inputs)
     {
         $day = isset($inputs['day']) ? $inputs['day'] : '';
-        $startDate = isset($inputs['start_date']) ? ($inputs['start_date'] == '' ? '1970-01-01' : $inputs['start_date']) : '1970-01-01';
-        $endDate = isset($inputs['end_date']) ? ($inputs['end_date'] == '' ? '1970-01-01' : $inputs['end_date']) : '1970-01-01';
+        $startDate = isset($inputs['start_date']) ? ($inputs['start_date'] == '' ? '1970-01-01' : Carbon::createFromFormat('m/d/Y', $inputs['start_date'])->format('Y-m-d')) : '1970-01-01';
+        $endDate = isset($inputs['end_date']) ? ($inputs['end_date'] == '' ? '1970-01-01' : Carbon::createFromFormat('m/d/Y', $inputs['end_date'])->format('Y-m-d')) : '1970-01-01';
         $startTime = isset($inputs['start_time']) ? ($inputs['start_time'] == '' ? '00:00' : $inputs['start_time']) : '00:00';
 
         $show = Show::find($id);
@@ -186,6 +187,27 @@ class ShowTime
         return $shows->get();
     }
 
+    public function getShowsWithDetails(array $params)
+    {
+        $shows = DB::table('shows')
+            ->join('show_details', 'shows.id', '=', 'show_details.show_id')
+            ->select('shows.*', 'show_details.title', 'show_details.slug', 'show_details.content');
+
+        if (isset($params['lang'])) {
+            $shows = $shows->where('lang', $params['lang']);
+        }
+
+        if (isset($params['show_type'])) {
+            $shows = $shows->where('show_type', $params['show_type']);
+        }
+
+        if (isset($params['created_by'])) {
+            $shows = $shows->where('created_by', $params['created_by']);
+        }
+
+        return $shows;
+    }
+
     public function showTimeSelect($name, $defaultValue = null)
     {
         $form = new FormGenerator();
@@ -205,7 +227,7 @@ class ShowTime
 
     public function daySelect($name, $defaultValue = null)
     {
-        $arrDay = [ '1' => 'Sunday', '2' => 'Monday', '3' => 'Tuesday', '4' => 'Wednesday', '5' => 'Thursday', '6' => 'Friday', '7' => 'Saturday' ];
+        $arrDay = config('languages.languages.en.days');
 
         return Form::select($name, $arrDay, $defaultValue, ['class' => 'form-control']);
     }

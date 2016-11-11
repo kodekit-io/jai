@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Service\Package;
 use App\Service\Post;
+use App\Service\ShowTime;
 use App\Service\Slider;
 use Illuminate\Http\Request;
 
@@ -23,18 +24,29 @@ class FrontEndController extends Controller
      * @var Package
      */
     private $packageService;
+    /**
+     * @var ShowTime
+     */
+    private $showTimeService;
 
     /**
      * FrontEndController constructor.
      * @param Post $postService
      * @param Slider $sliderService
      * @param Package $packageService
+     * @param ShowTime $showTimeService
      */
-    public function __construct(Post $postService, Slider $sliderService, Package $packageService)
+    public function __construct(
+        Post $postService,
+        Slider $sliderService,
+        Package $packageService,
+        ShowTime $showTimeService
+    )
     {
         $this->postService = $postService;
         $this->sliderService = $sliderService;
         $this->packageService = $packageService;
+        $this->showTimeService = $showTimeService;
     }
 
     public function homePage($lang)
@@ -107,7 +119,14 @@ class FrontEndController extends Controller
 
     public function showTime($lang)
     {
-        return view('frontend.showtime');
+        $params = [
+            'lang' => $lang
+        ];
+        $shows = $this->showTimeService->getShowsWithDetails($params)->get();
+        $data['shows'] = $shows;
+        $data['lang'] = $lang;
+
+        return view('frontend.showtime', $data);
     }
 
     public function location($lang)
