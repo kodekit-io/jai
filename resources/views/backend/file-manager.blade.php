@@ -1,37 +1,44 @@
-<div class="row" style="min-height: 500px">
-    <div class="col-md-12">
-        <h3>Featured Image</h3>
+
+<div class="modal-content">
+    <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        <h2 class="modal-title">Featured Image</h2>
+    </div>
+    <div class="modal-body">
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" ><a href="#upload" aria-controls="home" role="tab" data-toggle="tab">Upload Files</a></li>
             <li role="presentation" class="active"><a href="#media" aria-controls="profile" role="tab" data-toggle="tab">Media</a></li>
         </ul>
-    </div>
-    <div class="col-md-12">
         <!-- Tab panes -->
-        <div class="tab-content">
+        <div class="tab-content clearfix">
             <div role="tabpanel" class="tab-pane" id="upload">
-                <div id="container text-center">
-                    <a id="browse" class="btn btn-default" href="javascript:;">Select File</a>
+                <div id="container" class="text-center"  style="height:340px;">
+                    <a id="browse" class="btn btn-lg btn-default" href="javascript:;" style="margin-top:150px;">
+                        <span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Select File
+                    </a>
                 </div>
             </div>
             <div role="tabpanel" class="tab-pane active" id="media">
                 <div class="row">
-                    <div class="col-md-8">
-                        <div class="row image-gallery">
-                        </div>
+                    <div class="col-md-9">
+                        <h4>Select Image:</h4>
+                        <div class="row image-gallery" style="height:301px;overflow-y: scroll;"></div>
                     </div>
-                    <div class="col-md-4 text-center image-preview">
+                    <div class="col-md-3 text-center image-preview">
+                        <h4>Selected:</h4>
                         <img src="" id="image_preview" alt="">
-                        <br>
-                        <button class="btn btn-default" id="image_setter">Set image</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default btn-outline" data-dismiss="modal">CANCEL</button>
+        <button class="btn btn-primary btn-outline" id="image_setter">SET IMAGE</button>
+    </div>
 </div>
+
 
 <script src="{!! asset('assets/global/plugins/plupload/js/plupload.full.min.js') !!}" type="text/javascript"></script>
 <script src="{!! asset('assets/global/plugins/jquery.blockui.min.js') !!}" type="text/javascript"></script>
