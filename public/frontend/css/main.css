@@ -21,6 +21,9 @@ h1, h2, h3, h4, h5, h6 {
 p:last-child {
 	margin-bottom: 0;
 }
+main {
+	min-height: calc(100vh - 100px);
+}
 ::selection {
 	background: #00acc1;
 	color: #fff;
