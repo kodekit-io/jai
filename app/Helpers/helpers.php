@@ -83,3 +83,12 @@ if (! function_exists('lang_url')) {
     }
 
 }
+
+if (! function_exists('get_day_from_number')) {
+
+    function get_day_from_number($number, $lang) {
+        $arrDay = config('languages.languages.' . $lang . '.days');
+        return $arrDay[$number];
+    }
+
+}

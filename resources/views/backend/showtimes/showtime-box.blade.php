@@ -23,12 +23,12 @@
                 <div class="form-group">
                     <label>Start Date</label>
                     <input type="text" name="start_date" class="form-control date-picker"
-                           @if (isset($show->start_date)) value='{!! $show->start_date !!}' @endif>
+                           @if (isset($show->start_date)) value='{!! \Carbon\Carbon::createFromFormat('Y-m-d', $show->start_date)->format('m/d/Y') !!}' @endif>
                 </div>
                 <div class="form-group">
                     <label>End Date :</label>
                     <input type="text" name="end_date" class="form-control date-picker"
-                           @if (isset($show->end_date)) value='{!! $show->end_date !!}' @endif >
+                           @if (isset($show->end_date)) value='{!! \Carbon\Carbon::createFromFormat('Y-m-d', $show->end_date)->format('m/d/Y') !!}' @endif >
                 </div>
             </div>
             <div class="form-group">

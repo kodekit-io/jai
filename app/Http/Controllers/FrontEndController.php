@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Service\Attraction;
 use App\Service\Package;
 use App\Service\Post;
+use App\Service\ShowTime;
 use App\Service\Slider;
 use Illuminate\Http\Request;
 
@@ -23,18 +25,36 @@ class FrontEndController extends Controller
      * @var Package
      */
     private $packageService;
+    /**
+     * @var ShowTime
+     */
+    private $showTimeService;
+    /**
+     * @var Attraction
+     */
+    private $attractionService;
 
     /**
      * FrontEndController constructor.
      * @param Post $postService
      * @param Slider $sliderService
      * @param Package $packageService
+     * @param ShowTime $showTimeService
+     * @param Attraction $attractionService
      */
-    public function __construct(Post $postService, Slider $sliderService, Package $packageService)
+    public function __construct(
+        Post $postService,
+        Slider $sliderService,
+        Package $packageService,
+        ShowTime $showTimeService,
+        Attraction $attractionService
+    )
     {
         $this->postService = $postService;
         $this->sliderService = $sliderService;
         $this->packageService = $packageService;
+        $this->showTimeService = $showTimeService;
+        $this->attractionService = $attractionService;
     }
 
     public function homePage($lang)
@@ -107,7 +127,14 @@ class FrontEndController extends Controller
 
     public function showTime($lang)
     {
-        return view('frontend.showtime');
+        $params = [
+            'lang' => $lang
+        ];
+        $shows = $this->showTimeService->getShowsWithDetails($params)->get();
+        $data['shows'] = $shows;
+        $data['lang'] = $lang;
+
+        return view('frontend.showtime', $data);
     }
 
     public function location($lang)
@@ -132,8 +159,6 @@ class FrontEndController extends Controller
 
 
         $newsPaginated = $news->paginate(5);
-//        $newsPaginated->setCurrentPage($page, 0);
-//        var_dump($newsPaginated); exit;
         $newsPaginated->setPath('news-blog');
         $data['featuredPosts'] = $featuredPosts->get();
         $data['news'] =$newsPaginated;
@@ -148,7 +173,34 @@ class FrontEndController extends Controller
 
     public function attractions($lang)
     {
-        return view('frontend.attractions-experience');
+        $experienceParams = [
+            'status' => 'publish',
+            'post_type_id' => 3,
+            'lang' => $lang,
+            'category_id' => 17
+        ];
+        $experiences = $this->postService->getPostsWithDetail($experienceParams);
+        $data['experiences'] = $experiences->get();
+
+        $showParams = [
+            'status' => 'publish',
+            'post_type_id' => 3,
+            'lang' => $lang,
+            'category_id' => 18
+        ];
+        $shows = $this->postService->getPostsWithDetail($showParams);
+        $data['shows'] = $shows->get();
+
+        $diningParams = [
+            'status' => 'publish',
+            'post_type_id' => 3,
+            'lang' => $lang,
+            'category_id' => 19
+        ];
+        $dinings = $this->postService->getPostsWithDetail($diningParams);
+        $data['dinings'] = $dinings->get();
+
+        return view('frontend.attractions-experience', $data);
     }
 
     public function education($lang)

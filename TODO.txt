@@ -71,6 +71,9 @@
 ---- title
 ---- description
 
+-- Create SEO fields on post/page (at least meta-tag) ==> use post_metas table (DONE)
+
+-- Check the date on showtime management (DONE)
 
 -- Create career management with following fields:
 ---- Position
@@ -84,4 +87,4 @@
 -- Advanced search on post, news
 -- Add notification when there are any blank languages whe publish the content
 -- Create pages management
--- Create SEO fields on post/page (at least meta-tag) ==> use post_metas table
+
