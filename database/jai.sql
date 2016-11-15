@@ -977,7 +977,7 @@ CREATE TABLE `users` (
 
 insert  into `users`(`id`,`name`,`email`,`password`,`remember_token`,`created_at`,`updated_at`) values (1,'Pasha Mahardika','me@pashamahardika.com','$2y$10$Ys8gQPnelcFYGY7vVzKe/OHSzXBLNyqPGz9DTHFp9MZGzRa7djpb.','9pYCFU0NQHVB8a8ym5J37JdOU0guoqcO0dDZQXoiZB9mijqYi1VNRqysdHRP','2016-10-12 03:35:26','2016-10-12 07:55:17');
 insert  into `users`(`id`,`name`,`email`,`password`,`remember_token`,`created_at`,`updated_at`) values (3,'Edwina Trianinda','trianinda.edwina@gmail.com','$2y$10$iWVk/vWv/R3oa1ipa.pVgem6ypOZvDLW.F4jnbxEVODJFxbKgKHRa','k9OZxgptOu9IxFEnc044XWsamrcBuSVEmOlRh9dqY3DXtHzIjwV1vMMHySeK','2016-10-12 07:41:14','2016-11-05 12:47:50');
-insert  into `users`(`id`,`name`,`email`,`password`,`remember_token`,`created_at`,`updated_at`) values (13, 'oglab', 'oglab@orangegraphiclabs.com', '$2y$10$2PgJHYbG6Q0Gqi1bTkjeNOyXK9g1xI4/.WndZXckYfvQVtmtQf166', '$2y$10$Ys8gQPnelcFYGY7vVzKe/OHSzXBLNyqPGz9DTHFp9MZGzRa7djpb.', '2011-11-11 11:11:11', '2011-11-11 11:11:11');
+insert  into `users`(`id`,`name`,`email`,`password`,`remember_token`,`created_at`,`updated_at`) values (13, 'oglab', 'oglab@orangegraphiclabs.com', '$2y$10$2PgJHYbG6Q0Gqi1bTkjeNOyXK9g1xI4/.WndZXckYfvQVtmtQf166', NULL, '2016-11-11 11:11:11', '2016-11-11 11:11:11');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

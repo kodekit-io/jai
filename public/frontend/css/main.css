@@ -646,7 +646,7 @@ h2.ja-slide-title {
 	color: #ffb300;
 }
 
-.ja-ticket label, .ja-ticket input[type="text"], .ja-ticket input[type="text"]:disabled {
+.ja-ticket label, .ja-ticket input[type="text"], .ja-ticket input[type="text"]:disabled, .ja-ticket input[type="number"], .ja-ticket select {
 	height: 40px;
 	line-height: 40px;
 	border: 1px solid #00acc1;
@@ -654,6 +654,12 @@ h2.ja-slide-title {
 	background: #fff;
 	padding: 0 1em;
 	float: left;
+}
+.ja-ticket select, .ja-ticket input[type="number"] {
+	-webkit-appearance: none;
+	-moz-appearance:    none;
+	appearance:         none;
+	width: 343px;
 }
 .uk-form-row.uk-margin-remove + .uk-form-row.uk-margin-remove label,
 .uk-form-row.uk-margin-remove + .uk-form-row.uk-margin-remove input[type="text"] {
@@ -668,7 +674,7 @@ h2.ja-slide-title {
 	min-width: 150px;
 	border-right: none;
 }
-.ja-ticket input[type="text"] {
+.ja-ticket input[type="text"], .ja-ticket input[type="number"] {
 	width: 343px;
 }
 .ja-ticket input[type="text"]#visitor, .ja-ticket input[type="text"]#visitorchild {
