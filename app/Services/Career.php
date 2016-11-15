@@ -6,6 +6,7 @@ namespace App\Service;
 use App\Models\Career as CareerModel;
 use App\Service\Traits\DatatableParameters;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class Career
 {
@@ -116,6 +117,21 @@ class Career
     public function destroy($id)
     {
         CareerModel::destroy($id);
+    }
+
+    public function getCareerWithDetails(array $params = [])
+    {
+        $query = DB::table('careers')->whereDate('active_date', '>=', date('Y-m-d'))
+            ->join('career_details', 'careers.id', '=', 'career_details.career_id')
+            ->select('careers.*', 'career_details.lang', 'career_details.position', 'career_details.description', 'career_details.slug');
+
+        // search by lang
+        if (isset($params['lang'])) {
+            $lang = $params['lang'];
+            $query = $query->where('career_details.lang', $lang);
+        }
+
+        return $query;
     }
 
 }
