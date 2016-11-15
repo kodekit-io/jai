@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Service\Attraction;
+use App\Service\Career;
 use App\Service\Package;
 use App\Service\Post;
 use App\Service\ShowTime;
@@ -33,6 +34,10 @@ class FrontEndController extends Controller
      * @var Attraction
      */
     private $attractionService;
+    /**
+     * @var Career
+     */
+    private $careerService;
 
     /**
      * FrontEndController constructor.
@@ -41,13 +46,15 @@ class FrontEndController extends Controller
      * @param Package $packageService
      * @param ShowTime $showTimeService
      * @param Attraction $attractionService
+     * @param Career $careerService
      */
     public function __construct(
         Post $postService,
         Slider $sliderService,
         Package $packageService,
         ShowTime $showTimeService,
-        Attraction $attractionService
+        Attraction $attractionService,
+        Career $careerService
     )
     {
         $this->postService = $postService;
@@ -55,6 +62,7 @@ class FrontEndController extends Controller
         $this->packageService = $packageService;
         $this->showTimeService = $showTimeService;
         $this->attractionService = $attractionService;
+        $this->careerService = $careerService;
     }
 
     public function homePage($lang)
@@ -215,7 +223,14 @@ class FrontEndController extends Controller
 
     public function career($lang)
     {
-        return view('frontend.career');
+        $params = [
+            'lang' => $lang
+        ];
+        $careers = $this->careerService->getCareerWithDetails($params)->get();
+        $data['careers'] = $careers;
+        $data['posts'] = $careers;
+
+        return view('frontend.career', $data);
     }
 
     public function mediaRoom($lang)

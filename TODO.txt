@@ -75,12 +75,14 @@
 
 -- Check the date on showtime management (DONE)
 
--- Create career management with following fields:
+-- Create career management with following fields: (DONE)
 ---- Position
 ---- Department
 ---- Job Description
 ---- Due date / active date
 ---- Contact Person
+
+-- Connecting career to the frontend (DONE)
 
 -- Menu link, multilang support
 

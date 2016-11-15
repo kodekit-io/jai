@@ -2,7 +2,8 @@
 SQLyog Community
 MySQL - 5.7.12-0ubuntu1.1 : Database - jai
 *********************************************************************
-*/
+*/
+
 
 /*!40101 SET NAMES utf8 */;
 
@@ -91,7 +92,7 @@ CREATE TABLE `media` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `media` */
 
@@ -109,6 +110,12 @@ insert  into `media`(`id`,`title`,`file_name`,`description`,`created_at`,`update
 insert  into `media`(`id`,`title`,`file_name`,`description`,`created_at`,`updated_at`) values (54,'bg-section-sight.png','bg-section-sight.png',NULL,'2016-11-02 19:32:36','2016-11-02 19:32:36');
 insert  into `media`(`id`,`title`,`file_name`,`description`,`created_at`,`updated_at`) values (55,'img-sample-01.jpg','img-sample-01.jpg',NULL,'2016-11-02 19:32:48','2016-11-02 19:32:48');
 insert  into `media`(`id`,`title`,`file_name`,`description`,`created_at`,`updated_at`) values (56,'about-header.jpg','about-header.jpg',NULL,'2016-11-05 15:42:15','2016-11-05 15:42:15');
+insert  into `media`(`id`,`title`,`file_name`,`description`,`created_at`,`updated_at`) values (57,'img-news-01.jpg','img-news-01.jpg',NULL,'2016-11-10 18:26:27','2016-11-10 18:26:27');
+insert  into `media`(`id`,`title`,`file_name`,`description`,`created_at`,`updated_at`) values (58,'img-news-02.jpg','img-news-02.jpg',NULL,'2016-11-11 18:34:41','2016-11-11 18:34:41');
+insert  into `media`(`id`,`title`,`file_name`,`description`,`created_at`,`updated_at`) values (59,'img-news-03.jpg','img-news-03.jpg',NULL,'2016-11-11 18:34:57','2016-11-11 18:34:57');
+insert  into `media`(`id`,`title`,`file_name`,`description`,`created_at`,`updated_at`) values (60,'img-news-04.jpg','img-news-04.jpg',NULL,'2016-11-11 18:34:58','2016-11-11 18:34:58');
+insert  into `media`(`id`,`title`,`file_name`,`description`,`created_at`,`updated_at`) values (61,'img-news-05.jpg','img-news-05.jpg',NULL,'2016-11-11 18:34:59','2016-11-11 18:34:59');
+insert  into `media`(`id`,`title`,`file_name`,`description`,`created_at`,`updated_at`) values (62,'img-sample-01.jpg','img-sample-01.jpg',NULL,'2016-11-11 18:35:01','2016-11-11 18:35:01');
 
 /*Table structure for table `media_sizes` */
 
@@ -224,6 +231,9 @@ insert  into `migrations`(`migration`,`batch`) values ('2016_10_30_120042_create
 insert  into `migrations`(`migration`,`batch`) values ('2016_11_01_201700_create_package_has_medias',24);
 insert  into `migrations`(`migration`,`batch`) values ('2016_11_05_125956_add_menu_type_on_menus',25);
 insert  into `migrations`(`migration`,`batch`) values ('2016_11_05_152539_alter_show_tables',26);
+insert  into `migrations`(`migration`,`batch`) values ('2016_11_10_104656_create_show_has_media_table',27);
+insert  into `migrations`(`migration`,`batch`) values ('2016_11_10_175742_create_package_metas_table',28);
+insert  into `migrations`(`migration`,`batch`) values ('2016_11_10_183306_create_show_metas_table',29);
 
 /*Table structure for table `package_details` */
 
@@ -237,12 +247,10 @@ CREATE TABLE `package_details` (
   PRIMARY KEY (`id`),
   KEY `package_details_package_id_foreign` (`package_id`),
   CONSTRAINT `package_details_package_id_foreign` FOREIGN KEY (`package_id`) REFERENCES `packages` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `package_details` */
 
-insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (15,1,'en','General Admission','general-admission','Meet sharks, turtles, jellyfish and other animals');
-insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (16,1,'id','Paket Umum','paket-umum','Temui hiu, kura-kura, ubur-ubur, gurita dan binatang lainnya.');
 insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (17,4,'en','Package B','package-b','General admission + 5D + Diving');
 insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (18,4,'id','Paket B','paket-b','Pendaftaran + 5D + Diving');
 insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (29,3,'en','Package A','package-a','At vero eos et accusamus et iusto odio madeline dignis imosse ducma quisa. Ut enim ad minim veniam, quis nostrud quirelle exercitation ullamco ullamco accusamus et iusto cupidatat non proident. Set ed ut perspiciatis laboris nisi ut aliquip ex eamus commodo consequat. <br />Duis aute irure dignis imosse ducmation quisa cillum fugiat Extravaganza nulla pariatur. Excepteur sint exercitation ullamco accusamus et iusto cupidatat non proident. Set ed ut perspiciatis, unde omnis iste natus laboris nisi ut aliquip ex ea commodo consequat error sit voluptatem accusantium iusto cupidatat non proident doloremque requiem et dolore magnam accusamus et iusto odio voluptatem.');
@@ -253,6 +261,8 @@ insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`
 insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (36,5,'id','Program Sekolah','program-sekolah','At vero eos et accusamus et iusto odio madeline dignis imosse ducma quisa. Ut enim ad minim veniam, quis nostrud quirelle exercitation ullamco ullamco accusamus et iusto cupidatat non proident. Set ed ut perspiciatis laboris nisi ut aliquip ex eamus commodo consequat. Duis aute irure dignis imosse ducmation quisa cillum fugiat Extravaganza nulla pariatur. <br /> Excepteur sint exercitation ullamco accusamus et iusto cupidatat non proident. Set ed ut perspiciatis, unde omnis iste natus laboris nisi ut aliquip ex ea commodo consequat error sit voluptatem accusantium iusto cupidatat non proident doloremque requiem et dolore magnam accusamus et iusto odio voluptatem');
 insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (39,7,'en','Combo Package','combo-package','The aquarium is one of Indonesia\'s most unforgettable group activities! Groups of 10 or more people receive discounted admission to the aquarium! Pre-booking is required at least 7 days in advance as groups must be pre-qualified before receiving this rate.&nbsp;');
 insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (40,7,'id','Paket Kombo','paket-kombo','The aquarium is one of Indonesia\'s most unforgettable group activities! Groups of 10 or more people receive discounted admission to the aquarium! Pre-booking is required at least 7 days in advance as groups must be pre-qualified before receiving this rate.&nbsp;');
+insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (41,1,'en','General Admission','general-admission','Meet sharks, turtles, jellyfish and other animals');
+insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (42,1,'id','Paket Umum','paket-umum','Temui hiu, kura-kura, ubur-ubur, gurita dan binatang lainnya.');
 
 /*Table structure for table `package_has_coupons` */
 
@@ -283,6 +293,23 @@ CREATE TABLE `package_has_medias` (
 insert  into `package_has_medias`(`id`,`package_id`,`media_id`) values (4,6,53);
 insert  into `package_has_medias`(`id`,`package_id`,`media_id`) values (5,5,55);
 insert  into `package_has_medias`(`id`,`package_id`,`media_id`) values (6,7,54);
+
+/*Table structure for table `package_metas` */
+
+CREATE TABLE `package_metas` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `package_id` int(10) unsigned NOT NULL,
+  `meta_key` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `meta_value` text COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `package_metas_package_id_foreign` (`package_id`),
+  CONSTRAINT `package_metas_package_id_foreign` FOREIGN KEY (`package_id`) REFERENCES `packages` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+/*Data for the table `package_metas` */
+
+insert  into `package_metas`(`id`,`package_id`,`meta_key`,`meta_value`) values (1,1,'meta_description-en','META (ENG)');
+insert  into `package_metas`(`id`,`package_id`,`meta_key`,`meta_value`) values (2,1,'meta_description-id','META (ID)');
 
 /*Table structure for table `packages` */
 
@@ -514,6 +541,18 @@ insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (6
 insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (69,'id','Enim fugit officia repudiandae autem quo.','enim-fugit-officia-repudiandae-autem-quo','King. \'Nothing whatever,\' said Alice. \'You are,\' said the King, with an M, such as mouse-traps, and the pool a little scream of laughter. \'Oh, hush!\' the Rabbit coming to look through into the loveliest garden you ever see such a nice soft thing to.');
 insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (70,'en','test','test','test');
 insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (70,'id','TEst','test-2','test');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (71,'en','Test (English)','test-english','TEST');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (71,'id','Test (Bahasa)','test-bahasa','TEST');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (72,'en','HANGING EXHIBIT','hanging-exhibit','At vero eos et accusamus et iusto odio madeline dignis imosse ducimus qui. Ut enim ad minim veniam, quis nostrud mellark exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure cillum fugiat nulla pariatu prodiener excepteur sint occaecat cupidatat non proident.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (72,'id','HANGING EXHIBIT','hanging-exhibit-2','At vero eos et accusamus et iusto odio madeline dignis imosse ducimus qui. Ut enim ad minim veniam, quis nostrud mellark exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure cillum fugiat nulla pariatu prodiener excepteur sint occaecat cupidatat non proident.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (73,'en','Art Installation','art-installation','At vero eos et accusamus et iusto odio madeline dignis imosse ducimus qui. Ut enim ad minim veniam, quis nostrud mellark exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure cillum fugiat nulla pariatu prodiener excepteur sint occaecat cupidatat non proident.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (73,'id','Art Installation','art-installation-2','At vero eos et accusamus et iusto odio madeline dignis imosse ducimus qui. Ut enim ad minim veniam, quis nostrud mellark exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure cillum fugiat nulla pariatu prodiener excepteur sint occaecat cupidatat non proident.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (74,'en','The Aquarium (en)','the-aquarium-en','At vero eos et accusamus et iusto odio madeline dignis imosse ducimus qui. Ut enim ad minim veniam, quis nostrud mellark exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure cillum fugiat nulla pariatu prodiener excepteur sint occaecat cupidatat non proident.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (74,'id','The Aquarium (ID)','the-aquarium-id','At vero eos et accusamus et iusto odio madeline dignis imosse ducimus qui. Ut enim ad minim veniam, quis nostrud mellark exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure cillum fugiat nulla pariatu prodiener excepteur sint occaecat cupidatat non proident.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (75,'en','DIVE WITH SHARKS (EN)','dive-with-sharks-en','At vero eos et accusamus et iusto odio madeline dignis imosse ducimus qui. Ut enim ad minim veniam, quis nostrud mellark exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure cillum fugiat nulla pariatu prodiener excepteur sint occaecat cupidatat non proident.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (75,'id','DIVE WITH SHARKS (ID)','dive-with-sharks-id','At vero eos et accusamus et iusto odio madeline dignis imosse ducimus qui. Ut enim ad minim veniam, quis nostrud mellark exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure cillum fugiat nulla pariatu prodiener excepteur sint occaecat cupidatat non proident.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (76,'en','THE MERMAID SONG (EN)','the-mermaid-song-en','At vero eos et accusamus et iusto odio madeline dignis imosse ducimus qui. Ut enim ad minim veniam, quis nostrud mellark exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure cillum fugiat nulla pariatu prodiener excepteur sint occaecat cupidatat non proident.');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (76,'id','THE MERMAID SONG (ID)','the-mermaid-song-id','At vero eos et accusamus et iusto odio madeline dignis imosse ducimus qui. Ut enim ad minim veniam, quis nostrud mellark exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure cillum fugiat nulla pariatu prodiener excepteur sint occaecat cupidatat non proident.');
 
 /*Table structure for table `post_has_categories` */
 
@@ -531,6 +570,13 @@ CREATE TABLE `post_has_categories` (
 insert  into `post_has_categories`(`post_id`,`category_id`) values (17,2);
 insert  into `post_has_categories`(`post_id`,`category_id`) values (18,2);
 insert  into `post_has_categories`(`post_id`,`category_id`) values (19,3);
+insert  into `post_has_categories`(`post_id`,`category_id`) values (71,3);
+insert  into `post_has_categories`(`post_id`,`category_id`) values (72,17);
+insert  into `post_has_categories`(`post_id`,`category_id`) values (73,17);
+insert  into `post_has_categories`(`post_id`,`category_id`) values (74,18);
+insert  into `post_has_categories`(`post_id`,`category_id`) values (75,18);
+insert  into `post_has_categories`(`post_id`,`category_id`) values (76,18);
+insert  into `post_has_categories`(`post_id`,`category_id`) values (76,19);
 insert  into `post_has_categories`(`post_id`,`category_id`) values (70,21);
 insert  into `post_has_categories`(`post_id`,`category_id`) values (70,22);
 
@@ -601,6 +647,12 @@ insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (66,52,
 insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (67,52,'featured');
 insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (68,55,'featured');
 insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (69,54,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (71,53,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (72,57,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (73,56,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (74,61,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (75,60,'featured');
+insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values (76,60,'featured');
 
 /*Table structure for table `post_metas` */
 
@@ -612,7 +664,7 @@ CREATE TABLE `post_metas` (
   PRIMARY KEY (`id`),
   KEY `post_metas_post_id_foreign` (`post_id`),
   CONSTRAINT `post_metas_post_id_foreign` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `post_metas` */
 
@@ -620,6 +672,12 @@ insert  into `post_metas`(`id`,`post_id`,`meta_key`,`meta_value`) values (8,19,'
 insert  into `post_metas`(`id`,`post_id`,`meta_key`,`meta_value`) values (9,19,'featured','1');
 insert  into `post_metas`(`id`,`post_id`,`meta_key`,`meta_value`) values (14,20,'featured','1');
 insert  into `post_metas`(`id`,`post_id`,`meta_key`,`meta_value`) values (15,21,'featured','1');
+insert  into `post_metas`(`id`,`post_id`,`meta_key`,`meta_value`) values (20,71,'meta_description-en','Meta (English)');
+insert  into `post_metas`(`id`,`post_id`,`meta_key`,`meta_value`) values (21,71,'meta_description-id','Meta (Bahasa)');
+insert  into `post_metas`(`id`,`post_id`,`meta_key`,`meta_value`) values (22,72,'meta_description-en','META (ENG)');
+insert  into `post_metas`(`id`,`post_id`,`meta_key`,`meta_value`) values (23,72,'meta_description-id','Meta (ID)');
+insert  into `post_metas`(`id`,`post_id`,`meta_key`,`meta_value`) values (24,70,'meta_description-en','Media Meta (EN)');
+insert  into `post_metas`(`id`,`post_id`,`meta_key`,`meta_value`) values (25,70,'meta_description-id','Media Meta (ID)');
 
 /*Table structure for table `post_types` */
 
@@ -650,7 +708,7 @@ CREATE TABLE `posts` (
   `publish_date` timestamp NULL DEFAULT NULL,
   `created_by` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `posts` */
 
@@ -707,7 +765,13 @@ insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`pub
 insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (67,2,'2016-11-03 13:19:49','2016-11-03 13:19:49','PUBLISH','2016-11-03 00:00:00',1);
 insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (68,2,'2016-11-03 13:19:49','2016-11-03 13:19:49','PUBLISH','2016-11-03 00:00:00',1);
 insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (69,2,'2016-11-03 13:19:49','2016-11-03 13:19:49','PUBLISH','2016-11-03 00:00:00',1);
-insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (70,4,'2016-11-05 14:21:55','2016-11-05 14:24:09','PUBLISH','2016-11-05 14:21:00',3);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (70,4,'2016-11-05 14:21:55','2016-11-10 18:28:41','PUBLISH','2016-11-05 14:21:00',3);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (71,2,'2016-11-10 17:36:56','2016-11-10 17:51:47','PUBLISH','2016-11-10 17:35:00',3);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (72,3,'2016-11-10 18:26:45','2016-11-10 18:26:45','PUBLISH','2016-11-10 18:04:00',3);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (73,3,'2016-11-11 18:33:49','2016-11-11 18:33:49','PUBLISH','2016-11-11 18:33:00',3);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (74,3,'2016-11-11 18:35:21','2016-11-11 18:35:21','PUBLISH','2016-11-11 18:34:00',3);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (75,3,'2016-11-11 18:35:55','2016-11-11 18:35:55','PUBLISH','2016-11-11 18:35:00',3);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (76,3,'2016-11-11 18:36:42','2016-11-11 18:36:42','PUBLISH','2016-11-11 18:36:00',3);
 
 /*Table structure for table `role_has_permissions` */
 
@@ -834,7 +898,7 @@ CREATE TABLE `sessions` (
 
 /*Data for the table `sessions` */
 
-insert  into `sessions`(`id`,`user_id`,`ip_address`,`user_agent`,`payload`,`last_activity`) values ('jkpYaNlUawSfKsR0Uw7j26FYM21j9UkgcJ7uOOsn',3,'192.168.10.1','Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36','YTo3OntzOjY6Il90b2tlbiI7czo0MDoicURFR25MN1Z4MjRJem80VlllWVVPNGgyMXJoZHVXeGdNTUhjWEJ6UyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly9qYWkuZGV2L2phaS1iYWNrZW5kL3Nob3d0aW1lIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo0OiJsYW5nIjtzOjI6ImlkIjtzOjM6InVybCI7YTowOnt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MztzOjk6Il9zZjJfbWV0YSI7YTozOntzOjE6InUiO2k6MTQ3ODQ5Mjc3OTtzOjE6ImMiO2k6MTQ3ODQ5MjAyNTtzOjE6ImwiO3M6MToiMCI7fX0=',1478492780);
+insert  into `sessions`(`id`,`user_id`,`ip_address`,`user_agent`,`payload`,`last_activity`) values ('AzpZmDyAmtKQJyyVZnGC3xKfxQokQkgk0sB2JGVW',3,'192.168.10.1','Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36','YTo2OntzOjY6Il90b2tlbiI7czo0MDoic0t0R0lJeXpkQ3FuMUVOUjhuaGV5TjZCbmgyajRyZ1c0aGJzZGZvdCI7czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MztzOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czoyNzoiaHR0cDovL2phaS5kZXYvaWQvbmV3cy1ibG9nIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo0OiJsYW5nIjtzOjI6ImlkIjtzOjk6Il9zZjJfbWV0YSI7YTozOntzOjE6InUiO2k6MTQ3ODg2NzAyNTtzOjE6ImMiO2k6MTQ3ODg1Njc2ODtzOjE6ImwiO3M6MToiMCI7fX0=',1478867025);
 
 /*Table structure for table `show_details` */
 
@@ -848,9 +912,51 @@ CREATE TABLE `show_details` (
   PRIMARY KEY (`id`),
   KEY `show_details_show_id_foreign` (`show_id`),
   CONSTRAINT `show_details_show_id_foreign` FOREIGN KEY (`show_id`) REFERENCES `shows` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `show_details` */
+
+insert  into `show_details`(`id`,`show_id`,`title`,`slug`,`lang`,`content`) values (23,8,'Coral Reef Story Time (English)','coral-reef-story-time-english','en','At vero eos et accusamus et iusto odio madeline dignis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo mallera consequat aller proident.<br />At vero eos et accusamus et iusto odio madeline dignis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo mallera consequat aller proident.<br />At vero eos et accusamus et iusto odio madeline dignis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo mallera consequat aller proident.');
+insert  into `show_details`(`id`,`show_id`,`title`,`slug`,`lang`,`content`) values (24,8,'Coral Reef Story Time (ID)','coral-reef-story-time-id','id','At vero eos et accusamus et iusto odio madeline dignis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo mallera consequat aller proident.<br />At vero eos et accusamus et iusto odio madeline dignis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo mallera consequat aller proident.<br />At vero eos et accusamus et iusto odio madeline dignis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo mallera consequat aller proident.');
+insert  into `show_details`(`id`,`show_id`,`title`,`slug`,`lang`,`content`) values (27,10,'Particular Show','particular-show','en','At vero eos et accusamus et iusto odio madeline dignis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo mallera consequat aller proident.');
+insert  into `show_details`(`id`,`show_id`,`title`,`slug`,`lang`,`content`) values (28,10,'Pertunjukan Musiman','pertunjukan-musiman','id','At vero eos et accusamus et iusto odio madeline dignis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo mallera consequat aller proident.');
+insert  into `show_details`(`id`,`show_id`,`title`,`slug`,`lang`,`content`) values (31,9,'Limited Show','limited-show','en','At vero eos et accusamus et iusto odio madeline dignis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo mallera consequat aller proident.');
+insert  into `show_details`(`id`,`show_id`,`title`,`slug`,`lang`,`content`) values (32,9,'Pertunjukan Terbatas','pertunjukan-terbatas','id','At vero eos et accusamus et iusto odio madeline dignis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo mallera consequat aller proident.');
+
+/*Table structure for table `show_has_medias` */
+
+CREATE TABLE `show_has_medias` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `show_id` int(10) unsigned NOT NULL,
+  `media_id` int(10) unsigned NOT NULL,
+  `media_type` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'featured',
+  PRIMARY KEY (`id`),
+  KEY `show_has_medias_show_id_foreign` (`show_id`),
+  KEY `show_has_medias_media_id_foreign` (`media_id`),
+  CONSTRAINT `show_has_medias_media_id_foreign` FOREIGN KEY (`media_id`) REFERENCES `media` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `show_has_medias_show_id_foreign` FOREIGN KEY (`show_id`) REFERENCES `shows` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+/*Data for the table `show_has_medias` */
+
+insert  into `show_has_medias`(`id`,`show_id`,`media_id`,`media_type`) values (4,8,52,'featured');
+
+/*Table structure for table `show_metas` */
+
+CREATE TABLE `show_metas` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `show_id` int(10) unsigned NOT NULL,
+  `meta_key` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `meta_value` text COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `show_metas_show_id_foreign` (`show_id`),
+  CONSTRAINT `show_metas_show_id_foreign` FOREIGN KEY (`show_id`) REFERENCES `shows` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+/*Data for the table `show_metas` */
+
+insert  into `show_metas`(`id`,`show_id`,`meta_key`,`meta_value`) values (9,8,'meta_description-en','Show Meta (EN)');
+insert  into `show_metas`(`id`,`show_id`,`meta_key`,`meta_value`) values (10,8,'meta_description-id','Show Meta (ID)');
 
 /*Table structure for table `show_types` */
 
@@ -876,9 +982,13 @@ CREATE TABLE `shows` (
   `start_time` time DEFAULT NULL,
   `end_time` time DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `shows` */
+
+insert  into `shows`(`id`,`show_type`,`created_by`,`created_at`,`updated_at`,`day`,`start_date`,`end_date`,`start_time`,`end_time`) values (8,1,3,'2016-11-10 18:31:53','2016-11-10 18:41:49',5,'1970-01-01','1970-01-01','14:00:00','00:00:00');
+insert  into `shows`(`id`,`show_type`,`created_by`,`created_at`,`updated_at`,`day`,`start_date`,`end_date`,`start_time`,`end_time`) values (9,3,3,'2016-11-11 18:11:05','2016-11-11 18:31:51',1,'2016-11-09','2016-11-15','13:00:00','00:00:00');
+insert  into `shows`(`id`,`show_type`,`created_by`,`created_at`,`updated_at`,`day`,`start_date`,`end_date`,`start_time`,`end_time`) values (10,2,3,'2016-11-11 18:12:32','2016-11-11 18:12:32',5,'1970-01-01','1970-01-01','11:00:00','00:00:00');
 
 /*Table structure for table `slider_items` */
 
