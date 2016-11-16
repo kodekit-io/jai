@@ -195,8 +195,8 @@ Route::group(['middleware' => ['lang', 'menu:frontend']], function () {
     Route::get('/{lang?}/conservation', 'FrontEndController@conservation');
     Route::get('/{lang?}/location-map', 'FrontEndController@locationMap');
     Route::get('/{lang?}/career', 'FrontEndController@career');
-    Route::get('/{lang?}/media-room', 'FrontEndController@mediaRoom');
-    Route::get('/{lang?}/media-room-details', 'FrontEndController@mediaRoomDetails');
+    Route::get('/{lang?}/media-room', 'MediaRoomFrontEndController@mediaRoom');
+    Route::get('/{lang?}/media-room-details', 'MediaRoomFrontEndController@mediaRoomDetails');
     Route::get('/{lang?}/privacy-policy', 'FrontEndController@privacy');
     Route::get('/{lang?}/term-use', 'FrontEndController@term');
     Route::get('/{lang?}/search-result', 'FrontEndController@search');
@@ -204,3 +204,7 @@ Route::group(['middleware' => ['lang', 'menu:frontend']], function () {
     Route::get('/{lang?}', 'FrontEndController@homePage');
     Route::get('/{lang?}/news/{slug}', 'FrontEndController@homePage');
 });
+
+Route::any('doku/result', 'PaymentController@dokuResult');
+Route::any('doku/notify', 'PaymentController@dokuNotify');
+Route::any('doku/review', 'PaymentController@dokuReview');

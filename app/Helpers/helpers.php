@@ -92,3 +92,13 @@ if (! function_exists('get_day_from_number')) {
     }
 
 }
+
+if (! function_exists('get_post_categories')) {
+
+    function get_post_categories($postId) {
+        $postService = new \App\Service\Post();
+        $post = $postService->getPost(['id' => $postId]);
+        return $post->categories;
+    }
+
+}

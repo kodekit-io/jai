@@ -2,8 +2,7 @@
 SQLyog Community
 MySQL - 5.7.12-0ubuntu1.1 : Database - jai
 *********************************************************************
-*/
-
+*/
 
 /*!40101 SET NAMES utf8 */;
 
@@ -13,6 +12,64 @@ MySQL - 5.7.12-0ubuntu1.1 : Database - jai
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+/*Table structure for table `career_details` */
+
+CREATE TABLE `career_details` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `career_id` int(10) unsigned NOT NULL,
+  `lang` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `position` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `description` text COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `career_details_career_id_foreign` (`career_id`),
+  CONSTRAINT `career_details_career_id_foreign` FOREIGN KEY (`career_id`) REFERENCES `careers` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+/*Data for the table `career_details` */
+
+insert  into `career_details`(`id`,`career_id`,`lang`,`slug`,`position`,`description`) values (9,2,'en','programmers-en','Programmers (EN)','Programmers');
+insert  into `career_details`(`id`,`career_id`,`lang`,`slug`,`position`,`description`) values (10,2,'id','programmers-id','Programmers  (ID)','Be a programmers');
+insert  into `career_details`(`id`,`career_id`,`lang`,`slug`,`position`,`description`) values (11,3,'en','environment-scientist-en','Environment Scientist (EN)','Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.');
+insert  into `career_details`(`id`,`career_id`,`lang`,`slug`,`position`,`description`) values (12,3,'id','environment-scientist-id','Environment Scientist (ID)','Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.');
+insert  into `career_details`(`id`,`career_id`,`lang`,`slug`,`position`,`description`) values (17,4,'en','operation-manager-en','Operation Manager (EN)','Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.');
+insert  into `career_details`(`id`,`career_id`,`lang`,`slug`,`position`,`description`) values (18,4,'id','operation-manager-id','Operation Manager (ID)','Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.');
+
+/*Table structure for table `career_metas` */
+
+CREATE TABLE `career_metas` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `career_id` int(10) unsigned NOT NULL,
+  `meta_key` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `meta_value` text COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `career_metas_career_id_foreign` (`career_id`),
+  CONSTRAINT `career_metas_career_id_foreign` FOREIGN KEY (`career_id`) REFERENCES `careers` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+/*Data for the table `career_metas` */
+
+insert  into `career_metas`(`id`,`career_id`,`meta_key`,`meta_value`) values (9,2,'meta_description-en','META (EN)');
+insert  into `career_metas`(`id`,`career_id`,`meta_key`,`meta_value`) values (10,2,'meta_description-id','META (ID)');
+
+/*Table structure for table `careers` */
+
+CREATE TABLE `careers` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `department` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `active_date` date NOT NULL,
+  `contact_person` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+/*Data for the table `careers` */
+
+insert  into `careers`(`id`,`department`,`active_date`,`contact_person`,`created_at`,`updated_at`) values (2,'ICT','2016-11-30','Dodo','2016-11-14 14:29:40','2016-11-14 14:42:46');
+insert  into `careers`(`id`,`department`,`active_date`,`contact_person`,`created_at`,`updated_at`) values (3,'Biological Program','2016-11-22','Dodo','2016-11-15 15:19:05','2016-11-15 15:19:05');
+insert  into `careers`(`id`,`department`,`active_date`,`contact_person`,`created_at`,`updated_at`) values (4,'Operation and Business Development','2016-11-30','Dodo','2016-11-15 15:39:02','2016-11-15 15:39:39');
+
 /*Table structure for table `categories` */
 
 CREATE TABLE `categories` (
@@ -150,7 +207,7 @@ CREATE TABLE `menus` (
   `order` int(11) NOT NULL DEFAULT '0',
   `menu_type` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'backend',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `menus` */
 
@@ -193,6 +250,9 @@ insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon
 insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`,`menu_type`) values (43,'f.attraction','Attractions and Experience','attractions-experience',0,'frontend','ja-icon-attract',NULL,NULL,NULL,300,'frontend');
 insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`,`menu_type`) values (44,'f.conservation','Education and Conservation','conservation',0,'frontend','ja-icon-edu',NULL,NULL,NULL,400,'frontend');
 insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`,`menu_type`) values (45,'f.news','News','news-blog',0,'frontend','ja-icon-news',NULL,NULL,NULL,500,'frontend');
+insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`,`menu_type`) values (46,'career','Careers','javascript:;',0,'career','fa fa-child',NULL,NULL,NULL,700,'backend');
+insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`,`menu_type`) values (47,'career.list','Career List','jai-backend/career',46,'career',NULL,NULL,NULL,NULL,100,'backend');
+insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`,`menu_type`) values (48,'career.add','Add Career','jai-backend/career/add',46,'career.add',NULL,NULL,NULL,NULL,200,'backend');
 
 /*Table structure for table `migrations` */
 
@@ -234,6 +294,7 @@ insert  into `migrations`(`migration`,`batch`) values ('2016_11_05_152539_alter_
 insert  into `migrations`(`migration`,`batch`) values ('2016_11_10_104656_create_show_has_media_table',27);
 insert  into `migrations`(`migration`,`batch`) values ('2016_11_10_175742_create_package_metas_table',28);
 insert  into `migrations`(`migration`,`batch`) values ('2016_11_10_183306_create_show_metas_table',29);
+insert  into `migrations`(`migration`,`batch`) values ('2016_11_14_125111_create_careers_table',30);
 
 /*Table structure for table `package_details` */
 
@@ -356,7 +417,7 @@ CREATE TABLE `permissions` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `permissions_name_unique` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `permissions` */
 
@@ -418,6 +479,10 @@ insert  into `permissions`(`id`,`name`,`created_at`,`updated_at`) values (59,'sh
 insert  into `permissions`(`id`,`name`,`created_at`,`updated_at`) values (60,'showtime.add','2016-11-02 20:30:07','2016-11-02 20:30:07');
 insert  into `permissions`(`id`,`name`,`created_at`,`updated_at`) values (61,'showtime.edit','2016-11-02 20:30:13','2016-11-02 20:30:23');
 insert  into `permissions`(`id`,`name`,`created_at`,`updated_at`) values (62,'showtime.delete','2016-11-02 20:30:32','2016-11-02 20:30:32');
+insert  into `permissions`(`id`,`name`,`created_at`,`updated_at`) values (63,'career','2016-11-14 13:39:00','2016-11-14 13:39:00');
+insert  into `permissions`(`id`,`name`,`created_at`,`updated_at`) values (64,'career.add','2016-11-14 13:39:06','2016-11-14 13:39:06');
+insert  into `permissions`(`id`,`name`,`created_at`,`updated_at`) values (65,'career.update','2016-11-14 13:39:12','2016-11-14 13:39:12');
+insert  into `permissions`(`id`,`name`,`created_at`,`updated_at`) values (66,'career.delete','2016-11-14 13:39:20','2016-11-14 13:39:20');
 
 /*Table structure for table `post_details` */
 
@@ -688,7 +753,7 @@ CREATE TABLE `post_types` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `post_types` */
 
@@ -696,6 +761,7 @@ insert  into `post_types`(`id`,`name`,`slug`,`created_at`,`updated_at`) values (
 insert  into `post_types`(`id`,`name`,`slug`,`created_at`,`updated_at`) values (2,'News','news','2016-10-26 18:44:06','2016-10-26 18:44:06');
 insert  into `post_types`(`id`,`name`,`slug`,`created_at`,`updated_at`) values (3,'Attraction and Experience','attraction-and-experience','2016-10-13 20:13:53','2016-10-13 20:13:53');
 insert  into `post_types`(`id`,`name`,`slug`,`created_at`,`updated_at`) values (4,'Media Room','media-room','2016-11-05 14:22:54','2016-11-05 14:22:57');
+insert  into `post_types`(`id`,`name`,`slug`,`created_at`,`updated_at`) values (5,'Career','career','2016-11-14 13:53:44','2016-11-14 13:53:44');
 
 /*Table structure for table `posts` */
 
@@ -844,6 +910,10 @@ insert  into `role_has_permissions`(`permission_id`,`role_id`) values (59,1);
 insert  into `role_has_permissions`(`permission_id`,`role_id`) values (60,1);
 insert  into `role_has_permissions`(`permission_id`,`role_id`) values (61,1);
 insert  into `role_has_permissions`(`permission_id`,`role_id`) values (62,1);
+insert  into `role_has_permissions`(`permission_id`,`role_id`) values (63,1);
+insert  into `role_has_permissions`(`permission_id`,`role_id`) values (64,1);
+insert  into `role_has_permissions`(`permission_id`,`role_id`) values (65,1);
+insert  into `role_has_permissions`(`permission_id`,`role_id`) values (66,1);
 insert  into `role_has_permissions`(`permission_id`,`role_id`) values (1,3);
 insert  into `role_has_permissions`(`permission_id`,`role_id`) values (2,3);
 insert  into `role_has_permissions`(`permission_id`,`role_id`) values (3,3);
@@ -898,7 +968,7 @@ CREATE TABLE `sessions` (
 
 /*Data for the table `sessions` */
 
-insert  into `sessions`(`id`,`user_id`,`ip_address`,`user_agent`,`payload`,`last_activity`) values ('AzpZmDyAmtKQJyyVZnGC3xKfxQokQkgk0sB2JGVW',3,'192.168.10.1','Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36','YTo2OntzOjY6Il90b2tlbiI7czo0MDoic0t0R0lJeXpkQ3FuMUVOUjhuaGV5TjZCbmgyajRyZ1c0aGJzZGZvdCI7czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MztzOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czoyNzoiaHR0cDovL2phaS5kZXYvaWQvbmV3cy1ibG9nIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo0OiJsYW5nIjtzOjI6ImlkIjtzOjk6Il9zZjJfbWV0YSI7YTozOntzOjE6InUiO2k6MTQ3ODg2NzAyNTtzOjE6ImMiO2k6MTQ3ODg1Njc2ODtzOjE6ImwiO3M6MToiMCI7fX0=',1478867025);
+insert  into `sessions`(`id`,`user_id`,`ip_address`,`user_agent`,`payload`,`last_activity`) values ('58uGGkKgH8Wg82LBFTtOmt51UVVVMoaSQvSb8Xww',3,'192.168.10.1','Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36','YTo3OntzOjY6Il90b2tlbiI7czo0MDoib05xQmxoNjRubzlZRFUxdHVqTzhXdjRQV2ZSYnJiSkV4amJWektyNiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjQ6Imh0dHA6Ly9qYWkuZGV2L2lkL2NhcmVlciI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NDoibGFuZyI7czoyOiJpZCI7czozOiJ1cmwiO2E6MDp7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjM7czo5OiJfc2YyX21ldGEiO2E6Mzp7czoxOiJ1IjtpOjE0NzkxOTkxODI7czoxOiJjIjtpOjE0NzkxOTcxOTE7czoxOiJsIjtzOjE6IjAiO319',1479199183);
 
 /*Table structure for table `show_details` */
 
@@ -1086,8 +1156,7 @@ CREATE TABLE `users` (
 /*Data for the table `users` */
 
 insert  into `users`(`id`,`name`,`email`,`password`,`remember_token`,`created_at`,`updated_at`) values (1,'Pasha Mahardika','me@pashamahardika.com','$2y$10$Ys8gQPnelcFYGY7vVzKe/OHSzXBLNyqPGz9DTHFp9MZGzRa7djpb.','9pYCFU0NQHVB8a8ym5J37JdOU0guoqcO0dDZQXoiZB9mijqYi1VNRqysdHRP','2016-10-12 03:35:26','2016-10-12 07:55:17');
-insert  into `users`(`id`,`name`,`email`,`password`,`remember_token`,`created_at`,`updated_at`) values (3,'Edwina Trianinda','trianinda.edwina@gmail.com','$2y$10$iWVk/vWv/R3oa1ipa.pVgem6ypOZvDLW.F4jnbxEVODJFxbKgKHRa','k9OZxgptOu9IxFEnc044XWsamrcBuSVEmOlRh9dqY3DXtHzIjwV1vMMHySeK','2016-10-12 07:41:14','2016-11-05 12:47:50');
-insert  into `users`(`id`,`name`,`email`,`password`,`remember_token`,`created_at`,`updated_at`) values (13, 'oglab', 'oglab@orangegraphiclabs.com', '$2y$10$2PgJHYbG6Q0Gqi1bTkjeNOyXK9g1xI4/.WndZXckYfvQVtmtQf166', NULL, '2016-11-11 11:11:11', '2016-11-11 11:11:11');
+insert  into `users`(`id`,`name`,`email`,`password`,`remember_token`,`created_at`,`updated_at`) values (3,'Edwina Trianinda','trianinda.edwina@gmail.com','$2y$10$iWVk/vWv/R3oa1ipa.pVgem6ypOZvDLW.F4jnbxEVODJFxbKgKHRa','8sIdRHdbXMltNZ9fdBwj0hHrWAyuPeiD4y5Z0P3SfYap1Xl0XAkoPRDqLovr','2016-10-12 07:41:14','2016-11-15 09:29:55');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
