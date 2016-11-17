@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Service\Attraction;
 use App\Service\Career;
 use App\Service\Package;
+use App\Service\Payment;
 use App\Service\Post;
 use App\Service\ShowTime;
 use App\Service\Slider;
@@ -38,6 +39,10 @@ class FrontEndController extends Controller
      * @var Career
      */
     private $careerService;
+    /**
+     * @var Payment
+     */
+    private $paymentService;
 
     /**
      * FrontEndController constructor.
@@ -47,6 +52,7 @@ class FrontEndController extends Controller
      * @param ShowTime $showTimeService
      * @param Attraction $attractionService
      * @param Career $careerService
+     * @param Payment $paymentService
      */
     public function __construct(
         Post $postService,
@@ -54,7 +60,8 @@ class FrontEndController extends Controller
         Package $packageService,
         ShowTime $showTimeService,
         Attraction $attractionService,
-        Career $careerService
+        Career $careerService,
+        Payment $paymentService
     )
     {
         $this->postService = $postService;
@@ -63,6 +70,7 @@ class FrontEndController extends Controller
         $this->showTimeService = $showTimeService;
         $this->attractionService = $attractionService;
         $this->careerService = $careerService;
+        $this->paymentService = $paymentService;
     }
 
     public function homePage($lang)
@@ -118,7 +126,11 @@ class FrontEndController extends Controller
 
     public function bookTicket($lang)
     {
-        return view('frontend.book-detail');
+        $dokuParams = $this->paymentService->getDokuParameters();
+        $dokuUrl = config('doku.doku.api_url');
+        $data['dokuUrl'] = $dokuUrl;
+        $data['dokuParams'] = $dokuParams;
+        return view('frontend.book-detail', $data);
     }
 
     public function specialPackages($lang)
@@ -233,16 +245,6 @@ class FrontEndController extends Controller
         return view('frontend.career', $data);
     }
 
-    public function mediaRoom($lang)
-    {
-        return view('frontend.media-room');
-    }
-
-    public function mediaRoomDetails($lang)
-    {
-        return view('frontend.media-room-details');
-    }
-
     public function privacy($lang)
     {
         return view('frontend.privacy-policy');
@@ -257,4 +259,5 @@ class FrontEndController extends Controller
     {
         return view('frontend.search-result');
     }
+
 }

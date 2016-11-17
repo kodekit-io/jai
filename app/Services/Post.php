@@ -222,7 +222,6 @@ class Post
     {
         $query = DB::table('posts')
                     ->join('post_details', 'posts.id', '=', 'post_details.post_id')
-                    ->leftJoin('post_has_categories', 'posts.id', '=', 'post_has_categories.post_id')
                     ->leftJoin('post_has_medias', 'posts.id', '=', 'post_has_medias.post_id')
                     ->leftJoin('media', 'post_has_medias.media_id', '=', 'media.id')
                     ->select('posts.*', 'post_details.title', 'post_details.content', 'media.file_name');
@@ -240,6 +239,19 @@ class Post
                 ->addSelect('post_metas.meta_value');
         }
 
+        // search by category
+        if (isset($params['category_id'])) {
+            $categoryId = $params['category_id'];
+            $query = $query->leftJoin('post_has_categories', 'posts.id', '=', 'post_has_categories.post_id')
+                ->where('post_has_categories.category_id', $categoryId);
+        }
+
+        if(isset($params['categories'])) {
+            $categories = array_pluck($params['categories']);
+            $query = $query->leftJoin('post_has_categories', 'posts.id', '=', 'post_has_categories.post_id')
+                ->whereIn('post_has_categories.category_id', $categories);
+        }
+
         // search by lang
         if (isset($params['lang'])) {
             $lang = $params['lang'];
@@ -249,12 +261,6 @@ class Post
         // search by post_type
         if (isset($params['post_type_id'])) {
             $query = $query->where('posts.post_type_id', $params['post_type_id']);
-        }
-
-        // search by category
-        if (isset($params['category_id'])) {
-            $categoryId = $params['category_id'];
-            $query = $query->where('post_has_categories.category_id', $categoryId);
         }
 
         // search by status
@@ -270,7 +276,6 @@ class Post
         // $query->select('posts.*');
 
         return $query;
-
     }
 
     public function findById($id)

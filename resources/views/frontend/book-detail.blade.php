@@ -20,7 +20,10 @@
             <h3 class="light-blue-text text-darken-4">BOOKING DETAILS</h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor crasher malarki requiem predantia incididunt ut labore et dolore magna aliqua. Ut eni ad minim veniam, quisiom nostrud at autumn irure dor in reprehenderit exercitation.</p>
 
-            <form class="uk-form uk-margin-top uk-margin-bottom" action="">
+            <form class="uk-form uk-margin-top uk-margin-bottom" action="{!! $dokuUrl !!}" method="post">
+                @foreach($dokuParams as $key => $value)
+                    <input type="hidden" name="{!! $key !!}" value="{!! $value !!}">
+                @endforeach
                 <div class="uk-form-row uk-margin-remove">
                     <label for="">Admission</label>
                     <input id="" type="text" value="General Admission" disabled="true">
