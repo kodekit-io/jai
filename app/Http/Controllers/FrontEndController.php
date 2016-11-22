@@ -101,7 +101,14 @@ class FrontEndController extends Controller
 
     public function aboutUs($lang)
     {
-        return view('frontend.about-us');
+        $params = [
+            'lang' => $lang,
+            'id' => config('misc.statics.about-us')
+        ];
+        $post = $this->postService->getPostsWithDetail($params);
+        $data['post'] = $post->first();
+
+        return view('frontend.about-us', $data);
     }
 
     public function ticket($lang)
@@ -236,8 +243,12 @@ class FrontEndController extends Controller
     public function career($lang)
     {
         $params = [
-            'lang' => $lang
+            'lang' => $lang,
+            'id' => config('misc.statics.career')
         ];
+        $post = $this->postService->getPostsWithDetail($params);
+
+        $data['page'] = $post->first();
         $careers = $this->careerService->getCareerWithDetails($params)->get();
         $data['careers'] = $careers;
         $data['posts'] = $careers;
@@ -247,12 +258,26 @@ class FrontEndController extends Controller
 
     public function privacy($lang)
     {
-        return view('frontend.privacy-policy');
+        $params = [
+            'lang' => $lang,
+            'id' => config('misc.statics.privacy-policy')
+        ];
+        $post = $this->postService->getPostsWithDetail($params);
+        $data['page'] = $post->first();
+
+        return view('frontend.privacy-policy', $data);
     }
 
     public function term($lang)
     {
-        return view('frontend.term-use');
+        $params = [
+            'lang' => $lang,
+            'id' => config('misc.statics.term-of-use')
+        ];
+        $post = $this->postService->getPostsWithDetail($params);
+        $data['page'] = $post->first();
+
+        return view('frontend.term-use', $data);
     }
 
     public function search($lang)

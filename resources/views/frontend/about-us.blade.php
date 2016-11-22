@@ -37,8 +37,7 @@
         </div>
         <div class="ja-about__content white uk-text-center uk-margin-bottom">
             <h3 class="ja-title ja-title__alt light-blue-text text-darken-4 uk-text-center">Our Story</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p>{!! $post->content !!}</p>
         </div>
         <div class="ja-about__content light-blue darken-4 white-text uk-text-center uk-margin-large-bottom">
             <h3 class="ja-title ja-title__alt amber-text text-darken-1 uk-text-center">Contact Us</h3>

@@ -159,6 +159,27 @@ class Post
                 'meta_value' => 1
             ]);
         }
+
+        return $post;
+    }
+
+    public function updateAboutUs($post, $inputs)
+    {
+        foreach ($inputs['philosophies'] as $lang => $philosophy) {
+            $post->metas()->where('meta_key', 'philosophy-' . $lang)->delete();
+            $post->metas()->create([
+                'meta_key' => 'philosophy-' . $lang,
+                'meta_value' => $philosophy
+            ]);
+        }
+
+        foreach ($inputs['stories'] as $lang => $story) {
+            $post->metas()->where('meta_key', 'story-' . $lang)->delete();
+            $post->metas()->create([
+                'meta_key' => 'story-' . $lang,
+                'meta_value' => $story
+            ]);
+        }
     }
 
     public function destroy($id)
@@ -226,6 +247,11 @@ class Post
                     ->leftJoin('media', 'post_has_medias.media_id', '=', 'media.id')
                     ->select('posts.*', 'post_details.title', 'post_details.content', 'media.file_name');
 
+        // search by id
+        if (isset($params['id'])) {
+            $query = $query->where('posts.id', $params['id']);
+        }
+
         // search by meta
         if (isset($params['meta'])) {
             $meta = $params['meta'];
@@ -272,6 +298,13 @@ class Post
         if (isset($params['exclude'])) {
             $query = $query->whereNotIn('posts.id', $params['exclude']);
         }
+
+        // by slug
+        if (isset($params['slug'])) {
+            $query = $query->where('post_details.slug', $params['slug']);
+        }
+
+        // var_dump($query->toSql()); exit;
 
         // $query->select('posts.*');
 

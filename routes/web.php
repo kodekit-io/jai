@@ -144,6 +144,14 @@ Route::group(['prefix' => $backendUrl, 'middleware' => ['menu:backend','auth','a
     Route::get('/career/{id}/edit', 'CareerController@edit')->name('career');
     Route::post('/career/{id}/update', 'CareerController@update')->name('career');
     Route::get('/career/{id}/delete', 'CareerController@destroy')->name('career');
+
+    // Page
+    Route::get('/page', 'PageController@index')->name('page');
+    Route::get('/page/add', 'PageController@create')->name('page.add');
+    Route::post('/page/save', 'PageController@store')->name('page.add');
+    Route::get('/page/{id}/edit', 'PageController@edit')->name('page.edit');
+    Route::post('/page/{id}/update', 'PageController@update')->name('page.edit');
+    Route::get('/page/{id}/delete', 'PageController@destroy')->name('page.delete');
 });
 
 
