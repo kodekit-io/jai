@@ -18,9 +18,9 @@
                             {{--<div class="caption-desc font-grey-cascade"> Default list element style. Activate by adding <pre class="mt-code">.list-news ext-1</pre> class to the <pre class="mt-code">ul</pre> element. </div>--}}
                         </div>
                         <div class="actions">
-                            <a class="btn btn-xs sbold green" href="{!! backendUrl('pages/add') !!}">
-                                <i class="fa fa-plus"></i> Add New
-                            </a>
+                            {{--<a class="btn btn-xs sbold green" href="{!! backendUrl('pages/add') !!}">--}}
+                                {{--<i class="fa fa-plus"></i> Add New--}}
+                            {{--</a>--}}
                         </div>
                     </div>
                     <div class="portlet-body">
