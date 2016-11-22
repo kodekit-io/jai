@@ -101,7 +101,19 @@ class FrontEndController extends Controller
 
     public function aboutUs($lang)
     {
-        return view('frontend.about-us');
+        $params = [
+            'lang' => $lang,
+            'id' => config('misc.statics.about-us')
+        ];
+        $postWithDetail = $this->postService->getPostsWithDetail($params);
+        $post = $this->postService->getPost(['id' => config('misc.statics.about-us')]);
+        $ourStory = $post->metas()->where('meta_key', 'story-' . $lang)->first();
+        $ourPhilosophy = $post->metas()->where('meta_key', 'philosophy-' . $lang)->first();
+        $data['post'] = $postWithDetail->first();
+        $data['ourStory'] = $ourStory;
+        $data['ourPhilosophy'] = $ourPhilosophy;
+
+        return view('frontend.about-us', $data);
     }
 
     public function ticket($lang)
@@ -179,16 +191,22 @@ class FrontEndController extends Controller
 
 
         $newsPaginated = $news->paginate(5);
-        $newsPaginated->setPath('news-blog');
+        $newsPaginated->setPath('news');
         $data['featuredPosts'] = $featuredPosts->get();
         $data['news'] =$newsPaginated;
 
         return view('frontend.news', $data);
     }
 
-    public function newsDetail($lang)
+    public function newsDetail($lang, $slug)
     {
-        return view('frontend.news-details');
+        $post = $this->postService->getPostsWithDetail(['lang' => $lang, 'slug' => $slug]);
+        $post = $post->first();
+        $relatedPosts = $this->postService->getRelatedPosts($lang, $post->id);
+        $data['post'] = $post;
+        $data['relatedPosts'] = $relatedPosts;
+
+        return view('frontend.news-details', $data);
     }
 
     public function attractions($lang)
@@ -236,8 +254,12 @@ class FrontEndController extends Controller
     public function career($lang)
     {
         $params = [
-            'lang' => $lang
+            'lang' => $lang,
+            'id' => config('misc.statics.career')
         ];
+        $post = $this->postService->getPostsWithDetail($params);
+
+        $data['page'] = $post->first();
         $careers = $this->careerService->getCareerWithDetails($params)->get();
         $data['careers'] = $careers;
         $data['posts'] = $careers;
@@ -247,12 +269,26 @@ class FrontEndController extends Controller
 
     public function privacy($lang)
     {
-        return view('frontend.privacy-policy');
+        $params = [
+            'lang' => $lang,
+            'id' => config('misc.statics.privacy-policy')
+        ];
+        $post = $this->postService->getPostsWithDetail($params);
+        $data['page'] = $post->first();
+
+        return view('frontend.privacy-policy', $data);
     }
 
     public function term($lang)
     {
-        return view('frontend.term-use');
+        $params = [
+            'lang' => $lang,
+            'id' => config('misc.statics.term-of-use')
+        ];
+        $post = $this->postService->getPostsWithDetail($params);
+        $data['page'] = $post->first();
+
+        return view('frontend.term-use', $data);
     }
 
     public function search($lang)

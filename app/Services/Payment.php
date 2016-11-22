@@ -11,7 +11,7 @@ class Payment
         $mallId = config('doku.doku.mall_id');
         $sharedKey = config('doku.doku.shared_key');
         $amount = number_format(75000, 2, '.', '');
-        $transId = '1';
+        $transId = '2';
         $words = sha1(trim($amount) . trim($mallId) .  trim($sharedKey) . trim($transId));
         $idrCurrency = '360';
         // $words = '16c2b05017c04f6e650167947876f0fa2d8ab908';
@@ -26,7 +26,7 @@ class Payment
             'REQUESTDATETIME'  => date('YmdHis'),
             'CURRENCY'         => $idrCurrency,
             'PURCHASECURRENCY' => $idrCurrency,
-            'SESSIONID'        => md5(url('')),
+            'SESSIONID'        => '123doku123',
             'PAYMENTCHANNEL'   => "",
             'NAME'             => 'Pasha Mahardika',
             'EMAIL'            => 'pasha.md5@gmail.com',

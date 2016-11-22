@@ -59,7 +59,8 @@ return array(
         'large' => 'Intervention\Image\Templates\Large',
         'featured' => 'App\Helpers\Featured',
         'whatsOn' => 'App\Helpers\WhatsOn',
-        'newsSlider' => 'App\Helpers\NewsSlider'
+        'newsSlider' => 'App\Helpers\NewsSlider',
+        'newsThumbnail' => 'App\Helpers\NewsThumbnail'
     ),
 
     /*

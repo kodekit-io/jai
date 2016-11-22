@@ -144,6 +144,14 @@ Route::group(['prefix' => $backendUrl, 'middleware' => ['menu:backend','auth','a
     Route::get('/career/{id}/edit', 'CareerController@edit')->name('career');
     Route::post('/career/{id}/update', 'CareerController@update')->name('career');
     Route::get('/career/{id}/delete', 'CareerController@destroy')->name('career');
+
+    // Page
+    Route::get('/page', 'PageController@index')->name('page');
+    Route::get('/page/add', 'PageController@create')->name('page.add');
+    Route::post('/page/save', 'PageController@store')->name('page.add');
+    Route::get('/page/{id}/edit', 'PageController@edit')->name('page.edit');
+    Route::post('/page/{id}/update', 'PageController@update')->name('page.edit');
+    Route::get('/page/{id}/delete', 'PageController@destroy')->name('page.delete');
 });
 
 
@@ -187,9 +195,8 @@ Route::group(['middleware' => ['lang', 'menu:frontend']], function () {
     Route::get('/{lang?}/special-packages', 'FrontEndController@specialPackages');
     Route::get('/{lang?}/show-time', 'FrontEndController@showTime');
     Route::get('/{lang?}/location', 'FrontEndController@location');
-    Route::get('/{lang?}/news-blog', 'FrontEndController@news');
-    Route::get('/{lang?}/news-blog/page/{page?}', 'FrontEndController@news');
-    Route::get('/{lang?}/news-details', 'FrontEndController@newsDetail');
+    Route::get('/{lang?}/news', 'FrontEndController@news');
+    Route::get('/{lang?}/news/{slug}', 'FrontEndController@newsDetail');
     Route::get('/{lang?}/attractions-experience', 'FrontEndController@attractions');
     Route::get('/{lang?}/education', 'FrontEndController@education');
     Route::get('/{lang?}/conservation', 'FrontEndController@conservation');
@@ -202,7 +209,7 @@ Route::group(['middleware' => ['lang', 'menu:frontend']], function () {
     Route::get('/{lang?}/search-result', 'FrontEndController@search');
 
     Route::get('/{lang?}', 'FrontEndController@homePage');
-    Route::get('/{lang?}/news/{slug}', 'FrontEndController@homePage');
+//    Route::get('/{lang?}/news/{slug}', 'FrontEndController@homePage');
 });
 
 Route::any('doku/result', 'PaymentController@dokuResult');

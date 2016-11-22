@@ -84,6 +84,12 @@
 
 -- Connecting career to the frontend (DONE)
 
+-- Payment with doku
+---- Send payment request to doku server (DONE)
+---- Catch the result
+---- Save order to the db
+---- Generate the ticket
+
 -- Menu link, multilang support
 
 -- Advanced search on post, news
