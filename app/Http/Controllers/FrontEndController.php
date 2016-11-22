@@ -105,8 +105,13 @@ class FrontEndController extends Controller
             'lang' => $lang,
             'id' => config('misc.statics.about-us')
         ];
-        $post = $this->postService->getPostsWithDetail($params);
-        $data['post'] = $post->first();
+        $postWithDetail = $this->postService->getPostsWithDetail($params);
+        $post = $this->postService->getPost(['id' => config('misc.statics.about-us')]);
+        $ourStory = $post->metas()->where('meta_key', 'story-' . $lang)->first();
+        $ourPhilosophy = $post->metas()->where('meta_key', 'philosophy-' . $lang)->first();
+        $data['post'] = $postWithDetail->first();
+        $data['ourStory'] = $ourStory;
+        $data['ourPhilosophy'] = $ourPhilosophy;
 
         return view('frontend.about-us', $data);
     }
