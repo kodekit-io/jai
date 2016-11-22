@@ -195,9 +195,8 @@ Route::group(['middleware' => ['lang', 'menu:frontend']], function () {
     Route::get('/{lang?}/special-packages', 'FrontEndController@specialPackages');
     Route::get('/{lang?}/show-time', 'FrontEndController@showTime');
     Route::get('/{lang?}/location', 'FrontEndController@location');
-    Route::get('/{lang?}/news-blog', 'FrontEndController@news');
-    Route::get('/{lang?}/news-blog/page/{page?}', 'FrontEndController@news');
-    Route::get('/{lang?}/news-details', 'FrontEndController@newsDetail');
+    Route::get('/{lang?}/news', 'FrontEndController@news');
+    Route::get('/{lang?}/news/{slug}', 'FrontEndController@newsDetail');
     Route::get('/{lang?}/attractions-experience', 'FrontEndController@attractions');
     Route::get('/{lang?}/education', 'FrontEndController@education');
     Route::get('/{lang?}/conservation', 'FrontEndController@conservation');
@@ -210,7 +209,7 @@ Route::group(['middleware' => ['lang', 'menu:frontend']], function () {
     Route::get('/{lang?}/search-result', 'FrontEndController@search');
 
     Route::get('/{lang?}', 'FrontEndController@homePage');
-    Route::get('/{lang?}/news/{slug}', 'FrontEndController@homePage');
+//    Route::get('/{lang?}/news/{slug}', 'FrontEndController@homePage');
 });
 
 Route::any('doku/result', 'PaymentController@dokuResult');

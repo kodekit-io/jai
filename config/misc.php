@@ -5,10 +5,10 @@ return [
     ],
 
     'statics' => [
-        'about-us' => 78,
-        'special-packages' => 79,
-        'career' => 80,
-        'privacy-policy' => 81,
-        'term-of-use' => 82
+        'about-us' => 86,
+        'special-packages' => 87,
+        'career' => 88,
+        'privacy-policy' => 89,
+        'term-of-use' => 90
     ]
 ];

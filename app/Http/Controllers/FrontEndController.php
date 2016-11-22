@@ -191,16 +191,22 @@ class FrontEndController extends Controller
 
 
         $newsPaginated = $news->paginate(5);
-        $newsPaginated->setPath('news-blog');
+        $newsPaginated->setPath('news');
         $data['featuredPosts'] = $featuredPosts->get();
         $data['news'] =$newsPaginated;
 
         return view('frontend.news', $data);
     }
 
-    public function newsDetail($lang)
+    public function newsDetail($lang, $slug)
     {
-        return view('frontend.news-details');
+        $post = $this->postService->getPostsWithDetail(['lang' => $lang, 'slug' => $slug]);
+        $post = $post->first();
+        $relatedPosts = $this->postService->getRelatedPosts($lang, $post->id);
+        $data['post'] = $post;
+        $data['relatedPosts'] = $relatedPosts;
+
+        return view('frontend.news-details', $data);
     }
 
     public function attractions($lang)

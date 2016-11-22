@@ -241,11 +241,7 @@ class Post
 
     public function getPostsWithDetail(array $params)
     {
-        $query = DB::table('posts')
-                    ->join('post_details', 'posts.id', '=', 'post_details.post_id')
-                    ->leftJoin('post_has_medias', 'posts.id', '=', 'post_has_medias.post_id')
-                    ->leftJoin('media', 'post_has_medias.media_id', '=', 'media.id')
-                    ->select('posts.*', 'post_details.title', 'post_details.content', 'media.file_name');
+        $query = $this->getBaseQuery();
 
         // search by id
         if (isset($params['id'])) {
@@ -316,6 +312,20 @@ class Post
         return PostModel::find($id);
     }
 
+    public function getRelatedPosts($lang, $postId)
+    {
+        $query = $this->getBaseQuery();
+        $query = $query->where('post_type_id', 2)->where('post_details.lang', $lang)->where('status', 'PUBLISH')->where('posts.id', '<', $postId);
+        if ($query->count() < 1) {
+            $query = $this->getBaseQuery();
+            $query = $query->where('post_type_id', 2)->where('post_details.lang', $lang)->where('status', 'PUBLISH')->where('posts.id', '>', $postId);
+        }
+        $query = $query->inRandomOrder();
+//        $query = $query->where('posts.id', '<', $postId)->orderBy('posts.id', 'desc');
+
+        return $query->take(3)->get();
+    }
+
     public function getFeaturedPostParams($lang)
     {
         $params = [
@@ -342,6 +352,15 @@ class Post
         ];
 
         return $params;
+    }
+
+    private function getBaseQuery()
+    {
+        return DB::table('posts')
+            ->join('post_details', 'posts.id', '=', 'post_details.post_id')
+            ->leftJoin('post_has_medias', 'posts.id', '=', 'post_has_medias.post_id')
+            ->leftJoin('media', 'post_has_medias.media_id', '=', 'media.id')
+            ->select('posts.*', 'post_details.title', 'post_details.slug', 'post_details.content', 'media.file_name');
     }
 
 }
