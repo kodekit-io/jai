@@ -25,12 +25,12 @@
                 <li>POSTED BY:  <span class="ja-bold">ADMIN</span></li>
             </ul>
             <ul class="uk-list ja-share">
-                <li><a href="#!" class="uk-icon-button uk-icon-facebook light-blue darken-4"></a></li>
-                <li><a href="#!" class="uk-icon-button uk-icon-twitter  light-blue accent-2"></a></li>
-                <li><a href="#!" class="uk-icon-button uk-icon-google-plus red"></a></li>
-                <li><a href="#!" class="uk-icon-button uk-icon-envelope amber darken-1"></a></li>
+                <li><a href="#!" class="share s_facebook uk-icon-button uk-icon-facebook light-blue darken-4" title="Share on Facebook"></a></li>
+                <li><a href="#!" class="share s_twitter uk-icon-button uk-icon-twitter light-blue accent-2" title="Share on Twitter"></a></li>
+                <li><a href="#!" class="share s_plus uk-icon-button uk-icon-google-plus red" title="Share on Google Plus"></a></li>
+                <li><a href="#!" class="share s_email uk-icon-button uk-icon-envelope amber darken-1" title="Share via Email"></a></li>
+                <li class="uk-visible-small"><a href="#!" class="share s_whatsapp uk-icon-button uk-icon-whatsapp green darken-1" title="Share on Whatsapp"></a></li>
             </ul>
-
             <p>{!! $post->content !!}</p>
         </div>
         @if(count($relatedPosts) > 0)
@@ -54,4 +54,15 @@
 
 @section('page-level-scripts')
     <script src="{!! asset('frontend/js/components/slideshow.min.js') !!}"></script>
+    <script src="{!! asset('frontend/js/socialshare.js') !!}"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $(".share").ShareLink({
+                title: "{!! $post->title !!}",
+                text: "{!! $post->content !!}",
+                image: "{!! asset('images/newsSlider/' . $post->file_name) !!}",
+                url: "{!! lang_url('news/' . $post->slug) !!}"
+            });
+        });
+    </script>
 @endsection
