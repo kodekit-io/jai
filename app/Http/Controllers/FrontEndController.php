@@ -201,6 +201,9 @@ class FrontEndController extends Controller
     public function newsDetail($lang, $slug)
     {
         $post = $this->postService->getPostsWithDetail(['lang' => $lang, 'slug' => $slug]);
+        if (! $post->count() > 0) {
+            abort(404);
+        }
         $post = $post->first();
         $relatedPosts = $this->postService->getRelatedPosts($lang, $post->id);
         $data['post'] = $post;
