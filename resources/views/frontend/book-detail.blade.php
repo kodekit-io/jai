@@ -24,24 +24,62 @@
                 @foreach($dokuParams as $key => $value)
                     <input type="hidden" name="{!! $key !!}" value="{!! $value !!}">
                 @endforeach
+
                 <div class="uk-form-row uk-margin-remove">
-                    <label for="">Admission</label>
-                    <input id="" type="text" value="General Admission" disabled="true">
-                </div>
-                <div class="uk-form-row uk-margin-remove">
-                    <label for="">Visit Date</label>
+                    <label for="">Date of Visit</label>
                     <input id="" type="text" value="Tuesday, 01-11-2016" disabled="true">
                 </div>
                 <div class="uk-form-row uk-margin-remove">
-                    <label for="">Visitor (2)</label>
-                    <input id="" type="text" value="IDR 600.000" disabled="true">
+                    <label for="">Admission</label>
+                    <div class="ja-sub">
+                        <div class="uk-grid uk-grid-collapse uk-grid-match" data-uk-grid-match data-uk-grid-margin>
+                            <div class="uk-width-medium-1-3">
+                                Basic Admission
+                            </div>
+                            <div class="uk-width-medium-1-3">
+                                Premium Admission
+                            </div>
+                            <div class="uk-width-medium-1-3">
+                                Exclusive Admission
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="uk-form-row uk-margin-remove">
-                    <label for="">Babies (2)</label>
-                    <input id="" type="text" value="FREE" disabled="true">
+                    <label for="">Visitor(s)</label>
+                    <div class="ja-sub">
+                        <div class="uk-grid uk-grid-collapse uk-grid-match" data-uk-grid-match data-uk-grid-margin>
+                            <div class="uk-width-medium-1-3">
+                                1
+                            </div>
+                            <div class="uk-width-medium-1-3">
+                                200
+                            </div>
+                            <div class="uk-width-medium-1-3">
+                                0
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="uk-form-row uk-margin-remove">
-                    <label for="">Promo</label>
+                    <label for="">Price</label>
+                    <div class="ja-sub">
+                        <div class="uk-grid uk-grid-collapse uk-grid-match" data-uk-grid-match data-uk-grid-margin>
+                            <div class="uk-width-medium-1-3">
+                                IDR 200.000
+                            </div>
+                            <div class="uk-width-medium-1-3">
+                                IDR 40.000.000
+                            </div>
+                            <div class="uk-width-medium-1-3">
+                                IDR 0
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="uk-form-row">
+                    <label for="">Promo Discount</label>
                     <input id="" type="text" value="-" disabled="true">
                 </div>
 
