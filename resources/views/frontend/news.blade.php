@@ -32,7 +32,7 @@
                     <li>
                         <img  class="uk-responsive-width" src="{!! url('images/newsSlider/' . $featuredPost->file_name) !!}" />
                         <div class="uk-overlay-panel ja-featured-overlay">
-                            <h2 class="uk-text-uppercase"><a href="#!">{!! $featuredPost->title !!}</a></h2>
+                            <h2 class="uk-text-uppercase"><a href="{!! lang_url('news/' . $featuredPost->slug) !!}">{!! $featuredPost->title !!}</a></h2>
                             <a href="{!! lang_url('news/' . $featuredPost->slug) !!}" class="uk-button ja-button-outline" title="Learn More">Learn More <i class="uk-margin-small-left uk-icon-chevron-right"></i></a>
                             <p>{!! $featuredPost->content !!}</p>
                         </div>

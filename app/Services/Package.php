@@ -145,6 +145,17 @@ class Package
         return $this->packageType;
     }
 
+    public function getPackage(array $params)
+    {
+        $query = PackageModel::where('id', '>', 0);
+
+        if (isset($params['id'])) {
+            $query = $query->where('id', $params['id']);
+        }
+
+        return $query;
+    }
+
     public function getPackages(array $params)
     {
         $packageField = 'package_type_id';

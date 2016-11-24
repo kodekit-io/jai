@@ -109,9 +109,11 @@ class FrontEndController extends Controller
         $post = $this->postService->getPost(['id' => config('misc.statics.about-us')]);
         $ourStory = $post->metas()->where('meta_key', 'story-' . $lang)->first();
         $ourPhilosophy = $post->metas()->where('meta_key', 'philosophy-' . $lang)->first();
+
         $data['post'] = $postWithDetail->first();
         $data['ourStory'] = $ourStory;
         $data['ourPhilosophy'] = $ourPhilosophy;
+        $data['metaDesc'] = get_meta_description($post->id, $lang);
 
         return view('frontend.about-us', $data);
     }
@@ -205,9 +207,11 @@ class FrontEndController extends Controller
             abort(404);
         }
         $post = $post->first();
+
         $relatedPosts = $this->postService->getRelatedPosts($lang, $post->id);
         $data['post'] = $post;
         $data['relatedPosts'] = $relatedPosts;
+        $data['metaDesc'] = get_meta_description($post->id, $lang);
 
         return view('frontend.news-details', $data);
     }

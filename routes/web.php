@@ -212,6 +212,8 @@ Route::group(['middleware' => ['lang', 'menu:frontend']], function () {
 //    Route::get('/{lang?}/news/{slug}', 'FrontEndController@homePage');
 });
 
+Route::post('get-package-by-date', 'PackageController@getPackage');
+
 Route::any('doku/result', 'PaymentController@dokuResult');
 Route::any('doku/notify', 'PaymentController@dokuNotify');
 Route::any('doku/review', 'PaymentController@dokuReview');

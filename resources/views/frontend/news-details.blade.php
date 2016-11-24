@@ -59,7 +59,7 @@
         $(document).ready(function(){
             $(".share").ShareLink({
                 title: "{!! $post->title !!}",
-                text: "{!! htmlentities($post->content) !!}",
+                text: "{!! \Illuminate\Support\Str::words(strip_tags($post->content), 10) !!}",
                 image: "{!! asset('images/newsSlider/' . $post->file_name) !!}",
                 url: "{!! lang_url('news/' . $post->slug) !!}"
             });

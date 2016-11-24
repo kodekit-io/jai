@@ -172,6 +172,16 @@ class ShowTime
         return $this->showTimeTypes[$id];
     }
 
+    public function getShow($params)
+    {
+        $query = Show::where('id', '>', 0);
+        if (isset($params['id'])) {
+            $query = $query->where('id', $params['id']);
+        }
+
+        return $query;
+    }
+
     public function getShows($params)
     {
         $shows = Show::where('id', '>', 0);

@@ -32,8 +32,8 @@
 
                     <form class="uk-form uk-margin-top uk-margin-bottom" action="{!! lang_url('book-detail') !!}">
                         <div class="uk-form-row">
-                            <label for="date"><i class="uk-icon-calendar"></i>Visit Date</label>
-                            <input id="date" type="text" data-uk-datepicker="{format:'dddd, DD-MM-YYYY'}">
+                            <label for="visit_date"><i class="uk-icon-calendar"></i>Visit Date</label>
+                            <input id="visit_date" name="visit_date" type="text" data-uk-datepicker="{format:'dddd, DD-MM-YYYY'}">
                         </div>
                         <div class="uk-form-row">
                             <label for="package">Package</label>
@@ -91,4 +91,17 @@
 @section('page-level-scripts')
     <script src="{!! asset('frontend/js/components/accordion.min.js') !!}"></script>
     <script src="{!! asset('frontend/js/components/datepicker.min.js') !!}"></script>
+    <script>
+        jQuery('#visit_date').change(function() {
+            var visitDate = new Date(jQuery(this).val());
+            var ajaxUrl = '{!! url('get-package-by-date') !!}';
+            jQuery.ajax({
+                type: "POST",
+                url: ajaxUrl,
+                data: { visit_date: visitDate, _token: "{!! csrf_token() !!}" }
+            }).done(function (data) {
+                console.log(data);
+            });
+        });
+    </script>
 @endsection

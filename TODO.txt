@@ -90,9 +90,12 @@
 ---- Save order to the db
 ---- Generate the ticket
 
+-- Create pages management (DONE)
+
+
 -- Menu link, multilang support
 
 -- Advanced search on post, news
 -- Add notification when there are any blank languages whe publish the content
--- Create pages management
+
 

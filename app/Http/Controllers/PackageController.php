@@ -130,4 +130,24 @@ class PackageController extends Controller
 
         return backendRedirect('package')->with($this->getMessage('delete'));
     }
+
+    public function getPackage(Request $request)
+    {
+        $visitDate = $request->input('visit_date');
+        $visitDate = Carbon::createFromFormat('J, d-m-Y', $visitDate);
+        if (in_array($visitDate->day, [6,7]) ) {
+            $array = [
+                [1 => 'test package'],
+                [2 => 'package test']
+            ];
+        } else {
+            $array = [
+                [1 => 'test package'],
+                [2 => 'package test'],
+                [3 => 'regular']
+            ];
+        }
+
+        return json_encode($array);
+    }
 }

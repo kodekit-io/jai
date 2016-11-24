@@ -102,3 +102,28 @@ if (! function_exists('get_post_categories')) {
     }
 
 }
+
+if (! function_exists('get_meta_description')) {
+    function get_meta_description($id, $lang, $type = 'post') {
+        if ($type == 'post') {
+            $postService = new \App\Service\Post();
+            $post = $postService->getPost([ 'id' => $id]);
+        } elseif ($type == 'package') {
+            $packageService = new \App\Service\Package();
+            $post = $packageService->getPackage([ 'id' => $id]);
+        } elseif ($type == 'show') {
+            $showService = new \App\Service\ShowTime();
+            $post = $showService->getShowById($id);
+        }
+
+        if ($post->count() > 0) {
+            $meta = $post->metas()->where('meta_key', 'meta_description-' . $lang);
+            if ($meta->count() > 0) {
+                return $meta->first()->meta_value;
+            }
+        }
+
+        return '';
+
+    }
+}
