@@ -646,7 +646,11 @@ h2.ja-slide-title {
 	color: #ffb300;
 }
 
-.ja-ticket label, .ja-ticket input[type="text"], .ja-ticket input[type="text"]:disabled, .ja-ticket input[type="number"], .ja-ticket select {
+.ja-ticket label,
+.ja-ticket input[type="text"],
+.ja-ticket input[type="text"]:disabled,
+.ja-ticket select,
+.ja-ticket .ja-sub {
 	height: 40px;
 	line-height: 40px;
 	border: 1px solid #00acc1;
@@ -655,14 +659,10 @@ h2.ja-slide-title {
 	padding: 0 1em;
 	float: left;
 }
-.ja-ticket select, .ja-ticket input[type="number"] {
-	-webkit-appearance: none;
-	-moz-appearance:    none;
-	appearance:         none;
-	width: 343px;
-}
+
 .uk-form-row.uk-margin-remove + .uk-form-row.uk-margin-remove label,
-.uk-form-row.uk-margin-remove + .uk-form-row.uk-margin-remove input[type="text"] {
+.uk-form-row.uk-margin-remove + .uk-form-row.uk-margin-remove input[type="text"],
+.uk-form-row.uk-margin-remove + .uk-form-row.uk-margin-remove .ja-sub {
 	border-top: 1px solid #fff;
 }
 .ja-ticket input[type="text"]:disabled {
@@ -674,8 +674,18 @@ h2.ja-slide-title {
 	min-width: 150px;
 	border-right: none;
 }
-.ja-ticket input[type="text"], .ja-ticket input[type="number"] {
-	width: 343px;
+.ja-ticket input[type="text"] {
+	width: calc(100% - 180px);
+}
+.ja-ticket .ja-sub {
+	width: calc(100% - 210px);
+	height: 38px;
+	display: inline-block;
+}
+.ja-ticket input[type="number"] {
+	-webkit-appearance: none;
+	-moz-appearance:    none;
+	appearance:         none;
 }
 .ja-ticket input[type="text"]#visitor, .ja-ticket input[type="text"]#visitorchild {
 	width: 60px;
@@ -699,7 +709,27 @@ h2.ja-slide-title {
 .ja-ticket button:hover {
 	color: #fff !important;
 }
-
+.ja-ticket .uk-panel-box {
+	border: 1px solid #00acc1;
+}
+.ja-ticket .uk-panel-box + .uk-panel-box  {
+	border-top: none;
+}
+.ja-ticket .jai-submission-info {
+	height: 6em;
+	overflow: hidden;
+}
+.ja-ticket .jai-submission-price {
+	margin-top: 10px;
+}
+.ja-ticket .jai-submission-order {
+	background: url(../img/i-user.png) no-repeat 1em center;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+}
+.ja-ticket .jai-submission-order input[type="number"] {
+	width: 50%;
+}
 /**/
 .ja-header-showtime {
 	height: 600px;
