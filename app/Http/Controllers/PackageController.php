@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Log;
 
 class PackageController extends Controller
 {
@@ -134,7 +135,9 @@ class PackageController extends Controller
     public function getPackage(Request $request)
     {
         $visitDate = $request->input('visit_date');
-        $visitDate = Carbon::createFromFormat('J, d-m-Y', $visitDate);
+        Log::warning('visit date ==> ' . $visitDate);
+        // Fri Nov 11 2016
+        $visitDate = Carbon::createFromFormat('l, d-m-Y', $visitDate);
         if (in_array($visitDate->day, [6,7]) ) {
             $array = [
                 [1 => 'test package'],

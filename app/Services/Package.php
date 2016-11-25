@@ -177,6 +177,10 @@ class Package
             $query->where($createdByField, $params[$createdByField]);
         }
 
+        if ( isset($params['is_general_admission'])) {
+            $query->where('is_general_admission', $params['is_general_admission']);
+        }
+
         // search by lang
         if (isset($params['lang'])) {
             $lang = $params['lang'];

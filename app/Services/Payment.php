@@ -3,6 +3,8 @@
 namespace App\Service;
 
 
+use App\Models\Package;
+
 class Payment
 {
 
@@ -41,4 +43,31 @@ class Payment
 
         return $params;
     }
+
+    public function getOrderDetails($request, $lang)
+    {
+        $packages = $request['packages'];
+        $orders = [];
+        $total = 0;
+        $grandTotal = 0;
+        foreach ($packages as $packageId => $value) {
+            $package = Package::find($packageId);
+            $packageDetail = $package->details()->where('lang', $lang)->first();
+            $price = $value * $package->normal_price;
+            $orders['orders'][] = [
+                'packageName' => $packageDetail->title,
+                'visitor' => $value,
+                'price' => $price
+            ];
+            $total += $price;
+        }
+        $tax = 0.1 * $total;
+        $orders['total'] = $total;
+        $orders['tax'] = $tax;
+        $orders['grandTotal'] = $total + $tax;
+
+        return $orders;
+    }
+
+
 }

@@ -122,13 +122,13 @@ class FrontEndController extends Controller
     {
         $generalAdmissionParams = [
             'lang' => $lang,
-            'is_general_admission' => true
+            'is_general_admission' => 1
         ];
         $generalPackages = $this->packageService->getPackages($generalAdmissionParams);
 
         $otherPackageParams = [
             'lang' => $lang,
-            'is_general_admission' => true
+            'is_general_admission' => 0
         ];
         $otherPackages = $this->packageService->getPackages($otherPackageParams);
 
@@ -138,12 +138,18 @@ class FrontEndController extends Controller
         return view('frontend.ticket-hours', $data);
     }
 
-    public function bookTicket($lang)
+    public function bookTicket(Request $request, $lang)
     {
+        $details = $this->paymentService->getOrderDetails($request->only(['packages']), $lang);
         $dokuParams = $this->paymentService->getDokuParameters();
         $dokuUrl = config('doku.doku.api_url');
         $data['dokuUrl'] = $dokuUrl;
         $data['dokuParams'] = $dokuParams;
+        $data['orders'] = $details['orders'];
+        $data['total'] = $details['total'];
+        $data['tax'] = $details['tax'];
+        $data['grandTotal'] = $details['grandTotal'];
+
         return view('frontend.book-detail', $data);
     }
 

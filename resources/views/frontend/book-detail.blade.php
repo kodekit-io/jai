@@ -33,15 +33,11 @@
                     <label for="">Admission</label>
                     <div class="ja-sub">
                         <div class="uk-grid uk-grid-collapse uk-grid-match" data-uk-grid-match data-uk-grid-margin>
+                            @foreach($orders as $order)
                             <div class="uk-width-medium-1-3">
-                                Basic Admission
+                                {!! $order['packageName'] !!}
                             </div>
-                            <div class="uk-width-medium-1-3">
-                                Premium Admission
-                            </div>
-                            <div class="uk-width-medium-1-3">
-                                Exclusive Admission
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -49,15 +45,11 @@
                     <label for="">Visitor(s)</label>
                     <div class="ja-sub">
                         <div class="uk-grid uk-grid-collapse uk-grid-match" data-uk-grid-match data-uk-grid-margin>
-                            <div class="uk-width-medium-1-3">
-                                1
-                            </div>
-                            <div class="uk-width-medium-1-3">
-                                200
-                            </div>
-                            <div class="uk-width-medium-1-3">
-                                0
-                            </div>
+                            @foreach($orders as $order)
+                                <div class="uk-width-medium-1-3">
+                                    {!! $order['visitor'] !!}
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -65,17 +57,18 @@
                     <label for="">Price</label>
                     <div class="ja-sub">
                         <div class="uk-grid uk-grid-collapse uk-grid-match" data-uk-grid-match data-uk-grid-margin>
+                            @foreach($orders as $order)
                             <div class="uk-width-medium-1-3">
-                                IDR 200.000
+                                IDR {!! number_format($order['price'],0) !!}
                             </div>
-                            <div class="uk-width-medium-1-3">
-                                IDR 40.000.000
-                            </div>
-                            <div class="uk-width-medium-1-3">
-                                IDR 0
-                            </div>
+                            @endforeach
                         </div>
                     </div>
+                </div>
+
+                <div class="uk-form-row">
+                    <label for="">Total</label>
+                    <input id="" type="text" value="IDR {!! number_format($total, 0) !!}" disabled="true">
                 </div>
 
                 <div class="uk-form-row">
@@ -85,34 +78,34 @@
 
                 <div class="uk-form-row">
                     <label for="">Service + 10% PB1 Tax</label>
-                    <input id="" type="text" value="IDR 20.000" disabled="true">
+                    <input id="" type="text" value="IDR {!! number_format($tax) !!}" disabled="true">
                 </div>
 
                 <div class="uk-form-row">
                     <label for="">Grand Total</label>
-                    <input id="" type="text" value="IDR 620.000" disabled="true">
+                    <input id="" type="text" value="IDR {!! number_format($grandTotal) !!}" disabled="true">
                 </div>
 
                 <h5>Personal Identification</h5>
                 <div class="uk-form-row uk-margin-remove">
                     <label for="">Full Name</label>
-                    <input id="" type="text" value="">
+                    <input id="" type="text" value="" placeholder="Input your name">
                 </div>
                 <div class="uk-form-row uk-margin-remove">
                     <label for="">Email</label>
-                    <input id="" type="text" value="">
+                    <input id="" type="text" value="" placeholder="Input your email">
                 </div>
                 <div class="uk-form-row uk-margin-remove">
                     <label for="">Address</label>
-                    <input id="" type="text" value="">
+                    <input id="" type="text" value="" placeholder="Input your address">
                 </div>
                 <div class="uk-form-row uk-margin-remove">
                     <label for="">City</label>
-                    <input id="" type="text" value="">
+                    <input id="" type="text" value="" placeholder="Input your city">
                 </div>
                 <div class="uk-form-row uk-margin-remove">
                     <label for="">Country</label>
-                    <input id="" type="text" value="">
+                    <input id="" type="text" value="" placeholder="Input your country">
                 </div>
 
                 <h5 class="uk-margin-bottom-remove">Terms &amp; Conditions <span>(<a href="#!">read</a>)</span></h5>
