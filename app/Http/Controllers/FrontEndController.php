@@ -141,12 +141,13 @@ class FrontEndController extends Controller
     public function bookTicket(Request $request, $lang)
     {
         $details = $this->paymentService->getOrderDetails($request->only(['packages']), $lang);
-        $dokuParams = $this->paymentService->getDokuParameters();
+        $personalData = $request->only(['order_name', 'order_email', 'order_phone', 'order_address', 'order_city', 'order_country']);
+        $dokuParams = $this->paymentService->getDokuParameters($personalData, $details);
         $dokuUrl = config('doku.doku.api_url');
         $data['dokuUrl'] = $dokuUrl;
         $data['dokuParams'] = $dokuParams;
         $data['orders'] = $details['orders'];
-        $data['total'] = $details['total'];
+        $data['subTotal'] = $details['subTotal'];
         $data['tax'] = $details['tax'];
         $data['grandTotal'] = $details['grandTotal'];
 
