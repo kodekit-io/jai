@@ -71,10 +71,40 @@
                                 {{--</div>--}}
                             </div>
                         </div>
-                        <div class="uk-form-row">
-                            <label for="promo"><i class="uk-icon-tag"></i>Promo</label>
-                            <input id="promo" type="text" placeholder="Coupon code / membership code">
+                        {{--<div class="uk-form-row">--}}
+                            {{--<label for="promo"><i class="uk-icon-tag"></i>Promo</label>--}}
+                            {{--<input id="promo" type="text" placeholder="Coupon code / membership code">--}}
+                        {{--</div>--}}
+
+                        <h5>Personal Identification</h5>
+                        <div class="uk-form-row uk-margin-remove">
+                            <label for="">Full Name</label>
+                            <input id="" type="text" value="" name="order_name" placeholder="Input your name">
                         </div>
+                        <div class="uk-form-row uk-margin-remove">
+                            <label for="">Email</label>
+                            <input id="" type="text" value="" name="order_email" placeholder="Input your email">
+                        </div>
+                        <div class="uk-form-row uk-margin-remove">
+                            <label for="">Phone Number</label>
+                            <input id="" type="text" value="" name="order_phone" placeholder="Input your phone">
+                        </div>
+                        <div class="uk-form-row uk-margin-remove">
+                            <label for="">Address</label>
+                            <input id="" type="text" value="" name="order_address" placeholder="Input your address">
+                        </div>
+                        <div class="uk-form-row uk-margin-remove">
+                            <label for="">City</label>
+                            <input id="" type="text" value="" name="order_city" placeholder="Input your city">
+                        </div>
+                        <div class="uk-form-row uk-margin-remove">
+                            <label for="">Country</label>
+                            <input id="" type="text" value="" name="order_country" placeholder="Input your country">
+                        </div>
+
+                        <h5 class="uk-margin-bottom-remove">Terms &amp; Conditions <span>(<a href="#!">read</a>)</span></h5>
+                        <p class="uk-margin-top-remove"><input type="checkbox" class="ja-check"> I have read and accepted the Terms and Conditions of Use.</p>
+
                         <div class="uk-form-row">
                             <button type="submit" class="uk-button uk-button-large amber darken-1 light-blue-text text-darken-4">Book Now</button>
                         </div>
@@ -100,10 +130,10 @@
                 <li>Weekday	(Monday - Thursday)	:  08.00 a.m. - 07.00 p.m.</li>
                 <li>Weekend 	(Friday - Sunday)	:  08.00 a.m. - 09.00 p.m.</li>
             </ul>
-            <div class="uk-panel-box">
-                <h4 class="uk-margin-remove">Announcement:</h4>
-                <p class="uk-margin-remove">Jakarta Aquarium will close on 24th and 25th December for the Christmas holiday, and also on 31st December and 1st January for the New Year holiday.</p>
-            </div>
+            {{--<div class="uk-panel-box">--}}
+                {{--<h4 class="uk-margin-remove">Announcement:</h4>--}}
+                {{--<p class="uk-margin-remove">Jakarta Aquarium will close on 24th and 25th December for the Christmas holiday, and also on 31st December and 1st January for the New Year holiday.</p>--}}
+            {{--</div>--}}
         </div>
     </div>
 </main>

@@ -8,12 +8,14 @@ use App\Models\Package;
 class Payment
 {
 
-    public function getDokuParameters()
+    public function getDokuParameters(array $personalData, array $orderData)
     {
         $mallId = config('doku.doku.mall_id');
         $sharedKey = config('doku.doku.shared_key');
-        $amount = number_format(75000, 2, '.', '');
-        $transId = '2';
+        $amount = number_format($orderData['grandTotal'], 2, '.', '');
+        // $amount = number_format(75000, 2, '.', '');
+        $basket = $this->generateDokuBasket($orderData);
+        $transId = strtotime("now");
         $words = sha1(trim($amount) . trim($mallId) .  trim($sharedKey) . trim($transId));
         $idrCurrency = '360';
         // $words = '16c2b05017c04f6e650167947876f0fa2d8ab908';
@@ -28,14 +30,15 @@ class Payment
             'REQUESTDATETIME'  => date('YmdHis'),
             'CURRENCY'         => $idrCurrency,
             'PURCHASECURRENCY' => $idrCurrency,
-            'SESSIONID'        => '123doku123',
+            'SESSIONID'        => '12303958',
             'PAYMENTCHANNEL'   => "",
-            'NAME'             => 'Pasha Mahardika',
-            'EMAIL'            => 'pasha.md5@gmail.com',
+            'NAME'             => $personalData['order_name'],
+            'EMAIL'            => $personalData['order_email'],
             'HOMEPHONE'        => '0215150111',
-            'MOBILEPHONE'      => '085694512313',
-            'BASKET'           => 'Item 1,70000.00,1,70000.00;Service Charge,5000.00,1,5000.00;',
-            'ADDRESS'          => 'Plaza Asia Office Park Unit 3 Kav 59',
+            'MOBILEPHONE'      => $personalData['order_phone'],
+            'BASKET'           => $basket,
+            // 'BASKET'           => 'Item 1,70000.00,1,70000.00;Service Charge,5000.00,1,5000.00;',
+            'ADDRESS'          => $personalData['order_address'],
             'CITY'             => 'Jakarta',
             'STATE'            => 'DKI Jakarta',
             'ZIPCODE'          => '12190'
@@ -48,7 +51,7 @@ class Payment
     {
         $packages = $request['packages'];
         $orders = [];
-        $total = 0;
+        $subTotal = 0;
         $grandTotal = 0;
         foreach ($packages as $packageId => $value) {
             $package = Package::find($packageId);
@@ -56,17 +59,37 @@ class Payment
             $price = $value * $package->normal_price;
             $orders['orders'][] = [
                 'packageName' => $packageDetail->title,
-                'visitor' => $value,
-                'price' => $price
+                'qty' => $value,
+                'price' => $package->normal_price,
+                'total' => $price
             ];
-            $total += $price;
+            $subTotal += $price;
         }
-        $tax = 0.1 * $total;
-        $orders['total'] = $total;
+        $tax = 0.1 * $subTotal;
+        $orders['subTotal'] = $subTotal;
         $orders['tax'] = $tax;
-        $orders['grandTotal'] = $total + $tax;
+        $orders['grandTotal'] = $subTotal + $tax;
 
         return $orders;
+    }
+
+    private function generateDokuBasket($orderData)
+    {
+        $basket = '';
+        $orders = $orderData['orders'];
+        foreach ($orders as $order) {
+            if ($order['qty'] > 0) {
+                $price = number_format($order['price'], 2, '.', '');
+                $total = number_format($order['total'], 2, '.', '');
+                $basketData = $order['packageName'] . ',' . $price . ',' . $order['qty'] . ',' . $total;
+                $basket .= ($basket == '' ? $basketData : ';' . $basketData);
+            }
+        }
+        $taxAmount = number_format($orderData['tax'], 2, '.', '');
+        $tax = 'Service + 10% PB1 Tax,' . $orderData['tax'] . ',1,' . $taxAmount;
+        $basket .= ($basket == '' ? $tax : ';' . $tax);
+
+        return $basket;
     }
 
 

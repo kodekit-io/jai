@@ -47,7 +47,7 @@
                         <div class="uk-grid uk-grid-collapse uk-grid-match" data-uk-grid-match data-uk-grid-margin>
                             @foreach($orders as $order)
                                 <div class="uk-width-medium-1-3">
-                                    {!! $order['visitor'] !!}
+                                    {!! $order['qty'] !!}
                                 </div>
                             @endforeach
                         </div>
@@ -68,13 +68,13 @@
 
                 <div class="uk-form-row">
                     <label for="">Total</label>
-                    <input id="" type="text" value="IDR {!! number_format($total, 0) !!}" disabled="true">
+                    <input id="" type="text" value="IDR {!! number_format($subTotal, 0) !!}" disabled="true">
                 </div>
 
-                <div class="uk-form-row">
-                    <label for="">Promo Discount</label>
-                    <input id="" type="text" value="-" disabled="true">
-                </div>
+                {{--<div class="uk-form-row">--}}
+                    {{--<label for="">Promo Discount</label>--}}
+                    {{--<input id="" type="text" value="-" disabled="true">--}}
+                {{--</div>--}}
 
                 <div class="uk-form-row">
                     <label for="">Service + 10% PB1 Tax</label>
@@ -86,30 +86,7 @@
                     <input id="" type="text" value="IDR {!! number_format($grandTotal) !!}" disabled="true">
                 </div>
 
-                <h5>Personal Identification</h5>
-                <div class="uk-form-row uk-margin-remove">
-                    <label for="">Full Name</label>
-                    <input id="" type="text" value="" placeholder="Input your name">
-                </div>
-                <div class="uk-form-row uk-margin-remove">
-                    <label for="">Email</label>
-                    <input id="" type="text" value="" placeholder="Input your email">
-                </div>
-                <div class="uk-form-row uk-margin-remove">
-                    <label for="">Address</label>
-                    <input id="" type="text" value="" placeholder="Input your address">
-                </div>
-                <div class="uk-form-row uk-margin-remove">
-                    <label for="">City</label>
-                    <input id="" type="text" value="" placeholder="Input your city">
-                </div>
-                <div class="uk-form-row uk-margin-remove">
-                    <label for="">Country</label>
-                    <input id="" type="text" value="" placeholder="Input your country">
-                </div>
 
-                <h5 class="uk-margin-bottom-remove">Terms &amp; Conditions <span>(<a href="#!">read</a>)</span></h5>
-                <p class="uk-margin-top-remove"><input type="checkbox" class="ja-check"> I have read and accepted the Terms and Conditions of Use.</p>
 
                 <div class="uk-form-row">
                     <button type="submit" class="uk-button uk-button-large amber darken-1 light-blue-text text-darken-4">Proccess to Payment</button>
