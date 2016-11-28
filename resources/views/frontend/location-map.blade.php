@@ -23,8 +23,8 @@
             <li>Level 2</li>
         </ul>
         <ul id="levels" class="uk-switcher uk-margin-bottom">
-            <li><img class="uk-responsive-width" src="{!! asset('frontend/img/map-level1.png') !!}" /></li>
-            <li><img class="uk-responsive-width" src="{!! asset('frontend/img/map-level1.png') !!}" /></li>
+            <li><img class="uk-responsive-width" src="{!! asset('frontend/img/map-LG-LGM-A4-01.jpg') !!}" /></li>
+            <li><img class="uk-responsive-width" src="{!! asset('frontend/img/map-LG-LGM-A4-02.jpg') !!}" /></li>
         </ul>
 
         <div class="ja-ticket__content uk-margin-bottom">
@@ -71,7 +71,7 @@
         <div class="ja-ticket__content uk-margin-bottom">
             <h3 class="light-blue-text text-darken-4">VIEW PRINTABLE MAP</h3>
             <p>Our Aquarium Map is now available in high-qualitied PDF format for your convenience. Download and use it to plan your day at the park. The contents of the Aquarium Map may change without prior notice.</p>
-            <a href="#!" class="uk-button uk-button-primary ja-button cyan darken-1 white-text"><i class="uk-icon-file-pdf-o"></i> DOWNLOAD PDF MAP</a>
+            <a href="{!! asset('frontend/img/map-LG-LGM-A4.pdf') !!}" target="_blank" class="uk-button uk-button-primary ja-button cyan darken-1 white-text"><i class="uk-icon-file-pdf-o"></i> DOWNLOAD PDF MAP</a>
         </div>
 
         <div class="ja-ticket__content uk-margin-large-bottom">
