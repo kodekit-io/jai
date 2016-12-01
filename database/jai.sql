@@ -218,7 +218,7 @@ CREATE TABLE `menus` (
   `order` int(11) NOT NULL DEFAULT '0',
   `menu_type` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'backend',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `menus` */
 
@@ -265,6 +265,7 @@ insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon
 insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`,`menu_type`) values (47,'career.list','Career List','jai-backend/career',46,'career',NULL,NULL,NULL,NULL,100,'backend');
 insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`,`menu_type`) values (48,'career.add','Add Career','jai-backend/career/add',46,'career.add',NULL,NULL,NULL,NULL,200,'backend');
 insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`,`menu_type`) values (49,'page','Pages','jai-backend/page',0,'page','fa fa-sticky-note-o',NULL,NULL,NULL,800,'backend');
+insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`,`menu_type`) values (50,'f.aquarium-map','Aquarium Map','location-map',38,'frontend',NULL,NULL,NULL,NULL,200,'frontend');
 
 /*Table structure for table `migrations` */
 
@@ -321,7 +322,7 @@ CREATE TABLE `package_details` (
   PRIMARY KEY (`id`),
   KEY `package_details_package_id_foreign` (`package_id`),
   CONSTRAINT `package_details_package_id_foreign` FOREIGN KEY (`package_id`) REFERENCES `packages` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `package_details` */
 
@@ -331,12 +332,12 @@ insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`
 insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (36,5,'id','Program Sekolah','program-sekolah','At vero eos et accusamus et iusto odio madeline dignis imosse ducma quisa. Ut enim ad minim veniam, quis nostrud quirelle exercitation ullamco ullamco accusamus et iusto cupidatat non proident. Set ed ut perspiciatis laboris nisi ut aliquip ex eamus commodo consequat. Duis aute irure dignis imosse ducmation quisa cillum fugiat Extravaganza nulla pariatur. <br /> Excepteur sint exercitation ullamco accusamus et iusto cupidatat non proident. Set ed ut perspiciatis, unde omnis iste natus laboris nisi ut aliquip ex ea commodo consequat error sit voluptatem accusantium iusto cupidatat non proident doloremque requiem et dolore magnam accusamus et iusto odio voluptatem');
 insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (39,7,'en','Combo Package','combo-package','The aquarium is one of Indonesia\'s most unforgettable group activities! Groups of 10 or more people receive discounted admission to the aquarium! Pre-booking is required at least 7 days in advance as groups must be pre-qualified before receiving this rate.&nbsp;');
 insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (40,7,'id','Paket Kombo','paket-kombo','The aquarium is one of Indonesia\'s most unforgettable group activities! Groups of 10 or more people receive discounted admission to the aquarium! Pre-booking is required at least 7 days in advance as groups must be pre-qualified before receiving this rate.&nbsp;');
-insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (49,3,'en','Premium Admission','premium-admission','Aquarium Tour, 5D Theater and Printed Photo Souvenir.');
-insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (50,3,'id','Premium Admission','premium-admission-2','Aquarium Tour, 5D Theater and Printed Photo Souvenir.');
 insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (51,4,'en','Ultimate Admission','ultimate-admission','Aquarium Tour, 5D Theater, Shark/Piranha Feeding, Seatrek/Dive and Printed Photo Souvenir.');
 insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (52,4,'id','Ultimate Admission','ultimate-admission-2','Aquarium Tour, 5D Theater, Shark/Piranha Feeding, Seatrek/Dive and Printed Photo Souvenir.');
 insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (53,1,'en','Regular','regular','Aquarium&nbsp;Tour');
 insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (54,1,'id','Regular','regular-2','Aquarium&nbsp;Tour');
+insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (55,3,'en','Premium Admission','premium-admission','Aquarium Tour, 5D Theater and Printed Photo Souvenir.');
+insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (56,3,'id','Premium','premium','Aquarium Tour, 5D Theater and Printed Photo Souvenir.');
 
 /*Table structure for table `package_has_coupons` */
 
@@ -1041,8 +1042,9 @@ CREATE TABLE `sessions` (
 
 /*Data for the table `sessions` */
 
-insert  into `sessions`(`id`,`user_id`,`ip_address`,`user_agent`,`payload`,`last_activity`) values ('IQkuMWGzDhBWdhsaWPevOn9ZS8f434ecIWrw254Y',1,'192.168.10.1','Mozilla/5.0 (Windows NT 6.3; WOW64; rv:50.0) Gecko/20100101 Firefox/50.0','YTo2OntzOjY6Il90b2tlbiI7czo0MDoidUZqZTZ3cnZGSzlWaTVYdGdEd0tBSXNaVTlBUHpJTUxDUk5zMmdMZiI7czo0OiJsYW5nIjtzOjI6ImlkIjtzOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO3M6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjMwOiJodHRwOi8vamFpLmRldi9pZC90aWNrZXQtaG91cnMiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjk6Il9zZjJfbWV0YSI7YTozOntzOjE6InUiO2k6MTQ4MDE1NDIwMztzOjE6ImMiO2k6MTQ4MDE1MzE4NztzOjE6ImwiO3M6MToiMCI7fX0=',1480154203);
-insert  into `sessions`(`id`,`user_id`,`ip_address`,`user_agent`,`payload`,`last_activity`) values ('kRthkoHA8JgN559GcfkPSImCEM9SjJwVgwnbadSk',3,'192.168.10.1','Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36','YTo2OntzOjY6Il90b2tlbiI7czo0MDoiZEtvZWsyUW96QjdMc2tNZEdGS2hvMzFTMGFDT0RHRGhjWmxnTGI5NSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzA6Imh0dHA6Ly9qYWkuZGV2L2lkL3RpY2tldC1ob3VycyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NDoibGFuZyI7czoyOiJpZCI7czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MztzOjk6Il9zZjJfbWV0YSI7YTozOntzOjE6InUiO2k6MTQ4MDI5MTY1MjtzOjE6ImMiO2k6MTQ4MDI5MTY0MjtzOjE6ImwiO3M6MToiMCI7fX0=',1480291652);
+insert  into `sessions`(`id`,`user_id`,`ip_address`,`user_agent`,`payload`,`last_activity`) values ('537kBYhgDHVwTxppFNR5kfU3hasP2pQQvDws7zRf',1,'192.168.10.1','Mozilla/5.0 (Windows NT 6.3; WOW64; rv:50.0) Gecko/20100101 Firefox/50.0','YTo2OntzOjY6Il90b2tlbiI7czo0MDoiU0VBNWxVOVdqeU85SFIwc3Y0bmJtYkFnSm5FYUlNQzFqWU5IUHJxdyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzA6Imh0dHA6Ly9qYWkuZGV2L2lkL3RpY2tldC1ob3VycyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NDoibGFuZyI7czoyOiJpZCI7czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjk6Il9zZjJfbWV0YSI7YTozOntzOjE6InUiO2k6MTQ4MDUxMTA2NDtzOjE6ImMiO2k6MTQ4MDUxMDc3OTtzOjE6ImwiO3M6MToiMCI7fX0=',1480511065);
+insert  into `sessions`(`id`,`user_id`,`ip_address`,`user_agent`,`payload`,`last_activity`) values ('etJoOZ2f2IVn8Z1eOmURTn1GKTwLfRtg433RzM1g',3,'192.168.10.1','Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36','YTo2OntzOjY6Il90b2tlbiI7czo0MDoiZUQzVTJUQ29BYVZLM0Fta1ZyNkJCR043UWxtQ3Q0clBvRERWUGVxYSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MTc6Imh0dHA6Ly9qYWkuZGV2L2lkIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo0OiJsYW5nIjtzOjI6ImlkIjtzOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTozO3M6OToiX3NmMl9tZXRhIjthOjM6e3M6MToidSI7aToxNDgwNTYzODgzO3M6MToiYyI7aToxNDgwNTYzNDE1O3M6MToibCI7czoxOiIwIjt9fQ==',1480563884);
+insert  into `sessions`(`id`,`user_id`,`ip_address`,`user_agent`,`payload`,`last_activity`) values ('ghPybkSWOUzYO4YEkHzGZMQfiMvzT57S7RMJ9gxj',3,'192.168.10.1','Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36','YTo2OntzOjY6Il90b2tlbiI7czo0MDoicVBkOFhlcThiUFBndHQ3MVdMVDlDVXZxY0tKY2k1Y25LM3hHc1VZOSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzk6Imh0dHA6Ly9qYWkuZGV2L2phaS1iYWNrZW5kL3BhZ2UvODYvZWRpdCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NDoibGFuZyI7czoyOiJpZCI7czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MztzOjk6Il9zZjJfbWV0YSI7YTozOntzOjE6InUiO2k6MTQ4MDQ5NjMwNDtzOjE6ImMiO2k6MTQ4MDQ3NzYwNjtzOjE6ImwiO3M6MToiMCI7fX0=',1480496304);
 
 /*Table structure for table `show_details` */
 
@@ -1056,7 +1058,7 @@ CREATE TABLE `show_details` (
   PRIMARY KEY (`id`),
   KEY `show_details_show_id_foreign` (`show_id`),
   CONSTRAINT `show_details_show_id_foreign` FOREIGN KEY (`show_id`) REFERENCES `shows` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `show_details` */
 
@@ -1066,6 +1068,8 @@ insert  into `show_details`(`id`,`show_id`,`title`,`slug`,`lang`,`content`) valu
 insert  into `show_details`(`id`,`show_id`,`title`,`slug`,`lang`,`content`) values (28,10,'Pertunjukan Musiman','pertunjukan-musiman','id','At vero eos et accusamus et iusto odio madeline dignis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo mallera consequat aller proident.');
 insert  into `show_details`(`id`,`show_id`,`title`,`slug`,`lang`,`content`) values (31,9,'Limited Show','limited-show','en','At vero eos et accusamus et iusto odio madeline dignis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo mallera consequat aller proident.');
 insert  into `show_details`(`id`,`show_id`,`title`,`slug`,`lang`,`content`) values (32,9,'Pertunjukan Terbatas','pertunjukan-terbatas','id','At vero eos et accusamus et iusto odio madeline dignis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo mallera consequat aller proident.');
+insert  into `show_details`(`id`,`show_id`,`title`,`slug`,`lang`,`content`) values (37,11,'NO DETAIL','no-detail','en','xxefewrtwertwetywrtyeryu<br />teryettyerty');
+insert  into `show_details`(`id`,`show_id`,`title`,`slug`,`lang`,`content`) values (38,11,'TEST GADA PENJELASAN','test-gada-penjelasan','id','xxwertwertwertertwergdfdsf<br />rteyrtefwedfqwefqwef');
 
 /*Table structure for table `show_has_medias` */
 
@@ -1126,13 +1130,14 @@ CREATE TABLE `shows` (
   `start_time` time DEFAULT NULL,
   `end_time` time DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `shows` */
 
 insert  into `shows`(`id`,`show_type`,`created_by`,`created_at`,`updated_at`,`day`,`start_date`,`end_date`,`start_time`,`end_time`) values (8,1,3,'2016-11-10 18:31:53','2016-11-10 18:41:49',5,'1970-01-01','1970-01-01','14:00:00','00:00:00');
 insert  into `shows`(`id`,`show_type`,`created_by`,`created_at`,`updated_at`,`day`,`start_date`,`end_date`,`start_time`,`end_time`) values (9,3,3,'2016-11-11 18:11:05','2016-11-11 18:31:51',1,'2016-11-09','2016-11-15','13:00:00','00:00:00');
 insert  into `shows`(`id`,`show_type`,`created_by`,`created_at`,`updated_at`,`day`,`start_date`,`end_date`,`start_time`,`end_time`) values (10,2,3,'2016-11-11 18:12:32','2016-11-11 18:12:32',5,'1970-01-01','1970-01-01','11:00:00','00:00:00');
+insert  into `shows`(`id`,`show_type`,`created_by`,`created_at`,`updated_at`,`day`,`start_date`,`end_date`,`start_time`,`end_time`) values (11,1,3,'2016-11-30 14:27:04','2016-11-30 14:29:13',1,'1970-01-01','1970-01-01','11:00:00','00:00:00');
 
 /*Table structure for table `slider_items` */
 
