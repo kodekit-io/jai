@@ -1,6 +1,6 @@
 <?php //Navigation ?>
 <nav class="ja-nav">
-	<h1 class="ja-logo light-blue darken-4"><a href="{!! lang_url('') !!}" title="Jakarta Aquarium">Jakarta Aquarium</a></h1>
+	<h1 class="ja-logo white"><a href="{!! lang_url('') !!}" title="Jakarta Aquarium">Jakarta Aquarium</a></h1>
 {{--<<<<<<< HEAD
 	<a href="#" class="uk-visible-small ja-mobmenu cyan darken-1" data-uk-toggle="{target:'.ja-mobhide',cls:'uk-hidden-small',animation:'uk-animation-slide-fade, uk-animation-fade'}"><i class="uk-icon-bars"></i></a>
 	<ul class="uk-list ja-nav-main cyan darken-1 ja-mobhide uk-hidden-small">
