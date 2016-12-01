@@ -762,6 +762,7 @@ h2.ja-slide-title {
 .ja-showtime__limited {
 	padding-top: 1em !important;
 	padding-bottom: 1em !important;
+	width: 100%;
 }
 .ja-showtime__all {
 	border-left: 5px solid #8bc34a;
