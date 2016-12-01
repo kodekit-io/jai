@@ -27,7 +27,7 @@
 
         </div>
 
-        <div class="ja-ticket__content uk-margin-bottom">
+        <div class="ja-ticket__content uk-margin-large-bottom">
             <p>Neo SOHO provides at vero eos et accusamus et iusto odio madeline dignis imosse ducma quisa. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dignis imosse ducma quisa cillum fugiat nulla pariatur excepteur sint occaecat exercitation ullamco accusamus et iusto odio laboris cupidatat non proident.</p>
             <ul class="uk-list uk-list-space">
                 <li>
@@ -68,9 +68,9 @@
             </ul>
         </div>
 
-        <div class="ja-ticket__content uk-margin-large-bottom">
-            <p>At vero eos et accusamus et iusto odio madeline dignis imosse ducma quisa. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure cillum fugiat nulla  veniam cillum fugiat proident <a href="{!! lang_url('location-map') !!}" class="cyan-text text-darken-1" data-uk-tooltip title="See indoor aquarium map 3D">see indoor aquarium map 3D here</a>.</p>
-        </div>
+        {{--<div class="ja-ticket__content uk-margin-large-bottom">--}}
+            {{--<p>At vero eos et accusamus et iusto odio madeline dignis imosse ducma quisa. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure cillum fugiat nulla  veniam cillum fugiat proident <a href="{!! lang_url('location-map') !!}" class="cyan-text text-darken-1" data-uk-tooltip title="See indoor aquarium map 3D">see indoor aquarium map 3D here</a>.</p>--}}
+        {{--</div>--}}
 
     </div>
 </main>

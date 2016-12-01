@@ -61,7 +61,7 @@ main {
 }
 .ja-logo a {
 	background: url(../img/logo.png) center center no-repeat;
-	background-size: 75%;
+	/*background-size: 75%;*/
 	display: block;
 	width: 100%;
 	height: 100%;
@@ -1097,7 +1097,7 @@ ul.ja-boxes .ja-bg_cyan {
 	}
 	.ja-logo a {
 		background: #005da6 url(../img/logo.png) center center no-repeat;
-		background-size: 25%;
+		/*background-size: 25%;*/
 		display: block;
 		width: 100%;
 		height: 100%;

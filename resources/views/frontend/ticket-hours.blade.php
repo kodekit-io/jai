@@ -89,18 +89,18 @@
                             <label for="">Phone Number</label>
                             <input id="" type="text" value="" name="order_phone" placeholder="Input your phone">
                         </div>
-                        <div class="uk-form-row uk-margin-remove">
-                            <label for="">Address</label>
-                            <input id="" type="text" value="" name="order_address" placeholder="Input your address">
-                        </div>
-                        <div class="uk-form-row uk-margin-remove">
-                            <label for="">City</label>
-                            <input id="" type="text" value="" name="order_city" placeholder="Input your city">
-                        </div>
-                        <div class="uk-form-row uk-margin-remove">
-                            <label for="">Country</label>
-                            <input id="" type="text" value="" name="order_country" placeholder="Input your country">
-                        </div>
+                        {{--<div class="uk-form-row uk-margin-remove">--}}
+                            {{--<label for="">Address</label>--}}
+                            {{--<input id="" type="text" value="" name="order_address" placeholder="Input your address">--}}
+                        {{--</div>--}}
+                        {{--<div class="uk-form-row uk-margin-remove">--}}
+                            {{--<label for="">City</label>--}}
+                            {{--<input id="" type="text" value="" name="order_city" placeholder="Input your city">--}}
+                        {{--</div>--}}
+                        {{--<div class="uk-form-row uk-margin-remove">--}}
+                            {{--<label for="">Country</label>--}}
+                            {{--<input id="" type="text" value="" name="order_country" placeholder="Input your country">--}}
+                        {{--</div>--}}
 
                         <h5 class="uk-margin-bottom-remove">Terms &amp; Conditions <span>(<a href="#!">read</a>)</span></h5>
                         <p class="uk-margin-top-remove"><input type="checkbox" class="ja-check"> I have read and accepted the Terms and Conditions of Use.</p>

@@ -18,6 +18,7 @@ class Payment
         $transId = strtotime("now");
         $words = sha1(trim($amount) . trim($mallId) .  trim($sharedKey) . trim($transId));
         $idrCurrency = '360';
+        $sessionId = session()->getId();
         // $words = '16c2b05017c04f6e650167947876f0fa2d8ab908';
 
         $params = [
@@ -30,18 +31,13 @@ class Payment
             'REQUESTDATETIME'  => date('YmdHis'),
             'CURRENCY'         => $idrCurrency,
             'PURCHASECURRENCY' => $idrCurrency,
-            'SESSIONID'        => '12303958',
+            'SESSIONID'        => $sessionId,
             'PAYMENTCHANNEL'   => "",
             'NAME'             => $personalData['order_name'],
             'EMAIL'            => $personalData['order_email'],
-            'HOMEPHONE'        => '0215150111',
             'MOBILEPHONE'      => $personalData['order_phone'],
             'BASKET'           => $basket,
             // 'BASKET'           => 'Item 1,70000.00,1,70000.00;Service Charge,5000.00,1,5000.00;',
-            'ADDRESS'          => $personalData['order_address'],
-            'CITY'             => 'Jakarta',
-            'STATE'            => 'DKI Jakarta',
-            'ZIPCODE'          => '12190'
         ];
 
         return $params;
