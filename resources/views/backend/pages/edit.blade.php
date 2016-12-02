@@ -123,6 +123,8 @@
                 style_formats: [
                     {title: 'Headers', items: [
                         {title: 'Title', block: 'h4', classes: 'cyan-text text-darken-1' },
+                        {title: 'Sightseeing Highlight', block: 'h2', classes: 'font-intro amber-text text-darken-1 uk-margin-remove' },
+                        {title: 'Sightseeing Small', block: 'p', classes: 'uk-margin-remove' },
                         {title: 'Header 1', format: 'h1'},
                         {title: 'Header 2', format: 'h2'},
                         {title: 'Header 3', format: 'h3'},

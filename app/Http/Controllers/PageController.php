@@ -90,6 +90,10 @@ class PageController extends Controller
             $this->postService->updateAboutUs($post, $request->only(['philosophies', 'stories']));
         }
 
+        if ($pageDetail->slug == 'sightseeing') {
+            $this->postService->updateSightSeeing($post, $request->only(['firstBox', 'secondBox', 'thirdBox', 'fourthBox']));
+        }
+
         return backendRedirect('page')->with($this->getMessage('update'));
     }
 

@@ -37,24 +37,16 @@
 
 		<ul class="uk-grid uk-grid-collapse">
 			<li class="uk-width-2-5">
-				<span>Contains more than</span>
-				<h2 class="font-intro amber-text text-darken-1 uk-margin-remove">14,820 ANIMALS</h2>
-				<span>in sea water, freshwater and land</span>
+				{!! $firstBox->meta_value !!}
 			</li>
 			<li class="uk-width-1-2">
-				<span>Holds more than</span>
-				<h2 class="font-intro amber-text text-darken-1 uk-margin-remove">120 PROGRAMS</h2>
-				<span>for attractions and edutainment in a year</span>
+				{!! $secondBox->meta_value !!}
 			</li>
 			<li class="uk-width-2-5">
-				<span>Located in the large</span>
-				<h2 class="font-intro amber-text text-darken-1 uk-margin-remove">LEISURE DISTRICTS</h2>
-				<span>include 3 malls, hotels and parks</span>
+				{!! $thirdBox->meta_value !!}
 			</li>
 			<li class="uk-width-1-2">
-				<span>Will hangout with</span>
-				<h2 class="font-intro amber-text text-darken-1 uk-margin-remove">A MILLION VISITORS</h2>
-				<span>in a year</span>
+				{!! $fourthBox->meta_value !!}
 			</li>
 		</ul>
 	</div>

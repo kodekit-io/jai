@@ -363,4 +363,39 @@ class Post
             ->select('posts.*', 'post_details.title', 'post_details.slug', 'post_details.content', 'media.file_name');
     }
 
+    public function updateSightSeeing($post, $inputs)
+    {
+        foreach ($inputs['firstBox'] as $lang => $philosophy) {
+            $post->metas()->where('meta_key', 'firstBox-' . $lang)->delete();
+            $post->metas()->create([
+                'meta_key' => 'firstBox-' . $lang,
+                'meta_value' => $philosophy
+            ]);
+        }
+
+        foreach ($inputs['secondBox'] as $lang => $story) {
+            $post->metas()->where('meta_key', 'secondBox-' . $lang)->delete();
+            $post->metas()->create([
+                'meta_key' => 'secondBox-' . $lang,
+                'meta_value' => $story
+            ]);
+        }
+
+        foreach ($inputs['thirdBox'] as $lang => $philosophy) {
+            $post->metas()->where('meta_key', 'thirdBox-' . $lang)->delete();
+            $post->metas()->create([
+                'meta_key' => 'thirdBox-' . $lang,
+                'meta_value' => $philosophy
+            ]);
+        }
+
+        foreach ($inputs['fourthBox'] as $lang => $story) {
+            $post->metas()->where('meta_key', 'fourthBox-' . $lang)->delete();
+            $post->metas()->create([
+                'meta_key' => 'fourthBox-' . $lang,
+                'meta_value' => $story
+            ]);
+        }
+    }
+
 }
