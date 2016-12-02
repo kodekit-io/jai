@@ -37,16 +37,16 @@
 
 		<ul class="uk-grid uk-grid-collapse">
 			<li class="uk-width-2-5">
-				{!! $firstBox->meta_value !!}
+				{!! ( isset($firstBox->meta_value) ? $firstBox->meta_value : '' ) !!}
 			</li>
 			<li class="uk-width-1-2">
-				{!! $secondBox->meta_value !!}
+				{!! ( isset($secondBox->meta_value) ? $secondBox->meta_value : '' ) !!}
 			</li>
 			<li class="uk-width-2-5">
-				{!! $thirdBox->meta_value !!}
+				{!! ( isset($thirdBox->meta_value) ? $thirdBox->meta_value : '' ) !!}
 			</li>
 			<li class="uk-width-1-2">
-				{!! $fourthBox->meta_value !!}
+				{!! ( isset($fourthBox->meta_value) ? $fourthBox->meta_value : '' ) !!}
 			</li>
 		</ul>
 	</div>

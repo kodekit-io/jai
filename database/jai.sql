@@ -265,7 +265,7 @@ insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon
 insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`,`menu_type`) values (47,'career.list','Career List','jai-backend/career',46,'career',NULL,NULL,NULL,NULL,100,'backend');
 insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`,`menu_type`) values (48,'career.add','Add Career','jai-backend/career/add',46,'career.add',NULL,NULL,NULL,NULL,200,'backend');
 insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`,`menu_type`) values (49,'page','Pages','jai-backend/page',0,'page','fa fa-sticky-note-o',NULL,NULL,NULL,800,'backend');
-insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`,`menu_type`) values (50,'f.aquarium-map','Aquarium Map','location-map',38,'frontend',NULL,NULL,NULL,NULL,200,'frontend');
+insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`,`menu_type`) values (50,'f.aquarium-map','Aquarium Map','location-map',38,'frontend',NULL,NULL,NULL,NULL,350,'frontend');
 
 /*Table structure for table `migrations` */
 
@@ -659,6 +659,8 @@ insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (8
 insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (89,'id','Syarat Ketentuan','syarat-ketentuan','');
 insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (90,'en','Term of Use','term-of-use','');
 insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (90,'id','Ketentuan Penggunaan','ketentuan-penggunaan','');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (91,'en','Sightseeing','sightseeing','<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidale laborum et dolorem magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation autem.</p>');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (91,'id','Sightseeing','sightseeing-2','<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidale laborum et dolorem magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation autem.</p>');
 
 /*Table structure for table `post_has_categories` */
 
@@ -777,7 +779,7 @@ CREATE TABLE `post_metas` (
   PRIMARY KEY (`id`),
   KEY `post_metas_post_id_foreign` (`post_id`),
   CONSTRAINT `post_metas_post_id_foreign` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `post_metas` */
 
@@ -801,6 +803,14 @@ insert  into `post_metas`(`id`,`post_id`,`meta_key`,`meta_value`) values (44,19,
 insert  into `post_metas`(`id`,`post_id`,`meta_key`,`meta_value`) values (45,19,'meta_description-id','kalian akan bertemu hiu di JAI');
 insert  into `post_metas`(`id`,`post_id`,`meta_key`,`meta_value`) values (46,19,'whats_on','1');
 insert  into `post_metas`(`id`,`post_id`,`meta_key`,`meta_value`) values (47,19,'featured','1');
+insert  into `post_metas`(`id`,`post_id`,`meta_key`,`meta_value`) values (68,91,'firstBox-en','<p class=\"uk-margin-remove\">Contains more than</p>\r\n<h2 class=\"uk-margin-remove font-intro amber-text text-darken-1\">14,820&nbsp;ANIMALS</h2>\r\n<p class=\"uk-margin-remove\">in seawater, freshwater and land</p>');
+insert  into `post_metas`(`id`,`post_id`,`meta_key`,`meta_value`) values (69,91,'firstBox-id','<p class=\"uk-margin-remove\">Berisi lebih dari</p>\r\n<h2 class=\"uk-margin-remove font-intro amber-text text-darken-1\">14,820&nbsp;BINATANG</h2>\r\n<p class=\"uk-margin-remove\">di air laut, air tawar dan daratan</p>');
+insert  into `post_metas`(`id`,`post_id`,`meta_key`,`meta_value`) values (70,91,'secondBox-en','<p class=\"uk-margin-remove\">Holds more than</p>\r\n<h2 class=\"uk-margin-remove font-intro amber-text text-darken-1\">120 PROGRAMS</h2>\r\n<p class=\"uk-margin-remove\">for attractions and edutainment</p>');
+insert  into `post_metas`(`id`,`post_id`,`meta_key`,`meta_value`) values (71,91,'secondBox-id','<p class=\"uk-margin-remove\">Memiliki</p>\r\n<h2 class=\"uk-margin-remove font-intro amber-text text-darken-1\">120 PROGRAM</h2>\r\n<p class=\"uk-margin-remove\">atraksi dan pendidikan</p>');
+insert  into `post_metas`(`id`,`post_id`,`meta_key`,`meta_value`) values (72,91,'thirdBox-en','<p class=\"uk-margin-remove\">Located in the large</p>\r\n<h2 class=\"uk-margin-remove font-intro amber-text text-darken-1\">LEISURE DISTRICTS</h2>\r\n<p class=\"uk-margin-remove\">include 3 malls, hotels, and parks</p>');
+insert  into `post_metas`(`id`,`post_id`,`meta_key`,`meta_value`) values (73,91,'thirdBox-id','<p class=\"uk-margin-remove\">Located in the large</p>\r\n<h2 class=\"uk-margin-remove font-intro amber-text text-darken-1\">LEISURE DISTRICTS</h2>\r\n<p class=\"uk-margin-remove\">include 3 malls, hotels, and parks</p>');
+insert  into `post_metas`(`id`,`post_id`,`meta_key`,`meta_value`) values (74,91,'fourthBox-en','<p class=\"uk-margin-remove\">Contains more than</p>\r\n<h2 class=\"uk-margin-remove font-intro amber-text text-darken-1\">14,820&nbsp;ANIMALS</h2>\r\n<p class=\"uk-margin-remove\">in seawater, freshwater and land</p>');
+insert  into `post_metas`(`id`,`post_id`,`meta_key`,`meta_value`) values (75,91,'fourthBox-id','<p class=\"uk-margin-remove\">Contains more than</p>\r\n<h2 class=\"uk-margin-remove font-intro amber-text text-darken-1\">14,820&nbsp;ANIMALS</h2>\r\n<p class=\"uk-margin-remove\">in seawater, freshwater and land</p>');
 
 /*Table structure for table `post_types` */
 
@@ -833,7 +843,7 @@ CREATE TABLE `posts` (
   `publish_date` timestamp NULL DEFAULT NULL,
   `created_by` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=92 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `posts` */
 
@@ -908,6 +918,7 @@ insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`pub
 insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (88,6,'2016-11-22 15:41:36','2016-11-22 15:41:36','PUBLISH','2016-11-22 15:41:00',1);
 insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (89,6,'2016-11-22 15:42:01','2016-11-22 15:42:01','PUBLISH','2016-11-22 15:41:00',1);
 insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (90,6,'2016-11-22 15:42:42','2016-11-22 15:42:42','PUBLISH','2016-11-22 15:42:00',1);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (91,6,'2016-12-02 07:05:09','2016-12-02 08:41:58','PUBLISH','2016-12-02 07:04:00',3);
 
 /*Table structure for table `role_has_permissions` */
 
@@ -1042,9 +1053,8 @@ CREATE TABLE `sessions` (
 
 /*Data for the table `sessions` */
 
-insert  into `sessions`(`id`,`user_id`,`ip_address`,`user_agent`,`payload`,`last_activity`) values ('537kBYhgDHVwTxppFNR5kfU3hasP2pQQvDws7zRf',1,'192.168.10.1','Mozilla/5.0 (Windows NT 6.3; WOW64; rv:50.0) Gecko/20100101 Firefox/50.0','YTo2OntzOjY6Il90b2tlbiI7czo0MDoiU0VBNWxVOVdqeU85SFIwc3Y0bmJtYkFnSm5FYUlNQzFqWU5IUHJxdyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzA6Imh0dHA6Ly9qYWkuZGV2L2lkL3RpY2tldC1ob3VycyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NDoibGFuZyI7czoyOiJpZCI7czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjk6Il9zZjJfbWV0YSI7YTozOntzOjE6InUiO2k6MTQ4MDUxMTA2NDtzOjE6ImMiO2k6MTQ4MDUxMDc3OTtzOjE6ImwiO3M6MToiMCI7fX0=',1480511065);
-insert  into `sessions`(`id`,`user_id`,`ip_address`,`user_agent`,`payload`,`last_activity`) values ('etJoOZ2f2IVn8Z1eOmURTn1GKTwLfRtg433RzM1g',3,'192.168.10.1','Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36','YTo2OntzOjY6Il90b2tlbiI7czo0MDoiZUQzVTJUQ29BYVZLM0Fta1ZyNkJCR043UWxtQ3Q0clBvRERWUGVxYSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MTc6Imh0dHA6Ly9qYWkuZGV2L2lkIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo0OiJsYW5nIjtzOjI6ImlkIjtzOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTozO3M6OToiX3NmMl9tZXRhIjthOjM6e3M6MToidSI7aToxNDgwNTYzODgzO3M6MToiYyI7aToxNDgwNTYzNDE1O3M6MToibCI7czoxOiIwIjt9fQ==',1480563884);
-insert  into `sessions`(`id`,`user_id`,`ip_address`,`user_agent`,`payload`,`last_activity`) values ('ghPybkSWOUzYO4YEkHzGZMQfiMvzT57S7RMJ9gxj',3,'192.168.10.1','Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36','YTo2OntzOjY6Il90b2tlbiI7czo0MDoicVBkOFhlcThiUFBndHQ3MVdMVDlDVXZxY0tKY2k1Y25LM3hHc1VZOSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzk6Imh0dHA6Ly9qYWkuZGV2L2phaS1iYWNrZW5kL3BhZ2UvODYvZWRpdCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NDoibGFuZyI7czoyOiJpZCI7czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MztzOjk6Il9zZjJfbWV0YSI7YTozOntzOjE6InUiO2k6MTQ4MDQ5NjMwNDtzOjE6ImMiO2k6MTQ4MDQ3NzYwNjtzOjE6ImwiO3M6MToiMCI7fX0=',1480496304);
+insert  into `sessions`(`id`,`user_id`,`ip_address`,`user_agent`,`payload`,`last_activity`) values ('48NhOZWrpDyQYWo8xSAjXFpjf6X1psN2jVAfmsgN',3,'192.168.10.1','Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36','YTo2OntzOjY6Il90b2tlbiI7czo0MDoiR2FhUWxHN2NKeFNtSlJtRHYzbTBidlluRHdMdXlIQ3Q2YktXN3lXcCI7czo0OiJsYW5nIjtzOjI6ImlkIjtzOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTozO3M6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjMxOiJodHRwOi8vamFpLmRldi9qYWktYmFja2VuZC9wYWdlIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfc2YyX21ldGEiO2E6Mzp7czoxOiJ1IjtpOjE0ODA2NDczOTM7czoxOiJjIjtpOjE0ODA2MzcwNTY7czoxOiJsIjtzOjE6IjAiO319',1480647393);
+insert  into `sessions`(`id`,`user_id`,`ip_address`,`user_agent`,`payload`,`last_activity`) values ('etJoOZ2f2IVn8Z1eOmURTn1GKTwLfRtg433RzM1g',3,'192.168.10.1','Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36','YTo2OntzOjY6Il90b2tlbiI7czo0MDoiZUQzVTJUQ29BYVZLM0Fta1ZyNkJCR043UWxtQ3Q0clBvRERWUGVxYSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly9qYWkuZGV2L2lkL3Nob3ctdGltZSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NDoibGFuZyI7czoyOiJpZCI7czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MztzOjk6Il9zZjJfbWV0YSI7YTozOntzOjE6InUiO2k6MTQ4MDU2NjUyMztzOjE6ImMiO2k6MTQ4MDU2MzQxNTtzOjE6ImwiO3M6MToiMCI7fX0=',1480566523);
 
 /*Table structure for table `show_details` */
 
@@ -1058,7 +1068,7 @@ CREATE TABLE `show_details` (
   PRIMARY KEY (`id`),
   KEY `show_details_show_id_foreign` (`show_id`),
   CONSTRAINT `show_details_show_id_foreign` FOREIGN KEY (`show_id`) REFERENCES `shows` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `show_details` */
 
@@ -1068,8 +1078,8 @@ insert  into `show_details`(`id`,`show_id`,`title`,`slug`,`lang`,`content`) valu
 insert  into `show_details`(`id`,`show_id`,`title`,`slug`,`lang`,`content`) values (28,10,'Pertunjukan Musiman','pertunjukan-musiman','id','At vero eos et accusamus et iusto odio madeline dignis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo mallera consequat aller proident.');
 insert  into `show_details`(`id`,`show_id`,`title`,`slug`,`lang`,`content`) values (31,9,'Limited Show','limited-show','en','At vero eos et accusamus et iusto odio madeline dignis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo mallera consequat aller proident.');
 insert  into `show_details`(`id`,`show_id`,`title`,`slug`,`lang`,`content`) values (32,9,'Pertunjukan Terbatas','pertunjukan-terbatas','id','At vero eos et accusamus et iusto odio madeline dignis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo mallera consequat aller proident.');
-insert  into `show_details`(`id`,`show_id`,`title`,`slug`,`lang`,`content`) values (37,11,'NO DETAIL','no-detail','en','xxefewrtwertwetywrtyeryu<br />teryettyerty');
-insert  into `show_details`(`id`,`show_id`,`title`,`slug`,`lang`,`content`) values (38,11,'TEST GADA PENJELASAN','test-gada-penjelasan','id','xxwertwertwertertwergdfdsf<br />rteyrtefwedfqwefqwef');
+insert  into `show_details`(`id`,`show_id`,`title`,`slug`,`lang`,`content`) values (39,11,'NO DETAIL','no-detail','en','xxefewrtwertwetywrtyeryu<br />teryettyerty');
+insert  into `show_details`(`id`,`show_id`,`title`,`slug`,`lang`,`content`) values (40,11,'TEST GADA PENJELASAN','test-gada-penjelasan','id','xxwertwertwertertwergdfdsf<br />rteyrtefwedfqwefqwef');
 
 /*Table structure for table `show_has_medias` */
 
@@ -1137,7 +1147,7 @@ CREATE TABLE `shows` (
 insert  into `shows`(`id`,`show_type`,`created_by`,`created_at`,`updated_at`,`day`,`start_date`,`end_date`,`start_time`,`end_time`) values (8,1,3,'2016-11-10 18:31:53','2016-11-10 18:41:49',5,'1970-01-01','1970-01-01','14:00:00','00:00:00');
 insert  into `shows`(`id`,`show_type`,`created_by`,`created_at`,`updated_at`,`day`,`start_date`,`end_date`,`start_time`,`end_time`) values (9,3,3,'2016-11-11 18:11:05','2016-11-11 18:31:51',1,'2016-11-09','2016-11-15','13:00:00','00:00:00');
 insert  into `shows`(`id`,`show_type`,`created_by`,`created_at`,`updated_at`,`day`,`start_date`,`end_date`,`start_time`,`end_time`) values (10,2,3,'2016-11-11 18:12:32','2016-11-11 18:12:32',5,'1970-01-01','1970-01-01','11:00:00','00:00:00');
-insert  into `shows`(`id`,`show_type`,`created_by`,`created_at`,`updated_at`,`day`,`start_date`,`end_date`,`start_time`,`end_time`) values (11,1,3,'2016-11-30 14:27:04','2016-11-30 14:29:13',1,'1970-01-01','1970-01-01','11:00:00','00:00:00');
+insert  into `shows`(`id`,`show_type`,`created_by`,`created_at`,`updated_at`,`day`,`start_date`,`end_date`,`start_time`,`end_time`) values (11,2,3,'2016-11-30 14:27:04','2016-12-01 11:23:20',2,'1970-01-01','1970-01-01','11:00:00','00:00:00');
 
 /*Table structure for table `slider_items` */
 
