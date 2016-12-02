@@ -41,7 +41,7 @@ class MenuService
 
     public function getMenus($type = 'backend')
     {
-        return Menu::where('menu_type', $type)->get();
+        return Menu::where('menu_type', $type)->orderBy('parent_id')->orderBy('order')->get();
     }
 
     public function menuSelect($data, $fields, $options = [])

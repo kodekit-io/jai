@@ -9,6 +9,7 @@ return [
         'special-packages' => 87,
         'career' => 88,
         'privacy-policy' => 89,
-        'term-of-use' => 90
+        'term-of-use' => 90,
+        'sightseeing' => 91
     ]
 ];
