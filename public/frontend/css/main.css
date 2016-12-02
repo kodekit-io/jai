@@ -1097,7 +1097,7 @@ ul.ja-boxes .ja-bg_cyan {
 		margin-bottom: 0;
 	}
 	.ja-logo a {
-		background: #005da6 url(../img/logo.png) center center no-repeat;
+		background: url(../img/logo.png) center center no-repeat;
 		/*background-size: 25%;*/
 		display: block;
 		width: 100%;
