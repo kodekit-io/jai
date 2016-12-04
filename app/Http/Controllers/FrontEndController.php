@@ -327,4 +327,8 @@ class FrontEndController extends Controller
         return view('frontend.search-result');
     }
 
+    public function thankYou($lang)
+    {
+        return view('frontend.thank-you');
+    }
 }
