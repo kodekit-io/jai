@@ -73,7 +73,7 @@
                         </div>
 
                         <div class="uk-form-row">
-                            <span><strong>* Admissions for infants under 2 years old is free</strong></span>
+                            <h5>* Admissions for infants under 2 years old is free</h5>
                         </div>
 
                         {{--<div class="uk-form-row">--}}
