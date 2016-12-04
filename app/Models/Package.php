@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Package extends Model
 {
-    protected $fillable = [ 'package_type_id', 'normal_price', 'weekend_price', 'holiday_price', 'created_by', 'is_general_admission' ];
+    protected $fillable = [ 'package_type_id', 'galasys_product_id', 'normal_price', 'weekend_price', 'holiday_price', 'created_by', 'is_general_admission', 'order' ];
 
     public function coupons()
     {

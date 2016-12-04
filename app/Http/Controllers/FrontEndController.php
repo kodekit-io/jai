@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Service\Attraction;
 use App\Service\Career;
+use App\Service\Order;
 use App\Service\Package;
 use App\Service\Payment;
 use App\Service\Post;
@@ -43,6 +44,10 @@ class FrontEndController extends Controller
      * @var Payment
      */
     private $paymentService;
+    /**
+     * @var Order
+     */
+    private $orderService;
 
     /**
      * FrontEndController constructor.
@@ -53,6 +58,7 @@ class FrontEndController extends Controller
      * @param Attraction $attractionService
      * @param Career $careerService
      * @param Payment $paymentService
+     * @param Order $orderService
      */
     public function __construct(
         Post $postService,
@@ -61,7 +67,8 @@ class FrontEndController extends Controller
         ShowTime $showTimeService,
         Attraction $attractionService,
         Career $careerService,
-        Payment $paymentService
+        Payment $paymentService,
+        Order $orderService
     )
     {
         $this->postService = $postService;
@@ -71,6 +78,7 @@ class FrontEndController extends Controller
         $this->attractionService = $attractionService;
         $this->careerService = $careerService;
         $this->paymentService = $paymentService;
+        $this->orderService = $orderService;
     }
 
     public function homePage($lang)
@@ -132,23 +140,26 @@ class FrontEndController extends Controller
         ];
         $generalPackages = $this->packageService->getPackages($generalAdmissionParams);
 
-        $otherPackageParams = [
-            'lang' => $lang,
-            'is_general_admission' => 0
-        ];
-        $otherPackages = $this->packageService->getPackages($otherPackageParams);
+//        $otherPackageParams = [
+//            'lang' => $lang,
+//            'is_general_admission' => 0
+//        ];
+//        $otherPackages = $this->packageService->getPackages($otherPackageParams);
 
         $data['generalPackages'] = $generalPackages;
-        $data['otherPackages'] = $otherPackages;
+//        $data['otherPackages'] = $otherPackages;
 
         return view('frontend.ticket-hours', $data);
     }
 
     public function bookTicket(Request $request, $lang)
     {
-        $details = $this->paymentService->getOrderDetails($request->only(['packages']), $lang);
-        $personalData = $request->only(['order_name', 'order_email', 'order_phone', 'order_address', 'order_city', 'order_country']);
-        $dokuParams = $this->paymentService->getDokuParameters($personalData, $details);
+        $details = $this->orderService->getOrderDetails($request->only(['packages']), $lang);
+        $personalData = $request->only(['visit_date', 'order_name', 'order_email', 'order_phone']);
+
+        $order = $this->orderService->saveOrder($personalData, $details);
+        $dokuParams = $this->paymentService->getDokuParameters($order->id);
+
         $dokuUrl = config('doku.doku.api_url');
         $data['dokuUrl'] = $dokuUrl;
         $data['dokuParams'] = $dokuParams;

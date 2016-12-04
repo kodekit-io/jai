@@ -99,3 +99,10 @@
 -- Add notification when there are any blank languages whe publish the content
 
 
+
+
+-- PAYMENT CONTRACT / INTERFACE
+---- Provide hidden value for post data
+---- Provide post url
+---- Handle the response
+---- Provide payment status, succeed or failed

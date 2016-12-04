@@ -133,7 +133,7 @@
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor crasher malarki requiem predantia incididunt ut labore et dolore magna aliqua. Ut eni ad minim veniam, quisiom nostrud at autumn irure dor in reprehenderit exercitation.</p>
             <ul class="uk-list">
                 <li>Weekday	(Monday - Thursday)	:  08.00 a.m. - 07.00 p.m.</li>
-                <li>Weekend 	(Friday - Sunday)	:  08.00 a.m. - 09.00 p.m.</li>
+                <li>Weekend (Friday - Sunday)	:  08.00 a.m. - 09.00 p.m.</li>
             </ul>
             {{--<div class="uk-panel-box">--}}
                 {{--<h4 class="uk-margin-remove">Announcement:</h4>--}}
@@ -149,16 +149,16 @@
     <script src="{!! asset('frontend/js/components/accordion.min.js') !!}"></script>
     <script src="{!! asset('frontend/js/components/datepicker.min.js') !!}"></script>
     <script>
-        {{--jQuery('#visit_date').change(function() {--}}
-            {{--var visitDate = jQuery(this).val();--}}
-            {{--var ajaxUrl = '{!! url('get-package-by-date') !!}';--}}
-            {{--jQuery.ajax({--}}
-                {{--type: "POST",--}}
-                {{--url: ajaxUrl,--}}
-                {{--data: { visit_date: visitDate, _token: "{!! csrf_token() !!}" }--}}
-            {{--}).done(function (data) {--}}
-                {{--console.log(data);--}}
-            {{--});--}}
-        {{--});--}}
+        jQuery('#visit_date').change(function() {
+            var visitDate = jQuery(this).val();
+            var ajaxUrl = '{!! url('get-package-by-date') !!}';
+            jQuery.ajax({
+                type: "POST",
+                url: ajaxUrl,
+                data: { visit_date: visitDate, _token: "{!! csrf_token() !!}" }
+            }).done(function (data) {
+                console.log(data);
+            });
+        });
     </script>
 @endsection
