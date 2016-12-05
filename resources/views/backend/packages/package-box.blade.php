@@ -25,6 +25,11 @@
             </div>
             <div class="normal-type">
                 <div class="form-group">
+                    <label>Galasys Product ID :</label>
+                    <input type="text" name="galasys_product_id" class="form-control"
+                           @if (isset($package->galasys_product_id)) value='{!! $package->galasys_product_id !!}' @endif>
+                </div>
+                <div class="form-group">
                     <label>Normal Price :</label>
                     <input type="text" name="normal_price" class="form-control"
                            @if (isset($package->normal_price)) value='{!! $package->normal_price !!}' @endif>
@@ -38,6 +43,11 @@
                     <label>Holiday Price :</label>
                     <input type="text" name="holiday_price" class="form-control"
                            @if (isset($package->holiday_price)) value='{!! $package->holiday_price !!}' @endif >
+                </div>
+                <div class="form-group">
+                    <label>Show Order :</label>
+                    <input type="text" name="order" class="form-control"
+                           @if (isset($package->order)) value='{!! $package->order !!}' @endif >
                 </div>
             </div>
         </div>

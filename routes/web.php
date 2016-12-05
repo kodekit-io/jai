@@ -192,6 +192,7 @@ Route::group(['middleware' => ['lang', 'menu:frontend']], function () {
     Route::get('/{lang?}/about-us', 'FrontEndController@aboutUs');
     Route::get('/{lang?}/ticket-hours', 'FrontEndController@ticket');
     Route::post('/{lang?}/book-detail', 'FrontEndController@bookTicket');
+    Route::get('/{lang?}/book-detail/{orderId?}', 'FrontEndController@bookTicket');
     Route::get('/{lang?}/special-packages', 'FrontEndController@specialPackages');
     Route::get('/{lang?}/show-time', 'FrontEndController@showTime');
     Route::get('/{lang?}/location', 'FrontEndController@location');
@@ -216,6 +217,8 @@ Route::group(['middleware' => ['lang', 'menu:frontend']], function () {
 
 Route::post('get-package-by-date', 'PackageController@getPackage');
 
-Route::any('doku/result', 'PaymentController@dokuResult');
-Route::any('doku/notify', 'PaymentController@dokuNotify');
-Route::any('doku/review', 'PaymentController@dokuReview');
+Route::group(['middleware' => ['menu:frontend']], function () {
+    Route::any('doku/result', 'PaymentController@dokuResult');
+    Route::any('doku/notify', 'PaymentController@dokuNotify');
+    Route::any('doku/review', 'PaymentController@dokuReview');
+});

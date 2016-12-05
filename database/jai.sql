@@ -309,6 +309,67 @@ insert  into `migrations`(`migration`,`batch`) values ('2016_11_10_175742_create
 insert  into `migrations`(`migration`,`batch`) values ('2016_11_10_183306_create_show_metas_table',29);
 insert  into `migrations`(`migration`,`batch`) values ('2016_11_14_125111_create_careers_table',30);
 insert  into `migrations`(`migration`,`batch`) values ('2016_11_24_154312_add_color_on_package',31);
+insert  into `migrations`(`migration`,`batch`) values ('2016_12_04_111825_alter_package_add_galasys_id',32);
+insert  into `migrations`(`migration`,`batch`) values ('2016_12_04_112302_create_order_table',33);
+insert  into `migrations`(`migration`,`batch`) values ('2016_12_04_115501_alter_package_add_order',34);
+insert  into `migrations`(`migration`,`batch`) values ('2016_12_04_121154_add_order_status_on_orders',35);
+insert  into `migrations`(`migration`,`batch`) values ('2016_12_04_182407_add_sub_total_and_tax_on_orders',36);
+
+/*Table structure for table `order_details` */
+
+CREATE TABLE `order_details` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `order_id` bigint(20) unsigned NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `galasys_product_id` int(11) NOT NULL,
+  `product_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `price` double NOT NULL,
+  `qty` double NOT NULL,
+  `total_price` double NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `order_details_order_id_foreign` (`order_id`),
+  CONSTRAINT `order_details_order_id_foreign` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+/*Data for the table `order_details` */
+
+insert  into `order_details`(`id`,`order_id`,`product_id`,`galasys_product_id`,`product_name`,`price`,`qty`,`total_price`) values (22,15,1,3994,'Regular',100000,2,200000);
+insert  into `order_details`(`id`,`order_id`,`product_id`,`galasys_product_id`,`product_name`,`price`,`qty`,`total_price`) values (23,15,3,3681,'Premium',265000,0,0);
+insert  into `order_details`(`id`,`order_id`,`product_id`,`galasys_product_id`,`product_name`,`price`,`qty`,`total_price`) values (24,15,4,3682,'Ultimate Admission',550000,0,0);
+insert  into `order_details`(`id`,`order_id`,`product_id`,`galasys_product_id`,`product_name`,`price`,`qty`,`total_price`) values (25,16,1,3994,'Regular',100000,0,0);
+insert  into `order_details`(`id`,`order_id`,`product_id`,`galasys_product_id`,`product_name`,`price`,`qty`,`total_price`) values (26,16,3,3681,'Premium',265000,1,265000);
+insert  into `order_details`(`id`,`order_id`,`product_id`,`galasys_product_id`,`product_name`,`price`,`qty`,`total_price`) values (27,16,4,3682,'Ultimate Admission',550000,0,0);
+insert  into `order_details`(`id`,`order_id`,`product_id`,`galasys_product_id`,`product_name`,`price`,`qty`,`total_price`) values (28,17,1,3994,'Regular',100000,1,100000);
+insert  into `order_details`(`id`,`order_id`,`product_id`,`galasys_product_id`,`product_name`,`price`,`qty`,`total_price`) values (29,17,3,3681,'Premium',265000,0,0);
+insert  into `order_details`(`id`,`order_id`,`product_id`,`galasys_product_id`,`product_name`,`price`,`qty`,`total_price`) values (30,17,4,3682,'Ultimate Admission',550000,0,0);
+insert  into `order_details`(`id`,`order_id`,`product_id`,`galasys_product_id`,`product_name`,`price`,`qty`,`total_price`) values (31,18,1,3994,'Regular',100000,1,100000);
+insert  into `order_details`(`id`,`order_id`,`product_id`,`galasys_product_id`,`product_name`,`price`,`qty`,`total_price`) values (32,18,3,3681,'Premium',265000,0,0);
+insert  into `order_details`(`id`,`order_id`,`product_id`,`galasys_product_id`,`product_name`,`price`,`qty`,`total_price`) values (33,18,4,3682,'Ultimate Admission',550000,0,0);
+
+/*Table structure for table `orders` */
+
+CREATE TABLE `orders` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `visit_date` date NOT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `phone_number` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `sub_total` double NOT NULL DEFAULT '0',
+  `tax` double NOT NULL DEFAULT '0',
+  `total_amount` double NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `status` int(11) NOT NULL DEFAULT '0',
+  `status_decription` text COLLATE utf8_unicode_ci,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+/*Data for the table `orders` */
+
+insert  into `orders`(`id`,`visit_date`,`email`,`name`,`phone_number`,`sub_total`,`tax`,`total_amount`,`created_at`,`updated_at`,`status`,`status_decription`) values (15,'2016-12-21','pasha.md5@gmail.com','Pasha Mahardika','081808325756',200000,20000,220000,'2016-12-04 18:29:39','2016-12-04 18:29:39',0,NULL);
+insert  into `orders`(`id`,`visit_date`,`email`,`name`,`phone_number`,`sub_total`,`tax`,`total_amount`,`created_at`,`updated_at`,`status`,`status_decription`) values (16,'2016-12-24','pasha.md5@gmail.com','Pasha Mahardika','081808325756',265000,26500,291500,'2016-12-04 18:37:08','2016-12-04 18:37:08',0,NULL);
+insert  into `orders`(`id`,`visit_date`,`email`,`name`,`phone_number`,`sub_total`,`tax`,`total_amount`,`created_at`,`updated_at`,`status`,`status_decription`) values (17,'2016-12-30','pasha.md5@gmail.com','Pasha Mahardika','081808325756',100000,10000,110000,'2016-12-04 18:43:49','2016-12-04 18:43:49',0,NULL);
+insert  into `orders`(`id`,`visit_date`,`email`,`name`,`phone_number`,`sub_total`,`tax`,`total_amount`,`created_at`,`updated_at`,`status`,`status_decription`) values (18,'2016-12-15','pasha.md5@gmail.com','Pasha Mahardika','081808325756',100000,10000,110000,'2016-12-04 18:53:10','2016-12-04 18:53:10',0,NULL);
 
 /*Table structure for table `package_details` */
 
@@ -322,7 +383,7 @@ CREATE TABLE `package_details` (
   PRIMARY KEY (`id`),
   KEY `package_details_package_id_foreign` (`package_id`),
   CONSTRAINT `package_details_package_id_foreign` FOREIGN KEY (`package_id`) REFERENCES `packages` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `package_details` */
 
@@ -332,12 +393,12 @@ insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`
 insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (36,5,'id','Program Sekolah','program-sekolah','At vero eos et accusamus et iusto odio madeline dignis imosse ducma quisa. Ut enim ad minim veniam, quis nostrud quirelle exercitation ullamco ullamco accusamus et iusto cupidatat non proident. Set ed ut perspiciatis laboris nisi ut aliquip ex eamus commodo consequat. Duis aute irure dignis imosse ducmation quisa cillum fugiat Extravaganza nulla pariatur. <br /> Excepteur sint exercitation ullamco accusamus et iusto cupidatat non proident. Set ed ut perspiciatis, unde omnis iste natus laboris nisi ut aliquip ex ea commodo consequat error sit voluptatem accusantium iusto cupidatat non proident doloremque requiem et dolore magnam accusamus et iusto odio voluptatem');
 insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (39,7,'en','Combo Package','combo-package','The aquarium is one of Indonesia\'s most unforgettable group activities! Groups of 10 or more people receive discounted admission to the aquarium! Pre-booking is required at least 7 days in advance as groups must be pre-qualified before receiving this rate.&nbsp;');
 insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (40,7,'id','Paket Kombo','paket-kombo','The aquarium is one of Indonesia\'s most unforgettable group activities! Groups of 10 or more people receive discounted admission to the aquarium! Pre-booking is required at least 7 days in advance as groups must be pre-qualified before receiving this rate.&nbsp;');
-insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (51,4,'en','Ultimate Admission','ultimate-admission','Aquarium Tour, 5D Theater, Shark/Piranha Feeding, Seatrek/Dive and Printed Photo Souvenir.');
-insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (52,4,'id','Ultimate Admission','ultimate-admission-2','Aquarium Tour, 5D Theater, Shark/Piranha Feeding, Seatrek/Dive and Printed Photo Souvenir.');
-insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (53,1,'en','Regular','regular','Aquarium&nbsp;Tour');
-insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (54,1,'id','Regular','regular-2','Aquarium&nbsp;Tour');
-insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (55,3,'en','Premium Admission','premium-admission','Aquarium Tour, 5D Theater and Printed Photo Souvenir.');
-insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (56,3,'id','Premium','premium','Aquarium Tour, 5D Theater and Printed Photo Souvenir.');
+insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (69,1,'en','Regular','regular','Aquarium&nbsp;Tour');
+insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (70,1,'id','Regular','regular-2','Aquarium&nbsp;Tour');
+insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (71,3,'en','Premium Admission','premium-admission','Aquarium Tour, 5D Theater and Printed Photo Souvenir.');
+insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (72,3,'id','Premium','premium','Aquarium Tour, 5D Theater and Printed Photo Souvenir.');
+insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (77,4,'en','Ultimate Admission','ultimate-admission','Aquarium Tour, 5D Theater, Shark/Piranha Feeding, Seatrek/Dive and Printed Photo Souvenir.');
+insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values (78,4,'id','Ultimate Admission','ultimate-admission-2','Aquarium Tour, 5D Theater, Shark/Piranha Feeding, Seatrek/Dive and Printed Photo Souvenir.');
 
 /*Table structure for table `package_has_coupons` */
 
@@ -379,17 +440,18 @@ CREATE TABLE `package_metas` (
   PRIMARY KEY (`id`),
   KEY `package_metas_package_id_foreign` (`package_id`),
   CONSTRAINT `package_metas_package_id_foreign` FOREIGN KEY (`package_id`) REFERENCES `packages` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `package_metas` */
 
-insert  into `package_metas`(`id`,`package_id`,`meta_key`,`meta_value`) values (9,1,'meta_description-en','META (ENG)');
-insert  into `package_metas`(`id`,`package_id`,`meta_key`,`meta_value`) values (10,1,'meta_description-id','META (ID)');
+insert  into `package_metas`(`id`,`package_id`,`meta_key`,`meta_value`) values (15,1,'meta_description-en','META (ENG)');
+insert  into `package_metas`(`id`,`package_id`,`meta_key`,`meta_value`) values (16,1,'meta_description-id','META (ID)');
 
 /*Table structure for table `packages` */
 
 CREATE TABLE `packages` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `galasys_product_id` int(11) NOT NULL DEFAULT '0',
   `package_type_id` int(11) NOT NULL DEFAULT '1',
   `normal_price` double NOT NULL DEFAULT '0',
   `weekend_price` double NOT NULL DEFAULT '0',
@@ -399,17 +461,18 @@ CREATE TABLE `packages` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `color` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'cyan',
+  `order` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `packages` */
 
-insert  into `packages`(`id`,`package_type_id`,`normal_price`,`weekend_price`,`holiday_price`,`created_by`,`is_general_admission`,`created_at`,`updated_at`,`color`) values (1,1,100000,150000,150000,1,1,'2016-10-28 21:59:22','2016-11-26 16:47:13','cyan darken-1');
-insert  into `packages`(`id`,`package_type_id`,`normal_price`,`weekend_price`,`holiday_price`,`created_by`,`is_general_admission`,`created_at`,`updated_at`,`color`) values (3,1,265000,290000,290000,3,1,'2016-10-28 22:10:11','2016-11-24 15:37:20','light-blue darken-4');
-insert  into `packages`(`id`,`package_type_id`,`normal_price`,`weekend_price`,`holiday_price`,`created_by`,`is_general_admission`,`created_at`,`updated_at`,`color`) values (4,1,550000,600000,600000,3,1,'2016-10-30 11:31:58','2016-11-24 15:38:20','amber darken-1');
-insert  into `packages`(`id`,`package_type_id`,`normal_price`,`weekend_price`,`holiday_price`,`created_by`,`is_general_admission`,`created_at`,`updated_at`,`color`) values (5,2,0,0,0,3,0,'2016-11-01 19:59:03','2016-11-01 19:59:03','cyan');
-insert  into `packages`(`id`,`package_type_id`,`normal_price`,`weekend_price`,`holiday_price`,`created_by`,`is_general_admission`,`created_at`,`updated_at`,`color`) values (6,2,0,0,0,3,0,'2016-11-01 20:00:47','2016-11-01 20:00:47','cyan');
-insert  into `packages`(`id`,`package_type_id`,`normal_price`,`weekend_price`,`holiday_price`,`created_by`,`is_general_admission`,`created_at`,`updated_at`,`color`) values (7,2,0,0,0,3,0,'2016-11-01 20:02:02','2016-11-01 20:02:02','cyan');
+insert  into `packages`(`id`,`galasys_product_id`,`package_type_id`,`normal_price`,`weekend_price`,`holiday_price`,`created_by`,`is_general_admission`,`created_at`,`updated_at`,`color`,`order`) values (1,3994,1,100000,150000,150000,3,1,'2016-10-28 21:59:22','2016-12-04 11:57:23','cyan darken-1',100);
+insert  into `packages`(`id`,`galasys_product_id`,`package_type_id`,`normal_price`,`weekend_price`,`holiday_price`,`created_by`,`is_general_admission`,`created_at`,`updated_at`,`color`,`order`) values (3,3681,1,265000,290000,290000,3,1,'2016-10-28 22:10:11','2016-12-04 11:57:43','light-blue darken-4',200);
+insert  into `packages`(`id`,`galasys_product_id`,`package_type_id`,`normal_price`,`weekend_price`,`holiday_price`,`created_by`,`is_general_admission`,`created_at`,`updated_at`,`color`,`order`) values (4,3682,1,550000,600000,600000,3,1,'2016-10-30 11:31:58','2016-12-04 11:59:55','amber darken-1',300);
+insert  into `packages`(`id`,`galasys_product_id`,`package_type_id`,`normal_price`,`weekend_price`,`holiday_price`,`created_by`,`is_general_admission`,`created_at`,`updated_at`,`color`,`order`) values (5,0,2,0,0,0,3,0,'2016-11-01 19:59:03','2016-11-01 19:59:03','cyan',0);
+insert  into `packages`(`id`,`galasys_product_id`,`package_type_id`,`normal_price`,`weekend_price`,`holiday_price`,`created_by`,`is_general_admission`,`created_at`,`updated_at`,`color`,`order`) values (6,0,2,0,0,0,3,0,'2016-11-01 20:00:47','2016-11-01 20:00:47','cyan',0);
+insert  into `packages`(`id`,`galasys_product_id`,`package_type_id`,`normal_price`,`weekend_price`,`holiday_price`,`created_by`,`is_general_admission`,`created_at`,`updated_at`,`color`,`order`) values (7,0,2,0,0,0,3,0,'2016-11-01 20:02:02','2016-11-01 20:02:02','cyan',0);
 
 /*Table structure for table `password_resets` */
 
@@ -1053,8 +1116,9 @@ CREATE TABLE `sessions` (
 
 /*Data for the table `sessions` */
 
-insert  into `sessions`(`id`,`user_id`,`ip_address`,`user_agent`,`payload`,`last_activity`) values ('48NhOZWrpDyQYWo8xSAjXFpjf6X1psN2jVAfmsgN',3,'192.168.10.1','Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36','YTo2OntzOjY6Il90b2tlbiI7czo0MDoiR2FhUWxHN2NKeFNtSlJtRHYzbTBidlluRHdMdXlIQ3Q2YktXN3lXcCI7czo0OiJsYW5nIjtzOjI6ImlkIjtzOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTozO3M6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjMxOiJodHRwOi8vamFpLmRldi9qYWktYmFja2VuZC9wYWdlIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfc2YyX21ldGEiO2E6Mzp7czoxOiJ1IjtpOjE0ODA2NDczOTM7czoxOiJjIjtpOjE0ODA2MzcwNTY7czoxOiJsIjtzOjE6IjAiO319',1480647393);
-insert  into `sessions`(`id`,`user_id`,`ip_address`,`user_agent`,`payload`,`last_activity`) values ('etJoOZ2f2IVn8Z1eOmURTn1GKTwLfRtg433RzM1g',3,'192.168.10.1','Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36','YTo2OntzOjY6Il90b2tlbiI7czo0MDoiZUQzVTJUQ29BYVZLM0Fta1ZyNkJCR043UWxtQ3Q0clBvRERWUGVxYSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly9qYWkuZGV2L2lkL3Nob3ctdGltZSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NDoibGFuZyI7czoyOiJpZCI7czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MztzOjk6Il9zZjJfbWV0YSI7YTozOntzOjE6InUiO2k6MTQ4MDU2NjUyMztzOjE6ImMiO2k6MTQ4MDU2MzQxNTtzOjE6ImwiO3M6MToiMCI7fX0=',1480566523);
+insert  into `sessions`(`id`,`user_id`,`ip_address`,`user_agent`,`payload`,`last_activity`) values ('0VUcSLXpoXcE1e7BH968XUIGZC7veseYy4vPuS1f',3,'192.168.10.1','Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36','YTo2OntzOjY6Il90b2tlbiI7czo0MDoiQmdVdUVkOXNPS2N3Um9TRHBRZW05Wk1iSmNWb0hTdGZlZk5xM3pCViI7czo0OiJsYW5nIjtzOjI6ImlkIjtzOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTozO3M6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjMwOiJodHRwOi8vamFpLmRldi9pZC90aWNrZXQtaG91cnMiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjk6Il9zZjJfbWV0YSI7YTozOntzOjE6InUiO2k6MTQ4MDg1MjQ5NjtzOjE6ImMiO2k6MTQ4MDg0NjIzMjtzOjE6ImwiO3M6MToiMCI7fX0=',1480852497);
+insert  into `sessions`(`id`,`user_id`,`ip_address`,`user_agent`,`payload`,`last_activity`) values ('ojww45ctvgfEa24JrMBWl3eDkyv2SBOxvTZLDhxA',1,'192.168.10.1','Mozilla/5.0 (Windows NT 6.3; WOW64; rv:50.0) Gecko/20100101 Firefox/50.0','YTo2OntzOjY6Il90b2tlbiI7czo0MDoiVXJlNnZRWnByTEVmTUo0Q2xkalk4Rmk0S3UwQnJjbDc1NXgxTmtSNiI7czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjQ6ImxhbmciO3M6MjoiaWQiO3M6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjE3OiJodHRwOi8vamFpLmRldi9pZCI7fXM6OToiX3NmMl9tZXRhIjthOjM6e3M6MToidSI7aToxNDgwODUyMzA0O3M6MToiYyI7aToxNDgwODUyMzAxO3M6MToibCI7czoxOiIwIjt9fQ==',1480852305);
+insert  into `sessions`(`id`,`user_id`,`ip_address`,`user_agent`,`payload`,`last_activity`) values ('yJlBZuUAsWYF7coZKr0FO5srKgnNHQ9u18AAZKmF',3,'192.168.10.1','Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36','YTo2OntzOjY6Il90b2tlbiI7czo0MDoidVN0aHhhTmN6aFpFNlNZRFZ6SG9DVGk4cVdsWmRQdWpFdGRDU0kyOSI7czo0OiJsYW5nIjtzOjI6ImlkIjtzOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTozO3M6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjMwOiJodHRwOi8vamFpLmRldi9pZC90aWNrZXQtaG91cnMiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjk6Il9zZjJfbWV0YSI7YTozOntzOjE6InUiO2k6MTQ4MDkwODkyODtzOjE6ImMiO2k6MTQ4MDkwODg1NDtzOjE6ImwiO3M6MToiMCI7fX0=',1480908928);
 
 /*Table structure for table `show_details` */
 

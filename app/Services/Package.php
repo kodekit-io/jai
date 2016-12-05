@@ -45,11 +45,13 @@ class Package
         $generalAdmission = isset($inputs['is_general_admission']) ? 1 : 0;
         $package = PackageModel::create([
             'package_type_id' => $inputs['package_type_id'],
+            'galasys_product_id' => $inputs['galasys_product_id'],
             'normal_price' => $inputs['normal_price'],
             'weekend_price' => $inputs['weekend_price'],
             'holiday_price' => $inputs['holiday_price'],
             'created_by' => Auth::user()->id,
-            'is_general_admission' => $generalAdmission
+            'is_general_admission' => $generalAdmission,
+            'order' => $inputs['order']
         ]);
 
         foreach ($inputs['title'] as $lang => $title) {
@@ -86,11 +88,13 @@ class Package
         $generalAdmission = isset($inputs['is_general_admission']) ? 1 : 0;
         $package = PackageModel::find($id);
         $package->package_type_id = $inputs['package_type_id'];
+        $package->galasys_product_id = $inputs['galasys_product_id'];
         $package->normal_price = $inputs['normal_price'];
         $package->weekend_price = $inputs['weekend_price'];
         $package->holiday_price = $inputs['holiday_price'];
         $package->created_by = Auth::user()->id;
         $package->is_general_admission = $generalAdmission;
+        $package->order = $inputs['order'];
         $package->save();
 
         $package->details()->delete();
@@ -165,7 +169,8 @@ class Package
             ->join('package_details', 'packages.id', '=', 'package_details.package_id')
             ->leftJoin('package_has_medias', 'packages.id', '=', 'package_has_medias.package_id')
             ->leftJoin('media', 'package_has_medias.media_id', '=', 'media.id')
-            ->select('packages.*', 'package_details.title', 'package_details.content', 'package_details.slug', 'media.file_name');
+            ->select('packages.*', 'package_details.title', 'package_details.content', 'package_details.slug', 'media.file_name')
+            ->orderBy('order');
 
         // search by package type
         if ( isset($params[$packageField]) ) {
