@@ -82,8 +82,22 @@ class Payment
         $statusCode = $request['STATUSCODE'];
 
         if ($sessionId == session()->getId()) {
+            // cc succeed
             if ($statusCode == '0000') {
-                return $orderId;
+                $arr = [
+                    'paymentType' => 'creditCard',
+                    'orderId' => $orderId
+                ];
+                return $arr;
+            }
+            // bank transfer
+            elseif ($statusCode == '5511') {
+                $arr = [
+                    'paymentType' => 'bankTransfer',
+                    'orderId' => $orderId,
+                    'paymentCode' => $request['PAYMENTCODE']
+                ];
+                return $arr;
             }
         }
 

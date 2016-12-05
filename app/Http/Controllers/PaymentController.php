@@ -28,11 +28,10 @@ class PaymentController extends Controller
      */
     public function dokuResult(Request $request)
     {
-        var_dump($request); exit;
-        if ($this->paymentService->checkDokuResult($request->all())) {
-            echo 'BERHASIL';
+        if ($result = $this->paymentService->checkDokuResult($request->all())) {
+            return view('frontend.thank-you', $result);
         } else {
-            echo 'FAILED';
+            return redirect('book-detail/' . $result['orderId']);
         }
     }
 

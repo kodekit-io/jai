@@ -45,6 +45,8 @@ class Order
             'email' => $personalData['order_email'],
             'name' => $personalData['order_name'],
             'phone_number' => $personalData['order_phone'],
+            'sub_total' => $details['subTotal'],
+            'tax' => $details['tax'],
             'total_amount' => $details['grandTotal']
         ]);
 
@@ -63,5 +65,10 @@ class Order
 
         return $order;
 
+    }
+
+    public function getOrderById($orderId)
+    {
+        return OrderModel::find($orderId);
     }
 }

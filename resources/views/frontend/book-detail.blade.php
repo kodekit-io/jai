@@ -33,9 +33,9 @@
                     <label for="">Admission</label>
                     <div class="ja-sub">
                         <div class="uk-grid uk-grid-collapse uk-grid-match" data-uk-grid-match data-uk-grid-margin>
-                            @foreach($orders as $order)
+                            @foreach($details as $detail)
                             <div class="uk-width-medium-1-3">
-                                {!! $order['packageName'] !!}
+                                {!! $detail->product_name !!}
                             </div>
                             @endforeach
                         </div>
@@ -45,9 +45,9 @@
                     <label for="">Visitor(s)</label>
                     <div class="ja-sub">
                         <div class="uk-grid uk-grid-collapse uk-grid-match" data-uk-grid-match data-uk-grid-margin>
-                            @foreach($orders as $order)
+                            @foreach($details as $detail)
                                 <div class="uk-width-medium-1-3">
-                                    {!! $order['qty'] !!}
+                                    {!! $detail->qty !!}
                                 </div>
                             @endforeach
                         </div>
@@ -57,9 +57,9 @@
                     <label for="">Price</label>
                     <div class="ja-sub">
                         <div class="uk-grid uk-grid-collapse uk-grid-match" data-uk-grid-match data-uk-grid-margin>
-                            @foreach($orders as $order)
+                            @foreach($details as $detail)
                             <div class="uk-width-medium-1-3">
-                                IDR {!! number_format($order['price'],0) !!}
+                                IDR {!! number_format($detail->price,0) !!}
                             </div>
                             @endforeach
                         </div>

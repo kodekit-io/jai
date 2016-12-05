@@ -14,7 +14,7 @@ class Order extends Model
      * 3 => sent to galasys
      * 4 => done
      */
-    protected $fillable = ['visit_date', 'email', 'name', 'phone_number', 'total_amount', 'status'];
+    protected $fillable = ['visit_date', 'email', 'name', 'phone_number', 'sub_total', 'tax', 'total_amount', 'status'];
 
     public function details()
     {

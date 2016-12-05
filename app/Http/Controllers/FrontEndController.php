@@ -152,21 +152,26 @@ class FrontEndController extends Controller
         return view('frontend.ticket-hours', $data);
     }
 
-    public function bookTicket(Request $request, $lang)
+    public function bookTicket(Request $request, $lang, $orderId = '')
     {
-        $details = $this->orderService->getOrderDetails($request->only(['packages']), $lang);
-        $personalData = $request->only(['visit_date', 'order_name', 'order_email', 'order_phone']);
+        if ($orderId != '') {
+            $order = $this->orderService->getOrderById($orderId);
+        } else {
+            $details = $this->orderService->getOrderDetails($request->only(['packages']), $lang);
+            $personalData = $request->only(['visit_date', 'order_name', 'order_email', 'order_phone']);
 
-        $order = $this->orderService->saveOrder($personalData, $details);
+            $order = $this->orderService->saveOrder($personalData, $details);
+        }
+
         $dokuParams = $this->paymentService->getDokuParameters($order->id);
 
         $dokuUrl = config('doku.doku.api_url');
         $data['dokuUrl'] = $dokuUrl;
         $data['dokuParams'] = $dokuParams;
-        $data['orders'] = $details['orders'];
-        $data['subTotal'] = $details['subTotal'];
-        $data['tax'] = $details['tax'];
-        $data['grandTotal'] = $details['grandTotal'];
+        $data['details'] = $order->details;
+        $data['subTotal'] = $order->sub_total;
+        $data['tax'] = $order->tax;
+        $data['grandTotal'] = $order->total_amount;
 
         return view('frontend.book-detail', $data);
     }
