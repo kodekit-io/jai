@@ -46,8 +46,14 @@ class MediaRoomFrontEndController extends Controller
         return view('frontend.media-room', $data);
     }
 
-    public function mediaRoomDetails($lang)
+    public function mediaRoomDetails($lang, $slug)
     {
-        return view('frontend.media-room-details');
+        $post = $this->postService->getPostsWithDetail(['lang' => $lang, 'slug' => $slug]);
+        if (! $post->count() > 0) {
+            abort(404);
+        }
+        $data['mediaRoom'] = $post->first();
+
+        return view('frontend.media-room-details', $data);
     }
 }

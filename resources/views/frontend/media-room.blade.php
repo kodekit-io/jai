@@ -43,7 +43,7 @@
                     ?>
                     <li data-uk-filter="{!! $filterClass !!}">
                         <span class="grey-text text-darken-1">{!! Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $media->publish_date)->format('j F Y') !!}</span>
-                        <h4 class="uk-margin-remove"><a href="{!! lang_url('media-room-details') !!}" class="cyan-text text-darken-1">{!! $media->title !!}</a></h4>
+                        <h4 class="uk-margin-remove"><a href="{!! lang_url('media-room/' . $media->slug) !!}" class="cyan-text text-darken-1">{!! $media->title !!}</a></h4>
                     </li>
                 @endforeach
             </ul>
