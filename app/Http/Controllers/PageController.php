@@ -46,7 +46,7 @@ class PageController extends Controller
 
     public function anyData()
     {
-        return $this->postService->datatableData($this->postType, $this->baseUrl);
+        return $this->postService->pageDatatableData($this->postType, $this->baseUrl);
     }
 
     /**

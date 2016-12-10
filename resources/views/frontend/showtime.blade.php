@@ -5,7 +5,7 @@
     <div class="uk-container uk-container-center">
         <div class="ja-overlay"></div>
         <div class="ja-showtime-intro">
-            <h2 class="ja-title ja-title__large white-text">THE MERMAID SONG</h2>
+            <h2 class="ja-title ja-title__large white-text">PEARL OF THE SOUTH SEA</h2>
             <p>Lorem Ipsum Dolore Sit Art Department,<br>Doe Fugiat on August 20th-28th, 2016</p>
         </div>
     </div>

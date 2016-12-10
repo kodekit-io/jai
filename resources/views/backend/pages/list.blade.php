@@ -16,11 +16,11 @@
                             <i class="icon-user font-dark"></i>
                             <span class="caption-subject bold uppercase"> Page List</span>
                         </div>
-                        <div class="actions">
-                            <a class="btn btn-xs sbold green" href="{!! backendUrl('page/add') !!}">
-                                <i class="fa fa-plus"></i> Add New
-                            </a>
-                        </div>
+                        {{--<div class="actions">--}}
+                            {{--<a class="btn btn-xs sbold green" href="{!! backendUrl('page/add') !!}">--}}
+                                {{--<i class="fa fa-plus"></i> Add New--}}
+                            {{--</a>--}}
+                        {{--</div>--}}
                     </div>
                     <div class="portlet-body">
                         @if (session('message'))
@@ -67,7 +67,7 @@
                     { data: 'title', name: 'title', "width": "150px" },
                     { data: 'content', name: 'content' },
                     { data: 'post_date', name: 'post_date', "width": "100px" },
-                    { data: 'action', name: 'action', orderable: false, searchable: false, "width": "100px" }
+                    { data: 'action', name: 'action', orderable: false, searchable: false, "width": "80px" }
                 ]
             });
         });
