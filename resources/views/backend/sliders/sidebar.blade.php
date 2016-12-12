@@ -21,7 +21,7 @@
                         </span>
                     </div>
                 </div>
-                <a href="{!! backendUrl('post') !!}" class="btn btn-sm sbold green">Back</a> <input type="submit" name="status" class="btn btn-sm btn-default" value="Save">
+                <a href="{!! backendUrl('slider') !!}" class="btn btn-sm sbold green">Back</a> <input type="submit" name="status" class="btn btn-sm btn-default" value="Save">
             </div>
         </div>
     </div>

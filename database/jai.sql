@@ -329,7 +329,7 @@ CREATE TABLE `order_details` (
   PRIMARY KEY (`id`),
   KEY `order_details_order_id_foreign` (`order_id`),
   CONSTRAINT `order_details_order_id_foreign` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `order_details` */
 
@@ -345,6 +345,12 @@ insert  into `order_details`(`id`,`order_id`,`product_id`,`galasys_product_id`,`
 insert  into `order_details`(`id`,`order_id`,`product_id`,`galasys_product_id`,`product_name`,`price`,`qty`,`total_price`) values (31,18,1,3994,'Regular',100000,1,100000);
 insert  into `order_details`(`id`,`order_id`,`product_id`,`galasys_product_id`,`product_name`,`price`,`qty`,`total_price`) values (32,18,3,3681,'Premium',265000,0,0);
 insert  into `order_details`(`id`,`order_id`,`product_id`,`galasys_product_id`,`product_name`,`price`,`qty`,`total_price`) values (33,18,4,3682,'Ultimate Admission',550000,0,0);
+insert  into `order_details`(`id`,`order_id`,`product_id`,`galasys_product_id`,`product_name`,`price`,`qty`,`total_price`) values (34,19,1,3994,'Regular',100000,1,100000);
+insert  into `order_details`(`id`,`order_id`,`product_id`,`galasys_product_id`,`product_name`,`price`,`qty`,`total_price`) values (35,19,3,3681,'Premium',265000,1,265000);
+insert  into `order_details`(`id`,`order_id`,`product_id`,`galasys_product_id`,`product_name`,`price`,`qty`,`total_price`) values (36,19,4,3682,'Ultimate Admission',550000,0,0);
+insert  into `order_details`(`id`,`order_id`,`product_id`,`galasys_product_id`,`product_name`,`price`,`qty`,`total_price`) values (37,20,1,3994,'Regular',100000,1,100000);
+insert  into `order_details`(`id`,`order_id`,`product_id`,`galasys_product_id`,`product_name`,`price`,`qty`,`total_price`) values (38,20,3,3681,'Premium',265000,0,0);
+insert  into `order_details`(`id`,`order_id`,`product_id`,`galasys_product_id`,`product_name`,`price`,`qty`,`total_price`) values (39,20,4,3682,'Ultimate Admission',550000,0,0);
 
 /*Table structure for table `orders` */
 
@@ -362,7 +368,7 @@ CREATE TABLE `orders` (
   `status` int(11) NOT NULL DEFAULT '0',
   `status_decription` text COLLATE utf8_unicode_ci,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `orders` */
 
@@ -370,6 +376,8 @@ insert  into `orders`(`id`,`visit_date`,`email`,`name`,`phone_number`,`sub_total
 insert  into `orders`(`id`,`visit_date`,`email`,`name`,`phone_number`,`sub_total`,`tax`,`total_amount`,`created_at`,`updated_at`,`status`,`status_decription`) values (16,'2016-12-24','pasha.md5@gmail.com','Pasha Mahardika','081808325756',265000,26500,291500,'2016-12-04 18:37:08','2016-12-04 18:37:08',0,NULL);
 insert  into `orders`(`id`,`visit_date`,`email`,`name`,`phone_number`,`sub_total`,`tax`,`total_amount`,`created_at`,`updated_at`,`status`,`status_decription`) values (17,'2016-12-30','pasha.md5@gmail.com','Pasha Mahardika','081808325756',100000,10000,110000,'2016-12-04 18:43:49','2016-12-04 18:43:49',0,NULL);
 insert  into `orders`(`id`,`visit_date`,`email`,`name`,`phone_number`,`sub_total`,`tax`,`total_amount`,`created_at`,`updated_at`,`status`,`status_decription`) values (18,'2016-12-15','pasha.md5@gmail.com','Pasha Mahardika','081808325756',100000,10000,110000,'2016-12-04 18:53:10','2016-12-04 18:53:10',0,NULL);
+insert  into `orders`(`id`,`visit_date`,`email`,`name`,`phone_number`,`sub_total`,`tax`,`total_amount`,`created_at`,`updated_at`,`status`,`status_decription`) values (19,'2016-12-24','pasha.md5@gmail.com','Pasha Mahardika','081808325756',365000,36500,401500,'2016-12-10 17:00:49','2016-12-10 17:00:49',0,NULL);
+insert  into `orders`(`id`,`visit_date`,`email`,`name`,`phone_number`,`sub_total`,`tax`,`total_amount`,`created_at`,`updated_at`,`status`,`status_decription`) values (20,'2016-12-17','pasha.md5@gmail.com','Pasha Mahardika','081808325756',100000,10000,110000,'2016-12-10 17:11:12','2016-12-10 17:11:12',0,NULL);
 
 /*Table structure for table `package_details` */
 
@@ -724,6 +732,8 @@ insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (9
 insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (90,'id','Ketentuan Penggunaan','ketentuan-penggunaan','');
 insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (91,'en','Sightseeing','sightseeing','<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidale laborum et dolorem magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation autem.</p>');
 insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (91,'id','Sightseeing','sightseeing-2','<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidale laborum et dolorem magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation autem.</p>');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (92,'en','Showtime','showtime','');
+insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values (92,'id','Showtime','showtime-2','');
 
 /*Table structure for table `post_has_categories` */
 
@@ -906,7 +916,7 @@ CREATE TABLE `posts` (
   `publish_date` timestamp NULL DEFAULT NULL,
   `created_by` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=92 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `posts` */
 
@@ -982,6 +992,7 @@ insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`pub
 insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (89,6,'2016-11-22 15:42:01','2016-11-22 15:42:01','PUBLISH','2016-11-22 15:41:00',1);
 insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (90,6,'2016-11-22 15:42:42','2016-11-22 15:42:42','PUBLISH','2016-11-22 15:42:00',1);
 insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (91,6,'2016-12-02 07:05:09','2016-12-02 08:41:58','PUBLISH','2016-12-02 07:04:00',3);
+insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values (92,6,'2016-12-10 16:43:46','2016-12-10 16:43:46','PUBLISH','2016-12-10 16:43:00',3);
 
 /*Table structure for table `role_has_permissions` */
 
@@ -1116,9 +1127,8 @@ CREATE TABLE `sessions` (
 
 /*Data for the table `sessions` */
 
-insert  into `sessions`(`id`,`user_id`,`ip_address`,`user_agent`,`payload`,`last_activity`) values ('0VUcSLXpoXcE1e7BH968XUIGZC7veseYy4vPuS1f',3,'192.168.10.1','Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36','YTo2OntzOjY6Il90b2tlbiI7czo0MDoiQmdVdUVkOXNPS2N3Um9TRHBRZW05Wk1iSmNWb0hTdGZlZk5xM3pCViI7czo0OiJsYW5nIjtzOjI6ImlkIjtzOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTozO3M6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjMwOiJodHRwOi8vamFpLmRldi9pZC90aWNrZXQtaG91cnMiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjk6Il9zZjJfbWV0YSI7YTozOntzOjE6InUiO2k6MTQ4MDg1MjQ5NjtzOjE6ImMiO2k6MTQ4MDg0NjIzMjtzOjE6ImwiO3M6MToiMCI7fX0=',1480852497);
-insert  into `sessions`(`id`,`user_id`,`ip_address`,`user_agent`,`payload`,`last_activity`) values ('ojww45ctvgfEa24JrMBWl3eDkyv2SBOxvTZLDhxA',1,'192.168.10.1','Mozilla/5.0 (Windows NT 6.3; WOW64; rv:50.0) Gecko/20100101 Firefox/50.0','YTo2OntzOjY6Il90b2tlbiI7czo0MDoiVXJlNnZRWnByTEVmTUo0Q2xkalk4Rmk0S3UwQnJjbDc1NXgxTmtSNiI7czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjQ6ImxhbmciO3M6MjoiaWQiO3M6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjE3OiJodHRwOi8vamFpLmRldi9pZCI7fXM6OToiX3NmMl9tZXRhIjthOjM6e3M6MToidSI7aToxNDgwODUyMzA0O3M6MToiYyI7aToxNDgwODUyMzAxO3M6MToibCI7czoxOiIwIjt9fQ==',1480852305);
-insert  into `sessions`(`id`,`user_id`,`ip_address`,`user_agent`,`payload`,`last_activity`) values ('yJlBZuUAsWYF7coZKr0FO5srKgnNHQ9u18AAZKmF',3,'192.168.10.1','Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36','YTo2OntzOjY6Il90b2tlbiI7czo0MDoidVN0aHhhTmN6aFpFNlNZRFZ6SG9DVGk4cVdsWmRQdWpFdGRDU0kyOSI7czo0OiJsYW5nIjtzOjI6ImlkIjtzOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTozO3M6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjMwOiJodHRwOi8vamFpLmRldi9pZC90aWNrZXQtaG91cnMiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjk6Il9zZjJfbWV0YSI7YTozOntzOjE6InUiO2k6MTQ4MDkwODkyODtzOjE6ImMiO2k6MTQ4MDkwODg1NDtzOjE6ImwiO3M6MToiMCI7fX0=',1480908928);
+insert  into `sessions`(`id`,`user_id`,`ip_address`,`user_agent`,`payload`,`last_activity`) values ('a83xjDNNbN0EQdSqt18ZSG0IngNJaRE8JJ4xAy44',3,'192.168.10.1','Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36','YTo2OntzOjY6Il90b2tlbiI7czo0MDoiTzdrOGhUT1FIOTBla2lRSEpsNFRUUjJtY21PQVVQcXc2c0J2VFRtOSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzA6Imh0dHA6Ly9qYWkuZGV2L2lkL3RpY2tldC1ob3VycyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NDoibGFuZyI7czoyOiJpZCI7czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MztzOjk6Il9zZjJfbWV0YSI7YTozOntzOjE6InUiO2k6MTQ4MTM2NDY3MTtzOjE6ImMiO2k6MTQ4MTM2MTkzOTtzOjE6ImwiO3M6MToiMCI7fX0=',1481364672);
+insert  into `sessions`(`id`,`user_id`,`ip_address`,`user_agent`,`payload`,`last_activity`) values ('adSJiqb6OfaPQ6tozpRZUp4t1c4fCjxyqJB1Hg5T',3,'192.168.10.1','Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36','YTo2OntzOjY6Il90b2tlbiI7czo0MDoiYlVmeFB6UTRTeDhCQWJmZ2Y1aElURGJjU1pJaTZpRDhHNjZocVltYSI7czo0OiJsYW5nIjtzOjI6ImlkIjtzOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTozO3M6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjE3OiJodHRwOi8vamFpLmRldi9pZCI7fXM6OToiX3NmMl9tZXRhIjthOjM6e3M6MToidSI7aToxNDgxMzYxOTQ0O3M6MToiYyI7aToxNDgxMzYxOTQ0O3M6MToibCI7czoxOiIwIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1481361944);
 
 /*Table structure for table `show_details` */
 

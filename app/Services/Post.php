@@ -8,6 +8,7 @@ use App\Service\Traits\DatatableParameters;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class Post
 {
@@ -31,6 +32,39 @@ class Post
             })
             ->addColumn('title', function($post) {
                 return $post->details()->where('lang', 'en')->first()->title;
+            })
+            ->addColumn('post_date', function($post) {
+                return Carbon::createFromFormat('Y-m-d H:i:s', $post->created_at)->format('j-M-y H:i:s');
+            })
+            ->addColumn('author', function($post) {
+                return $post->author->name;
+            })
+            ->addColumn('post_status', function($post) {
+                return strtoupper($post->status);
+            })
+            ->generate();
+    }
+
+    public function pageDatatableData($postType = 6, $baseUrl = 'page')
+    {
+        $this->baseUrl = $baseUrl;
+        $params = [
+            'post_type_id' => $postType
+        ];
+        $posts = $this->getPosts($params);
+        $actions = $this->actionParameters(['edit']);
+
+        return (new DatatableGenerator($posts))
+            ->addActions($actions)
+            ->addColumn('categories', function($post) {
+                return $this->getCategories($post);
+            })
+            ->addColumn('title', function($post) {
+                return $post->details()->where('lang', 'en')->first()->title;
+            })
+            ->addColumn('content', function($post) {
+                $content = $post->details()->where('lang', 'en')->first()->content;
+                return Str::words(strip_tags($content), 40);
             })
             ->addColumn('post_date', function($post) {
                 return Carbon::createFromFormat('Y-m-d H:i:s', $post->created_at)->format('j-M-y H:i:s');

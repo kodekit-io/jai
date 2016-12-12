@@ -41,14 +41,12 @@ class PageController extends Controller
      */
     public function index()
     {
-        $pageParams = [
-            'lang' => 'en',
-            'post_type_id' => 6
-        ];
-        $pages = $this->postService->getPostsWithDetail($pageParams);
-        $data['thePages'] = $pages->get();
+        return view('backend.pages.list');
+    }
 
-        return view('backend.pages.list', $data);
+    public function anyData()
+    {
+        return $this->postService->pageDatatableData($this->postType, $this->baseUrl);
     }
 
     /**

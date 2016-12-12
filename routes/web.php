@@ -165,6 +165,7 @@ Route::group(['prefix' => $backendUrl, 'middleware' => ['auth']], function () {
     Route::get('/permission-data', 'PermissionController@anyData')->name('permission.data');
     Route::get('/post-category-data/{postTypeId}', 'CategoryController@anyData')->name('post-category.data');
     Route::get('/post-data', 'PostController@anyData')->name('post.data');
+    Route::get('/page-data', 'PageController@anyData')->name('page.data');
     Route::get('/attraction-data', 'AttractionController@anyData')->name('attraction.data');
     Route::get('/media-room-data', 'MediaRoomController@anyData')->name('media-room.data');
     Route::get('/package-data', 'PackageController@anyData')->name('package.data');
@@ -204,7 +205,7 @@ Route::group(['middleware' => ['lang', 'menu:frontend']], function () {
     Route::get('/{lang?}/location-map', 'FrontEndController@locationMap');
     Route::get('/{lang?}/career', 'FrontEndController@career');
     Route::get('/{lang?}/media-room', 'MediaRoomFrontEndController@mediaRoom');
-    Route::get('/{lang?}/media-room-details', 'MediaRoomFrontEndController@mediaRoomDetails');
+    Route::get('/{lang?}/media-room/{slug}', 'MediaRoomFrontEndController@mediaRoomDetails');
     Route::get('/{lang?}/privacy-policy', 'FrontEndController@privacy');
     Route::get('/{lang?}/term-use', 'FrontEndController@term');
     Route::get('/{lang?}/search-result', 'FrontEndController@search');

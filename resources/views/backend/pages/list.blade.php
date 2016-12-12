@@ -6,22 +6,21 @@
     @endsection
 
     @section('content')
-    <!-- BEGIN CONTENT BODY -->
+            <!-- BEGIN CONTENT BODY -->
     <div class="page-content">
         <div class="row">
             <div class="col-md-12">
-                <div class="portlet light portlet-fit bordered">
+                <div class="portlet light bordered">
                     <div class="portlet-title">
-                        <div class="caption">
-                            <i class=" icon-layers font-green"></i>
-                            <span class="caption-subject font-green bold uppercase">Pages</span>
-                            {{--<div class="caption-desc font-grey-cascade"> Default list element style. Activate by adding <pre class="mt-code">.list-news ext-1</pre> class to the <pre class="mt-code">ul</pre> element. </div>--}}
+                        <div class="caption font-dark">
+                            <i class="icon-user font-dark"></i>
+                            <span class="caption-subject bold uppercase"> Page List</span>
                         </div>
-                        <div class="actions">
-                            {{--<a class="btn btn-xs sbold green" href="{!! backendUrl('pages/add') !!}">--}}
+                        {{--<div class="actions">--}}
+                            {{--<a class="btn btn-xs sbold green" href="{!! backendUrl('page/add') !!}">--}}
                                 {{--<i class="fa fa-plus"></i> Add New--}}
                             {{--</a>--}}
-                        </div>
+                        {{--</div>--}}
                     </div>
                     <div class="portlet-body">
                         @if (session('message'))
@@ -30,39 +29,17 @@
                                 <strong>Info!</strong> {{ session('message') }}
                             </div>
                         @endif
-                        <div class="mt-element-list">
-                            <div class="mt-list-head list-news ext-1 font-white bg-grey-gallery">
-                                <div class="list-head-title-container">
-                                    <h3 class="list-title">Page List</h3>
-                                </div>
-                                {{--<div class="list-count pull-right bg-red">2</div>--}}
-                            </div>
-                            <div class="mt-list-container list-news ">
-                                <ul>
-                                    @foreach($thePages as $page)
-                                    <li class="mt-list-item">
-                                        <div class="list-icon-container">
-                                            <a href="{!! backendUrl('page/' . $page->id . '/edit') !!}">
-                                                <i class="fa fa-edit"></i>
-                                            </a>
-                                        </div>
-                                        {{--<div class="list-thumb">--}}
-                                            {{--<a href="javascript:;">--}}
-                                                {{--<img alt="" src="../assets/global/img/portfolio/600x600/08.jpg" />--}}
-                                            {{--</a>--}}
-                                        {{--</div>--}}
-                                        <div class="list-datetime bold uppercase font-dark">{!! Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $page->publish_date)->format('j M, Y') !!}</div>
-                                        <div class="list-item-content">
-                                            <h3 class="uppercase">
-                                                <a href="javascript:;">{!! $page->title !!}</a>
-                                            </h3>
-                                            <p>{!! \Illuminate\Support\Str::words(strip_tags($page->content), 40) !!}</p>
-                                        </div>
-                                    </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </div>
+                        <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Title</th>
+                                <th>Content</th>
+                                <th>Date</th>
+                                <th class="text-center">Action</th>
+                            </tr>
+                            </thead>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -72,9 +49,28 @@
 @endsection
 
 @section('page-level-plugins')
+    <script src="{!! asset('assets/global/scripts/datatable.js') !!}" type="text/javascript"></script>
+    <script src="{!! asset('assets/global/plugins/datatables/datatables.min.js') !!}" type="text/javascript"></script>
+    <script src="{!! asset('assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js') !!}" type="text/javascript"></script>
     <script src="{!! asset('assets/global/plugins/bootbox/bootbox.min.js') !!}" type="text/javascript"></script>
 @endsection
 
 @section('page-level-scripts')
+    <script>
+        $(function() {
+            $('#sample_1').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: '{!! route('page.data') !!}',
+                columns: [
+                    { data: 'id', name: 'id', "width": "50px" },
+                    { data: 'title', name: 'title', "width": "150px" },
+                    { data: 'content', name: 'content' },
+                    { data: 'post_date', name: 'post_date', "width": "100px" },
+                    { data: 'action', name: 'action', orderable: false, searchable: false, "width": "80px" }
+                ]
+            });
+        });
+    </script>
     <script src="{!! asset('assets/global/scripts/delete-confirmation.js') !!}" type="text/javascript"></script>
 @endsection
