@@ -16,11 +16,11 @@
 
 <main class="ja-ticket">
     <div class="uk-container uk-container-center">
-        <div class="ja-ticket__content uk-margin-bottom">
+        <div class="ja-ticket__content uk-margin-large-bottom">
             <h3 class="light-blue-text text-darken-4">BOOKING DETAILS</h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor crasher malarki requiem predantia incididunt ut labore et dolore magna aliqua. Ut eni ad minim veniam, quisiom nostrud at autumn irure dor in reprehenderit exercitation.</p>
 
-            <form class="uk-form uk-margin-top uk-margin-bottom" action="{!! $dokuUrl !!}" method="post">
+            <form class="uk-form uk-margin-top" action="{!! $dokuUrl !!}" method="post">
                 @foreach($dokuParams as $key => $value)
                     <input type="hidden" name="{!! $key !!}" value="{!! $value !!}">
                 @endforeach
@@ -86,10 +86,43 @@
                     <input id="" type="text" value="IDR {!! number_format($grandTotal) !!}" disabled="true">
                 </div>
 
+                <h3 class="light-blue-text text-darken-4 uk-text-uppercase uk-margin-large-top">Choose Your Payment</h3>
+                <div class="uk-grid uk-grid-medium uk-margin-large-bottom uk-grid-match" data-uk-grid-match="{target:'.uk-panel'}" data-uk-grid-margin>
+                    <div class="uk-width-medium-1-2">
+                        <div class="uk-panel uk-panel-box white">
+                            <input name="payments" type="radio" id="pay1" />
+                            <label for="pay1" class="no-style"><img src="{!! asset('frontend/img/logo-doku.png') !!}" /></label>
+                            <hr>
+                            <h3 class="uk-margin-bottom-remove">DOKU</h3>
+                            <ul class="uk-list uk-list-line">
+                                <li>Lorem ipsum dolor sit amet,</li>
+                                <li>consectetur adipisicing elit,</li>
+                                <li>sed do eiusmod tempor incididunt</li>
+                                <li>ut labore et dolore magna aliqua.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="uk-width-medium-1-2">
+                        <div class="uk-panel uk-panel-box white">
+                            <input name="payments" type="radio" id="pay2" />
+                            <label for="pay2" class="no-style"><img src="{!! asset('frontend/img/logo-cimb-click.png') !!}" /></label>
+                            <hr>
+                            <h3 class="uk-margin-bottom-remove">CIMB Clicks</h3>
+                            <ul class="uk-list uk-list-line">
+                                <li>Lorem ipsum dolor sit amet,</li>
+                                <li>consectetur adipisicing elit,</li>
+                                <li>sed do eiusmod tempor incididunt</li>
+                                <li>ut labore et dolore magna aliqua.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
 
 
                 <div class="uk-form-row">
-                    <button type="submit" class="uk-button uk-button-large amber darken-1 light-blue-text text-darken-4">Proccess to Payment</button>
+                    <button type="submit" class="uk-button uk-button-large amber darken-1 light-blue-text text-darken-4">Proceed Payment</button>
                 </div>
             </form>
         </div>
