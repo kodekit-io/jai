@@ -1089,6 +1089,23 @@ label.no-style img {
 	height: 30px;
 	cursor: pointer;
 }
+.ja-alert-payment {
+	border: 2px solid #F90;
+	line-height: normal;
+	padding: 11px 10px 6px 50px;
+	position: relative;
+}
+.ja-alert-payment span {
+	display: block;
+	height: 38px;
+	width: 38px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	line-height: 38px;
+	text-align: center;
+	background: #f90;
+}
 @media (max-width: 768px) {
 	header {
 		margin-top: 110px;
