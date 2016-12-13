@@ -1073,7 +1073,22 @@ ul.ja-boxes .ja-bg_cyan {
 	background: #e4eaed;
 	z-index: 0;
 }
-
+label.no-style {
+	display: inline-block;
+	width: auto;
+	height: auto;
+	line-height: auto;
+	float: none;
+	text-align: inherit;
+	margin-right: 0;
+	font-size: inherit;
+	border: none;
+}
+label.no-style img {
+	width: auto;
+	height: 30px;
+	cursor: pointer;
+}
 @media (max-width: 768px) {
 	header {
 		margin-top: 110px;

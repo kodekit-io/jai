@@ -1,7 +1,7 @@
 @extends('layouts.default')
 @section('content')
 
-<header class="ja-header-showtime">
+<header class="ja-header-showtime" style="background-image: url({!! asset('frontend/img/showtime-header.jpg') !!})">
     <div class="uk-container uk-container-center">
         <div class="ja-overlay"></div>
         <div class="ja-showtime-intro">
