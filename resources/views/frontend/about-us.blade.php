@@ -5,7 +5,7 @@
     <div class="uk-container uk-container-center">
         <div class="ja-overlay"></div>
         <div class="ja-header-intro">
-            <h1 class="ja-title ja-title__orange uk-margin-large-bottom white-text uk-text-center">About Us</h1>
+            <h1 class="ja-title ja-title__orange uk-margin-large-bottom white-text uk-text-center">{!! $post->title !!}</h1>
             <p>{!! $post->content !!}</p>
         </div>
     </div>

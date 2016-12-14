@@ -152,6 +152,10 @@ Route::group(['prefix' => $backendUrl, 'middleware' => ['menu:backend','auth','a
     Route::get('/page/{id}/edit', 'PageController@edit')->name('page.edit');
     Route::post('/page/{id}/update', 'PageController@update')->name('page.edit');
     Route::get('/page/{id}/delete', 'PageController@destroy')->name('page.delete');
+
+    // General Setting
+    Route::get('/general-setting', 'GeneralSettingController@index')->name('setting');
+    Route::post('/general-setting', 'GeneralSettingController@save')->name('setting');
 });
 
 
