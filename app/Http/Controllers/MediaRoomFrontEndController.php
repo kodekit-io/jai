@@ -43,6 +43,8 @@ class MediaRoomFrontEndController extends Controller
         $data['mediaRooms'] = $mediaRooms;
         $data['categories'] = $categories;
 
+        $data['pageTitle'] = 'Media Room';
+
         return view('frontend.media-room', $data);
     }
 
@@ -53,6 +55,8 @@ class MediaRoomFrontEndController extends Controller
             abort(404);
         }
         $data['mediaRoom'] = $post->first();
+
+        $data['pageTitle'] = $post->first()->title;
 
         return view('frontend.media-room-details', $data);
     }

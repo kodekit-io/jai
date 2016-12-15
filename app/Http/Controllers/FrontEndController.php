@@ -109,6 +109,7 @@ class FrontEndController extends Controller
         $data['fourthBox'] = $sightSeeing->metas()->where('meta_key', 'fourthBox-' . $lang)->first();
         $data['whatsOnContents'] = $post->get();
         $data['sliders'] = $sliders;
+        $data['pageTitle'] = 'Homepage';
 
         return view('frontend.home', $data);
     }
@@ -129,6 +130,8 @@ class FrontEndController extends Controller
         $data['ourPhilosophy'] = $ourPhilosophy;
         $data['metaDesc'] = get_meta_description($post->id, $lang);
 
+        $data['pageTitle'] = 'About Us';
+
         return view('frontend.about-us', $data);
     }
 
@@ -140,14 +143,10 @@ class FrontEndController extends Controller
         ];
         $generalPackages = $this->packageService->getPackages($generalAdmissionParams);
 
-//        $otherPackageParams = [
-//            'lang' => $lang,
-//            'is_general_admission' => 0
-//        ];
-//        $otherPackages = $this->packageService->getPackages($otherPackageParams);
-
         $data['generalPackages'] = $generalPackages;
 //        $data['otherPackages'] = $otherPackages;
+
+        $data['pageTitle'] = 'Ticket &amp; Hours';
 
         return view('frontend.ticket-hours', $data);
     }
@@ -173,6 +172,8 @@ class FrontEndController extends Controller
         $data['tax'] = $order->tax;
         $data['grandTotal'] = $order->total_amount;
 
+        $data['pageTitle'] = 'Ticket Details';
+
         return view('frontend.book-detail', $data);
     }
 
@@ -197,16 +198,22 @@ class FrontEndController extends Controller
         $data['shows'] = $shows;
         $data['lang'] = $lang;
 
+        $data['pageTitle'] = 'Show Time';
+
         return view('frontend.showtime', $data);
     }
 
     public function location($lang)
     {
+        $data['pageTitle'] = 'Location';
+
         return view('frontend.location');
     }
 
     public function locationMap($lang)
     {
+        $data['pageTitle'] = 'Location Map';
+
         return view('frontend.location-map');
     }
 
@@ -226,6 +233,8 @@ class FrontEndController extends Controller
         $data['featuredPosts'] = $featuredPosts->get();
         $data['news'] =$newsPaginated;
 
+        $data['pageTitle'] = 'News';
+
         return view('frontend.news', $data);
     }
 
@@ -241,6 +250,8 @@ class FrontEndController extends Controller
         $data['post'] = $post;
         $data['relatedPosts'] = $relatedPosts;
         $data['metaDesc'] = get_meta_description($post->id, $lang);
+
+        $data['pageTitle'] = $post->title;
 
         return view('frontend.news-details', $data);
     }
@@ -274,6 +285,8 @@ class FrontEndController extends Controller
         $dinings = $this->postService->getPostsWithDetail($diningParams);
         $data['dinings'] = $dinings->get();
 
+        $data['pageTitle'] = 'Attractions and Experience';
+
         return view('frontend.attractions-experience', $data);
     }
 
@@ -300,6 +313,8 @@ class FrontEndController extends Controller
         $data['careers'] = $careers;
         $data['posts'] = $careers;
 
+        $data['pageTitle'] = 'Career with Us';
+
         return view('frontend.career', $data);
     }
 
@@ -311,6 +326,8 @@ class FrontEndController extends Controller
         ];
         $post = $this->postService->getPostsWithDetail($params);
         $data['page'] = $post->first();
+
+        $data['pageTitle'] = 'Privacy Policy';
 
         return view('frontend.privacy-policy', $data);
     }
@@ -324,11 +341,15 @@ class FrontEndController extends Controller
         $post = $this->postService->getPostsWithDetail($params);
         $data['page'] = $post->first();
 
+        $data['pageTitle'] = 'Term of Use';
+
         return view('frontend.term-use', $data);
     }
 
     public function search($lang)
     {
+        $data['pageTitle'] = 'Search Result';
+
         return view('frontend.search-result');
     }
 

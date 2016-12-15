@@ -6,7 +6,7 @@
         @if(isset($metaDesc))<meta name="description" content="{!! $metaDesc !!}">@endif
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-        <title>Jakarta Aquarium</title>
+        <title>Jakarta Aquarium @if(isset($pageTitle)) - {!! $pageTitle !!} @endif </title>
 
 		<!-- Homescreen Icons -->
 		<meta name="mobile-web-app-capable" content="yes">
