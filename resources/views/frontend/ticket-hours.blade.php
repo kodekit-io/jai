@@ -33,22 +33,22 @@
                         </div>
                         <div class="uk-form-row">
                             <h4 class="cyan-text text-darken-1">Admission Package</h4>
-                            <div class="uk-grid uk-grid-small uk-grid-match" data-uk-grid-match data-uk-grid-margin>
-                                @foreach($generalPackages as $package)
-                                <div class="uk-width-medium-1-3">
-                                    <div class="uk-panel-box {!! $package->color !!} white-text">
-                                        <h4 class="white-text uk-margin-remove">{!! $package->title !!}</h4>
-                                        <div class="jai-submission-info">{!! $package->content !!}</div>
-                                        <div class="jai-submission-price">
-                                            Weekday IDR {!! number_format($package->normal_price, 0) !!}
-                                            Weekend IDR {!! number_format($package->weekend_price, 0) !!}
-                                        </div>
-                                    </div>
-                                    <div class="uk-panel-box jai-submission-order white uk-text-right">
-                                        <input type="number" name="packages[{!! $package->id !!}]" class="right" value="0">
-                                    </div>
-                                </div>
-                                @endforeach
+                            <div class="uk-grid uk-grid-small uk-grid-match packages" data-uk-grid-match data-uk-grid-margin>
+                                {{--@foreach($generalPackages as $package)--}}
+                                {{--<div class="uk-width-medium-1-3">--}}
+                                    {{--<div class="uk-panel-box {!! $package->color !!} white-text">--}}
+                                        {{--<h4 class="white-text uk-margin-remove">{!! $package->title !!}</h4>--}}
+                                        {{--<div class="jai-submission-info">{!! $package->content !!}</div>--}}
+                                        {{--<div class="jai-submission-price">--}}
+                                            {{--Weekday IDR {!! number_format($package->normal_price, 0) !!}--}}
+                                            {{--Weekend IDR {!! number_format($package->weekend_price, 0) !!}--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                    {{--<div class="uk-panel-box jai-submission-order white uk-text-right">--}}
+                                        {{--<input type="number" name="packages[{!! $package->id !!}]" class="right" value="0">--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                                {{--@endforeach--}}
                                 {{--<div class="uk-width-medium-1-3">--}}
                                     {{--<div class="uk-panel-box light-blue darken-4 white-text">--}}
                                         {{--<h4 class="white-text uk-margin-remove">Premium Admission</h4>--}}
@@ -72,9 +72,9 @@
                             </div>
                         </div>
 
-                        <div class="uk-form-row">
-                            <h5>* Admissions for infants under 2 years old is free</h5>
-                        </div>
+                        {{--<div class="uk-form-row infant-info uk-hidden">--}}
+                            {{--<h5>* Admissions for infants under 2 years old is free</h5>--}}
+                        {{--</div>--}}
 
                         {{--<div class="uk-form-row">--}}
                             {{--<label for="promo"><i class="uk-icon-tag"></i>Promo</label>--}}
@@ -158,6 +158,7 @@
                 data: { visit_date: visitDate, _token: "{!! csrf_token() !!}" }
             }).done(function (data) {
                 console.log(data);
+                jQuery('.packages').html(data);
             });
         });
     </script>

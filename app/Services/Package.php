@@ -5,6 +5,7 @@ namespace App\Service;
 
 use App\Models\Package as PackageModel;
 use App\Service\Traits\DatatableParameters;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -18,6 +19,25 @@ class Package
     ];
 
     protected $baseUrl = 'package';
+    /**
+     * @var Galasys
+     */
+    private $galasys;
+    /**
+     * @var Holiday
+     */
+    private $holidayService;
+
+    /**
+     * Package constructor.
+     * @param Galasys $galasys
+     * @param Holiday $holidayService
+     */
+    public function __construct(Galasys $galasys, Holiday $holidayService)
+    {
+        $this->galasys = $galasys;
+        $this->holidayService = $holidayService;
+    }
 
     public function datatableData()
     {
@@ -193,5 +213,50 @@ class Package
         }
 
         return $query->get();
+    }
+
+    public function getAvailablePackages($visitDateRequest)
+    {
+        $visitDate = Carbon::createFromFormat('l, d-m-Y', $visitDateRequest)->format('Y-m-d');
+        $isHoliday = $this->holidayService->isHoliday($visitDate);
+        $galasysProducts = $this->galasys->getProducts();
+        $packages = '';
+        $colors = [
+            'cyan darken-1',
+            'light-blue darken-4',
+            'amber darken-1'
+        ];
+        $x = 0;
+        foreach ($galasysProducts as $galasysProduct) {
+            $price = ($isHoliday ? $galasysProduct->WeekendPrice : $galasysProduct->BasePrice);
+            $description = $galasysProduct->Description;
+            $itemCode = $galasysProduct->ItemCode;
+            $today = Carbon::createFromFormat('l, d-m-Y', $visitDateRequest)->format('l');
+            $checkAvailabilityWord = 'Is'.$today;
+            if ($galasysProduct->$checkAvailabilityWord == 'true') {
+                $packages .= '<div class="uk-width-medium-1-3">
+                                <div class="uk-panel-box white-text '. $colors[$x] .'">
+                                    <h4 class="white-text uk-margin-remove">' . $description . '</h4>
+                                    <div class="jai-submission-price">
+                                        IDR '. number_format($price, 0) .'
+                                    </div>
+                                </div>
+                                <div class="uk-panel-box jai-submission-order white uk-text-right">
+                                    <input type="number" name="' . $itemCode . '" class="right" value="0">
+                                </div>
+                            </div>';
+            }
+            $x++;
+        }
+
+        if ($packages == '') {
+            $packages = '<h4>Sorry, the package is not available</h4>';
+        } else {
+            $packages .= '<div class="uk-form-row infant-info">
+                                <h5>* Admissions for infants under 2 years old is free</h5>
+                            </div>';
+        }
+
+        return $packages;
     }
 }

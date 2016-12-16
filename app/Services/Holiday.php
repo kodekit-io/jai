@@ -75,4 +75,14 @@ class Holiday
     {
         HolidayModel::destroy($id);
     }
+
+    public function isHoliday($date)
+    {
+        $holiday = HolidayModel::where('date', $date);
+        if ($holiday->count() > 0) {
+            return true;
+        }
+
+        return false;
+    }
 }

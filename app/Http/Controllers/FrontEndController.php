@@ -135,48 +135,6 @@ class FrontEndController extends Controller
         return view('frontend.about-us', $data);
     }
 
-    public function ticket($lang)
-    {
-        $generalAdmissionParams = [
-            'lang' => $lang,
-            'is_general_admission' => 1
-        ];
-        $generalPackages = $this->packageService->getPackages($generalAdmissionParams);
-
-        $data['generalPackages'] = $generalPackages;
-//        $data['otherPackages'] = $otherPackages;
-
-        $data['pageTitle'] = 'Ticket &amp; Hours';
-
-        return view('frontend.ticket-hours', $data);
-    }
-
-    public function bookTicket(Request $request, $lang, $orderId = '')
-    {
-        if ($orderId != '') {
-            $order = $this->orderService->getOrderById($orderId);
-        } else {
-            $details = $this->orderService->getOrderDetails($request->only(['packages']), $lang);
-            $personalData = $request->only(['visit_date', 'order_name', 'order_email', 'order_phone']);
-
-            $order = $this->orderService->saveOrder($personalData, $details);
-        }
-
-        $dokuParams = $this->paymentService->getDokuParameters($order->id);
-
-        $dokuUrl = config('doku.doku.api_url');
-        $data['dokuUrl'] = $dokuUrl;
-        $data['dokuParams'] = $dokuParams;
-        $data['details'] = $order->details;
-        $data['subTotal'] = $order->sub_total;
-        $data['tax'] = $order->tax;
-        $data['grandTotal'] = $order->total_amount;
-
-        $data['pageTitle'] = 'Ticket Details';
-
-        return view('frontend.book-detail', $data);
-    }
-
     public function specialPackages($lang)
     {
         $params = [
