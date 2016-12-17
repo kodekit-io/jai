@@ -231,6 +231,8 @@ class Package
             $price = ($isHoliday ? $galasysProduct->WeekendPrice : $galasysProduct->BasePrice);
             $description = $galasysProduct->Description;
             $itemCode = $galasysProduct->ItemCode;
+            $ticketId = $galasysProduct->TicketID;
+            $isPackage = $galasysProduct->IsPackage;
             $today = Carbon::createFromFormat('l, d-m-Y', $visitDateRequest)->format('l');
             $checkAvailabilityWord = 'Is'.$today;
             if ($galasysProduct->$checkAvailabilityWord == 'true') {
@@ -242,7 +244,11 @@ class Package
                                     </div>
                                 </div>
                                 <div class="uk-panel-box jai-submission-order white uk-text-right">
-                                    <input type="number" name="' . $itemCode . '" class="right" value="0">
+                                    <input type="hidden" name="products[' . $itemCode . '][id]" value="' . $ticketId .'">
+                                    <input type="hidden" name="products[' . $itemCode . '][name]" value="' . $description .'">
+                                    <input type="hidden" name="products[' . $itemCode . '][price]" value="' . $price .'">
+                                    <input type="hidden" name="products[' . $itemCode . '][isPackage]" value="' . $isPackage .'">
+                                    <input type="number" name="products[' . $itemCode . '][qty]" class="right" value="0">
                                 </div>
                             </div>';
             }
@@ -250,11 +256,7 @@ class Package
         }
 
         if ($packages == '') {
-            $packages = '<h4>Sorry, the package is not available</h4>';
-        } else {
-            $packages .= '<div class="uk-form-row infant-info">
-                                <h5>* Admissions for infants under 2 years old is free</h5>
-                            </div>';
+            $packages = '<h4>Sorry, there is no ticket</h4>';
         }
 
         return $packages;

@@ -66,7 +66,7 @@ class Payment
                 $basket .= ($basket == '' ? $basketData : ';' . $basketData);
             }
         }
-        $taxAmount = 0.1 * $order->total_amount;
+        $taxAmount = $order->tax;
         $taxAmount = number_format($taxAmount, 2, '.', '');
         $tax = 'Service + 10% PB1 Tax,' . $taxAmount . ',1,' . $taxAmount;
         $basket .= ($basket == '' ? $tax : ';' . $tax);

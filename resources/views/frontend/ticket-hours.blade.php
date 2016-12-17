@@ -72,9 +72,9 @@
                             </div>
                         </div>
 
-                        {{--<div class="uk-form-row infant-info uk-hidden">--}}
-                            {{--<h5>* Admissions for infants under 2 years old is free</h5>--}}
-                        {{--</div>--}}
+                        <div class="uk-form-row infant-info uk-hidden">
+                            <h5>* Admissions for infants under 2 years old is free</h5>
+                        </div>
 
                         {{--<div class="uk-form-row">--}}
                             {{--<label for="promo"><i class="uk-icon-tag"></i>Promo</label>--}}

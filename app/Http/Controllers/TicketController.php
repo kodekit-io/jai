@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Service\Galasys;
 use App\Service\Holiday;
+use App\Service\Order;
 use App\Service\Package;
+use App\Service\Payment;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Log;
@@ -23,15 +25,36 @@ class TicketController extends Controller
      * @var Holiday
      */
     private $holidayService;
+    /**
+     * @var Order
+     */
+    private $orderService;
+    /**
+     * @var Payment
+     */
+    private $paymentService;
 
     /**
      * TicketController constructor.
+     * @param Galasys $galasys
+     * @param Package $packageService
+     * @param Holiday $holidayService
+     * @param Order $orderService
+     * @param Payment $paymentService
      */
-    public function __construct(Galasys $galasys, Package $packageService, Holiday $holidayService)
+    public function __construct(
+        Galasys $galasys,
+        Package $packageService,
+        Holiday $holidayService,
+        Order $orderService,
+        Payment $paymentService
+    )
     {
         $this->galasys = $galasys;
         $this->packageService = $packageService;
         $this->holidayService = $holidayService;
+        $this->orderService = $orderService;
+        $this->paymentService = $paymentService;
     }
 
     public function getAvailablePackages(Request $request)
@@ -59,10 +82,11 @@ class TicketController extends Controller
 
     public function bookTicket(Request $request, $lang, $orderId = '')
     {
+//        var_dump($request->all()); exit();
         if ($orderId != '') {
             $order = $this->orderService->getOrderById($orderId);
         } else {
-            $details = $this->orderService->getOrderDetails($request->only(['packages']), $lang);
+            $details = $this->orderService->getOrderDetails($request->only(['products']), $lang);
             $personalData = $request->only(['visit_date', 'order_name', 'order_email', 'order_phone']);
 
             $order = $this->orderService->saveOrder($personalData, $details);
