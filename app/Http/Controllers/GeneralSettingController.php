@@ -13,6 +13,6 @@ class GeneralSettingController extends Controller
 
     public function save(Request $request)
     {
-        
+
     }
 }
