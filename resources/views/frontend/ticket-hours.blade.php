@@ -25,11 +25,11 @@
                 <div class="">
                     <p>Come and meet sharks, turtles, jellyfish, octopuses, seahorses, otters, and other beautiful animals. The Jakarta Aquarium is suited to all ages and interests. Purchasing tickets online is a great way to speed up your access to all that the Jakarta Aquarium has to offer.</p>
 
-                    <form class="uk-form uk-margin-top uk-margin-bottom" method="post" action="{!! lang_url('book-detail') !!}">
+                    <form id="bookForm" class="uk-form uk-margin-top uk-margin-bottom" method="post" action="{!! lang_url('book-detail') !!}">
                         {!! csrf_field() !!}
                         <div class="uk-form-row">
                             <label for="visit_date"><i class="uk-icon-calendar"></i>Visit Date</label>
-                            <input id="visit_date" name="visit_date" type="text" data-uk-datepicker="{format:'dddd, DD-MM-YYYY'}">
+                            <input id="visit_date" name="visit_date" type="text" data-uk-datepicker="{format:'dddd, DD-MM-YYYY'}" required>
                         </div>
                         <div class="uk-form-row">
                             <h4 class="cyan-text text-darken-1">Admission Package</h4>
@@ -73,7 +73,7 @@
                         </div>
 
                         <div class="uk-form-row infant-info uk-hidden">
-                            <h5>* Admissions for infants under 2 years old is free</h5>
+                            <h4>* Admissions for infants under 2 years old is free</h4>
                         </div>
 
                         {{--<div class="uk-form-row">--}}
@@ -81,18 +81,18 @@
                             {{--<input id="promo" type="text" placeholder="Coupon code / membership code">--}}
                         {{--</div>--}}
 
-                        <h5>Personal Identification</h5>
+                        <h4 class="cyan-text text-darken-1">Personal Identification</h4>
                         <div class="uk-form-row uk-margin-remove">
-                            <label for="">Full Name</label>
-                            <input id="" type="text" value="" name="order_name" placeholder="Input your name">
+                            <label for="order_name">Full Name</label>
+                            <input id="" type="text" value="" name="order_name" placeholder="Input your name" required>
                         </div>
                         <div class="uk-form-row uk-margin-remove">
-                            <label for="">Email</label>
-                            <input id="" type="text" value="" name="order_email" placeholder="Input your email">
+                            <label for="order_email">Email</label>
+                            <input id="" type="text" value="" name="order_email" placeholder="Input your email" required>
                         </div>
                         <div class="uk-form-row uk-margin-remove">
-                            <label for="">Phone Number</label>
-                            <input id="" type="text" value="" name="order_phone" placeholder="Input your phone">
+                            <label for="order_phone">Phone Number</label>
+                            <input id="" type="text" value="" name="order_phone" placeholder="Input your phone" required>
                         </div>
                         {{--<div class="uk-form-row uk-margin-remove">--}}
                             {{--<label for="">Address</label>--}}
@@ -106,9 +106,13 @@
                             {{--<label for="">Country</label>--}}
                             {{--<input id="" type="text" value="" name="order_country" placeholder="Input your country">--}}
                         {{--</div>--}}
-
-                        <h5 class="uk-margin-bottom-remove">Terms &amp; Conditions <span>(<a href="#!">read</a>)</span></h5>
-                        <p class="uk-margin-top-remove"><input type="checkbox" class="ja-check"> I have read and accepted the Terms and Conditions of Use.</p>
+                        <div class="uk-form-row agree">
+                            <h5 class="uk-margin-bottom-remove">Terms &amp; Conditions <span>(<a href="#!">read</a>)</span></h5>
+                            <p class="uk-margin-top-remove">
+                                <input name="agree" type="checkbox" class="ja-check" required>
+                                <label class="no-style" for="agree">I have read and accepted the Terms and Conditions of Use.</label>
+                            </p>
+                        </div>
 
                         <div class="uk-form-row">
                             <button type="submit" class="uk-button uk-button-large amber darken-1 light-blue-text text-darken-4">Book Now</button>
@@ -148,6 +152,7 @@
 @section('page-level-scripts')
     <script src="{!! asset('frontend/js/components/accordion.min.js') !!}"></script>
     <script src="{!! asset('frontend/js/components/datepicker.min.js') !!}"></script>
+    <script src="{!! asset('frontend/js/jquery.validate.min.js') !!}"></script>
     <script>
         jQuery('#visit_date').change(function() {
             var visitDate = jQuery(this).val();
@@ -159,6 +164,17 @@
             }).done(function (data) {
                 console.log(data);
                 jQuery('.packages').html(data);
+            });
+        });
+
+        $(document).ready(function() {
+            $('#bookForm').validate({
+                rules: {
+                    order_email: {
+                        required: true,
+                        email: true
+                    }
+                }
             });
         });
     </script>

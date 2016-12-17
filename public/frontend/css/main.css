@@ -1073,7 +1073,7 @@ ul.ja-boxes .ja-bg_cyan {
 	background: #e4eaed;
 	z-index: 0;
 }
-label.no-style {
+label.no-style, label.error {
 	display: inline-block;
 	width: auto;
 	height: auto;
@@ -1083,11 +1083,32 @@ label.no-style {
 	margin-right: 0;
 	font-size: inherit;
 	border: none;
+	background: none;
+	color: inherit;
 }
 label.no-style img {
 	width: auto;
 	height: 30px;
 	cursor: pointer;
+}
+label.error {
+	display: inline;
+	position: absolute;
+	right: 0;
+	color: #900;
+	background: none;
+	border-top: none !important;
+	padding: 0 !important;
+	margin: 0 !important;
+}
+
+.uk-form-row {
+	position: relative;
+}
+.uk-datepicker {
+	-webkit-box-shadow: 0px 0px 10px 0px rgba(0, 10, 0, 0.25);
+	-moz-box-shadow:    0px 0px 10px 0px rgba(0, 10, 0, 0.25);
+	box-shadow:         0px 0px 10px 0px rgba(0, 10, 0, 0.25);
 }
 .ja-alert-payment {
 	border: 2px solid #F90;
