@@ -1,24 +1,6 @@
 <?php //Navigation ?>
 <nav class="ja-nav">
 	<h1 class="ja-logo white"><a href="{!! lang_url('') !!}" title="Jakarta Aquarium">Jakarta Aquarium</a></h1>
-{{--<<<<<<< HEAD
-	<a href="#" class="uk-visible-small ja-mobmenu cyan darken-1" data-uk-toggle="{target:'.ja-mobhide',cls:'uk-hidden-small',animation:'uk-animation-slide-fade, uk-animation-fade'}"><i class="uk-icon-bars"></i></a>
-	<ul class="uk-list ja-nav-main cyan darken-1 ja-mobhide uk-hidden-small">
-		<li><a href="{!! lang_url('about-us') !!}" title="About Us" class="ja-icon-about">About Us</a></li>
-		<li>
-			<a href="#!" title="Plan Your Visit" class="ja-icon-loc" data-uk-toggle={target:'#subvisit'}>Plan Your Visit</a>
-			<ul id="subvisit" class="uk-list uk-hidden ja-nav-sub">
-				<li><a href="{!! lang_url('ticket-hours') !!}" title="Ticket &amp; Hours">Ticket &amp; Hours</a></li>
-				<li><a href="{!! lang_url('special-packages') !!}" title="Special Packages">Special Packages</a></li>
-				<li><a href="{!! lang_url('show-time') !!}" title="Show Time">Show Time</a></li>
-				<li><a href="{!! lang_url('location') !!}" title="Location">Location</a></li>
-			</ul>
-		</li>
-		<li><a href="{!! lang_url('attractions-experience') !!}" title="Attractions and Experience" class="ja-icon-attract">Attractions and Experience</a></li>
-		<li><a href="{!! lang_url('conservation') !!}" title="Education and Conservation" class="ja-icon-edu">Education and Conservation</a></li>
-		<li><a href="{!! lang_url('news-blog') !!}" title="News" class="ja-icon-news">News</a></li>
-	</ul>
-=======--}}
 	<a href="#" class="uk-visible-small ja-mobmenu ja-mobmenu cyan darken-1" data-uk-toggle="{target:'.ja-mobhide',cls:'uk-hidden-small',animation:'uk-animation-slide-fade, uk-animation-fade'}"><i class="uk-icon-bars"></i></a>
 	{{--<ul class="uk-list ja-nav-main cyan darken-1 ja-mobhide uk-hidden-small">--}}
 		{{--<li><a href="{!! lang_url('about-us') !!}" title="About Us" class="ja-icon-about">About Us</a></li>--}}
@@ -44,12 +26,12 @@
 		<input type="submit">
 	</form>
 	<div class="ja-socmed cyan darken-1 uk-text-center ja-mobhide uk-hidden-small">
-		<a href="#!" class="uk-icon-facebook"></a>
-		<a href="#!" class="uk-icon-twitter"></a>
-		<a href="#!" class="uk-icon-tripadvisor"></a>
-		<a href="#!" class="uk-icon-instagram"></a>
-		<a href="#!" class="uk-icon-google-plus"></a>
-		<a href="#!" class="uk-icon-linkedin"></a>
+		<a href="https://www.facebook.com/JakartaAquarium/" target="_blank" class="uk-icon-facebook"></a>
+		<a href="#!" target="" class="uk-icon-twitter"></a>
+		<a href="https://www.tripadvisor.com/Attraction_Review-g294229-d11667626-Reviews-Jakarta_Aquarium-Jakarta_Java.html" target="_blank" class="uk-icon-tripadvisor"></a>
+		<a href="https://www.instagram.com/jakartaaquarium/" target="_blank" class="uk-icon-instagram"></a>
+		<a href="#!" target="" class="uk-icon-google-plus"></a>
+		<a href="#!" target="" class="uk-icon-linkedin"></a>
 	</div>
 	<div class="ja-info uk-hidden">
 		<p>Opening Hours</p>

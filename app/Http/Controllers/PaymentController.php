@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Service\Order;
 use App\Service\Payment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class PaymentController extends Controller
 {
@@ -37,7 +38,8 @@ class PaymentController extends Controller
 
     public function dokuNotify(Request $request)
     {
-        var_dump($request->all());
+        Log::warning("doku notify is called");
+        Log::warning('requests => ' . implode(',', $request->all()));
     }
 
     public function dokuReview(Request $request)
