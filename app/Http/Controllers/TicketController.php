@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\OrderCompleted;
 use App\Service\Galasys;
 use App\Service\Holiday;
 use App\Service\Order;
 use App\Service\Package;
 use App\Service\Payment;
+use DNS1D;
+use PDF;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Log;
 
 class TicketController extends Controller
@@ -105,5 +109,21 @@ class TicketController extends Controller
         $data['pageTitle'] = 'Ticket Details';
 
         return view('frontend.book-detail', $data);
+    }
+
+    public function sendEmail()
+    {
+        Mail::to('pasha.md5@gmail.com')->send(new OrderCompleted());
+    }
+
+    public function generatePdf()
+    {
+        $pdf = PDF::loadView('emails.order-completed');
+        return $pdf->download('invoice.pdf');
+    }
+
+    public function generateBarcode()
+    {
+        echo DNS1D::getBarcodePNGPath("161217000021", "EAN13");
     }
 }

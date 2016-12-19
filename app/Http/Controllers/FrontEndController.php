@@ -313,6 +313,7 @@ class FrontEndController extends Controller
 
     public function thankYou($lang)
     {
-        return view('frontend.thank-you');
+        $data['paymentType'] = 'creditCard';
+        return view('frontend.thank-you', $data);
     }
 }

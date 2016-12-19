@@ -190,6 +190,10 @@ return [
 
         JildertMiedema\LaravelPlupload\LaravelPluploadServiceProvider::class,
 
+        Barryvdh\DomPDF\ServiceProvider::class,
+
+        Milon\Barcode\BarcodeServiceProvider::class,
+
     ],
 
     /*
@@ -243,6 +247,11 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Plupload' => JildertMiedema\LaravelPlupload\Facades\Plupload::class,
+
+        'PDF' => Barryvdh\DomPDF\Facade::class,
+
+        'DNS1D' => Milon\Barcode\Facades\DNS1DFacade::class,
+        'DNS2D' => Milon\Barcode\Facades\DNS2DFacade::class,
     ],
 
 ];

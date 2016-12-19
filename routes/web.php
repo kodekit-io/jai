@@ -230,3 +230,7 @@ Route::group(['middleware' => ['menu:frontend']], function () {
 
 Route::get('galasys/products', 'GalasysController@products');
 Route::get('galasys/order', 'GalasysController@order');
+
+Route::get('tests/send-email', 'TicketController@sendEmail');
+Route::get('tests/get-pdf', 'TicketController@generatePdf');
+Route::get('tests/barcode', 'TicketController@generateBarcode');
