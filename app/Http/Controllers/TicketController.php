@@ -90,6 +90,9 @@ class TicketController extends Controller
         if ($orderId != '') {
             $order = $this->orderService->getOrderById($orderId);
         } else {
+            if (! $request->has('products')) {
+                return redirect($lang . '/ticket-hours');
+            }
             $details = $this->orderService->getOrderDetails($request->only(['products']), $lang);
             $personalData = $request->only(['visit_date', 'order_name', 'order_email', 'order_phone']);
 
@@ -124,6 +127,6 @@ class TicketController extends Controller
 
     public function generateBarcode()
     {
-        echo DNS1D::getBarcodePNGPath("161217000021", "EAN13");
+        echo DNS1D::getBarcodePNGPath("1612190000211", "EAN13");
     }
 }

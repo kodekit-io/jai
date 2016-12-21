@@ -14,14 +14,20 @@ class PaymentController extends Controller
      * @var Payment
      */
     private $paymentService;
+    /**
+     * @var Order
+     */
+    private $orderService;
 
     /**
      * PaymentController constructor.
      * @param Payment $paymentService
+     * @param Order $orderService
      */
-    public function __construct(Payment $paymentService)
+    public function __construct(Payment $paymentService, Order $orderService)
     {
         $this->paymentService = $paymentService;
+        $this->orderService = $orderService;
     }
 
     /**
@@ -29,6 +35,7 @@ class PaymentController extends Controller
      */
     public function dokuResult(Request $request)
     {
+//        var_dump($request->all()); exit();
         if ($result = $this->paymentService->checkDokuResult($request->all())) {
             return view('frontend.thank-you', $result);
         } else {
@@ -38,8 +45,14 @@ class PaymentController extends Controller
 
     public function dokuNotify(Request $request)
     {
-        Log::warning("doku notify is called");
-        Log::warning('requests => ' . implode(',', $request->all()));
+        $allRequest = $request->all();
+        $totalAmount = $allRequest['AMOUNT'];
+        $orderId = $allRequest['TRANSIDMERCHANT'];
+        $order = $this->orderService->getOrderById($orderId);
+        $responseCode = $allRequest['RESPONSECODE'];
+        if ($responseCode == '0000' && ($order->total_amount == $totalAmount)) {
+            return 'CONTINUE';
+        }
     }
 
     public function dokuReview(Request $request)

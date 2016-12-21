@@ -13,7 +13,7 @@
     <div class="uk-container uk-container-center">
 
         <div class="ja-page__content uk-margin-large-bottom">
-            <h4 class="cyan-text text-darken-1">Using our Services</h4>
+            {{--<h4 class="cyan-text text-darken-1">Using our Services</h4>--}}
 
             <p>{!! $page->content !!}</p>
         </div>
