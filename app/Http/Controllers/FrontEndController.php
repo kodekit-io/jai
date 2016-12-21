@@ -165,14 +165,14 @@ class FrontEndController extends Controller
     {
         $data['pageTitle'] = 'Location';
 
-        return view('frontend.location');
+        return view('frontend.location', $data);
     }
 
     public function locationMap($lang)
     {
-        $data['pageTitle'] = 'Location Map';
+        $data['pageTitle'] = 'Aquarium Map';
 
-        return view('frontend.location-map');
+        return view('frontend.location-map', $data);
     }
 
     public function news($lang, $page = 1)
@@ -248,16 +248,6 @@ class FrontEndController extends Controller
         return view('frontend.attractions-experience', $data);
     }
 
-    public function education($lang)
-    {
-        return view('frontend.education');
-    }
-
-    public function conservation($lang)
-    {
-        return view('frontend.conservation');
-    }
-
     public function career($lang)
     {
         $params = [
@@ -308,7 +298,7 @@ class FrontEndController extends Controller
     {
         $data['pageTitle'] = 'Search Result';
 
-        return view('frontend.search-result');
+        return view('frontend.search-result', $data);
     }
 
     public function thankYou($lang)

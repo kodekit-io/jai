@@ -226,6 +226,7 @@ Route::group(['middleware' => ['menu:frontend']], function () {
     Route::any('doku/result', 'PaymentController@dokuResult');
     Route::any('doku/notify', 'PaymentController@dokuNotify');
     Route::any('doku/review', 'PaymentController@dokuReview');
+    Route::any('doku/identify', 'PaymentController@dokuIdentify');
 });
 
 Route::get('galasys/products', 'GalasysController@products');
@@ -234,3 +235,5 @@ Route::get('galasys/order', 'GalasysController@order');
 Route::get('tests/send-email', 'TicketController@sendEmail');
 Route::get('tests/get-pdf', 'TicketController@generatePdf');
 Route::get('tests/barcode', 'TicketController@generateBarcode');
+
+Route::get('tests/doku-words', 'PaymentController@dokuWords');

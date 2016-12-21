@@ -36,28 +36,37 @@ class PaymentController extends Controller
     public function dokuResult(Request $request)
     {
 //        var_dump($request->all()); exit();
-        if ($result = $this->paymentService->checkDokuResult($request->all())) {
+        $result = $this->paymentService->checkDokuResult($request);
+        if ($result['message'] == 'SUCCEED') {
             return view('frontend.thank-you', $result);
         } else {
-            return redirect('book-detail/' . $result['orderId']);
+            return view('frontend.transaction-failed', $result);
         }
     }
 
     public function dokuNotify(Request $request)
     {
-        $allRequest = $request->all();
-        $totalAmount = $allRequest['AMOUNT'];
-        $orderId = $allRequest['TRANSIDMERCHANT'];
-        $order = $this->orderService->getOrderById($orderId);
-        $responseCode = $allRequest['RESPONSECODE'];
-        if ($responseCode == '0000' && ($order->total_amount == $totalAmount)) {
+        $notify = $this->paymentService->dokuNotify($request);
+        if ($notify) {
             return 'CONTINUE';
         }
+
+        return 'STOP';
+    }
+
+    public function dokuIdentify(Request $request)
+    {
+        $this->paymentService->dokuIdentify($request);
     }
 
     public function dokuReview(Request $request)
     {
         var_dump($request->all());
+    }
+
+    public function dokuWords()
+    {
+        echo sha1('291500.00' . 'XFHblFdq2316' . '28' . '0000');
     }
 
 }

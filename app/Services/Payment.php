@@ -3,29 +3,47 @@
 namespace App\Service;
 
 
+use App\Models\DokuResponseCode;
 use App\Models\Order;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class Payment
 {
+    protected $mallId;
+    protected $sharedKey;
+    /**
+     * @var DokuResponseCode
+     */
+    protected $dokuResponseCode;
+
+    /**
+     * Payment constructor.
+     * @param DokuResponseCode $dokuResponseCode
+     */
+    public function __construct(DokuResponseCode $dokuResponseCode)
+    {
+        $this->mallId = config('doku.doku.mall_id');
+        $this->sharedKey = config('doku.doku.shared_key');
+        $this->dokuResponseCode = $dokuResponseCode;
+    }
 
     public function getDokuParameters($orderId)
     {
         $order = Order::find($orderId);
         $grandTotal = $order->total_amount;
 
-        $mallId = config('doku.doku.mall_id');
-        $sharedKey = config('doku.doku.shared_key');
         $amount = number_format($grandTotal, 2, '.', '');
         // $amount = number_format(75000, 2, '.', '');
         $basket = $this->generateDokuBasket($order);
         $transId = $order->id;
-        $words = sha1(trim($amount) . trim($mallId) .  trim($sharedKey) . trim($transId));
+        $words = sha1(trim($amount) . trim($this->mallId) .  trim($this->sharedKey) . trim($transId));
         $idrCurrency = '360';
         $sessionId = session()->getId();
         // $words = '16c2b05017c04f6e650167947876f0fa2d8ab908';
 
         $params = [
-            'MALLID'           => $mallId,
+            'MALLID'           => $this->mallId,
             'CHAINMERCHANT'    => 'NA',
             'AMOUNT'           => $amount,
             'PURCHASEAMOUNT'   => $amount,
@@ -74,34 +92,168 @@ class Payment
         return $basket;
     }
 
-    public function checkDokuResult(array $request)
+    public function checkDokuResult(Request $request)
     {
-        $orderId = $request['TRANSIDMERCHANT'];
-        $paymentChannel = $request['PAYMENTCHANNEL'];
-        $sessionId = $request['SESSIONID'];
-        $statusCode = $request['STATUSCODE'];
-
-        if ($sessionId == session()->getId()) {
-            // cc succeed
-            if ($statusCode == '0000') {
+//        var_dump($request->all()); exit();
+        $words = ( $request->has('WORDS') ? $request->get('WORDS') : '' );
+        $amount = ( $request->has('AMOUNT') ? $request->get('AMOUNT') : '' );
+        $orderId = ( $request->has('TRANSIDMERCHANT') ? $request->get('TRANSIDMERCHANT') : '' );
+        $statusCode = ( $request->has('STATUSCODE') ? $request->get('STATUSCODE') : '' );
+//        Log::warning('requests => ' . implode(', ', $request->all()));
+//        Log::warning('$words ==> ' . $words);
+//        Log::warning('$amount ==> ' . $amount);
+//        Log::warning('$this->sharedKey ==> ' . $this->sharedKey);
+//        Log::warning('$orderId ==> ' . $orderId);
+//        Log::warning('$statusCode ==> ' . $statusCode);
+        $wordsGenerated = sha1($amount . $this->sharedKey . $orderId . $statusCode);
+//        Log::warning('words generated ==> ' . $wordsGenerated);
+        if ($words == $wordsGenerated) {
+            $paymentChannel = ( $request->has('PAYMENTCHANNEL') ? $request->get('PAYMENTCHANNEL') : '' );
+            $sessionId = ( $request->has('SESSIONID') ? $request->get('SESSIONID') : '' );
+//            Log::warning('$paymentChannel ==> ' . $paymentChannel);
+//            Log::warning('$sessionId ==> ' . $sessionId);
+            if ($amount != '' && $orderId != '' && $sessionId != '') {
+//                Log::warning('$statusCode ==> ' . $statusCode);
+                // check for atm transfer
+                if (in_array($paymentChannel, [5,7,14])) {
+                    if ($statusCode = '0000') {
+                        // succeed
+                        $arr = [
+                            'paymentType' => 'bankTransfer',
+                            'orderId' => $orderId,
+                            'paymentCode' => $request['PAYMENTCODE'],
+                            'message' => 'SUCCEED'
+                        ];
+                        return $arr;
+                    } else {
+                        // transaction failed
+                        $arr = [
+                            'paymentType' => 'bankTransfer',
+                            'orderId' => $orderId,
+                            'paymentCode' => $request['PAYMENTCODE'],
+                            'message' => $this->getDokuResponse($statusCode)
+                        ];
+                    }
+                } else {
+                    if ($statusCode == '0000') {
+                        // succeed
+                        $arr = [
+                            'paymentType' => 'creditCard',
+                            'orderId' => $orderId,
+                            'paymentCode' => $request['PAYMENTCODE'],
+                            'message' => 'SUCCEED'
+                        ];
+                        return $arr;
+                    } else {
+                        // transaction failed
+                        $arr = [
+                            'paymentType' => 'creditCard',
+                            'orderId' => $orderId,
+                            'paymentCode' => $request['PAYMENTCODE'],
+                            'message' => $this->getDokuResponse($statusCode)
+                        ];
+                    }
+                }
+            } else {
+                //transaction not found
                 $arr = [
-                    'paymentType' => 'creditCard',
-                    'orderId' => $orderId
+                    'paymentType' => '',
+                    'orderId' => '',
+                    'paymentCode' => '',
+                    'message' => 'TRANSACTION NOT FOUND'
                 ];
-                return $arr;
             }
-            // bank transfer
-            elseif ($statusCode == '5511') {
-                $arr = [
-                    'paymentType' => 'bankTransfer',
-                    'orderId' => $orderId,
-                    'paymentCode' => $request['PAYMENTCODE']
-                ];
-                return $arr;
+        } else {
+            $arr = [
+                'paymentType' => '',
+                'orderId' => '',
+                'paymentCode' => '',
+                'message' => 'TRANSACTION FAILED'
+            ];
+        }
+
+        return $arr;
+    }
+
+    private function getDokuResponse($paymentCode)
+    {
+        $codeQuery = $this->dokuResponseCode->where('code', $paymentCode);
+        if ($codeQuery->count() > 0) {
+            $code = $codeQuery->first();
+            if ($code->visa_description != '') {
+                return $code->visa_description;
+            } elseif ($code->master_description != '') {
+                return $code->master_description;
+            } elseif ($code->general_description != '') {
+                return $code->general_description;
+            } else {
+                return '';
+            }
+        }
+
+        return '';
+    }
+
+    public function dokuNotify(Request $request)
+    {
+        Log::warning('NOTIFYING');
+        // check IP first
+        $this->checkDokuIP($request);
+
+        // get the parameters
+        $words = ( $request->has('WORDS') ? $request->get('WORDS') : '' );
+        $amount = ( $request->has('AMOUNT') ? $request->get('AMOUNT') : '' );
+        $orderId = ( $request->has('TRANSIDMERCHANT') ? $request->get('TRANSIDMERCHANT') : '' );
+        $resultMessage = ( $request->has('RESULTMSG') ? $request->get('RESULTMSG') : '' );
+        $verifyStatus = ( $request->has('VERIFYSTATUS') ? $request->get('VERIFYSTATUS') : '' );
+
+        $wordsGenerated = sha1($amount . $this->mallId . $this->sharedKey . $orderId . $resultMessage . $verifyStatus);
+
+        if ($words == $wordsGenerated) {
+            $responseCode = ( $request->has('RESPONSECODE') ? $request->get('RESPONSECODE') : '' );
+            $approvalCode = ( $request->has('APPROVALCODE') ? $request->get('APPROVALCODE') : '' );
+            $paymentChannel = ( $request->has('PAYMENTCHANNEL') ? $request->get('PAYMENTCHANNEL') : '' );
+            $paymentCode = ( $request->has('PAYMENTCODE') ? $request->get('PAYMENTCODE') : '' );
+            $sessionId = ( $request->has('SESSIONID') ? $request->get('SESSIONID') : '' );
+            $mcn = ( $request->has('MCN') ? $request->get('MCN') : '' );
+            $paymentDateTime = ( $request->has('PAYMENTDATETIME') ? $request->get('PAYMENTDATETIME') : '' );
+            $verifyId = ( $request->has('VERIFYID') ? $request->get('VERIFYID') : '' );
+            $verifyScore = ( $request->has('VERIFYSCORE') ? $request->get('VERIFYSCORE') : '' );
+            $statusType = ( $request->has('STATUSTYPE') ? $request->get('STATUSTYPE') : '' );
+
+            if ($orderId != '' && $sessionId != '' && $amount != '') {
+                if ($resultMessage == 'SUCCESS') {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
             }
         }
 
         return false;
+    }
+
+    public function dokuIdentify(Request $request)
+    {
+        // check doku ip
+        $this->checkDokuIP($request);
+
+        // get parameters
+        $amount = ( $request->has('AMOUNT') ? $request->get('AMOUNT') : '' );
+        $orderId = ( $request->has('TRANSIDMERCHANT') ? $request->get('TRANSIDMERCHANT') : '' );
+        $paymentChannel = ( $request->has('PAYMENTCHANNEL') ? $request->get('PAYMENTCHANNEL') : '' );
+        $sessionId = ( $request->has('SESSIONID') ? $request->get('SESSIONID') : '' );
+
+        // set session maybe ?
+        Log::warning('IDENTIFYING');
+    }
+
+    private function checkDokuIP(Request $request)
+    {
+        $ipAddress = $request->ip();
+        Log::warning("IP Address : " . $ipAddress);
     }
 
 
