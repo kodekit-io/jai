@@ -726,10 +726,22 @@ h2.ja-slide-title {
 	background: url(../img/i-user.png) no-repeat 1em center;
 	padding-top: 0.5em;
 	padding-bottom: 0.5em;
+	margin-bottom: 2em;
 }
 .ja-ticket .jai-submission-order input[type="number"] {
 	width: 50%;
 }
+.packages > div {
+	position: relative;
+}
+.packages label.error {
+	right: auto;
+	left: 10px;
+	top: 140px;
+	line-height: normal;
+	text-align: left;
+}
+
 /**/
 .ja-header-showtime {
 	height: 600px;
