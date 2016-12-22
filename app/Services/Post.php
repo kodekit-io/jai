@@ -197,15 +197,15 @@ class Post
         }
 
         if ($post->id == config('misc.statics.about-us')) {
-            $this->postService->updateAboutUs($post, $request->only(['philosophies', 'stories']));
+            $this->updateAboutUs($post, $request->only(['philosophies', 'stories']));
         }
 
         if ($post->id == config('misc.statics.sightseeing')) {
-            $this->postService->updateSightSeeing($post, $request->only(['firstBox', 'secondBox', 'thirdBox', 'fourthBox']));
+            $this->updateSightSeeing($post, $request->only(['firstBox', 'secondBox', 'thirdBox', 'fourthBox']));
         }
 
         if ($post->id == config('misc.statics.ticket-hours')) {
-            $this->postService->updateTicket($post, $request->only(['openingHours']));
+            $this->updateTicket($post, $request->only(['openingHours']));
         }
 
         return $post;
