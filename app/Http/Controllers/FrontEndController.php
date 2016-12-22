@@ -120,17 +120,17 @@ class FrontEndController extends Controller
             'lang' => $lang,
             'id' => config('misc.statics.about-us')
         ];
-        $postWithDetail = $this->postService->getPostsWithDetail($params);
+        $postWithDetail = $this->postService->getPostsWithDetail($params)->first();
         $post = $this->postService->getPost(['id' => config('misc.statics.about-us')]);
         $ourStory = $post->metas()->where('meta_key', 'story-' . $lang)->first();
         $ourPhilosophy = $post->metas()->where('meta_key', 'philosophy-' . $lang)->first();
 
-        $data['post'] = $postWithDetail->first();
+        $data['post'] = $postWithDetail;
         $data['ourStory'] = $ourStory;
         $data['ourPhilosophy'] = $ourPhilosophy;
         $data['metaDesc'] = get_meta_description($post->id, $lang);
 
-        $data['pageTitle'] = 'About Us';
+        $data['pageTitle'] = $postWithDetail->title;
 
         return view('frontend.about-us', $data);
     }
@@ -165,14 +165,14 @@ class FrontEndController extends Controller
     {
         $data['pageTitle'] = 'Location';
 
-        return view('frontend.location');
+        return view('frontend.location', $data);
     }
 
     public function locationMap($lang)
     {
-        $data['pageTitle'] = 'Location Map';
+        $data['pageTitle'] = 'Aquarium Map';
 
-        return view('frontend.location-map');
+        return view('frontend.location-map', $data);
     }
 
     public function news($lang, $page = 1)
@@ -248,16 +248,6 @@ class FrontEndController extends Controller
         return view('frontend.attractions-experience', $data);
     }
 
-    public function education($lang)
-    {
-        return view('frontend.education');
-    }
-
-    public function conservation($lang)
-    {
-        return view('frontend.conservation');
-    }
-
     public function career($lang)
     {
         $params = [
@@ -308,11 +298,12 @@ class FrontEndController extends Controller
     {
         $data['pageTitle'] = 'Search Result';
 
-        return view('frontend.search-result');
+        return view('frontend.search-result', $data);
     }
 
     public function thankYou($lang)
     {
-        return view('frontend.thank-you');
+        $data['paymentType'] = 'creditCard';
+        return view('frontend.thank-you', $data);
     }
 }

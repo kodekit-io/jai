@@ -32,7 +32,7 @@
 <section id="sightseeing" class="ja-home-section uk-hidden-small">
 	<div class="uk-overlay-background ja-overlay"></div>
 	<div class="uk-container uk-container-center white-text">
-		<h3 class="ja-title ja-title__orange uk-margin-large-bottom white-text">Sightseeing</h3>
+		<h3 class="ja-title ja-title__orange uk-margin-large-bottom white-text">Highlight</h3>
 		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidale laborum et dolorem magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation autem.</p>
 
 		<ul class="uk-grid uk-grid-collapse">

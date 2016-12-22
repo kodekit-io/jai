@@ -40,8 +40,13 @@
 
                 <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla occaecat cupidatat non proident sunt on <strong>December 21, 2017 16:30:15</strong>.</p>
 
+                <p>Payment Code:<br>
+                    <span class="uk-text-large red-text">{!! $paymentCode !!}</span>
+                </p>
+
                 <p>Deadline Time:<br>
-                <span class="uk-text-large red-text">03 Days: 04 Hours: 15 Mins: 28 Secs</span></p>
+                    <span class="uk-text-large red-text">03 Days: 04 Hours: 15 Mins: 28 Secs</span>
+                </p>
 
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim ad minim veniam.</p>
                 <ol>
@@ -51,10 +56,11 @@
                     <li>At vero eos et accusamus et iusto dignissimos ducimus praesentium.</li>
                 </ol>
                 <hr>
-                <ul class="uk-subnav uk-subnav-line uk-margin-bottom-remove">
-                    <li><a href="" class="cyan-text text-darken-1">See Booking Details</a></li>
-                    <li><a href="" class="cyan-text text-darken-1">See Terms and Conditions of Tickets</a></li>
-                </ul>
+                <a href="{!! lang_url('') !!}" class="uk-button uk-button-large amber darken-1 light-blue-text text-darken-4">Back to Homepage</a>
+                {{--<ul class="uk-subnav uk-subnav-line uk-margin-bottom-remove">--}}
+                    {{--<li><a href="" class="cyan-text text-darken-1">See Booking Details</a></li>--}}
+                    {{--<li><a href="" class="cyan-text text-darken-1">See Terms and Conditions of Tickets</a></li>--}}
+                {{--</ul>--}}
             @endif
         </div>
     </div>

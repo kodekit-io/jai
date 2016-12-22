@@ -23,7 +23,7 @@
 
                 {{--<h3 class="">ADMISSION PACKAGE</h3>--}}
                 <div class="">
-                    <p>Come and meet sharks, turtles, jellyfish, octopuses, seahorses, otters, and other beautiful animals. The Jakarta Aquarium is suited to all ages and interests. Purchasing tickets online is a great way to speed up your access to all that the Jakarta Aquarium has to offer.</p>
+                    <p>{!! $post->content !!}</p>
 
                     <form id="bookForm" class="uk-form uk-margin-top uk-margin-bottom" method="post" action="{!! lang_url('book-detail') !!}">
                         {!! csrf_field() !!}
@@ -134,11 +134,12 @@
         </div>
         <div class="ja-ticket__content uk-margin-large-bottom">
             <h3 class="light-blue-text text-darken-4">OPENING HOURS</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor crasher malarki requiem predantia incididunt ut labore et dolore magna aliqua. Ut eni ad minim veniam, quisiom nostrud at autumn irure dor in reprehenderit exercitation.</p>
-            <ul class="uk-list">
-                <li>Weekday	(Monday - Thursday)	:  08.00 a.m. - 07.00 p.m.</li>
-                <li>Weekend (Friday - Sunday)	:  08.00 a.m. - 09.00 p.m.</li>
-            </ul>
+            {!! $openingHours->meta_value !!}
+            {{--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor crasher malarki requiem predantia incididunt ut labore et dolore magna aliqua. Ut eni ad minim veniam, quisiom nostrud at autumn irure dor in reprehenderit exercitation.</p>--}}
+            {{--<ul class="uk-list">--}}
+                {{--<li>Weekday	(Monday - Thursday)	:  08.00 a.m. - 07.00 p.m.</li>--}}
+                {{--<li>Weekend (Friday - Sunday)	:  08.00 a.m. - 09.00 p.m.</li>--}}
+            {{--</ul>--}}
             {{--<div class="uk-panel-box">--}}
                 {{--<h4 class="uk-margin-remove">Announcement:</h4>--}}
                 {{--<p class="uk-margin-remove">Jakarta Aquarium will close on 24th and 25th December for the Christmas holiday, and also on 31st December and 1st January for the New Year holiday.</p>--}}
@@ -162,12 +163,32 @@
                 url: ajaxUrl,
                 data: { visit_date: visitDate, _token: "{!! csrf_token() !!}" }
             }).done(function (data) {
-                console.log(data);
+                // console.log(data);
                 jQuery('.packages').html(data);
             });
         });
 
         $(document).ready(function() {
+            $.validator.addMethod("chooseOnePackage", function(value, element) {
+                var orderTotal = 0;
+                $('input[name^=products]').each(function() {
+                    var order = $(this).attr('type');
+                    if(order == 'number') {
+                        if (order == 'number') {
+                            var value = $(this).val();
+                            orderTotal = orderTotal + parseInt(value);
+                        }
+                    }
+                });
+
+                if (orderTotal < 1) {
+                    return false;
+                } else {
+                    return true;
+                }
+            },
+            "Please Choose the Product first.");
+
             $('#bookForm').validate({
                 rules: {
                     order_email: {

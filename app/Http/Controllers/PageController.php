@@ -61,8 +61,6 @@ class PageController extends Controller
         $data['post'] = $post;
         $langs = $this->languageService->getAvailableLanguages();
         $data['langs'] = $langs;
-        $pageDetail = $post->details()->where('lang', 'en')->first();
-        $data['pageSlug'] = $pageDetail->slug;
         $data['defaultLang'] = $this->languageService->getDefaultLanguage();
         $data['publishDate'] = Carbon::createFromFormat('Y-m-d H:i:s', $post->publish_date)->format('d-F-Y - H:i');
         $data['featuredImage'] = $post->medias()->where('media_type', 'featured')->first();
@@ -82,17 +80,9 @@ class PageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $post = $this->postService->update($id, $request->except(['_token']));
-        $pageDetail = $post->details()->where('lang', 'en')->first();
-        if ($pageDetail->slug == 'about-us') {
-            $this->postService->updateAboutUs($post, $request->only(['philosophies', 'stories']));
-        }
+        $post = $this->postService->update($id, $request);
 
-        if ($pageDetail->slug == 'sightseeing') {
-            $this->postService->updateSightSeeing($post, $request->only(['firstBox', 'secondBox', 'thirdBox', 'fourthBox']));
-        }
-
-        return backendRedirect('page')->with($this->getMessage('update'));
+        return backendRedirect('page/' . $post->id . '/edit')->with($this->getMessage('update'));
     }
 
     /**

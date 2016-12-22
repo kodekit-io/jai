@@ -29,6 +29,12 @@
                             </ul>
                         </div>
                         <div class="portlet-body">
+                            @if (session('message'))
+                                <div class="alert alert-info alert-dismissable">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                                    <strong>Info!</strong> {{ session('message') }}
+                                </div>
+                            @endif
                             <form role="form" action="{!! backendUrl('page/' . $post->id . '/update') !!}" method="post" >
                                 {{ csrf_field() }}
                                 <div class="form-body">
@@ -36,7 +42,7 @@
 
                                         {{--main form--}}
                                         <div class="col-md-8">
-                                            @include('backend.pages.about-us-content-edit')
+                                            @include('backend.pages.content')
                                         </div>
                                         {{--end of main form--}}
 
@@ -122,9 +128,9 @@
                 height : "100",
                 style_formats: [
                     {title: 'Headers', items: [
-                        {title: 'Title', block: 'h4', classes: 'cyan-text text-darken-1' },
-                        {title: 'Sightseeing Highlight', block: 'h2', classes: 'font-intro amber-text text-darken-1 uk-margin-remove' },
-                        {title: 'Sightseeing Small', block: 'p', classes: 'uk-margin-remove' },
+                        {title: 'Small Blue Highlight', block: 'h4', classes: 'cyan-text text-darken-1' },
+                        {title: 'Yellow Highlight', block: 'h2', classes: 'font-intro amber-text text-darken-1 uk-margin-remove' },
+                        {title: 'Small Paragraph', block: 'p', classes: 'uk-margin-remove' },
                         {title: 'Header 1', format: 'h1'},
                         {title: 'Header 2', format: 'h2'},
                         {title: 'Header 3', format: 'h3'},

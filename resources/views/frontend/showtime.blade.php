@@ -13,10 +13,10 @@
 </header>
 <main class="ja-showtime">
     <div class="uk-container uk-container-center">
-        <h1 class="ja-title ja-title__blue light-blue-text text-darken-4 uk-margin-large-top uk-margin-large-bottom">Show Time</h1>
+        <h1 class="ja-title ja-title__blue light-blue-text text-darken-4 uk-margin-large-top uk-margin-large-bottom">Schedule</h1>
         <p>There's always something new and exciting happening at the Jakarta Aquarium. With an ever-evolving lineup of shows, Jakarta Aquarium always has something interesting to see. Join us for a show led by our educational and entertaining interpreters to learn more about the animals that live at the Jakarta Aquarium.</p>
         <ul id="filtershow" class="uk-subnav uk-margin-top">
-            <li><a href="" data-uk-filter="" data-uk-tooltip title="All Show">SHOW TIMES:</a></li>
+            <li><a href="" data-uk-filter="" data-uk-tooltip title="All Show">SCHEDULE :</a></li>
             <li><a href="" data-uk-filter="ja-showtime__all"><i class="uk-icon-stop light-green-text"></i> ALL DAYS</a></li>
             <li><a href="" data-uk-filter="ja-showtime__part"><i class="uk-icon-stop amber-text"></i> PARTICULAR</a></li>
             <li><a href="" data-uk-filter="ja-showtime__limited"><i class="uk-icon-stop pink-text"></i> LIMITED</a></li>
