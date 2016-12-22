@@ -163,7 +163,17 @@ class FrontEndController extends Controller
 
     public function location($lang)
     {
-        $data['pageTitle'] = 'Location';
+        $pageId = config('misc.statics.location');
+        $params = [
+            'lang' => $lang,
+            'id' => $pageId
+        ];
+        $postWithDetail = $this->postService->getPostsWithDetail($params)->first();
+        $post = $this->postService->getPost(['id' => $pageId]);
+        $afterMap = $post->metas()->where('meta_key', 'afterMap-' . $lang)->first();
+        $data['pageTitle'] = $postWithDetail->title;
+        $data['post'] = $postWithDetail;
+        $data['afterMap'] = $afterMap;
 
         return view('frontend.location', $data);
     }

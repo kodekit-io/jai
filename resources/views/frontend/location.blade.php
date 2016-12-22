@@ -17,18 +17,18 @@
 <main class="ja-ticket">
     <div class="uk-container uk-container-center">
         <div class="ja-ticket__content">
-            <p>Jakarta Aquarium is located in Neo SOHO in popular and leisure district, Grogol - Tomang. Consider exploring the beauty of the district that consist of malls, parks, apartments, hotels, shops, restaurants, nightlife, and highways, before or after your visit to the Aquarium.</p>
+            <p>{!! $post->content !!}</p>
 
             <h5 class="cyan-text text-darken-1 uk-margin-bottom-remove">Jakarta Aquarium Address:</h5>
-            <p class="uk-margin-remove">Neo Soho Central Park, Jalan Letjend S. Parman Kav. 28,<br>
-            Kecamatan Grogol Petamburan, Jakarta Barat, Indonesia 11470</p>
+            <p class="uk-margin-remove">
+                Neo SOHO Floor LG 101 - LGM 101, Jl. Letjen S. Parman Kav. 28.<br>
+                Jakarta Barat, 11470
+            </p>
         </div>
-        <div id="map" class="ja-map uk-margin-bottom">
-
-        </div>
+        <div id="map" class="ja-map uk-margin-bottom"></div>
 
         <div class="ja-ticket__content uk-margin-large-bottom">
-            <p>Neo SOHO provides at vero eos et accusamus et iusto odio madeline dignis imosse ducma quisa. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dignis imosse ducma quisa cillum fugiat nulla pariatur excepteur sint occaecat exercitation ullamco accusamus et iusto odio laboris cupidatat non proident.</p>
+            <p>{!! $afterMap->meta_value !!}</p>
             <ul class="uk-list uk-list-space">
                 <li>
                     <i class="uk-icon-large ja-icon-facility park"></i>
