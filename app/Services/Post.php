@@ -6,6 +6,7 @@ namespace App\Service;
 use App\Models\Post as PostModel;
 use App\Service\Traits\DatatableParameters;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -139,8 +140,9 @@ class Post
         }
     }
 
-    public function update($id, array $inputs)
+    public function update($id, Request $request)
     {
+        $inputs = $request->except(['_token']);
         $post = PostModel::find($id);
         $post->publish_date = Carbon::createFromFormat('d-F-Y - H:i', $inputs['publish_date'])->format('Y-m-d H:i');
         $post->status = strtoupper($inputs['status']);
@@ -192,6 +194,18 @@ class Post
                 'meta_key' => 'featured',
                 'meta_value' => 1
             ]);
+        }
+
+        if ($post->id == config('misc.statics.about-us')) {
+            $this->postService->updateAboutUs($post, $request->only(['philosophies', 'stories']));
+        }
+
+        if ($post->id == config('misc.statics.sightseeing')) {
+            $this->postService->updateSightSeeing($post, $request->only(['firstBox', 'secondBox', 'thirdBox', 'fourthBox']));
+        }
+
+        if ($post->id == config('misc.statics.ticket-hours')) {
+            $this->postService->updateTicket($post, $request->only(['openingHours']));
         }
 
         return $post;
@@ -428,6 +442,17 @@ class Post
             $post->metas()->create([
                 'meta_key' => 'fourthBox-' . $lang,
                 'meta_value' => $story
+            ]);
+        }
+    }
+
+    public function updateTicket($post, array $inputs)
+    {
+        foreach ($inputs['openingHours'] as $lang => $openingHour) {
+            $post->metas()->where('meta_key', 'openingHours-' . $lang)->delete();
+            $post->metas()->create([
+                'meta_key' => 'openingHours-' . $lang,
+                'meta_value' => $openingHour
             ]);
         }
     }

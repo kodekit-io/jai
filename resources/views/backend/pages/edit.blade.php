@@ -29,6 +29,12 @@
                             </ul>
                         </div>
                         <div class="portlet-body">
+                            @if (session('message'))
+                                <div class="alert alert-info alert-dismissable">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                                    <strong>Info!</strong> {{ session('message') }}
+                                </div>
+                            @endif
                             <form role="form" action="{!! backendUrl('page/' . $post->id . '/update') !!}" method="post" >
                                 {{ csrf_field() }}
                                 <div class="form-body">
@@ -36,7 +42,7 @@
 
                                         {{--main form--}}
                                         <div class="col-md-8">
-                                            @include('backend.pages.about-us-content-edit')
+                                            @include('backend.pages.content')
                                         </div>
                                         {{--end of main form--}}
 

@@ -8,6 +8,7 @@ use App\Service\Holiday;
 use App\Service\Order;
 use App\Service\Package;
 use App\Service\Payment;
+use App\Service\Post;
 use DNS1D;
 use PDF;
 use Carbon\Carbon;
@@ -37,6 +38,10 @@ class TicketController extends Controller
      * @var Payment
      */
     private $paymentService;
+    /**
+     * @var Post
+     */
+    private $postService;
 
     /**
      * TicketController constructor.
@@ -45,13 +50,15 @@ class TicketController extends Controller
      * @param Holiday $holidayService
      * @param Order $orderService
      * @param Payment $paymentService
+     * @param Post $postService
      */
     public function __construct(
         Galasys $galasys,
         Package $packageService,
         Holiday $holidayService,
         Order $orderService,
-        Payment $paymentService
+        Payment $paymentService,
+        Post $postService
     )
     {
         $this->galasys = $galasys;
@@ -59,6 +66,7 @@ class TicketController extends Controller
         $this->holidayService = $holidayService;
         $this->orderService = $orderService;
         $this->paymentService = $paymentService;
+        $this->postService = $postService;
     }
 
     public function getAvailablePackages(Request $request)
@@ -71,15 +79,19 @@ class TicketController extends Controller
 
     public function ticket($lang)
     {
-        $generalAdmissionParams = [
+        $pageId = config('misc.statics.ticket-hours');
+        $params = [
             'lang' => $lang,
-            'is_general_admission' => 1
+            'id' => $pageId
         ];
-        $generalPackages = $this->packageService->getPackages($generalAdmissionParams);
+        $postWithDetail = $this->postService->getPostsWithDetail($params)->first();
 
-        $data['generalPackages'] = $generalPackages;
+        $post = $this->postService->getPost(['id' => $pageId]);
+        $openingHours = $post->metas()->where('meta_key', 'openingHours-' . $lang)->first();
 
-        $data['pageTitle'] = 'Ticket &amp; Hours';
+        $data['pageTitle'] = $postWithDetail->title;
+        $data['post'] = $postWithDetail;
+        $data['openingHours'] = $openingHours;
 
         return view('frontend.ticket-hours', $data);
     }

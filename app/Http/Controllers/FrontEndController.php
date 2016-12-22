@@ -120,17 +120,17 @@ class FrontEndController extends Controller
             'lang' => $lang,
             'id' => config('misc.statics.about-us')
         ];
-        $postWithDetail = $this->postService->getPostsWithDetail($params);
+        $postWithDetail = $this->postService->getPostsWithDetail($params)->first();
         $post = $this->postService->getPost(['id' => config('misc.statics.about-us')]);
         $ourStory = $post->metas()->where('meta_key', 'story-' . $lang)->first();
         $ourPhilosophy = $post->metas()->where('meta_key', 'philosophy-' . $lang)->first();
 
-        $data['post'] = $postWithDetail->first();
+        $data['post'] = $postWithDetail;
         $data['ourStory'] = $ourStory;
         $data['ourPhilosophy'] = $ourPhilosophy;
         $data['metaDesc'] = get_meta_description($post->id, $lang);
 
-        $data['pageTitle'] = 'About Us';
+        $data['pageTitle'] = $postWithDetail->title;
 
         return view('frontend.about-us', $data);
     }

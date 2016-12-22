@@ -10,6 +10,7 @@ return [
         'career' => 88,
         'privacy-policy' => 89,
         'term-of-use' => 90,
-        'sightseeing' => 91
+        'sightseeing' => 91,
+        'ticket-hours' => 97,
     ]
 ];
