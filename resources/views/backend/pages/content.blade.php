@@ -38,6 +38,11 @@
                 $metaOpeningHours = $post->metas()->where('meta_key', 'openingHours-' . $lang['code'])->first();
                 $openingHours = count($metaOpeningHours) > 0 ? $metaOpeningHours->meta_value : '';
             }
+
+            if ($post->id == config('misc.statics.location')) {
+                $metaAfterMap = $post->metas()->where('meta_key', 'afterMap-' . $lang['code'])->first();
+                $afterMap = count($metaAfterMap) > 0 ? $metaAfterMap->meta_value : '';
+            }
         ?>
         <div class="tab-pane @if($lang['code'] == $defaultLang) active @endif" id="{!! $lang['code'] !!}">
             <div class="form-group @if ($errors->has('title')) has-error @endif">
@@ -61,8 +66,6 @@
                 @endif
             </div>
 
-
-
             @if ($post->id == config('misc.statics.about-us'))
                 @include('backend.pages.about-us')
             @endif
@@ -73,6 +76,10 @@
 
             @if ($post->id == config('misc.statics.ticket-hours'))
                 @include('backend.pages.ticket-hours')
+            @endif
+
+            @if ($post->id == config('misc.statics.location'))
+                @include('backend.pages.location')
             @endif
 
             <div class="form-group">

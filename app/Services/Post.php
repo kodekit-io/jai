@@ -208,6 +208,10 @@ class Post
             $this->updateTicket($post, $request->only(['openingHours']));
         }
 
+        if ($post->id == config('misc.statics.location')) {
+            $this->updateLocation($post, $request->only(['afterMap']));
+        }
+
         return $post;
     }
 
@@ -453,6 +457,17 @@ class Post
             $post->metas()->create([
                 'meta_key' => 'openingHours-' . $lang,
                 'meta_value' => $openingHour
+            ]);
+        }
+    }
+
+    private function updateLocation($post, array $inputs)
+    {
+        foreach ($inputs['afterMap'] as $lang => $afterMap) {
+            $post->metas()->where('meta_key', 'afterMap-' . $lang)->delete();
+            $post->metas()->create([
+                'meta_key' => 'afterMap-' . $lang,
+                'meta_value' => $afterMap
             ]);
         }
     }

@@ -11,6 +11,7 @@ return [
         'privacy-policy' => 89,
         'term-of-use' => 90,
         'sightseeing' => 91,
-        'ticket-hours' => 97,
+        'ticket-hours' => 96,
+        'location' => 97
     ]
 ];

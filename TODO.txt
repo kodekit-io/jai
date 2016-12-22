@@ -91,14 +91,13 @@
 ---- Generate the ticket
 
 -- Create pages management (DONE)
----- Ticket hours management
+---- Ticket hours management (DONE)
 ------ Header
 ------ Opening Hours
+
 ---- Location
 ------ After MAP
 ------ Dynamic Legend
----- About Us
------- Contact Us
 
 
 -- Menu link, multilang support
