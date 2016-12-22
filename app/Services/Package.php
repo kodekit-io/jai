@@ -248,7 +248,7 @@ class Package
                                     <input type="hidden" name="products[' . $itemCode . '][name]" value="' . $description .'">
                                     <input type="hidden" name="products[' . $itemCode . '][price]" value="' . $price .'">
                                     <input type="hidden" name="products[' . $itemCode . '][isPackage]" value="' . $isPackage .'">
-                                    <input type="number" name="products[' . $itemCode . '][qty]" class="right" value="0">
+                                    <input type="number" min="0" name="products[' . $itemCode . '][qty]" class="right" value="0">
                                 </div>
                             </div>';
             }

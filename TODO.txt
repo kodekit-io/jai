@@ -91,6 +91,11 @@
 ---- Generate the ticket
 
 -- Create pages management (DONE)
+---- Ticket hours management
+------ Header
+------ Opening Hours
+---- About Us
+------ Contact Us
 
 
 -- Menu link, multilang support
