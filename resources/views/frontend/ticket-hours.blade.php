@@ -162,12 +162,32 @@
                 url: ajaxUrl,
                 data: { visit_date: visitDate, _token: "{!! csrf_token() !!}" }
             }).done(function (data) {
-                console.log(data);
+                // console.log(data);
                 jQuery('.packages').html(data);
             });
         });
 
         $(document).ready(function() {
+            $.validator.addMethod("chooseOnePackage", function(value, element) {
+                var orderTotal = 0;
+                $('input[name^=products]').each(function() {
+                    var order = $(this).attr('type');
+                    if(order == 'number') {
+                        if (order == 'number') {
+                            var value = $(this).val();
+                            orderTotal = orderTotal + parseInt(value);
+                        }
+                    }
+                });
+
+                if (orderTotal < 1) {
+                    return false;
+                } else {
+                    return true;
+                }
+            },
+            "Please Choose the Product first.");
+
             $('#bookForm').validate({
                 rules: {
                     order_email: {
