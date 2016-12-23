@@ -209,23 +209,7 @@ class Post
         }
 
         if ($post->id == config('misc.statics.location')) {
-            $this->updateLocation($post, $request->only([
-                'afterMap',
-                'parkingTitle',
-                'parkingDesc',
-                'vipTitle',
-                'vipDesc',
-                'wheelchairTitle',
-                'wheelchairDesc',
-                'bikeRackTitle',
-                'bikeRackDesc',
-                'shuttleBusTitle',
-                'shuttleBusDesc',
-                'blueBirdTitle',
-                'blueBirdDesc',
-                'publicBusTitle',
-                'publicBusDesc'
-            ]));
+            $this->updateLocation($post, $request->only($this->getLocationMetaFields()));
         }
 
         return $post;
@@ -479,7 +463,21 @@ class Post
 
     private function updateLocation($post, array $inputs)
     {
-        $fields = [
+        $fields = $this->getLocationMetaFields();
+        foreach ($fields as $field) {
+            foreach ($inputs[$field] as $lang => $value) {
+                $post->metas()->where('meta_key', $field. '-' . $lang)->delete();
+                $post->metas()->create([
+                    'meta_key' => $field. '-' . $lang,
+                    'meta_value' => $value
+                ]);
+            }
+        }
+    }
+
+    public function getLocationMetaFields()
+    {
+        return [
             'afterMap',
             'parkingTitle',
             'parkingDesc',
@@ -496,15 +494,6 @@ class Post
             'publicBusTitle',
             'publicBusDesc'
         ];
-        foreach ($fields as $field) {
-            foreach ($inputs[$field] as $lang => $value) {
-                $post->metas()->where('meta_key', $field. '-' . $lang)->delete();
-                $post->metas()->create([
-                    'meta_key' => $field. '-' . $lang,
-                    'meta_value' => $value
-                ]);
-            }
-        }
     }
 
 }
