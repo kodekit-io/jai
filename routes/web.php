@@ -215,6 +215,7 @@ Route::group(['middleware' => ['lang', 'menu:frontend']], function () {
     Route::get('/{lang?}/search-result', 'FrontEndController@search');
 
     Route::get('/{lang?}/thank-you', 'FrontEndController@thankYou');
+    Route::get('/{lang?}/test-print', 'FrontEndController@testPrint');
 
     Route::get('/{lang?}', 'FrontEndController@homePage');
 //    Route::get('/{lang?}/news/{slug}', 'FrontEndController@homePage');

@@ -316,4 +316,9 @@ class FrontEndController extends Controller
         $data['paymentType'] = 'creditCard';
         return view('frontend.thank-you', $data);
     }
+
+    public function testPrint($lang)
+    {
+        return view('emails.order-completed');
+    }
 }
