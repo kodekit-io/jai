@@ -13,6 +13,7 @@ use App\Service\Slider;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use DNS1D;
 
 class FrontEndController extends Controller
 {
@@ -171,47 +172,32 @@ class FrontEndController extends Controller
         $postWithDetail = $this->postService->getPostsWithDetail($params)->first();
         $post = $this->postService->getPost(['id' => $pageId]);
 
-        $afterMap = $post->metas()->where('meta_key', 'afterMap-' . $lang)->first();
-        // parking
-        $parkingTitle = $post->metas()->where('meta_key', 'parkingTitle-' . $lang)->first();
-        $parkingDesc = $post->metas()->where('meta_key', 'parkingDesc-' . $lang)->first();
-        // vip
-        $vipTitle = $post->metas()->where('meta_key', 'vipTitle-' . $lang)->first();
-        $vipDesc = $post->metas()->where('meta_key', 'vipDesc-' . $lang)->first();
-        // wheelchair
-        $wheelchairTitle = $post->metas()->where('meta_key', 'wheelchairTitle-' . $lang)->first();
-        $wheelchairDesc = $post->metas()->where('meta_key', 'wheelchairDesc-' . $lang)->first();
-        // bikeRack
-        $bikeRackTitle = $post->metas()->where('meta_key', 'bikeRackTitle-' . $lang)->first();
-        $bikeRackDesc = $post->metas()->where('meta_key', 'bikeRackDesc-' . $lang)->first();
-        // shuttleBus
-        $shuttleBusTitle = $post->metas()->where('meta_key', 'shuttleBusTitle-' . $lang)->first();
-        $shuttleBusDesc = $post->metas()->where('meta_key', 'shuttleBusDesc-' . $lang)->first();
-        // blueBird
-        $blueBirdTitle = $post->metas()->where('meta_key', 'blueBirdTitle-' . $lang)->first();
-        $blueBirdDesc = $post->metas()->where('meta_key', 'blueBirdDesc-' . $lang)->first();
-        // publicBus
-        $publicBusTitle = $post->metas()->where('meta_key', 'publicBusTitle-' . $lang)->first();
-        $publicBusDesc = $post->metas()->where('meta_key', 'publicBusDesc-' . $lang)->first();
+        $metaFields = [
+            'afterMap',
+            'parkingTitle',
+            'parkingDesc',
+            'vipTitle',
+            'vipDesc',
+            'wheelchairTitle',
+            'wheelchairDesc',
+            'bikeRackTitle',
+            'bikeRackDesc',
+            'shuttleBusTitle',
+            'shuttleBusDesc',
+            'blueBirdTitle',
+            'blueBirdDesc',
+            'publicBusTitle',
+            'publicBusDesc'
+        ];
 
-        $data['parkingTitle'] = ( isset($parkingTitle->meta_value) ? $parkingTitle->meta_value : '' );
-        $data['parkingDesc'] = ( isset($parkingDesc->meta_value) ? $parkingDesc->meta_value : '' );
-        $data['vipTitle'] = ( isset($vipTitle->meta_value) ? $vipTitle->meta_value : '' );
-        $data['vipDesc'] = ( isset($vipDesc->meta_value) ? $vipDesc->meta_value : '' );
-        $data['wheelchairTitle'] = ( isset($wheelchairTitle->meta_value) ? $wheelchairTitle->meta_value : '' );
-        $data['wheelchairDesc'] = ( isset($wheelchairDesc->meta_value) ? $wheelchairDesc->meta_value : '' );
-        $data['bikeRackTitle'] = ( isset($bikeRackTitle->meta_value) ? $bikeRackTitle->meta_value : '' );
-        $data['bikeRackDesc'] = ( isset($bikeRackDesc->meta_value) ? $bikeRackDesc->meta_value : '' );
-        $data['shuttleBusTitle'] = ( isset($shuttleBusTitle->meta_value) ? $shuttleBusTitle->meta_value : '' );
-        $data['shuttleBusDesc'] = ( isset($shuttleBusDesc->meta_value) ? $shuttleBusDesc->meta_value : '' );
-        $data['blueBirdTitle'] = ( isset($blueBirdTitle->meta_value) ? $blueBirdTitle->meta_value : '' );
-        $data['blueBirdDesc'] = ( isset($blueBirdDesc->meta_value) ? $blueBirdDesc->meta_value : '' );
-        $data['publicBusTitle'] = ( isset($publicBusTitle->meta_value) ? $publicBusTitle->meta_value : '' );
-        $data['publicBusDesc'] = ( isset($publicBusDesc->meta_value) ? $publicBusDesc->meta_value : '' );
+        foreach ($metaFields as $metaField) {
+            $meta = $post->metas()->where('meta_key', $metaField . '-' . $lang)->first();
+            $data[$metaField] = ( isset($meta->meta_value) ? $meta->meta_value : '' );
+        }
 
         $data['pageTitle'] = $postWithDetail->title;
         $data['post'] = $postWithDetail;
-        $data['afterMap'] = $afterMap;
+
 
         return view('frontend.location', $data);
     }
@@ -357,6 +343,7 @@ class FrontEndController extends Controller
 
     public function testPrint($lang)
     {
-        return view('emails.order-completed');
+        $data['barcode'] = DNS1D::getBarcodePNGPath("1612190000211", "EAN13");
+        return view('emails.order-completed', $data);
     }
 }

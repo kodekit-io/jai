@@ -204,7 +204,7 @@ and open the template in the editor.
                                 VISIT WWW.JAKARTA-AQUARIUM.COM
                             </div>
                             <div class="barcode">
-                                barcode here
+                                <img src="{!! asset($barcode) !!}">
                             </div>
                         </td>
                         <td class="info">
