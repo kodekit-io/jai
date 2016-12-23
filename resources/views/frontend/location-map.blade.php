@@ -23,8 +23,24 @@
             <li>Level 2</li>
         </ul>
         <ul id="levels" class="uk-switcher uk-margin-bottom">
-            <li><img class="uk-responsive-width" src="{!! asset('frontend/img/map-LG-LGM-A4-01.jpg') !!}" /></li>
-            <li><img class="uk-responsive-width" src="{!! asset('frontend/img/map-LG-LGM-A4-02.jpg') !!}" /></li>
+            <li>
+                <img class="uk-responsive-width" src="{!! asset('frontend/img/map-LG-LGM-A4-01.png') !!}" />
+                <a class="ja-loc-point L1-1" data-uk-tooltip title="Point 1"></a>
+                <a class="ja-loc-point L1-2" data-uk-tooltip title="Point 2"></a>
+                <a class="ja-loc-point L1-3" data-uk-tooltip title="Point 3"></a>
+                <a class="ja-loc-point L1-4" data-uk-tooltip title="Point 4"></a>
+                <a class="ja-loc-point L1-5" data-uk-tooltip title="Point 5"></a>
+                <a class="ja-loc-point L1-B" data-uk-tooltip title="Point B"></a>
+                <a class="ja-loc-point L1-D" data-uk-tooltip title="Point D"></a>
+                <a class="ja-loc-point L1-photo1" data-uk-tooltip title="Photo Point"></a>
+                <a class="ja-loc-point L1-photo2" data-uk-tooltip title="Photo Point"></a>
+                <a class="ja-loc-point L1-elevator" data-uk-tooltip title="Elevator"></a>
+                <a class="ja-loc-point L1-stairs" data-uk-tooltip title="Stairs"></a>
+                <a class="ja-loc-point L1-exit" data-uk-tooltip title="Exit"></a>
+            </li>
+            <li>
+                <img class="uk-responsive-width" src="{!! asset('frontend/img/map-LG-LGM-A4-02.png') !!}" />
+            </li>
         </ul>
 
         <div class="ja-ticket__content uk-margin-bottom">
