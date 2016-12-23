@@ -789,6 +789,72 @@ h2.ja-slide-title {
 .ja-map {
 	min-height: 450px;
 }
+#levels img {
+	width: 100%;
+	height: auto;
+	position: relative;
+	z-index: 0;
+}
+#levels li {
+	position: relative;
+}
+#levels li a {
+	position: absolute;
+	display: block;
+	/*background: rgba(0, 0, 0, 0.5);*/
+	z-index: 1;
+	width: 5%;
+	height: 0;
+	padding-top: 5%;
+}
+.L1-1 {
+	left: 32.25%;
+	top: 21%;
+}
+.L1-2 {
+	left: 66.25%;
+	top: 22.5%;
+}
+.L1-3 {
+	left: 25.8%;
+	top: 38%;
+}
+.L1-4 {
+	left: 62%;
+	top: 48%;
+}
+.L1-5 {
+	left: 22.5%;
+	top: 84%;
+}
+.L1-B {
+	left: 71%;
+	top: 45.6%;
+}
+.L1-D {
+	left: 31%;
+	top: 69%;
+}
+.L1-photo1 {
+	left: 54%;
+	top: 16.5%;
+}
+.L1-photo2 {
+	left: 67%;
+	top: 68.5%;
+}
+.L1-elevator {
+	left: 18%;
+	top: 59%;
+}
+.L1-stairs {
+	left: 23.5%;
+	top: 59%;
+}
+.L1-exit {
+	left: 16.35%;
+	top: 64.5%;
+}
 .ja-icon-facility {
 	width: 50px;
 	height: 50px;
