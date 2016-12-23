@@ -134,7 +134,9 @@ class TicketController extends Controller
     public function generatePdf()
     {
         $pdf = PDF::loadView('emails.order-completed');
-        return $pdf->download('invoice.pdf');
+        $pdf->setPaper('A4', 'landscape');
+        //return $pdf->stream('eticket.pdf');
+        return $pdf->download('eticket.pdf');
     }
 
     public function generateBarcode()
