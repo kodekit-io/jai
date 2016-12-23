@@ -170,7 +170,45 @@ class FrontEndController extends Controller
         ];
         $postWithDetail = $this->postService->getPostsWithDetail($params)->first();
         $post = $this->postService->getPost(['id' => $pageId]);
+
         $afterMap = $post->metas()->where('meta_key', 'afterMap-' . $lang)->first();
+        // parking
+        $parkingTitle = $post->metas()->where('meta_key', 'parkingTitle-' . $lang)->first();
+        $parkingDesc = $post->metas()->where('meta_key', 'parkingDesc-' . $lang)->first();
+        // vip
+        $vipTitle = $post->metas()->where('meta_key', 'vipTitle-' . $lang)->first();
+        $vipDesc = $post->metas()->where('meta_key', 'vipDesc-' . $lang)->first();
+        // wheelchair
+        $wheelchairTitle = $post->metas()->where('meta_key', 'wheelchairTitle-' . $lang)->first();
+        $wheelchairDesc = $post->metas()->where('meta_key', 'wheelchairDesc-' . $lang)->first();
+        // bikeRack
+        $bikeRackTitle = $post->metas()->where('meta_key', 'bikeRackTitle-' . $lang)->first();
+        $bikeRackDesc = $post->metas()->where('meta_key', 'bikeRackDesc-' . $lang)->first();
+        // shuttleBus
+        $shuttleBusTitle = $post->metas()->where('meta_key', 'shuttleBusTitle-' . $lang)->first();
+        $shuttleBusDesc = $post->metas()->where('meta_key', 'shuttleBusDesc-' . $lang)->first();
+        // blueBird
+        $blueBirdTitle = $post->metas()->where('meta_key', 'blueBirdTitle-' . $lang)->first();
+        $blueBirdDesc = $post->metas()->where('meta_key', 'blueBirdDesc-' . $lang)->first();
+        // publicBus
+        $publicBusTitle = $post->metas()->where('meta_key', 'publicBusTitle-' . $lang)->first();
+        $publicBusDesc = $post->metas()->where('meta_key', 'publicBusDesc-' . $lang)->first();
+
+        $data['parkingTitle'] = $parkingTitle->meta_value;
+        $data['parkingDesc'] = $parkingDesc->meta_value;
+        $data['vipTitle'] = $vipTitle->meta_value;
+        $data['vipDesc'] = $vipDesc->meta_value;
+        $data['wheelchairTitle'] = $wheelchairTitle->meta_value;
+        $data['wheelchairDesc'] = $wheelchairDesc->meta_value;
+        $data['bikeRackTitle'] = $bikeRackTitle->meta_value;
+        $data['bikeRackDesc'] = $bikeRackDesc->meta_value;
+        $data['shuttleBusTitle'] = $shuttleBusTitle->meta_value;
+        $data['shuttleBusDesc'] = $shuttleBusDesc->meta_value;
+        $data['blueBirdTitle'] = $blueBirdTitle->meta_value;
+        $data['blueBirdDesc'] = $blueBirdDesc->meta_value;
+        $data['publicBusTitle'] = $publicBusTitle->meta_value;
+        $data['publicBusDesc'] = $publicBusDesc->meta_value;
+
         $data['pageTitle'] = $postWithDetail->title;
         $data['post'] = $postWithDetail;
         $data['afterMap'] = $afterMap;

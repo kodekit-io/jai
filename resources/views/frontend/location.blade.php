@@ -32,38 +32,38 @@
             <ul class="uk-list uk-list-space">
                 <li>
                     <i class="uk-icon-large ja-icon-facility park"></i>
-                    <h5 class="uk-margin-small-top uk-margin-bottom-remove">Car and Motorcycle Parking Spaces</h5>
-                    Aliquip ex ea commodo odio madeline consequat.
+                    <h5 class="uk-margin-small-top uk-margin-bottom-remove">{!! $parkingTitle !!}</h5>
+                    {!! $parkingDesc !!}
                 </li>
                 <li>
                     <i class="uk-icon-large ja-icon-facility vip"></i>
-                    <h5 class="uk-margin-small-top uk-margin-bottom-remove">VIP Vallet</h5>
-                    Aliquip ex ea commodo odio madeline consequat Rp.50.000.
+                    <h5 class="uk-margin-small-top uk-margin-bottom-remove">{!! $vipTitle !!}</h5>
+                    {!! $vipDesc !!}
                 </li>
                 <li>
                     <i class="uk-icon-large ja-icon-facility wheelchair"></i>
-                    <h5 class="uk-margin-small-top uk-margin-bottom-remove">Wheelchair Accessible Parking Spaces</h5>
-                    Aliquip ex ea commodo odio madeline consequat.
+                    <h5 class="uk-margin-small-top uk-margin-bottom-remove">{!! $wheelchairTitle !!}</h5>
+                    {!! $wheelchairDesc !!}
                 </li>
                 <li>
                     <i class="uk-icon-large ja-icon-facility bike"></i>
-                    <h5 class="uk-margin-small-top uk-margin-bottom-remove">Bike Racks</h5>
-                    Aliquip ex ea commodo odio madeline consequat.
+                    <h5 class="uk-margin-small-top uk-margin-bottom-remove">{!! $bikeRackTitle !!}</h5>
+                    {!! $bikeRackDesc !!}
                 </li>
                 <li>
                     <i class="uk-icon-large ja-icon-facility shuttle"></i>
-                    <h5 class="uk-margin-small-top uk-margin-bottom-remove">Shuttle Bus</h5>
-                    Duis aute Taman Anggrek, Central Park, two public halte, and two hotels.
+                    <h5 class="uk-margin-small-top uk-margin-bottom-remove">{!! $shuttleBusTitle !!}</h5>
+                    {!! $shuttleBusDesc !!}
                 </li>
                 <li>
                     <i class="uk-icon-large ja-icon-facility taxi"></i>
-                    <h5 class="uk-margin-small-top uk-margin-bottom-remove">Blue Bird Taxi Stand</h5>
-                    Aliquip ex ea commodo odio madeline consequat.
+                    <h5 class="uk-margin-small-top uk-margin-bottom-remove">{!! $blueBirdTitle !!}</h5>
+                    {!! $blueBirdDesc !!}
                 </li>
                 <li>
                     <i class="uk-icon-large ja-icon-facility bus"></i>
-                    <h5 class="uk-margin-small-top uk-margin-bottom-remove">Public Bus Halte</h5>
-                    Exercitation ullamco laboris Halte Transjakarta Koridor Podomoro City.
+                    <h5 class="uk-margin-small-top uk-margin-bottom-remove">{!! $publicBusTitle !!}</h5>
+                    {!! $publicBusDesc !!}
                 </li>
             </ul>
         </div>
