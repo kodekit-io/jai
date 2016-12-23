@@ -343,7 +343,7 @@ class FrontEndController extends Controller
 
     public function testPrint($lang)
     {
-        $data['barcode'] = DNS1D::getBarcodePNGPath("1612190000211", "EAN13");
+        $data['barcode'] = DNS1D::getBarcodePNGPath("1612190000211", "EAN13", 2.5, 40);
         return view('emails.order-completed', $data);
     }
 }

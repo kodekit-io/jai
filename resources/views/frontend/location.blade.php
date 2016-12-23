@@ -28,7 +28,7 @@
         <div id="map" class="ja-map uk-margin-bottom"></div>
 
         <div class="ja-ticket__content uk-margin-large-bottom">
-            <p>{!! $afterMap->meta_value !!}</p>
+            <p>{!! $afterMap !!}</p>
             <ul class="uk-list uk-list-space">
                 <li>
                     <i class="uk-icon-large ja-icon-facility park"></i>
