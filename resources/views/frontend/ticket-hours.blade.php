@@ -187,7 +187,7 @@
                     return true;
                 }
             },
-            "Please Choose the Product first.");
+            "Please choose one of this package first.");
 
             $('#bookForm').validate({
                 rules: {
