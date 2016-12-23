@@ -736,8 +736,9 @@ h2.ja-slide-title {
 }
 .packages label.error {
 	right: auto;
-	left: 10px;
-	top: 140px;
+	/*left: 10px;*/
+	/*top: 140px;*/
+	top: 180px;
 	line-height: normal;
 	text-align: left;
 }
