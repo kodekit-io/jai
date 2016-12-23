@@ -194,20 +194,20 @@ class FrontEndController extends Controller
         $publicBusTitle = $post->metas()->where('meta_key', 'publicBusTitle-' . $lang)->first();
         $publicBusDesc = $post->metas()->where('meta_key', 'publicBusDesc-' . $lang)->first();
 
-        $data['parkingTitle'] = $parkingTitle->meta_value;
-        $data['parkingDesc'] = $parkingDesc->meta_value;
-        $data['vipTitle'] = $vipTitle->meta_value;
-        $data['vipDesc'] = $vipDesc->meta_value;
-        $data['wheelchairTitle'] = $wheelchairTitle->meta_value;
-        $data['wheelchairDesc'] = $wheelchairDesc->meta_value;
-        $data['bikeRackTitle'] = $bikeRackTitle->meta_value;
-        $data['bikeRackDesc'] = $bikeRackDesc->meta_value;
-        $data['shuttleBusTitle'] = $shuttleBusTitle->meta_value;
-        $data['shuttleBusDesc'] = $shuttleBusDesc->meta_value;
-        $data['blueBirdTitle'] = $blueBirdTitle->meta_value;
-        $data['blueBirdDesc'] = $blueBirdDesc->meta_value;
-        $data['publicBusTitle'] = $publicBusTitle->meta_value;
-        $data['publicBusDesc'] = $publicBusDesc->meta_value;
+        $data['parkingTitle'] = ( isset($parkingTitle->meta_value) ? $parkingTitle->meta_value : '' );
+        $data['parkingDesc'] = ( isset($parkingDesc->meta_value) ? $parkingDesc->meta_value : '' );
+        $data['vipTitle'] = ( isset($vipTitle->meta_value) ? $vipTitle->meta_value : '' );
+        $data['vipDesc'] = ( isset($vipDesc->meta_value) ? $vipDesc->meta_value : '' );
+        $data['wheelchairTitle'] = ( isset($wheelchairTitle->meta_value) ? $wheelchairTitle->meta_value : '' );
+        $data['wheelchairDesc'] = ( isset($wheelchairDesc->meta_value) ? $wheelchairDesc->meta_value : '' );
+        $data['bikeRackTitle'] = ( isset($bikeRackTitle->meta_value) ? $bikeRackTitle->meta_value : '' );
+        $data['bikeRackDesc'] = ( isset($bikeRackDesc->meta_value) ? $bikeRackDesc->meta_value : '' );
+        $data['shuttleBusTitle'] = ( isset($shuttleBusTitle->meta_value) ? $shuttleBusTitle->meta_value : '' );
+        $data['shuttleBusDesc'] = ( isset($shuttleBusDesc->meta_value) ? $shuttleBusDesc->meta_value : '' );
+        $data['blueBirdTitle'] = ( isset($blueBirdTitle->meta_value) ? $blueBirdTitle->meta_value : '' );
+        $data['blueBirdDesc'] = ( isset($blueBirdDesc->meta_value) ? $blueBirdDesc->meta_value : '' );
+        $data['publicBusTitle'] = ( isset($publicBusTitle->meta_value) ? $publicBusTitle->meta_value : '' );
+        $data['publicBusDesc'] = ( isset($publicBusDesc->meta_value) ? $publicBusDesc->meta_value : '' );
 
         $data['pageTitle'] = $postWithDetail->title;
         $data['post'] = $postWithDetail;
