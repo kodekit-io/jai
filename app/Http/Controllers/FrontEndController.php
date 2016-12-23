@@ -13,6 +13,7 @@ use App\Service\Slider;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use DNS1D;
 
 class FrontEndController extends Controller
 {
@@ -342,6 +343,7 @@ class FrontEndController extends Controller
 
     public function testPrint($lang)
     {
-        return view('emails.order-completed');
+        $data['barcode'] = DNS1D::getBarcodePNGPath("1612190000211", "EAN13");
+        return view('emails.order-completed', $data);
     }
 }
