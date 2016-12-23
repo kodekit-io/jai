@@ -58,7 +58,7 @@ and open the template in the editor.
         vertical-align: top;
         position: relative;
     }
-    .eticket img{
+    .eticket img.bgticket{
         width: 70mm;
         height: 150mm;
         vertical-align: top;
@@ -144,7 +144,7 @@ and open the template in the editor.
         width: 70mm;
         text-align: center;
         position: absolute;
-        top: 130mm;
+        top: 128mm;
         left: 0;
     }
     .nomargin {
@@ -186,8 +186,8 @@ and open the template in the editor.
                 <table>
                     <tr>
                         <td class="eticket">
-                            <img src="{!! asset('frontend/img/eticket/eticket.png') !!}" class="large-code" />
-                            <div class="title">E-TICKET</div>
+                            <img src="{!! asset('frontend/img/eticket/eticket.png') !!}" class="bgticket" />
+                            <div class="title">ETICKET</div>
                             <div class="date-order">ordered on 31 Oct 2016</div>
                             <div class="name">
                                 John Doe<br>
