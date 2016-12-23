@@ -155,45 +155,55 @@
     <script src="{!! asset('frontend/js/components/datepicker.min.js') !!}"></script>
     <script src="{!! asset('frontend/js/jquery.validate.min.js') !!}"></script>
     <script>
-        jQuery('#visit_date').change(function() {
-            var visitDate = jQuery(this).val();
-            var ajaxUrl = '{!! url('get-package-by-date') !!}';
-            jQuery.ajax({
-                type: "POST",
-                url: ajaxUrl,
-                data: { visit_date: visitDate, _token: "{!! csrf_token() !!}" }
-            }).done(function (data) {
-                // console.log(data);
-                jQuery('.packages').html(data);
-            });
-        });
-
         $(document).ready(function() {
-            $.validator.addMethod("chooseOnePackage", function(value, element) {
-                var orderTotal = 0;
-                $('input[name^=products]').each(function() {
-                    var order = $(this).attr('type');
-                    if(order == 'number') {
-                        if (order == 'number') {
-                            var value = $(this).val();
-                            orderTotal = orderTotal + parseInt(value);
-                        }
-                    }
+            var getAvailableProducts = function (visitDate) {
+                var ajaxUrl = '{!! url('get-package-by-date') !!}';
+                jQuery.ajax({
+                    type: "POST",
+                    url: ajaxUrl,
+                    data: { visit_date: visitDate, _token: "{!! csrf_token() !!}" }
+                }).done(function (data) {
+                    // console.log(data);
+                    jQuery('.packages').html(data);
                 });
+            }
+            var errorCounter = 0;
+            var visitDate = jQuery('#visit_date').val();
+            if (visitDate != '') {
+                getAvailableProducts(visitDate);
+            }
 
-                if (orderTotal < 1) {
-                    return false;
-                } else {
-                    return true;
-                }
-            },
-            "Please choose one of this package first.");
+            jQuery('#visit_date').change(function() {
+                visitDate = jQuery(this).val();
+                console.log(visitDate);
+                getAvailableProducts(visitDate);
+            });
 
             $('#bookForm').validate({
                 rules: {
                     order_email: {
                         required: true,
                         email: true
+                    }
+                },
+                submitHandler: function(form) { // for demo
+                    var orderTotal = 0;
+                    $('input[name^=products]').each(function() {
+                        var order = $(this).attr('type');
+                        if(order == 'number') {
+                            if (order == 'number') {
+                                var value = $(this).val();
+                                orderTotal = orderTotal + parseInt(value);
+                            }
+                        }
+                    });
+
+                    if (orderTotal < 1) {
+                        $('.packages p').remove();
+                        $('.packages').append('<p><label id="package-error" class="error">Please choose one of this package first.</label></p>');
+                        return false;
+                    } else {
+                        return true;
                     }
                 }
             });
