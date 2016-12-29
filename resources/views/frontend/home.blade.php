@@ -130,10 +130,10 @@
 	<div class="uk-container uk-container-center">
 		<div class="uk-grid uk-hidden-small">
 			<div class="uk-width-1-3">
-				<img src="{!! asset('frontend/img/mobile-app.png') !!}" alt="Get The App" />
+				<img src="{!! asset('frontend/img/mobile-app.jpg') !!}" alt="Get The App" />
 			</div>
 			<div class="uk-width-2-3">
-				<h3 class="ja-title ja-title__blue light-blue-text text-darken-4 uk-margin-bottom">Get The App</h3>
+				<h3 class="ja-title ja-title__blue light-blue-text text-darken-4 uk-margin-large-top uk-margin-bottom">Get The App <img src="{!! asset('frontend/img/coming-soon.png') !!}" alt="Coming Soon" /></h3>
 				<p>Download free Jakarta Aquarium app now! Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 				<p><a href="#!" title="Download on The App Store"><img src="{!! asset('frontend/img/download-store.png') !!}" alt="Download on The App Store" /></a>
 				<a href="#!" title="Get it on Google Play"><img src="{!! asset('frontend/img/download-play.png') !!}" alt="Get it on Google Play" /></a></p>
