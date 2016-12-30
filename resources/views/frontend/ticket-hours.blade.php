@@ -154,6 +154,7 @@
     <script src="{!! asset('frontend/js/components/accordion.min.js') !!}"></script>
     <script src="{!! asset('frontend/js/components/datepicker.min.js') !!}"></script>
     <script src="{!! asset('frontend/js/jquery.validate.min.js') !!}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.blockUI.js') }}"></script>
     <script>
         $(document).ready(function() {
             var getAvailableProducts = function (visitDate) {
@@ -161,7 +162,17 @@
                 jQuery.ajax({
                     type: "POST",
                     url: ajaxUrl,
-                    data: { visit_date: visitDate, _token: "{!! csrf_token() !!}" }
+                    data: { visit_date: visitDate, _token: "{!! csrf_token() !!}" },
+                    beforeSend : function(xhr) {
+                        $('.packages').block({
+                            message: '<img src="{!! asset('frontend/img/spinner.gif') !!}">',
+                            css: { border: 'none', zIndex: 100 },
+                            overlayCSS: { backgroundColor: '#fff', zIndex: 100 }
+                        });
+                    },
+                    complete : function(xhr, status) {
+                        $('.packages').unblock();
+                    }
                 }).done(function (data) {
                     // console.log(data);
                     jQuery('.packages').html(data);

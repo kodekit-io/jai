@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Mail\OrderCompleted;
+use App\Service\Cimb;
+use App\Service\Doku;
 use App\Service\Galasys;
 use App\Service\Holiday;
 use App\Service\Order;
@@ -35,13 +37,17 @@ class TicketController extends Controller
      */
     private $orderService;
     /**
-     * @var Payment
-     */
-    private $paymentService;
-    /**
      * @var Post
      */
     private $postService;
+    /**
+     * @var Doku
+     */
+    private $dokuService;
+    /**
+     * @var Cimb
+     */
+    private $cimbService;
 
     /**
      * TicketController constructor.
@@ -49,7 +55,8 @@ class TicketController extends Controller
      * @param Package $packageService
      * @param Holiday $holidayService
      * @param Order $orderService
-     * @param Payment $paymentService
+     * @param Doku $dokuService
+     * @param Cimb $cimbService
      * @param Post $postService
      */
     public function __construct(
@@ -57,7 +64,8 @@ class TicketController extends Controller
         Package $packageService,
         Holiday $holidayService,
         Order $orderService,
-        Payment $paymentService,
+        Doku $dokuService,
+        Cimb $cimbService,
         Post $postService
     )
     {
@@ -65,8 +73,9 @@ class TicketController extends Controller
         $this->packageService = $packageService;
         $this->holidayService = $holidayService;
         $this->orderService = $orderService;
-        $this->paymentService = $paymentService;
         $this->postService = $postService;
+        $this->dokuService = $dokuService;
+        $this->cimbService = $cimbService;
     }
 
     public function getAvailablePackages(Request $request)
@@ -111,11 +120,18 @@ class TicketController extends Controller
             $order = $this->orderService->saveOrder($personalData, $details);
         }
 
-        $dokuParams = $this->paymentService->getDokuParameters($order->id);
-
-        $dokuUrl = config('doku.doku.api_url');
+        // doku
+        $dokuParams = $this->dokuService->getDokuParameters($order->id);
+        $dokuUrl = config('payments.doku.api_url');
         $data['dokuUrl'] = $dokuUrl;
         $data['dokuParams'] = $dokuParams;
+
+        //cimb
+        $cimbParams = $this->cimbService->getCimbParameters($order->id);
+        $cimbUrl = config('payments.cimb.api_url');
+        $data['cimbUrl'] = $cimbUrl;
+        $data['cimbParams'] = $cimbParams;
+
         $data['details'] = $order->details;
         $data['subTotal'] = $order->sub_total;
         $data['tax'] = $order->tax;

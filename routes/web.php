@@ -228,6 +228,9 @@ Route::group(['middleware' => ['menu:frontend']], function () {
     Route::any('doku/notify', 'PaymentController@dokuNotify');
     Route::any('doku/review', 'PaymentController@dokuReview');
     Route::any('doku/identify', 'PaymentController@dokuIdentify');
+
+    Route::any('cimb/result', 'PaymentController@cimbResult');
+    Route::any('cimb/backend', 'PaymentController@cimbBackend');
 });
 
 Route::get('galasys/products', 'GalasysController@products');
