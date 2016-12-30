@@ -239,5 +239,7 @@ Route::get('galasys/order', 'GalasysController@order');
 Route::get('tests/send-email', 'TicketController@sendEmail');
 Route::get('tests/get-pdf', 'TicketController@generatePdf');
 Route::get('tests/barcode', 'TicketController@generateBarcode');
+Route::get('tests/check-status', 'TicketController@checkStatus');
 
 Route::get('tests/doku-words', 'PaymentController@dokuWords');
+Route::get('/tests/cimb-signature', 'TicketController@cimbSignature');

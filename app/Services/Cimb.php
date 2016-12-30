@@ -38,7 +38,7 @@ class Cimb
         $grandTotal = $order->total_amount;
         $signatureWord = $this->merchantKey . $this->merchantCode . $orderId . $grandTotal . 'IDR';
         Log::warning('words ==> ' . $signatureWord);
-        $signature = sha1($signatureWord);
+        $signature = base64_encode(sha1($signatureWord, true));
         Log::warning('signature ==> ' . $signature);
         $params = [
             'MerchantCode' => $this->merchantCode,

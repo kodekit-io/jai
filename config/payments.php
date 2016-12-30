@@ -10,6 +10,7 @@ return [
         'url_notify' => 'doku/notify',
         'url_redirect' => 'doku/result',
         'url_review' => 'doku/review',
+        'url_check_status' => 'http://staging.doku.com/Suite/CheckStatus'
     ],
 
     'cimb' => [
