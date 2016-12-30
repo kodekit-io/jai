@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Service\Doku;
 use App\Service\Order;
 use App\Service\Payment;
 use Illuminate\Http\Request;
@@ -11,23 +12,24 @@ class PaymentController extends Controller
 {
 
     /**
-     * @var Payment
-     */
-    private $paymentService;
-    /**
      * @var Order
      */
     private $orderService;
+    /**
+     * @var Doku
+     */
+    private $dokuService;
 
     /**
      * PaymentController constructor.
-     * @param Payment $paymentService
      * @param Order $orderService
+     * @param Doku $dokuService
+     * @internal param Payment $paymentService
      */
-    public function __construct(Payment $paymentService, Order $orderService)
+    public function __construct(Order $orderService, Doku $dokuService)
     {
-        $this->paymentService = $paymentService;
         $this->orderService = $orderService;
+        $this->dokuService = $dokuService;
     }
 
     /**
@@ -36,7 +38,7 @@ class PaymentController extends Controller
     public function dokuResult(Request $request)
     {
 //        var_dump($request->all()); exit();
-        $result = $this->paymentService->checkDokuResult($request);
+        $result = $this->dokuService->checkDokuResult($request);
         if ($result['message'] == 'SUCCEED') {
             return view('frontend.thank-you', $result);
         } else {
@@ -46,7 +48,7 @@ class PaymentController extends Controller
 
     public function dokuNotify(Request $request)
     {
-        $notify = $this->paymentService->dokuNotify($request);
+        $notify = $this->dokuService->dokuNotify($request);
         if ($notify) {
             return 'CONTINUE';
         }
@@ -56,10 +58,15 @@ class PaymentController extends Controller
 
     public function dokuIdentify(Request $request)
     {
-        $this->paymentService->dokuIdentify($request);
+        $this->dokuService->dokuIdentify($request);
     }
 
     public function dokuReview(Request $request)
+    {
+        var_dump($request->all());
+    }
+
+    public function cimbResult(Request $request)
     {
         var_dump($request->all());
     }

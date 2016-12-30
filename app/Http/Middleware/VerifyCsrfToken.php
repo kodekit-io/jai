@@ -14,6 +14,10 @@ class VerifyCsrfToken extends BaseVerifier
     protected $except = [
         'doku/result',
         'doku/notify',
-        'doku/review'
+        'doku/review',
+        'doku/identify',
+
+        'cimb/result',
+        'cimb/backend',
     ];
 }
