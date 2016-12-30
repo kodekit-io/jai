@@ -42,12 +42,14 @@
 			<li class="uk-width-1-2">
 				{!! ( isset($secondBox->meta_value) ? $secondBox->meta_value : '' ) !!}
 			</li>
+			<?php /*
 			<li class="uk-width-2-5">
 				{!! ( isset($thirdBox->meta_value) ? $thirdBox->meta_value : '' ) !!}
 			</li>
 			<li class="uk-width-1-2">
 				{!! ( isset($fourthBox->meta_value) ? $fourthBox->meta_value : '' ) !!}
 			</li>
+			*/ ?>
 		</ul>
 	</div>
 </section>
@@ -57,7 +59,7 @@
 		<?php //The Moments ?>
 		<ul class="uk-grid uk-grid-collapse uk-grid-width-1-2 uk-grid-width-medium-1-3">
 			<li>
-				<a class="uk-vertical-align" style="background-image: url(https://scontent-sin6-1.cdninstagram.com/t51.2885-15/e35/14726416_519228651603618_6547434921265201152_n.jpg?ig_cache_key=MTM2MTUyMDM1MTUxNTU1MDA4Mw%3D%3D.2)">
+				<a class="uk-vertical-align" style="background-image: url(/frontend/img/img-m1.png)">
 					<div class="uk-vertical-align-middle">
 
 					</div>
@@ -71,7 +73,7 @@
 				</a>
 			</li>
 			<li>
-				<a class="uk-vertical-align" style="background-image: url(https://scontent-sin6-1.cdninstagram.com/t51.2885-15/s640x640/sh0.08/e35/13397565_582605318588903_30300940_n.jpg?ig_cache_key=MTI3NzEyMjk5ODMxNjc3ODk1Nw%3D%3D.2)">
+				<a class="uk-vertical-align" style="background-image: url(/frontend/img/img-m2.png)">
 					<div class="uk-vertical-align-middle">
 
 					</div>
@@ -88,28 +90,28 @@
 			</li>
 
 			<li>
-				<a class="uk-vertical-align" style="background-image: url(https://scontent-sin6-1.cdninstagram.com/t51.2885-15/e35/14705107_196280684133214_1208691904053510144_n.jpg?ig_cache_key=MTM2MTQ4MDQ3MTQzNTA2Njk3OQ%3D%3D.2)">
+				<a class="uk-vertical-align" style="background-image: url(/frontend/img/img-m4.png)">
 					<div class="uk-vertical-align-middle">
 
 					</div>
 				</a>
 			</li>
 			<li>
-				<a class="uk-vertical-align" style="background-image: url(https://scontent-sin6-1.cdninstagram.com/t51.2885-15/e35/14624455_1651937268431126_8432737066684514304_n.jpg?ig_cache_key=MTM2MTQ5NDI2NDE5MzkxNjMyMA%3D%3D.2)">
+				<a class="uk-vertical-align" style="background-image: url(/frontend/img/img-m3.png)">
 					<div class="uk-vertical-align-middle">
 
 					</div>
 				</a>
 			</li>
 			<li>
-				<a class="uk-vertical-align" style="background-image: url(https://scontent-sin6-1.cdninstagram.com/t51.2885-15/e35/14478519_1752247551691686_1452266654825185280_n.jpg?ig_cache_key=MTM2MTM3Mjg3MDAyMTc4NzgwNA%3D%3D.2)">
+				<a class="uk-vertical-align" style="background-image: url(/frontend/img/img-m6.png)">
 					<div class="uk-vertical-align-middle">
 
 					</div>
 				</a>
 			</li>
 			<li>
-				<a class="uk-vertical-align" style="background-image: url(https://scontent-sin6-1.cdninstagram.com/t51.2885-15/e35/14606940_186909541717211_6510452349448749056_n.jpg?ig_cache_key=MTM1NzI4OTQ4NTkyNjI2ODkyNA%3D%3D.2)">
+				<a class="uk-vertical-align" style="background-image: url(/frontend/img/img-m5.png)">
 					<div class="uk-vertical-align-middle">
 
 					</div>

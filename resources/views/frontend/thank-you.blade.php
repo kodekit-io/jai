@@ -22,6 +22,20 @@
 <main class="ja-ticket">
     <div class="uk-container uk-container-center">
         <div class="ja-ticket__content uk-margin-bottom">
+
+            <h3 class="ja-alert-payment light-blue-text text-darken-4">
+                <span><i class="uk-icon-refresh white-text"></i></span>
+                YOUR ORDER HAS BEEN PLACED! PLEASE PAY FOR YOUR ORDER.
+            </h3>
+            <h3 class="ja-success-payment light-blue-text text-darken-4">
+                <span><i class="uk-icon-check white-text"></i></span>
+                SUCCESS PAYMENT MESSAGE
+            </h3>
+            <h3 class="ja-error-payment red-text">
+                <span><i class="uk-icon-close white-text"></i></span>
+                ERROR PAYMENT MESSAGE
+            </h3>
+            
             @if ($paymentType == 'creditCard')
                 <h3 class="light-blue-text text-darken-4">Your Payment Has been Successfully Completed</h3>
                 <h5>You will receive an email shortly which will contain the details of this transaction</h5>
