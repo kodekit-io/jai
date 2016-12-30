@@ -17,7 +17,21 @@
 <main class="ja-ticket">
     <div class="uk-container uk-container-center">
         <p>At vero eos et accusamus et iusto odio madeline dignis imosse ducma quisa. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dignis imosse ducma quisa cillum fugiat nulla pariatur excepteur sint exercitation ullamco accusamus et iusto cupidatat non proident.</p>
+        <div class="uk-width-1-1 uk-margin-bottom">
+            <h4 class="uk-margin-bottom-remove">UPPER LEVEL</h4>
+            <img class="uk-responsive-width" src="{!! asset('frontend/img/map-upper.png') !!}" />
+        </div>
 
+        <div class="uk-width-1-1 uk-margin-bottom">
+            <h4 class="uk-margin-bottom-remove">LOWER LEVEL</h4>
+            <img class="uk-responsive-width" src="{!! asset('frontend/img/map-lower.png') !!}" />
+        </div>
+
+        <div class="uk-width-1-1 uk-margin-bottom">
+            <img class="uk-responsive-width" src="{!! asset('frontend/img/map-legend.png') !!}" />
+        </div>
+
+        <?php /*
         <ul class="uk-subnav uk-subnav-line ja-bold" data-uk-switcher={connect:'#levels'}>
             <li>Level 1</li>
             <li>Level 2</li>
@@ -83,6 +97,7 @@
                 </li>
             </ul>
         </div>
+        */ ?>
 
         <div class="ja-ticket__content uk-margin-bottom">
             <h3 class="light-blue-text text-darken-4">VIEW PRINTABLE MAP</h3>
