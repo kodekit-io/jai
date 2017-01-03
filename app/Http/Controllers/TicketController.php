@@ -157,48 +157,4 @@ class TicketController extends Controller
         // return $pdf->download('eticket.pdf');
     }
 
-    public function generateBarcode()
-    {
-        echo DNS1D::getBarcodePNGPath("1612190000211", "EAN13");
-    }
-
-    public function cimbSignature()
-    {
-        return base64_encode(sha1('I5I4RTEikeIF0008757220000IDR', true));
-    }
-
-    public function checkStatus()
-    {
-        $client = new Client();
-        $mallId = config('payments.doku.mall_id');
-        $sharedKey = config('payments.doku.shared_key');
-        $chainMerchant = 'NA';
-        $transIdMerchant = '63';
-        $sessionId = 'vOQu7xOxKceF0KI2ucI8dNt0pLF6DZvb3Pc7loKE';
-        $words = sha1($mallId.$sharedKey.$transIdMerchant);
-
-        $data = "MALLID=".$mallId."&CHAINMERCHANT=".$chainMerchant."&TRANSIDMERCHANT=".$transIdMerchant."&SESSIONID=".$sessionId."&PAYMENTCHANNEL=&WORDS=".$words;
-
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, 'http://staging.doku.com/Suite/CheckStatus');
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 20);
-        curl_setopt($ch, CURLOPT_HEADER, false);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-        $output = curl_exec($ch);
-        $curl_errno = curl_errno($ch);
-        $curl_error = curl_error($ch);
-        curl_close($ch);
-
-        if ($curl_errno > 0)
-        {
-            #return "Stop : Connection Error";
-        }
-
-        libxml_use_internal_errors(true);
-        $xml = simplexml_load_string($output);
-
-        var_dump($xml);
-    }
 }

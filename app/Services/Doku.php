@@ -21,6 +21,11 @@ class Doku
      */
     private $dokuResponseCode;
 
+    const CANCELLED = 'cancelled';
+    const PENDING = 'pending';
+    const COMPLETED = 'completed';
+    const HOLD = 'on-hold';
+
     /**
      * Doku constructor.
      * @param Order $orderService
@@ -138,25 +143,26 @@ class Doku
                         && $trx['notifyType'] == "P"
                         && in_array($trx['paymentChannel'], $this->getAtmPaymentChannel()) ) {
                         $trx['message'] = "Notify process message come from DOKU. Success : completed";
-                        $status = "completed";
+                        $status = self::COMPLETED;
                     } if ( $trx['resultMessage'] == "SUCCESS"
                         && $trx['notifyType'] == "P" ) {
                         $trx['message'] = "Notify process message come from DOKU. Success : completed";
-                        $status = "completed";
+                        $status = self::COMPLETED;
                     } elseif ($trx['resultMessage'] == "FAILED"
                         && $trx['notify_type']=="P") {
                         $trx['message'] = "Notify process message come from DOKU. Transaction failed : canceled";
-                        $status = "cancelled";
+                        $status = self::CANCELLED;
                     } elseif ( $trx['notify_type']=="V" ) {
                         $trx['message'] = "Notify process message come from DOKU. Void by EDU : canceled";
-                        $status = "cancelled";
+                        $status = self::CANCELLED;
                     } else {
                         $trx['message'] = "Notify process message come from DOKU, use default rule : canceled";
-                        $status = "cancelled";
+                        $status = self::CANCELLED;
                     }
                     $trx['processType'] = 'NOTIFY';
                     $this->saveDokuCheckout($trx);
                     // update status, send email, etc
+                    $this->updateOrderStatus($trx['orderId'], $status);
                     return 'Continue';
                 } else {
                     return 'Stop : Invalid Request';
@@ -175,17 +181,17 @@ class Doku
         $trx['amount'] = ( $request->has('AMOUNT') ? $request->get('AMOUNT') : '' );
         $trx['orderId'] = ( $request->has('TRANSIDMERCHANT') ? $request->get('TRANSIDMERCHANT') : '' );
         $trx['statusCode'] = ( $request->has('STATUSCODE') ? $request->get('STATUSCODE') : '' );
+        $trx['processType'] = 'REDIRECT';
         $wordsGenerated = sha1($trx['amount'] . $this->sharedKey . $trx['orderId'] . $trx['statusCode']);
         if ( $trx['words'] == $wordsGenerated ) {
             $trx['paymentChannel'] = ( $request->has('PAYMENTCHANNEL') ? $request->get('PAYMENTCHANNEL') : '' );
             $trx['paymentCode'] = ( $request->has('PAYMENTCODE') ? $request->get('PAYMENTCODE') : '' );
             $trx['sessionId'] = ( $request->has('SESSIONID') ? $request->get('SESSIONID') : '' );
             $trx['ipAddress'] = $request->ip();
-            $trx['processType'] = 'REDIRECT';
             // skip notify if using atm / alfa / va
             if ( in_array($trx['paymentChannel'], $this->getAtmPaymentChannel()) && $trx['statusCode'] == "5511" ) {
                 $trx['message'] = "Redirect process come from DOKU. Transaction is pending for payment";
-                $status = "on-hold";
+                $trx['status'] = self::HOLD;
                 // atm transfer succeed
                 // action here
             } else {
@@ -204,43 +210,43 @@ class Doku
 
                 if ( $result < 1 ) {
                     $checkStatusResult = $this->checkStatus($trx);
+
                     if ( $checkStatusResult == 'SUCCESS' ) {
                         $trx['message'] = "Redirect process with no notify message come from DOKU. Transaction is Success. Please check on Back Office.";
-                        $status = "completed";
-                        // check status succeed
-                        // action here
+                        $trx['status'] = self::COMPLETED;
                     } else {
                         if ( $trx['statusCode'] == "0000" && $checkStatusResult == "NOT SUPPORT" ) {
                             $trx['message'] = "Redirect process with no notify message come from DOKU. Transaction got Success Status Code. Please check on Back Office.";
-                            $status = "pending";
-                            // check status failed, redirect status SUCCESS
-                            // action here
+                            $trx['status'] = self::PENDING;
                         } else {
                             $trx['message'] = "Redirect process with no notify message come from DOKU. Transaction is Failed. Please check on Back Office.";
-                            $status = "cancelled";
-                            // check status failed, redirect status failed
-                            // action here
+                            $trx['status'] = self::CANCELLED;
+                            $trx['errorMessage'] = $this->getDokuResponse($trx['statusCode']);
                         }
                     }
                 } else {
                     if ( $trx['statusCode'] == "0000" ) {
                         $trx['message'] = "Redirect process message come from DOKU with succeed notify. Transaction is Success";
-                        $status = "completed";
-                        // redirect status succeed, notify succeed
-                        // action here
+                        $trx['status'] = self::COMPLETED;
                     } else {
                         $trx['message'] = "Redirect process message come from DOKU with failed notify. Transaction is Failed";
-                        $status = "cancelled";
-                        // redirect message failed, notify succeed
-                        // action here
+                        $trx['status'] = self::CANCELLED;
+                        $trx['errorMessage'] = $this->getDokuResponse($trx['statusCode']);
                     }
                 }
-
-
             }
         } else {
             // invalid request
+            $trx['message'] = 'Invalid signature. Transaction is Failed';
+            $trx['errorMessage'] = 'Invalid signature. Transaction is Failed';
+            $trx['status'] = self::CANCELLED;
         }
+
+        $this->updateOrderStatus($trx['orderId'], $trx['status']);
+        $this->saveDokuCheckout($trx);
+
+        return $trx;
+
     }
 
     public function checkDokuResult(Request $request)
@@ -351,6 +357,7 @@ class Doku
         $data['status_code'] = ( isset($datas['statusCode']) ? $datas['statusCode'] : '' );
         $data['result_msg'] = ( isset($datas['resultMsg']) ? $datas['resultMsg'] : '' );
         $data['payment_channel'] = ( isset($datas['paymentChannel']) ? $datas['paymentChannel'] : '' );
+        $data['payment_datetime'] = ( isset($datas['paymentDateTime']) ? $datas['paymentDateTime'] : NULL );
         $data['payment_code'] = ( isset($datas['paymentCode']) ? $datas['paymentCode'] : '' );
         $data['words'] = ( isset($datas['words']) ? $datas['words'] : '' );
         $data['session_id'] = ( isset($datas['sessionId']) ? $datas['sessionId'] : '' );
@@ -439,6 +446,7 @@ class Doku
 
         if ( $xml )
         {
+//             var_dump($xml); exit();
             $trx['ipAddress'] = request()->ip();
             $trx['processType'] = "CHECKSTATUS";
             $trx['orderId'] = (string) $xml->TRANSIDMERCHANT;
@@ -456,18 +464,24 @@ class Doku
             $trx['verifyId'] = (string) $xml->VERIFYID;
             $trx['verifyScore'] = (int) $xml->VERIFYSCORE;
             $trx['verifyStatus'] = (string) $xml->VERIFYSTATUS;
+            $trx['message'] = 'Checking payment status from doku.';
 
             # Insert transaction check status to table onecheckout
             $this->saveDokuCheckout($trx);
 
-            if ( $trx['payment_channel'] <> '01'  )
+            if (! in_array($trx['paymentChannel'], ['01','15'])  )
             {
                 return "NOT SUPPORT";
             }
 
-            return $xml->RESULTMSG;
+            return (string) $xml->RESULTMSG;
         } else {
             return 'Failed';
         }
+    }
+
+    private function updateOrderStatus($orderId, $status)
+    {
+        $this->orderService->updateStatus($orderId, $status);
     }
 }

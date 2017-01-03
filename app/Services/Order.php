@@ -89,4 +89,27 @@ class Order
     {
         return OrderModel::find($orderId);
     }
+
+    public function updateStatus($orderId, $statusDesc)
+    {
+        switch ($statusDesc) {
+            case 'completed':
+                $status = 1;
+                break;
+            case 'on-hold':
+                $status = 2;
+                break;
+            case 'pending':
+                $status = 3;
+                break;
+            case 'cancelled':
+                $status = 9;
+                break;
+        }
+
+        $order = $this->getOrderById($orderId);
+        $order->status = $status;
+        $order->status_description = $statusDesc;
+        $order->save();
+    }
 }
