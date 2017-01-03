@@ -37,10 +37,10 @@
                 {{--</li>--}}
             {{--</ul>--}}
         {{--</div>--}}
-        {{--<div class="ja-about__content white uk-text-center uk-margin-bottom">--}}
+        <div class="ja-about__content white uk-text-center uk-margin-bottom">
             {{--<h3 class="ja-title ja-title__alt light-blue-text text-darken-4 uk-text-center">Our Story</h3>--}}
-            {{--<p>{!! $ourStory->meta_value !!}</p>--}}
-        {{--</div>--}}
+            <p>{!! $ourStory->meta_value !!}</p>
+        </div>
         <div class="ja-about__content light-blue darken-4 white-text uk-text-center uk-margin-large-bottom">
             <h3 class="ja-title ja-title__alt amber-text text-darken-1 uk-text-center">Contact Us</h3>
             <p>

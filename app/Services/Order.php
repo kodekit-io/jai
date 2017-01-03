@@ -68,15 +68,17 @@ class Order
 
         foreach ($details['orders'] as $orderDetail) {
             $packageId = $orderDetail['packageId'];
-            $package = PackageModel::find($packageId);
-            $order->details()->create([
-                'product_id' => $packageId,
-                'galasys_product_id' => $orderDetail['productCode'],
-                'product_name' => $orderDetail['packageName'],
-                'price' => $orderDetail['price'],
-                'qty' => $orderDetail['qty'],
-                'total_price' => $orderDetail['total']
-            ]);
+//            $package = PackageModel::find($packageId);
+            if ($orderDetail['qty'] > 0) {
+                $order->details()->create([
+                    'product_id' => $packageId,
+                    'galasys_product_id' => $orderDetail['productCode'],
+                    'product_name' => $orderDetail['packageName'],
+                    'price' => $orderDetail['price'],
+                    'qty' => $orderDetail['qty'],
+                    'total_price' => $orderDetail['total']
+                ]);
+            }
         }
 
         return $order;
@@ -86,5 +88,28 @@ class Order
     public function getOrderById($orderId)
     {
         return OrderModel::find($orderId);
+    }
+
+    public function updateStatus($orderId, $statusDesc)
+    {
+        switch ($statusDesc) {
+            case 'completed':
+                $status = 1;
+                break;
+            case 'on-hold':
+                $status = 2;
+                break;
+            case 'pending':
+                $status = 3;
+                break;
+            case 'cancelled':
+                $status = 9;
+                break;
+        }
+
+        $order = $this->getOrderById($orderId);
+        $order->status = $status;
+        $order->status_description = $statusDesc;
+        $order->save();
     }
 }

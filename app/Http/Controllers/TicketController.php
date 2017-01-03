@@ -12,6 +12,7 @@ use App\Service\Package;
 use App\Service\Payment;
 use App\Service\Post;
 use DNS1D;
+use GuzzleHttp\Client;
 use PDF;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -156,8 +157,4 @@ class TicketController extends Controller
         // return $pdf->download('eticket.pdf');
     }
 
-    public function generateBarcode()
-    {
-        echo DNS1D::getBarcodePNGPath("1612190000211", "EAN13");
-    }
 }

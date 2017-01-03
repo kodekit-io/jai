@@ -18,8 +18,11 @@
     <main class="ja-ticket">
         <div class="uk-container uk-container-center">
             <div class="ja-ticket__content uk-margin-bottom">
-                <h3 class="light-blue-text text-darken-4">Transaction Failed</h3>
-                <h5>{!! $message !!}</h5>
+                <h3 class="ja-error-payment red-text">
+                    <span><i class="uk-icon-close white-text"></i></span>
+                    Your Transaction is Failed.
+                </h3>
+                <h5>{!! $errorMessage !!}</h5>
                 <a href="{!! lang_url('') !!}" class="uk-button uk-button-large amber darken-1 light-blue-text text-darken-4">Back to Homepage</a>
             </div>
         </div>

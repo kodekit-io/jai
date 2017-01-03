@@ -38,8 +38,8 @@ class PaymentController extends Controller
     public function dokuResult(Request $request)
     {
 //        var_dump($request->all()); exit();
-        $result = $this->dokuService->checkDokuResult($request);
-        if ($result['message'] == 'SUCCEED') {
+        $result = $this->dokuService->dokuRedirect($request);
+        if ($result['status'] == 'completed' || $result['status'] == 'on-hold') {
             return view('frontend.thank-you', $result);
         } else {
             return view('frontend.transaction-failed', $result);
@@ -48,12 +48,7 @@ class PaymentController extends Controller
 
     public function dokuNotify(Request $request)
     {
-        $notify = $this->dokuService->dokuNotify($request);
-        if ($notify) {
-            return 'CONTINUE';
-        }
-
-        return 'STOP';
+        return $this->dokuService->dokuNotify($request);
     }
 
     public function dokuIdentify(Request $request)
@@ -69,11 +64,6 @@ class PaymentController extends Controller
     public function cimbResult(Request $request)
     {
         var_dump($request->all());
-    }
-
-    public function dokuWords()
-    {
-        echo sha1('291500.00' . 'XFHblFdq2316' . '28' . '0000');
     }
 
 }
