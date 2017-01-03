@@ -70,15 +70,15 @@
                         </div>
                     </div>
 
-                    <form id="bookForm" class="uk-form uk-margin-top uk-margin-bottom" method="post" action="{!! lang_url('book-detail') !!}">
-                        {!! csrf_field() !!}
-                        <div class="uk-form-row">
-                            <label for="visit_date"><i class="uk-icon-calendar"></i>Visit Date</label>
-                            <input id="visit_date" name="visit_date" type="text" data-uk-datepicker="{format:'dddd, DD-MM-YYYY'}" required>
-                        </div>
-                        <div class="uk-form-row">
-                            <h4 class="cyan-text text-darken-1">Admission Package</h4>
-                            <div class="uk-grid uk-grid-small uk-grid-match packages" data-uk-grid-match data-uk-grid-margin>
+                    {{--<form id="bookForm" class="uk-form uk-margin-top uk-margin-bottom" method="post" action="{!! lang_url('book-detail') !!}">--}}
+                        {{--{!! csrf_field() !!}--}}
+                        {{--<div class="uk-form-row">--}}
+                            {{--<label for="visit_date"><i class="uk-icon-calendar"></i>Visit Date</label>--}}
+                            {{--<input id="visit_date" name="visit_date" type="text" data-uk-datepicker="{format:'dddd, DD-MM-YYYY'}" required>--}}
+                        {{--</div>--}}
+                        {{--<div class="uk-form-row">--}}
+                            {{--<h4 class="cyan-text text-darken-1">Admission Package</h4>--}}
+                            {{--<div class="uk-grid uk-grid-small uk-grid-match packages" data-uk-grid-match data-uk-grid-margin>--}}
                                 {{--@foreach($generalPackages as $package)--}}
                                 {{--<div class="uk-width-medium-1-3">--}}
                                     {{--<div class="uk-panel-box {!! $package->color !!} white-text">--}}
@@ -114,31 +114,31 @@
                                         {{--<input type="number" class="right" value="0">--}}
                                     {{--</div>--}}
                                 {{--</div>--}}
-                            </div>
-                        </div>
+                            {{--</div>--}}
+                        {{--</div>--}}
 
-                        <div class="uk-form-row infant-info uk-hidden">
-                            <h4>* Admissions for infants under 2 years old is free</h4>
-                        </div>
+                        {{--<div class="uk-form-row infant-info uk-hidden">--}}
+                            {{--<h4>* Admissions for infants under 2 years old is free</h4>--}}
+                        {{--</div>--}}
 
                         {{--<div class="uk-form-row">--}}
                             {{--<label for="promo"><i class="uk-icon-tag"></i>Promo</label>--}}
                             {{--<input id="promo" type="text" placeholder="Coupon code / membership code">--}}
                         {{--</div>--}}
 
-                        <h4 class="cyan-text text-darken-1">Personal Identification</h4>
-                        <div class="uk-form-row uk-margin-remove">
-                            <label for="order_name">Full Name</label>
-                            <input id="" type="text" value="" name="order_name" placeholder="Input your name" required>
-                        </div>
-                        <div class="uk-form-row uk-margin-remove">
-                            <label for="order_email">Email</label>
-                            <input id="" type="text" value="" name="order_email" placeholder="Input your email" required>
-                        </div>
-                        <div class="uk-form-row uk-margin-remove">
-                            <label for="order_phone">Phone Number</label>
-                            <input id="" type="text" value="" name="order_phone" placeholder="Input your phone" required>
-                        </div>
+                        {{--<h4 class="cyan-text text-darken-1">Personal Identification</h4>--}}
+                        {{--<div class="uk-form-row uk-margin-remove">--}}
+                            {{--<label for="order_name">Full Name</label>--}}
+                            {{--<input id="" type="text" value="" name="order_name" placeholder="Input your name" required>--}}
+                        {{--</div>--}}
+                        {{--<div class="uk-form-row uk-margin-remove">--}}
+                            {{--<label for="order_email">Email</label>--}}
+                            {{--<input id="" type="text" value="" name="order_email" placeholder="Input your email" required>--}}
+                        {{--</div>--}}
+                        {{--<div class="uk-form-row uk-margin-remove">--}}
+                            {{--<label for="order_phone">Phone Number</label>--}}
+                            {{--<input id="" type="text" value="" name="order_phone" placeholder="Input your phone" required>--}}
+                        {{--</div>--}}
                         {{--<div class="uk-form-row uk-margin-remove">--}}
                             {{--<label for="">Address</label>--}}
                             {{--<input id="" type="text" value="" name="order_address" placeholder="Input your address">--}}
@@ -151,18 +151,18 @@
                             {{--<label for="">Country</label>--}}
                             {{--<input id="" type="text" value="" name="order_country" placeholder="Input your country">--}}
                         {{--</div>--}}
-                        <div class="uk-form-row agree">
-                            <h5 class="uk-margin-bottom-remove">Terms &amp; Conditions <span>(<a href="#!">read</a>)</span></h5>
-                            <p class="uk-margin-top-remove">
-                                <input name="agree" type="checkbox" class="ja-check" required>
-                                <label class="no-style" for="agree">I have read and accepted the Terms and Conditions of Use.</label>
-                            </p>
-                        </div>
+                        {{--<div class="uk-form-row agree">--}}
+                            {{--<h5 class="uk-margin-bottom-remove">Terms &amp; Conditions <span>(<a href="#!">read</a>)</span></h5>--}}
+                            {{--<p class="uk-margin-top-remove">--}}
+                                {{--<input name="agree" type="checkbox" class="ja-check" required>--}}
+                                {{--<label class="no-style" for="agree">I have read and accepted the Terms and Conditions of Use.</label>--}}
+                            {{--</p>--}}
+                        {{--</div>--}}
 
-                        <div class="uk-form-row">
-                            <button type="submit" class="uk-button uk-button-large amber darken-1 light-blue-text text-darken-4">Book Now</button>
-                        </div>
-                    </form>
+                        {{--<div class="uk-form-row">--}}
+                            {{--<button type="submit" class="uk-button uk-button-large amber darken-1 light-blue-text text-darken-4">Book Now</button>--}}
+                        {{--</div>--}}
+                    {{--</form>--}}
                 </div>
 
                 {{--<h3 class="uk-accordion-title">5D THEATER PACKAGE</h3>--}}
