@@ -133,6 +133,7 @@ class TicketController extends Controller
         $data['cimbUrl'] = $cimbUrl;
         $data['cimbParams'] = $cimbParams;
 
+        $data['visitDate'] = Carbon::createFromFormat('Y-m-d', $order->visit_date)->format('l, d-M-Y');
         $data['details'] = $order->details;
         $data['subTotal'] = $order->sub_total;
         $data['tax'] = $order->tax;

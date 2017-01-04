@@ -35,7 +35,7 @@
             <form class="uk-form uk-margin-top">
             <div class="uk-form-row uk-margin-remove">
                 <label for="">Date of Visit</label>
-                <input id="" type="text" value="Tuesday, 01-11-2016" disabled="true">
+                <input id="" type="text" value="{!! $visitDate !!}" disabled="true">
             </div>
             <div class="uk-form-row uk-margin-remove">
                 <label for="">Admission</label>
