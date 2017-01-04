@@ -145,16 +145,32 @@ class TicketController extends Controller
 
     public function sendEmail()
     {
-        Mail::to('pasha.md5@gmail.com')->send(new OrderCompleted());
+        $order = $this->orderService->getOrderById(85);
+        Mail::to('pasha.md5@gmail.com')->send(new OrderCompleted($order));
     }
 
     public function generatePdf()
     {
         $data['barcode'] = DNS1D::getBarcodePNGPath("1612190000211", "EAN13", 2.5, 40);
-        $pdf = PDF::loadView('emails.order-completed', $data);
+        $pdf = PDF::loadView('emails.e_ticket', $data);
         $pdf->setPaper('A4', 'landscape');
         return $pdf->stream('eticket.pdf');
         // return $pdf->download('eticket.pdf');
+    }
+
+    public function galasysOrder()
+    {
+        $orderDetails = $this->galasys->getTickets(83);
+        foreach ($orderDetails as $orderDetail) {
+            $tickets = $orderDetail->Tickets;
+            foreach ($tickets as $ticket) {
+                $barcode = $ticket->TicketBarcode;
+                $ticketName = $ticket->TicketName;
+                $code = $ticket->ItemCode;
+
+                echo $code.'---'.$ticketName.'---'.$barcode."<br>";
+            }
+        }
     }
 
 }

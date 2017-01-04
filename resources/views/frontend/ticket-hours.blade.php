@@ -25,49 +25,49 @@
                 <div class="">
                     <p>{!! $post->content !!}</p>
 
-                    <div class="uk-panel uk-panel-box cyan darken-1 white-text noborder uk-margin-bottom">
-                        <div class="uk-grid">
-                            <div class="uk-width-medium-2-3">
-                                <h4 class="white-text">REGULAR</h4>
-                                Aquarium Admission
-                            </div>
-                            <div class="uk-width-medium-1-3">
-                                Monday - Friday (Weekday):<br><span class="ja-bold">IDR 220.000</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="uk-panel uk-panel-box grey darken-1 white-text noborder uk-margin-bottom">
-                        <div class="uk-grid">
-                            <div class="uk-width-medium-2-3">
-                                <h4 class="white-text">EXLCUSIVE</h4>
-                                Aquarium Admission, 5D Theater, Printed Photo Souvenir, and Multiple Entry within Four Hour.
-                            </div>
-                            <div class="uk-width-medium-1-3">
-                                Monday - Friday (Weekday):<br><span class="ja-bold">IDR 275.000</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="uk-panel uk-panel-box amber darken-2 white-text noborder uk-margin-bottom">
-                        <div class="uk-grid">
-                            <div class="uk-width-medium-2-3">
-                                <h4 class="white-text">PREMIUM</h4>
-                                Aquarium Admission, 5D Theater, and Printed Photo Souvenir.
-                            </div>
-                            <div class="uk-width-medium-1-3">
-                                Saturday - Sunday (Weekend):<br><span class="ja-bold">IDR 290.000</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="uk-panel uk-panel-box light-blue darken-4 white-text noborder uk-margin-bottom">
-                        <div class="uk-grid">
-                            <div class="uk-width-medium-2-3">
-                                <h4 class="white-text">ULTIMATE</h4>
-                                Aquarium Admission, 5D Theater,Seatrek/Dive, Shark/piranha Feeding, Fast Lane to Enter 5D Theater, Front Seat on Underwater Theater Show, Premium Seat in Pingoo Restaurant, 0% Installment (Terms and condition apply), and Multiple Entry within Four Hours.
-                            </div>
-                            <div class="uk-width-medium-1-3">
-                                Monday - Sunday:<br><span class="ja-bold">IDR 550.000</span>
-                            </div>
-                        </div>
+                    {{--<div class="uk-panel uk-panel-box cyan darken-1 white-text noborder uk-margin-bottom">--}}
+                        {{--<div class="uk-grid">--}}
+                            {{--<div class="uk-width-medium-2-3">--}}
+                                {{--<h4 class="white-text">REGULAR</h4>--}}
+                                {{--Aquarium Admission--}}
+                            {{--</div>--}}
+                            {{--<div class="uk-width-medium-1-3">--}}
+                                {{--Monday - Friday (Weekday):<br><span class="ja-bold">IDR 220.000</span>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    {{--<div class="uk-panel uk-panel-box grey darken-1 white-text noborder uk-margin-bottom">--}}
+                        {{--<div class="uk-grid">--}}
+                            {{--<div class="uk-width-medium-2-3">--}}
+                                {{--<h4 class="white-text">EXLCUSIVE</h4>--}}
+                                {{--Aquarium Admission, 5D Theater, Printed Photo Souvenir, and Multiple Entry within Four Hour.--}}
+                            {{--</div>--}}
+                            {{--<div class="uk-width-medium-1-3">--}}
+                                {{--Monday - Friday (Weekday):<br><span class="ja-bold">IDR 275.000</span>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    {{--<div class="uk-panel uk-panel-box amber darken-2 white-text noborder uk-margin-bottom">--}}
+                        {{--<div class="uk-grid">--}}
+                            {{--<div class="uk-width-medium-2-3">--}}
+                                {{--<h4 class="white-text">PREMIUM</h4>--}}
+                                {{--Aquarium Admission, 5D Theater, and Printed Photo Souvenir.--}}
+                            {{--</div>--}}
+                            {{--<div class="uk-width-medium-1-3">--}}
+                                {{--Saturday - Sunday (Weekend):<br><span class="ja-bold">IDR 290.000</span>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    {{--<div class="uk-panel uk-panel-box light-blue darken-4 white-text noborder uk-margin-bottom">--}}
+                        {{--<div class="uk-grid">--}}
+                            {{--<div class="uk-width-medium-2-3">--}}
+                                {{--<h4 class="white-text">ULTIMATE</h4>--}}
+                                {{--Aquarium Admission, 5D Theater,Seatrek/Dive, Shark/piranha Feeding, Fast Lane to Enter 5D Theater, Front Seat on Underwater Theater Show, Premium Seat in Pingoo Restaurant, 0% Installment (Terms and condition apply), and Multiple Entry within Four Hours.--}}
+                            {{--</div>--}}
+                            {{--<div class="uk-width-medium-1-3">--}}
+                                {{--Monday - Sunday:<br><span class="ja-bold">IDR 550.000</span>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
                     </div>
 
                     <form id="bookForm" class="uk-form uk-margin-top uk-margin-bottom" method="post" action="{!! lang_url('book-detail') !!}">

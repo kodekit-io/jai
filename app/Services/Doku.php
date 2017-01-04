@@ -177,6 +177,7 @@ class Doku
 
     public function dokuRedirect(Request $request)
     {
+        // var_dump($request->all()); exit();
         $trx['words'] = ( $request->has('WORDS') ? $request->get('WORDS') : '' );
         $trx['amount'] = ( $request->has('AMOUNT') ? $request->get('AMOUNT') : '' );
         $trx['orderId'] = ( $request->has('TRANSIDMERCHANT') ? $request->get('TRANSIDMERCHANT') : '' );
@@ -409,7 +410,7 @@ class Doku
 
     private function getAtmPaymentChannel()
     {
-        return [5, '05', 14];
+        return ['5', '05', '14', '21', '22'];
     }
 
     private function checkStatus($trx)

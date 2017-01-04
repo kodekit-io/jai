@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use App\Models\GalasysTicket;
 use App\Models\Order as OrderModel;
 use App\Models\Package as PackageModel;
 use Carbon\Carbon;
@@ -102,6 +103,12 @@ class Order
             case 'pending':
                 $status = 3;
                 break;
+            case 'barcode-generated':
+                $status = 4;
+                break;
+            case 'email-sent':
+                $status = 5;
+                break;
             case 'cancelled':
                 $status = 9;
                 break;
@@ -112,4 +119,10 @@ class Order
         $order->status_description = $statusDesc;
         $order->save();
     }
+
+    public function getPaidOrder()
+    {
+        return OrderModel::where('status', 1)->get();
+    }
+
 }
