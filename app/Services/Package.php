@@ -215,10 +215,15 @@ class Package
         return $query->get();
     }
 
+    public function getAllPackages()
+    {
+        return $this->galasys->getProducts();
+    }
+
     public function getAvailablePackages($visitDateRequest)
     {
         $visitDate = Carbon::createFromFormat('l, d-m-Y', $visitDateRequest)->format('Y-m-d');
-        $isHoliday = $this->holidayService->isHoliday($visitDate);
+        $isHoliday = $this->isHoliday($visitDate);
         $galasysProducts = $this->galasys->getProducts();
         $packages = '';
         $colors = [
@@ -256,9 +261,25 @@ class Package
         }
 
         if ($packages == '') {
-            $packages = '<h4>Sorry, there is no ticket</h4>';
+            $packages = '0';
         }
 
         return $packages;
+    }
+
+    public function isHoliday($date)
+    {
+        $visitDate = Carbon::createFromFormat('Y-m-d', $date);
+        if ($visitDate->isWeekend()) {
+            return true;
+        }
+
+        $galasysHolidays = $this->galasys->getHolidays();
+        $visitDate = $visitDate->format('d/m/Y');
+        if (in_array($visitDate, $galasysHolidays)) {
+            return true;
+        }
+
+        return false;
     }
 }

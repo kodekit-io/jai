@@ -43,6 +43,19 @@ class Galasys
         return $content;
     }
 
+    public function getHolidays()
+    {
+        $headers = [
+            'Authorization' => $this->getAuthorizationCode(),
+            'Content-Type' => 'application/json'
+        ];
+        $request = new Request('GET', '/api/Holidays', $headers);
+        $response = $this->client->send($request);
+        $content = $this->parseResponse($response);
+
+        return $content;
+    }
+
     public function getTickets($orderId)
     {
         $order = $this->orderService->getOrderById($orderId);

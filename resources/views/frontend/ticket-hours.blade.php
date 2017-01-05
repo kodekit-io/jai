@@ -78,8 +78,31 @@
                         </div>
                         <div class="uk-form-row">
                             <h4 class="cyan-text text-darken-1">Admission Package</h4>
+                            <div class="all-packages">
+                            @foreach($galasysProducts as $galasysProduct)
+                                <?php
+                                $description = $galasysProduct->Description;
+                                $itemCode = $galasysProduct->ItemCode;
+                                $ticketId = $galasysProduct->TicketID;
+                                $isPackage = $galasysProduct->IsPackage;
+                                $price = $galasysProduct->BasePrice;
+                                ?>
+                                <div class="uk-panel uk-panel-box {!! $colors[$loop->index] !!} white-text noborder uk-margin-bottom">
+                                    <div class="uk-grid">
+                                        <div class="uk-width-medium-2-3">
+                                            <h4 class="white-text">{!! strtoupper($description) !!}</h4>
+                                            {{--Aquarium Admission--}}
+                                        </div>
+                                        <div class="uk-width-medium-1-3">
+                                            Monday - Friday (Weekday):<br><span class="ja-bold">IDR {!! number_format($price, 0) !!}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                            </div>
+
                             <div class="uk-grid uk-grid-small uk-grid-match packages" data-uk-grid-match data-uk-grid-margin>
-                                {{--@foreach($generalPackages as $package)--}}
+                                {{--@foreach($galasysProducts as $galasysProduct)--}}
                                 {{--<div class="uk-width-medium-1-3">--}}
                                     {{--<div class="uk-panel-box {!! $package->color !!} white-text">--}}
                                         {{--<h4 class="white-text uk-margin-remove">{!! $package->title !!}</h4>--}}
@@ -114,7 +137,7 @@
                                         {{--<input type="number" class="right" value="0">--}}
                                     {{--</div>--}}
                                 {{--</div>--}}
-                            </div>
+                            {{--</div>--}}
                         </div>
 
                         <div class="uk-form-row infant-info uk-hidden">
@@ -209,6 +232,7 @@
                     url: ajaxUrl,
                     data: { visit_date: visitDate, _token: "{!! csrf_token() !!}" },
                     beforeSend : function(xhr) {
+                        $('.all-packages').hide();
                         $('.packages').block({
                             message: '<img src="{!! asset('frontend/img/spinner.gif') !!}" class="preloader">',
                             css: { border: 'none', zIndex: 100, width: 50, height: 50 },
@@ -220,7 +244,13 @@
                     }
                 }).done(function (data) {
                     // console.log(data);
-                    jQuery('.packages').html(data);
+                    if (data == '0') {
+                        $('.all-packages').show();
+                        jQuery('.packages').html('<h4>Sorry, there is no ticket</h4>');
+                    } else {
+                        jQuery('.packages').html(data);
+                    }
+
                 });
             }
             var errorCounter = 0;

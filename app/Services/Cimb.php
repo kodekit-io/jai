@@ -89,6 +89,8 @@ class Cimb
 
         if ($generatedSignature == $trx['signature']) {
             if ($trx['status'] == '1') {
+                // double check with requery
+                // $status = $this->checkStatus($trx);
                 $trx['message'] = 'Transaction is succeed';
                 $trx['errorMessage'] = '';
                 $trx['orderStatus'] = self::COMPLETED;

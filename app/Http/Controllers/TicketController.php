@@ -96,12 +96,27 @@ class TicketController extends Controller
         ];
         $postWithDetail = $this->postService->getPostsWithDetail($params)->first();
 
+        $galasysProducts = $this->packageService->getAllPackages();
+
         $post = $this->postService->getPost(['id' => $pageId]);
         $openingHours = $post->metas()->where('meta_key', 'openingHours-' . $lang)->first();
 
+        $colors = [
+            'cyan darken-1',
+            'grey darken-1',
+            'light-blue darken-4',
+            'amber darken-1',
+            'cyan darken-1',
+            'grey darken-1',
+            'light-blue darken-4',
+            'amber darken-1'
+        ];
+
+        $data['galasysProducts'] = $galasysProducts;
         $data['pageTitle'] = $postWithDetail->title;
         $data['post'] = $postWithDetail;
         $data['openingHours'] = $openingHours;
+        $data['colors'] = $colors;
 
         return view('frontend.ticket-hours', $data);
     }
@@ -172,6 +187,11 @@ class TicketController extends Controller
                 echo $code.'---'.$ticketName.'---'.$barcode."<br>";
             }
         }
+    }
+
+    public function galasysHolidays()
+    {
+        var_dump($this->galasys->getHolidays()); exit();
     }
 
 }
