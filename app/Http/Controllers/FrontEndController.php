@@ -102,6 +102,16 @@ class FrontEndController extends Controller
         ];
         $sliders = $this->sliderService->getSliderWithItems($sliderParams);
 
+        // manual content
+        switch ($lang) {
+            case 'en':
+                $data['getTheApp'] = 'Be the first to receive latest update from Jakarta Aquarium. Download the app';
+                break;
+            default:
+                $data['getTheApp'] = 'Jadilah orang pertama yang mendapatkan info terupdate dari Jakarta Aquarium. Download aplikasinya sekarang juga!';
+                break;
+        }
+
         $sightSeeing = $this->postService->getPost(['id' => config('misc.statics.sightseeing')]);
         $sightSeeingDetail = $sightSeeing->details()->where('lang', $lang)->first();
         $data['sightseeingContent'] = $sightSeeingDetail->content;
