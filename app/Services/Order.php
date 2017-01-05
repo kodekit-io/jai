@@ -104,6 +104,9 @@ class Order
     public function updateStatus($orderId, $statusDesc)
     {
         switch ($statusDesc) {
+            case 'open':
+                $status = 0;
+                break;
             case 'completed':
                 $status = 1;
                 break;
