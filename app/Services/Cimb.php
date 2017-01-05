@@ -52,7 +52,7 @@ class Cimb
         $params = [
             'MerchantCode' => $this->merchantCode,
             'RefNo' => $trx['orderId'],
-            'Amount' => $trx['amount'],
+            'Amount' => $trx['amount'].'00',
             'Currency' => $trx['currency'],
             'ProdDesc' => 'Jakarta Aquarium Ticket',
             'UserName' => $order->name,
