@@ -177,7 +177,7 @@ class Doku
 
     public function dokuRedirect(Request $request)
     {
-        var_dump($request->all()); exit();
+//        var_dump($request->all()); exit();
         $trx['words'] = ( $request->has('WORDS') ? $request->get('WORDS') : '' );
         $trx['amount'] = ( $request->has('AMOUNT') ? $request->get('AMOUNT') : '' );
         $trx['orderId'] = ( $request->has('TRANSIDMERCHANT') ? $request->get('TRANSIDMERCHANT') : '' );
