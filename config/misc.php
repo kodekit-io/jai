@@ -12,6 +12,7 @@ return [
         'term-of-use' => 90,
         'sightseeing' => 91,
         'ticket-hours' => 96,
-        'location' => 97
+        'location' => 97,
+        'showtime' => 98
     ]
 ];

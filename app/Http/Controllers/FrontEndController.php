@@ -152,14 +152,29 @@ class FrontEndController extends Controller
 
     public function showTime($lang)
     {
+        $pageParams = [
+            'lang' => $lang,
+            'id' => config('misc.statics.showtime')
+        ];
+        $postWithDetail = $this->postService->getPostsWithDetail($pageParams)->first();
+
+        $sliderParams = [
+            'id' => 7,
+            'lang' => $lang,
+        ];
+        $sliders = $this->sliderService->getSliderWithItems($sliderParams);
+
         $params = [
             'lang' => $lang
         ];
         $shows = $this->showTimeService->getShowsWithDetails($params)->get();
+
         $data['shows'] = $shows;
         $data['lang'] = $lang;
-
-        $data['pageTitle'] = 'Show Time';
+        $data['pageTitle'] = $postWithDetail->title;
+        $data['metaDesc'] = get_meta_description($postWithDetail->id, $lang);
+        $data['page'] = $postWithDetail;
+        $data['sliders'] = $sliders;
 
         return view('frontend.showtime', $data);
     }

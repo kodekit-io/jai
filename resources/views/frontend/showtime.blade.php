@@ -1,20 +1,23 @@
 @extends('layouts.default')
 @section('content')
 
-<header class="ja-header-showtime" style="background-image: url({!! asset('frontend/img/showtime-header.jpg') !!})">
+@foreach($sliders as $slider)
+<header class="ja-header-showtime" style="background-image: url({!! url('images/original/' . $slider->file_name) !!})">
     <div class="uk-container uk-container-center">
         <div class="ja-overlay"></div>
         <div class="ja-showtime-intro">
-            <h2 class="ja-title ja-title__large white-text">PEARL OF THE SOUTH SEA</h2>
-            <p>Lorem Ipsum Dolore Sit Art Department,<br>Doe Fugiat on August 20th-28th, 2016</p>
+            <h2 class="ja-title ja-title__large white-text">{!! $slider->title !!}</h2>
+            <p>{!! $slider->content !!}</p>
         </div>
     </div>
     @include('includes.sidebanner')
 </header>
+@endforeach
+
 <main class="ja-showtime">
     <div class="uk-container uk-container-center">
-        <h1 class="ja-title ja-title__blue light-blue-text text-darken-4 uk-margin-large-top uk-margin-large-bottom">Schedule</h1>
-        <p>There's always something new and exciting happening at the Jakarta Aquarium. With an ever-evolving lineup of shows, Jakarta Aquarium always has something interesting to see. Join us for a show led by our educational and entertaining interpreters to learn more about the animals that live at the Jakarta Aquarium.</p>
+        <h1 class="ja-title ja-title__blue light-blue-text text-darken-4 uk-margin-large-top uk-margin-large-bottom">{!! $page->title !!}</h1>
+        <p>{!! $page->content !!}</p>
         <ul id="filtershow" class="uk-subnav uk-margin-top">
             <li><a href="" data-uk-filter="" data-uk-tooltip title="All Show">SCHEDULE :</a></li>
             <li><a href="" data-uk-filter="ja-showtime__all"><i class="uk-icon-stop light-green-text"></i> ALL DAYS</a></li>
