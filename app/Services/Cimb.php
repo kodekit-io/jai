@@ -44,7 +44,7 @@ class Cimb
     public function getCimbParameters($orderId)
     {
         $order = $this->orderService->getOrderById($orderId);
-        $trx['amount'] = $order->total_amount;
+        $trx['amount'] = $order->total_amount.'00';
         $trx['currency'] = 'IDR';
         $trx['orderId'] = $orderId;
         $signatureWord = $this->merchantKey . $this->merchantCode . $trx['orderId'] . $trx['amount'] . $trx['currency'];
@@ -52,7 +52,7 @@ class Cimb
         $params = [
             'MerchantCode' => $this->merchantCode,
             'RefNo' => $trx['orderId'],
-            'Amount' => $trx['amount'].'00',
+            'Amount' => $trx['amount'],
             'Currency' => $trx['currency'],
             'ProdDesc' => 'Jakarta Aquarium Ticket',
             'UserName' => $order->name,
