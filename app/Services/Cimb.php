@@ -17,6 +17,7 @@ class Cimb
     protected $requeryUrl;
     protected $merchantCode;
     protected $merchantKey;
+    protected $backendUrl;
     /**
      * @var Order
      */
@@ -33,6 +34,7 @@ class Cimb
         $this->merchantKey = config('payments.cimb.merchant_key');
         $this->redirectUrl = config('payments.cimb.redirect_url');
         $this->requeryUrl = config('payments.cimb.requery_url');
+        $this->backendUrl = config('payments.cimb.backend_url');
     }
 
     /**
