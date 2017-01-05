@@ -156,9 +156,12 @@ class Cimb
     public function checkStatus($trx)
     {
         $reQuery = $this->requeryUrl . '?MerchantCode=' . $this->merchantCode . '&RefNo=' . $trx['orderId'] . '&Amount=' . $trx['amount'];
+        Log::warning('reQuery ==> ' . $reQuery);
         $url = parse_url($reQuery);
         $host = $url['host'];
+        Log::warning('host ==> ' . $host);
         $path = $url['path'] . '?' . $url['query'];
+        Log::warning('path ==> ' . $path);
         $timeout = 1;
         $fp = fsockopen($host, 80, $errno, $errstr, $timeout);
         $buf = '';
