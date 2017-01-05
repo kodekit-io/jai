@@ -103,11 +103,13 @@ class FrontEndController extends Controller
         $sliders = $this->sliderService->getSliderWithItems($sliderParams);
 
         $sightSeeing = $this->postService->getPost(['id' => config('misc.statics.sightseeing')]);
-
+        $sightSeeingDetail = $sightSeeing->details()->where('lang', $lang)->first();
+        $data['sightseeingContent'] = $sightSeeingDetail->content;
         $data['firstBox'] = $sightSeeing->metas()->where('meta_key', 'firstBox-' . $lang)->first();
         $data['secondBox'] = $sightSeeing->metas()->where('meta_key', 'secondBox-' . $lang)->first();
         $data['thirdBox'] = $sightSeeing->metas()->where('meta_key', 'thirdBox-' . $lang)->first();
         $data['fourthBox'] = $sightSeeing->metas()->where('meta_key', 'fourthBox-' . $lang)->first();
+
         $data['whatsOnContents'] = $post->get();
         $data['sliders'] = $sliders;
         $data['pageTitle'] = 'Homepage';
