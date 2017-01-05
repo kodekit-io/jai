@@ -95,4 +95,12 @@ class PaymentController extends Controller
         return $this->cimbService->cimbBackend($request);
     }
 
+    public function cimbStatus()
+    {
+        $trx['orderId'] = 119;
+        $trx['amount'] = 20000000;
+        $status = $this->cimbService->checkStatus($trx);
+        var_dump($status); exit();
+    }
+
 }
