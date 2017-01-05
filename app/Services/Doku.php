@@ -90,7 +90,7 @@ class Doku
         $basket = '';
         $details = $order->details;
         foreach ($details as $detail) {
-            if ($detail['qty'] > 0) {
+            if ($detail->qty > 0) {
                 $price = $detail->price;
                 $packageName = $detail->product_name;
                 $qty = $detail->qty;
@@ -103,10 +103,10 @@ class Doku
                 $basket .= ($basket == '' ? $basketData : ';' . $basketData);
             }
         }
-        $taxAmount = $order->tax;
-        $taxAmount = number_format($taxAmount, 2, '.', '');
-        $tax = 'Service + 10% PB1 Tax,' . $taxAmount . ',1,' . $taxAmount;
-        $basket .= ($basket == '' ? $tax : ';' . $tax);
+        // $taxAmount = $order->tax;
+        // $taxAmount = number_format($taxAmount, 2, '.', '');
+        // $tax = 'Service + 10% PB1 Tax,' . $taxAmount . ',1,' . $taxAmount;
+        // $basket .= ($basket == '' ? $tax : ';' . $tax);
 
         return $basket;
     }
