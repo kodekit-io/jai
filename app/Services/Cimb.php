@@ -164,10 +164,12 @@ class Cimb
         Log::warning('path ==> ' . $path);
         $timeout = 1;
         $fp = fsockopen($host, 80, $errno, $errstr, $timeout);
+        Log::warning('=== socket opened ===');
         $buf = '';
         if ($fp) {
             fputs($fp, 'GET ' . $path . ' HTTP/1.0\nHost: ' . $host . '\n\n');
             while (! feof($fp)) {
+                Log::warning('=== loop the result ===');
                 $buf .= fgets($fp, 128);
             }
             $lines = explode('\n', $buf);
