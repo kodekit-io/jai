@@ -82,7 +82,17 @@ class PaymentController extends Controller
 
     public function cimbResult(Request $request)
     {
-        var_dump($request->all());
+        $result = $this->cimbService->cimbRedirect($request);
+        if ($result['status'] == 'completed') {
+            return view('frontend.thank-you', $result);
+        } else {
+            return view('frontend.transaction-failed', $result);
+        }
+    }
+
+    public function cimbBackend(Request $request)
+    {
+        return $this->cimbService->cimbBackend($request);
     }
 
 }

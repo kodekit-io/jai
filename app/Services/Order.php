@@ -91,6 +91,15 @@ class Order
         return OrderModel::find($orderId);
     }
 
+    public function getOrderStatus($orderId)
+    {
+        $order = OrderModel::find($orderId);
+        if ($order) {
+            return $order->status;
+        }
+        return '';
+    }
+
     public function updateStatus($orderId, $statusDesc)
     {
         switch ($statusDesc) {

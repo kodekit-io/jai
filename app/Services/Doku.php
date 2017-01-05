@@ -416,8 +416,8 @@ class Doku
     private function checkStatus($trx)
     {
         $checkStatusUrl = config('payments.doku.url_check_status');
-        $mallId = config('payments.doku.mall_id');
-        $sharedKey = config('payments.doku.shared_key');
+        $mallId = $this->mallId;
+        $sharedKey = $this->sharedKey;
         $chainMerchant = 'NA';
         $transIdMerchant = $trx['orderId'];
         $sessionId = $trx['sessionId'];
