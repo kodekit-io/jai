@@ -46,7 +46,8 @@ class Order
 //            $subTotal += $price;
 //        }
 
-        $tax = 0.1 * $subTotal;
+        // $tax = 0.1 * $subTotal;
+        $tax = 0;
         $orders['subTotal'] = $subTotal;
         $orders['tax'] = $tax;
         $orders['grandTotal'] = $subTotal + $tax;

@@ -176,7 +176,7 @@
                 {{--</div>--}}
 
             </div>
-        </div>
+
         <div class="ja-ticket__content uk-margin-large-bottom">
             <h3 class="light-blue-text text-darken-4">OPENING HOURS</h3>
             {!! $openingHours->meta_value !!}

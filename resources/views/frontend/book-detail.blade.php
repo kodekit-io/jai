@@ -84,10 +84,10 @@
                 {{--<input id="" type="text" value="-" disabled="true">--}}
             {{--</div>--}}
 
-            <div class="uk-form-row">
-                <label for="">Service + 10% PB1 Tax</label>
-                <input id="" type="text" value="IDR {!! number_format($tax) !!}" disabled="true">
-            </div>
+            {{--<div class="uk-form-row">--}}
+                {{--<label for="">Service + 10% PB1 Tax</label>--}}
+                {{--<input id="" type="text" value="IDR {!! number_format($tax) !!}" disabled="true">--}}
+            {{--</div>--}}
 
             <div class="uk-form-row">
                 <label for="">Grand Total</label>
