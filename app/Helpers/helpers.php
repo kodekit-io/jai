@@ -126,4 +126,10 @@ if (! function_exists('get_meta_description')) {
         return '';
 
     }
+
+    if (! function_exists('excerpt')) {
+        function excerpt($words, $line = 40) {
+            return \Illuminate\Support\Str::words(strip_tags($words), $line);
+        }
+    }
 }
