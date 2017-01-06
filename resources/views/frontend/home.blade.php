@@ -13,13 +13,15 @@
 			<li class="ja-post uk-margin-bottom">
 				<div class="uk-grid">
 					<div class="uk-width-medium-1-2">
-                        <?php $imagePath = getMediaByPostId($whatsOn->id)->file_name; ?>
-						<a href="#!" class="ja-post--img" style="background-image: url('{!! url('images/whatsOn/' . $imagePath) !!}')">Learn more</a>
+						@if (isset(getMediaByPostId($whatsOn->id)->file_name))
+                        	<?php $imagePath = getMediaByPostId($whatsOn->id)->file_name; ?>
+							<a href="#!" class="ja-post--img" style="background-image: url('{!! url('images/whatsOn/' . $imagePath) !!}')">Learn more</a>
+						@endif
 					</div>
 					<div class="uk-width-medium-1-2">
 						<div class="ja-post--content">
 							<h5 class="ja-post--title"><a href="#!" title="{!! $whatsOn->title !!}">{!! $whatsOn->title !!}</a></h5>
-							<p class="uk-margin-remove">{!! $whatsOn->content !!}</p>
+							<p class="uk-margin-remove">{!! excerpt($whatsOn->content, 30) !!}</p>
 							<a class="ja-post--link"><i class="uk-icon-chevron-right"></i></a>
 						</div>
 					</div>
