@@ -105,15 +105,32 @@
             <a href="{!! asset('frontend/img/map-LG-LGM-A4.pdf') !!}" target="_blank" class="uk-button uk-button-primary ja-button cyan darken-1 white-text"><i class="uk-icon-file-pdf-o"></i> DOWNLOAD PDF MAP</a>
         </div>
 
-        <div class="ja-ticket__content uk-margin-large-bottom">
-            <h3 class="light-blue-text text-darken-4">MOBILE APP</h3>
-            <p>{!! $getTheApp !!}</p>
-            <p><a href="#!" title="Download on The App Store"><img src="{!! asset('frontend/img/download-store.png') !!}" alt="Download on The App Store" /></a>
-            <a href="#!" title="Get it on Google Play"><img src="{!! asset('frontend/img/download-play.png') !!}" alt="Get it on Google Play" /></a></p>
-        </div>
+        {{--<div class="ja-ticket__content uk-margin-large-bottom">--}}
+            {{--<h3 class="light-blue-text text-darken-4">MOBILE APP</h3>--}}
+            {{--<p>{!! $getTheApp !!}</p>--}}
+            {{--<p><a href="#!" title="Download on The App Store"><img src="{!! asset('frontend/img/download-store.png') !!}" alt="Download on The App Store" /></a>--}}
+            {{--<a href="#!" title="Get it on Google Play"><img src="{!! asset('frontend/img/download-play.png') !!}" alt="Get it on Google Play" /></a></p>--}}
+        {{--</div>--}}
 
     </div>
 </main>
+
+<section id="getapp" class="ja-home-section">
+    <div class="uk-container uk-container-center">
+        <div class="uk-grid uk-hidden-small">
+            <div class="uk-width-1-3">
+                <img src="{!! asset('frontend/img/mobile-app.jpg') !!}" alt="Get The App" />
+            </div>
+            <div class="uk-width-2-3">
+                <h3 class="ja-title ja-title__blue light-blue-text text-darken-4 uk-margin-large-top uk-margin-bottom">Get The App <img src="{!! asset('frontend/img/coming-soon.png') !!}" alt="Coming Soon" /></h3>
+                <p>{!! $getTheApp !!}</p>
+                <p><a href="#!" title="Download on The App Store"><img src="{!! asset('frontend/img/download-store.png') !!}" alt="Download on The App Store" /></a>
+                    <a href="#!" title="Get it on Google Play"><img src="{!! asset('frontend/img/download-play.png') !!}" alt="Get it on Google Play" /></a></p>
+            </div>
+        </div>
+        <a href="#!" title="Get Mobile App" class="uk-visible-small"><img src="{!! asset('frontend/img/banner-getmobile.png') !!}" alt="Get Mobile App" /></a>
+    </div>
+</section>
 
 @endsection
 
