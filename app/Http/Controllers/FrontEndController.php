@@ -353,4 +353,11 @@ class FrontEndController extends Controller
 
         return view('frontend.promo', $data);
     }
+
+    public function orderCompleted($lang)
+    {
+        $data['pageTitle'] = 'Order Confirmation';
+
+        return view('emails.order-completed', $data);
+    }
 }
