@@ -107,7 +107,7 @@
 
         <div class="ja-ticket__content uk-margin-large-bottom">
             <h3 class="light-blue-text text-darken-4">MOBILE APP</h3>
-            <p>Download free Jakarta Aquarium app now. Lorem Ipsum dolore sit ame Consecteta et accusamus et iusto ducimus dolorem labora et veritaseri enim repellus atmos dablos extravaganza maximus.</p>
+            <p>{!! $getTheApp !!}</p>
             <p><a href="#!" title="Download on The App Store"><img src="{!! asset('frontend/img/download-store.png') !!}" alt="Download on The App Store" /></a>
             <a href="#!" title="Get it on Google Play"><img src="{!! asset('frontend/img/download-play.png') !!}" alt="Get it on Google Play" /></a></p>
         </div>

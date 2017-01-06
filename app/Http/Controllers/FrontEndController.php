@@ -231,6 +231,15 @@ class FrontEndController extends Controller
 
     public function locationMap($lang)
     {
+        // manual content
+        switch ($lang) {
+            case 'en':
+                $data['getTheApp'] = 'Be the first to receive latest update from Jakarta Aquarium. Download the app';
+                break;
+            default:
+                $data['getTheApp'] = 'Jadilah orang pertama yang mendapatkan info terupdate dari Jakarta Aquarium. Download aplikasinya sekarang juga!';
+                break;
+        }
         $data['pageTitle'] = 'Aquarium Map';
 
         return view('frontend.location-map', $data);
