@@ -155,6 +155,7 @@ class Cimb
 
     public function checkStatus($trx)
     {
+//        Request::server('HTTP_REFERER')
         $reQuery = $this->requeryUrl . '?MerchantCode=' . $this->merchantCode . '&RefNo=' . $trx['orderId'] . '&Amount=' . $trx['amount'];
         Log::warning('reQuery ==> ' . $reQuery);
         $url = parse_url($reQuery);

@@ -25,51 +25,6 @@
                 <div class="">
                     <p>{!! $post->content !!}</p>
 
-                    {{--<div class="uk-panel uk-panel-box cyan darken-1 white-text noborder uk-margin-bottom">--}}
-                        {{--<div class="uk-grid">--}}
-                            {{--<div class="uk-width-medium-2-3">--}}
-                                {{--<h4 class="white-text">REGULAR</h4>--}}
-                                {{--Aquarium Admission--}}
-                            {{--</div>--}}
-                            {{--<div class="uk-width-medium-1-3">--}}
-                                {{--Monday - Friday (Weekday):<br><span class="ja-bold">IDR 220.000</span>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                    {{--<div class="uk-panel uk-panel-box grey darken-1 white-text noborder uk-margin-bottom">--}}
-                        {{--<div class="uk-grid">--}}
-                            {{--<div class="uk-width-medium-2-3">--}}
-                                {{--<h4 class="white-text">EXLCUSIVE</h4>--}}
-                                {{--Aquarium Admission, 5D Theater, Printed Photo Souvenir, and Multiple Entry within Four Hour.--}}
-                            {{--</div>--}}
-                            {{--<div class="uk-width-medium-1-3">--}}
-                                {{--Monday - Friday (Weekday):<br><span class="ja-bold">IDR 275.000</span>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                    {{--<div class="uk-panel uk-panel-box amber darken-2 white-text noborder uk-margin-bottom">--}}
-                        {{--<div class="uk-grid">--}}
-                            {{--<div class="uk-width-medium-2-3">--}}
-                                {{--<h4 class="white-text">PREMIUM</h4>--}}
-                                {{--Aquarium Admission, 5D Theater, and Printed Photo Souvenir.--}}
-                            {{--</div>--}}
-                            {{--<div class="uk-width-medium-1-3">--}}
-                                {{--Saturday - Sunday (Weekend):<br><span class="ja-bold">IDR 290.000</span>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                    {{--<div class="uk-panel uk-panel-box light-blue darken-4 white-text noborder uk-margin-bottom">--}}
-                        {{--<div class="uk-grid">--}}
-                            {{--<div class="uk-width-medium-2-3">--}}
-                                {{--<h4 class="white-text">ULTIMATE</h4>--}}
-                                {{--Aquarium Admission, 5D Theater,Seatrek/Dive, Shark/piranha Feeding, Fast Lane to Enter 5D Theater, Front Seat on Underwater Theater Show, Premium Seat in Pingoo Restaurant, 0% Installment (Terms and condition apply), and Multiple Entry within Four Hours.--}}
-                            {{--</div>--}}
-                            {{--<div class="uk-width-medium-1-3">--}}
-                                {{--Monday - Sunday:<br><span class="ja-bold">IDR 550.000</span>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    </div>
-
                     <form id="bookForm" class="uk-form uk-margin-top uk-margin-bottom" method="post" action="{!! lang_url('book-detail') !!}">
                         {!! csrf_field() !!}
                         <div class="uk-form-row">
@@ -91,7 +46,6 @@
                                     <div class="uk-grid">
                                         <div class="uk-width-medium-2-3">
                                             <h4 class="white-text">{!! strtoupper($description) !!}</h4>
-                                            {{--Aquarium Admission--}}
                                         </div>
                                         <div class="uk-width-medium-1-3">
                                             Monday - Friday (Weekday):<br><span class="ja-bold">IDR {!! number_format($price, 0) !!}</span>
@@ -101,53 +55,12 @@
                             @endforeach
                             </div>
 
-                            <div class="uk-grid uk-grid-small uk-grid-match packages" data-uk-grid-match data-uk-grid-margin>
-                                {{--@foreach($galasysProducts as $galasysProduct)--}}
-                                {{--<div class="uk-width-medium-1-3">--}}
-                                    {{--<div class="uk-panel-box {!! $package->color !!} white-text">--}}
-                                        {{--<h4 class="white-text uk-margin-remove">{!! $package->title !!}</h4>--}}
-                                        {{--<div class="jai-submission-info">{!! $package->content !!}</div>--}}
-                                        {{--<div class="jai-submission-price">--}}
-                                            {{--Weekday IDR {!! number_format($package->normal_price, 0) !!}--}}
-                                            {{--Weekend IDR {!! number_format($package->weekend_price, 0) !!}--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
-                                    {{--<div class="uk-panel-box jai-submission-order white uk-text-right">--}}
-                                        {{--<input type="number" name="packages[{!! $package->id !!}]" class="right" value="0">--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                                {{--@endforeach--}}
-                                {{--<div class="uk-width-medium-1-3">--}}
-                                    {{--<div class="uk-panel-box light-blue darken-4 white-text">--}}
-                                        {{--<h4 class="white-text uk-margin-remove">Premium Admission</h4>--}}
-                                        {{--<div class="jai-submission-info">Aquarium Tour, 5D Theater and Printed Photo Souvenir.</div>--}}
-                                        {{--<div class="jai-submission-price">Weekday IDR 265.000</div>--}}
-                                    {{--</div>--}}
-                                    {{--<div class="uk-panel-box jai-submission-order white uk-text-right">--}}
-                                        {{--<input type="number" class="right" value="0">--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                                {{--<div class="uk-width-medium-1-3">--}}
-                                    {{--<div class="uk-panel-box amber darken-1 white-text">--}}
-                                        {{--<h4 class="white-text uk-margin-remove">Exclusive Admission</h4>--}}
-                                        {{--<div class="jai-submission-info">Aquarium Tour, 5D Theater, Shark/Piranha Feeding, Seatrek/Dive and Printed Photo Souvenir.</div>--}}
-                                        {{--<div class="jai-submission-price">Weekday IDR 550.000</div>--}}
-                                    {{--</div>--}}
-                                    {{--<div class="uk-panel-box jai-submission-order white uk-text-right">--}}
-                                        {{--<input type="number" class="right" value="0">--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
+                            <div class="uk-grid uk-grid-small uk-grid-match packages" data-uk-grid-match data-uk-grid-margin></div>
                         </div>
 
                         <div class="uk-form-row infant-info uk-hidden">
                             <h4>* Admissions for infants under 2 years old is free</h4>
                         </div>
-
-                        {{--<div class="uk-form-row">--}}
-                            {{--<label for="promo"><i class="uk-icon-tag"></i>Promo</label>--}}
-                            {{--<input id="promo" type="text" placeholder="Coupon code / membership code">--}}
-                        {{--</div>--}}
 
                         <h4 class="cyan-text text-darken-1">Personal Identification</h4>
                         <div class="uk-form-row uk-margin-remove">
@@ -162,18 +75,6 @@
                             <label for="order_phone">Phone Number</label>
                             <input id="" type="text" value="" name="order_phone" placeholder="Input your phone" required>
                         </div>
-                        {{--<div class="uk-form-row uk-margin-remove">--}}
-                            {{--<label for="">Address</label>--}}
-                            {{--<input id="" type="text" value="" name="order_address" placeholder="Input your address">--}}
-                        {{--</div>--}}
-                        {{--<div class="uk-form-row uk-margin-remove">--}}
-                            {{--<label for="">City</label>--}}
-                            {{--<input id="" type="text" value="" name="order_city" placeholder="Input your city">--}}
-                        {{--</div>--}}
-                        {{--<div class="uk-form-row uk-margin-remove">--}}
-                            {{--<label for="">Country</label>--}}
-                            {{--<input id="" type="text" value="" name="order_country" placeholder="Input your country">--}}
-                        {{--</div>--}}
                         <div class="uk-form-row agree">
                             <h5 class="uk-margin-bottom-remove">Terms &amp; Conditions <span>(<a href="#!">read</a>)</span></h5>
                             <p class="uk-margin-top-remove">
@@ -188,30 +89,23 @@
                     </form>
                 </div>
 
-                {{--<h3 class="uk-accordion-title">5D THEATER PACKAGE</h3>--}}
-                {{--<div class="uk-accordion-content">--}}
-                    {{--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>--}}
-                {{--</div>--}}
-
-                {{--<h3 class="uk-accordion-title">VIP, SCHOOL, AND BIRTHDAY TOUR</h3>--}}
-                {{--<div class="uk-accordion-content">--}}
-                    {{--<p>The aquarium is one of Indonesia's most unforgettable group activities! Groups of 10 or more people receive discounted admission to the aquarium! Pre-booking is required at least 7 days in advance as groups must be pre-qualified before receiving this rate. Please contact the booking office by call +62 212 3456 789 or email specialprograms@jakartaaquarium.org with the following information: Your name, your organization name and contact information, preferred date of visit, and number of people. Helping you to create the right experience is our goal.</p>--}}
-                {{--</div>--}}
+                @if (count($packages) > 0)
+                    <br>
+                    @foreach($packages as $package)
+                        <h3 class="light-blue-text text-darken-4">{!! $package->title !!}</h3>
+                        <div>
+                            <p>{!! $package->content !!}</p>
+                        </div>
+                    @endforeach
+                @endif
 
             </div>
+
+        </div>
 
         <div class="ja-ticket__content uk-margin-large-bottom">
             <h3 class="light-blue-text text-darken-4">OPENING HOURS</h3>
             {!! $openingHours->meta_value !!}
-            {{--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor crasher malarki requiem predantia incididunt ut labore et dolore magna aliqua. Ut eni ad minim veniam, quisiom nostrud at autumn irure dor in reprehenderit exercitation.</p>--}}
-            {{--<ul class="uk-list">--}}
-                {{--<li>Weekday	(Monday - Thursday)	:  08.00 a.m. - 07.00 p.m.</li>--}}
-                {{--<li>Weekend (Friday - Sunday)	:  08.00 a.m. - 09.00 p.m.</li>--}}
-            {{--</ul>--}}
-            {{--<div class="uk-panel-box">--}}
-                {{--<h4 class="uk-margin-remove">Announcement:</h4>--}}
-                {{--<p class="uk-margin-remove">Jakarta Aquarium will close on 24th and 25th December for the Christmas holiday, and also on 31st December and 1st January for the New Year holiday.</p>--}}
-            {{--</div>--}}
         </div>
     </div>
 </main>

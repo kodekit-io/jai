@@ -96,6 +96,13 @@ class TicketController extends Controller
         ];
         $postWithDetail = $this->postService->getPostsWithDetail($params)->first();
 
+        $params = [
+            'package_type_id' => 2,
+            'lang' => $lang,
+            'is_general_admission' => 1,
+        ];
+        $packages = $this->packageService->getPackages($params);
+
         $galasysProducts = $this->packageService->getAllPackages();
 
         $post = $this->postService->getPost(['id' => $pageId]);
@@ -113,6 +120,7 @@ class TicketController extends Controller
         ];
 
         $data['galasysProducts'] = $galasysProducts;
+        $data['packages'] = $packages;
         $data['pageTitle'] = $postWithDetail->title;
         $data['post'] = $postWithDetail;
         $data['openingHours'] = $openingHours;
