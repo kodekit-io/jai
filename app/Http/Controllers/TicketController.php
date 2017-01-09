@@ -205,7 +205,14 @@ class TicketController extends Controller
 
     public function emailTemplate()
     {
-        return view('emails.order-completed');
+        $order = $this->orderService->getOrderById(96);
+        $data['orderId'] = $order->id;
+        $data['name'] = $order->name;
+        $data['details'] = $order->details;
+        $data['visitDate'] = Carbon::createFromFormat('Y-m-d', $order->visit_date)->format('l, d F Y');
+        $data['total'] = number_format($order->total_amount, 0, ',', '.');
+
+        return view('emails.order-completed', $data);
     }
 
 }

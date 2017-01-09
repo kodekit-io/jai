@@ -161,7 +161,7 @@
 																			<tr>
 																				<td align="left" class="textContent">
 																					<h3 style="color:#2559a4;line-height:125%;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:normal;margin-top:0;margin-bottom:3px;text-align:left;">BOOKING CONFIRMATION</h3>
-																					<div style="text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:14px;margin-bottom:0;color:#5F5F5F;line-height:135%;">17 Agustus 2017</div>
+																					{{--<div style="text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:14px;margin-bottom:0;color:#5F5F5F;line-height:135%;">17 Agustus 2017</div>--}}
 																				</td>
 																			</tr>
 																		</table>
@@ -176,13 +176,13 @@
                                                             <table align="left" border="0" cellpadding="0" cellspacing="0" width="100%">
                                                                 <tr>
                                                                     <td align="left" valign="top" class="textContent" style="text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:14px;margin-bottom:0;color:#5F5F5F;line-height:135%;">
-                                                                        <h6 style="font-family:Helvetica,Arial,sans-serif;font-size:14px;font-weight:bold;">Hi John Doe,</h6>
-                                                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                                                        <h6 style="font-family:Helvetica,Arial,sans-serif;font-size:14px;font-weight:bold;">Hi {!! $name !!},</h6>
+                                                                        <p>Thank you for booking online ticket at Jakarta Aquarium.</p>
 
                                                                         <table align="left" border="1" bordercolor="#ff9900" cellpadding="10" cellspacing="0" width="100%" style="margin-bottom:20px;">
                                                                             <tr>
                                                                                 <td align="left" valign="top">
-                                                                                    Your Order ID: <span style="color:#2559a4;font-size:16px;">673452</span>
+                                                                                    Your Order ID: <span style="color:#2559a4;font-size:16px;">{!! $orderId !!}</span>
                                                                                 </td>
                                                                             </tr>
                                                                         </table>
@@ -194,7 +194,7 @@
                                                                                     Date of Visit
                                                                                 </td>
                                                                                 <td align="left" valign="top" style="max-width: 100%;">
-                                                                                    August, 15th 2018
+                                                                                    {!! $visitDate !!}
                                                                                 </td>
                                                                             </tr>
                                                                         </table>
@@ -205,30 +205,18 @@
                                                                                     Admission Package
                                                                                 </td>
                                                                             </tr>
-                                                                            <tr>
-                                                                                <td align="left" valign="top" width="100" style="max-width: 100%;color:#17aebf;">
-                                                                                    Regular
-                                                                                </td>
-                                                                                <td align="left" valign="top" style="max-width: 100%;">
-                                                                                    200 Visitors
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td align="left" valign="top" width="100" style="max-width: 100%;color:#17aebf;">
-                                                                                    Exclusive
-                                                                                </td>
-                                                                                <td align="left" valign="top" style="max-width: 100%;">
-                                                                                    0 Visitor
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td align="left" valign="top" width="100" style="max-width: 100%;color:#17aebf;">
-                                                                                    Ultimate
-                                                                                </td>
-                                                                                <td align="left" valign="top" style="max-width: 100%;">
-                                                                                    0 Visitor
-                                                                                </td>
-                                                                            </tr>
+                                                                            @if (count($details) > 0)
+                                                                                @foreach($details as $detail)
+                                                                                    <tr>
+                                                                                        <td align="left" valign="top" width="100" style="max-width: 100%;color:#17aebf;">
+                                                                                            {!! $detail->product_name !!}
+                                                                                        </td>
+                                                                                        <td align="left" valign="top" style="max-width: 100%;">
+                                                                                            {!! $detail->qty !!} Visitor(s)
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                @endforeach
+                                                                            @endif
                                                                         </table>
                                                                         <table align="left" border="1" bordercolor="#17aebf" cellpadding="10" cellspacing="0" width="100%" style="margin-bottom:30px;">
                                                                             <tr>
@@ -236,7 +224,7 @@
                                                                                     Total
                                                                                 </td>
                                                                                 <td align="left" valign="top" style="max-width: 100%;">
-                                                                                    IDR 600.000.000
+                                                                                    IDR {!! $total !!}
                                                                                 </td>
                                                                             </tr>
                                                                         </table>
