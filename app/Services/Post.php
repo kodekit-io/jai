@@ -140,8 +140,10 @@ class Post
         }
     }
 
-    public function update($id, $inputs)
+    public function update($id, $request)
     {
+        $inputs = $request->except(['_token']);
+
         $post = PostModel::find($id);
         $post->publish_date = Carbon::createFromFormat('d-F-Y - H:i', $inputs['publish_date'])->format('Y-m-d H:i');
         $post->status = strtoupper($inputs['status']);

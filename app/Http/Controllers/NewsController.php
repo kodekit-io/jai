@@ -124,7 +124,7 @@ class NewsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->postService->update($id, $request->except(['_token']));
+        $this->postService->update($id, $request);
 
         return backendRedirect($this->baseUrl)->with($this->getMessage('update'));
     }
