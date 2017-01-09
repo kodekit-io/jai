@@ -169,7 +169,9 @@ class Cimb
 
         $body = $response->getBody();
 
-        var_dump($body); exit();
+        $stringBody = (string) $body;
+
+        echo $stringBody; exit();
 
         $reQuery = $this->requeryUrl . '?MerchantCode=' . $this->merchantCode . '&RefNo=' . $trx['orderId'] . '&Amount=' . $trx['amount'];
         Log::warning('reQuery ==> ' . $reQuery);
