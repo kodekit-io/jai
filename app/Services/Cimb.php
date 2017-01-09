@@ -93,7 +93,7 @@ class Cimb
                 // check the status for security purpose
                 $status = $this->checkStatus($trx);
                 if ($status == '00') {
-                    $trx['message'] = 'Transaction is succeed';
+                    $trx['message'] = 'Transaction is succeed, check status succeed';
                     $trx['errorMessage'] = '';
                     $trx['orderStatus'] = self::COMPLETED;
                 } else {
