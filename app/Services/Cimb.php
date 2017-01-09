@@ -98,8 +98,8 @@ class Cimb
                     $trx['orderStatus'] = self::COMPLETED;
                 } else {
                     $trx['message'] = 'Transaction is succeed, check status is failed';
-                    $trx['errorMessage'] = '';
-                    $trx['orderStatus'] = self::COMPLETED;
+                    $trx['errorMessage'] = 'Check status is failed';
+                    $trx['orderStatus'] = self::CANCELLED;
                 }
 
             } else {
@@ -140,10 +140,17 @@ class Cimb
         if ($orderStatus != 'completed') {
             if ($generatedSignature == $trx['signature']) {
                 if ($trx['status'] == '1') {
-                    $trx['message'] = 'Transaction is succeed';
-                    $trx['errorMessage'] = '';
-                    $trx['orderStatus'] = self::COMPLETED;
-                    return 'OK';
+                    // check the status for security purpose
+                    $status = $this->checkStatus($trx);
+                    if ($status == '00') {
+                        $trx['message'] = 'Transaction is succeed, check status succeed';
+                        $trx['errorMessage'] = '';
+                        $trx['orderStatus'] = self::COMPLETED;
+                    } else {
+                        $trx['message'] = 'Transaction is succeed, check status is failed';
+                        $trx['errorMessage'] = 'Check status is failed';
+                        $trx['orderStatus'] = self::CANCELLED;
+                    }
                 } else {
                     $trx['message'] = 'Payment is failed : ' . $trx['errDesc'];
                     $trx['errorMessage'] = $trx['errDesc'];
@@ -158,7 +165,7 @@ class Cimb
             $this->saveCimbCheckout($trx);
         }
 
-        return '';
+        return 'OK';
     }
 
     public function checkStatus($trx)
