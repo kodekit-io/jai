@@ -119,6 +119,7 @@ class TicketController extends Controller
             'amber darken-1'
         ];
 
+        $data['minDate'] = Carbon::today()->addDays(7)->format('d-m-Y');
         $data['galasysProducts'] = $galasysProducts;
         $data['packages'] = $packages;
         $data['pageTitle'] = $postWithDetail->title;
