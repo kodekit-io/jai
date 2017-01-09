@@ -3,6 +3,7 @@
 namespace App\Service;
 
 use App\Models\CimbCheckout;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Log;
 
@@ -155,7 +156,21 @@ class Cimb
 
     public function checkStatus($trx)
     {
-//        Request::server('HTTP_REFERER')
+        $client = new Client();
+        $params = [
+            'MerchantCode' => $this->merchantCode,
+            'RefNo' => $trx['orderId'],
+            'Amount' => $trx['amount']
+        ];
+
+        $response = $client->post($this->requeryUrl, [
+            'form_params' => $params
+        ]);
+
+        $body = $response->getBody();
+
+        var_dump($body); exit();
+
         $reQuery = $this->requeryUrl . '?MerchantCode=' . $this->merchantCode . '&RefNo=' . $trx['orderId'] . '&Amount=' . $trx['amount'];
         Log::warning('reQuery ==> ' . $reQuery);
         $url = parse_url($reQuery);
