@@ -29,7 +29,7 @@
                         {!! csrf_field() !!}
                         <div class="uk-form-row">
                             <label for="visit_date"><i class="uk-icon-calendar"></i>Visit Date</label>
-                            <input id="visit_date" name="visit_date" type="text" data-uk-datepicker="{format:'dddd, DD-MM-YYYY', minDate:'{!! $minDate !!}'}" required>
+                            <input id="visit_date" name="visit_date" type="text" data-uk-datepicker="{format:'dddd, DD-MM-YYYY', minDate:'{!! $minDate !!}'}" required readonly>
                         </div>
                         <div class="uk-form-row">
                             <h4 class="cyan-text text-darken-1">Admission Package</h4>
@@ -48,7 +48,8 @@
                                             <h4 class="white-text">{!! strtoupper($description) !!}</h4>
                                         </div>
                                         <div class="uk-width-medium-1-3">
-                                            Monday - Friday (Weekday):<br><span class="ja-bold">IDR {!! number_format($price, 0) !!}</span>
+                                            {{--Monday - Friday (Weekday):<br>--}}
+                                            <span class="ja-bold">IDR {!! number_format($price, 0) !!}</span>
                                         </div>
                                     </div>
                                 </div>
