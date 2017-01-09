@@ -239,6 +239,7 @@ Route::get('galasys/products', 'GalasysController@products');
 Route::get('galasys/order', 'GalasysController@order');
 
 Route::get('tests/send-email', 'TicketController@sendEmail');
+Route::get('tests/email-template', 'TicketController@emailTemplate');
 Route::get('tests/get-pdf', 'TicketController@generatePdf');
 Route::get('tests/galasys-order', 'TicketController@galasysOrder');
 Route::get('tests/galasys-holidays', 'TicketController@galasysHolidays');

@@ -170,7 +170,7 @@ class TicketController extends Controller
 
     public function sendEmail()
     {
-        $order = $this->orderService->getOrderById(85);
+        $order = $this->orderService->getOrderById(96);
         Mail::to('pasha.md5@gmail.com')->send(new OrderCompleted($order));
     }
 
@@ -201,6 +201,11 @@ class TicketController extends Controller
     public function galasysHolidays()
     {
         var_dump($this->galasys->getHolidays()); exit();
+    }
+
+    public function emailTemplate()
+    {
+        return view('emails.order-completed');
     }
 
 }

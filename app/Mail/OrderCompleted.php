@@ -34,10 +34,10 @@ class OrderCompleted extends Mailable
     public function build()
     {
         $email = $this->view('emails.order-completed');
-        $tickets = $this->order->galasysTickets;
-        foreach ($tickets as $ticket) {
-            $email->attach(public_path($ticket->e_ticket));
-        }
+//        $tickets = $this->order->galasysTickets;
+//        foreach ($tickets as $ticket) {
+//            $email->attach(public_path($ticket->e_ticket));
+//        }
 
         return $email;
     }

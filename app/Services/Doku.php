@@ -47,13 +47,11 @@ class Doku
         $grandTotal = $order->total_amount;
 
         $amount = number_format($grandTotal, 2, '.', '');
-        // $amount = number_format(75000, 2, '.', '');
         $basket = $this->generateDokuBasket($order);
         $transId = $order->id;
         $words = sha1(trim($amount) . trim($this->mallId) .  trim($this->sharedKey) . trim($transId));
         $idrCurrency = '360';
         $sessionId = session()->getId();
-        // $words = '16c2b05017c04f6e650167947876f0fa2d8ab908';
 
         $params = [
             'MALLID'           => $this->mallId,
@@ -71,7 +69,6 @@ class Doku
             'EMAIL'            => $order->email,
             'MOBILEPHONE'      => $order->phone_number,
             'BASKET'           => $basket,
-            // 'BASKET'           => 'Item 1,70000.00,1,70000.00;Service Charge,5000.00,1,5000.00;',
         ];
 
         $trx['ipAddress'] = request()->ip();
