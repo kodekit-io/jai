@@ -8,7 +8,7 @@
     <div class="uk-vertical-align-middle uk-width-1-1">
         <div class="uk-container uk-container-center">
             <h1 class="ja-title ja-title__blue light-blue-text text-darken-4">
-                @if ($status == 'completed')
+                @if ($orderStatus == 'completed')
                     THANK YOU
                 @elseif($status == 'on-hold')
                     BOOKING STATUS
@@ -36,7 +36,7 @@
                 {{--ERROR PAYMENT MESSAGE--}}
             {{--</h3>--}}
             
-            @if ($status == 'completed')
+            @if ($orderStatus == 'completed')
                 <h3 class="ja-success-payment light-blue-text text-darken-4">
                 <span><i class="uk-icon-check white-text"></i></span>
                 SUCCESS PAYMENT MESSAGE

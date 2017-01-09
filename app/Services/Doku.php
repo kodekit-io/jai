@@ -178,7 +178,7 @@ class Doku
     {
         // var_dump($request->all()); exit();
         if (count($request->all()) < 1) {
-            $trx['status'] = self::CANCELLED;
+            $trx['codeStatus'] = self::CANCELLED;
             $trx['message'] = 'Unknown error';
             $trx['errorMessage'] = 'Unknown error';
             return $trx;
@@ -198,13 +198,13 @@ class Doku
                 // skip notify if using atm / alfa / va
                 if ( in_array($trx['paymentChannel'], $this->getAtmPaymentChannel()) && $trx['statusCode'] == "5511" ) {
                     $trx['message'] = "Redirect process come from DOKU. Transaction is pending for payment";
-                    $trx['status'] = self::HOLD;
+                    $trx['codeStatus'] = self::HOLD;
                     // atm transfer succeed
                     // action here
                 } else if ($trx['statusCode'] == "5510") {
                     $trx['message'] = "Redirect process come from DOKU. Transaction is cancelled by User.";
                     $trx['errorMessage'] = $this->getDokuResponse($trx['statusCode']);
-                    $trx['status'] = self::CANCELLED;
+                    $trx['codeStatus'] = self::CANCELLED;
                 } else {
                     // check for notify
                     switch ($trx['statusCode'])
@@ -226,26 +226,26 @@ class Doku
                         if ( $checkStatusResult == 'SUCCESS' ) {
                             Log::warning('=== CHECKED - SUCCEED ===');
                             $trx['message'] = "Redirect process with no notify message come from DOKU. Transaction is Success. Please check on Back Office.";
-                            $trx['status'] = self::COMPLETED;
+                            $trx['codeStatus'] = self::COMPLETED;
                         } else {
                             if ( $trx['statusCode'] == "0000" && $checkStatusResult == "NOT SUPPORT" ) {
                                 Log::warning('=== CHECKED - NOT SUPPORT ===');
                                 $trx['message'] = "Redirect process with no notify message come from DOKU. Transaction got Success Status Code. Please check on Back Office.";
-                                $trx['status'] = self::PENDING;
+                                $trx['codeStatus'] = self::PENDING;
                             } else {
                                 Log::warning('=== CHECKED - FAILED ===');
                                 $trx['message'] = "Redirect process with no notify message come from DOKU. Transaction is Failed. Please check on Back Office.";
-                                $trx['status'] = self::CANCELLED;
+                                $trx['codeStatus'] = self::CANCELLED;
                                 $trx['errorMessage'] = $this->getDokuResponse($trx['statusCode']);
                             }
                         }
                     } else {
                         if ( $trx['statusCode'] == "0000" ) {
                             $trx['message'] = "Redirect process message come from DOKU with succeed notify. Transaction is Success";
-                            $trx['status'] = self::COMPLETED;
+                            $trx['codeStatus'] = self::COMPLETED;
                         } else {
                             $trx['message'] = "Redirect process message come from DOKU with failed notify. Transaction is Failed";
-                            $trx['status'] = self::CANCELLED;
+                            $trx['codeStatus'] = self::CANCELLED;
                             $trx['errorMessage'] = $this->getDokuResponse($trx['statusCode']);
                         }
                     }
@@ -255,11 +255,11 @@ class Doku
                 // invalid request
                 $trx['message'] = 'Invalid signature. Transaction is Failed';
                 $trx['errorMessage'] = 'Invalid signature. Transaction is Failed';
-                $trx['status'] = self::CANCELLED;
+                $trx['codeStatus'] = self::CANCELLED;
             }
         }
 
-        $this->updateOrderStatus($trx['orderId'], $trx['status']);
+        $this->updateOrderStatus($trx['orderId'], $trx['codeStatus']);
         $this->saveDokuCheckout($trx);
 
         return $trx;
