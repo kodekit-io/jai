@@ -83,7 +83,7 @@ class Cimb
         $trx['status'] = ( $request->has('Status') ? $request->input('Status') : '' );
         $trx['errDesc'] = ( $request->has('ErrDesc') ? $request->input('ErrDesc') : '' );
         $trx['signature'] = ( $request->has('Signature') ? $request->input('Signature') : '' );
-        $trx['process_type'] = 'REDIRECT';
+        $trx['processType'] = 'REDIRECT';
 
         $signatureWord = $this->merchantKey . $this->merchantCode . $trx['paymentId'] . $trx['orderId'] . $trx['amount'] . $trx['currency'] . $trx['status'];
         $generatedSignature = base64_encode(sha1($signatureWord, true));
@@ -131,7 +131,7 @@ class Cimb
         $trx['status'] = ( $request->has('Status') ? $request->input('Status') : '' );
         $trx['errDesc'] = ( $request->has('ErrDesc') ? $request->input('ErrDesc') : '' );
         $trx['signature'] = ( $request->has('Signature') ? $request->input('Signature') : '' );
-        $trx['process_type'] = 'BACKEND';
+        $trx['processType'] = 'BACKEND';
 
         $signatureWord = $this->merchantKey . $this->merchantCode . $trx['paymentId'] . $trx['orderId'] . $trx['amount'] . $trx['currency'] . $trx['status'];
         $generatedSignature = base64_encode(sha1($signatureWord, true));
