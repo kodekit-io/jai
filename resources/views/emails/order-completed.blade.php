@@ -212,7 +212,7 @@
                                                                                             {!! $detail->product_name !!}
                                                                                         </td>
                                                                                         <td align="left" valign="top" style="max-width: 100%;">
-                                                                                            {!! $detail->qty !!} Visitor(s)
+                                                                                            {!! $detail->qty !!} {!! str_plural('Visitor', $detail->qty) !!}
                                                                                         </td>
                                                                                     </tr>
                                                                                 @endforeach
