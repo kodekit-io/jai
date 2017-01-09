@@ -90,11 +90,18 @@ class Cimb
 
         if ($generatedSignature == $trx['signature']) {
             if ($trx['status'] == '1') {
-                // double check with requery
-                // $status = $this->checkStatus($trx);
-                $trx['message'] = 'Transaction is succeed';
-                $trx['errorMessage'] = '';
-                $trx['orderStatus'] = self::COMPLETED;
+                // check the status for security purpose
+                $status = $this->checkStatus($trx);
+                if ($status == '00') {
+                    $trx['message'] = 'Transaction is succeed';
+                    $trx['errorMessage'] = '';
+                    $trx['orderStatus'] = self::COMPLETED;
+                } else {
+                    $trx['message'] = 'Transaction is succeed, check status is failed';
+                    $trx['errorMessage'] = '';
+                    $trx['orderStatus'] = self::COMPLETED;
+                }
+
             } else {
                 $trx['message'] = 'Payment is failed : ' . $trx['errDesc'];
                 $trx['errorMessage'] = $trx['errDesc'];
@@ -171,33 +178,7 @@ class Cimb
 
         $stringBody = (string) $body;
 
-        echo $stringBody; exit();
-
-        $reQuery = $this->requeryUrl . '?MerchantCode=' . $this->merchantCode . '&RefNo=' . $trx['orderId'] . '&Amount=' . $trx['amount'];
-        Log::warning('reQuery ==> ' . $reQuery);
-        $url = parse_url($reQuery);
-        $host = $url['host'];
-        Log::warning('host ==> ' . $host);
-        $path = $url['path'] . '?' . $url['query'];
-        Log::warning('path ==> ' . $path);
-        $timeout = 1;
-        $fp = fsockopen($host, 80, $errno, $errstr, $timeout);
-        Log::warning('=== socket opened ===');
-        $buf = '';
-        if ($fp) {
-            fputs($fp, 'GET ' . $path . ' HTTP/1.0\nHost: ' . $host . '\n\n');
-            while (! feof($fp)) {
-                Log::warning('=== loop the result ===');
-                $buf .= fgets($fp, 128);
-            }
-            $lines = explode('\n', $buf);
-            $result = $lines[count($lines) - 1];
-            fclose($fp);
-        } else {
-            $result = '';
-        }
-
-        return $result;
+        return $stringBody;
     }
 
     private function saveCimbCheckout($trx)
