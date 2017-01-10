@@ -582,9 +582,11 @@ h2.ja-slide-title {
 .ja-header-intro {
 	background: rgba(0, 0, 0, 0.7);
 	height: calc(400px - 5em);
-	padding: 2.5em;
+	/*padding: 2.5em;*/
+    padding: 2em;
 	text-align: center;
-	font-size: 2.2rem;
+	/*font-size: 2.2rem;*/
+	font-size: 1.8rem;
 	line-height: 1.5em;
 	color: #fff;
 	font-family: 'Intro-Light', 'Intro Light', 'Intro';
