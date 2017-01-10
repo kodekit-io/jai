@@ -234,6 +234,7 @@ class Package
         $x = 0;
         foreach ($galasysProducts as $galasysProduct) {
             $price = ($isHoliday ? $galasysProduct->WeekendPrice : $galasysProduct->BasePrice);
+            $title = $galasysProduct->Name;
             $description = $galasysProduct->Description;
             $itemCode = $galasysProduct->ItemCode;
             $ticketId = $galasysProduct->TicketID;
@@ -243,7 +244,10 @@ class Package
             if ($galasysProduct->$checkAvailabilityWord == 'true') {
                 $packages .= '<div class="uk-width-medium-1-3">
                                 <div class="uk-panel-box white-text '. $colors[$x] .'">
-                                    <h4 class="white-text uk-margin-remove">' . $description . '</h4>
+                                    <h4 class="white-text">' . $title . '</h4>
+                                    <div class="jai-submission-info">
+                                        <p>' . $description . '</p>
+                                    </div>
                                     <div class="jai-submission-price">
                                         IDR '. number_format($price, 0) .'
                                     </div>

@@ -36,20 +36,31 @@
                             <div class="all-packages">
                             @foreach($galasysProducts as $galasysProduct)
                                 <?php
+                                $title = $galasysProduct->Name;
                                 $description = $galasysProduct->Description;
                                 $itemCode = $galasysProduct->ItemCode;
                                 $ticketId = $galasysProduct->TicketID;
                                 $isPackage = $galasysProduct->IsPackage;
-                                $price = $galasysProduct->BasePrice;
+                                $price = '';
+                                if ($galasysProduct->IsMonday == 'true') {
+                                    $price .= 'Weekday :<br>';
+                                    $price .= '<span class="ja-bold">IDR '. number_format($galasysProduct->BasePrice, 0) . '</span>';
+                                }
+                                if ($galasysProduct->IsSunday == 'true') {
+                                    $price .= 'Weekend :<br>';
+                                    $price .= '<span class="ja-bold">IDR '. number_format($galasysProduct->WeekendPrice, 0) . '</span>';
+                                }
                                 ?>
                                 <div class="uk-panel uk-panel-box {!! $colors[$loop->index] !!} white-text noborder uk-margin-bottom">
                                     <div class="uk-grid">
                                         <div class="uk-width-medium-2-3">
-                                            <h4 class="white-text">{!! strtoupper($description) !!}</h4>
+                                            <h4 class="white-text">{!! strtoupper($title) !!}</h4>
+                                            <p>{!! $description !!}</p>
                                         </div>
                                         <div class="uk-width-medium-1-3">
                                             {{--Monday - Friday (Weekday):<br>--}}
-                                            <span class="ja-bold">IDR {!! number_format($price, 0) !!}</span>
+                                            {{--<span class="ja-bold">IDR {!! number_format($price, 0) !!}</span>--}}
+                                            {!! $price !!}
                                         </div>
                                     </div>
                                 </div>
