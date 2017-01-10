@@ -157,6 +157,26 @@
                         jQuery('.packages').html(data);
                     }
 
+
+                    jQuery(function() {
+                        jQuery(".qtys").append('<a class="inc btn">+</a><a class="dec btn">-</a>');
+                        jQuery(".btn").on("click", function() {
+                            var btn = jQuery(this);
+                            var oldValue = btn.parent().find("input").val();
+                            if (btn.text() == "+") {
+                                var newVal = parseFloat(oldValue) + 1;
+                            } else {
+                                if (oldValue > 0) {
+                                    var newVal = parseFloat(oldValue) - 1;
+                                } else {
+                                    newVal = 0;
+                                }
+                            }
+                            btn.parent().find("input").val(newVal);
+                        });
+                    });
+
+
                 });
             }
             var errorCounter = 0;
@@ -200,5 +220,7 @@
                 }
             });
         });
+
+
     </script>
 @endsection
