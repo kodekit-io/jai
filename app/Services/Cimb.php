@@ -3,6 +3,7 @@
 namespace App\Service;
 
 use App\Models\CimbCheckout;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Log;
 
@@ -82,18 +83,25 @@ class Cimb
         $trx['status'] = ( $request->has('Status') ? $request->input('Status') : '' );
         $trx['errDesc'] = ( $request->has('ErrDesc') ? $request->input('ErrDesc') : '' );
         $trx['signature'] = ( $request->has('Signature') ? $request->input('Signature') : '' );
-        $trx['process_type'] = 'REDIRECT';
+        $trx['processType'] = 'REDIRECT';
 
         $signatureWord = $this->merchantKey . $this->merchantCode . $trx['paymentId'] . $trx['orderId'] . $trx['amount'] . $trx['currency'] . $trx['status'];
         $generatedSignature = base64_encode(sha1($signatureWord, true));
 
         if ($generatedSignature == $trx['signature']) {
             if ($trx['status'] == '1') {
-                // double check with requery
-                // $status = $this->checkStatus($trx);
-                $trx['message'] = 'Transaction is succeed';
-                $trx['errorMessage'] = '';
-                $trx['orderStatus'] = self::COMPLETED;
+                // check the status for security purpose
+                $status = $this->checkStatus($trx);
+                if ($status == '00') {
+                    $trx['message'] = 'Transaction is succeed, check status succeed';
+                    $trx['errorMessage'] = '';
+                    $trx['orderStatus'] = self::COMPLETED;
+                } else {
+                    $trx['message'] = 'Transaction is succeed, check status is failed';
+                    $trx['errorMessage'] = 'Check status is failed';
+                    $trx['orderStatus'] = self::CANCELLED;
+                }
+
             } else {
                 $trx['message'] = 'Payment is failed : ' . $trx['errDesc'];
                 $trx['errorMessage'] = $trx['errDesc'];
@@ -123,7 +131,7 @@ class Cimb
         $trx['status'] = ( $request->has('Status') ? $request->input('Status') : '' );
         $trx['errDesc'] = ( $request->has('ErrDesc') ? $request->input('ErrDesc') : '' );
         $trx['signature'] = ( $request->has('Signature') ? $request->input('Signature') : '' );
-        $trx['process_type'] = 'BACKEND';
+        $trx['processType'] = 'BACKEND';
 
         $signatureWord = $this->merchantKey . $this->merchantCode . $trx['paymentId'] . $trx['orderId'] . $trx['amount'] . $trx['currency'] . $trx['status'];
         $generatedSignature = base64_encode(sha1($signatureWord, true));
@@ -132,10 +140,17 @@ class Cimb
         if ($orderStatus != 'completed') {
             if ($generatedSignature == $trx['signature']) {
                 if ($trx['status'] == '1') {
-                    $trx['message'] = 'Transaction is succeed';
-                    $trx['errorMessage'] = '';
-                    $trx['orderStatus'] = self::COMPLETED;
-                    return 'OK';
+                    // check the status for security purpose
+                    $status = $this->checkStatus($trx);
+                    if ($status == '00') {
+                        $trx['message'] = 'Transaction is succeed, check status succeed';
+                        $trx['errorMessage'] = '';
+                        $trx['orderStatus'] = self::COMPLETED;
+                    } else {
+                        $trx['message'] = 'Transaction is succeed, check status is failed';
+                        $trx['errorMessage'] = 'Check status is failed';
+                        $trx['orderStatus'] = self::CANCELLED;
+                    }
                 } else {
                     $trx['message'] = 'Payment is failed : ' . $trx['errDesc'];
                     $trx['errorMessage'] = $trx['errDesc'];
@@ -150,36 +165,27 @@ class Cimb
             $this->saveCimbCheckout($trx);
         }
 
-        return '';
+        return 'OK';
     }
 
     public function checkStatus($trx)
     {
-        $reQuery = $this->requeryUrl . '?MerchantCode=' . $this->merchantCode . '&RefNo=' . $trx['orderId'] . '&Amount=' . $trx['amount'];
-        Log::warning('reQuery ==> ' . $reQuery);
-        $url = parse_url($reQuery);
-        $host = $url['host'];
-        Log::warning('host ==> ' . $host);
-        $path = $url['path'] . '?' . $url['query'];
-        Log::warning('path ==> ' . $path);
-        $timeout = 1;
-        $fp = fsockopen($host, 80, $errno, $errstr, $timeout);
-        Log::warning('=== socket opened ===');
-        $buf = '';
-        if ($fp) {
-            fputs($fp, 'GET ' . $path . ' HTTP/1.0\nHost: ' . $host . '\n\n');
-            while (! feof($fp)) {
-                Log::warning('=== loop the result ===');
-                $buf .= fgets($fp, 128);
-            }
-            $lines = explode('\n', $buf);
-            $result = $lines[count($lines) - 1];
-            fclose($fp);
-        } else {
-            $result = '';
-        }
+        $client = new Client();
+        $params = [
+            'MerchantCode' => $this->merchantCode,
+            'RefNo' => $trx['orderId'],
+            'Amount' => $trx['amount']
+        ];
 
-        return $result;
+        $response = $client->post($this->requeryUrl, [
+            'form_params' => $params
+        ]);
+
+        $body = $response->getBody();
+
+        $stringBody = (string) $body;
+
+        return $stringBody;
     }
 
     private function saveCimbCheckout($trx)

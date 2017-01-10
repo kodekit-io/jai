@@ -153,6 +153,10 @@ Route::group(['prefix' => $backendUrl, 'middleware' => ['menu:backend','auth','a
     Route::post('/page/{id}/update', 'PageController@update')->name('page.edit');
     Route::get('/page/{id}/delete', 'PageController@destroy')->name('page.delete');
 
+    // Order
+    Route::get('/order', 'OrderController@index')->name('order');
+    Route::get('/order/{id}/detail', 'OrderController@detail')->name('order');
+
     // General Setting
     Route::get('/general-setting', 'GeneralSettingController@index')->name('setting');
     Route::post('/general-setting', 'GeneralSettingController@save')->name('setting');
@@ -176,6 +180,7 @@ Route::group(['prefix' => $backendUrl, 'middleware' => ['auth']], function () {
     Route::get('/news-data', 'NewsController@anyData')->name('news.data' );
     Route::get('/slider-data', 'SliderController@anyData')->name('slider.data');
     Route::get('/post-type-data', 'PostTypeController@anyData')->name('post-type.data');
+    Route::get('/order-data', 'OrderController@anyData')->name('order.data');
 
     Route::post('/get-slug/{model}', function(\Illuminate\Http\Request $request, $model) {
         $title = $request->input('title');
@@ -239,6 +244,7 @@ Route::get('galasys/products', 'GalasysController@products');
 Route::get('galasys/order', 'GalasysController@order');
 
 Route::get('tests/send-email', 'TicketController@sendEmail');
+Route::get('tests/email-template', 'TicketController@emailTemplate');
 Route::get('tests/get-pdf', 'TicketController@generatePdf');
 Route::get('tests/galasys-order', 'TicketController@galasysOrder');
 Route::get('tests/galasys-holidays', 'TicketController@galasysHolidays');

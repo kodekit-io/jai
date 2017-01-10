@@ -3,6 +3,7 @@
 namespace App\Mail;
 
 use App\Models\Order;
+use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -33,7 +34,12 @@ class OrderCompleted extends Mailable
      */
     public function build()
     {
-        $email = $this->view('emails.order-completed');
+        $data['orderId'] = $this->order->id;
+        $data['name'] = $this->order->name;
+        $data['visitDate'] = Carbon::createFromFormat('Y-m-d', $this->order->visit_date)->format('l, d F Y');
+        $data['total'] = number_format($this->order->total_amount, 0, ',', '.');
+        $data['details'] = $this->order->details;
+        $email = $this->view('emails.order-completed', $data);
         $tickets = $this->order->galasysTickets;
         foreach ($tickets as $ticket) {
             $email->attach(public_path($ticket->e_ticket));

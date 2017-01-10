@@ -96,6 +96,13 @@ class TicketController extends Controller
         ];
         $postWithDetail = $this->postService->getPostsWithDetail($params)->first();
 
+        $params = [
+            'package_type_id' => 2,
+            'lang' => $lang,
+            'is_general_admission' => 1,
+        ];
+        $packages = $this->packageService->getPackages($params);
+
         $galasysProducts = $this->packageService->getAllPackages();
 
         $post = $this->postService->getPost(['id' => $pageId]);
@@ -112,7 +119,9 @@ class TicketController extends Controller
             'amber darken-1'
         ];
 
+        $data['minDate'] = Carbon::today()->addDays(7)->format('d-m-Y');
         $data['galasysProducts'] = $galasysProducts;
+        $data['packages'] = $packages;
         $data['pageTitle'] = $postWithDetail->title;
         $data['post'] = $postWithDetail;
         $data['openingHours'] = $openingHours;
@@ -161,8 +170,8 @@ class TicketController extends Controller
 
     public function sendEmail()
     {
-        $order = $this->orderService->getOrderById(85);
-        Mail::to('pasha.md5@gmail.com')->send(new OrderCompleted($order));
+        $order = $this->orderService->getOrderById(96);
+        Mail::to('jamal@kleur.id')->send(new OrderCompleted($order));
     }
 
     public function generatePdf()
@@ -192,6 +201,18 @@ class TicketController extends Controller
     public function galasysHolidays()
     {
         var_dump($this->galasys->getHolidays()); exit();
+    }
+
+    public function emailTemplate()
+    {
+        $order = $this->orderService->getOrderById(96);
+        $data['orderId'] = $order->id;
+        $data['name'] = $order->name;
+        $data['details'] = $order->details;
+        $data['visitDate'] = Carbon::createFromFormat('Y-m-d', $order->visit_date)->format('l, d F Y');
+        $data['total'] = number_format($order->total_amount, 0, ',', '.');
+
+        return view('emails.order-completed', $data);
     }
 
 }

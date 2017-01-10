@@ -58,7 +58,7 @@ class PaymentController extends Controller
     public function dokuResult(Request $request)
     {
         $result = $this->dokuService->dokuRedirect($request);
-        if ($result['status'] == 'completed' || $result['status'] == 'on-hold') {
+        if ($result['orderStatus'] == 'completed' || $result['orderStatus'] == 'on-hold') {
             return view('frontend.thank-you', $result);
         } else {
             return view('frontend.transaction-failed', $result);
