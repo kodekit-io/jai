@@ -16,7 +16,7 @@
 
 <main class="ja-ticket">
     <div class="uk-container uk-container-center">
-        <p>At vero eos et accusamus et iusto odio madeline dignis imosse ducma quisa. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dignis imosse ducma quisa cillum fugiat nulla pariatur excepteur sint exercitation ullamco accusamus et iusto cupidatat non proident.</p>
+        <p>{!! $mapText !!}</p>
         <div class="uk-width-1-1 uk-margin-bottom">
             <h4 class="uk-margin-bottom-remove">UPPER LEVEL</h4>
             <img class="uk-responsive-width" src="{!! asset('frontend/img/map-upper.png') !!}" />
@@ -104,13 +104,6 @@
             <p>Our Aquarium Map is now available in high-qualitied PDF format for your convenience. Download and use it to plan your day at the park. The contents of the Aquarium Map may change without prior notice.</p>
             <a href="{!! asset('frontend/img/map-LG-LGM-A4.pdf') !!}" target="_blank" class="uk-button uk-button-primary ja-button cyan darken-1 white-text"><i class="uk-icon-file-pdf-o"></i> DOWNLOAD PDF MAP</a>
         </div>
-
-        {{--<div class="ja-ticket__content uk-margin-large-bottom">--}}
-            {{--<h3 class="light-blue-text text-darken-4">MOBILE APP</h3>--}}
-            {{--<p>{!! $getTheApp !!}</p>--}}
-            {{--<p><a href="#!" title="Download on The App Store"><img src="{!! asset('frontend/img/download-store.png') !!}" alt="Download on The App Store" /></a>--}}
-            {{--<a href="#!" title="Get it on Google Play"><img src="{!! asset('frontend/img/download-play.png') !!}" alt="Get it on Google Play" /></a></p>--}}
-        {{--</div>--}}
 
     </div>
 </main>

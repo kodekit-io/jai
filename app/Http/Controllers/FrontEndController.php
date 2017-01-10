@@ -235,9 +235,12 @@ class FrontEndController extends Controller
         switch ($lang) {
             case 'en':
                 $data['getTheApp'] = 'Be the first to receive latest update from Jakarta Aquarium. Download the app';
+                $data['mapText'] = 'Jakarta Aquarium consists of two floors and twelve zones that show a variety of unique, lovable, and beautiful animals in its habitat. Explore every corner of Jakarta Aquarium to find new fun experience with your friends and family.
+';
                 break;
             default:
-                $data['getTheApp'] = 'Jadilah orang pertama yang mendapatkan info terupdate dari Jakarta Aquarium. Download aplikasinya sekarang juga!';
+                $data['getTheApp'] = 'Jadilah orang pertama yang mendapatkan info terupdate dari Jakarta Aquarium. Download aplikasinya sekarang juga !';
+                $data['mapText'] = 'Jakarta Aquarium terdiri dari dua lantai dan dua belas zona yang menampilkan beraneka ragam satwa unik, lucu, dan indah dalam habitatnya. Jelajahi setiap sudut Jakarta Aquarium untuk menemukan pengalaman seru baru bersama teman dan keluarga Anda.';
                 break;
         }
         $data['pageTitle'] = 'Aquarium Map';
