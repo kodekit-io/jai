@@ -891,6 +891,30 @@ img.preloader {
 .ja-icon-facility.taxi {
 	background: url(../img/i-facility_taxi.png) no-repeat center center;
 }
+
+.ja-icon-facility.locker {
+    background: url(../img/i-facility_locker.png) no-repeat center center;
+}
+.ja-icon-facility.restroom {
+    background: url(../img/i-facility_restroom.png) no-repeat center center;
+}
+.ja-icon-facility.baby {
+    background: url(../img/i-facility_baby.png) no-repeat center center;
+}
+.ja-icon-facility.wifi {
+    background: url(../img/i-facility_wifi.png) no-repeat center center;
+}
+.ja-icon-facility.cafetaria {
+    background: url(../img/i-facility_cafetaria.png) no-repeat center center;
+}
+.ja-icon-facility.souvenir {
+    background: url(../img/i-facility_souvenir.png) no-repeat center center;
+}
+.ja-icon-facility.restaurant {
+    background: url(../img/i-facility_restaurant.png) no-repeat center center;
+}
+
+
 .ja-icon-facility.wheelchair {
 	background: url(../img/i-facility_wheelchair.png) no-repeat center center;
 }

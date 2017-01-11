@@ -480,20 +480,22 @@ class Post
     {
         return [
             'afterMap',
-            'parkingTitle',
-            'parkingDesc',
-            'vipTitle',
-            'vipDesc',
+            'lockerTitle',
+            'lockerDesc',
+            'restroomTitle',
+            'restroomDesc',
             'wheelchairTitle',
             'wheelchairDesc',
-            'bikeRackTitle',
-            'bikeRackDesc',
-            'shuttleBusTitle',
-            'shuttleBusDesc',
-            'blueBirdTitle',
-            'blueBirdDesc',
-            'publicBusTitle',
-            'publicBusDesc'
+            'babyTitle',
+            'babyDesc',
+            'wifiTitle',
+            'wifiDesc',
+            'cafeTitle',
+            'cafeDesc',
+            'souvenirTitle',
+            'souvenirDesc',
+            'restaurantTitle',
+            'restaurantDesc'
         ];
     }
 

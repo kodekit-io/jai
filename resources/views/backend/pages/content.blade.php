@@ -42,46 +42,54 @@
             if ($post->id == config('misc.statics.location')) {
                 $metaAfterMap = $post->metas()->where('meta_key', 'afterMap-' . $lang['code'])->first();
                 $afterMap = count($metaAfterMap) > 0 ? $metaAfterMap->meta_value : '';
-                // parking
-                $metaParking = $post->metas()->where('meta_key', 'parkingTitle-' . $lang['code'])->first();
-                $parkingTitle = count($metaParking) > 0 ? $metaParking->meta_value : '';
-                $metaParkingDesc = $post->metas()->where('meta_key', 'parkingDescription-' . $lang['code'])->first();
-                $parkingDescription = count($metaParkingDesc) > 0 ? $metaParkingDesc->meta_value : '';
-                // parking
-                $meta = $post->metas()->where('meta_key', 'parkingTitle-' . $lang['code'])->first();
-                $parkingTitle = count($meta) > 0 ? $meta->meta_value : '';
-                $meta = $post->metas()->where('meta_key', 'parkingDesc-' . $lang['code'])->first();
-                $parkingDesc = count($meta) > 0 ? $meta->meta_value : '';
-                // vip
-                $meta = $post->metas()->where('meta_key', 'vipTitle-' . $lang['code'])->first();
-                $vipTitle = count($meta) > 0 ? $meta->meta_value : '';
-                $meta = $post->metas()->where('meta_key', 'vipDesc-' . $lang['code'])->first();
-                $vipDesc = count($meta) > 0 ? $meta->meta_value : '';
+
+                // locker
+                $meta = $post->metas()->where('meta_key', 'lockerTitle-' . $lang['code'])->first();
+                $lockerTitle = count($meta) > 0 ? $meta->meta_value : '';
+                $meta = $post->metas()->where('meta_key', 'lockerDesc-' . $lang['code'])->first();
+                $lockerDesc = count($meta) > 0 ? $meta->meta_value : '';
+
+                // restroom
+                $meta = $post->metas()->where('meta_key', 'restroomTitle-' . $lang['code'])->first();
+                $restroomTitle = count($meta) > 0 ? $meta->meta_value : '';
+                $meta = $post->metas()->where('meta_key', 'restroomDesc-' . $lang['code'])->first();
+                $restroomDesc = count($meta) > 0 ? $meta->meta_value : '';
+
                 // wheelchair
                 $meta = $post->metas()->where('meta_key', 'wheelchairTitle-' . $lang['code'])->first();
                 $wheelchairTitle = count($meta) > 0 ? $meta->meta_value : '';
                 $meta = $post->metas()->where('meta_key', 'wheelchairDesc-' . $lang['code'])->first();
                 $wheelchairDesc = count($meta) > 0 ? $meta->meta_value : '';
-                // bikeRack
-                $meta = $post->metas()->where('meta_key', 'bikeRackTitle-' . $lang['code'])->first();
-                $bikeRackTitle = count($meta) > 0 ? $meta->meta_value : '';
-                $meta = $post->metas()->where('meta_key', 'bikeRackDesc-' . $lang['code'])->first();
-                $bikeRackDesc = count($meta) > 0 ? $meta->meta_value : '';
-                // shuttleBus
-                $meta = $post->metas()->where('meta_key', 'shuttleBusTitle-' . $lang['code'])->first();
-                $shuttleBusTitle = count($meta) > 0 ? $meta->meta_value : '';
-                $meta = $post->metas()->where('meta_key', 'shuttleBusDesc-' . $lang['code'])->first();
-                $shuttleBusDesc = count($meta) > 0 ? $meta->meta_value : '';
-                // blueBird
-                $meta = $post->metas()->where('meta_key', 'blueBirdTitle-' . $lang['code'])->first();
-                $blueBirdTitle = count($meta) > 0 ? $meta->meta_value : '';
-                $meta = $post->metas()->where('meta_key', 'blueBirdDesc-' . $lang['code'])->first();
-                $blueBirdDesc = count($meta) > 0 ? $meta->meta_value : '';
-                // publicBus
-                $meta = $post->metas()->where('meta_key', 'publicBusTitle-' . $lang['code'])->first();
-                $publicBusTitle = count($meta) > 0 ? $meta->meta_value : '';
-                $meta = $post->metas()->where('meta_key', 'publicBusDesc-' . $lang['code'])->first();
-                $publicBusDesc = count($meta) > 0 ? $meta->meta_value : '';
+
+                // baby
+                $meta = $post->metas()->where('meta_key', 'babyTitle-' . $lang['code'])->first();
+                $babyTitle = count($meta) > 0 ? $meta->meta_value : '';
+                $meta = $post->metas()->where('meta_key', 'babyDesc-' . $lang['code'])->first();
+                $babyDesc = count($meta) > 0 ? $meta->meta_value : '';
+
+                // wifi
+                $meta = $post->metas()->where('meta_key', 'wifiTitle-' . $lang['code'])->first();
+                $wifiTitle = count($meta) > 0 ? $meta->meta_value : '';
+                $meta = $post->metas()->where('meta_key', 'wifiDesc-' . $lang['code'])->first();
+                $wifiDesc = count($meta) > 0 ? $meta->meta_value : '';
+
+                // cafe
+                $meta = $post->metas()->where('meta_key', 'cafeTitle-' . $lang['code'])->first();
+                $cafeTitle = count($meta) > 0 ? $meta->meta_value : '';
+                $meta = $post->metas()->where('meta_key', 'cafeDesc-' . $lang['code'])->first();
+                $cafeDesc = count($meta) > 0 ? $meta->meta_value : '';
+
+                // souvenir
+                $meta = $post->metas()->where('meta_key', 'souvenirTitle-' . $lang['code'])->first();
+                $souvenirTitle = count($meta) > 0 ? $meta->meta_value : '';
+                $meta = $post->metas()->where('meta_key', 'souvenirDesc-' . $lang['code'])->first();
+                $souvenirDesc = count($meta) > 0 ? $meta->meta_value : '';
+
+                // restaurant
+                $meta = $post->metas()->where('meta_key', 'restaurantTitle-' . $lang['code'])->first();
+                $restaurantTitle = count($meta) > 0 ? $meta->meta_value : '';
+                $meta = $post->metas()->where('meta_key', 'restaurantDesc-' . $lang['code'])->first();
+                $restaurantDesc = count($meta) > 0 ? $meta->meta_value : '';
             }
         ?>
         <div class="tab-pane @if($lang['code'] == $defaultLang) active @endif" id="{!! $lang['code'] !!}">
