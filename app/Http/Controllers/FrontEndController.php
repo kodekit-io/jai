@@ -390,8 +390,36 @@ class FrontEndController extends Controller
 
     public function promo($lang)
     {
+        $promoParams = [
+            'post_type_id' => 7,
+            'lang' => $lang,
+            'status' => 'publish'
+        ];
+        $promos = $this->postService->getPostsWithDetail($promoParams);
+
+
+        $promoPaginated = $promos->paginate(6);
+        $promoPaginated->setPath('promo');
+        $data['promos'] =$promoPaginated;
+
         $data['pageTitle'] = 'Promotions';
 
         return view('frontend.promo', $data);
+    }
+
+    public function promoDetail($lang, $slug)
+    {
+        $post = $this->postService->getPostsWithDetail(['lang' => $lang, 'slug' => $slug]);
+        if (! $post->count() > 0) {
+            abort(404);
+        }
+        $post = $post->first();
+
+        $data['post'] = $post;
+        $data['metaDesc'] = get_meta_description($post->id, $lang);
+
+        $data['pageTitle'] = $post->title;
+
+        return view('frontend.promo-details', $data);
     }
 }

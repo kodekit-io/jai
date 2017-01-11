@@ -105,6 +105,14 @@ Route::group(['prefix' => $backendUrl, 'middleware' => ['menu:backend','auth','a
     Route::post('/news/{id}/update', 'NewsController@update')->name('news.edit');
     Route::get('/news/{id}/delete', 'NewsController@destroy')->name('news.delete');
 
+    // Promo
+    Route::get('/promo', 'PromoController@index')->name('promo');
+    Route::get('/promo/add', 'PromoController@create')->name('promo.add');
+    Route::post('/promo/save', 'PromoController@store')->name('promo.add');
+    Route::get('/promo/{id}/edit', 'PromoController@edit')->name('promo.edit');
+    Route::post('/promo/{id}/update', 'PromoController@update')->name('promo.edit');
+    Route::get('/promo/{id}/delete', 'PromoController@destroy')->name('promo.delete');
+
     // Package
     Route::get('/package', 'PackageController@index')->name('package');
     Route::get('/package/add', 'PackageController@create')->name('package.add');
@@ -174,6 +182,7 @@ Route::group(['prefix' => $backendUrl, 'middleware' => ['auth']], function () {
     Route::get('/media-room-data', 'MediaRoomController@anyData')->name('media-room.data');
     Route::get('/package-data', 'PackageController@anyData')->name('package.data');
     Route::get('/news-data', 'NewsController@anyData')->name('news.data' );
+    Route::get('/promo-data', 'PromoController@anyData')->name('promo.data' );
     Route::get('/slider-data', 'SliderController@anyData')->name('slider.data');
     Route::get('/post-type-data', 'PostTypeController@anyData')->name('post-type.data');
 
@@ -214,6 +223,7 @@ Route::group(['middleware' => ['lang', 'menu:frontend']], function () {
     Route::get('/{lang?}/term-use', 'FrontEndController@term');
     Route::get('/{lang?}/search-result', 'FrontEndController@search');
     Route::get('/{lang?}/promo', 'FrontEndController@promo');
+    Route::get('/{lang?}/promo/{slug}', 'FrontEndController@promoDetail');
 
     Route::get('/{lang?}/thank-you', 'FrontEndController@thankYou');
     Route::get('/{lang?}/test-print', 'FrontEndController@testPrint');
