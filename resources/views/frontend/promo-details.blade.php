@@ -16,7 +16,7 @@
 
     <main class="ja-news">
         <div class="uk-container uk-container-center">
-            <img  class="uk-responsive-width" src="{!! asset('images/newsSlider/' . $post->file_name) !!}" />
+            <img  class="uk-responsive-width" src="{!! asset('images/original/' . $post->file_name) !!}" />
             <div class="ja-news__content ja-news__content-details uk-margin-bottom">
 
                 <h1 class="light-blue-text text-darken-4 uk-text-uppercase">{!! $post->title !!}</h1>
