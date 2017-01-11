@@ -186,7 +186,6 @@
 
             jQuery('#visit_date').change(function() {
                 visitDate = jQuery(this).val();
-                console.log(visitDate);
                 getAvailableProducts(visitDate);
             });
 
@@ -201,13 +200,14 @@
                     var orderTotal = 0;
                     $('input[name^=products]').each(function() {
                         var order = $(this).attr('type');
-                        if(order == 'number') {
-                            if (order == 'number') {
-                                var value = $(this).val();
-                                orderTotal = orderTotal + parseInt(value);
-                            }
+                        console.log(order);
+                        if (order == 'text') {
+                            var value = $(this).val();
+                            orderTotal = orderTotal + parseInt(value);
                         }
                     });
+
+                    console.log(orderTotal);
 
                     if (orderTotal < 1) {
                         $('.packages p').remove();
