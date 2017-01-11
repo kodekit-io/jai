@@ -259,7 +259,7 @@ class Package
                                     <input type="hidden" name="products[' . $itemCode . '][isPackage]" value="' . $isPackage .'">
 
                                     <div class="qtys">
-                                        <input type="text" min="0" name="products[' . $itemCode . '][qty]" class="" value="0">
+                                        <input type="text" min="0" name="products[' . $itemCode . '][qty]" class="" value="0" readonly>
                                     </div>
                                 </div>
                             </div>';

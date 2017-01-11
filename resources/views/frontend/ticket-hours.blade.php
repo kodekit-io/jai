@@ -101,19 +101,18 @@
                     </form>
                 </div>
 
-                @if (count($packages) > 0)
-                    <br>
-                    @foreach($packages as $package)
-                        <h3 class="light-blue-text text-darken-4">{!! $package->title !!}</h3>
-                        <div>
-                            <p>{!! $package->content !!}</p>
-                        </div>
-                    @endforeach
-                @endif
-
             </div>
 
         </div>
+
+        @if (count($packages) > 0)
+            @foreach($packages as $package)
+            <div class="ja-ticket__content uk-margin-large-bottom">
+                <h3 class="light-blue-text text-darken-4">{!! $package->title !!}</h3>
+                {!! $package->content !!}
+            </div>
+            @endforeach
+        @endif
 
         <div class="ja-ticket__content uk-margin-large-bottom">
             <h3 class="light-blue-text text-darken-4">OPENING HOURS</h3>
