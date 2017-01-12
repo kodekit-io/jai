@@ -407,6 +407,18 @@ class Post
         return $params;
     }
 
+    public function search($lang, $searchText)
+    {
+        $query = $this->getBaseQuery()
+            ->whereIn('post_type_id', [2,3,4,7])
+            ->where('post_details.lang', $lang)
+            ->where(function ($query) use ($searchText) {
+            $query->where('post_details.title', 'like', '%' . $searchText . '%')
+                ->orWhere('post_details.content', 'like', '%' . $searchText . '%');
+            });
+        return $query->get();
+    }
+
     private function getBaseQuery()
     {
         return DB::table('posts')

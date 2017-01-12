@@ -21,8 +21,9 @@
 	    @include('includes.menu', array('items' => $menu->roots()))
     </ul>
 
-	<form class="ja-searchform cyan darken-1 ja-mobhide uk-hidden-small" action="{!! lang_url('search-result') !!}">
-		<input type="text" placeholder="Search">
+	<form class="ja-searchform cyan darken-1 ja-mobhide uk-hidden-small" method="post" action="{!! lang_url('search-result') !!}">
+		{!! csrf_field() !!}
+		<input type="text" name="search" placeholder="Search">
 		<input type="submit">
 	</form>
 	<div class="ja-socmed cyan darken-1 uk-text-center ja-mobhide uk-hidden-small">

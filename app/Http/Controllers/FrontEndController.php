@@ -369,8 +369,10 @@ class FrontEndController extends Controller
         return view('frontend.term-use', $data);
     }
 
-    public function search($lang)
+    public function search(Request $request, $lang)
     {
+        $searchResults = $this->postService->search($lang, $request->get('search'));
+        $data['searchResults'] = $searchResults;
         $data['pageTitle'] = 'Search Result';
 
         return view('frontend.search-result', $data);

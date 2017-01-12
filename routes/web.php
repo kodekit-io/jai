@@ -221,7 +221,7 @@ Route::group(['middleware' => ['lang', 'menu:frontend']], function () {
     Route::get('/{lang?}/media-room/{slug}', 'MediaRoomFrontEndController@mediaRoomDetails');
     Route::get('/{lang?}/privacy-policy', 'FrontEndController@privacy');
     Route::get('/{lang?}/term-use', 'FrontEndController@term');
-    Route::get('/{lang?}/search-result', 'FrontEndController@search');
+    Route::post('/{lang?}/search-result', 'FrontEndController@search');
     Route::get('/{lang?}/promo', 'FrontEndController@promo');
     Route::get('/{lang?}/promo/{slug}', 'FrontEndController@promoDetail');
 

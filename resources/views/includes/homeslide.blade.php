@@ -39,7 +39,7 @@
 		</div>
 		<div class="ja-header-banner uk-hidden-small">
 			<ul class="uk-margin-bottom-remove uk-subnav">
-				<li><a href="#!"><img src="{!! asset('frontend/img/banner-book.png') !!}" /></a></li>
+				<li><a href="{!! lang_url('ticket-hours') !!}"><img src="{!! asset('frontend/img/banner-book.png') !!}" /></a></li>
 				<li>
 					<?php //Banner Slideshow ?>
 					<div class="ja-slideshow-banner uk-slidenav-position" data-uk-slideshow>
