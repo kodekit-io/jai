@@ -266,12 +266,12 @@ main {
 }
 .ja-home-section .ja-lang_side {
 	position: absolute;
-	right: -300px;
+	top: -200vh;
 }
 .ja-home-section .ja-lang_side.uk-active {
 	width: 260px !important;
 	display: block;
-	right: 10px;
+	top: 30px;
 }
 
 .ja-header-content {
