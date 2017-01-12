@@ -255,11 +255,15 @@ main {
 	z-index: 10;
 	margin-top: 0;
 	padding: 10px 5px 8px 15px;
-	background: rgba(0, 0, 0, 0.7);
+	background: #f5b31c;
 }
 .ja-lang_side li {
 	margin-top: 0;
 }
+.ja-lang_side .uk-active a {
+	color: #005da6;
+}
+
 .ja-header-content {
 	position: relative;
 }
