@@ -17,6 +17,7 @@
 				</div>
 			</div>
 		</footer>
+
 		<script src="{!! asset('frontend/js/jquery.min.js') !!}"></script>
 		<script src="{!! asset('frontend/js/uikit.min.js') !!}"></script>
 		<script src="{!! asset('frontend/js/components/tooltip.min.js') !!}"></script>
