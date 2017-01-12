@@ -7,3 +7,7 @@
 	<li><a href="{!! lang_url('ticket-hours') !!}" title=""><img src="{!! asset('frontend/img/banner-ticket.png') !!}" /></a></li>
 	{{--<li><a href="{!! lang_url('promo') !!}" title=""><img src="{!! asset('frontend/img/banner-promo.png') !!}" /></a></li>--}}
 </ul>
+<ul class="uk-subnav ja-lang ja-lang_side uk-animation-slide-top" data-uk-sticky="{top: 30}">
+	<li>Language:</li>
+	{!! $gLangSwitcher !!}
+</ul>
