@@ -17,6 +17,11 @@
 				</div>
 			</div>
 		</footer>
+		<ul class="uk-subnav ja-lang ja-lang_side">
+			<li>Language:</li>
+			{!! $gLangSwitcher !!}
+		</ul>
+
 		<script src="{!! asset('frontend/js/jquery.min.js') !!}"></script>
 		<script src="{!! asset('frontend/js/uikit.min.js') !!}"></script>
 		<script src="{!! asset('frontend/js/components/tooltip.min.js') !!}"></script>
