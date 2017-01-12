@@ -14,7 +14,7 @@ return [
             ],
             'id' => [
                 'code' => 'id',
-                'title' => 'Bahasa Indonesia',
+                'title' => 'Bahasa',
                 'flag' => 'id.jpg',
                 'days' => [
                     '1' => 'Minggu', '2' => 'Senin', '3' => 'Selasa', '4' => 'Rabu', '5' => 'Kamis', '6' => 'Jumat', '7' => 'Sabtu'
