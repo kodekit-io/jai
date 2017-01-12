@@ -27,10 +27,10 @@
 
 	<?php //Head Content ?>
 	<div class="ja-header-content uk-container uk-container-center">
-		{{--<ul class="uk-subnav ja-lang">--}}
-			{{--<li>Language:</li>--}}
-			{{--{!! $gLangSwitcher !!}--}}
-		{{--</ul>--}}
+		<ul class="uk-subnav ja-lang">
+			<li>Language:</li>
+			{!! $gLangSwitcher !!}
+		</ul>
 		<div class="ja-info uk-hidden">
 			<p>Today: Sat, Oct 15 2016<br>
 			OPEN 08.00AM - 09.00PM</p>
