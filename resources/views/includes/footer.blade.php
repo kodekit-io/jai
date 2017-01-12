@@ -18,7 +18,7 @@
 			</div>
 		</footer>
 		<ul class="uk-subnav ja-lang ja-lang_side">
-			<li>Language:</li>
+			{{--<li>Language:</li>--}}
 			{!! $gLangSwitcher !!}
 		</ul>
 
