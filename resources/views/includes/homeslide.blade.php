@@ -4,7 +4,7 @@
 		<ul class="uk-slideshow uk-overlay-active">
 			@foreach($sliders as $slider)
 			<li>
-				<img src="{!! url('images/large/' . $slider->file_name) !!}" />
+				<img src="{!! url('images/original/' . $slider->file_name) !!}" />
 				<div class="uk-overlay-panel uk-overlay-fade uk-overlay-background">
 					<div class="uk-container uk-container-center">
 						<h2 class="ja-slide-title">{!! $slider->content !!}</h2>
