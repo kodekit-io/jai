@@ -256,12 +256,22 @@ main {
 	margin-top: 0;
 	padding: 10px 5px 8px 15px;
 	background: #f5b31c;
+	font-size: 1rem !important;
 }
 .ja-lang_side li {
 	margin-top: 0;
 }
 .ja-lang_side .uk-active a {
 	color: #005da6;
+}
+.ja-home-section .ja-lang_side {
+	position: absolute;
+	right: -300px;
+}
+.ja-home-section .ja-lang_side.uk-active {
+	width: 280px !important;
+	display: block;
+	right: 10px;
 }
 
 .ja-header-content {
