@@ -40,17 +40,16 @@
 		<div class="ja-header-banner uk-hidden-small">
 			<ul class="uk-margin-bottom-remove uk-subnav">
 				<li><a href="{!! lang_url('ticket-hours') !!}"><img src="{!! asset('frontend/img/banner-book.png') !!}" /></a></li>
-				<li>
-					<?php //Banner Slideshow ?>
-					<div class="ja-slideshow-banner uk-slidenav-position" data-uk-slideshow>
-						<ul class="uk-slideshow">
-							<li><a href="#!"><img src="{!! asset('frontend/img/banner-cimb.jpg') !!}" /></a></li>
-							<li><a href="#!"><img src="{!! asset('frontend/img/banner-bca.jpg') !!}" /></a></li>
-						</ul>
-						<a href="" class="uk-slidenav uk-slidenav-previous" data-uk-slideshow-item="previous"></a>
-						<a href="" class="uk-slidenav uk-slidenav-next" data-uk-slideshow-item="next"></a>
-					</div>
-				</li>
+				{{--<li>--}}
+					{{--<div class="ja-slideshow-banner uk-slidenav-position" data-uk-slideshow>--}}
+						{{--<ul class="uk-slideshow">--}}
+							{{--<li><a href="#!"><img src="{!! asset('frontend/img/banner-cimb.jpg') !!}" /></a></li>--}}
+							{{--<li><a href="#!"><img src="{!! asset('frontend/img/banner-bca.jpg') !!}" /></a></li>--}}
+						{{--</ul>--}}
+						{{--<a href="" class="uk-slidenav uk-slidenav-previous" data-uk-slideshow-item="previous"></a>--}}
+						{{--<a href="" class="uk-slidenav uk-slidenav-next" data-uk-slideshow-item="next"></a>--}}
+					{{--</div>--}}
+				{{--</li>--}}
 			</ul>
 		</div>
 	</div>
