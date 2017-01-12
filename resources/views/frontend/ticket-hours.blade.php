@@ -101,19 +101,18 @@
                     </form>
                 </div>
 
-                @if (count($packages) > 0)
-                    <br>
-                    @foreach($packages as $package)
-                        <h3 class="light-blue-text text-darken-4">{!! $package->title !!}</h3>
-                        <div>
-                            <p>{!! $package->content !!}</p>
-                        </div>
-                    @endforeach
-                @endif
-
             </div>
 
         </div>
+
+        @if (count($packages) > 0)
+            @foreach($packages as $package)
+            <div class="ja-ticket__content uk-margin-large-bottom">
+                <h3 class="light-blue-text text-darken-4">{!! $package->title !!}</h3>
+                {!! $package->content !!}
+            </div>
+            @endforeach
+        @endif
 
         <div class="ja-ticket__content uk-margin-large-bottom">
             <h3 class="light-blue-text text-darken-4">OPENING HOURS</h3>
@@ -187,7 +186,6 @@
 
             jQuery('#visit_date').change(function() {
                 visitDate = jQuery(this).val();
-                console.log(visitDate);
                 getAvailableProducts(visitDate);
             });
 
@@ -202,13 +200,14 @@
                     var orderTotal = 0;
                     $('input[name^=products]').each(function() {
                         var order = $(this).attr('type');
-                        if(order == 'number') {
-                            if (order == 'number') {
-                                var value = $(this).val();
-                                orderTotal = orderTotal + parseInt(value);
-                            }
+                        console.log(order);
+                        if (order == 'text') {
+                            var value = $(this).val();
+                            orderTotal = orderTotal + parseInt(value);
                         }
                     });
+
+                    console.log(orderTotal);
 
                     if (orderTotal < 1) {
                         $('.packages p').remove();
