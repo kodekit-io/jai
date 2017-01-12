@@ -201,20 +201,22 @@ class FrontEndController extends Controller
 
         $metaFields = [
             'afterMap',
-            'parkingTitle',
-            'parkingDesc',
-            'vipTitle',
-            'vipDesc',
+            'lockerTitle',
+            'lockerDesc',
+            'restroomTitle',
+            'restroomDesc',
             'wheelchairTitle',
             'wheelchairDesc',
-            'bikeRackTitle',
-            'bikeRackDesc',
-            'shuttleBusTitle',
-            'shuttleBusDesc',
-            'blueBirdTitle',
-            'blueBirdDesc',
-            'publicBusTitle',
-            'publicBusDesc'
+            'babyTitle',
+            'babyDesc',
+            'wifiTitle',
+            'wifiDesc',
+            'cafeTitle',
+            'cafeDesc',
+            'souvenirTitle',
+            'souvenirDesc',
+            'restaurantTitle',
+            'restaurantDesc'
         ];
 
         foreach ($metaFields as $metaField) {
@@ -235,9 +237,12 @@ class FrontEndController extends Controller
         switch ($lang) {
             case 'en':
                 $data['getTheApp'] = 'Be the first to receive latest update from Jakarta Aquarium. Download the app';
+                $data['mapText'] = 'Jakarta Aquarium consists of two floors and twelve zones that show a variety of unique, lovable, and beautiful animals in its habitat. Explore every corner of Jakarta Aquarium to find new fun experience with your friends and family.
+';
                 break;
             default:
-                $data['getTheApp'] = 'Jadilah orang pertama yang mendapatkan info terupdate dari Jakarta Aquarium. Download aplikasinya sekarang juga!';
+                $data['getTheApp'] = 'Jadilah orang pertama yang mendapatkan info terupdate dari Jakarta Aquarium. Download aplikasinya sekarang juga !';
+                $data['mapText'] = 'Jakarta Aquarium terdiri dari dua lantai dan dua belas zona yang menampilkan beraneka ragam satwa unik, lucu, dan indah dalam habitatnya. Jelajahi setiap sudut Jakarta Aquarium untuk menemukan pengalaman seru baru bersama teman dan keluarga Anda.';
                 break;
         }
         $data['pageTitle'] = 'Aquarium Map';
@@ -364,8 +369,10 @@ class FrontEndController extends Controller
         return view('frontend.term-use', $data);
     }
 
-    public function search($lang)
+    public function search(Request $request, $lang)
     {
+        $searchResults = $this->postService->search($lang, $request->get('search'));
+        $data['searchResults'] = $searchResults;
         $data['pageTitle'] = 'Search Result';
 
         return view('frontend.search-result', $data);
@@ -385,8 +392,36 @@ class FrontEndController extends Controller
 
     public function promo($lang)
     {
+        $promoParams = [
+            'post_type_id' => 7,
+            'lang' => $lang,
+            'status' => 'publish'
+        ];
+        $promos = $this->postService->getPostsWithDetail($promoParams);
+
+
+        $promoPaginated = $promos->paginate(6);
+        $promoPaginated->setPath('promo');
+        $data['promos'] =$promoPaginated;
+
         $data['pageTitle'] = 'Promotions';
 
         return view('frontend.promo', $data);
+    }
+
+    public function promoDetail($lang, $slug)
+    {
+        $post = $this->postService->getPostsWithDetail(['lang' => $lang, 'slug' => $slug]);
+        if (! $post->count() > 0) {
+            abort(404);
+        }
+        $post = $post->first();
+
+        $data['post'] = $post;
+        $data['metaDesc'] = get_meta_description($post->id, $lang);
+
+        $data['pageTitle'] = $post->title;
+
+        return view('frontend.promo-details', $data);
     }
 }

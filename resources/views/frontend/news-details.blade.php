@@ -22,7 +22,7 @@
             <h1 class="light-blue-text text-darken-4 uk-text-uppercase">{!! $post->title !!}</h1>
             <ul class="uk-subnav uk-subnav-line">
                 <li>{!! isset($post->publish_date) ? Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $post->publish_date)->format('F j, Y') : '' !!}</li>
-                <li>POSTED BY:  <span class="ja-bold">ADMIN</span></li>
+                {{--<li>POSTED BY:  <span class="ja-bold">ADMIN</span></li>--}}
             </ul>
             <ul class="uk-list ja-share">
                 <li><a href="javascript:;" class="share s_facebook uk-icon-button uk-icon-facebook light-blue darken-4" title="Share on Facebook"></a></li>

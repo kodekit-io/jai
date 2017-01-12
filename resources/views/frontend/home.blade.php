@@ -15,14 +15,14 @@
 					<div class="uk-width-medium-1-2">
 						@if (isset(getMediaByPostId($whatsOn->id)->file_name))
                         	<?php $imagePath = getMediaByPostId($whatsOn->id)->file_name; ?>
-							<a href="#!" class="ja-post--img" style="background-image: url('{!! url('images/whatsOn/' . $imagePath) !!}')">Learn more</a>
+							<a href="{!! lang_url('news/' . $whatsOn->slug) !!}" class="ja-post--img" style="background-image: url('{!! url('images/whatsOn/' . $imagePath) !!}')">Learn more</a>
 						@endif
 					</div>
 					<div class="uk-width-medium-1-2">
 						<div class="ja-post--content">
-							<h5 class="ja-post--title"><a href="#!" title="{!! $whatsOn->title !!}">{!! $whatsOn->title !!}</a></h5>
+							<h5 class="ja-post--title"><a href="{!! lang_url('news/' . $whatsOn->slug) !!}" title="{!! $whatsOn->title !!}">{!! $whatsOn->title !!}</a></h5>
 							<p class="uk-margin-remove">{!! excerpt($whatsOn->content, 30) !!}</p>
-							<a class="ja-post--link"><i class="uk-icon-chevron-right"></i></a>
+							<a href="{!! lang_url('news/' . $whatsOn->slug) !!}" class="ja-post--link"><i class="uk-icon-chevron-right"></i></a>
 						</div>
 					</div>
 				</div>
@@ -63,7 +63,12 @@
 			<li>
 				<a class="uk-vertical-align" style="background-image: url(/frontend/img/img-m1.png)">
 					<div class="uk-vertical-align-middle">
-
+						<div class="funfact uk-vertical-align">
+							<div class="uk-vertical-align-middle">
+								<h5 class="white-text">Otter Fun Fact</h5>
+								An Otter can remain under water for up to 4 minutes. They can also dive up to 300 feet in search of food.
+							</div>
+						</div>
 					</div>
 				</a>
 			</li>
@@ -101,7 +106,12 @@
 			<li>
 				<a class="uk-vertical-align" style="background-image: url(/frontend/img/img-m3.png)">
 					<div class="uk-vertical-align-middle">
-
+						<div class="funfact uk-vertical-align">
+							<div class="uk-vertical-align-middle">
+								<h5 class="white-text">Penguin Fun Fact</h5>
+								Humboldt penguins are named after German scientist and explorer Alexander von Humboldt, who traveled through Central and South America from 1799 to 1804. 
+							</div>
+						</div>
 					</div>
 				</a>
 			</li>
@@ -152,4 +162,18 @@
 @section('page-level-scripts')
 	<script src="{!! asset('frontend/js/components/slideshow.min.js') !!}"></script>
 	<script src="{!! asset('frontend/js/components/sticky.min.js') !!}"></script>
+	<script>
+		$(document).ready(function() {
+			var fw = $('#themoment ul li a').width(),
+				fh = $('#themoment ul li a').height();
+			$('#themoment ul li a .funfact').height(fh).width(fw);
+			$( "#themoment ul li a" ).hover(
+				function() {
+					$( this ).find('.funfact').show();
+				}, function() {
+					$( this ).find('.funfact').hide();
+				}
+			);
+		});
+	</script>
 @endsection

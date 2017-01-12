@@ -2,21 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Service\Category;
 use App\Service\Language;
 use App\Service\Post;
 use App\Service\Traits\DataMessage;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 
-use App\Http\Requests;
-
-class MediaRoomController extends Controller
+class PromoController extends Controller
 {
     use DataMessage;
 
-    protected $baseUrl = 'media-room';
-    protected $postType = 4;
     /**
      * @var Post
      */
@@ -30,8 +26,11 @@ class MediaRoomController extends Controller
      */
     private $languageService;
 
+    protected $postType = 7;
+    protected $baseUrl = 'promo';
+
     /**
-     * MediaRoomController constructor.
+     * PostController constructor.
      * @param Post $postService
      * @param Category $categoryService
      * @param Language $languageService
@@ -50,7 +49,7 @@ class MediaRoomController extends Controller
      */
     public function index()
     {
-        return view('backend.media-rooms.list');
+        return view('backend.promo.list');
     }
 
     /**
@@ -60,7 +59,7 @@ class MediaRoomController extends Controller
      */
     public function anyData()
     {
-        return $this->postService->datatableData($this->postType, $this->baseUrl);
+        return $this->postService->datatableData($this->postType, 'promo');
     }
 
     /**
@@ -75,8 +74,7 @@ class MediaRoomController extends Controller
         $data['langs'] = $this->languageService->getAvailableLanguages();
         $data['defaultLang'] = $this->languageService->getDefaultLanguage();
         $data['baseUrl'] = $this->baseUrl;
-
-        return view('backend.media-rooms.add', $data);
+        return view('backend.promo.add', $data);
     }
 
     /**
@@ -109,9 +107,10 @@ class MediaRoomController extends Controller
         $data['publishDate'] = Carbon::createFromFormat('Y-m-d H:i:s', $post->publish_date)->format('d-F-Y - H:i');
         $data['featuredImage'] = $post->medias()->where('media_type', 'featured')->first();
         $data['whatsOn'] = $post->metas()->where('meta_key', 'whats_on')->where('meta_value', 1)->count();
+        $data['featured'] = $post->metas()->where('meta_key', 'featured')->where('meta_value', 1)->count();
         $data['baseUrl'] = $this->baseUrl;
 
-        return view('backend.media-rooms.edit', $data);
+        return view('backend.promo.edit', $data);
     }
 
     /**

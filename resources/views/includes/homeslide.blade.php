@@ -27,30 +27,27 @@
 
 	<?php //Head Content ?>
 	<div class="ja-header-content uk-container uk-container-center">
-		<ul class="uk-subnav ja-lang">
-			<li>Language:</li>
-			{{--<li class="uk-active"><a href="#!">English</a></li>--}}
-			{{--<li><a href="#!">Indonesia</a></li>--}}
-			{!! $gLangSwitcher !!}
-		</ul>
+		{{--<ul class="uk-subnav ja-lang">--}}
+			{{--<li>Language:</li>--}}
+			{{--{!! $gLangSwitcher !!}--}}
+		{{--</ul>--}}
 		<div class="ja-info uk-hidden">
 			<p>Today: Sat, Oct 15 2016<br>
 			OPEN 08.00AM - 09.00PM</p>
 		</div>
 		<div class="ja-header-banner uk-hidden-small">
 			<ul class="uk-margin-bottom-remove uk-subnav">
-				<li><a href="#!"><img src="{!! asset('frontend/img/banner-book.png') !!}" /></a></li>
-				<li>
-					<?php //Banner Slideshow ?>
-					<div class="ja-slideshow-banner uk-slidenav-position" data-uk-slideshow>
-						<ul class="uk-slideshow">
-							<li><a href="#!"><img src="{!! asset('frontend/img/banner-cimb.jpg') !!}" /></a></li>
-							<li><a href="#!"><img src="{!! asset('frontend/img/banner-bca.jpg') !!}" /></a></li>
-						</ul>
-						<a href="" class="uk-slidenav uk-slidenav-previous" data-uk-slideshow-item="previous"></a>
-						<a href="" class="uk-slidenav uk-slidenav-next" data-uk-slideshow-item="next"></a>
-					</div>
-				</li>
+				<li><a href="{!! lang_url('ticket-hours') !!}"><img src="{!! asset('frontend/img/banner-book.png') !!}" /></a></li>
+				{{--<li>--}}
+					{{--<div class="ja-slideshow-banner uk-slidenav-position" data-uk-slideshow>--}}
+						{{--<ul class="uk-slideshow">--}}
+							{{--<li><a href="#!"><img src="{!! asset('frontend/img/banner-cimb.jpg') !!}" /></a></li>--}}
+							{{--<li><a href="#!"><img src="{!! asset('frontend/img/banner-bca.jpg') !!}" /></a></li>--}}
+						{{--</ul>--}}
+						{{--<a href="" class="uk-slidenav uk-slidenav-previous" data-uk-slideshow-item="previous"></a>--}}
+						{{--<a href="" class="uk-slidenav uk-slidenav-next" data-uk-slideshow-item="next"></a>--}}
+					{{--</div>--}}
+				{{--</li>--}}
 			</ul>
 		</div>
 	</div>

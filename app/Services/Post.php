@@ -140,8 +140,10 @@ class Post
         }
     }
 
-    public function update($id, $inputs)
+    public function update($id, $request)
     {
+        $inputs = $request->except(['_token']);
+
         $post = PostModel::find($id);
         $post->publish_date = Carbon::createFromFormat('d-F-Y - H:i', $inputs['publish_date'])->format('Y-m-d H:i');
         $post->status = strtoupper($inputs['status']);
@@ -405,6 +407,18 @@ class Post
         return $params;
     }
 
+    public function search($lang, $searchText)
+    {
+        $query = $this->getBaseQuery()
+            ->whereIn('post_type_id', [2,3,4,7])
+            ->where('post_details.lang', $lang)
+            ->where(function ($query) use ($searchText) {
+            $query->where('post_details.title', 'like', '%' . $searchText . '%')
+                ->orWhere('post_details.content', 'like', '%' . $searchText . '%');
+            });
+        return $query->get();
+    }
+
     private function getBaseQuery()
     {
         return DB::table('posts')
@@ -478,20 +492,22 @@ class Post
     {
         return [
             'afterMap',
-            'parkingTitle',
-            'parkingDesc',
-            'vipTitle',
-            'vipDesc',
+            'lockerTitle',
+            'lockerDesc',
+            'restroomTitle',
+            'restroomDesc',
             'wheelchairTitle',
             'wheelchairDesc',
-            'bikeRackTitle',
-            'bikeRackDesc',
-            'shuttleBusTitle',
-            'shuttleBusDesc',
-            'blueBirdTitle',
-            'blueBirdDesc',
-            'publicBusTitle',
-            'publicBusDesc'
+            'babyTitle',
+            'babyDesc',
+            'wifiTitle',
+            'wifiDesc',
+            'cafeTitle',
+            'cafeDesc',
+            'souvenirTitle',
+            'souvenirDesc',
+            'restaurantTitle',
+            'restaurantDesc'
         ];
     }
 

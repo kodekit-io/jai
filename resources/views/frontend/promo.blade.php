@@ -12,34 +12,39 @@
 <main class="ja-page">
     <div class="uk-container uk-container-center">
         <ul class="uk-grid uk-grid-width-medium-1-2 uk-margin-large-bottom" data-uk-grid-margin>
-            <li>
-                <a href="#" title=""><img src="{!! asset('frontend/img/promo-placeholder.png') !!}" /></a>
-                <div class="uk-panel uk-panel-box noborder white">
-                    <h4>15% DISCOUNT</h4>
-                    <p>Tempor praesenti sed Value Incidia sparkle magnuse doredomain Melrose at iusto.</p>
-                </div>
-            </li>
-            <li>
-                <a href="#" title=""><img src="{!! asset('frontend/img/promo-placeholder.png') !!}" /></a>
-                <div class="uk-panel uk-panel-box noborder white">
-                    <h4>15% DISCOUNT</h4>
-                    <p>Tempor praesenti sed Value Incidia sparkle magnuse doredomain Melrose at iusto.</p>
-                </div>
-            </li>
-            <li>
-                <a href="#" title=""><img src="{!! asset('frontend/img/promo-placeholder.png') !!}" /></a>
-                <div class="uk-panel uk-panel-box noborder white">
-                    <h4>15% DISCOUNT</h4>
-                    <p>Tempor praesenti sed Value Incidia sparkle magnuse doredomain Melrose at iusto.</p>
-                </div>
-            </li>
-            <li>
-                <a href="#" title=""><img src="{!! asset('frontend/img/promo-placeholder.png') !!}" /></a>
-                <div class="uk-panel uk-panel-box noborder white">
-                    <h4>15% DISCOUNT</h4>
-                    <p>Tempor praesenti sed Value Incidia sparkle magnuse doredomain Melrose at iusto.</p>
-                </div>
-            </li>
+            @if (count($promos) > 0)
+                @foreach($promos as $promo)
+                    <li>
+                        <a href="#" title=""><img src="{!! url('images/original/' . $promo->file_name) !!}" /></a>
+                        <div class="uk-panel uk-panel-box noborder white">
+                            <h4><a href="{!! lang_url('promo/' . $promo->slug) !!}">{!! $promo->title !!}</a></h4>
+                            <p>{!! $promo->content !!}</p>
+                        </div>
+                    </li>
+                @endforeach
+            @endif
+
+            {{--<li>--}}
+                {{--<a href="#" title=""><img src="{!! asset('frontend/img/promo-placeholder.png') !!}" /></a>--}}
+                {{--<div class="uk-panel uk-panel-box noborder white">--}}
+                    {{--<h4>15% DISCOUNT</h4>--}}
+                    {{--<p>Tempor praesenti sed Value Incidia sparkle magnuse doredomain Melrose at iusto.</p>--}}
+                {{--</div>--}}
+            {{--</li>--}}
+            {{--<li>--}}
+                {{--<a href="#" title=""><img src="{!! asset('frontend/img/promo-placeholder.png') !!}" /></a>--}}
+                {{--<div class="uk-panel uk-panel-box noborder white">--}}
+                    {{--<h4>15% DISCOUNT</h4>--}}
+                    {{--<p>Tempor praesenti sed Value Incidia sparkle magnuse doredomain Melrose at iusto.</p>--}}
+                {{--</div>--}}
+            {{--</li>--}}
+            {{--<li>--}}
+                {{--<a href="#" title=""><img src="{!! asset('frontend/img/promo-placeholder.png') !!}" /></a>--}}
+                {{--<div class="uk-panel uk-panel-box noborder white">--}}
+                    {{--<h4>15% DISCOUNT</h4>--}}
+                    {{--<p>Tempor praesenti sed Value Incidia sparkle magnuse doredomain Melrose at iusto.</p>--}}
+                {{--</div>--}}
+            {{--</li>--}}
         </ul>
     </div>
 </main>
