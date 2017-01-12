@@ -248,6 +248,18 @@ main {
 .ja-lang .uk-active a {
 	color: #f5b31c;
 }
+.ja-lang_side {
+	position: fixed;
+	top:0;
+	right: 0;
+	z-index: 10;
+	margin-top: 0;
+	padding: 10px 5px 8px 15px;
+	background: rgba(0, 0, 0, 0.7);
+}
+.ja-lang_side li {
+	margin-top: 0;
+}
 
 .ja-header-content {
 	position: relative;
