@@ -628,7 +628,8 @@ h2.ja-slide-title {
 	font-size: 1.8rem;
 	line-height: 1.5em;
 	color: #fff;
-	/*font-family: 'Intro-Light', 'Intro Light', 'Intro';*/
+	font-family: 'Intro';
+	font-weight: 300;
 }
 .ja-about {
 	background: #e4eaed url(../img/bg-section-about.png) no-repeat top center;
