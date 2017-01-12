@@ -544,7 +544,7 @@ h2.ja-slide-title {
 	color: inherit;
 	text-decoration: none;
 }
-#themoment ul li a>* {
+/*#themoment ul li a>* {
 	position: relative;
 	z-index: 0
 }
@@ -568,6 +568,16 @@ h2.ja-slide-title {
 #getapp {
 	padding: 5em 0 0;
 	background: #f9fafb;
+}*/
+.funfact {
+    background: rgba(245, 179, 28, 0.8);
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    color: #fff;
+    padding: 20px;
 }
 .ja-footer {
 	padding: 2.5em 0;

@@ -63,7 +63,12 @@
 			<li>
 				<a class="uk-vertical-align" style="background-image: url(/frontend/img/img-m1.png)">
 					<div class="uk-vertical-align-middle">
-
+						<div class="funfact uk-vertical-align">
+							<div class="uk-vertical-align-middle">
+								<h5 class="white-text">Otter Fun Fact</h5>
+								An Otter can remain under water for up to 4 minutes. They can also dive up to 300 feet in search of food.
+							</div>
+						</div>
 					</div>
 				</a>
 			</li>
@@ -101,7 +106,12 @@
 			<li>
 				<a class="uk-vertical-align" style="background-image: url(/frontend/img/img-m3.png)">
 					<div class="uk-vertical-align-middle">
-
+						<div class="funfact uk-vertical-align">
+							<div class="uk-vertical-align-middle">
+								<h5 class="white-text">Penguin Fun Fact</h5>
+								Humboldt penguins are named after German scientist and explorer Alexander von Humboldt, who traveled through Central and South America from 1799 to 1804. 
+							</div>
+						</div>
 					</div>
 				</a>
 			</li>
@@ -152,4 +162,18 @@
 @section('page-level-scripts')
 	<script src="{!! asset('frontend/js/components/slideshow.min.js') !!}"></script>
 	<script src="{!! asset('frontend/js/components/sticky.min.js') !!}"></script>
+	<script>
+		$(document).ready(function() {
+			var fw = $('#themoment ul li a').width(),
+				fh = $('#themoment ul li a').height();
+			$('#themoment ul li a .funfact').height(fh).width(fw);
+			$( "#themoment ul li a" ).hover(
+				function() {
+					$( this ).find('.funfact').show();
+				}, function() {
+					$( this ).find('.funfact').hide();
+				}
+			);
+		});
+	</script>
 @endsection
