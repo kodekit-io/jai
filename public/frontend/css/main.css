@@ -264,6 +264,9 @@ main {
 .ja-lang_side .uk-active a {
 	color: #005da6;
 }
+.ja-lang_side a:hover {
+    color: #005da6;
+}
 .ja-home-section .ja-lang_side {
 	position: absolute;
 	top: -200vh;

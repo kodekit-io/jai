@@ -39,8 +39,8 @@
                     <div class="uk-panel uk-panel-box grey darken-1 white-text noborder uk-margin-bottom">
                         <div class="uk-grid">
                             <div class="uk-width-medium-2-3">
-                                <h4 class="white-text">EXLCUSIVE</h4>
-                                Aquarium Admission, 5D Theater, Printed Photo Souvenir, and Multiple Entry within Four Hour.
+                                <h4 class="white-text">EXCLUSIVE</h4>
+                                Aquarium Admission and 5D Theater.
                             </div>
                             <div class="uk-width-medium-1-3">
                                 Monday - Friday (Weekday):<br><span class="ja-bold">IDR 275.000</span>
@@ -51,7 +51,7 @@
                         <div class="uk-grid">
                             <div class="uk-width-medium-2-3">
                                 <h4 class="white-text">PREMIUM</h4>
-                                Aquarium Admission, 5D Theater, and Printed Photo Souvenir.
+                                Aquarium Admission and 5D Theater.
                             </div>
                             <div class="uk-width-medium-1-3">
                                 Saturday - Sunday (Weekend):<br><span class="ja-bold">IDR 290.000</span>
@@ -62,7 +62,7 @@
                         <div class="uk-grid">
                             <div class="uk-width-medium-2-3">
                                 <h4 class="white-text">ULTIMATE</h4>
-                                Aquarium Admission, 5D Theater,Seatrek/Dive, Shark/piranha Feeding, Fast Lane to Enter 5D Theater, Front Seat on Underwater Theater Show, Premium Seat in Pingoo Restaurant, 0% Installment (Terms and condition apply), and Multiple Entry within Four Hours.
+                                Aquarium Admission, 5D Theater, Merchandise, Multiple Entry within Four Hour and Sea Trek or Diving.
                             </div>
                             <div class="uk-width-medium-1-3">
                                 Monday - Sunday:<br><span class="ja-bold">IDR 550.000</span>
