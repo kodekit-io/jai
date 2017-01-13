@@ -87,7 +87,7 @@
 				</a>
 			</li>
 			<li>
-				<a class="uk-vertical-align" style="background-image: url()">
+				<a href="https://www.instagram.com/explore/tags/jakartaaquarium/" target="_blank" class="uk-vertical-align" style="background-image: url()">
 					<div class="uk-vertical-align-middle">
 						<i class="uk-icon-instagram teal-text uk-icon-large uk-margin-bottom"></i><br>
 						#JAKARTAAQUARIUM<br>
