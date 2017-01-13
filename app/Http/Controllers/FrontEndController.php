@@ -335,6 +335,7 @@ class FrontEndController extends Controller
         $careers = $this->careerService->getCareerWithDetails($params)->get();
         $data['careers'] = $careers;
         $data['posts'] = $careers;
+        $data['lang'] = $lang;
 
         $data['pageTitle'] = 'Career with Us';
 
