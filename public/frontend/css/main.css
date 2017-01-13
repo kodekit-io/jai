@@ -264,6 +264,9 @@ main {
 .ja-lang_side .uk-active a {
 	color: #005da6;
 }
+.ja-lang_side a:hover {
+	color: #005da6;
+}
 .ja-home-section .ja-lang_side {
 	position: absolute;
 	top: -200vh;
@@ -1485,5 +1488,14 @@ label.error {
 	.ja-title,
 	.ja-news__content h2 {
 		font-size: 1.5em;
+	}
+	.ja-post--imgcover {
+		height: 150px;
+	}
+	.ja-featured-overlay p {
+		display: none;
+	}
+	.ja-featured-overlay a.ja-button-outline {
+		font-size: 12px;
 	}
 }
