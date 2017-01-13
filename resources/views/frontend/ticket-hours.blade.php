@@ -62,7 +62,7 @@
                         <div class="uk-grid">
                             <div class="uk-width-medium-2-3">
                                 <h4 class="white-text">ULTIMATE</h4>
-                                Aquarium Admission, 5D Theater, Merchandise, Multiple Entry within Four Hour and Sea Trek or Diving.
+                                Aquarium Admission, 5D Theater, Merchandise, Sea Trek OR Diving, Multiple Entry within Four Hours.
                             </div>
                             <div class="uk-width-medium-1-3">
                                 Monday - Sunday:<br><span class="ja-bold">IDR 550.000</span>
