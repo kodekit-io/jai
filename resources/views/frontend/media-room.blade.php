@@ -19,11 +19,17 @@
 
         <ul id="filtermedia" class="uk-subnav">
             <li><a class="uk-button ja-button hover grey darket-2 white-text uk-text-uppercase uk-active" href="" data-uk-filter="">ALL</a></li>
-            @if(count($categories) > 0)
-                @foreach($categories as $category)
-                    <li><a class="uk-button ja-button hover grey darket-2 white-text uk-text-uppercase" href="" data-uk-filter="ja-media__{!! $category->slug !!}">{!! $category->name !!}</a></li>
+            @if(count($years))
+                @foreach($years as $year)
+                    <li><a class="uk-button ja-button hover grey darket-2 white-text uk-text-uppercase" href="" data-uk-filter="ja-media__{!! $year->the_year !!}">{!! $year->the_year !!}</a></li>
                 @endforeach
             @endif
+
+            {{--@if(count($categories) > 0)--}}
+                {{--@foreach($categories as $category)--}}
+                    {{--<li><a class="uk-button ja-button hover grey darket-2 white-text uk-text-uppercase" href="" data-uk-filter="ja-media__{!! $category->slug !!}">{!! $category->name !!}</a></li>--}}
+                {{--@endforeach--}}
+            {{--@endif--}}
         </ul>
         <div class="ja-page__content uk-margin-large-bottom">
             @if (count($mediaRooms) > 0)
@@ -32,14 +38,15 @@
                 @foreach($mediaRooms as $media)
                     <?php
                         $categories = get_post_categories($media->id);
-                        $filterClass = '';
-                        if (count($categories) > 0) {
-                            $x = 0;
-                            foreach($categories as $cat) {
-                                $filterClass .= ( $x > 0 ? ', ja-media__' . $cat->slug : 'ja-media__' . $cat->slug );
-                                $x++;
-                            }
-                        }
+                        $year = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $media->publish_date)->format('Y');
+                        $filterClass = 'ja-media__' . $year;
+//                        if (count($categories) > 0) {
+//                            $x = 0;
+//                            foreach($categories as $cat) {
+//                                $filterClass .= ( $x > 0 ? ', ja-media__' . $cat->slug : 'ja-media__' . $cat->slug );
+//                                $x++;
+//                            }
+//                        }
                     ?>
                     <li data-uk-filter="{!! $filterClass !!}">
                         <span class="grey-text text-darken-1">{!! Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $media->publish_date)->format('j F Y') !!}</span>

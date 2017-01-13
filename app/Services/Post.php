@@ -474,6 +474,16 @@ class Post
         }
     }
 
+    public function getAvailableMediaYears()
+    {
+        return DB::table('posts')
+            ->select(DB::raw('YEAR(publish_date) AS the_year'))
+            ->distinct()
+            ->where('post_type_id', 4)
+            ->where('status', 'publish')
+            ->get();
+    }
+
     private function updateLocation($post, array $inputs)
     {
         $fields = $this->getLocationMetaFields();

@@ -96,10 +96,18 @@ class TicketController extends Controller
         ];
         $postWithDetail = $this->postService->getPostsWithDetail($params)->first();
 
+        $params = [
+            'package_type_id' => 2,
+            'lang' => $lang,
+            'is_general_admission' => 1,
+        ];
+        $packages = $this->packageService->getPackages($params);
+
         $post = $this->postService->getPost(['id' => $pageId]);
         $openingHours = $post->metas()->where('meta_key', 'openingHours-' . $lang)->first();
 
         $data['pageTitle'] = $postWithDetail->title;
+        $data['packages'] = $packages;
         $data['post'] = $postWithDetail;
         $data['openingHours'] = $openingHours;
 
