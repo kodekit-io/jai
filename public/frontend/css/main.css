@@ -1498,4 +1498,14 @@ label.error {
 	.ja-featured-overlay a.ja-button-outline {
 		font-size: 12px;
 	}
+
+	.ja-lang_side {
+		top: 100px;
+	}
+	#themoment ul li a>*, #themoment ul li a>*>* {
+		font-size: inherit !important;
+	}
+	.funfact {
+		padding: 10px;
+	}
 }
