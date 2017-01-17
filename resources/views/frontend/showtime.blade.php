@@ -29,41 +29,50 @@
             @foreach($shows as $show)
                 @if($show->show_type == 1)
                     <li class="ja-showtime__all" data-uk-filter="ja-showtime__all">
-                        <div class="uk-grid">
-                            <div class="uk-width-1-5 uk-text-right grey-text">
-                                <h4 class="grey-text">ALL DAYS</h4>
-                                {!! Carbon\Carbon::createFromFormat('G:i:s', $show->start_time)->format('G:i A') !!}
+                        <div class="uk-grid uk-grid-collapse">
+                            <div class="uk-width-medium-1-5 uk-text-right grey-text">
+                                <h5 class="grey-text uk-margin-remove">ALL DAYS</h5>
+                                {{--{!! Carbon\Carbon::createFromFormat('G:i:s', $show->start_time)->format('G:i A') !!}--}}
+                                {!! $show->particular_showtime !!}
                             </div>
-                            <div class="uk-width-4-5">
-                                <h4>{!! $show->title !!}</h4>
-                                <p>{!! $show->content !!}</p>
+                            <div class="uk-width-medium-4-5">
+                                <div class="uk-margin-left">
+                                    <h4>{!! $show->title !!}</h4>
+                                    <p>{!! $show->content !!}</p>
+                                </div>
                             </div>
                         </div>
                     </li>
                 @elseif($show->show_type == 2)
                     <li class="ja-showtime__part" data-uk-filter="ja-showtime__part">
-                        <div class="uk-grid">
-                            <div class="uk-width-1-5 uk-text-right grey-text">
-                                <h4 class="grey-text">{!! get_day_from_number($show->day, $lang) !!}</h4>
-                                {!! Carbon\Carbon::createFromFormat('G:i:s', $show->start_time)->format('G:i A') !!}
+                        <div class="uk-grid uk-grid-collapse">
+                            <div class="uk-width-medium-1-5 uk-text-right grey-text">
+                                {{--<h4 class="grey-text">{!! get_day_from_number($show->day, $lang) !!}</h4>--}}
+                                {{--{!! Carbon\Carbon::createFromFormat('G:i:s', $show->start_time)->format('G:i A') !!}--}}
+                                {!! $show->particular_showtime !!}
                             </div>
-                            <div class="uk-width-4-5">
-                                <h4>{!! $show->title !!}</h4>
-                                <p>{!! $show->content !!}</p>
+                            <div class="uk-width-medium-4-5">
+                                <div class="uk-margin-left">
+                                    <h4>{!! $show->title !!}</h4>
+                                    <p>{!! $show->content !!}</p>
+                                </div>
                             </div>
                         </div>
                     </li>
                 @else
                     <li class="ja-showtime__limited" data-uk-filter="ja-showtime__limited">
-                        <div class="uk-grid">
-                            <div class="uk-width-1-5 uk-text-right grey-text">
-                                <h4 class="pink-text uk-margin-remove">LIMITED</h4>
-                                <h4 class="grey-text uk-margin-remove">{!! Carbon\Carbon::createFromFormat('Y-m-d', $show->start_date)->format('M') !!} {!! Carbon\Carbon::createFromFormat('Y-m-d', $show->start_date)->format('d') !!}-{!! Carbon\Carbon::createFromFormat('Y-m-d', $show->end_date)->format('d') !!}</h4>
-                                {!! Carbon\Carbon::createFromFormat('G:i:s', $show->start_time)->format('G:i A') !!}
+                        <div class="uk-grid uk-grid-collapse">
+                            <div class="uk-width-medium-1-5 uk-text-right grey-text">
+                                <h5 class="pink-text uk-margin-remove">LIMITED</h5>
+                                {{--<h4 class="grey-text uk-margin-remove">{!! Carbon\Carbon::createFromFormat('Y-m-d', $show->start_date)->format('M') !!} {!! Carbon\Carbon::createFromFormat('Y-m-d', $show->start_date)->format('d') !!}-{!! Carbon\Carbon::createFromFormat('Y-m-d', $show->end_date)->format('d') !!}</h4>--}}
+                                {{--{!! Carbon\Carbon::createFromFormat('G:i:s', $show->start_time)->format('G:i A') !!}--}}
+                                {!! $show->particular_showtime !!}
                             </div>
-                            <div class="uk-width-4-5">
-                                <h4>{!! $show->title !!}</h4>
-                                <p>{!! $show->content !!}</p>
+                            <div class="uk-width-medium-4-5">
+                                <div class="uk-margin-left">
+                                    <h4>{!! $show->title !!}</h4>
+                                    <p>{!! $show->content !!}</p>
+                                </div>
                             </div>
                         </div>
                     </li>

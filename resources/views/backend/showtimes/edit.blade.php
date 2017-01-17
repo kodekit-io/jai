@@ -116,17 +116,56 @@
 
         tinymce.init({
             selector:'.tinytextarea',
-            plugins: [ 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
-                'searchreplace wordcount visualblocks visualchars code fullscreen',
-                'insertdatetime media nonbreaking save table contextmenu directionality',
-                'emoticons template paste textcolor colorpicker textpattern imagetools code' ],
-            toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-            toolbar2: 'print preview media | forecolor backcolor emoticons | code',
+            plugins: [ 'table code' ],
+            toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link code',
             image_advtab: true,
             menubar: false,
             force_p_newlines : false,
             forced_root_block : '',
-            height : "400"
+            height : "100",
+            style_formats: [
+                {title: 'Headers', items: [
+                    {title: 'Small Blue Highlight', block: 'h4', classes: 'cyan-text text-darken-1' },
+                    {title: 'Small Grey', block: 'h4', classes: 'grey-text uk-margin-remove' },
+                    {title: 'Yellow Highlight', block: 'h2', classes: 'font-intro amber-text text-darken-1 uk-margin-remove' },
+                    {title: 'Small Paragraph', block: 'p', classes: 'uk-margin-remove' },
+                    {title: 'Header 1', format: 'h1'},
+                    {title: 'Header 2', format: 'h2'},
+                    {title: 'Header 3', format: 'h3'},
+                ]},
+                {title: 'Inline', items: [
+                    {title: 'Bold', icon: 'bold', format: 'bold'},
+                    {title: 'Italic', icon: 'italic', format: 'italic'},
+                    {title: 'Underline', icon: 'underline', format: 'underline'},
+                    {title: 'Strikethrough', icon: 'strikethrough', format: 'strikethrough'},
+                    {title: 'Superscript', icon: 'superscript', format: 'superscript'},
+                    {title: 'Subscript', icon: 'subscript', format: 'subscript'},
+                    {title: 'Code', icon: 'code', format: 'code'}
+                ]},
+                {title: 'Blocks', items: [
+                    {title: 'Paragraph', format: 'p'},
+                    {title: 'Blockquote', format: 'blockquote'},
+                    {title: 'Div', format: 'div'},
+                    {title: 'Pre', format: 'pre'}
+                ]},
+                {title: 'Alignment', items: [
+                    {title: 'Left', icon: 'alignleft', format: 'alignleft'},
+                    {title: 'Center', icon: 'aligncenter', format: 'aligncenter'},
+                    {title: 'Right', icon: 'alignright', format: 'alignright'},
+                    {title: 'Justify', icon: 'alignjustify', format: 'alignjustify'}
+                ]}
+            ],
+            formats: {
+                alignleft: { selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', classes: 'left' },
+                aligncenter: { selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', classes: 'center' },
+                alignright: { selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', classes: 'right' },
+                alignfull: { selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', classes: 'full' },
+                bold: { inline: 'span', 'classes': 'bold' },
+                italic: { inline: 'span', 'classes': 'italic' },
+                underline: { inline: 'span', 'classes': 'underline', exact: true },
+                strikethrough: { inline: 'del' },
+                customformat: { inline: 'span', styles: { color: '#00ff00', fontSize: '20px' }, attributes: { title: 'My custom format' }, classes: 'example1' },
+            }
         });
 
         $('.date-picker').datepicker({

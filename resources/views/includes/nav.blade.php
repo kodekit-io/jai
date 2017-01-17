@@ -27,12 +27,12 @@
 		<input type="submit">
 	</form>
 	<div class="ja-socmed cyan darken-1 uk-text-center ja-mobhide uk-hidden-small">
-		<a href="https://www.facebook.com/JakartaAquarium/" target="_blank" class="uk-icon-facebook"></a>
-		<a href="https://twitter.com/jaq_id" target="_blank" class="uk-icon-twitter"></a>
-		<a href="https://www.tripadvisor.com/Attraction_Review-g294229-d11667626-Reviews-Jakarta_Aquarium-Jakarta_Java.html" target="_blank" class="uk-icon-tripadvisor"></a>
-		<a href="https://www.instagram.com/jakartaaquarium/" target="_blank" class="uk-icon-instagram"></a>
-		<a href="https://plus.google.com/115041976414559325070" target="_blank" class="uk-icon-google-plus"></a>
-		<a href="https://www.linkedin.com/company/jakarta-aquarium" target="_blank" class="uk-icon-linkedin"></a>
+		<a href="{!! get_jai_setting('facebook_link') !!}" target="_blank" class="uk-icon-facebook"></a>
+		<a href="{!! get_jai_setting('twitter_link') !!}" target="_blank" class="uk-icon-twitter"></a>
+		<a href="{!! get_jai_setting('tripadvisor_link') !!}" target="_blank" class="uk-icon-tripadvisor"></a>
+		<a href="{!! get_jai_setting('instagram_link') !!}" target="_blank" class="uk-icon-instagram"></a>
+		<a href="{!! get_jai_setting('googleplus_link') !!}" target="_blank" class="uk-icon-google-plus"></a>
+		<a href="{!! get_jai_setting('linkedin_link') !!}" target="_blank" class="uk-icon-linkedin"></a>
 	</div>
 	<div class="ja-info uk-hidden">
 		<p>Opening Hours</p>

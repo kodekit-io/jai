@@ -13,6 +13,8 @@ return [
         'sightseeing' => 91,
         'ticket-hours' => 96,
         'location' => 97,
-        'showtime' => 98
+        'showtime' => 98,
+        'location-map' => 104,
+        'homepage' => 105,
     ]
 ];

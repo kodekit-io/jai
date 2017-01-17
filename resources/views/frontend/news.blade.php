@@ -30,7 +30,9 @@
             <ul class="uk-slideshow">
                 @foreach($featuredPosts as $featuredPost)
                     <li>
-                        <img  class="uk-responsive-width" src="{!! url('images/newsSlider/' . $featuredPost->file_name) !!}" />
+                        @if(isset($featuredPost->file_name))
+                            <img  class="uk-responsive-width" src="{!! url('images/newsSlider/' . $featuredPost->file_name) !!}" />
+                        @endif
                         <div class="uk-overlay-panel ja-featured-overlay">
                             <h2 class="uk-text-uppercase"><a href="{!! lang_url('news/' . $featuredPost->slug) !!}">{!! $featuredPost->title !!}</a></h2>
                             <a href="{!! lang_url('news/' . $featuredPost->slug) !!}" class="uk-button ja-button-outline" title="Learn More">Learn More <i class="uk-margin-small-left uk-icon-chevron-right"></i></a>
@@ -54,9 +56,11 @@
                     <h2 class="uk-text-uppercase"><a href="{!! lang_url('news/' . $newsContent->slug) !!}" class="grey-text text-darken-3">{!! $newsContent->title !!}</a></h2>
                     <ul class="uk-subnav uk-subnav-line">
                         <li>{!! Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $newsContent->publish_date)->format('F j, Y') !!}</li>
-                        <li>POSTED BY:  <span class="ja-bold">ADMIN</span></li>
+                        {{--<li>POSTED BY:  <span class="ja-bold">ADMIN</span></li>--}}
                     </ul>
-                    <a class="ja-news__img" href="{!! lang_url('news/' . $newsContent->slug) !!}" title="Learn More"><img  class="uk-responsive-width" src="{!! url('images/newsSlider/' . $newsContent->file_name) !!}" /></a>
+                    @if(isset($newsContent->file_name))
+                        <a class="ja-news__img" href="{!! lang_url('news/' . $newsContent->slug) !!}" title="Learn More"><img  class="uk-responsive-width" src="{!! url('images/newsSlider/' . $newsContent->file_name) !!}" /></a>
+                    @endif
                     <p>{!! $newsContent->content !!}</p>
                     <a href="{!! lang_url('news/' . $newsContent->slug) !!}" class="uk-button ja-button amber darken-1 light-blue-text text-darken-4" title="Learn More">Learn More <i class="uk-margin-small-left uk-icon-chevron-right"></i></a>
                 </div>

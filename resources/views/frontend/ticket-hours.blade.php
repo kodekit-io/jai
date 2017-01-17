@@ -32,7 +32,7 @@
                                 Aquarium Admission
                             </div>
                             <div class="uk-width-medium-1-3">
-                                Monday - Friday (Weekday):<br><span class="ja-bold">IDR 220.000</span>
+                                {!! trans('messages.weekday', [], '', $lang) !!}:<br><span class="ja-bold">IDR 220.000</span>
                             </div>
                         </div>
                     </div>
@@ -43,7 +43,7 @@
                                 Aquarium Admission and 5D Theater.
                             </div>
                             <div class="uk-width-medium-1-3">
-                                Monday - Friday (Weekday):<br><span class="ja-bold">IDR 275.000</span>
+                                {!! trans('messages.weekday', [], '', $lang) !!}:<br><span class="ja-bold">IDR 275.000</span>
                             </div>
                         </div>
                     </div>
@@ -54,7 +54,7 @@
                                 Aquarium Admission and 5D Theater.
                             </div>
                             <div class="uk-width-medium-1-3">
-                                Saturday - Sunday (Weekend):<br><span class="ja-bold">IDR 290.000</span>
+                                {!! trans('messages.weekend', [], '', $lang) !!}:<br><span class="ja-bold">IDR 290.000</span>
                             </div>
                         </div>
                     </div>
@@ -65,7 +65,9 @@
                                 Aquarium Admission, 5D Theater, Merchandise, Sea Trek OR Diving, Multiple Entry within Four Hours.
                             </div>
                             <div class="uk-width-medium-1-3">
-                                Monday - Sunday:<br><span class="ja-bold">IDR 550.000</span>
+                                {{--{!! trans('messages.all-day', [], '', $lang) !!}:<br>--}}
+                                {!! trans('messages.weekday', [], '', $lang) !!}: <span class="ja-bold"><br>IDR 550.000</span><br><br>
+                                {!! trans('messages.weekend', [], '', $lang) !!}:<br><span class="ja-bold">IDR 600.000</span>
                             </div>
                         </div>
                     </div>
@@ -188,7 +190,7 @@
         @endif
 
         <div class="ja-ticket__content uk-margin-large-bottom">
-            <h3 class="light-blue-text text-darken-4">OPENING HOURS</h3>
+            <h3 class="light-blue-text text-darken-4">{!! trans('messages.opening-hours', [], '', $lang) !!}</h3>
             {!! $openingHours->meta_value !!}
             {{--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor crasher malarki requiem predantia incididunt ut labore et dolore magna aliqua. Ut eni ad minim veniam, quisiom nostrud at autumn irure dor in reprehenderit exercitation.</p>--}}
             {{--<ul class="uk-list">--}}

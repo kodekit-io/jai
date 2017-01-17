@@ -14,5 +14,9 @@ return [
     */
 
     'no-job' => 'Maaf, tidak ada lowongan pekerjaan di Jakarta Aquarium saat ini.',
+    'weekday' => 'Senin - Jumat (Weekday)',
+    'weekend' => 'Sabtu - Minggu (Weekend)',
+    'all-day' => 'Senin - Minggu',
+    'opening-hours' => 'JAM OPERASIONAL',
 
 ];

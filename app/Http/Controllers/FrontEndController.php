@@ -123,6 +123,7 @@ class FrontEndController extends Controller
         $data['whatsOnContents'] = $post->get();
         $data['sliders'] = $sliders;
         $data['pageTitle'] = 'Homepage';
+        $data['metaDesc'] = get_jai_setting('homepage_meta');
 
         return view('frontend.home', $data);
     }
@@ -225,6 +226,7 @@ class FrontEndController extends Controller
         }
 
         $data['pageTitle'] = $postWithDetail->title;
+        $data['metaDesc'] = get_meta_description($post->id, $lang);
         $data['post'] = $postWithDetail;
 
 
@@ -233,19 +235,25 @@ class FrontEndController extends Controller
 
     public function locationMap($lang)
     {
+        $pageParams = [
+            'lang' => $lang,
+            'id' => config('misc.statics.location-map')
+        ];
+        $postWithDetail = $this->postService->getPostsWithDetail($pageParams)->first();
+
         // manual content
         switch ($lang) {
             case 'en':
                 $data['getTheApp'] = 'Be the first to receive latest update from Jakarta Aquarium. Download the app';
-                $data['mapText'] = 'Jakarta Aquarium consists of two floors and twelve zones that show a variety of unique, lovable, and beautiful animals in its habitat. Explore every corner of Jakarta Aquarium to find new fun experience with your friends and family.
-';
                 break;
             default:
                 $data['getTheApp'] = 'Jadilah orang pertama yang mendapatkan info terupdate dari Jakarta Aquarium. Download aplikasinya sekarang juga !';
-                $data['mapText'] = 'Jakarta Aquarium terdiri dari dua lantai dan dua belas zona yang menampilkan beraneka ragam satwa unik, lucu, dan indah dalam habitatnya. Jelajahi setiap sudut Jakarta Aquarium untuk menemukan pengalaman seru baru bersama teman dan keluarga Anda.';
                 break;
         }
-        $data['pageTitle'] = 'Aquarium Map';
+
+        $data['pageTitle'] = $postWithDetail->title;
+        $data['mapText'] = $postWithDetail->content;
+        $data['metaDesc'] = get_meta_description($postWithDetail->id, $lang);
 
         return view('frontend.location-map', $data);
     }
@@ -338,6 +346,7 @@ class FrontEndController extends Controller
         $data['lang'] = $lang;
 
         $data['pageTitle'] = 'Career with Us';
+        $data['metaDesc'] = get_meta_description($data['page']->id, $lang);
 
         return view('frontend.career', $data);
     }
@@ -351,7 +360,8 @@ class FrontEndController extends Controller
         $post = $this->postService->getPostsWithDetail($params);
         $data['page'] = $post->first();
 
-        $data['pageTitle'] = 'Privacy Policy';
+        $data['pageTitle'] = $data['page']->title;
+        $data['metaDesc'] = get_meta_description($data['page']->id, $lang);
 
         return view('frontend.privacy-policy', $data);
     }
@@ -365,7 +375,8 @@ class FrontEndController extends Controller
         $post = $this->postService->getPostsWithDetail($params);
         $data['page'] = $post->first();
 
-        $data['pageTitle'] = 'Term of Use';
+        $data['pageTitle'] = $data['page']->title;
+        $data['metaDesc'] = get_meta_description($data['page']->id, $lang);
 
         return view('frontend.term-use', $data);
     }
@@ -400,10 +411,10 @@ class FrontEndController extends Controller
         ];
         $promos = $this->postService->getPostsWithDetail($promoParams);
 
-
-        $promoPaginated = $promos->paginate(6);
-        $promoPaginated->setPath('promo');
-        $data['promos'] =$promoPaginated;
+//        $promoPaginated = $promos->paginate(6);
+//        $promoPaginated->setPath('promo');
+        $promos = $promos->get();
+        $data['promos'] =$promos;
 
         $data['pageTitle'] = 'Promotions';
 
