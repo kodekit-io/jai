@@ -30,7 +30,7 @@ CREATE TABLE `career_details` (
   PRIMARY KEY (`id`),
   KEY `career_details_career_id_foreign` (`career_id`),
   CONSTRAINT `career_details_career_id_foreign` FOREIGN KEY (`career_id`) REFERENCES `careers` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `career_details` */
 
@@ -39,8 +39,8 @@ insert  into `career_details`(`id`,`career_id`,`lang`,`slug`,`position`,`descrip
 (12,3,'id','environment-scientist-id','Environment Scientist (ID)','Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'),
 (17,4,'en','operation-manager-en','Operation Manager (EN)','Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'),
 (18,4,'id','operation-manager-id','Operation Manager (ID)','Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'),
-(19,2,'en','programmers-en','Programmers (EN)','Programmers'),
-(20,2,'id','programmers-id','Programmers  (ID)','Be a programmers');
+(21,2,'en','programmers-en','Programmers (EN)','Programmers'),
+(22,2,'id','programmers-id','Programmers  (ID)','Be a programmers');
 
 /*Table structure for table `career_metas` */
 
@@ -54,13 +54,13 @@ CREATE TABLE `career_metas` (
   PRIMARY KEY (`id`),
   KEY `career_metas_career_id_foreign` (`career_id`),
   CONSTRAINT `career_metas_career_id_foreign` FOREIGN KEY (`career_id`) REFERENCES `careers` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `career_metas` */
 
 insert  into `career_metas`(`id`,`career_id`,`meta_key`,`meta_value`) values 
-(11,2,'meta_description-en','META (EN)'),
-(12,2,'meta_description-id','META (ID)');
+(13,2,'meta_description-en','META (EN)'),
+(14,2,'meta_description-id','META (ID)');
 
 /*Table structure for table `careers` */
 
@@ -79,9 +79,9 @@ CREATE TABLE `careers` (
 /*Data for the table `careers` */
 
 insert  into `careers`(`id`,`department`,`active_date`,`contact_person`,`created_at`,`updated_at`) values 
-(2,'ICT','2017-01-31','Dodo','2016-11-14 06:29:40','2016-12-08 05:45:17'),
-(3,'Biological Program','2016-11-22','Dodo','2016-11-15 07:19:05','2016-11-15 07:19:05'),
-(4,'Operation and Business Development','2016-11-30','Dodo','2016-11-15 07:39:02','2016-11-15 07:39:39');
+(2,'ICT','2017-01-01','Dodo','2016-11-13 23:29:40','2017-01-13 14:05:45'),
+(3,'Biological Program','2016-11-22','Dodo','2016-11-15 00:19:05','2016-11-15 00:19:05'),
+(4,'Operation and Business Development','2016-11-30','Dodo','2016-11-15 00:39:02','2016-11-15 00:39:39');
 
 /*Table structure for table `categories` */
 
@@ -102,10 +102,10 @@ CREATE TABLE `categories` (
 /*Data for the table `categories` */
 
 insert  into `categories`(`id`,`post_type_id`,`name`,`slug`,`description`,`created_at`,`updated_at`,`parent_id`) values 
-(1,1,'News','news',NULL,'2016-10-21 12:40:03','2016-10-21 12:40:03',0),
-(2,1,'What\'s On','whats-on',NULL,'2016-10-22 01:59:54','2016-10-22 01:59:54',0),
+(1,1,'News','news',NULL,'2016-10-21 05:40:03','2016-10-21 05:40:03',0),
+(2,1,'What\'s On','whats-on',NULL,'2016-10-21 18:59:54','2016-10-21 18:59:54',0),
 (3,2,'Test Category','test-category',NULL,NULL,NULL,0),
-(15,1,'Coba','coba',NULL,'2016-10-22 02:46:19','2016-10-22 02:46:19',0),
+(15,1,'Coba','coba',NULL,'2016-10-21 19:46:19','2016-10-21 19:46:19',0),
 (17,3,'Experience','experience',NULL,NULL,NULL,0),
 (18,3,'Shows & Attraction','shows-attraction',NULL,NULL,NULL,0),
 (19,3,'Dining & Shopping','dining-shopping',NULL,NULL,NULL,0),
@@ -136,17 +136,68 @@ CREATE TABLE `cimb_checkouts` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `cimb_checkouts` */
 
 insert  into `cimb_checkouts`(`id`,`process_type`,`order_id`,`payment_id`,`amount`,`currency`,`remark`,`trans_id`,`auth_code`,`status`,`error_desc`,`message`,`signature`,`created_at`,`updated_at`) values 
-(7,'',96,'',665000,'IDR','','','','','','Transaction request start','VWfGb89c0BQuX1pbY9K9uZUyISo=','2017-01-05 10:23:38','2017-01-05 10:23:38'),
-(8,'',97,'',200000,'IDR','','','','','','Transaction request start','W77iMY+A4dAMkarn8DME7CrMf4U=','2017-01-05 10:24:27','2017-01-05 10:24:27'),
-(9,'',98,'',265000,'IDR','','','','','','Transaction request start','XjRXonjQuhI/IdBIttabVlQuB4U=','2017-01-05 10:33:27','2017-01-05 10:33:27'),
-(10,'',99,'',265000,'IDR','','','','','','Transaction request start','nTns/JQhuAqCPXeX7/I/mdHkEIM=','2017-01-05 10:34:10','2017-01-05 10:34:10'),
-(11,'',100,'',275000,'IDR','','','','','','Transaction request start','mj5aZgfiFDOoDRWnO1I5bx4mXCc=','2017-01-05 13:46:30','2017-01-05 13:46:30'),
-(12,'',101,'',27500000,'IDR','','','','','','Transaction request start','peapkK0wsXcd3VxCnMkk1blNMNw=','2017-01-11 10:16:59','2017-01-11 10:16:59');
+(4,'',108,'',200000,'IDR','','','','','','Transaction request start','RzMOVsBLq4Msk6ZzPOhOhmcIVK4=','2017-01-05 02:47:38','2017-01-05 02:47:38'),
+(5,'',109,'',265000,'IDR','','','','','','Transaction request start','kanKRgHN+FN4tQ7S31C1xdxVTJ8=','2017-01-05 02:53:07','2017-01-05 02:53:07'),
+(6,'',110,'',265000,'IDR','','','','','','Transaction request start','B4PeWyPGdnczGkqVUf9ixZvXerk=','2017-01-05 03:49:16','2017-01-05 03:49:16'),
+(7,'',111,'',200000,'IDR','','','','','','Transaction request start','BC7nBj76p0SBoBIU1E/96b94xxY=','2017-01-05 03:56:40','2017-01-05 03:56:40'),
+(8,'',111,'7',200000,'IDR','','T0023172200','null','0','Payment fail','Payment is failed : Payment fail','3ONrAIhh+Fgu82Am5T68vmFZC1c=','2017-01-05 04:09:00','2017-01-05 04:09:00'),
+(9,'',112,'',265000,'IDR','','','','','','Transaction request start','eNhqx2101pFqDBmPr3az7I+nLAg=','2017-01-05 04:14:06','2017-01-05 04:14:06'),
+(10,'',112,'7',265000,'IDR','','T0023172500','','0','Duplicate transaction id','Payment is failed : Duplicate transaction id','vs4zfDp2OwJPfMliM7DhczJ98m0=','2017-01-05 04:15:17','2017-01-05 04:15:17'),
+(11,'',113,'',265000,'IDR','','','','','','Transaction request start','/Ch0m2YH3c/7FzxAYd8hxEoGWRo=','2017-01-05 04:16:50','2017-01-05 04:16:50'),
+(12,'',113,'7',265000,'IDR','','T0023173200','null','0','Payment fail','Payment is failed : Payment fail','Xk96Z2fI40UH8Y2fgmLJVnbzQNU=','2017-01-05 04:28:50','2017-01-05 04:28:50'),
+(13,'',114,'',200000,'IDR','','','','','','Transaction request start','fNN6MXK5eSF65Tsb58OAtopaSa4=','2017-01-05 06:31:20','2017-01-05 06:31:20'),
+(14,'',115,'',200000,'IDR','','','','','','Transaction request start','d+AWJJKXfFJjpkf+0R22G+7c/Tg=','2017-01-05 06:33:10','2017-01-05 06:33:10'),
+(15,'',115,'7',200000,'IDR','','T0023174800','null','0','Payment fail','Payment is failed : Payment fail','/d7DdSQZJ1U7eYA70x/w6Y+9+gY=','2017-01-05 06:46:46','2017-01-05 06:46:46'),
+(16,'',116,'',200000,'IDR','','','','','','Transaction request start','FasCFjoU8W/2/FDnIwHF6DaKQao=','2017-01-05 07:45:19','2017-01-05 07:45:19'),
+(17,'',116,'7',200000,'IDR','','T0023175000','RB50307459','0','Payment fail','Payment is failed : Payment fail','fe86yCaKI+Ngnk4nWiqwUleploI=','2017-01-05 07:48:50','2017-01-05 07:48:50'),
+(18,'',117,'',200000,'IDR','','','','','','Transaction request start','cd0lWuAtUmX4KdNtFZj7Ys+8o+U=','2017-01-05 07:55:41','2017-01-05 07:55:41'),
+(19,'',118,'',200000,'IDR','','','','','','Transaction request start','neAQv9F5dwv+3tNEMA4kfJ+cb8c=','2017-01-05 08:02:30','2017-01-05 08:02:30'),
+(20,'',118,'7',20000000,'IDR','','T0023175200','','0','Signature not match','Invalid signature. Transaction is Failed','','2017-01-05 08:03:13','2017-01-05 08:03:13'),
+(21,'',119,'',20000000,'IDR','','','','','','Transaction request start','ZsHkbeVj99fMXDLuSRqLUeZlvzg=','2017-01-05 08:04:17','2017-01-05 08:04:17'),
+(22,'',119,'7',20000000,'IDR','','T0023175300','RB5030745971','1','','Transaction is succeed','ZWqWgpQxFEuS84sLBUAugOwqCuI=','2017-01-05 08:07:35','2017-01-05 08:07:35'),
+(23,'',120,'',20000000,'IDR','','','','','','Transaction request start','YXAYYKxSi+ByqHTW+YYDb5KpQ/o=','2017-01-09 03:04:31','2017-01-09 03:04:31'),
+(24,'',121,'',47500000,'IDR','','','','','','Transaction request start','mrb2VfgYLl3MYF4F52BKsZs2mnU=','2017-01-09 03:25:06','2017-01-09 03:25:06'),
+(25,'',122,'',67500000,'IDR','','','','','','Transaction request start','+/nzRtkgOi28TDR1UM+npy32QJQ=','2017-01-09 03:25:27','2017-01-09 03:25:27'),
+(26,'',122,'7',67500000,'IDR','','T0023179600','null','0','Payment fail','Payment is failed : Payment fail','7SvOHwFF45/+lVrQhbn3ThiP2ao=','2017-01-09 03:26:29','2017-01-09 03:26:29'),
+(27,'',123,'',67500000,'IDR','','','','','','Transaction request start','NlAY8XRy3wASCq3M+Vr9ZYaIMaI=','2017-01-09 06:40:44','2017-01-09 06:40:44'),
+(28,'',123,'7',67500000,'IDR','','T0023179900','RB5030745980','1','','Transaction is succeed','9jPdmlFmvlXIzNFtoDDux2SindQ=','2017-01-09 06:42:38','2017-01-09 06:42:38'),
+(29,'',123,'7',67500000,'IDR','','T0023179900','RB5030745980','1','','Transaction is succeed','9jPdmlFmvlXIzNFtoDDux2SindQ=','2017-01-09 06:43:19','2017-01-09 06:43:19'),
+(30,'',123,'7',67500000,'IDR','','T0023179900','RB5030745980','1','','Transaction is succeed','9jPdmlFmvlXIzNFtoDDux2SindQ=','2017-01-09 06:46:48','2017-01-09 06:46:48'),
+(31,'',123,'7',67500000,'IDR','','T0023179900','RB5030745980','1','','Transaction is succeed','9jPdmlFmvlXIzNFtoDDux2SindQ=','2017-01-09 06:51:02','2017-01-09 06:51:02'),
+(32,'',124,'',20000000,'IDR','','','','','','Transaction request start','KgU20grBmXI3baI9wFQojXQ5RQA=','2017-01-09 07:01:11','2017-01-09 07:01:11'),
+(33,'REDIRECT',124,'7',20000000,'IDR','','T0023180100','RB5030745981','1','','Transaction is succeed, check status succeed','+jzKZxZbDoG9f3EyZ+TxYLmyolY=','2017-01-09 07:02:56','2017-01-09 07:02:56'),
+(34,'',125,'',20000000,'IDR','','','','','','Transaction request start','drcFGbhYmdWmKpJ42+2RMLAIc70=','2017-01-09 07:03:52','2017-01-09 07:03:52'),
+(35,'',126,'',20000000,'IDR','','','','','','Transaction request start','b/teYalcBxztCi900dST2oS+BC4=','2017-01-09 07:16:09','2017-01-09 07:16:09'),
+(36,'REDIRECT',126,'7',200000,'IDR','','T0023180300','','1','','Invalid signature. Transaction is Failed','oaOXJS9g1fKaxiMHQYNGgUbMGAA=','2017-01-09 07:18:02','2017-01-09 07:18:02'),
+(37,'',127,'',20000000,'IDR','','','','','','Transaction request start','hFgV5XtYr0NdOIAr/H4WTQub/cE=','2017-01-09 07:22:26','2017-01-09 07:22:26'),
+(38,'REDIRECT',127,'7',20000000,'IDR','','T0023180500','null','0','Payment fail','Payment is failed : Payment fail','/Ixfq1Q+u/QsIiiovt+/ggQsc4M=','2017-01-09 07:23:57','2017-01-09 07:23:57'),
+(39,'',128,'',20000000,'IDR','','','','','','Transaction request start','98By5IYyc4NP6XFB1yiPgYrG/bA=','2017-01-09 07:25:44','2017-01-09 07:25:44'),
+(40,'REDIRECT',128,'7',20000000,'IDR','','T0023180700','RB50307459','0','Payment fail','Payment is failed : Payment fail','u4G6VFUlkjINDdyE7KO/M73dlK0=','2017-01-09 07:28:36','2017-01-09 07:28:36'),
+(41,'',129,'',20000000,'IDR','','','','','','Transaction request start','A+6pgseZxX5fmTnqmawGy83x/WI=','2017-01-09 07:29:14','2017-01-09 07:29:14'),
+(42,'REDIRECT',129,'7',20000000,'IDR','','T0023180900','RB5030745984','1','','Transaction is succeed, check status succeed','lIKsqTsJmTa04g5ybjs4gVDBqrg=','2017-01-09 07:35:39','2017-01-09 07:35:39'),
+(43,'',130,'',27500000,'IDR','','','','','','Transaction request start','XkE/hD2aTiQpl52SLoQ+38iCycM=','2017-01-09 10:06:36','2017-01-09 10:06:36'),
+(44,'',131,'',20000000,'IDR','','','','','','Transaction request start','GFLaAhWIW7unsLmfSFwvXLERr7w=','2017-01-10 01:57:12','2017-01-10 01:57:12'),
+(45,'',132,'',27500000,'IDR','','','','','','Transaction request start','pqc4KqugbEDeAlOuIMR1LCd5cW8=','2017-01-10 06:44:28','2017-01-10 06:44:28'),
+(46,'',133,'',55000000,'IDR','','','','','','Transaction request start','C4UNrpvlsfkaMu3ila0Gxab9WBo=','2017-01-10 09:11:15','2017-01-10 09:11:15'),
+(47,'',134,'',40000000,'IDR','','','','','','Transaction request start','AtjZici+Hj/Y1PKmf1jfDiUgv5E=','2017-01-10 09:14:15','2017-01-10 09:14:15'),
+(48,'',135,'',55000000,'IDR','','','','','','Transaction request start','V7EupGJhXavDNNYTkQe3fEhOAxE=','2017-01-10 09:16:57','2017-01-10 09:16:57'),
+(49,'',136,'',20000000,'IDR','','','','','','Transaction request start','+KPGe813REjU5Kk3GvlG45Tw9qk=','2017-01-10 09:27:36','2017-01-10 09:27:36'),
+(50,'',137,'',55000000,'IDR','','','','','','Transaction request start','hTvym5WJ1r7yMl9hpdYVaFxyVqc=','2017-01-10 11:23:43','2017-01-10 11:23:43'),
+(51,'',138,'',55000000,'IDR','','','','','','Transaction request start','R5Inlu/5TtmVyqjj2txTdgtqmUg=','2017-01-10 13:05:07','2017-01-10 13:05:07'),
+(52,'',139,'',55000000,'IDR','','','','','','Transaction request start','Mc+N5baxKRm+pIPCYfL+8JLxMGI=','2017-01-10 13:06:58','2017-01-10 13:06:58'),
+(53,'',140,'',27500000,'IDR','','','','','','Transaction request start','3+7enWXe+8uUAR99BVijSKpHLIs=','2017-01-11 01:36:26','2017-01-11 01:36:26'),
+(54,'',141,'',27500000,'IDR','','','','','','Transaction request start','ptgiODp1yFmWRdqXJoS0SEsN8AM=','2017-01-11 01:38:16','2017-01-11 01:38:16'),
+(55,'',142,'',27500000,'IDR','','','','','','Transaction request start','uk5fsrTbQDaKgztsldWbLoMvaCE=','2017-01-11 03:18:04','2017-01-11 03:18:04'),
+(56,'',143,'',27500000,'IDR','','','','','','Transaction request start','U2D75h35unzwIMfs0yGaqzX9ypE=','2017-01-11 05:24:03','2017-01-11 05:24:03'),
+(57,'',144,'',55000000,'IDR','','','','','','Transaction request start','rj09BPqMBobHPSm+OhC7CLGFyWc=','2017-01-11 05:25:11','2017-01-11 05:25:11'),
+(58,'',145,'',55000000,'IDR','','','','','','Transaction request start','YamwpmDz3cm5eum0TdW5EhtFtls=','2017-01-11 05:29:58','2017-01-11 05:29:58'),
+(59,'',146,'',58000000,'IDR','','','','','','Transaction request start','PQg/NJ+aOhRMqSJnxMMPcYQWpeI=','2017-01-12 03:56:46','2017-01-12 03:56:46'),
+(60,'',147,'',58000000,'IDR','','','','','','Transaction request start','9MOpn7U43HmonyFFZq3nxzDv9BQ=','2017-01-12 06:41:27','2017-01-12 06:41:27');
 
 /*Table structure for table `coupons` */
 
@@ -191,21 +242,110 @@ CREATE TABLE `doku_checkouts` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=119 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `doku_checkouts` */
 
 insert  into `doku_checkouts`(`id`,`ip_address`,`process_type`,`order_id`,`amount`,`response_code`,`status_code`,`result_msg`,`payment_datetime`,`payment_channel`,`payment_code`,`words`,`session_id`,`bank`,`credit_card`,`message`,`created_at`,`updated_at`) values 
-(109,'192.168.10.1','REQUEST',96,665000,'','','',NULL,'','','c4e8f57372ca4fff8246a6eff45585930750ece7','6MDCLgMpRjtC4rCvKmgSJSpSrESTp6mXvLYUTBqr','','','Transaction request start','2017-01-05 10:23:38','2017-01-05 10:23:38'),
-(110,'192.168.10.1','CHECKSTATUS',96,665000,'0000','0000','SUCCESS',NULL,'15','','28a31aa03decef20d7666e6ca8df1c0bb2d7d291','6MDCLgMpRjtC4rCvKmgSJSpSrESTp6mXvLYUTBqr','PT. BANK BUKOPIN','411111******1111','Checking payment status from doku.','2017-01-05 10:24:11','2017-01-05 10:24:11'),
-(111,'192.168.10.1','REDIRECT',96,665000,'','0000','',NULL,'15','','7708e4ac6fb35efc06ba99c1a92d9588ac75fe19','6MDCLgMpRjtC4rCvKmgSJSpSrESTp6mXvLYUTBqr','','','Redirect process with no notify message come from DOKU. Transaction is Success. Please check on Back Office.','2017-01-05 10:24:11','2017-01-05 10:24:11'),
-(112,'192.168.10.1','REQUEST',97,200000,'','','',NULL,'','','eb692195d33ecdddc0c1569ac8c79976610cf9d4','6MDCLgMpRjtC4rCvKmgSJSpSrESTp6mXvLYUTBqr','','','Transaction request start','2017-01-05 10:24:27','2017-01-05 10:24:27'),
-(113,'192.168.10.1','REQUEST',98,265000,'','','',NULL,'','','678f2f2c22b9a9eda4b18b44a758d9c59b6be627','6MDCLgMpRjtC4rCvKmgSJSpSrESTp6mXvLYUTBqr','','','Transaction request start','2017-01-05 10:33:27','2017-01-05 10:33:27'),
-(114,'192.168.10.1','REDIRECT',98,265000,'','5510','',NULL,'01','','1dcbae9d4efe17a15f523bca70681a0d3c2eb7cb','6MDCLgMpRjtC4rCvKmgSJSpSrESTp6mXvLYUTBqr','','','Redirect process come from DOKU. Transaction is cancelled by User.','2017-01-05 10:33:49','2017-01-05 10:33:49'),
-(115,'192.168.10.1','REQUEST',99,265000,'','','',NULL,'','','3f6d0345feab5a4a4f181cb88cbb4a55462733e4','6MDCLgMpRjtC4rCvKmgSJSpSrESTp6mXvLYUTBqr','','','Transaction request start','2017-01-05 10:34:10','2017-01-05 10:34:10'),
-(116,'192.168.10.1','REDIRECT',99,265000,'','5511','',NULL,'05','8965012830000421','cfe917b4747b708872dce22b70165d9592d3efd9','6MDCLgMpRjtC4rCvKmgSJSpSrESTp6mXvLYUTBqr','','','Redirect process come from DOKU. Transaction is pending for payment','2017-01-05 10:34:32','2017-01-05 10:34:32'),
-(117,'192.168.10.1','REQUEST',100,275000,'','','',NULL,'','','581a8ad9a8204e290596c8520b035e7b4f0f072b','6MDCLgMpRjtC4rCvKmgSJSpSrESTp6mXvLYUTBqr','','','Transaction request start','2017-01-05 13:46:30','2017-01-05 13:46:30'),
-(118,'192.168.10.1','REQUEST',101,275000,'','','',NULL,'','','cfa044c0a7ce45fd0148f641e3ef85be7a4900f7','f5rxIiZK5MVlAthhXZg5dtsgnwWtgTqU38PiUkRN','','','Transaction request start','2017-01-11 10:16:59','2017-01-11 10:16:59');
+(1,'112.215.201.185','REQUEST',29,550000,'','','',NULL,'','','55d1fa40fec473157fb6aeb16f0439dda8aa2ad2','Q8HqYlcr6sVj19pKPjEBaE9qpR2b4oFutjDtNBrY','','','Transaction request start','2017-01-03 09:20:03','2017-01-03 09:20:03'),
+(2,'112.215.201.182','REQUEST',30,220000,'','','',NULL,'','','aaf056c70bd9985fd0d621aae91374a2922c310b','2o8YXYiLwpRf7FheLDmrLEO3oQcz6Y1TCzVXItQt','','','Transaction request start','2017-01-04 02:19:29','2017-01-04 02:19:29'),
+(3,'112.215.201.182','REQUEST',31,220000,'','','',NULL,'','','4d1c0ec44480e1fc099a6e2e2d906eff81e298a4','2o8YXYiLwpRf7FheLDmrLEO3oQcz6Y1TCzVXItQt','','','Transaction request start','2017-01-04 02:42:16','2017-01-04 02:42:16'),
+(4,'112.215.201.182','REQUEST',32,220000,'','','',NULL,'','','535827d2c7d99974896f44f6be6df5ef1d133480','2o8YXYiLwpRf7FheLDmrLEO3oQcz6Y1TCzVXItQt','','','Transaction request start','2017-01-04 02:53:38','2017-01-04 02:53:38'),
+(5,'112.215.201.182','REQUEST',33,220000,'','','',NULL,'','','4b26444fa36e83927726e7987e5bf55ac841e431','2o8YXYiLwpRf7FheLDmrLEO3oQcz6Y1TCzVXItQt','','','Transaction request start','2017-01-04 03:19:14','2017-01-04 03:19:14'),
+(6,'112.215.201.182','REQUEST',34,220000,'','','',NULL,'','','70cfa6ded14ad34cb6b139b6cf0ea8b9f1e22cc0','9DiJzILszaCGT2CBycArUGx0eBdFADUsLSOk1j43','','','Transaction request start','2017-01-04 06:00:53','2017-01-04 06:00:53'),
+(7,'112.215.201.182','REQUEST',89,220000,'','','',NULL,'','','f3579485b9d23e9b19fa2aca1d0c16c28b04c669','9DiJzILszaCGT2CBycArUGx0eBdFADUsLSOk1j43','','','Transaction request start','2017-01-04 06:03:33','2017-01-04 06:03:33'),
+(8,'112.215.201.182','REQUEST',90,220000,'','','',NULL,'','','00c6df02d9dad2b6b630bfc899fc778b085dc163','9DiJzILszaCGT2CBycArUGx0eBdFADUsLSOk1j43','','','Transaction request start','2017-01-04 06:05:18','2017-01-04 06:05:18'),
+(9,'112.215.201.182','CHECKSTATUS',90,220000,'0000','0000','SUCCESS',NULL,'15','','2d27fd167381b663485252222a4fb2598ddbe101','9DiJzILszaCGT2CBycArUGx0eBdFADUsLSOk1j43','PT. BANK BUKOPIN','411111******1111','Checking payment status from doku.','2017-01-04 06:05:36','2017-01-04 06:05:36'),
+(10,'112.215.201.182','CHECKSTATUS',90,220000,'0000','0000','SUCCESS',NULL,'15','','2d27fd167381b663485252222a4fb2598ddbe101','9DiJzILszaCGT2CBycArUGx0eBdFADUsLSOk1j43','PT. BANK BUKOPIN','411111******1111','Checking payment status from doku.','2017-01-04 06:08:55','2017-01-04 06:08:55'),
+(11,'112.215.201.182','REDIRECT',90,220000,'','0000','',NULL,'15','','5f221f6ba57a488d17416fb5509bb75782ff3298','9DiJzILszaCGT2CBycArUGx0eBdFADUsLSOk1j43','','','Redirect process with no notify message come from DOKU. Transaction is Success. Please check on Back Office.','2017-01-04 06:08:55','2017-01-04 06:08:55'),
+(12,'112.215.201.182','REQUEST',91,220000,'','','',NULL,'','','db0c777d0d7d1b2caece07996043bc0e12e9dfc5','9DiJzILszaCGT2CBycArUGx0eBdFADUsLSOk1j43','','','Transaction request start','2017-01-04 06:22:25','2017-01-04 06:22:25'),
+(13,'112.215.201.182','CHECKSTATUS',91,220000,'0000','0000','SUCCESS',NULL,'15','','f47f710f8998a81e6c48b0b6abf4662d340566b6','9DiJzILszaCGT2CBycArUGx0eBdFADUsLSOk1j43','PT. BANK BUKOPIN','411111******1111','Checking payment status from doku.','2017-01-04 06:23:12','2017-01-04 06:23:12'),
+(14,'112.215.201.182','REDIRECT',91,220000,'','0000','',NULL,'15','','70b89ebd1b0a50bd71b7f6fe0292511471d31314','9DiJzILszaCGT2CBycArUGx0eBdFADUsLSOk1j43','','','Redirect process with no notify message come from DOKU. Transaction is Success. Please check on Back Office.','2017-01-04 06:23:12','2017-01-04 06:23:12'),
+(15,'202.51.126.2','REQUEST',92,583000,'','','',NULL,'','','715b70c33e51f3ab09cbc83c1dadf505c1d9dc12','8jbepshE49orbxP49BvD2MRIBigxs3i4UoShbrb9','','','Transaction request start','2017-01-04 06:59:47','2017-01-04 06:59:47'),
+(16,'202.51.126.2','REQUEST',93,583000,'','','',NULL,'','','6cb2a8e30bb68c50f10ca6f0e21dbe882b7e5181','8jbepshE49orbxP49BvD2MRIBigxs3i4UoShbrb9','','','Transaction request start','2017-01-04 07:00:14','2017-01-04 07:00:14'),
+(17,'202.51.126.2','REQUEST',94,583000,'','','',NULL,'','','c56293e88cf084a3203b7cd1430410cb946d9df6','8jbepshE49orbxP49BvD2MRIBigxs3i4UoShbrb9','','','Transaction request start','2017-01-04 07:00:36','2017-01-04 07:00:36'),
+(18,'202.51.126.2','REQUEST',95,583000,'','','',NULL,'','','8836a0f8230ba469ea3c6ffb50330f6fb980ee78','8jbepshE49orbxP49BvD2MRIBigxs3i4UoShbrb9','','','Transaction request start','2017-01-04 07:01:24','2017-01-04 07:01:24'),
+(19,'202.51.126.2','REQUEST',96,583000,'','','',NULL,'','','4e7579ad8458b4428387121724336522f1be08b5','8jbepshE49orbxP49BvD2MRIBigxs3i4UoShbrb9','','','Transaction request start','2017-01-04 07:02:13','2017-01-04 07:02:13'),
+(20,'112.215.201.182','REQUEST',97,220000,'','','',NULL,'','','aa0902db5180c640098b309e206973cce99f26d8','zpEmgwAosEygdlFPjdhuUnJFEjfwdXHpW4s4aRSY','','','Transaction request start','2017-01-04 07:06:29','2017-01-04 07:06:29'),
+(21,'112.215.201.182','CHECKSTATUS',97,220000,'0000','0000','SUCCESS',NULL,'15','','53a5785cd2e8f731ff59d81cc60320c976fe521f','zpEmgwAosEygdlFPjdhuUnJFEjfwdXHpW4s4aRSY','PT. BANK BUKOPIN','411111******1111','Checking payment status from doku.','2017-01-04 07:07:09','2017-01-04 07:07:09'),
+(22,'112.215.201.182','REDIRECT',97,220000,'','0000','',NULL,'15','','937c34b8f6966bf9d5cec60c573f141316b8ca6e','zpEmgwAosEygdlFPjdhuUnJFEjfwdXHpW4s4aRSY','','','Redirect process with no notify message come from DOKU. Transaction is Success. Please check on Back Office.','2017-01-04 07:07:09','2017-01-04 07:07:09'),
+(23,'202.51.126.2','REQUEST',98,1100000,'','','',NULL,'','','5e67917f488e068ecab3560d0c8ce80d390029f2','r1TWi4PNaoHn4yUh9ki2L7c3iYQEAJMTTRnYNYIx','','','Transaction request start','2017-01-04 07:17:26','2017-01-04 07:17:26'),
+(24,'202.51.126.2','REQUEST',99,583000,'','','',NULL,'','','eab00dab027f6c1c0138181b365f680cd894190f','8Uvlc5YOB89FvaX6UdToSAHt7KSSTz4xtadZ9137','','','Transaction request start','2017-01-04 07:19:51','2017-01-04 07:19:51'),
+(25,'202.51.126.2','REQUEST',100,583000,'','','',NULL,'','','e46a21cf235616c793cb110202ecd0a79e6ea2e3','8Uvlc5YOB89FvaX6UdToSAHt7KSSTz4xtadZ9137','','','Transaction request start','2017-01-04 07:20:22','2017-01-04 07:20:22'),
+(26,'202.51.126.2','CHECKSTATUS',100,583000,'0000','0000','SUCCESS',NULL,'15','','81f514246fae3aac43beba7b01bee03f040a2600','8Uvlc5YOB89FvaX6UdToSAHt7KSSTz4xtadZ9137','PT. BANK BUKOPIN','411111******1111','Checking payment status from doku.','2017-01-04 07:23:51','2017-01-04 07:23:51'),
+(27,'202.51.126.2','REDIRECT',100,583000,'','0000','',NULL,'15','','497add67828f37c037eb8f8ba822bc7c38288a04','8Uvlc5YOB89FvaX6UdToSAHt7KSSTz4xtadZ9137','','','Redirect process with no notify message come from DOKU. Transaction is Success. Please check on Back Office.','2017-01-04 07:23:51','2017-01-04 07:23:51'),
+(28,'112.215.201.182','REQUEST',101,220000,'','','',NULL,'','','4cf4cbea7cde72f039262103223684ec5bc2a2c5','9DiJzILszaCGT2CBycArUGx0eBdFADUsLSOk1j43','','','Transaction request start','2017-01-04 07:26:38','2017-01-04 07:26:38'),
+(29,'202.51.126.2','REQUEST',102,583000,'','','',NULL,'','','5ddbc6624c56d5e2a5087b42c79ca66b39995a51','r1TWi4PNaoHn4yUh9ki2L7c3iYQEAJMTTRnYNYIx','','','Transaction request start','2017-01-04 07:27:13','2017-01-04 07:27:13'),
+(30,'202.51.126.2','CHECKSTATUS',102,583000,'0000','0000','SUCCESS',NULL,'15','','8ed2c5f7fea595206ac77fab20e2f384688e8250','r1TWi4PNaoHn4yUh9ki2L7c3iYQEAJMTTRnYNYIx','PT. BANK BUKOPIN','411111******1111','Checking payment status from doku.','2017-01-04 07:28:56','2017-01-04 07:28:56'),
+(31,'202.51.126.2','REDIRECT',102,583000,'','0000','',NULL,'15','','a4bc277eb7c764b8098c909d0bba2028588a6852','r1TWi4PNaoHn4yUh9ki2L7c3iYQEAJMTTRnYNYIx','','','Redirect process with no notify message come from DOKU. Transaction is Success. Please check on Back Office.','2017-01-04 07:28:56','2017-01-04 07:28:56'),
+(32,'202.51.126.2','REQUEST',103,2200000,'','','',NULL,'','','031ebc0d09488a08b5180cd298ddcb3ed3955ddb','2X4pT0xrCs2T8PkuzbQT0teRoykHi3iPWSXUjNYX','','','Transaction request start','2017-01-04 07:29:14','2017-01-04 07:29:14'),
+(33,'202.51.126.2','CHECKSTATUS',103,2200000,'0000','0000','SUCCESS',NULL,'15','','a30a01dbe3dcf091d6291868e6786d7f0c3ab70f','2X4pT0xrCs2T8PkuzbQT0teRoykHi3iPWSXUjNYX','PT. BANK BUKOPIN','411111******1111','Checking payment status from doku.','2017-01-04 07:30:51','2017-01-04 07:30:51'),
+(34,'202.51.126.2','REDIRECT',103,2200000,'','0000','',NULL,'15','','418d091b66f435c5b776bbf2a658183100a25273','2X4pT0xrCs2T8PkuzbQT0teRoykHi3iPWSXUjNYX','','','Redirect process with no notify message come from DOKU. Transaction is Success. Please check on Back Office.','2017-01-04 07:30:51','2017-01-04 07:30:51'),
+(35,'202.62.18.48','REQUEST',104,550000,'','','',NULL,'','','e74ed33859d938e55acea273e078e7ab922046dc','ozQIBgOm3Q2O8ccGOfjGXIpkgV8k7C1Z6Y6SygB2','','','Transaction request start','2017-01-04 07:34:23','2017-01-04 07:34:23'),
+(36,'114.110.21.14','REQUEST',105,220000,'','','',NULL,'','','ece76d2041b4d56dab176e8227b1e721c494fc0e','Mje1AYj6aYh2bsCGaMPvDQ9SQflNqbBt8ePrHsIM','','','Transaction request start','2017-01-04 10:39:35','2017-01-04 10:39:35'),
+(37,'114.110.21.14','REQUEST',106,220000,'','','',NULL,'','','9ada76ffabac0f4d70bc21cff0930aea93873709','Mje1AYj6aYh2bsCGaMPvDQ9SQflNqbBt8ePrHsIM','','','Transaction request start','2017-01-04 10:41:44','2017-01-04 10:41:44'),
+(38,'112.215.201.182','CHECKSTATUS',92,200000,'0000','0000','SUCCESS',NULL,'15','','10d803025eb7f87ea2b1a3031003bbf1b70f0798','6MDCLgMpRjtC4rCvKmgSJSpSrESTp6mXvLYUTBqr','PT. BANK BUKOPIN','411111******1111','Checking payment status from doku.','2017-01-05 02:42:04','2017-01-05 02:42:04'),
+(39,'112.215.201.182','REDIRECT',92,200000,'','0000','',NULL,'15','','3653d0afeb970f62fef0522045423c17ee6385c2','6MDCLgMpRjtC4rCvKmgSJSpSrESTp6mXvLYUTBqr','','','Redirect process with no notify message come from DOKU. Transaction is Success. Please check on Back Office.','2017-01-05 02:42:04','2017-01-05 02:42:04'),
+(40,'112.215.201.182','REQUEST',107,200000,'','','',NULL,'','','817b538e4d836b7f2ddbe9400e082193273a5670','heK2Zi3tPNEMayYX6t0egmAs86NNymoj3ErHBCn7','','','Transaction request start','2017-01-05 02:46:29','2017-01-05 02:46:29'),
+(41,'112.215.201.182','REQUEST',108,200000,'','','',NULL,'','','666100926498e72e5d1cd1fce75fe207d8d763c3','heK2Zi3tPNEMayYX6t0egmAs86NNymoj3ErHBCn7','','','Transaction request start','2017-01-05 02:47:38','2017-01-05 02:47:38'),
+(42,'112.215.201.182','CHECKSTATUS',108,200000,'0000','0000','SUCCESS',NULL,'15','','192b94fb3b9a7addb4682979579e1543bfe5cfab','heK2Zi3tPNEMayYX6t0egmAs86NNymoj3ErHBCn7','PT. BANK BUKOPIN','411111******1111','Checking payment status from doku.','2017-01-05 02:49:09','2017-01-05 02:49:09'),
+(43,'112.215.201.182','REDIRECT',108,200000,'','0000','',NULL,'15','','a6fe6e9df296de35b8e3ab812396ed0cd4d2dbeb','heK2Zi3tPNEMayYX6t0egmAs86NNymoj3ErHBCn7','','','Redirect process with no notify message come from DOKU. Transaction is Success. Please check on Back Office.','2017-01-05 02:49:09','2017-01-05 02:49:09'),
+(44,'112.215.201.182','REQUEST',109,265000,'','','',NULL,'','','71b53646a4b48d710673e1f990d2699838964a45','heK2Zi3tPNEMayYX6t0egmAs86NNymoj3ErHBCn7','','','Transaction request start','2017-01-05 02:53:07','2017-01-05 02:53:07'),
+(45,'112.215.201.182','REQUEST',110,265000,'','','',NULL,'','','fae3a1826b86d9e0f469777173a3a100fd59dafc','heK2Zi3tPNEMayYX6t0egmAs86NNymoj3ErHBCn7','','','Transaction request start','2017-01-05 03:49:16','2017-01-05 03:49:16'),
+(46,'112.215.201.182','REDIRECT',110,265000,'','5510','',NULL,'01','','4003f4d2faa7060fde6032130ea43254040d7a05','heK2Zi3tPNEMayYX6t0egmAs86NNymoj3ErHBCn7','','','Redirect process come from DOKU. Transaction is cancelled by User.','2017-01-05 03:49:28','2017-01-05 03:49:28'),
+(47,'112.215.201.182','REQUEST',111,200000,'','','',NULL,'','','e6b6b2ce5437b22e68d98a17f8d76f8cbcead2e8','heK2Zi3tPNEMayYX6t0egmAs86NNymoj3ErHBCn7','','','Transaction request start','2017-01-05 03:56:40','2017-01-05 03:56:40'),
+(48,'112.215.201.182','REQUEST',112,265000,'','','',NULL,'','','faf0931815a28c3c2737f54b1a98414340f6804c','heK2Zi3tPNEMayYX6t0egmAs86NNymoj3ErHBCn7','','','Transaction request start','2017-01-05 04:14:06','2017-01-05 04:14:06'),
+(49,'112.215.201.182','REQUEST',113,265000,'','','',NULL,'','','1248ba5650d83b3de3c1377906bec21cb33bceea','heK2Zi3tPNEMayYX6t0egmAs86NNymoj3ErHBCn7','','','Transaction request start','2017-01-05 04:16:50','2017-01-05 04:16:50'),
+(50,'112.215.201.182','REQUEST',114,200000,'','','',NULL,'','','cfa015df8ed981e7d97521068b2eb6e18da84172','uYx9F9hFy4nV5yubo94jHBDAsnDQsgxVLrVfeVBk','','','Transaction request start','2017-01-05 06:31:20','2017-01-05 06:31:20'),
+(51,'112.215.201.182','REQUEST',115,200000,'','','',NULL,'','','ace5bf2482c6daff82ba68b9ce7c325485fb6e4b','uYx9F9hFy4nV5yubo94jHBDAsnDQsgxVLrVfeVBk','','','Transaction request start','2017-01-05 06:33:10','2017-01-05 06:33:10'),
+(52,'112.215.201.182','REQUEST',116,200000,'','','',NULL,'','','10d5b7395a3e1e7015f48ae3306cf7a148e6607f','uYx9F9hFy4nV5yubo94jHBDAsnDQsgxVLrVfeVBk','','','Transaction request start','2017-01-05 07:45:19','2017-01-05 07:45:19'),
+(53,'112.215.201.182','REQUEST',117,200000,'','','',NULL,'','','02a9c2f3a4c2d7c1730703f969cafb42f525a36b','uYx9F9hFy4nV5yubo94jHBDAsnDQsgxVLrVfeVBk','','','Transaction request start','2017-01-05 07:55:41','2017-01-05 07:55:41'),
+(54,'112.215.201.182','REQUEST',118,200000,'','','',NULL,'','','34e75e6c3c042295920f1cc62b79038b84937893','uYx9F9hFy4nV5yubo94jHBDAsnDQsgxVLrVfeVBk','','','Transaction request start','2017-01-05 08:02:30','2017-01-05 08:02:30'),
+(55,'112.215.201.182','REQUEST',119,200000,'','','',NULL,'','','ad799c13f92df67d3cae882411fc4d237115e5bb','uYx9F9hFy4nV5yubo94jHBDAsnDQsgxVLrVfeVBk','','','Transaction request start','2017-01-05 08:04:17','2017-01-05 08:04:17'),
+(56,'112.215.170.72','REQUEST',120,200000,'','','',NULL,'','','6951729a0b9a778fc31167fba2d94634ab87fabc','mGwOgUH1Lno38x9FzXkwg9TE0yNIGAbTSJ6f8bak','','','Transaction request start','2017-01-09 03:04:31','2017-01-09 03:04:31'),
+(57,'','NOTIFY',120,200000,'0000','','','2017-01-09 10:05:04','15','','44be29465c7d552d980ade979eb4be32e06ca416','mGwOgUH1Lno38x9FzXkwg9TE0yNIGAbTSJ6f8bak','PT. BANK BUKOPIN','411111******1111','Notify process message come from DOKU. Success : completed','2017-01-09 03:05:04','2017-01-09 03:05:04'),
+(58,'112.215.170.72','CHECKSTATUS',120,200000,'0000','0000','SUCCESS',NULL,'15','','44be29465c7d552d980ade979eb4be32e06ca416','mGwOgUH1Lno38x9FzXkwg9TE0yNIGAbTSJ6f8bak','PT. BANK BUKOPIN','411111******1111','Checking payment status from doku.','2017-01-09 03:05:11','2017-01-09 03:05:11'),
+(59,'112.215.170.72','REDIRECT',120,200000,'','0000','',NULL,'15','','10b230defe3d330845dda9060585ce5dbe0bb1ee','mGwOgUH1Lno38x9FzXkwg9TE0yNIGAbTSJ6f8bak','','','Redirect process with no notify message come from DOKU. Transaction is Success. Please check on Back Office.','2017-01-09 03:05:11','2017-01-09 03:05:11'),
+(60,'112.215.170.72','REQUEST',121,475000,'','','',NULL,'','','9f712dc5298f427d79082db7a3b846c20b16033c','mGwOgUH1Lno38x9FzXkwg9TE0yNIGAbTSJ6f8bak','','','Transaction request start','2017-01-09 03:25:06','2017-01-09 03:25:06'),
+(61,'112.215.170.72','REQUEST',122,675000,'','','',NULL,'','','28d3404bbb54f7850c7cbace08ef0df177e647f0','mGwOgUH1Lno38x9FzXkwg9TE0yNIGAbTSJ6f8bak','','','Transaction request start','2017-01-09 03:25:27','2017-01-09 03:25:27'),
+(62,'112.215.200.152','REQUEST',123,675000,'','','',NULL,'','','74d54b764d29a1864ebf02ed95f1337f8185ebb0','iib7Vxo346MGHX2M8jEn0JbiqhDPbYxi5CtsAmNk','','','Transaction request start','2017-01-09 06:40:44','2017-01-09 06:40:44'),
+(63,'112.215.200.152','REQUEST',124,200000,'','','',NULL,'','','03c082c7235046d9a77ab8ade5e0e21a2f44c1a4','iib7Vxo346MGHX2M8jEn0JbiqhDPbYxi5CtsAmNk','','','Transaction request start','2017-01-09 07:01:11','2017-01-09 07:01:11'),
+(64,'112.215.200.152','REQUEST',125,200000,'','','',NULL,'','','7dc0e2baee08b0c7031d1c9f27bcf9172b77e9d8','iib7Vxo346MGHX2M8jEn0JbiqhDPbYxi5CtsAmNk','','','Transaction request start','2017-01-09 07:03:52','2017-01-09 07:03:52'),
+(65,'','NOTIFY',125,200000,'0000','','','2017-01-09 14:04:12','15','','b3aa5d5928a916572de579e864de15309bf149d2','iib7Vxo346MGHX2M8jEn0JbiqhDPbYxi5CtsAmNk','PT. BANK BUKOPIN','411111******1111','Notify process message come from DOKU. Success : completed','2017-01-09 07:04:12','2017-01-09 07:04:12'),
+(66,'112.215.200.152','CHECKSTATUS',125,200000,'0000','0000','SUCCESS',NULL,'15','','b3aa5d5928a916572de579e864de15309bf149d2','iib7Vxo346MGHX2M8jEn0JbiqhDPbYxi5CtsAmNk','PT. BANK BUKOPIN','411111******1111','Checking payment status from doku.','2017-01-09 07:04:15','2017-01-09 07:04:15'),
+(67,'112.215.200.152','REDIRECT',125,200000,'','0000','',NULL,'15','','0c2b301f921a236681bb86c0fd936362fb1c0a6f','iib7Vxo346MGHX2M8jEn0JbiqhDPbYxi5CtsAmNk','','','Redirect process with no notify message come from DOKU. Transaction is Success. Please check on Back Office.','2017-01-09 07:04:15','2017-01-09 07:04:15'),
+(68,'112.215.200.152','CHECKSTATUS',125,200000,'0000','0000','SUCCESS',NULL,'15','','b3aa5d5928a916572de579e864de15309bf149d2','iib7Vxo346MGHX2M8jEn0JbiqhDPbYxi5CtsAmNk','PT. BANK BUKOPIN','411111******1111','Checking payment status from doku.','2017-01-09 07:06:30','2017-01-09 07:06:30'),
+(69,'112.215.200.152','REDIRECT',125,200000,'','0000','',NULL,'15','','0c2b301f921a236681bb86c0fd936362fb1c0a6f','iib7Vxo346MGHX2M8jEn0JbiqhDPbYxi5CtsAmNk','','','Redirect process with no notify message come from DOKU. Transaction is Success. Please check on Back Office.','2017-01-09 07:06:30','2017-01-09 07:06:30'),
+(70,'210.210.158.135','REQUEST',126,200000,'','','',NULL,'','','adea303420c17c5384ad3df4ffa95ceb355450fb','CvlbzTiXJRuAWc41g6QTIQS6fy8tR2gRHN8ZnMq3','','','Transaction request start','2017-01-09 07:16:09','2017-01-09 07:16:09'),
+(71,'210.210.158.135','REQUEST',127,200000,'','','',NULL,'','','8e2b768e1e3fac9bf65fe21836874d07abc66063','CvlbzTiXJRuAWc41g6QTIQS6fy8tR2gRHN8ZnMq3','','','Transaction request start','2017-01-09 07:22:26','2017-01-09 07:22:26'),
+(72,'210.210.158.135','REQUEST',128,200000,'','','',NULL,'','','9034954cca98486d97ce1fa38da4398096ab16fc','CvlbzTiXJRuAWc41g6QTIQS6fy8tR2gRHN8ZnMq3','','','Transaction request start','2017-01-09 07:25:44','2017-01-09 07:25:44'),
+(73,'210.210.158.135','REQUEST',129,200000,'','','',NULL,'','','09b413a60a602d7d37c9986e4847ad71db145c8d','CvlbzTiXJRuAWc41g6QTIQS6fy8tR2gRHN8ZnMq3','','','Transaction request start','2017-01-09 07:29:14','2017-01-09 07:29:14'),
+(74,'202.51.126.2','REQUEST',130,275000,'','','',NULL,'','','f0ae0fd73211a736cc037d254d00c12e639e4e89','WWUZLBjqUrcKU1p2jbG3whJDtN3wDHQ2zKGkqPz3','','','Transaction request start','2017-01-09 10:06:36','2017-01-09 10:06:36'),
+(75,'114.110.21.14','REQUEST',131,200000,'','','',NULL,'','','fee4996e6383763039aad400b67a64f078554a22','raPicTphnZ7vHB6x4FgyVqULzZBT0cDZBRyEonQM','','','Transaction request start','2017-01-10 01:57:12','2017-01-10 01:57:12'),
+(76,'114.110.21.14','REQUEST',132,275000,'','','',NULL,'','','f808013f891bd0e809a7294dca805b7dbebd0aaf','6P6f1eDy2xL3wQJNPuqa79VjT8RftNGIVU2R26oc','','','Transaction request start','2017-01-10 06:44:28','2017-01-10 06:44:28'),
+(77,'202.51.126.2','REQUEST',133,550000,'','','',NULL,'','','4cebc8ead922ee9ab1117017438507fe24e2f222','oiPG7xsLHAjPlkN6NRILF9QomCAGcu0Ra9EqFzpv','','','Transaction request start','2017-01-10 09:11:15','2017-01-10 09:11:15'),
+(78,'39.248.38.109','REQUEST',134,400000,'','','',NULL,'','','5fbcccc6d7f939df34324da229578785c5484087','jh1ZTbROAguffwhD6VLgI80jMxparNKLLiFM1U0y','','','Transaction request start','2017-01-10 09:14:15','2017-01-10 09:14:15'),
+(79,'202.51.126.2','REQUEST',135,550000,'','','',NULL,'','','c719a22acc9b3fea36ae255a79e64b2a6e6779d9','IlGZsIlsqOrJcbzFiJJzX4bSb8oNhYEFvPu2rltm','','','Transaction request start','2017-01-10 09:16:57','2017-01-10 09:16:57'),
+(80,'202.51.104.50','REQUEST',136,200000,'','','',NULL,'','','f24794d9ba5ef9299cf67bde1d5e73a9240aca31','mJGCat2Z318eZUeqZTcetStKL03u57PuTRO2LtAJ','','','Transaction request start','2017-01-10 09:27:36','2017-01-10 09:27:36'),
+(81,'','NOTIFY',136,200000,'0000','','','2017-01-10 16:28:00','15','','fa5de3f0245165a9d7cd8cfc5b2012dd94c08269','mJGCat2Z318eZUeqZTcetStKL03u57PuTRO2LtAJ','PT. BANK BUKOPIN','411111******1111','Notify process message come from DOKU. Success : completed','2017-01-10 09:28:00','2017-01-10 09:28:00'),
+(82,'202.51.104.50','CHECKSTATUS',136,200000,'0000','0000','SUCCESS',NULL,'15','','fa5de3f0245165a9d7cd8cfc5b2012dd94c08269','mJGCat2Z318eZUeqZTcetStKL03u57PuTRO2LtAJ','PT. BANK BUKOPIN','411111******1111','Checking payment status from doku.','2017-01-10 09:28:04','2017-01-10 09:28:04'),
+(83,'202.51.104.50','REDIRECT',136,200000,'','0000','',NULL,'15','','e31f38d8a16fb4d5def2fe5654408b6f30b5efb0','mJGCat2Z318eZUeqZTcetStKL03u57PuTRO2LtAJ','','','Redirect process with no notify message come from DOKU. Transaction is Success. Please check on Back Office.','2017-01-10 09:28:04','2017-01-10 09:28:04'),
+(84,'114.124.27.110','REQUEST',137,550000,'','','',NULL,'','','4b474271ae367881f11e9e9aa71e4f18b8525ebd','daIVFnRqTOD2sPwhe58QwRPYmlX61PmACPFgOUTm','','','Transaction request start','2017-01-10 11:23:43','2017-01-10 11:23:43'),
+(85,'139.0.114.130','REQUEST',138,550000,'','','',NULL,'','','6785c3fed801ab838aaa5c967c895f505956e417','daIVFnRqTOD2sPwhe58QwRPYmlX61PmACPFgOUTm','','','Transaction request start','2017-01-10 13:05:07','2017-01-10 13:05:07'),
+(86,'139.0.114.130','REQUEST',139,550000,'','','',NULL,'','','3bccb7ca89a836d60283a9a73705622858234561','IJ3O5h3tkSZuTrIJZA1KijKAoEcJsAUAlbbvvQRb','','','Transaction request start','2017-01-10 13:06:58','2017-01-10 13:06:58'),
+(87,'139.0.114.130','REQUEST',140,275000,'','','',NULL,'','','60ac62e4774a1dce0e528bb9d092b09404b04489','VfUaWWtPvmpMrICaQ606lRlMhHRH6namxBCMv7b6','','','Transaction request start','2017-01-11 01:36:26','2017-01-11 01:36:26'),
+(88,'139.0.114.130','REQUEST',141,275000,'','','',NULL,'','','032a92df8b83af870f9c6022733d946e85e1ba38','VfUaWWtPvmpMrICaQ606lRlMhHRH6namxBCMv7b6','','','Transaction request start','2017-01-11 01:38:16','2017-01-11 01:38:16'),
+(89,'112.215.171.92','REQUEST',142,275000,'','','',NULL,'','','e5f2163161df28c77b4ccdf9a6990f97fbb2f1ef','jWJhcHYGwTSf37Oe23VXicLOcKtmzDAwaO8o8Vi2','','','Transaction request start','2017-01-11 03:18:04','2017-01-11 03:18:04'),
+(90,'','NOTIFY',142,275000,'0000','','','2017-01-11 10:18:21','15','','1704604780eea9cfcfe622f4375b5b0cf1791424','jWJhcHYGwTSf37Oe23VXicLOcKtmzDAwaO8o8Vi2','PT. BANK BUKOPIN','411111******1111','Notify process message come from DOKU. Success : completed','2017-01-11 03:18:21','2017-01-11 03:18:21'),
+(91,'112.215.171.92','CHECKSTATUS',142,275000,'0000','0000','SUCCESS',NULL,'15','','1704604780eea9cfcfe622f4375b5b0cf1791424','jWJhcHYGwTSf37Oe23VXicLOcKtmzDAwaO8o8Vi2','PT. BANK BUKOPIN','411111******1111','Checking payment status from doku.','2017-01-11 03:18:24','2017-01-11 03:18:24'),
+(92,'112.215.171.92','REDIRECT',142,275000,'','0000','',NULL,'15','','3ccd9f6cb57ba0a78a95d481f164627efe37b39e','jWJhcHYGwTSf37Oe23VXicLOcKtmzDAwaO8o8Vi2','','','Redirect process with no notify message come from DOKU. Transaction is Success. Please check on Back Office.','2017-01-11 03:18:24','2017-01-11 03:18:24'),
+(93,'112.215.171.92','REQUEST',143,275000,'','','',NULL,'','','90fdae2e93107fbb2a737c5144e8f63c5e0814de','MgzRjFaqnnZMg5BTLZiUWeKZaAXOcg9Rp9iqP0X7','','','Transaction request start','2017-01-11 05:24:03','2017-01-11 05:24:03'),
+(94,'39.252.220.250','REQUEST',144,550000,'','','',NULL,'','','57d7454e557efb432763d8e99440a2d9428a9a99','9URGXrrwrXEqkvqu1fYfYcAbaWeLEeHCAHF69fGI','','','Transaction request start','2017-01-11 05:25:11','2017-01-11 05:25:11'),
+(95,'39.252.220.250','REQUEST',145,550000,'','','',NULL,'','','3d1961e3d54e3285d79a394ae68a542f10f422da','9URGXrrwrXEqkvqu1fYfYcAbaWeLEeHCAHF69fGI','','','Transaction request start','2017-01-11 05:29:58','2017-01-11 05:29:58'),
+(96,'112.215.171.92','REDIRECT',143,275000,'','5511','',NULL,'05','8890012830000453','63fbac88f11bd4da37986a187da36ce90e777159','MgzRjFaqnnZMg5BTLZiUWeKZaAXOcg9Rp9iqP0X7','','','Redirect process come from DOKU. Transaction is pending for payment','2017-01-11 06:10:41','2017-01-11 06:10:41'),
+(97,'112.215.171.92','REDIRECT',143,275000,'','5511','',NULL,'05','8890012830000453','63fbac88f11bd4da37986a187da36ce90e777159','MgzRjFaqnnZMg5BTLZiUWeKZaAXOcg9Rp9iqP0X7','','','Redirect process come from DOKU. Transaction is pending for payment','2017-01-11 06:12:49','2017-01-11 06:12:49'),
+(98,'202.51.126.2','REQUEST',146,580000,'','','',NULL,'','','bb666b3b424b8bf84ad57a3b17e8adcda417e126','SfJV4qyGPe6rtHvLLaEX1EygmKZfIzObYHSSPIHb','','','Transaction request start','2017-01-12 03:56:46','2017-01-12 03:56:46'),
+(99,'202.51.126.2','REQUEST',147,580000,'','','',NULL,'','','50e19feb40abdd18650cc965abc1fd9785489a35','sLi13N5UvqOpslfHAWQNQIjCVHICrC7MTm7qbyIT','','','Transaction request start','2017-01-12 06:41:27','2017-01-12 06:41:27');
 
 /*Table structure for table `doku_response_codes` */
 
@@ -357,15 +497,51 @@ CREATE TABLE `galasys_tickets` (
   PRIMARY KEY (`id`),
   KEY `galasys_tickets_order_id_foreign` (`order_id`),
   CONSTRAINT `galasys_tickets_order_id_foreign` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=127 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `galasys_tickets` */
 
 insert  into `galasys_tickets`(`id`,`order_id`,`code`,`name`,`barcode`,`e_ticket`,`created_at`,`updated_at`) values 
-(86,96,'o1dpa','Regular','1701050000123','uploads/e-tickets/regular-1701050000123.pdf','2017-01-05 10:24:14','2017-01-05 10:24:14'),
-(87,96,'o1dpa','Regular','1701050000147','uploads/e-tickets/regular-1701050000147.pdf','2017-01-05 10:24:15','2017-01-05 10:24:15'),
-(88,96,'o1dpa','Regular','1701050000161','uploads/e-tickets/regular-1701050000161.pdf','2017-01-05 10:24:15','2017-01-05 10:24:15'),
-(89,96,'pb4r','Photo Booth - 4R','1701050000185','uploads/e-tickets/photo-booth-4r-1701050000185.pdf','2017-01-05 10:24:15','2017-01-05 10:24:15');
+(87,91,'o1dpa','Regular','1701040001468','uploads/e-tickets/regular-1701040001468.pdf','2017-01-04 06:24:03','2017-01-04 06:24:03'),
+(88,97,'o1dpa','Regular','1701040001482','uploads/e-tickets/regular-1701040001482.pdf','2017-01-04 07:08:02','2017-01-04 07:08:02'),
+(89,100,'o1dpa','Regular','1701040001505','uploads/e-tickets/regular-1701040001505.pdf','2017-01-04 07:24:02','2017-01-04 07:24:02'),
+(90,100,'pb4r','Photo Booth - 4R','1701040001529','uploads/e-tickets/photo-booth-4r-1701040001529.pdf','2017-01-04 07:24:03','2017-01-04 07:24:03'),
+(91,100,'o1dpa','Regular','1701040001543','uploads/e-tickets/regular-1701040001543.pdf','2017-01-04 07:24:04','2017-01-04 07:24:04'),
+(92,100,'pb4r','Photo Booth - 4R','1701040001567','uploads/e-tickets/photo-booth-4r-1701040001567.pdf','2017-01-04 07:24:04','2017-01-04 07:24:04'),
+(93,102,'o1dpa','Regular','1701040001581','uploads/e-tickets/regular-1701040001581.pdf','2017-01-04 07:29:02','2017-01-04 07:29:02'),
+(94,102,'pb4r','Photo Booth - 4R','1701040001604','uploads/e-tickets/photo-booth-4r-1701040001604.pdf','2017-01-04 07:29:02','2017-01-04 07:29:02'),
+(95,102,'o1dpa','Regular','1701040001628','uploads/e-tickets/regular-1701040001628.pdf','2017-01-04 07:29:02','2017-01-04 07:29:02'),
+(96,102,'pb4r','Photo Booth - 4R','1701040001642','uploads/e-tickets/photo-booth-4r-1701040001642.pdf','2017-01-04 07:29:03','2017-01-04 07:29:03'),
+(97,103,'o1dps','Exclusive','1701040001666','uploads/e-tickets/exclusive-1701040001666.pdf','2017-01-04 07:31:02','2017-01-04 07:31:02'),
+(98,103,'o1dps','Exclusive','1701040001680','uploads/e-tickets/exclusive-1701040001680.pdf','2017-01-04 07:31:03','2017-01-04 07:31:03'),
+(99,103,'o1dps','Exclusive','1701040001703','uploads/e-tickets/exclusive-1701040001703.pdf','2017-01-04 07:31:03','2017-01-04 07:31:03'),
+(100,103,'o1dps','Exclusive','1701040001727','uploads/e-tickets/exclusive-1701040001727.pdf','2017-01-04 07:31:04','2017-01-04 07:31:04'),
+(101,92,'o1dpa','Regular','1701050000024','uploads/e-tickets/regular-1701050000024.pdf','2017-01-05 02:43:04','2017-01-05 02:43:04'),
+(102,92,'pb4r','Photo Booth - 4R','1701050000048','uploads/e-tickets/photo-booth-4r-1701050000048.pdf','2017-01-05 02:43:05','2017-01-05 02:43:05'),
+(103,92,'o1dpa','Regular','1701050000062','uploads/e-tickets/regular-1701050000062.pdf','2017-01-05 02:43:05','2017-01-05 02:43:05'),
+(104,92,'pb4r','Photo Booth - 4R','1701050000086','uploads/e-tickets/photo-booth-4r-1701050000086.pdf','2017-01-05 02:43:05','2017-01-05 02:43:05'),
+(105,108,'o1dpa','Regular','1701050000109','uploads/e-tickets/regular-1701050000109.pdf','2017-01-05 02:50:02','2017-01-05 02:50:02'),
+(106,119,'o1dpa','Regular','1701050000208','uploads/e-tickets/regular-1701050000208.pdf','2017-01-05 08:08:02','2017-01-05 08:08:02'),
+(107,120,'o1dpa','Regular','1701090000022','uploads/e-tickets/regular-1701090000022.pdf','2017-01-09 03:06:07','2017-01-09 03:06:07'),
+(108,123,'o1dpa','Regular','1701090000046','uploads/e-tickets/regular-1701090000046.pdf','2017-01-09 06:43:01','2017-01-09 06:43:01'),
+(109,123,'o1dpa','Regular','1701090000060','uploads/e-tickets/regular-1701090000060.pdf','2017-01-09 06:43:02','2017-01-09 06:43:02'),
+(110,123,'o1dpa','Regular','1701090000084','uploads/e-tickets/regular-1701090000084.pdf','2017-01-09 06:43:02','2017-01-09 06:43:02'),
+(111,123,'pb4r','Photo Booth - 4R','1701090000107','uploads/e-tickets/photo-booth-4r-1701090000107.pdf','2017-01-09 06:43:03','2017-01-09 06:43:03'),
+(112,123,'o1dpa','Regular','1701090000121','uploads/e-tickets/regular-1701090000121.pdf','2017-01-09 06:47:02','2017-01-09 06:47:02'),
+(113,123,'o1dpa','Regular','1701090000145','uploads/e-tickets/regular-1701090000145.pdf','2017-01-09 06:47:02','2017-01-09 06:47:02'),
+(114,123,'o1dpa','Regular','1701090000169','uploads/e-tickets/regular-1701090000169.pdf','2017-01-09 06:47:03','2017-01-09 06:47:03'),
+(115,123,'pb4r','Photo Booth - 4R','1701090000183','uploads/e-tickets/photo-booth-4r-1701090000183.pdf','2017-01-09 06:47:03','2017-01-09 06:47:03'),
+(116,123,'o1dpa','Regular','1701090000206','uploads/e-tickets/regular-1701090000206.pdf','2017-01-09 06:52:03','2017-01-09 06:52:03'),
+(117,123,'o1dpa','Regular','1701090000220','uploads/e-tickets/regular-1701090000220.pdf','2017-01-09 06:52:03','2017-01-09 06:52:03'),
+(118,123,'o1dpa','Regular','1701090000244','uploads/e-tickets/regular-1701090000244.pdf','2017-01-09 06:52:03','2017-01-09 06:52:03'),
+(119,123,'pb4r','Photo Booth - 4R','1701090000268','uploads/e-tickets/photo-booth-4r-1701090000268.pdf','2017-01-09 06:52:04','2017-01-09 06:52:04'),
+(120,124,'o1dpa','Regular','1701090000282','uploads/e-tickets/regular-1701090000282.pdf','2017-01-09 07:03:02','2017-01-09 07:03:02'),
+(121,125,'o1dpa','Regular','1701090000305','uploads/e-tickets/regular-1701090000305.pdf','2017-01-09 07:05:02','2017-01-09 07:05:02'),
+(122,125,'o1dpa','Regular','1701090000329','uploads/e-tickets/regular-1701090000329.pdf','2017-01-09 07:07:01','2017-01-09 07:07:01'),
+(123,129,'o1dpa','Regular','1701090000343','uploads/e-tickets/regular-1701090000343.pdf','2017-01-09 07:36:02','2017-01-09 07:36:02'),
+(124,136,'o1dpa','Regular','1701100000028','uploads/e-tickets/regular-1701100000028.pdf','2017-01-10 09:28:04','2017-01-10 09:28:04'),
+(125,142,'o1dpa','Regular','1701110000247','uploads/e-tickets/regular-1701110000247.pdf','2017-01-11 03:19:05','2017-01-11 03:19:05'),
+(126,142,'pb4r','Photo Booth - 4R','1701110000261','uploads/e-tickets/photo-booth-4r-1701110000261.pdf','2017-01-11 03:19:06','2017-01-11 03:19:06');
 
 /*Table structure for table `holidays` */
 
@@ -380,37 +556,18 @@ CREATE TABLE `holidays` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `holidays` */
 
 insert  into `holidays`(`id`,`title`,`date`,`description`,`created_by`,`created_at`,`updated_at`) values 
-(3,'Lebaran Misalnya','2016-10-15','Lebaran sebentar lagi',3,'2016-10-28 14:07:42','2016-10-28 14:07:42'),
-(4,'Lebaran Misalnya','2016-10-16','Lebaran sebentar lagi',3,'2016-10-28 14:07:42','2016-10-28 14:07:42'),
-(5,'Lebaran Misalnya','2016-10-17','Lebaran sebentar lagi',3,'2016-10-28 14:07:42','2016-10-28 14:07:42'),
-(6,'Lebaran Misalnya','2016-10-18','Lebaran sebentar lagi',3,'2016-10-28 14:07:42','2016-10-28 14:07:42'),
-(7,'Lebaran Misalnya','2016-10-19','Lebaran sebentar lagi',3,'2016-10-28 14:07:42','2016-10-28 14:07:42'),
-(8,'Lebaran Misalnya','2016-10-20','Lebaran sebentar lagi',3,'2016-10-28 14:07:42','2016-10-28 14:07:42'),
-(9,'Lebaran Misalnya','2016-10-21','Lebaran sebentar lagi',3,'2016-10-28 14:07:42','2016-10-28 14:07:42'),
-(10,'Natal','2016-12-25','',1,'2016-12-16 19:58:52','2016-12-16 19:58:52');
-
-/*Table structure for table `jobs` */
-
-DROP TABLE IF EXISTS `jobs`;
-
-CREATE TABLE `jobs` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `queue` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `attempts` tinyint(3) unsigned NOT NULL,
-  `reserved_at` int(10) unsigned DEFAULT NULL,
-  `available_at` int(10) unsigned NOT NULL,
-  `created_at` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `jobs_queue_reserved_at_index` (`queue`,`reserved_at`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-/*Data for the table `jobs` */
+(3,'Lebaran Misalnya','2016-10-15','Lebaran sebentar lagi',3,'2016-10-28 07:07:42','2016-10-28 07:07:42'),
+(4,'Lebaran Misalnya','2016-10-16','Lebaran sebentar lagi',3,'2016-10-28 07:07:42','2016-10-28 07:07:42'),
+(5,'Lebaran Misalnya','2016-10-17','Lebaran sebentar lagi',3,'2016-10-28 07:07:42','2016-10-28 07:07:42'),
+(6,'Lebaran Misalnya','2016-10-18','Lebaran sebentar lagi',3,'2016-10-28 07:07:42','2016-10-28 07:07:42'),
+(7,'Lebaran Misalnya','2016-10-19','Lebaran sebentar lagi',3,'2016-10-28 07:07:42','2016-10-28 07:07:42'),
+(8,'Lebaran Misalnya','2016-10-20','Lebaran sebentar lagi',3,'2016-10-28 07:07:42','2016-10-28 07:07:42'),
+(9,'Lebaran Misalnya','2016-10-21','Lebaran sebentar lagi',3,'2016-10-28 07:07:42','2016-10-28 07:07:42');
 
 /*Table structure for table `media` */
 
@@ -424,44 +581,23 @@ CREATE TABLE `media` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=114 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `media` */
 
 insert  into `media`(`id`,`title`,`file_name`,`description`,`created_at`,`updated_at`) values 
-(43,'AiPzG1F86wWs.jpg','AiPzG1F86wWs.jpg',NULL,'2016-10-19 13:33:06','2016-10-19 13:33:06'),
-(44,'4FdyA3zYcuZ2.jpg','4FdyA3zYcuZ2.jpg',NULL,'2016-10-19 13:33:54','2016-10-19 13:33:54'),
-(45,'bg-sec2-twb.jpg','bg-sec2-twb.jpg',NULL,'2016-10-19 13:35:25','2016-10-19 13:35:25'),
-(46,'under the sea.jpg','under the sea.jpg',NULL,'2016-10-21 12:22:09','2016-10-21 12:22:09'),
-(47,'street.jpg','street.jpg',NULL,'2016-10-21 12:24:03','2016-10-21 12:24:03'),
-(48,'river.jpg','river.jpg',NULL,'2016-10-21 12:25:05','2016-10-21 12:25:05'),
-(49,'boat.jpg','boat.jpg',NULL,'2016-10-21 12:25:37','2016-10-21 12:25:37'),
-(50,'test.jpg','test.jpg',NULL,'2016-10-22 10:08:10','2016-10-22 10:08:10'),
-(51,'head-sample-03.jpg','head-sample-03.jpg',NULL,'2016-10-28 07:09:59','2016-10-28 07:09:59'),
-(52,'head-sample-01.jpg','head-sample-01.jpg',NULL,'2016-10-28 07:10:46','2016-10-28 07:10:46'),
-(53,'about-header.jpg','about-header.jpg',NULL,'2016-11-02 11:32:31','2016-11-02 11:32:31'),
-(54,'bg-section-sight.png','bg-section-sight.png',NULL,'2016-11-02 11:32:36','2016-11-02 11:32:36'),
-(55,'img-sample-01.jpg','img-sample-01.jpg',NULL,'2016-11-02 11:32:48','2016-11-02 11:32:48'),
-(56,'about-header.jpg','about-header.jpg',NULL,'2016-11-05 07:42:15','2016-11-05 07:42:15'),
-(57,'img-news-01.jpg','img-news-01.jpg',NULL,'2016-11-10 10:26:27','2016-11-10 10:26:27'),
-(58,'img-news-02.jpg','img-news-02.jpg',NULL,'2016-11-11 10:34:41','2016-11-11 10:34:41'),
-(59,'img-news-03.jpg','img-news-03.jpg',NULL,'2016-11-11 10:34:57','2016-11-11 10:34:57'),
-(60,'img-news-04.jpg','img-news-04.jpg',NULL,'2016-11-11 10:34:58','2016-11-11 10:34:58'),
-(61,'img-news-05.jpg','img-news-05.jpg',NULL,'2016-11-11 10:34:59','2016-11-11 10:34:59'),
-(62,'img-sample-01.jpg','img-sample-01.jpg',NULL,'2016-11-11 10:35:01','2016-11-11 10:35:01'),
-(63,'Sea_otters_holding_hands.jpg','Sea_otters_holding_hands.jpg',NULL,'2016-11-16 08:59:41','2016-11-16 08:59:41'),
-(64,'Screen Shot 2016-11-16 at 5.02.10 PM.png','Screen Shot 2016-11-16 at 5.02.10 PM.png',NULL,'2016-11-16 09:02:39','2016-11-16 09:02:39'),
-(65,'Otter Peek a Boo.jpg','Otter Peek a Boo.jpg',NULL,'2016-11-16 09:04:59','2016-11-16 09:04:59'),
-(66,'Otter Peek a Boo.jpg','Otter Peek a Boo.jpg',NULL,'2016-11-16 09:07:04','2016-11-16 09:07:04'),
-(67,'Touch Me If You can.jpg','Touch Me If You can.jpg',NULL,'2016-11-16 09:13:10','2016-11-16 09:13:10'),
-(68,'watch out the crab.jpg','watch out the crab.jpg',NULL,'2016-11-16 09:16:57','2016-11-16 09:16:57'),
-(69,'Diving with Shark.jpg','Diving with Shark.jpg',NULL,'2016-11-16 09:25:33','2016-11-16 09:25:33'),
-(70,'sea trekking.jpg','sea trekking.jpg',NULL,'2016-11-16 09:36:06','2016-11-16 09:36:06'),
-(71,'sea trekking1.jpg','sea trekking1.jpg',NULL,'2016-11-16 09:38:44','2016-11-16 09:38:44'),
-(72,'seatrek.jpg','seatrek.jpg',NULL,'2016-11-16 09:40:26','2016-11-16 09:40:26'),
-(73,'create your own fish.jpeg','create your own fish.jpeg',NULL,'2016-11-16 09:44:03','2016-11-16 09:44:03'),
-(74,'jakarta aquarium Neo Soho - Satu harapan.jpg','jakarta aquarium Neo Soho - Satu harapan.jpg',NULL,'2016-12-05 08:10:22','2016-12-05 08:10:22'),
-(75,'showtime-header.jpg','showtime-header.jpg',NULL,'2017-01-05 16:25:54','2017-01-05 16:25:54');
+(102,'Swirl_Tank_Zone.jpg','Swirl_Tank_Zone.jpg',NULL,'2017-01-12 23:31:47','2017-01-12 23:31:47'),
+(103,'drawing.jpg','drawing.jpg',NULL,'2017-01-12 23:32:36','2017-01-12 23:32:36'),
+(104,'hiu.jpg','hiu.jpg',NULL,'2017-01-12 23:32:36','2017-01-12 23:32:36'),
+(105,'keong.jpg','keong.jpg',NULL,'2017-01-12 23:32:38','2017-01-12 23:32:38'),
+(106,'otter.jpg','otter.jpg',NULL,'2017-01-12 23:32:39','2017-01-12 23:32:39'),
+(107,'seatrek.jpg','seatrek.jpg',NULL,'2017-01-12 23:32:40','2017-01-12 23:32:40'),
+(108,'touch.jpg','touch.jpg',NULL,'2017-01-12 23:32:42','2017-01-12 23:32:42'),
+(109,'Attraction Images-07.jpg','Attraction Images-07.jpg',NULL,'2017-01-12 23:35:00','2017-01-12 23:35:00'),
+(110,'Attraction Images-08.jpg','Attraction Images-08.jpg',NULL,'2017-01-12 23:35:01','2017-01-12 23:35:01'),
+(111,'Attraction Images-10.jpg','Attraction Images-10.jpg',NULL,'2017-01-12 23:35:02','2017-01-12 23:35:02'),
+(112,'Attraction Images-09.jpg','Attraction Images-09.jpg',NULL,'2017-01-12 23:37:04','2017-01-12 23:37:04'),
+(113,'showtime-header.jpg','showtime-header.jpg',NULL,'2017-01-13 00:05:37','2017-01-13 00:05:37');
 
 /*Table structure for table `media_sizes` */
 
@@ -500,12 +636,12 @@ CREATE TABLE `menus` (
   `order` int(11) NOT NULL DEFAULT '0',
   `menu_type` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'backend',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `menus` */
 
 insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`,`menu_type`) values 
-(1,'dashboard','Dashboard','jai-backend',0,'dashboard','icon-home',NULL,NULL,NULL,0,'backend'),
+(1,'dashboard','Dashboard','jai-backend',0,'dashboard','icon-home',NULL,NULL,NULL,0,'backend-old'),
 (2,'post','Posts','javascript:;',0,'post','fa fa-pencil',NULL,NULL,NULL,100,'backend-old'),
 (3,'post.add','Add Post','jai-backend/post/add',2,'post.add',NULL,NULL,NULL,NULL,200,'backend-old'),
 (4,'setting','Settings','javascript:;',0,'setting','fa fa-gears',NULL,NULL,NULL,1000,'backend'),
@@ -539,7 +675,7 @@ insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon
 (38,'f.plan','Plan Your Visit','javascript:;',0,'frontend','ja-icon-loc',NULL,NULL,NULL,200,'frontend'),
 (39,'f.ticket','Ticket &amp; Hours','ticket-hours',38,'frontend',NULL,NULL,NULL,NULL,100,'frontend'),
 (40,'f.package','Special Packages','special-packages',38,'frontend',NULL,NULL,NULL,NULL,200,'frontend-old'),
-(41,'f.show-time','Show Time','show-time',38,'frontend',NULL,NULL,NULL,NULL,300,'frontend'),
+(41,'f.show-time','Schedule','show-time',38,'frontend',NULL,NULL,NULL,NULL,300,'frontend'),
 (42,'f.location','Location','location',38,'frontend',NULL,NULL,NULL,NULL,400,'frontend'),
 (43,'f.attraction','Attractions and Experience','attractions-experience',0,'frontend','ja-icon-attract',NULL,NULL,NULL,300,'frontend'),
 (44,'f.conservation','Education and Conservation','conservation',0,'frontend','ja-icon-edu',NULL,NULL,NULL,400,'frontend-old'),
@@ -548,10 +684,9 @@ insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon
 (47,'career.list','Career List','jai-backend/career',46,'career',NULL,NULL,NULL,NULL,100,'backend'),
 (48,'career.add','Add Career','jai-backend/career/add',46,'career.add',NULL,NULL,NULL,NULL,200,'backend'),
 (49,'page','Pages','jai-backend/page',0,'page','fa fa-sticky-note-o',NULL,NULL,NULL,800,'backend'),
-(50,'f.aquarium-map','Aquarium Map','location-map',38,'frontend',NULL,NULL,'2016-11-30 16:00:00','2016-11-30 16:00:00',350,'frontend'),
+(50,'f.aquarium-map','Aquarium Map','javascript:;',38,'frontend',NULL,NULL,'2016-11-30 09:00:00','2016-11-30 09:00:00',350,'frontend'),
 (51,'general-setting','General Setting','jai-backend/general-setting',4,'setting',NULL,NULL,NULL,NULL,50,'backend'),
-(52,'order','Orders','jai-backend/order',0,'order',NULL,NULL,NULL,NULL,900,'backend'),
-(53,'promo','Promo','jai-backend/promo',0,'promo','fa fa-bullhorn',NULL,NULL,NULL,850,'backend');
+(52,'promo','Promo','jai-backend/promo',0,'promo','fa fa-star',NULL,'2016-01-11 07:41:00','2016-01-11 07:41:00',850,'backend');
 
 /*Table structure for table `migrations` */
 
@@ -597,18 +732,7 @@ insert  into `migrations`(`migration`,`batch`) values
 ('2016_11_10_175742_create_package_metas_table',28),
 ('2016_11_10_183306_create_show_metas_table',29),
 ('2016_11_14_125111_create_careers_table',30),
-('2016_11_24_154312_add_color_on_package',31),
-('2016_12_04_111825_alter_package_add_galasys_id',32),
-('2016_12_04_112302_create_order_table',33),
-('2016_12_04_115501_alter_package_add_order',33),
-('2016_12_04_121154_add_order_status_on_orders',33),
-('2016_12_04_182407_add_sub_total_and_tax_on_orders',33),
-('2016_12_14_215058_create_settings_table',33),
-('2016_12_17_165606_create_jobs_table',34),
-('2016_12_21_132847_create_doku_response_codes',35),
-('2016_12_30_140418_create_doku_checkouts_table',36),
-('2017_01_03_171626_create_galasys_tickets_table',37),
-('2017_01_04_153412_create_cimb_checkouts_table',38);
+('2016_11_24_154312_add_color_on_package',31);
 
 /*Table structure for table `order_details` */
 
@@ -618,7 +742,7 @@ CREATE TABLE `order_details` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `order_id` bigint(20) unsigned NOT NULL,
   `product_id` int(11) NOT NULL,
-  `galasys_product_id` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `galasys_product_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `product_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `price` double NOT NULL,
   `qty` double NOT NULL,
@@ -626,18 +750,104 @@ CREATE TABLE `order_details` (
   PRIMARY KEY (`id`),
   KEY `order_details_order_id_foreign` (`order_id`),
   CONSTRAINT `order_details_order_id_foreign` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=183 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=127 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `order_details` */
 
 insert  into `order_details`(`id`,`order_id`,`product_id`,`galasys_product_id`,`product_name`,`price`,`qty`,`total_price`) values 
-(176,96,4018,'o1dpa','Regular',200000,2,400000),
-(177,96,4019,'o1dpc','Premium',265000,1,265000),
-(178,97,4018,'o1dpa','Regular',200000,1,200000),
-(179,98,4019,'o1dpc','Premium',265000,1,265000),
-(180,99,4019,'o1dpc','Premium',265000,1,265000),
-(181,100,4019,'o1dpc','Premium',275000,1,275000),
-(182,101,4019,'o1dpc','Premium',275000,1,275000);
+(34,20,4018,'o1dpa','Regular',200000,1,200000),
+(35,20,4019,'o1dpc','Premium',265000,2,530000),
+(36,20,4020,'o1dps','Exclusive',500000,2,1000000),
+(37,21,4018,'o1dpa','Regular',200000,1,200000),
+(38,21,4019,'o1dpc','Premium',265000,0,0),
+(39,21,4020,'o1dps','Exclusive',500000,0,0),
+(40,22,4018,'o1dpa','Regular',200000,0,0),
+(41,22,4019,'o1dpc','Premium',265000,1,265000),
+(42,22,4020,'o1dps','Exclusive',500000,0,0),
+(43,23,4018,'o1dpa','Regular',200000,0,0),
+(44,23,4019,'o1dpc','Premium',265000,1,265000),
+(45,23,4020,'o1dps','Exclusive',500000,0,0),
+(46,24,4018,'o1dpa','Regular',200000,0,0),
+(47,24,4019,'o1dpc','Premium',265000,0,0),
+(48,24,4020,'o1dps','Exclusive',500000,1,500000),
+(49,25,4018,'o1dpa','Regular',200000,0,0),
+(50,25,4019,'o1dpc','Premium',265000,1,265000),
+(51,25,4020,'o1dps','Exclusive',500000,0,0),
+(52,26,4018,'o1dpa','Regular',200000,2,400000),
+(53,26,4019,'o1dpc','Premium',265000,0,0),
+(54,26,4020,'o1dps','Exclusive',500000,0,0),
+(55,27,4018,'o1dpa','Regular',200000,0,0),
+(56,27,4019,'o1dpc','Premium',265000,1,265000),
+(57,27,4020,'o1dps','Exclusive',500000,0,0),
+(58,28,4020,'o1dps','Exclusive',500000,1,500000),
+(59,29,4020,'o1dps','Exclusive',500000,1,500000),
+(60,30,4018,'o1dpa','Regular',200000,1,200000),
+(61,31,4018,'o1dpa','Regular',200000,1,200000),
+(62,32,4018,'o1dpa','Regular',200000,1,200000),
+(63,33,4018,'o1dpa','Regular',200000,1,200000),
+(64,34,4018,'o1dpa','Regular',200000,1,200000),
+(65,89,4018,'o1dpa','Regular',200000,1,200000),
+(66,90,4018,'o1dpa','Regular',200000,1,200000),
+(67,91,4018,'o1dpa','Regular',200000,1,200000),
+(68,92,4019,'o1dpc','Premium',265000,2,530000),
+(69,93,4019,'o1dpc','Premium',265000,2,530000),
+(70,94,4019,'o1dpc','Premium',265000,2,530000),
+(71,95,4019,'o1dpc','Premium',265000,2,530000),
+(72,96,4019,'o1dpc','Premium',265000,2,530000),
+(73,97,4018,'o1dpa','Regular',200000,1,200000),
+(74,98,4020,'o1dps','Exclusive',500000,2,1000000),
+(75,99,4019,'o1dpc','Premium',265000,2,530000),
+(76,100,4019,'o1dpc','Premium',265000,2,530000),
+(77,101,4018,'o1dpa','Regular',200000,1,200000),
+(78,102,4019,'o1dpc','Premium',265000,2,530000),
+(79,103,4020,'o1dps','Exclusive',500000,4,2000000),
+(80,104,4020,'o1dps','Exclusive',500000,1,500000),
+(81,105,4018,'o1dpa','Regular',200000,1,200000),
+(82,106,4018,'o1dpa','Regular',200000,1,200000),
+(83,107,4018,'o1dpa','Regular',200000,1,200000),
+(84,108,4018,'o1dpa','Regular',200000,1,200000),
+(85,109,4019,'o1dpc','Premium',265000,1,265000),
+(86,110,4019,'o1dpc','Premium',265000,1,265000),
+(87,111,4018,'o1dpa','Regular',200000,1,200000),
+(88,112,4019,'o1dpc','Premium',265000,1,265000),
+(89,113,4019,'o1dpc','Premium',265000,1,265000),
+(90,114,4018,'o1dpa','Regular',200000,1,200000),
+(91,115,4018,'o1dpa','Regular',200000,1,200000),
+(92,116,4018,'o1dpa','Regular',200000,1,200000),
+(93,117,4018,'o1dpa','Regular',200000,1,200000),
+(94,118,4018,'o1dpa','Regular',200000,1,200000),
+(95,119,4018,'o1dpa','Regular',200000,1,200000),
+(96,120,4018,'o1dpa','Regular',200000,1,200000),
+(97,121,4018,'o1dpa','Regular',200000,1,200000),
+(98,121,4019,'o1dpc','Premium',275000,1,275000),
+(99,122,4018,'o1dpa','Regular',200000,2,400000),
+(100,122,4019,'o1dpc','Premium',275000,1,275000),
+(101,123,4018,'o1dpa','Regular',200000,2,400000),
+(102,123,4019,'o1dpc','Premium',275000,1,275000),
+(103,124,4018,'o1dpa','Regular',200000,1,200000),
+(104,125,4018,'o1dpa','Regular',200000,1,200000),
+(105,126,4018,'o1dpa','Regular',200000,1,200000),
+(106,127,4018,'o1dpa','Regular',200000,1,200000),
+(107,128,4018,'o1dpa','Regular',200000,1,200000),
+(108,129,4018,'o1dpa','Regular',200000,1,200000),
+(109,130,4019,'o1dpc','Premium',275000,1,275000),
+(110,131,4018,'o1dpa','Regular',200000,1,200000),
+(111,132,4019,'o1dpc','Aquarium Admission, 5D Theater, and Printed Photo Souvenir',275000,1,275000),
+(112,133,4019,'o1dpc','Aquarium Admission, 5D Theater, and Printed Photo Souvenir',275000,2,550000),
+(113,134,4018,'o1dpa','Aquarium Admission',200000,2,400000),
+(114,135,4019,'o1dpc','Aquarium Admission, 5D Theater, and Printed Photo Souvenir',275000,2,550000),
+(115,136,4018,'o1dpa','Aquarium Admission',200000,1,200000),
+(116,137,4019,'o1dpc','Aquarium Admission, 5D Theater, and Printed Photo Souvenir',275000,2,550000),
+(117,138,4019,'o1dpc','Aquarium Admission, 5D Theater, and Printed Photo Souvenir',275000,2,550000),
+(118,139,4019,'o1dpc','Aquarium Admission, 5D Theater, and Printed Photo Souvenir',275000,2,550000),
+(119,140,4019,'o1dpc','Aquarium Admission, 5D Theater, and Printed Photo Souvenir',275000,1,275000),
+(120,141,4019,'o1dpc','Aquarium Admission, 5D Theater, and Printed Photo Souvenir',275000,1,275000),
+(121,142,4019,'o1dpc','Premium',275000,1,275000),
+(122,143,4019,'o1dpc','Premium',275000,1,275000),
+(123,144,4019,'o1dpc','Premium',275000,2,550000),
+(124,145,4019,'o1dpc','Premium',275000,2,550000),
+(125,146,4019,'o1dpc','Premium',290000,2,580000),
+(126,147,4019,'o1dpc','Premium',290000,2,580000);
 
 /*Table structure for table `orders` */
 
@@ -657,17 +867,86 @@ CREATE TABLE `orders` (
   `status` int(11) NOT NULL DEFAULT '0',
   `status_description` text COLLATE utf8_unicode_ci,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=148 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `orders` */
 
 insert  into `orders`(`id`,`visit_date`,`email`,`name`,`phone_number`,`sub_total`,`tax`,`total_amount`,`created_at`,`updated_at`,`status`,`status_description`) values 
-(96,'2017-01-28','pasha.md5@gmail.com','Pasha Mahardika','081808325756',665000,0,665000,'2017-01-05 10:23:38','2017-01-05 10:24:48',5,'email-sent'),
-(97,'2017-01-28','pasha.md5@gmail.com','Pasha Mahardika','081808325756',200000,0,200000,'2017-01-05 10:24:27','2017-01-05 10:24:27',0,NULL),
-(98,'2017-01-21','pasha.md5@gmail.com','Pasha Mahardika','081808325756',265000,0,265000,'2017-01-05 10:33:27','2017-01-05 10:33:49',9,'cancelled'),
-(99,'2017-01-28','pasha.md5@gmail.com','Pasha Mahardika','081808325756',265000,0,265000,'2017-01-05 10:34:10','2017-01-05 10:34:32',2,'on-hold'),
-(100,'2017-01-21','pasha.md5@gmail.com','Pasha Mahardika','081808325756',275000,0,275000,'2017-01-05 13:46:30','2017-01-05 13:46:30',0,NULL),
-(101,'2017-01-28','pasha.md5@gmail.com','Pasha Mahardika','081808325756',275000,0,275000,'2017-01-11 10:16:59','2017-01-11 10:16:59',0,NULL);
+(19,'2016-12-10','trianinda.edwina@gmail.com','Edwina Trianinda','081808180818',1730000,173000,1903000,'2016-12-19 07:42:32','2016-12-19 07:42:32',0,NULL),
+(20,'2016-12-10','trianinda.edwina@gmail.com','Edwina Trianinda','081808180818',1730000,173000,1903000,'2016-12-19 07:50:52','2016-12-19 07:50:52',0,NULL),
+(21,'2016-12-10','trianinda.edwina@gmail.com','Edwina Trianinda','08180832948757',200000,20000,220000,'2016-12-19 11:41:48','2016-12-19 11:41:48',0,NULL),
+(22,'2016-12-25','pasha.md5@gmail.com','Pasha Mahardika','081803857',265000,26500,291500,'2016-12-19 11:47:59','2016-12-19 11:47:59',0,NULL),
+(23,'2016-12-25','pasha.md5@gmail.com','Pasha Mahardika','081803857',265000,26500,291500,'2016-12-19 11:49:18','2016-12-19 11:49:18',0,NULL),
+(24,'2016-12-25','trianinda.edwina@gmail.com','Edwina Trianinda','081803857',500000,50000,550000,'2016-12-19 15:42:20','2016-12-19 15:42:20',0,NULL),
+(25,'2016-12-25','pasha.md5@gmail.com','Pasha Mahardika','08180832948757',265000,26500,291500,'2016-12-21 04:44:49','2016-12-21 04:44:49',0,NULL),
+(26,'2016-12-25','edwina.trianinda@redspace.asia','Edwina Trianinda','081294054353',400000,40000,440000,'2016-12-21 05:03:21','2016-12-21 05:03:21',0,NULL),
+(27,'2016-12-24','pasha.md5@gmail.com','Edwina Trianinda','081803857',265000,26500,291500,'2016-12-21 06:19:47','2016-12-21 06:19:47',0,NULL),
+(28,'2017-01-28','pasha.md5@gmail.com','Pasha Mahardika','081808325756',500000,50000,550000,'2017-01-03 09:17:51','2017-01-03 09:17:51',0,NULL),
+(29,'2017-01-28','pasha.md5@gmail.com','Pasha Mahardika','081808325756',500000,50000,550000,'2017-01-03 09:20:03','2017-01-03 09:20:03',0,NULL),
+(30,'2017-01-14','pasha.md5@gmail.com','Pasha Mahardika','081808325756',200000,20000,220000,'2017-01-04 02:19:29','2017-01-04 02:19:29',0,NULL),
+(31,'2017-01-28','pasha.md5@gmail.com','Pasha Mahardika','081808325756',200000,20000,220000,'2017-01-04 02:42:16','2017-01-04 02:42:16',0,NULL),
+(32,'2017-01-28','pasha.md5@gmail.com','Pasha Mahardika','081808325756',200000,20000,220000,'2017-01-04 02:53:38','2017-01-04 02:53:38',0,NULL),
+(33,'2017-01-28','pasha.md5@gmail.com','Pasha Mahardika','081808325756',200000,20000,220000,'2017-01-04 03:19:14','2017-01-04 03:19:14',0,NULL),
+(34,'2017-01-21','pasha.md5@gmail.com','Pasha Mahardika','081808325756',200000,20000,220000,'2017-01-04 06:00:53','2017-01-04 06:00:53',0,NULL),
+(89,'2017-01-21','pasha.md5@gmail.com','Pasha Mahardika','081808325756',200000,20000,220000,'2017-01-04 06:03:33','2017-01-04 06:03:33',0,NULL),
+(90,'2017-01-21','pasha.md5@gmail.com','Pasha Mahardika','081808325756',200000,20000,220000,'2017-01-04 06:05:18','2017-01-04 06:21:07',5,'email-sent'),
+(91,'2017-01-21','pasha.md5@gmail.com','Pasha Mahardika','081808325756',200000,20000,220000,'2017-01-04 06:22:25','2017-01-04 06:24:11',5,'email-sent'),
+(92,'2017-01-14','ameliaceldy@gmail.com','Elfitri Amelia','081218258650',530000,53000,583000,'2017-01-04 06:59:47','2017-01-05 02:43:28',5,'email-sent'),
+(93,'2017-01-14','ameliaceldy@gmail.com','Elfitri Amelia','081218258650',530000,53000,583000,'2017-01-04 07:00:14','2017-01-04 07:00:14',0,NULL),
+(94,'2017-01-14','ameliaceldy@gmail.com','Elfitri Amelia','081218258650',530000,53000,583000,'2017-01-04 07:00:36','2017-01-04 07:00:36',0,NULL),
+(95,'2017-01-14','a','Elfitri Amelia','',530000,53000,583000,'2017-01-04 07:01:24','2017-01-04 07:01:24',0,NULL),
+(96,'2017-01-14','ameliaceldy@gmail.com','Elfitri Amelia','081218258650',530000,53000,583000,'2017-01-04 07:02:13','2017-01-04 07:02:13',0,NULL),
+(97,'2017-01-14','pasha.md5@gmail.com','Pasha Mahardika','081808180818',200000,20000,220000,'2017-01-04 07:06:29','2017-01-04 07:08:11',5,'email-sent'),
+(98,'2017-01-14','anotherslaycovu@gmail.com','Meri Melindasari','087724569098',1000000,100000,1100000,'2017-01-04 07:17:26','2017-01-04 07:17:26',0,NULL),
+(99,'2017-01-29','edwina.trianinda@redspace.asia','Edwina Trianinda','081294054353',530000,53000,583000,'2017-01-04 07:19:51','2017-01-04 07:19:51',0,NULL),
+(100,'2017-01-29','edwina.trianinda@redspace.asia','Edwina Trianinda','081294054353',530000,53000,583000,'2017-01-04 07:20:22','2017-01-04 07:24:35',5,'email-sent'),
+(101,'2017-01-21','pasha.md5@gmail.com','Pasha Mahardika','081808325756',200000,20000,220000,'2017-01-04 07:26:38','2017-01-04 07:26:38',0,NULL),
+(102,'2017-01-14','anotherslaycovu@gmail.com','Meri Melindasari','087725679098',530000,53000,583000,'2017-01-04 07:27:13','2017-01-04 07:29:33',5,'email-sent'),
+(103,'2017-01-08','alfi.redspace@gmail.com','noksnfoinweofnwvp','90277879',2000000,200000,2200000,'2017-01-04 07:29:14','2017-01-04 07:31:34',5,'email-sent'),
+(104,'2017-01-08','jamal@kleur.id','Full Name','08123456789',500000,50000,550000,'2017-01-04 07:34:23','2017-01-04 07:34:23',0,NULL),
+(105,'2017-01-21','boyz.arifin@gmail.com','Boy Arifin','085697780606',200000,20000,220000,'2017-01-04 10:39:35','2017-01-04 10:39:35',0,NULL),
+(106,'2017-01-14','boyz.arifin@gmail.com','Boy Arifin','085697780606',200000,20000,220000,'2017-01-04 10:41:44','2017-01-04 10:41:44',0,NULL),
+(107,'2017-02-04','pasha.md5@gmail.com','Pasha Mahardika','081808325756',200000,0,200000,'2017-01-05 02:46:29','2017-01-05 02:46:29',0,NULL),
+(108,'2017-02-04','pasha.md5@gmail.com','Pasha Mahardika','081808325756',200000,0,200000,'2017-01-05 02:47:38','2017-01-05 02:50:10',5,'email-sent'),
+(109,'2017-01-29','pasha.md5@gmail.com','Pasha Mahardika','081808325756',265000,0,265000,'2017-01-05 02:53:07','2017-01-05 02:53:07',0,NULL),
+(110,'2017-01-28','pasha.md5@gmail.com','Pasha Mahardika','081808325756',265000,0,265000,'2017-01-05 03:49:16','2017-01-05 03:49:27',9,'cancelled'),
+(111,'2017-02-04','pasha.md5@gmail.com','Pasha Mahardika','081808325756',200000,0,200000,'2017-01-05 03:56:40','2017-01-05 04:09:00',9,'cancelled'),
+(112,'2017-01-28','pasha.md5@gmail.com','Pasha Mahardika','081808325756',265000,0,265000,'2017-01-05 04:14:06','2017-01-05 04:15:17',9,'cancelled'),
+(113,'2017-01-14','pasha.md5@gmail.com','Pasha Mahardika','081808325756',265000,0,265000,'2017-01-05 04:16:50','2017-01-05 04:28:50',9,'cancelled'),
+(114,'2017-01-28','pasha.md5@gmail.com','Pasha Mahardika','081808325756',200000,0,200000,'2017-01-05 06:31:20','2017-01-05 06:31:20',0,NULL),
+(115,'2017-01-29','pasha.md5@gmail.com','Pasha Mahardika','081808325756',200000,0,200000,'2017-01-05 06:33:10','2017-01-05 06:46:46',9,'cancelled'),
+(116,'2017-01-28','pasha.md5@gmail.com','Pasha Mahardika','081808325756',200000,0,200000,'2017-01-05 07:45:19','2017-01-05 07:48:50',9,'cancelled'),
+(117,'2017-01-28','pasha.md5@gmail.com','Pasha Mahardika','081808325756',200000,0,200000,'2017-01-05 07:55:41','2017-01-05 07:55:41',0,NULL),
+(118,'2017-01-28','pasha.md5@gmail.com','Pasha Mahardika','081808325756',200000,0,200000,'2017-01-05 08:02:30','2017-01-05 08:03:13',9,'cancelled'),
+(119,'2017-01-21','pasha.md5@gmail.com','Pasha Mahardika','081808325756',200000,0,200000,'2017-01-05 08:04:17','2017-01-05 08:08:11',5,'email-sent'),
+(120,'2017-01-21','pasha.md5@gmail.com','Pasha Mahardika','081808325756',200000,0,200000,'2017-01-09 03:04:31','2017-01-09 03:06:15',5,'email-sent'),
+(121,'2017-01-22','pasha.md5@gmail.com','Pasha Mahardika','081808325756',475000,0,475000,'2017-01-09 03:25:06','2017-01-09 03:25:06',0,NULL),
+(122,'2017-01-21','pasha.md5@gmail.com','Pasha Mahardika','081808325756',675000,0,675000,'2017-01-09 03:25:27','2017-01-09 03:26:29',9,'cancelled'),
+(123,'2017-01-21','pasha.md5@gmail.com','Pasha Mahardika','08180832948757',675000,0,675000,'2017-01-09 06:40:43','2017-01-09 06:53:00',5,'email-sent'),
+(124,'2017-01-21','pasha.md5@gmail.com','Pasha Mahardika','081803857',200000,0,200000,'2017-01-09 07:01:11','2017-01-09 07:03:14',5,'email-sent'),
+(125,'2017-01-21','trianinda.edwina@gmail.com','Edwina Trianinda','08180832948757',200000,0,200000,'2017-01-09 07:03:52','2017-01-09 07:07:19',5,'email-sent'),
+(126,'2017-01-22','iman.ismatullah@ymail.com','test','081234567890',200000,0,200000,'2017-01-09 07:16:09','2017-01-09 07:18:02',9,'cancelled'),
+(127,'2017-01-22','iman.ismatullah@ymail.com','test','081234567890',200000,0,200000,'2017-01-09 07:22:26','2017-01-09 07:23:57',9,'cancelled'),
+(128,'2017-01-22','iman.ismatullah@ymail.com','test','081234567890',200000,0,200000,'2017-01-09 07:25:44','2017-01-09 07:28:36',9,'cancelled'),
+(129,'2017-01-22','iman.ismatullah@ymail.com','test','081234567890',200000,0,200000,'2017-01-09 07:29:14','2017-01-09 07:36:14',5,'email-sent'),
+(130,'2017-01-21','edwina.trianinda@redspace.asia','Edwina Trianinda','081294054353',275000,0,275000,'2017-01-09 10:06:36','2017-01-09 10:06:36',0,NULL),
+(131,'2017-01-21','boyz.arifin@gmail.com','Boy Arifin','085697780606',200000,0,200000,'2017-01-10 01:57:12','2017-01-10 01:57:12',0,NULL),
+(132,'2017-01-21','bza@gmail.com','Arif','085676658989',275000,0,275000,'2017-01-10 06:44:28','2017-01-10 06:44:28',0,NULL),
+(133,'2017-02-18','ameliaceldy@gmail.com','Elfitri Amelia','081218258650',550000,0,550000,'2017-01-10 09:11:15','2017-01-10 09:11:15',0,NULL),
+(134,'2017-01-18','edwina.trianinda@redspace.asia','Edwina Trianinda','081294054353',400000,0,400000,'2017-01-10 09:14:15','2017-01-10 09:14:15',0,NULL),
+(135,'2017-02-18','ameliaceldy@gmail.com','elfitri amelia','081218258650',550000,0,550000,'2017-01-10 09:16:57','2017-01-10 09:16:57',0,NULL),
+(136,'2017-01-18','aldion@nsiapay.net','Doku test','0215150555',200000,0,200000,'2017-01-10 09:27:36','2017-01-10 09:28:13',5,'email-sent'),
+(137,'2017-02-18','ameliaceldy@gmail.com','elfitri amelia','081218258650',550000,0,550000,'2017-01-10 11:23:43','2017-01-10 11:23:43',0,NULL),
+(138,'2017-02-18','ameliaceldy@gmail.com','elfitri amelia','081218258650',550000,0,550000,'2017-01-10 13:05:07','2017-01-10 13:05:07',0,NULL),
+(139,'2017-02-18','ameliaceldy@gmail.com','elfitri amelia','081218258650',550000,0,550000,'2017-01-10 13:06:58','2017-01-10 13:06:58',0,NULL),
+(140,'2017-01-21','rzky.pahlevi@gmail.com','Rizky PattySaid','081286265412',275000,0,275000,'2017-01-11 01:36:26','2017-01-11 01:36:26',0,NULL),
+(141,'2017-01-22','rzky.pahlevi@gmail.com','Rizky Pahlevi','081286265412',275000,0,275000,'2017-01-11 01:38:16','2017-01-11 01:38:16',0,NULL),
+(142,'2017-01-21','pasha.md5@gmail.com','Pasha Mahardika','081808325756',275000,0,275000,'2017-01-11 03:18:04','2017-01-11 03:19:20',5,'email-sent'),
+(143,'2017-01-21','pasha.md5@gmail.com','Pasha Mahardika','081808325756',275000,0,275000,'2017-01-11 05:24:03','2017-01-11 06:10:41',2,'on-hold'),
+(144,'2017-02-18','ameliaceldy@gmail.com','elfitri amelia','081218258650',550000,0,550000,'2017-01-11 05:25:11','2017-01-11 05:25:11',0,NULL),
+(145,'2017-02-18','ameliaceldy@gmail.com','elfitri amelia','081218258650',550000,0,550000,'2017-01-11 05:29:58','2017-01-11 05:29:58',0,NULL),
+(146,'2017-01-22','aass@aamail.com','aas','08121932764',580000,0,580000,'2017-01-12 03:56:46','2017-01-12 03:56:46',0,NULL),
+(147,'2017-01-21','edwina.trianinda@redspace.asia','Edwina Trianinda','081294054353',580000,0,580000,'2017-01-12 06:41:27','2017-01-12 06:41:27',0,NULL);
 
 /*Table structure for table `package_details` */
 
@@ -683,7 +962,7 @@ CREATE TABLE `package_details` (
   PRIMARY KEY (`id`),
   KEY `package_details_package_id_foreign` (`package_id`),
   CONSTRAINT `package_details_package_id_foreign` FOREIGN KEY (`package_id`) REFERENCES `packages` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `package_details` */
 
@@ -698,8 +977,8 @@ insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`
 (58,3,'id','Premium','premium-2','Aquarium Tour, 5D Theater and Printed Photo Souvenir.'),
 (59,4,'en','Ultimate','ultimate','Aquarium Tour, 5D Theater, Shark/Piranha Feeding, Seatrek/Dive and Printed Photo Souvenir.'),
 (60,4,'id','Ultimate','ultimate-2','Aquarium Tour, 5D Theater, Shark/Piranha Feeding, Seatrek/Dive and Printed Photo Souvenir.'),
-(63,5,'en','School, Coorporate and Birthday Package','school-coorporate-and-birthday-package','Jakarta Aquarium provides a wide range of interesting activity for your company or school group.<br /><br />Get a special rate and activity package for your group in Jakarta Aquarium. For a group consist of more than 30 people, place a reservation at least 7 days in advance.<br /><br /><br />Contact Us :<br />T. 021 2920 9072<br />E. sales@jakarta-aquarium.com'),
-(64,5,'id','Paket sekolah, korporasi dan ulang tahun','paket-sekolah-korporasi-dan-ulang-tahun','Jakarta Aquarium menyediakan beragam paket aktivitas menarik untuk grup perusahaan atau grup sekolah.<br /><br />Dapatkan harga khusus hanya untuk grup Anda. Untuk group lebih dari 30 orang silahkan melakukan reservasi 7 hari sebelumnya.<br /><br />Hubungi tim kami di :<br />T. 021 2920 9072<br />E. sales@jakarta-aquarium.com');
+(65,5,'en','School, Coorporate and Birthday Package','school-coorporate-and-birthday-package','Jakarta Aquarium provides a wide range of interesting activity for your company or school group.<br /><br />Get a special rate and activity package for your group in Jakarta Aquarium. For a group consist of more than 30 people, place a reservation at least 7 days in advance.<br /><br /><br />Contact Us :<br />T. 021 2920 9072<br />E. sales@jakarta-aquarium.com'),
+(66,5,'id','Paket Sekolah, Korporasi dan Ulang Tahun','paket-sekolah-korporasi-dan-ulang-tahun','Jakarta Aquarium menyediakan beragam paket aktivitas menarik untuk grup perusahaan atau grup sekolah.<br /><br />Dapatkan harga khusus hanya untuk grup Anda. Untuk group lebih dari 30 orang silahkan melakukan reservasi 7 hari sebelumnya.<br /><br />Hubungi tim kami di :<br />T. 021 2920 9072<br />E. sales@jakarta-aquarium.com');
 
 /*Table structure for table `package_has_coupons` */
 
@@ -762,7 +1041,6 @@ DROP TABLE IF EXISTS `packages`;
 
 CREATE TABLE `packages` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `galasys_product_id` int(11) NOT NULL DEFAULT '0',
   `package_type_id` int(11) NOT NULL DEFAULT '1',
   `normal_price` double NOT NULL DEFAULT '0',
   `weekend_price` double NOT NULL DEFAULT '0',
@@ -773,18 +1051,19 @@ CREATE TABLE `packages` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `color` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'cyan',
   `order` int(11) NOT NULL DEFAULT '0',
+  `galasys_product_id` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `packages` */
 
-insert  into `packages`(`id`,`galasys_product_id`,`package_type_id`,`normal_price`,`weekend_price`,`holiday_price`,`created_by`,`is_general_admission`,`created_at`,`updated_at`,`color`,`order`) values 
-(1,0,1,100000,150000,150000,1,1,'2016-10-28 13:59:22','2016-11-26 08:47:13','cyan darken-1',0),
-(3,0,1,265000,290000,290000,3,1,'2016-10-28 14:10:11','2016-11-24 07:37:20','light-blue darken-4',0),
-(4,0,1,550000,600000,600000,3,1,'2016-10-30 03:31:58','2016-11-24 07:38:20','amber darken-1',0),
-(5,0,2,0,0,0,1,1,'2016-11-01 11:59:03','2017-01-08 09:42:35','cyan',0),
-(6,0,2,0,0,0,3,0,'2016-11-01 12:00:47','2016-11-01 12:00:47','cyan',0),
-(7,0,2,0,0,0,3,0,'2016-11-01 12:02:02','2016-11-01 12:02:02','cyan',0);
+insert  into `packages`(`id`,`package_type_id`,`normal_price`,`weekend_price`,`holiday_price`,`created_by`,`is_general_admission`,`created_at`,`updated_at`,`color`,`order`,`galasys_product_id`) values 
+(1,1,100000,150000,150000,1,1,'2016-10-28 06:59:22','2016-11-26 01:47:13','cyan darken-1',0,NULL),
+(3,1,265000,290000,290000,3,1,'2016-10-28 07:10:11','2016-11-24 00:37:20','light-blue darken-4',0,NULL),
+(4,1,550000,600000,600000,3,1,'2016-10-29 20:31:58','2016-11-24 00:38:20','amber darken-1',0,NULL),
+(5,2,0,0,0,1,1,'2016-11-01 04:59:03','2017-01-08 02:58:34','cyan',0,'0'),
+(6,2,0,0,0,3,0,'2016-11-01 05:00:47','2016-11-01 05:00:47','cyan',0,NULL),
+(7,2,0,0,0,3,0,'2016-11-01 05:02:02','2016-11-01 05:02:02','cyan',0,NULL);
 
 /*Table structure for table `password_resets` */
 
@@ -799,6 +1078,9 @@ CREATE TABLE `password_resets` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `password_resets` */
+
+insert  into `password_resets`(`email`,`token`,`created_at`) values 
+('trianinda.edwina@gmail.com','5117d3b8a75506a04a5b3b0b472aa0dd5bdbf2c4b28dfeb97ca923662357cb90','2017-01-06 07:42:25');
 
 /*Table structure for table `permissions` */
 
@@ -826,67 +1108,67 @@ insert  into `permissions`(`id`,`name`,`created_at`,`updated_at`) values
 (8,'user.add',NULL,NULL),
 (9,'user.edit',NULL,NULL),
 (10,'user.delete',NULL,NULL),
-(11,'role.add','2016-10-13 02:36:02','2016-10-13 02:36:02'),
-(12,'role.edit','2016-10-13 02:36:09','2016-10-13 02:36:09'),
-(13,'role.delete','2016-10-13 02:36:14','2016-10-13 02:36:14'),
-(14,'permission.add','2016-10-13 02:37:22','2016-10-13 02:37:22'),
-(15,'permission.edit','2016-10-13 02:37:27','2016-10-13 02:37:27'),
-(16,'permission.delete','2016-10-13 02:37:32','2016-10-13 02:37:32'),
-(21,'post-type','2016-10-13 09:30:58','2016-10-13 09:30:58'),
-(22,'post-type.add','2016-10-13 09:31:06','2016-10-13 09:31:06'),
-(23,'post-type.edit','2016-10-13 09:31:12','2016-10-13 09:31:12'),
-(24,'post-type.delete','2016-10-13 09:31:19','2016-10-13 09:31:19'),
-(25,'post-category','2016-10-14 03:09:26','2016-10-14 03:09:26'),
-(26,'post-category.add','2016-10-14 03:14:03','2016-10-14 03:14:03'),
-(27,'post-category.edit','2016-10-14 03:14:11','2016-10-14 03:14:11'),
-(28,'post-category.delete','2016-10-14 03:14:18','2016-10-14 03:14:18'),
-(29,'whats-on','2016-10-21 11:41:51','2016-10-21 11:41:51'),
-(30,'whats-on.add','2016-10-21 11:41:57','2016-10-21 11:41:57'),
-(31,'whats-on.edit','2016-10-21 11:42:02','2016-10-21 11:42:02'),
-(32,'whats-on.delete','2016-10-21 11:42:07','2016-10-21 11:42:07'),
-(33,'post.edit','2016-10-22 07:53:48','2016-10-22 07:53:48'),
-(34,'post.delete','2016-10-22 07:53:53','2016-10-22 07:53:53'),
-(35,'slider','2016-10-24 13:56:43','2016-10-24 13:56:43'),
-(36,'slider.add','2016-10-24 13:56:49','2016-10-24 13:56:49'),
-(37,'slider.edit','2016-10-24 13:56:54','2016-10-24 13:56:54'),
-(38,'slider.delete','2016-10-24 13:57:00','2016-10-24 13:57:00'),
-(39,'news','2016-10-26 10:44:59','2016-10-26 10:44:59'),
-(40,'news.add','2016-10-26 10:45:03','2016-10-26 10:45:03'),
-(41,'news.edit','2016-10-26 10:45:09','2016-10-26 10:45:09'),
-(42,'news.delete','2016-10-26 10:45:15','2016-10-26 10:45:15'),
-(43,'news-category','2016-10-26 11:36:43','2016-10-26 11:36:43'),
-(44,'package','2016-10-27 05:17:35','2016-10-27 05:17:35'),
-(45,'package.add','2016-10-27 05:17:44','2016-10-27 05:17:44'),
-(46,'package.edit','2016-10-27 05:17:51','2016-10-27 05:17:51'),
-(47,'package.delete','2016-10-27 05:17:57','2016-10-27 05:17:57'),
-(48,'holiday','2016-10-27 05:31:05','2016-10-27 05:31:05'),
-(49,'attraction','2016-10-30 05:12:05','2016-10-30 05:12:05'),
-(50,'attraction.add','2016-10-30 05:12:13','2016-10-30 05:12:13'),
-(51,'attraction.edit','2016-10-30 05:12:20','2016-10-30 05:12:20'),
-(52,'attraction.delete','2016-10-30 05:12:27','2016-10-30 05:12:27'),
-(53,'attraction-category','2016-10-30 05:12:36','2016-10-30 05:12:36'),
-(54,'media-room','2016-10-30 05:56:51','2016-10-30 05:56:51'),
-(55,'media-room.add','2016-10-30 05:56:56','2016-10-30 05:56:56'),
-(56,'media-room.edit','2016-10-30 05:57:01','2016-10-30 05:57:01'),
-(57,'media-room.delete','2016-10-30 05:57:08','2016-10-30 05:57:08'),
-(58,'media-room-category','2016-10-30 05:57:14','2016-10-30 05:57:14'),
-(59,'showtime','2016-11-02 12:30:02','2016-11-02 12:30:02'),
-(60,'showtime.add','2016-11-02 12:30:07','2016-11-02 12:30:07'),
-(61,'showtime.edit','2016-11-02 12:30:13','2016-11-02 12:30:23'),
-(62,'showtime.delete','2016-11-02 12:30:32','2016-11-02 12:30:32'),
-(63,'career','2016-11-14 05:39:00','2016-11-14 05:39:00'),
-(64,'career.add','2016-11-14 05:39:06','2016-11-14 05:39:06'),
-(65,'career.update','2016-11-14 05:39:12','2016-11-14 05:39:12'),
-(66,'career.delete','2016-11-14 05:39:20','2016-11-14 05:39:20'),
-(67,'page','2016-11-22 07:36:56','2016-11-22 07:36:56'),
-(68,'page.add','2016-11-22 07:37:00','2016-11-22 07:37:00'),
-(69,'page.edit','2016-11-22 07:37:04','2016-11-22 07:37:04'),
-(70,'page.delete','2016-11-22 07:37:08','2016-11-22 07:37:08'),
-(71,'order','2017-01-09 11:14:07','2017-01-09 11:14:07'),
-(72,'promo','2017-01-11 14:03:49','2017-01-11 14:03:49'),
-(73,'promo.edit','2017-01-11 14:03:54','2017-01-11 14:03:54'),
-(74,'promo.delete','2017-01-11 14:04:04','2017-01-11 14:04:04'),
-(75,'promo.add','2017-01-11 14:04:15','2017-01-11 14:04:15');
+(11,'role.add','2016-10-12 19:36:02','2016-10-12 19:36:02'),
+(12,'role.edit','2016-10-12 19:36:09','2016-10-12 19:36:09'),
+(13,'role.delete','2016-10-12 19:36:14','2016-10-12 19:36:14'),
+(14,'permission.add','2016-10-12 19:37:22','2016-10-12 19:37:22'),
+(15,'permission.edit','2016-10-12 19:37:27','2016-10-12 19:37:27'),
+(16,'permission.delete','2016-10-12 19:37:32','2016-10-12 19:37:32'),
+(21,'post-type','2016-10-13 02:30:58','2016-10-13 02:30:58'),
+(22,'post-type.add','2016-10-13 02:31:06','2016-10-13 02:31:06'),
+(23,'post-type.edit','2016-10-13 02:31:12','2016-10-13 02:31:12'),
+(24,'post-type.delete','2016-10-13 02:31:19','2016-10-13 02:31:19'),
+(25,'post-category','2016-10-13 20:09:26','2016-10-13 20:09:26'),
+(26,'post-category.add','2016-10-13 20:14:03','2016-10-13 20:14:03'),
+(27,'post-category.edit','2016-10-13 20:14:11','2016-10-13 20:14:11'),
+(28,'post-category.delete','2016-10-13 20:14:18','2016-10-13 20:14:18'),
+(29,'whats-on','2016-10-21 04:41:51','2016-10-21 04:41:51'),
+(30,'whats-on.add','2016-10-21 04:41:57','2016-10-21 04:41:57'),
+(31,'whats-on.edit','2016-10-21 04:42:02','2016-10-21 04:42:02'),
+(32,'whats-on.delete','2016-10-21 04:42:07','2016-10-21 04:42:07'),
+(33,'post.edit','2016-10-22 00:53:48','2016-10-22 00:53:48'),
+(34,'post.delete','2016-10-22 00:53:53','2016-10-22 00:53:53'),
+(35,'slider','2016-10-24 06:56:43','2016-10-24 06:56:43'),
+(36,'slider.add','2016-10-24 06:56:49','2016-10-24 06:56:49'),
+(37,'slider.edit','2016-10-24 06:56:54','2016-10-24 06:56:54'),
+(38,'slider.delete','2016-10-24 06:57:00','2016-10-24 06:57:00'),
+(39,'news','2016-10-26 03:44:59','2016-10-26 03:44:59'),
+(40,'news.add','2016-10-26 03:45:03','2016-10-26 03:45:03'),
+(41,'news.edit','2016-10-26 03:45:09','2016-10-26 03:45:09'),
+(42,'news.delete','2016-10-26 03:45:15','2016-10-26 03:45:15'),
+(43,'news-category','2016-10-26 04:36:43','2016-10-26 04:36:43'),
+(44,'package','2016-10-26 22:17:35','2016-10-26 22:17:35'),
+(45,'package.add','2016-10-26 22:17:44','2016-10-26 22:17:44'),
+(46,'package.edit','2016-10-26 22:17:51','2016-10-26 22:17:51'),
+(47,'package.delete','2016-10-26 22:17:57','2016-10-26 22:17:57'),
+(48,'holiday','2016-10-26 22:31:05','2016-10-26 22:31:05'),
+(49,'attraction','2016-10-29 22:12:05','2016-10-29 22:12:05'),
+(50,'attraction.add','2016-10-29 22:12:13','2016-10-29 22:12:13'),
+(51,'attraction.edit','2016-10-29 22:12:20','2016-10-29 22:12:20'),
+(52,'attraction.delete','2016-10-29 22:12:27','2016-10-29 22:12:27'),
+(53,'attraction-category','2016-10-29 22:12:36','2016-10-29 22:12:36'),
+(54,'media-room','2016-10-29 22:56:51','2016-10-29 22:56:51'),
+(55,'media-room.add','2016-10-29 22:56:56','2016-10-29 22:56:56'),
+(56,'media-room.edit','2016-10-29 22:57:01','2016-10-29 22:57:01'),
+(57,'media-room.delete','2016-10-29 22:57:08','2016-10-29 22:57:08'),
+(58,'media-room-category','2016-10-29 22:57:14','2016-10-29 22:57:14'),
+(59,'showtime','2016-11-02 05:30:02','2016-11-02 05:30:02'),
+(60,'showtime.add','2016-11-02 05:30:07','2016-11-02 05:30:07'),
+(61,'showtime.edit','2016-11-02 05:30:13','2016-11-02 05:30:23'),
+(62,'showtime.delete','2016-11-02 05:30:32','2016-11-02 05:30:32'),
+(63,'career','2016-11-13 22:39:00','2016-11-13 22:39:00'),
+(64,'career.add','2016-11-13 22:39:06','2016-11-13 22:39:06'),
+(65,'career.update','2016-11-13 22:39:12','2016-11-13 22:39:12'),
+(66,'career.delete','2016-11-13 22:39:20','2016-11-13 22:39:20'),
+(67,'page','2016-11-22 00:36:56','2016-11-22 00:36:56'),
+(68,'page.add','2016-11-22 00:37:00','2016-11-22 00:37:00'),
+(69,'page.edit','2016-11-22 00:37:04','2016-11-22 00:37:04'),
+(70,'page.delete','2016-11-22 00:37:08','2016-11-22 00:37:08'),
+(71,'order','2017-01-09 04:09:17','2017-01-09 04:09:17'),
+(72,'promo','2017-01-11 07:42:25','2017-01-11 07:42:25'),
+(73,'promo.add','2017-01-11 07:42:29','2017-01-11 07:42:29'),
+(74,'promo.edit','2017-01-11 07:42:32','2017-01-11 07:42:32'),
+(75,'promo.delete','2017-01-11 07:42:35','2017-01-11 07:42:35');
 
 /*Table structure for table `post_details` */
 
@@ -909,14 +1191,12 @@ insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values
 (17,'id','Far far away, behind the word mountains, far from the countries Vokalia and Consonantia','far-far-away-behind-the-word-mountains-far-from-the-countries-vokalia-and-consonantia-2','Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. <br />Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar. The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn&rsquo;t listen. <br />She packed her seven versalia, put her initial into the belt and made herself on the way. When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. <br />Pityful a rethoric question ran over her cheek, then'),
 (18,'en','Ini title english','ini-title-english','content english'),
 (18,'id','Title bahasa','title-bahasa','content bahasa'),
-(72,'en','Shark Feeding Frenzy','shark-feeding-frenzy','Try a new experience and meet the sharks! Challenge yourself in hand-feeding this sea creature. Sharks\' food will be provided by our staff.<br /><br /><br />Lokation: Ocean Tank Walk Over'),
-(72,'id','Shark Feeding Frenzy','shark-feeding-frenzy-2','Rasakan pengalaman baru memberi makan hiu di Jakarta Aquarium. Anda bisa dapatkan makanan hiu dari staff kami.&nbsp;<br /><br />Lokasi: Ocean Tank Walk Over'),
-(73,'en','Otter Peek-a-Boo','otter-peek-a-boo','Come and meet our utterly amazing Otters who are not only fun creatures, but also highly intelligent. Take a peek of their daily activities through the glass tunnel. Who knows, you will find them holding hands while sleeping. <br /><br />Location: Otter Exhibition'),
-(73,'id','Otter Peek-a-Boo','otter-peek-a-boo-2','Temui dan sapa si Berang-Berang, hewan yang lucu, menggemaskan dan juga cerdas. Intip keseharian mereka melalui terowongan kaca. Siapa tahu, kamu dapat melihat mereka tidur sambil berpegangan tangan.<br /><br />Lokasi : Eksibit Berang-berang'),
-(77,'en','Touch Me If You Can','touch-me-if-you-can','Let them feel your love through simple touch of your hand. Introduce yourself to the Brown Banded Bamboo Shark, Blue Starfish, Turbo Snail, and other gentle animals. <br /><br />Location: Touch and Find Zone'),
-(77,'id','Touch Me if You Can','touch-me-if-you-can-2','Tunjukkan kasih sayangmu dengan membelai para hewan ini! Kenali hiu bambu, bintang laut biru, siput dan masih banyak lagi.<br /><br />Lokasi : Touch and Find Zone'),
-(78,'en','Watch Out the Crab!','watch-out-the-crab','Find out how hermit crabs spend their time inside tree truck with your magnifying glass. The warm wood chips or sand is a perfect spot for them to play.<br /><br />Location: Nurseries of the Sea'),
-(78,'id','Watch Out The Crab!','watch-out-the-crab-2','Temukan apa saja yang dilakukan kelomang untuk menjalani hari-harinya dengan menggunakan kaca pembesar. Serpihan kayu atau pasir yang hangat adalah tempat favorit mereka untuk bermain.<br /><br />Lokasi: Nurseries of The Sea'),
+(73,'en','Otter Tunnel','otter-tunnel','Come and meet our utterly amazing Otters who are not only fun creatures, but also highly intelligent. Take a peek of their daily activities through the glass tunnel. Who knows, you will find them holding hands while sleeping. <br /><br />Location: Otter Exhibition'),
+(73,'id','Otter Tunnel','otter-tunnel-2','Temui dan sapa si Berang-Berang, hewan yang lucu, menggemaskan dan juga cerdas. Intip keseharian mereka melalui terowongan kaca. Siapa tahu, kamu dapat melihat mereka tidur sambil berpegangan tangan.<br /><br />Lokasi : Eksibit Berang-berang'),
+(77,'en','Touch Pool','touch-pool','Let them feel your love through simple touch of your hand. Introduce yourself to the Brown Banded Bamboo Shark, Blue Starfish, Turbo Snail, and other gentle animals. <br /><br />Location: Touch and Find Zone'),
+(77,'id','Touch Pool','touch-pool-2','Tunjukkan kasih sayangmu dengan membelai para hewan ini! Kenali hiu bambu, bintang laut biru, siput dan masih banyak lagi.<br /><br />Lokasi : Touch and Find Zone'),
+(78,'en','Hermit Crab Wooden Log','hermit-crab-wooden-log','Find out how hermit crabs spend their time inside tree truck with your magnifying glass. The warm wood chips or sand is a perfect spot for them to play.<br /><br />Location: Nurseries of the Sea'),
+(78,'id','Hermit Crab Wooden Log','hermit-crab-wooden-log-2','Temukan apa saja yang dilakukan kelomang untuk menjalani hari-harinya dengan menggunakan kaca pembesar. Serpihan kayu atau pasir yang hangat adalah tempat favorit mereka untuk bermain.<br /><br />Lokasi: Nurseries of The Sea'),
 (79,'en','Diving With Shark','diving-with-shark','Only here you can dive in our main tank where the Black Tip Reef Shark nestle. Our certified instructor is ready to accompany you to feel the experience. Only for licensed diver. Based on appointment. Please call us for further information. <br /><br />Location: Main Tank'),
 (79,'id','Diving With Shark','diving-with-shark-2','Hanya di sini anda dapat menyelam ke sarang hiu karang. Instruktur bersertifikat kami siap memandu anda. Hanya untuk penyelam yang memiliki lisensi. Berdasarkan perjanjian. Hubungi kami untuk info lebih lanjut.<br /><br />Lokasi: Main Tank'),
 (80,'en','Seatrekking','seatrekking','Don&rsquo;t have a diving license? You can still have the underwater adventure with this seatrekking activity. With a safety seatrek helmet, trace the handrail inside the main tank and be ready for the encounter with Black Blotch Stingray. Please call us for further info. <br /><br />Location: Main Tank'),
@@ -925,14 +1205,14 @@ insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values
 (81,'id','Create Your Own Fish','create-your-own-fish-2','Kembangkan kreativitasmu dan mulai membuat ikan-ikan lucu karyamu. Warnai ikan favoritmu dan scan hasilnya. Biarkan mereka berenang bebas di layar.<br /><br />Lokasi : Kid\'s Classroom'),
 (82,'en','Sea Explorer','sea-explorer','Hop on and feel the sensation as if you ride a real submarine with your close ones while exploring the deep ocean.<br /><br />Location: 5D Theater'),
 (82,'id','Sea Explorer','sea-explorer-2','Masuk dan rasakan sensasi seakan berada dalam sebuah kapal selam sungguhan sembari menjelajahi lautan.<br /><br />Lokasi : 5D Theater'),
-(83,'en','Pearl of The South Sea','pearl-of-the-south-sea','<span data-sheets-value=\"{&quot;1&quot;:2,&quot;2&quot;:&quot;An epic performance that tells a story of a King to his dear princess. This story is adapted from a local tale that take place in a kingdom in southern part of Java. Be ready to be dazzled by this magical performance that combine stage act, illusion trick and underwater dance.&quot;}\" data-sheets-userformat=\"{&quot;2&quot;:13245,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:{&quot;1&quot;:2,&quot;2&quot;:0}},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:{&quot;1&quot;:2,&quot;2&quot;:0}},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:{&quot;1&quot;:2,&quot;2&quot;:0}},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:{&quot;1&quot;:2,&quot;2&quot;:0}},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;10&quot;:1,&quot;11&quot;:4,&quot;12&quot;:0,&quot;15&quot;:&quot;Calibri&quot;,&quot;16&quot;:11}\">An epic performance that tells a story of a King to his dear princess. This story is adapted from a local tale that take place in a kingdom in southern part of Java. Be ready to be dazzled by this magical performance that combine stage act, illusion trick and underwater dance.</span>'),
-(83,'id','Pearl of The South Sea','pearl-of-the-south-sea-2','<span data-sheets-value=\"{&quot;1&quot;:2,&quot;2&quot;:&quot;Sebuah pertunjukan yang mengisahkan cinta kasih seorang raja terhadap putri kesayangannya. Kisah ini diadaptasi dari cerita rakyat yang berlokasi di sebuah kerajaan di bagian selatan Pulau Jawa. Bersiaplah untuk terpesona oleh pertunjukan yang menakjubkan, gabungan aksi panggung, trik ilusi dan tarian di bawah air.&quot;}\" data-sheets-userformat=\"{&quot;2&quot;:13245,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:{&quot;1&quot;:2,&quot;2&quot;:0}},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:{&quot;1&quot;:2,&quot;2&quot;:0}},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:{&quot;1&quot;:2,&quot;2&quot;:0}},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:{&quot;1&quot;:2,&quot;2&quot;:0}},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;10&quot;:1,&quot;11&quot;:4,&quot;12&quot;:0,&quot;15&quot;:&quot;Calibri&quot;,&quot;16&quot;:11}\">Sebuah pertunjukan yang mengisahkan cinta kasih seorang raja terhadap putri kesayangannya. Kisah ini diadaptasi dari cerita rakyat yang berlokasi di sebuah kerajaan di bagian selatan Pulau Jawa. Bersiaplah untuk terpesona oleh pertunjukan yang menakjubkan, gabungan aksi panggung, trik ilusi dan tarian di bawah air.</span>'),
-(84,'en','Pingoo Restaurant','pingoo-restaurant','<span data-sheets-value=\"{&quot;1&quot;:2,&quot;2&quot;:&quot;An American seafood and grill restaurant inspired by penguin habitat in southern hemisphere beach is located on LG Floor, Neo SOHO.\\n\\nEnjoy your meal on the beach deck and get closer to see and feed these penguins in Pingoo!&quot;}\" data-sheets-userformat=\"{&quot;2&quot;:4993,&quot;3&quot;:{&quot;1&quot;:0},&quot;10&quot;:1,&quot;11&quot;:4,&quot;12&quot;:0,&quot;15&quot;:&quot;Calibri&quot;}\">An American seafood and grill restaurant inspired by penguin habitat in southern hemisphere beach is located on LG Floor, Neo SOHO.<br /><br />Enjoy your meal on the beach deck and get closer to see and feed these penguins in Pingoo!</span>'),
-(84,'id','Pingoo Restaurant','pingoo-restaurant-2','<span data-sheets-value=\"{&quot;1&quot;:2,&quot;2&quot;:&quot;\\nRestoran seafood and grill ala Amerika yang terinspirasi oleh habitat penguin asli di daerah pantai selatan ini terletak di Neo SOHO lantai LG.\\n\\n Nikmati santapan Anda di atas dek pantai dan dapatkan pengalaman melihat langsung dan memberi makan pinguin Humboldt lebih dekat di Pingoo!&quot;}\" data-sheets-userformat=\"{&quot;2&quot;:13057,&quot;3&quot;:{&quot;1&quot;:0},&quot;11&quot;:4,&quot;12&quot;:0,&quot;15&quot;:&quot;Calibri&quot;,&quot;16&quot;:11}\"><br />Restoran seafood and grill ala Amerika yang terinspirasi oleh habitat penguin asli di daerah pantai selatan ini terletak di Neo SOHO lantai LG.<br /><br /> Nikmati santapan Anda di atas dek pantai dan dapatkan pengalaman melihat langsung dan memberi makan pinguin Humboldt lebih dekat di Pingoo!</span>'),
-(85,'en','Ocean Wonders','ocean-wonders','<span data-sheets-value=\"{&quot;1&quot;:2,&quot;2&quot;:&quot;Your visit at Jakarta Aquarium won\'t be complete without notable souvenirs. Get adorable merchandises of Jakarta Aquarium at Ocean Wonders store on LG floor.&quot;}\" data-sheets-userformat=\"{&quot;2&quot;:6915,&quot;3&quot;:{&quot;1&quot;:0},&quot;4&quot;:{&quot;1&quot;:2,&quot;2&quot;:16777215},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:{&quot;1&quot;:2,&quot;2&quot;:0},&quot;15&quot;:&quot;Calibri&quot;}\">Your visit at Jakarta Aquarium won\'t be complete without notable souvenirs. Get adorable merchandises of Jakarta Aquarium at Ocean Wonders store on LG floor.</span>'),
-(85,'id','Ocean Wonders','ocean-wonders-2','<span data-sheets-value=\"{&quot;1&quot;:2,&quot;2&quot;:&quot;\\nPengalaman Anda di Jakarta Aquarium tidak lengkap tanpa souvenir yang berkesan. Dapatkan berbagai merchandise Jakarta Aquarium yang lucu dan menggemaskan di gerai Ocean Wonders yang berada di lantai LG.\\n&quot;}\" data-sheets-userformat=\"{&quot;2&quot;:6915,&quot;3&quot;:{&quot;1&quot;:0},&quot;4&quot;:{&quot;1&quot;:2,&quot;2&quot;:16777215},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:{&quot;1&quot;:2,&quot;2&quot;:0},&quot;15&quot;:&quot;Calibri&quot;}\">Pengalaman Anda di Jakarta Aquarium tidak lengkap tanpa souvenir yang berkesan. Dapatkan berbagai merchandise Jakarta Aquarium yang lucu dan menggemaskan di gerai Ocean Wonders yang berada di lantai LG.<br /></span>'),
-(86,'en','About Us','about-us','<p>Taman Safari Indonesia Group</p>\r\n<p>presents a cutting edge family recreation,</p>\r\n<p>Jakarta Aquarium.</p>'),
-(86,'id','Tentang Kami','tentang-kami','<p>Taman Safari Indonesia Group</p>\r\n<p>mempersembahkan Jakarta Aquarium</p>\r\n<p>sebagai sarana rekreasi keluarga di tengah kota Jakarta.</p>'),
+(83,'en','Pearl of The South Sea','pearl-of-the-south-sea','<span data-sheets-value=\"{\" data-sheets-userformat=\"{\">An epic performance that tells a story of a King to his dear princess. This story is adapted from a local tale that take place in a kingdom in southern part of Java. Be ready to be dazzled by this magical performance that combine stage act, illusion trick and underwater dance.</span>'),
+(83,'id','Pearl of The South Sea','pearl-of-the-south-sea-2','<span data-sheets-value=\"{\" data-sheets-userformat=\"{\">Sebuah pertunjukan yang mengisahkan cinta kasih seorang raja terhadap putri kesayangannya. Kisah ini diadaptasi dari cerita rakyat yang berlokasi di sebuah kerajaan di bagian selatan Pulau Jawa. Bersiaplah untuk terpesona oleh pertunjukan yang menakjubkan, gabungan aksi panggung, trik ilusi dan tarian di bawah air.</span>'),
+(84,'en','Pingoo','pingoo','<span data-sheets-value=\"{\" data-sheets-userformat=\"{\">An American seafood and grill restaurant inspired by penguin habitat in southern hemisphere beach is located on LG Floor, Neo SOHO. Enjoy your meal on the beach deck and get closer to see and feed these penguins in Pingoo!</span>'),
+(84,'id','Pingoo Restaurant','pingoo-restaurant','<span data-sheets-value=\"{\" data-sheets-userformat=\"{\">Restoran seafood and grill ala Amerika yang terinspirasi oleh habitat penguin asli di daerah pantai selatan ini terletak di Neo SOHO lantai LG. Nikmati santapan Anda di atas dek pantai dan dapatkan pengalaman melihat langsung dan memberi makan pinguin Humboldt lebih dekat di Pingoo!</span>'),
+(85,'en','Ocean Wonders','ocean-wonders','<span data-sheets-value=\"{\" data-sheets-userformat=\"{\">Your visit at Jakarta Aquarium won\'t be complete without notable souvenirs. Get adorable merchandises of Jakarta Aquarium at Ocean Wonders store on LG floor.</span>'),
+(85,'id','Ocean Wonders','ocean-wonders-2','<span data-sheets-value=\"{\" data-sheets-userformat=\"{\">Pengalaman Anda di Jakarta Aquarium tidak lengkap tanpa souvenir yang berkesan. Dapatkan berbagai merchandise Jakarta Aquarium yang lucu dan menggemaskan di gerai Ocean Wonders yang berada di lantai LG.<br /></span>'),
+(86,'en','About Us','about-us','<p>Jakarta Aquarium is a Conservation Organization and part of Taman Safari Indonesia who continously build conservation of wildlife with 30 years experience. Jakarta Aquarium in collaboration with Aquaria KLCC brings you the world class aquarium for more fun experience and edutainment</p>'),
+(86,'id','Tentang Kami','tentang-kami','<p>Jakarta Aquarium adalah bagian dari Taman Safari Indonesia yang terus membangun upaya konservasi satwa dengan pengalaman selama 30 tahun. Berkolaborasi dengan Aquaria KLCC mempersembahkan sebuah wahana yang akan memberikan keceriaan baru dan sarat akan nilai edukasi</p>'),
 (87,'en','Special Package','special-package',''),
 (87,'id','Paket Spesial','paket-spesial',''),
 (88,'en','Career','career','<p>We are looking for a fun and dynamic person to join our team. Discover many interesting job opportunity and grow with us!</p>'),
@@ -940,9 +1220,9 @@ insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values
 (89,'en','Privacy Policy','privacy-policy',''),
 (89,'id','Syarat Ketentuan','syarat-ketentuan',''),
 (90,'en','Term of Use','term-of-use',''),
-(90,'id','Ketentuan Penggunaan','ketentuan-penggunaan','<p><span class=\"bold\">Situs web ini dimiliki dan dioperasikan oleh PT. Jakarta Akuarium Indonesia dan Ketentuan Penggunaan berlaku untuk pengunjung dan pengguna situs (JAI website). Istilah \"Kami\" mengacu pada JAI (Jakarta Akuarium Indonesia), yang menyediakan situs untuk Anda, dan istilah \"Anda\" mengacu pada pengguna yang menerima Ketentuan Penggunaan. Jika Anda tidak setuju dengan Syarat Penggunaan, jangan menggunakan situs ini.</span></p>\r\n<p>&nbsp;</p>\r\n<h4 class=\"cyan-text text-darken-1\">1. Pembukaan</h4>\r\n<p>Terima kasih atas kunjungan Anda ke website kami, (*). Kami berharap bahwa kunjungan anda dapat bermanfaat dan memberikan kemudahan dalam mengakses dan menggunakan semua layanan yang tersedia pada website kami. Kami terus berupaya untuk memperbaiki dan meningkatkan kualitas layanan kami, dan akan menghargai setiap masukan, saran dan masukan dari Anda; Silakan Anda kirimkan kepada Kami melalui (email) atau telepon di +62 21 (*).</p>\r\n<p>&nbsp;</p>\r\n<h4 class=\"cyan-text text-darken-1\">2. Umum dan Penerimaan Persyaratan</h4>\r\n<p>Dengan mengakses dan menggunakan Situs dan Layanan, Anda menyatakan telah membaca, memahami, setuju dan tunduk pada Syarat dan Ketentuan (website) ini. Jika Anda tidak setuju dengan Syarat dan Ketentuan (website), baik seluruhnya atau sebagian, maka Anda tidak diizinkan untuk mengakses website ini atau menggunakan layanan yang kami berikan.<br /><br />Syarat dan Ketentuan (website) terdiri dari (i) syarat dan ketentuan umum yang berlaku untuk setiap akses dan layanan yang tersedia di situs, dan (ii) syarat dan ketentuan yang mengatur kondisi lebih lanjut dari penggunaan produk atau jasa tertentu.<br /><br />Syarat dan Ketentuan Penggunaan (website) dapat / mungkin kami ubah, modifikasi, menambah, menghapus atau koreksi setiap saat dan setiap perubahan yang berlaku dari waktu kami dinyatakan tidak berlaku atau pada waktu lain yang ditentukan oleh Kami; Kami menyarankan Anda untuk mengunjungi situs kami secara teratur untuk menyadari perubahan ini.</p>\r\n<p>&nbsp;</p>\r\n<h3>&nbsp;</h3>'),
-(91,'en','Sightseeing','sightseeing','<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidale laborum et dolorem magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation autem.</p>'),
-(91,'id','Sightseeing','sightseeing-2','<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidale laborum et dolorem magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation autem.</p>'),
+(90,'id','Ketentuan Penggunaan','ketentuan-penggunaan','<p><span class=\"bold\">Situs web ini dimiliki dan dioperasikan oleh PT. Jakarta Akuarium Indonesia dan Ketentuan Penggunaan berlaku untuk pengunjung dan pengguna situs (JAI website). Istilah \"Kami\" mengacu pada JAI (Jakarta Akuarium Indonesia), yang menyediakan situs untuk Anda, dan istilah \"Anda\" mengacu pada pengguna yang menerima Ketentuan Penggunaan. Jika Anda tidak setuju dengan Syarat Penggunaan, jangan menggunakan situs ini.</span></p>\r\n<p>&nbsp;</p>\r\n<h4 class=\"cyan-text text-darken-1\">1. Pembukaan</h4>\r\n<p>Terima kasih atas kunjungan Anda ke website kami, (*). Kami berharap bahwa kunjungan anda dapat bermanfaat dan memberikan kemudahan dalam mengakses dan menggunakan semua layanan yang tersedia pada website kami. Kami terus berupaya untuk memperbaiki dan meningkatkan kualitas layanan kami, dan akan menghargai setiap masukan, saran dan masukan dari Anda; Silakan Anda kirimkan kepada Kami melalui (email) atau telepon di +62 21 (*).</p>\r\n<p>&nbsp;</p>\r\n<h4 class=\"cyan-text text-darken-1\">2. Umum dan Penerimaan Persyaratan</h4>\r\n<p>Dengan mengakses dan menggunakan Situs dan Layanan, Anda menyatakan telah membaca, memahami, setuju dan tunduk pada Syarat dan Ketentuan (website) ini. Jika Anda tidak setuju dengan Syarat dan Ketentuan (website), baik seluruhnya atau sebagian, maka Anda tidak diizinkan untuk mengakses website ini atau menggunakan layanan yang kami berikan.<br /><br />Syarat dan Ketentuan (website) terdiri dari (i) syarat dan ketentuan umum yang berlaku untuk setiap akses dan layanan yang tersedia di situs, dan (ii) syarat dan ketentuan yang mengatur kondisi lebih lanjut dari penggunaan produk atau jasa tertentu.<br /><br />Syarat dan Ketentuan Penggunaan (website) dapat / mungkin kami ubah, modifikasi, menambah, menghapus atau koreksi setiap saat dan setiap perubahan yang berlaku dari waktu kami dinyatakan tidak berlaku atau pada waktu lain yang ditentukan oleh Kami; Kami menyarankan Anda untuk mengunjungi situs kami secara teratur untuk menyadari perubahan ini.</p>'),
+(91,'en','Highlight','highlight','<p>Jakarta Aquarium is a place suitable to all ages and genders. Whether to unwind yourself or to have fun with your friends and family. All the animals, shows, and entertainments in Jakarta Aquarium will bring valuable experience for you.</p>'),
+(91,'id','Highlight','highlight-2','<p>Jakarta Aquarium cocok untuk segala usia dan aktivitas. Baik untuk bersantai maupun untuk bersenang-senang bersama teman dan keluarga. Semua satwa, pertunjukan, dan hiburan di Jakarta Aquarium akan memberikan pengalaman tak terlupakan untuk Anda.</p>'),
 (92,'en','Neo Soho, Destinasi Gaya Hidup Baru di Jakarta','neo-soho-destinasi-gaya-hidup-baru-di-jakarta','<p class=\"p1\"><span class=\"s1\">REPUBLIKA.CO.ID, JAKARTA -- PT Agung Podomoro Land kembali menghadirkan destinasi gaya hidup baru di ibu kota. Pusat perbelanjaan bernama Neo Soho itu berlokasi di kawasan Jalan Letjen S Parman, Jakarta Barat.</span></p>\r\n<p class=\"p1\"><span class=\"s1\">&nbsp;</span></p>\r\n<p class=\"p1\"><span class=\"s1\">\"Neo Soho menghadirkan suasana belanja berkelas yang nyaman untuk kalangan chic, modern family, hang outers, young urban, dan youngsters,\" ungkap Veri Y Setiady selaku CEO Neo Soho pada acara soft opening Neo Soho, Kamis (8/9).</span></p>\r\n<p class=\"p1\"><span class=\"s1\">&nbsp;</span></p>\r\n<p class=\"p1\"><span class=\"s1\">Veri memerinci, gedung setinggi sembilan lantai itu berdiri di atas lahan seluas 2,3 hektare. Salah satu daya tarik Neo Soho ialah terkoneksi dengan Central Park Mall melalui jembatan Eco Sky Walksepanjang 250 meter dan East Tunnel.</span></p>\r\n<p class=\"p1\"><span class=\"s1\">&nbsp;</span></p>\r\n<p class=\"p1\"><span class=\"s1\">Ia menjelaskan, Neo Soho mengusung tag line \'So New So Bold\'. Kalimat itu merepresentasikan identitas Neo Soho sebagai destinasi gaya hidup terbaru dengan konsep kreatif yang diaplikasikan pada seluruh tenant yang dihadirkan.</span></p>\r\n<p class=\"p1\"><span class=\"s1\">&nbsp;</span></p>\r\n<p class=\"p1\"><span class=\"s1\">Ada tujuh kategori tenant yakni So Posh (fashion), So Glam (produk kecantikan), So Essential (aksesoris), So Smart (gawai dan teknologi), So Fit (produk olahraga), So Fun (hiburan keluarga), dan So Yummy(kuliner). Neo Soho juga mempersembahkan Extraordinary Anchor Tenant seperti Central Department Store, Jakarta Aquarium, Open Kitchen All-Day Dining Court, dan Chipmunks.</span></p>\r\n<p class=\"p1\"><span class=\"s1\">&nbsp;</span></p>\r\n<p class=\"p1\"><span class=\"s1\">\"Dengan perpaduan kategori tenant tersebut, para pengunjung dapat membeli berbagai kebutuhan, memanjakan diri, berkumpul bersama teman, serta menikmati hiburan bersama keluarga,\" ujar Veri yang menginformasikan grand opening Neo Soho bakal berlangsung pada Desember 2016.</span></p>\r\n<p class=\"p1\"><span class=\"s1\">&nbsp;</span></p>\r\n<p class=\"p1\"><span class=\"s1\">Terkait akses, Veri menyebut Neo Soho tak sulit dijangkau karena berlokasi di kawasan strategis jalur utama. Adanya akses keluar tol Tanjung Duren juga memudahkan pengunjung dari berbagai lokasi seperti bandara dan kawasan bisnis Sudirman.</span></p>\r\n<p class=\"p2\">&nbsp;</p>'),
 (92,'id','Neo Soho, Destinasi Gaya Hidup Baru di Jakarta','neo-soho-destinasi-gaya-hidup-baru-di-jakarta-2','<p class=\"p1\"><span class=\"s1\">REPUBLIKA.CO.ID, JAKARTA -- PT Agung Podomoro Land kembali menghadirkan destinasi gaya hidup baru di ibu kota. Pusat perbelanjaan bernama Neo Soho itu berlokasi di kawasan Jalan Letjen S Parman, Jakarta Barat.</span></p>\r\n<p class=\"p1\"><span class=\"s1\">&nbsp;</span></p>\r\n<p class=\"p1\"><span class=\"s1\">\"Neo Soho menghadirkan suasana belanja berkelas yang nyaman untuk kalangan chic, modern family, hang outers, young urban, dan youngsters,\" ungkap Veri Y Setiady selaku CEO Neo Soho pada acara soft opening Neo Soho, Kamis (8/9).</span></p>\r\n<p class=\"p1\"><span class=\"s1\">&nbsp;</span></p>\r\n<p class=\"p1\"><span class=\"s1\">Veri memerinci, gedung setinggi sembilan lantai itu berdiri di atas lahan seluas 2,3 hektare. Salah satu daya tarik Neo Soho ialah terkoneksi dengan Central Park Mall melalui jembatan Eco Sky Walksepanjang 250 meter dan East Tunnel.</span></p>\r\n<p class=\"p1\"><span class=\"s1\">&nbsp;</span></p>\r\n<p class=\"p1\"><span class=\"s1\">Ia menjelaskan, Neo Soho mengusung tag line \'So New So Bold\'. Kalimat itu merepresentasikan identitas Neo Soho sebagai destinasi gaya hidup terbaru dengan konsep kreatif yang diaplikasikan pada seluruh tenant yang dihadirkan.</span></p>\r\n<p class=\"p1\"><span class=\"s1\">&nbsp;</span></p>\r\n<p class=\"p1\"><span class=\"s1\">Ada tujuh kategori tenant yakni So Posh (fashion), So Glam (produk kecantikan), So Essential (aksesoris), So Smart (gawai dan teknologi), So Fit (produk olahraga), So Fun (hiburan keluarga), dan So Yummy(kuliner). Neo Soho juga mempersembahkan Extraordinary Anchor Tenant seperti Central Department Store, Jakarta Aquarium, Open Kitchen All-Day Dining Court, dan Chipmunks.</span></p>\r\n<p class=\"p1\"><span class=\"s1\">&nbsp;</span></p>\r\n<p class=\"p1\"><span class=\"s1\">\"Dengan perpaduan kategori tenant tersebut, para pengunjung dapat membeli berbagai kebutuhan, memanjakan diri, berkumpul bersama teman, serta menikmati hiburan bersama keluarga,\" ujar Veri yang menginformasikan grand opening Neo Soho bakal berlangsung pada Desember 2016.</span></p>\r\n<p class=\"p1\"><span class=\"s1\">&nbsp;</span></p>\r\n<p class=\"p1\"><span class=\"s1\">Terkait akses, Veri menyebut Neo Soho tak sulit dijangkau karena berlokasi di kawasan strategis jalur utama. Adanya akses keluar tol Tanjung Duren juga memudahkan pengunjung dari berbagai lokasi seperti bandara dan kawasan bisnis Sudirman.</span></p>\r\n<p class=\"p2\">&nbsp;</p>'),
 (93,'en','Neo Soho, Mal Pertama di Indonesia yang Dilengkapi Akuarium Raksasa','neo-soho-mal-pertama-di-indonesia-yang-dilengkapi-akuarium-raksasa','<p class=\"p1\"><span class=\"s1\">Jakarta - Satu lagi destinasi belanja dan hiburan yang bisa Anda temukan di kawasan jalan Jend. S. Parman, Jakarta Barat. Adalah Neo Soho, sebuah mal baru setinggi sembilan lantai yang mengusung konsep \'store within a store\', bergaya chic dan urban.&nbsp;</span></p>\r\n<p class=\"p2\">&nbsp;</p>\r\n<p class=\"p1\"><span class=\"s1\">Tak hanya berlokasi di daerah strategis, bangunan seluas 22 ha tersebut juga terkoneksi dengan pusat perbelanjaan Central Park. Dan yang membuat Neo Soho berbeda dari mal kebanyakan adalah kehadiran akuarium.</span></p>\r\n<p class=\"p2\">&nbsp;</p>\r\n<p class=\"p1\"><span class=\"s1\">\"Podomoro City sudah seperti satu kota sendiri, sudah lengkap. Central Park adalah salah satu mal yang traffic-nya paling tinggi. Kita lihat masyarakat Indonesia, khususnya menengah ke atas perkembangannya pesat. Apalagi dengan neo generation yang jadi target market kami di sini. Kami ada ide untuk bikin satu mal lagi yang melengkapi Central Park,\" kata Very Y. Setiady selaku CEO Neo Soho saat peresmian mal, Kamis, (8/9/2016).</span></p>\r\n<p class=\"p2\">&nbsp;</p>\r\n<p class=\"p1\"><span class=\"s1\">Walau sudah dibuka mulai hari ini, toko-toko dalam Neo Soho memang belum semuanya beroperasi. Meski begitu, cukup banyak pengunjung yang datang untuk berbelanja dan makan. Berdasarkan pengamatan Wolipop, mal tersebut terasa cukup nyaman, tampak mewah, dan indah dipandang mata, apalagi dengan banyaknya window display yang berkolaborasi dengan para illustrator ternama.&nbsp;</span></p>\r\n<p class=\"p2\">&nbsp;</p>\r\n<p class=\"p1\"><span class=\"s1\">Sebagai mal yang diklaim terbesar di Indonesia, Neo Soho tentu menawarkan tenant-tenant yang cukup lengkap, mulai dari fashion, beauty, gadget, sport, hingga hiburan keluarga. Tengok saja hadirnya Central Department Store, Adidas Neighborhood, Our Daily Dose, Aldo, Clarks, Everbest, dan sejumlah merek luxury lainnya.</span></p>\r\n<p class=\"p2\">&nbsp;</p>\r\n<p class=\"p1\"><span class=\"s1\">Sedangkan untuk kuliner, Anda bisa menjumpai gerai Kkuldak, Kitchen by Pizza Hut, Marugame Udon, Holy Cow, Born Gan, hingga Pablo Cheese Tart asal Jepang yang pertama kali buka di Indonesia. Selain itu, tersedia pula tempat makan Open Kitchen yang menawarkan konsep berbeda dari food court kebanyakan karena didesain lebih menawan.&nbsp;</span></p>\r\n<p class=\"p2\">&nbsp;</p>\r\n<p class=\"p1\"><span class=\"s1\">\"Diharapkan Open Kitchen bisa jadi destinasi baru. Kami hadirkan desain yang nice dan spesial. Bukan food court tapi lebih kepada all day dining jadi bisa jadi meeting point,\" tambah Very.&nbsp;</span></p>\r\n<p class=\"p2\">&nbsp;</p>\r\n<p class=\"p1\"><span class=\"s1\">Jakarta Aquarium pun akan semakin meramaikan pusat perbelanjaan tersebut. Dihadirkan dalam rangka merayakan hari jadi Taman Safari Indonesia Group yang ke-30, akuarium itu akan jadi yang pertama berada dalam sebuah mal. Anda dan keluarga pun bakal bisa melihat berbagai bioata laut, seperti ikan hiu, ikan pari tutul, gurita raksasa, hingga penguin. Nantinya ada pula pertunjukan teater terinspirasi cerita rakyat Indonesia.</span></p>\r\n<p class=\"p2\">&nbsp;</p>\r\n<p class=\"p1\"><span class=\"s1\">\"Pertamakalinya akan ada penguin cafe, ada pula merchandising. Indonesia punya biota laut yang luar biasa jadi nanti akan diisi berbagai ikan khas indonesia, termasuk juga reptil,\" tuturnya lagi. (ami/eny)</span></p>'),
@@ -957,10 +1237,12 @@ insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values
 (97,'id','Location','location-2','<p>Jakarta Aquarium terletak di Neo SOHO, sebuah pusat perbelanjaan di daerah Jakarta Barat yang dikelilingi oleh taman, apartemen, hotel, mal, restoran, dan dunia malam. Memungkinkan Anda untuk menjelajahi tempat rekreasi lain baik sebelum ataupun setelah kunjungan Anda ke Jakarta Aquarium.</p>'),
 (98,'en','Schedule','schedule','<p>There\'s always something new and exciting happening at the Jakarta Aquarium. With an ever-evolving lineup of shows, Jakarta Aquarium always has something interesting to see. Join us for a show led by our educational and entertaining interpreters to learn more about the animals that live at the Jakarta Aquarium.</p>'),
 (98,'id','Schedule','schedule-2','<p>There\'s always something new and exciting happening at the Jakarta Aquarium. With an ever-evolving lineup of shows, Jakarta Aquarium always has something interesting to see. Join us for a show led by our educational and entertaining interpreters to learn more about the animals that live at the Jakarta Aquarium.</p>'),
-(99,'en','Welcome to Jakarta Aquarium','welcome-to-jakarta-aquarium','<p><strong>Jakarta, September 8<sup>th</sup> 2016</strong> - Celebrating the 30th anniversary Taman Safari Indonesia Group proudly present Jakarta Aquarium, a next generation family recreational and edutainment center from Indonesia&rsquo;s leading conservation institute and family recreation. Jakarta Aquarium located in the newest Agung Podomoro Land leisure district, Neo Soho, in West Jakarta will be open for public on December 2016. The ultimate boutique aquarium is a result of extensive collaboration of world class artists and designers, delivering an extraordinary journey to Indonesia&rsquo;s mega biodiversity.<br /><br /></p>\r\n<p>Providing escapism from the urban lifestyle, Jakarta Aquarium will provide an integrated family leisure of education and entertainment. Explore the beauty of Indonesian nature through the exotic leopard whipray, giant pacific octopus, blacktip reef shark, and coconut crab. Not to mention the cute living exhibition of Humboldt penguin in the penguin themed restaurant. Have fun by experiencing dive in the giant tank and seatrekking with professional guide while kids could enjoy the interactive multimedia activity in the kids&rsquo; zone.</p>\r\n<p><br />Jakarta Aquarium uniquely presents a theatrical underwater performance inspired by Indonesian folklore directed by Peter Wilson. The underwater show is a must-see for all ages.<br /><br /></p>\r\n<p>Visit and be mesmerize by Jakarta Aquarium coming soon at LG and LGM floor in Neo Soho Jakarta.</p>\r\n<p>&nbsp;</p>'),
-(99,'id','Welcome to Jakarta Aquarium','welcome-to-jakarta-aquarium-2','<p><strong>Jakarta, September 8<sup>th</sup> 2016</strong> - Celebrating the 30th anniversary Taman Safari Indonesia Group proudly present Jakarta Aquarium, a next generation family recreational and edutainment center from Indonesia&rsquo;s leading conservation institute and family recreation. Jakarta Aquarium located in the newest Agung Podomoro Land leisure district, Neo Soho, in West Jakarta will be open for public on December 2016. The ultimate boutique aquarium is a result of extensive collaboration of world class artists and designers, delivering an extraordinary journey to Indonesia&rsquo;s mega biodiversity.<br /><br /></p>\r\n<p>Providing escapism from the urban lifestyle, Jakarta Aquarium will provide an integrated family leisure of education and entertainment. Explore the beauty of Indonesian nature through the exotic leopard whipray, giant pacific octopus, blacktip reef shark, and coconut crab. Not to mention the cute living exhibition of Humboldt penguin in the penguin themed restaurant. Have fun by experiencing dive in the giant tank and seatrekking with professional guide while kids could enjoy the interactive multimedia activity in the kids&rsquo; zone.</p>\r\n<p><br />Jakarta Aquarium uniquely presents a theatrical underwater performance inspired by Indonesian folklore directed by Peter Wilson. The underwater show is a must-see for all ages.<br /><br /></p>\r\n<p>Visit and be mesmerize by Jakarta Aquarium coming soon at LG and LGM floor in Neo Soho Jakarta.</p>\r\n<p>&nbsp;</p>'),
-(101,'en','Promosi Satu','promosi-satu','Ini promosi pertama di JAI'),
-(101,'id','','','');
+(102,'en','Welcome to Jakarta Aquarium','welcome-to-jakarta-aquarium','<p class=\"p1\"><span class=\"s1\">Celebrating the 30th anniversary&nbsp;</span><span class=\"s1\">Taman Safari Indonesia Group proudly present Jakarta Aquarium, a next&nbsp;</span><span class=\"s1\">generation family recreational and edutainment center from Indonesia&rsquo;s leading&nbsp;</span><span class=\"s1\">conservation institute and family recreation. Jakarta Aquarium located in the&nbsp;</span><span class=\"s1\">newest Agung Podomoro Land leisure district, Neo Soho, in West Jakarta will be&nbsp;</span><span class=\"s1\">open for public on December 2016. The ultimate boutique aquarium is a result of&nbsp;</span><span class=\"s1\">extensive collaboration of world class artists and designers, delivering an&nbsp;</span><span class=\"s1\">extraordinary journey to Indonesia&rsquo;s mega biodiversity.</span></p>\r\n<p class=\"p1\"><span class=\"s1\">Providing escapism from the urban lifestyle, Jakarta Aquarium will provide an integrated&nbsp;</span><span class=\"s1\">family leisure of education and entertainment. Explore the beauty of Indonesian&nbsp;</span><span class=\"s1\">nature through the exotic leopard whipray, giant pacific octopus, blacktip reef&nbsp;</span><span class=\"s1\">shark, and coconut crab. Not to mention the cute living exhibition of Humboldt&nbsp;</span><span class=\"s1\">penguin in the penguin themed restaurant. Have fun by experiencing dive in the g</span><span class=\"s1\">iant tank and seatrekking with professional guide while kids could enjoy the&nbsp;</span><span class=\"s1\">interactive multimedia activity in the kids&rsquo; zone.</span></p>\r\n<p class=\"p1\"><span class=\"s1\">Jakarta Aquarium uniquely presents a theatrical underwater performance inspired by&nbsp;</span><span class=\"s1\">Indonesian folklore directed by Peter Wilson. The underwater show is a must-see&nbsp;</span><span class=\"s1\">for all ages.&nbsp;</span></p>\r\n<p class=\"p1\"><span class=\"s1\">Visit and be mesmerize by Jakarta Aquarium coming soon at LG and LGM floor in Neo&nbsp;</span><span class=\"s1\">Soho Jakarta.</span></p>'),
+(102,'id','Selamat Datang di Jakarta Aquarium','selamat-datang-di-jakarta-aquarium','<p class=\"p1\"><span class=\"s1\">Merayakan ulang tahun ke&nbsp;</span><span class=\"s1\">30, Taman Safari Indonesia Group dengan bangga menghadirkan Jakarta Aquarium, proyek terkemuka dari sebuah lembaga konservasi dan rekreasi keluarga di Indonesia.&nbsp;</span><span class=\"s1\">Jakarta Aquarium terletak di area terbaru milik Agung Podomoro Land, Neo Soho,</span><span class=\"s1\">di Jakarta Barat yang akan dibuka untuk umum pada Desember 2016. Butik akuarium</span><span class=\"s1\">ini merupakan hasil kolaborasi mengesankan dari seniman dan perancang kelas&nbsp;</span><span class=\"s1\">dunia yang akan menyajikan sebuah petualangan luar biasa yang menonjolkan&nbsp;</span><span class=\"s1\">keanekaragaman hayati Indonesia.&nbsp;</span></p>\r\n<p class=\"p1\"><span class=\"s1\">Melepas kepenatan dari gaya hidup urban, Jakarta Aquarium memberikan rekreasi keluarga yang terpadu antara pendidikan dan hiburan. Telusuri keindahan alam Indonesia melalui koleksi ikan pari tutul, gurita raksasa Pasifik, hiu karang blacktip, dan kepiting&nbsp;</span><span class=\"s1\">kelapa. Selain itu di restauran bertema penguin anda juga dapat bertemu langsung dengan penguin Humboldt nan lucu. Jakarta Aquarium mengajak anda&nbsp;</span><span class=\"s1\">bersenang-senang oleh pengalaman menyelam di tangki raksasa dan seatrekking dengan&nbsp;</span><span class=\"s1\">panduan profesional sementara anak-anak bisa menikmati aktivitas multimedia&nbsp;</span><span class=\"s1\">interaktif di zona anak. &nbsp;</span></p>\r\n<p class=\"p1\"><span class=\"s1\">Jakarta Aquarium menyajikan pertunjukan teater bawah laut yang unik terinspirasi oleh cerita rakyat Indonesia dan diarahkan oleh Peter Wilson. Pertunjukan teater ini adalah salah satu kegiatan yang wajib anda saksikan saat berkunjung.</span></p>\r\n<p class=\"p1\"><span class=\"s1\">Kunjungi dan bersiaplah untuk terpesona oleh Jakarta Aquarium yang akan segera hadir di lantai LG dan LGM di Neo Soho Jakarta.</span></p>\r\n<p class=\"p1\"><span class=\"s1\">&nbsp;</span></p>'),
+(103,'en','Test Promo 1','test-promo-1','Promo pertama di JAI'),
+(103,'id','Promo','test-promo','sdfasdfasdf\r\n'),
+(104,'en','Aquarium Map','aquarium-map','Jakarta Aquarium consists of two floors and twelve zones that show a variety of unique, lovable, and beautiful animals in its habitat. Explore every corner of Jakarta Aquarium to find new fun experience with your friends and family.'),
+(104,'id','Aquarium Map','aquarium-map-2','Jakarta Aquarium terdiri dari dua lantai dan dua belas zona yang menampilkan beraneka ragam satwa unik, lucu, dan indah dalam habitatnya. Jelajahi setiap sudut Jakarta Aquarium untuk menemukan pengalaman seru baru bersama teman dan keluarga Anda.');
 
 /*Table structure for table `post_has_categories` */
 
@@ -980,7 +1262,6 @@ CREATE TABLE `post_has_categories` (
 insert  into `post_has_categories`(`post_id`,`category_id`) values 
 (17,2),
 (18,2),
-(72,17),
 (73,17),
 (77,17),
 (78,17),
@@ -1009,19 +1290,18 @@ CREATE TABLE `post_has_medias` (
 /*Data for the table `post_has_medias` */
 
 insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values 
-(17,48,'featured'),
-(18,45,'featured'),
-(72,57,'featured'),
-(73,66,'featured'),
-(77,67,'featured'),
-(78,68,'featured'),
-(79,69,'featured'),
-(80,72,'featured'),
-(81,73,'featured'),
-(95,74,'featured'),
-(98,75,'featured'),
-(99,75,'featured'),
-(101,75,'featured');
+(73,106,'featured'),
+(77,108,'featured'),
+(78,105,'featured'),
+(79,104,'featured'),
+(80,107,'featured'),
+(81,103,'featured'),
+(82,110,'featured'),
+(83,109,'featured'),
+(84,112,'featured'),
+(85,111,'featured'),
+(98,113,'featured'),
+(102,102,'featured');
 
 /*Table structure for table `post_metas` */
 
@@ -1035,93 +1315,65 @@ CREATE TABLE `post_metas` (
   PRIMARY KEY (`id`),
   KEY `post_metas_post_id_foreign` (`post_id`),
   CONSTRAINT `post_metas_post_id_foreign` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=266 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=625 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `post_metas` */
 
 insert  into `post_metas`(`id`,`post_id`,`meta_key`,`meta_value`) values 
-(26,72,'meta_description-en','META (ENG)'),
-(27,72,'meta_description-id','Meta (ID)'),
-(64,86,'meta_description-en','All about JAI'),
-(65,86,'meta_description-id','Semua tentang JAI'),
-(66,86,'philosophy-en',''),
-(67,86,'philosophy-id',''),
-(68,86,'story-en','<p>Located in NEO Soho, a shopping center in West Jakarta, make Jakarta Aquarium accessible from all corners of the city.</p>\r\n<p>The combination of Indonesian biodiversity, the beauty of Indonesian heritage, and technology will become the main attraction for you and your family to escape from the midst of the capital\'s busy lifestyle.</p>'),
-(69,86,'story-id','<p>Terletak di Neo SOHO, salah satu pusat perbelanjaan di daerah Jakarta Barat, membuat Jakarta Aquarium sangat mudah diakses dari segala penjuru kota.</p>\r\n<p>Perpaduan keanekaragaman hayati Indonesia, keindahan budaya, dan teknologi merupakan daya tarik utama Jakarta Aquarium di tengah kesibukan ibu kota bagi Anda dan keluarga.</p>'),
-(78,90,'meta_description-en','Term & Condition of Jakarta Aquarium Indonesia'),
-(79,90,'meta_description-id','Syarat dan Ketentuan Jakarta Aquarium Indonesia'),
-(82,97,'openingHours-en','<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor crasher malarki requiem predantia incididunt ut labore et dolore magna aliqua. Ut eni ad minim veniam, quisiom nostrud at autumn irure dor in reprehenderit exercitation.</p>\r\n<ul class=\"uk-list\">\r\n<li>Weekday (Monday - Thursday) : 08.00 a.m. - 07.00 p.m.</li>\r\n<li>Weekend (Friday - Sunday) : 08.00 a.m. - 09.00 p.m.</li>\r\n</ul>'),
-(83,97,'openingHours-id','<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor crasher malarki requiem predantia incididunt ut labore et dolore magna aliqua. Ut eni ad minim veniam, quisiom nostrud at autumn irure dor in reprehenderit exercitation.</p>\r\n<ul class=\"uk-list\">\r\n<li>Weekday (Monday - Thursday) : 08.00 a.m. - 07.00 p.m.</li>\r\n<li>Weekend (Friday - Sunday) : 08.00 a.m. - 09.00 p.m.</li>\r\n</ul>'),
-(176,97,'parkingTitle-en','test'),
-(177,97,'parkingTitle-id',''),
-(178,97,'parkingDesc-en','test test'),
-(179,97,'parkingDesc-id',''),
-(180,97,'vipTitle-en','VIP'),
-(181,97,'vipTitle-id',''),
-(182,97,'vipDesc-en','asdfasdf'),
-(183,97,'vipDesc-id',''),
-(188,97,'bikeRackTitle-en','qeqwe'),
-(189,97,'bikeRackTitle-id',''),
-(190,97,'bikeRackDesc-en','qweqwe'),
-(191,97,'bikeRackDesc-id',''),
-(192,97,'shuttleBusTitle-en','ds'),
-(193,97,'shuttleBusTitle-id',''),
-(194,97,'shuttleBusDesc-en','sdsdf'),
-(195,97,'shuttleBusDesc-id',''),
-(196,97,'blueBirdTitle-en','xzcv'),
-(197,97,'blueBirdTitle-id',''),
-(198,97,'blueBirdDesc-en','sfsfs'),
-(199,97,'blueBirdDesc-id',''),
-(200,97,'publicBusTitle-en','yuyt'),
-(201,97,'publicBusTitle-id',''),
-(202,97,'publicBusDesc-en','ghhn'),
-(203,97,'publicBusDesc-id',''),
-(218,99,'whats_on','1'),
-(219,99,'featured','1'),
-(220,96,'openingHours-en','<p>Spend the whole day in Jakarta Aquarium with your family. Check our opening hours and do not miss a single attraction.</p>\r\n<ul class=\"uk-list\">\r\n<li>Weekday (Monday - Thursday) : 08.00 a.m. - 07.00 p.m.</li>\r\n<li>Weekend (Friday - Sunday) : 08.00 a.m. - 09.00 p.m.</li>\r\n</ul>'),
-(221,96,'openingHours-id','<p>Habiskan waktu seharian di Jakarta Aquarium bersama keluarga Anda. Cek waktu operasional kami dan jangan lewatkan satu atraksi pun.</p>\r\n<ul class=\"uk-list\">\r\n<li>Weekday (Monday - Thursday) : 08.00 a.m. - 07.00 p.m.</li>\r\n<li>Weekend (Friday - Sunday) : 08.00 a.m. - 09.00 p.m.</li>\r\n</ul>'),
-(222,91,'firstBox-en','<p class=\"uk-margin-remove\">Feel the sensation of riding a real submarine through this 5-D theater while exploring the deep ocean.</p>'),
-(223,91,'firstBox-id','<p class=\"uk-margin-remove\">Contains more than</p>\r\n<h2 class=\"uk-margin-remove font-intro amber-text text-darken-1\">14,820&nbsp;ANIMALS</h2>\r\n<p class=\"uk-margin-remove\">in seawater, freshwater and land</p>'),
-(224,91,'secondBox-en','<p class=\"uk-margin-remove\">Holds more than</p>\r\n<h2 class=\"uk-margin-remove font-intro amber-text text-darken-1\">120 PROGRAMS</h2>\r\n<p class=\"uk-margin-remove\">for attractions and edutainment</p>'),
-(225,91,'secondBox-id','<p class=\"uk-margin-remove\">Holds more than</p>\r\n<h2 class=\"uk-margin-remove font-intro amber-text text-darken-1\">120 PROGRAMS</h2>\r\n<p class=\"uk-margin-remove\">for attractions and edutainment</p>'),
-(226,91,'thirdBox-en','<p class=\"uk-margin-remove\">Located in the large</p>\r\n<h2 class=\"uk-margin-remove font-intro amber-text text-darken-1\">LEISURE DISTRICTS</h2>\r\n<p class=\"uk-margin-remove\">include 3 malls, hotels, and parks</p>'),
-(227,91,'thirdBox-id','<p class=\"uk-margin-remove\">Located in the large</p>\r\n<h2 class=\"uk-margin-remove font-intro amber-text text-darken-1\">LEISURE DISTRICTS</h2>\r\n<p class=\"uk-margin-remove\">include 3 malls, hotels, and parks</p>'),
-(228,91,'fourthBox-en','<p class=\"uk-margin-remove\">Contains more than</p>\r\n<h2 class=\"uk-margin-remove font-intro amber-text text-darken-1\">14,820&nbsp;ANIMALS</h2>\r\n<p class=\"uk-margin-remove\">in seawater, freshwater and land</p>'),
-(229,91,'fourthBox-id','<p class=\"uk-margin-remove\">Contains more than</p>\r\n<h2 class=\"uk-margin-remove font-intro amber-text text-darken-1\">14,820&nbsp;ANIMALS</h2>\r\n<p class=\"uk-margin-remove\">in seawater, freshwater and land</p>'),
-(232,97,'afterMap-en','<p>teadfasdfadf</p>'),
-(233,97,'afterMap-id','<p>teadfasdfadf</p>'),
-(234,97,'lockerTitle-en','Locker'),
-(235,97,'lockerTitle-id',''),
-(236,97,'lockerDesc-en','Jakarta Aquarium provides locker facility for visitor convenient in lobby area. Visitor can use the locker with deposit.'),
-(237,97,'lockerDesc-id',''),
-(238,97,'restroomTitle-en','Restroom and Shower Room'),
-(239,97,'restroomTitle-id',''),
-(240,97,'restroomDesc-en','Restroom and shower room is located on LG level in Rivers of Indonesia zone. Shower room with ameneties and towel is ready for you to freshen up after diving or seatrekking.'),
-(241,97,'restroomDesc-id',''),
-(242,97,'wheelchairTitle-en','Wheelchair Access'),
-(243,97,'wheelchairTitle-id',''),
-(244,97,'wheelchairDesc-en','Jakarta Aquarium is specially designed to ensure visitor convenient. One dedicated access for visitor with wheelchair is available.'),
-(245,97,'wheelchairDesc-id',''),
-(246,97,'babyTitle-en','Baby Changing Room'),
-(247,97,'babyTitle-id',''),
-(248,97,'babyDesc-en','To comply your baby\'s comfort, Jakarta Aquarium provides nursery room that is available on LG level, in Rivers of Indonesia zone'),
-(249,97,'babyDesc-id',''),
-(250,97,'wifiTitle-en','Wifi'),
-(251,97,'wifiTitle-id',''),
-(252,97,'wifiDesc-en','Access our wifi to maximize your visit. Download Jakarta Aquarium application and play the Treasure Hunt games that can be activated with the Wifi.'),
-(253,97,'wifiDesc-id',''),
-(254,97,'cafeTitle-en','Cafetaria'),
-(255,97,'cafeTitle-id',''),
-(256,97,'cafeDesc-en','Snacks and beverages are available to accompany your visit while look after your kids. Cafetaria is located on LG floor in Rivers of Indonesia zone.'),
-(257,97,'cafeDesc-id',''),
-(258,97,'souvenirTitle-en','Souvenir'),
-(259,97,'souvenirTitle-id',''),
-(260,97,'souvenirDesc-en','Your journey is not complete without the cool stuff from Ocean Wonders. Located on LG floor, right after the aquarium exit.'),
-(261,97,'souvenirDesc-id',''),
-(262,97,'restaurantTitle-en','Restaurant'),
-(263,97,'restaurantTitle-id',''),
-(264,97,'restaurantDesc-en','Restaurant detail'),
-(265,97,'restaurantDesc-id','');
+(72,90,'meta_description-en','Term & Condition of Jakarta Aquarium Indonesia'),
+(73,90,'meta_description-id','Syarat dan Ketentuan Jakarta Aquarium Indonesia'),
+(214,96,'openingHours-en','<p>Spend the whole day in Jakarta Aquarium with your family. Check our opening hours and do not miss a single attraction.</p>\r\n<ul class=\"uk-list\">\r\n<li>Weekday (Monday - Thursday) : 10.00 a.m. - 08.00 p.m.</li>\r\n<li>Weekend (Friday - Sunday) : 10.00 a.m. - 08.00 p.m.</li>\r\n</ul>\r\n<p>Ticket counter will be closed at 19.30</p>'),
+(215,96,'openingHours-id','<p>Habiskan waktu seharian di Jakarta Aquarium bersama keluarga Anda. Cek waktu operasional kami dan jangan lewatkan satu atraksi pun.</p>\r\n<ul class=\"uk-list\">\r\n<li>Hari Kerja (Senin - Kamis) : 10.00 - 20.00.</li>\r\n<li>Hari Libur (Jum\'at - Minggu) : 10.00 - 20.00</li>\r\n</ul>\r\n<p>Loket tiket akan tutup pada pukul 19.30</p>'),
+(285,91,'firstBox-en','<h2 class=\"font-intro amber-text text-darken-1 uk-margin-remove\">Sea Explorer</h2>\r\n<p class=\"uk-margin-remove\">Feel the sensation of riding a real submarine through this 5-D theater while exploring the deep ocean.</p>'),
+(286,91,'firstBox-id','<h2 class=\"uk-margin-remove font-intro amber-text text-darken-1\">Sea Explorer</h2>\r\n<p class=\"uk-margin-remove\">Rasakan sensasi seakan berada dalam sebuah kapal selam sungguhan sembari menjelajahi lautan dalam dengan teater 5-D.</p>'),
+(287,91,'secondBox-en','<h2 class=\"uk-margin-remove font-intro amber-text text-darken-1\">Pearl of the South Sea</h2>\r\n<p class=\"uk-margin-remove\">Be ready to be dazzled by this magical performance that combine stage act, illusion trick and underwater dance.</p>'),
+(288,91,'secondBox-id','<h2 class=\"uk-margin-remove font-intro amber-text text-darken-1\">Pearl of the South Sea</h2>\r\n<p class=\"uk-margin-remove\">Bersiaplah untuk terpesona oleh pertunjukan yang menakjubkan, gabungan aksi panggung, trik ilusi dan tarian di bawah air.</p>'),
+(289,91,'thirdBox-en','<p class=\"uk-margin-remove\">Located in the large</p>\r\n<h2 class=\"uk-margin-remove font-intro amber-text text-darken-1\">LEISURE DISTRICTS</h2>\r\n<p class=\"uk-margin-remove\">include 3 malls, hotels, and parks</p>'),
+(290,91,'thirdBox-id','<p class=\"uk-margin-remove\">Located in the large</p>\r\n<h2 class=\"uk-margin-remove font-intro amber-text text-darken-1\">LEISURE DISTRICTS</h2>\r\n<p class=\"uk-margin-remove\">include 3 malls, hotels, and parks</p>'),
+(291,91,'fourthBox-en','<p class=\"uk-margin-remove\">Contains more than</p>\r\n<h2 class=\"uk-margin-remove font-intro amber-text text-darken-1\">14,820&nbsp;ANIMALS</h2>\r\n<p class=\"uk-margin-remove\">in seawater, freshwater and land</p>'),
+(292,91,'fourthBox-id','<p class=\"uk-margin-remove\">Contains more than</p>\r\n<h2 class=\"uk-margin-remove font-intro amber-text text-darken-1\">14,820&nbsp;ANIMALS</h2>\r\n<p class=\"uk-margin-remove\">in seawater, freshwater and land</p>'),
+(447,86,'meta_description-en','All about JAI'),
+(448,86,'meta_description-id','Semua tentang JAI'),
+(449,86,'philosophy-en',''),
+(450,86,'philosophy-id',''),
+(451,86,'story-en','<p>Located in NEO Soho, a shopping center in West Jakarta, make Jakarta Aquarium accessible from all corners of the city.</p>\r\n<p>The combination of Indonesian biodiversity, the beauty of Indonesian heritage, and technology will become the main attraction for you and your family to escape from the midst of the capital\'s busy lifestyle.</p>'),
+(452,86,'story-id','<p>Terletak di Neo SOHO, salah satu pusat perbelanjaan di daerah Jakarta Barat, membuat Jakarta Aquarium sangat mudah diakses dari segala penjuru kota.</p>\r\n<p>Perpaduan keanekaragaman hayati Indonesia, keindahan budaya, dan teknologi merupakan daya tarik utama Jakarta Aquarium di tengah kesibukan ibu kota bagi Anda dan keluarga.</p>'),
+(589,97,'afterMap-en',''),
+(590,97,'afterMap-id',''),
+(591,97,'lockerTitle-en','Locker'),
+(592,97,'lockerTitle-id','Loker'),
+(593,97,'lockerDesc-en','Locker facility for visitor convenient in lobby area. Visitor can use the locker with deposit.'),
+(594,97,'lockerDesc-id','Fasilitas loker yang berada di area lobi, anda dapat menggunakan loker dengan sejumlah deposit.'),
+(595,97,'restroomTitle-en','Restroom and Shower Room'),
+(596,97,'restroomTitle-id','Toilet dan Kamar Mandi'),
+(597,97,'restroomDesc-en','Restroom and shower room is located on LG level in Rivers of Indonesia zone.'),
+(598,97,'restroomDesc-id','Toilet dan kamar mandi berada di lantai LG, zona Rivers of Indonesia.'),
+(599,97,'wheelchairTitle-en','Wheelchair access'),
+(600,97,'wheelchairTitle-id','Akses Masuk untuk Kursi Roda'),
+(601,97,'wheelchairDesc-en','One dedicated access for visitor with wheelchair is available.'),
+(602,97,'wheelchairDesc-id','Akses masuk khusus disiapkan untuk kenyamanan pengunjung yang menggunakan kursi roda.'),
+(603,97,'babyTitle-en','Baby Changing Room'),
+(604,97,'babyTitle-id','Ruang Ganti Bayi'),
+(605,97,'babyDesc-en','Jakarta Aquarium provides nursery room that is available on LG level, in Rivers of Indonesia zone'),
+(606,97,'babyDesc-id','Fasilitas ruang ganti bayi yang terletak di lantai LG, di zona Rivers of Indonesia.'),
+(607,97,'wifiTitle-en','Wifi'),
+(608,97,'wifiTitle-id','WiFi'),
+(609,97,'wifiDesc-en','Access our wifi to maximize your visit. '),
+(610,97,'wifiDesc-id','Gunakan akses Wifi publik Jakarta Aquarium untuk memaksimalkan kunjungan anda.'),
+(611,97,'cafeTitle-en','Cafetaria'),
+(612,97,'cafeTitle-id','Cafetaria'),
+(613,97,'cafeDesc-en','Cafetaria is located on LG floor in Rivers of Indonesia zone.'),
+(614,97,'cafeDesc-id','Beragam makanan ringan dan minuman tersedia untuk menemani anda.'),
+(615,97,'souvenirTitle-en','Souvenir'),
+(616,97,'souvenirTitle-id','Souvenir'),
+(617,97,'souvenirDesc-en','Get Jakarta Aquarium\'s souvenirs and other cool stuff from Ocean Wonders. Located on LG floor.'),
+(618,97,'souvenirDesc-id','Dapatkan souvenir yang keren dan unik di gerai Ocean Wonders di lantai LG.'),
+(619,97,'restaurantTitle-en','Pingoo'),
+(620,97,'restaurantTitle-id','Pingoo'),
+(621,97,'restaurantDesc-en','Pingoo, an American seafood and grill restaurant. Located on LG floor, next to Ocean Wonders.'),
+(622,97,'restaurantDesc-id','Restoran dengan konsep American seafood and grill yang terletak di lantai LG.'),
+(623,102,'whats_on','1'),
+(624,102,'featured','1');
 
 /*Table structure for table `post_types` */
 
@@ -1139,13 +1391,13 @@ CREATE TABLE `post_types` (
 /*Data for the table `post_types` */
 
 insert  into `post_types`(`id`,`name`,`slug`,`created_at`,`updated_at`) values 
-(1,'Post','post','2016-10-13 10:32:05','2016-10-13 10:32:05'),
-(2,'News','news','2016-10-26 10:44:06','2016-10-26 10:44:06'),
-(3,'Attraction and Experience','attraction-and-experience','2016-10-13 12:13:53','2016-10-13 12:13:53'),
-(4,'Media Room','media-room','2016-11-05 06:22:54','2016-11-05 06:22:57'),
-(5,'Career','career','2016-11-14 05:53:44','2016-11-14 05:53:44'),
-(6,'Page','page','2016-11-21 16:00:00','2016-11-21 16:00:00'),
-(7,'Promo','promo','2017-01-11 14:15:10','2017-01-11 14:15:13');
+(1,'Post','post','2016-10-13 03:32:05','2016-10-13 03:32:05'),
+(2,'News','news','2016-10-26 03:44:06','2016-10-26 03:44:06'),
+(3,'Attraction and Experience','attraction-and-experience','2016-10-13 05:13:53','2016-10-13 05:13:53'),
+(4,'Media Room','media-room','2016-11-04 23:22:54','2016-11-04 23:22:57'),
+(5,'Career','career','2016-11-13 22:53:44','2016-11-13 22:53:44'),
+(6,'Page','page','2016-11-21 09:00:00','2016-11-21 09:00:00'),
+(7,'Promo','promo','2016-01-11 07:41:00','2016-01-11 07:41:00');
 
 /*Table structure for table `posts` */
 
@@ -1160,39 +1412,39 @@ CREATE TABLE `posts` (
   `publish_date` timestamp NULL DEFAULT NULL,
   `created_by` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=105 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `posts` */
 
 insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values 
-(17,1,'2016-10-22 11:20:17','2016-10-27 10:34:17','PUBLISH','2016-10-22 11:19:00',1),
-(18,1,'2016-10-24 03:40:55','2016-10-24 10:15:16','PUBLISH','2016-10-24 03:35:00',1),
-(72,3,'2016-11-10 10:26:45','2016-11-16 08:40:34','PUBLISH','2016-11-10 10:04:00',3),
-(73,3,'2016-11-11 10:33:49','2016-11-16 09:07:10','PUBLISH','2016-11-11 10:33:00',3),
-(77,3,'2016-11-16 09:13:23','2016-11-16 09:13:23','PUBLISH','2016-11-16 09:08:00',3),
-(78,3,'2016-11-16 09:17:01','2016-11-16 09:17:01','PUBLISH','2016-11-16 09:13:00',3),
-(79,3,'2016-11-16 09:25:47','2016-11-16 09:25:47','PUBLISH','2016-11-16 09:21:00',3),
-(80,3,'2016-11-16 09:36:09','2016-11-16 09:40:32','PUBLISH','2016-11-16 09:31:00',3),
-(81,3,'2016-11-16 09:44:08','2016-11-16 09:44:08','PUBLISH','2016-11-16 09:41:00',3),
-(82,3,'2016-11-16 09:47:33','2016-12-08 05:52:30','PUBLISH','2016-11-16 09:44:00',3),
-(83,3,'2016-11-16 09:49:46','2016-12-08 05:57:33','PUBLISH','2016-11-16 09:48:00',3),
-(84,3,'2016-11-16 09:50:32','2016-12-08 06:03:18','PUBLISH','2016-11-16 09:49:00',3),
-(85,3,'2016-11-16 09:52:24','2016-12-08 06:04:57','PUBLISH','2016-11-16 09:51:00',3),
-(86,6,'2016-11-22 07:41:01','2016-12-05 07:31:25','PUBLISH','2016-11-22 07:40:00',1),
-(87,6,'2016-11-22 07:41:21','2016-11-22 07:41:21','PUBLISH','2016-11-22 07:41:00',1),
-(88,6,'2016-11-22 07:41:36','2016-12-08 05:42:19','PUBLISH','2016-11-22 07:41:00',1),
-(89,6,'2016-11-22 07:42:01','2016-11-22 07:42:01','PUBLISH','2016-11-22 07:41:00',1),
-(90,6,'2016-11-22 07:42:42','2016-12-21 11:09:30','PUBLISH','2016-11-22 07:42:00',1),
-(91,6,'2016-12-02 01:13:54','2017-01-09 10:22:00','PUBLISH','2016-12-02 01:13:00',1),
-(92,4,'2016-12-05 07:41:21','2016-12-05 08:05:51','PUBLISH','2016-12-05 07:38:00',3),
-(93,4,'2016-12-05 07:43:26','2016-12-05 08:18:35','PUBLISH','2016-12-05 07:43:00',3),
-(94,4,'2016-12-05 07:45:54','2016-12-05 08:19:48','PUBLISH','2016-12-05 07:44:00',3),
-(95,4,'2016-12-05 08:10:30','2016-12-05 08:12:51','PUBLISH','2016-12-05 08:08:00',3),
-(96,6,'2016-12-22 19:18:42','2017-01-08 09:50:45','PUBLISH','2016-12-22 19:18:00',1),
-(97,6,'2016-12-22 19:22:03','2017-01-11 13:29:25','PUBLISH','2016-12-22 19:21:00',1),
-(98,6,'2017-01-05 16:24:07','2017-01-05 16:33:57','PUBLISH','2017-01-05 16:23:00',1),
-(99,2,'2017-01-06 16:19:50','2017-01-06 16:42:21','PUBLISH','2017-01-06 16:19:00',1),
-(101,7,'2017-01-11 14:09:58','2017-01-11 14:32:16','PUBLISH','2017-01-11 14:09:00',1);
+(17,1,'2016-10-22 04:20:17','2016-10-27 03:34:17','PUBLISH','2016-10-22 04:19:00',1),
+(18,1,'2016-10-23 20:40:55','2016-10-24 03:15:16','PUBLISH','2016-10-23 20:35:00',1),
+(73,3,'2016-11-11 03:33:49','2017-01-12 23:32:49','PUBLISH','2016-11-11 03:33:00',3),
+(77,3,'2016-11-16 02:13:23','2017-01-12 23:33:02','PUBLISH','2016-11-16 02:08:00',3),
+(78,3,'2016-11-16 02:17:01','2017-01-12 23:33:16','PUBLISH','2016-11-16 02:13:00',3),
+(79,3,'2016-11-16 02:25:47','2017-01-12 23:33:28','PUBLISH','2016-11-16 02:21:00',3),
+(80,3,'2016-11-16 02:36:09','2017-01-12 23:33:42','PUBLISH','2016-11-16 02:31:00',3),
+(81,3,'2016-11-16 02:44:08','2017-01-12 23:33:55','PUBLISH','2016-11-16 02:41:00',3),
+(82,3,'2016-11-16 02:47:33','2017-01-12 23:35:15','PUBLISH','2016-11-16 02:44:00',3),
+(83,3,'2016-11-16 02:49:46','2017-01-12 23:35:32','PUBLISH','2016-11-16 02:48:00',3),
+(84,3,'2016-11-16 02:50:32','2017-01-12 23:37:10','PUBLISH','2016-11-16 02:49:00',3),
+(85,3,'2016-11-16 02:52:24','2017-01-12 23:37:22','PUBLISH','2016-11-16 02:51:00',3),
+(86,6,'2016-11-22 00:41:01','2017-01-12 03:53:13','PUBLISH','2016-11-22 00:40:00',1),
+(87,6,'2016-11-22 00:41:21','2016-11-22 00:41:21','PUBLISH','2016-11-22 00:41:00',1),
+(88,6,'2016-11-22 00:41:36','2016-12-07 22:42:19','PUBLISH','2016-11-22 00:41:00',1),
+(89,6,'2016-11-22 00:42:01','2016-11-22 00:42:01','PUBLISH','2016-11-22 00:41:00',1),
+(90,6,'2016-11-22 00:42:42','2016-12-21 04:14:20','PUBLISH','2016-11-22 00:42:00',1),
+(91,6,'2016-12-01 18:13:54','2017-01-10 05:28:35','PUBLISH','2016-12-01 18:13:00',1),
+(92,4,'2016-12-05 00:41:21','2016-12-05 01:05:51','PUBLISH','2016-12-05 00:38:00',3),
+(93,4,'2016-12-05 00:43:26','2016-12-05 01:18:35','PUBLISH','2016-12-05 00:43:00',3),
+(94,4,'2016-12-05 00:45:54','2017-01-12 13:21:36','PUBLISH','2017-01-04 00:40:00',3),
+(95,4,'2016-12-05 01:10:30','2016-12-05 01:12:51','PUBLISH','2016-12-05 01:08:00',3),
+(96,6,'2016-12-22 12:59:11','2017-01-05 04:12:43','PUBLISH','2016-12-22 12:59:00',1),
+(97,6,'2016-12-22 13:39:53','2017-01-12 05:44:36','PUBLISH','2016-12-22 13:39:00',1),
+(98,6,'2017-01-05 10:01:43','2017-01-13 00:05:40','PUBLISH','2017-01-05 10:01:00',1),
+(102,2,'2017-01-06 09:48:11','2017-01-12 23:31:53','PUBLISH','2017-01-06 09:41:00',3),
+(103,7,'2017-01-11 07:46:19','2017-01-11 08:00:16','PUBLISH','2017-01-11 07:45:00',1),
+(104,6,'2017-01-17 08:20:27','2017-01-17 08:20:27','PUBLISH','2017-01-17 08:19:00',1);
 
 /*Table structure for table `role_has_permissions` */
 
@@ -1296,7 +1548,6 @@ insert  into `role_has_permissions`(`permission_id`,`role_id`) values
 (9,4),
 (10,4),
 (25,4),
-(26,4),
 (27,4),
 (28,4),
 (29,4),
@@ -1364,8 +1615,8 @@ CREATE TABLE `roles` (
 
 insert  into `roles`(`id`,`name`,`created_at`,`updated_at`) values 
 (1,'Administrator',NULL,NULL),
-(3,'Author','2016-10-12 12:11:37','2016-10-12 12:11:37'),
-(4,'Semi Admin','2016-10-13 09:34:12','2016-10-13 09:34:12');
+(3,'Author','2016-10-12 05:11:37','2016-10-12 05:11:37'),
+(4,'Semi Admin','2016-10-13 02:34:12','2016-10-13 02:34:12');
 
 /*Table structure for table `sessions` */
 
@@ -1384,8 +1635,9 @@ CREATE TABLE `sessions` (
 /*Data for the table `sessions` */
 
 insert  into `sessions`(`id`,`user_id`,`ip_address`,`user_agent`,`payload`,`last_activity`) values 
-('NNqoWdUr6yqT7LKoQbTkiHMgv5HeKqtGhowaIDRp',1,'192.168.10.1','Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36','YTo2OntzOjY6Il90b2tlbiI7czo0MDoic1psN3dyN0tQTFBLYTM2Um9mMzR6ek0wQzFUQW55RW9ibG1CbDN0aiI7czo0OiJsYW5nIjtzOjI6ImVuIjtzOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO3M6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjM0OiJodHRwOi8vcGF5bWVudC5qYWkvZW4vdGlja2V0LWhvdXJzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfc2YyX21ldGEiO2E6Mzp7czoxOiJ1IjtpOjE0ODQyMjAyMTY7czoxOiJjIjtpOjE0ODQyMTM1OTM7czoxOiJsIjtzOjE6IjAiO319',1484220217),
-('zzLBphg016HrAm1rj7X3b4fgKuvBqaVwNUVZZQqo',1,'192.168.10.1','Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36','YTo2OntzOjY6Il90b2tlbiI7czo0MDoibFdvZ2xReUtET0FtQ1IyYVlkUm1YeE5NWDUzZ1JKbXNFcmZ5NlFqVyI7czo0OiJsYW5nIjtzOjI6ImlkIjtzOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO3M6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjI3OiJodHRwOi8vamFpLmRldi9pZC9zaG93LXRpbWUiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjk6Il9zZjJfbWV0YSI7YTozOntzOjE6InUiO2k6MTQ4NDIyMjIwNjtzOjE6ImMiO2k6MTQ4NDIxMzIwOTtzOjE6ImwiO3M6MToiMCI7fX0=',1484222206);
+('EmJsl79PhA8GATAzDSLqQ20Nr18tQHYVhjIK7j51',1,'192.168.10.1','Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36','YTo3OntzOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjY6Il90b2tlbiI7czo0MDoiYmhxOGE4dmg0Z0g1Wkt0R01vNGw2WHE0eHVKanhuUFRPRGEyTzFLSiI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjQzOiJodHRwOi8vamFpLmRldi9qYWktYmFja2VuZC9zaG93dGltZS8xNC9lZGl0Ijt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjQ6ImxhbmciO3M6MjoiZW4iO3M6OToiX3NmMl9tZXRhIjthOjM6e3M6MToidSI7aToxNDg0NjM4MTQwO3M6MToiYyI7aToxNDg0NjE1OTU3O3M6MToibCI7czoxOiIwIjt9fQ==',1484638140),
+('fREBlz0goWDRsToCYbBXweNI2XGPJbepl9tdnjVd',NULL,'192.168.10.1','Mozilla/5.0 (Windows NT 6.3; WOW64; rv:50.0) Gecko/20100101 Firefox/50.0','YTo1OntzOjY6Il90b2tlbiI7czo0MDoiQmJIRW9NYzQwUnN2N1lVR2U0N2RBWXRiaHQwRzMxU3BnekthV0x6NSI7czo0OiJsYW5nIjtzOjI6ImVuIjtzOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czoyNzoiaHR0cDovL2phaS5kZXYvZW4vc2hvdy10aW1lIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfc2YyX21ldGEiO2E6Mzp7czoxOiJ1IjtpOjE0ODQ2Mzg4NTY7czoxOiJjIjtpOjE0ODQ2MzA4MDE7czoxOiJsIjtzOjE6IjAiO319',1484638856),
+('NS08gaI2oLpH0wzWdgspqa203wRNSm19CBXW1FSj',NULL,'192.168.10.1','Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36','YTo1OntzOjY6Il90b2tlbiI7czo0MDoiQ1JmUXFTZGFReklQVGVMRzZObWF2MUdqSFV1RGxMUThPM1Y3VDIxMiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzQ6Imh0dHA6Ly9wYXltZW50LmphaS9lbi90aWNrZXQtaG91cnMiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjQ6ImxhbmciO3M6MjoiZW4iO3M6OToiX3NmMl9tZXRhIjthOjM6e3M6MToidSI7aToxNDg0NjMxMjA2O3M6MToiYyI7aToxNDg0NjIzNjQ0O3M6MToibCI7czoxOiIwIjt9fQ==',1484631207);
 
 /*Table structure for table `settings` */
 
@@ -1393,12 +1645,20 @@ DROP TABLE IF EXISTS `settings`;
 
 CREATE TABLE `settings` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `key` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `value` text COLLATE utf8_unicode_ci,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `key` varchar(255) NOT NULL,
+  `value` text,
+  PRIMARY KEY (`id`,`key`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 /*Data for the table `settings` */
+
+insert  into `settings`(`id`,`key`,`value`) values 
+(6,'facebook_link','https://www.facebook.com/JakartaAquarium/'),
+(7,'twitter_link','https://www.twitter.com/JakartaAquarium/'),
+(8,'tripadvisor_link','https://www.tripadvisor.com/JakartaAquarium/'),
+(9,'homepage_meta','asdfasdfasdf'),
+(10,'instagram_link','https://www.instagram.com/jakartaaquarium/'),
+(11,'googleplus_link','https://plus.google.com/115041976414559325070');
 
 /*Table structure for table `show_details` */
 
@@ -1414,17 +1674,17 @@ CREATE TABLE `show_details` (
   PRIMARY KEY (`id`),
   KEY `show_details_show_id_foreign` (`show_id`),
   CONSTRAINT `show_details_show_id_foreign` FOREIGN KEY (`show_id`) REFERENCES `shows` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `show_details` */
 
 insert  into `show_details`(`id`,`show_id`,`title`,`slug`,`lang`,`content`) values 
-(23,8,'Coral Reef Story Time (English)','coral-reef-story-time-english','en','At vero eos et accusamus et iusto odio madeline dignis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo mallera consequat aller proident.<br />At vero eos et accusamus et iusto odio madeline dignis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo mallera consequat aller proident.<br />At vero eos et accusamus et iusto odio madeline dignis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo mallera consequat aller proident.'),
-(24,8,'Coral Reef Story Time (ID)','coral-reef-story-time-id','id','At vero eos et accusamus et iusto odio madeline dignis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo mallera consequat aller proident.<br />At vero eos et accusamus et iusto odio madeline dignis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo mallera consequat aller proident.<br />At vero eos et accusamus et iusto odio madeline dignis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo mallera consequat aller proident.'),
-(27,10,'Particular Show','particular-show','en','At vero eos et accusamus et iusto odio madeline dignis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo mallera consequat aller proident.'),
-(28,10,'Pertunjukan Musiman','pertunjukan-musiman','id','At vero eos et accusamus et iusto odio madeline dignis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo mallera consequat aller proident.'),
-(31,9,'Limited Show','limited-show','en','At vero eos et accusamus et iusto odio madeline dignis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo mallera consequat aller proident.'),
-(32,9,'Pertunjukan Terbatas','pertunjukan-terbatas','id','At vero eos et accusamus et iusto odio madeline dignis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo mallera consequat aller proident.');
+(37,12,'Shark Feeding Frenzy','shark-feeding-frenzy','en','<span data-sheets-value=\"{\" data-sheets-userformat=\"{\">Feel the sensation of being close to nature by feeding the Black Tip Reef Shark in Southern Sea Gallery zone from LGM floor. Don\'t worry, they usually don\'t bite</span>'),
+(38,12,'Shark Feeding Frenzy','shark-feeding-frenzy-2','id','<span data-sheets-value=\"{&quot;1&quot;:2,&quot;2&quot;:&quot;Dekatkan diri Anda dengan alam dengan memberi makan Hiu Black Tip di zona Southern Sea Gallery di lantai LGM. Jangan takut, mereka biasanya tidak gigit :)&quot;}\" data-sheets-userformat=\"{&quot;2&quot;:4994,&quot;4&quot;:{&quot;1&quot;:2,&quot;2&quot;:16573901},&quot;10&quot;:1,&quot;11&quot;:4,&quot;12&quot;:0,&quot;15&quot;:&quot;Calibri&quot;}\">Dekatkan diri Anda dengan alam dengan memberi makan Hiu Black Tip di zona Southern Sea Gallery dari lantai LGM. Jangan takut, mereka biasanya tidak gigit.</span>'),
+(45,13,'Penguin Feeding','penguin-feeding','en','<span data-sheets-value=\"{\" data-sheets-userformat=\"{\">Get the chance to feed the Humboldt Penguins that origin from the coast of South America only in Pingoo restaurant on LG floor of Neo SOHO.</span>'),
+(46,13,'Penguin Feeding','penguin-feeding-2','id','<span data-sheets-value=\"{\" data-sheets-userformat=\"{\">Dapatkan pengalaman memberi makan Penguin Humboldt yang berasal dari pesisir pantai Amerika Selatan hanya di restoran Pingoo lantai LG Neo SOHO.</span>'),
+(65,14,'asdfasdf','asdfasdf','en','<p>asdfadsfa</p>'),
+(66,14,'asdfasdf','asdfasdf-2','id','<p>asdfadsf</p>');
 
 /*Table structure for table `show_has_medias` */
 
@@ -1444,9 +1704,6 @@ CREATE TABLE `show_has_medias` (
 
 /*Data for the table `show_has_medias` */
 
-insert  into `show_has_medias`(`id`,`show_id`,`media_id`,`media_type`) values 
-(4,8,52,'featured');
-
 /*Table structure for table `show_metas` */
 
 DROP TABLE IF EXISTS `show_metas`;
@@ -1462,10 +1719,6 @@ CREATE TABLE `show_metas` (
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `show_metas` */
-
-insert  into `show_metas`(`id`,`show_id`,`meta_key`,`meta_value`) values 
-(9,8,'meta_description-en','Show Meta (EN)'),
-(10,8,'meta_description-id','Show Meta (ID)');
 
 /*Table structure for table `show_types` */
 
@@ -1494,15 +1747,16 @@ CREATE TABLE `shows` (
   `end_date` date DEFAULT NULL,
   `start_time` time DEFAULT NULL,
   `end_time` time DEFAULT NULL,
+  `particular_showtime` text COLLATE utf8_unicode_ci,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `shows` */
 
-insert  into `shows`(`id`,`show_type`,`created_by`,`created_at`,`updated_at`,`day`,`start_date`,`end_date`,`start_time`,`end_time`) values 
-(8,1,3,'2016-11-10 10:31:53','2016-11-10 10:41:49',5,'1970-01-01','1970-01-01','14:00:00','00:00:00'),
-(9,3,3,'2016-11-11 10:11:05','2016-11-11 10:31:51',1,'2016-11-09','2016-11-15','13:00:00','00:00:00'),
-(10,2,3,'2016-11-11 10:12:32','2016-11-11 10:12:32',5,'1970-01-01','1970-01-01','11:00:00','00:00:00');
+insert  into `shows`(`id`,`show_type`,`created_by`,`created_at`,`updated_at`,`day`,`start_date`,`end_date`,`start_time`,`end_time`,`particular_showtime`) values 
+(12,1,3,'2017-01-09 06:21:15','2017-01-09 06:22:48',1,'1970-01-01','1970-01-01','10:00:00','00:00:00',NULL),
+(13,1,1,'2017-01-09 09:14:50','2017-01-17 11:56:10',0,'1970-01-01','1970-01-01','10:00:00','00:00:00',NULL),
+(14,2,1,'2017-01-17 11:52:18','2017-01-17 14:15:42',0,'1970-01-01','1970-01-01','10:00:00','00:00:00','<h5 class=\"grey-text uk-margin-remove\">Monday - Friday</h5>\r\n03:00 PM\r\n<h5 class=\"grey-text uk-margin-remove\">Saturday - Sunday</h5>\r\n01:00 PM<br />04:00 PM<br />07:00 PM');
 
 /*Table structure for table `slider_items` */
 
@@ -1517,17 +1771,21 @@ CREATE TABLE `slider_items` (
   `file_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `order` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `slider_items` */
 
 insert  into `slider_items`(`id`,`slider_id`,`lang`,`content`,`link`,`file_name`,`order`) values 
-(5,6,'en','HERE YOU WILL MEET FACE-TO-FACE WITH THE TAME PREDATORS','#','bg-section-sight.png',0),
-(6,6,'id','DISINI KALIAN AKAN BERHADAPANG LANGSUNG DENGAN HIU PREDATOR','#','head-sample-03.jpg',0),
-(9,6,'en','EXPLORE A HUNDRED OF BEAUTIFUL JELLIES IN A DARK TANK','#','head-sample-01.jpg',1),
-(10,6,'id','DISINI KALIAN AKAN BERTEMU DENGAN FINDING DORI','#','head-sample-01.jpg',1),
+(5,6,'en','WELCOME TO JAKARTA AQUARIUM','#','homeslide_dori.jpg',0),
+(6,6,'id','SELAMAT DATANG DI JAKARTA AQUARIUM','#','homeslide_dori.jpg',0),
+(9,6,'en','A CUTTING EDGE INDOOR BOUTIQUE AQUARIUM','#','homeslide_fishes.jpg',1),
+(10,6,'id','SEBUAH KONSEP TERBARU AQUARIUM KONTEMPORER','#','homeslide_fishes.jpg',1),
 (11,7,'en','Be ready to be dazzled by this magical performance that combine stage act, illusion trick and underwater dance.','javascript:;','showtime-header.jpg',0),
-(12,7,'id','Bersiaplah untuk terpesona oleh pertunjukan yang menakjubkan, gabungan aksi panggung, trik ilusi dan tarian di bawah air.','javascript:;','showtime-header.jpg',0);
+(12,7,'id','Bersiaplah untuk terpesona oleh pertunjukan yang menakjubkan, gabungan aksi panggung, trik ilusi dan tarian di bawah air.','javascript:;','showtime-header.jpg',0),
+(13,6,'en','A JOURNEY INTO THE DEEP','','homeslide_shark.jpg',2),
+(14,6,'id','SEBUAH PETUALANGAN PEMANDANGAN DASAR LAUT ','','homeslide_shark.jpg',2),
+(15,6,'en','','','homeslide_otter.jpg',3),
+(16,6,'id','','','homeslide_otter.jpg',3);
 
 /*Table structure for table `sliders` */
 
@@ -1546,8 +1804,8 @@ CREATE TABLE `sliders` (
 /*Data for the table `sliders` */
 
 insert  into `sliders`(`id`,`title`,`user_id`,`publish_date`,`created_at`,`updated_at`) values 
-(6,'Homeslider',3,'2016-10-26 19:05:00','2016-10-25 11:08:43','2016-10-25 12:07:46'),
-(7,'PEARL OF THE SOUTH SEA',1,'2017-01-05 16:37:00','2017-01-05 16:38:27','2017-01-05 16:38:27');
+(6,'Homeslider',3,'2016-10-26 19:05:00','2016-10-25 04:08:43','2017-01-12 23:31:04'),
+(7,'PEARL OF THE SOUTH SEA',1,'2017-01-05 17:02:00','2017-01-05 10:03:49','2017-01-13 00:06:26');
 
 /*Table structure for table `tags` */
 
@@ -1618,8 +1876,8 @@ CREATE TABLE `users` (
 /*Data for the table `users` */
 
 insert  into `users`(`id`,`name`,`email`,`password`,`remember_token`,`created_at`,`updated_at`) values 
-(1,'Pasha Mahardika','me@pashamahardika.com','$2y$10$Ys8gQPnelcFYGY7vVzKe/OHSzXBLNyqPGz9DTHFp9MZGzRa7djpb.','qqGvqJsdAWFcPsWJW0x38YxHYpxQCCKvDPDzvw1qqVrwpVn18Fs6PmQUdomQ','2016-10-11 19:35:26','2016-12-02 09:03:19'),
-(3,'Edwina Trianinda','trianinda.edwina@gmail.com','$2y$10$iWVk/vWv/R3oa1ipa.pVgem6ypOZvDLW.F4jnbxEVODJFxbKgKHRa','c5jCFR3VIoX6rKN8nyVbudjeOTbPFH95N2Mkld6uLF3cTL0TRbVHrGvSE2s8','2016-10-11 23:41:14','2016-11-19 05:48:45');
+(1,'Pasha Mahardika','me@pashamahardika.com','$2y$10$Ys8gQPnelcFYGY7vVzKe/OHSzXBLNyqPGz9DTHFp9MZGzRa7djpb.','C5K7qps5sNJSAIuWpPXZ0SDC8zYN3AYNb6pZQ3U51tdZYLHj5PHSZQcKRA1y','2016-10-11 12:35:26','2017-01-17 10:04:15'),
+(3,'Edwina Trianinda','trianinda.edwina@gmail.com','$2y$10$iWVk/vWv/R3oa1ipa.pVgem6ypOZvDLW.F4jnbxEVODJFxbKgKHRa','c5jCFR3VIoX6rKN8nyVbudjeOTbPFH95N2Mkld6uLF3cTL0TRbVHrGvSE2s8','2016-10-11 16:41:14','2016-11-18 22:48:45');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

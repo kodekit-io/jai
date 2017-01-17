@@ -19,9 +19,11 @@ $backendUrl = config('misc.backend.url');
 Auth::routes();
 
 Route::group(['prefix' => $backendUrl, 'middleware' => ['menu:backend','auth','authorize']], function () {
-    Route::get('/', function ()    {
-        return view('backend.dashboard');
-    })->name('dashboard');
+//    Route::get('/', function ()    {
+//        return view('backend.dashboard');
+//    })->name('dashboard');
+
+    Route::get('/', 'HomeController@index')->name('dashboard');
 
     // User
     Route::get('/user', 'UserController@index')->name('user');

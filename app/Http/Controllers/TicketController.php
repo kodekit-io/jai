@@ -110,6 +110,7 @@ class TicketController extends Controller
         $data['packages'] = $packages;
         $data['post'] = $postWithDetail;
         $data['openingHours'] = $openingHours;
+        $data['lang'] = $lang;
 
         return view('frontend.ticket-hours', $data);
     }

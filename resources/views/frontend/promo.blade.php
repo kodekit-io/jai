@@ -15,7 +15,9 @@
             @if (count($promos) > 0)
                 @foreach($promos as $promo)
                     <li>
-                        <a href="#" title=""><img src="{!! url('images/original/' . $promo->file_name) !!}" /></a>
+                        @if (isset($promo->file_name))
+                            <a href="#" title=""><img src="{!! url('images/original/' . $promo->file_name) !!}" /></a>
+                        @endif
                         <div class="uk-panel uk-panel-box noborder white">
                             <h4><a href="{!! lang_url('promo/' . $promo->slug) !!}">{!! $promo->title !!}</a></h4>
                             <p>{!! $promo->content !!}</p>

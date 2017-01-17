@@ -18,9 +18,9 @@
                             <span class="caption-subject bold uppercase"> General Setting</span>
                         </div>
                         <div class="actions">
-                            <a class="btn btn-xs sbold green" href="{!! backendUrl('general-setting') !!}">
-                                <i class="fa fa-arrow-left"></i> Back
-                            </a>
+                            {{--<a class="btn btn-xs sbold green" href="{!! backendUrl('general-setting') !!}">--}}
+                                {{--<i class="fa fa-arrow-left"></i> Back--}}
+                            {{--</a>--}}
                         </div>
                     </div>
                     <div class="portlet-body">
@@ -29,52 +29,22 @@
                             <div class="form-body">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <div class="col-md-12">
-                                            <div class="form-group @if ($errors->has('facebook_link')) has-error @endif">
-                                                <label>Facebook</label>
-                                                <input type="text" name="facebook_link" class="form-control" placeholder="Facebook Link" value="{!! old('facebook_link') !!}" autofocus>
-                                                @if ($errors->has('facebook_link'))
-                                                <span class="help-block">{!! $errors->first('facebook_link') !!}</span>
-                                                @endif
+
+                                        @foreach($fields as $key => $val)
+                                            <div class="col-md-12">
+                                                <div class="form-group ">
+                                                    <label>{!! $val[0] !!}</label>
+                                                    @if ($val[1] == 'text')
+                                                        <input type="text" name="{!! $key !!}" class="form-control" placeholder="{!! $val[0] !!}" value="{!! isset($settings[$key]) ? $settings[$key] : '' !!}" @if($loop->index == 0) autofocus @endif>
+                                                    @elseif($val[1] == 'textarea')
+                                                        <textarea name="{!! $key !!}" class="form-control" @if($loop->index == 0) autofocus @endif>{!! isset($settings[$key]) ? $settings[$key] : '' !!}</textarea>
+                                                    @endif
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group @if ($errors->has('twitter_link')) has-error @endif">
-                                                <label>Twitter</label>
-                                                <input type="text" name="twitter_link" class="form-control" placeholder="Twitter Link" value="{!! old('twitter_link') !!}" autofocus>
-                                                @if ($errors->has('twitter_link'))
-                                                <span class="help-block">{!! $errors->first('twitter_link') !!}</span>
-                                                @endif
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group @if ($errors->has('tripadvisor_link')) has-error @endif">
-                                                <label>Trip Advisor</label>
-                                                <input type="text" name="tripadvisor_link" class="form-control" placeholder="Trip Advisor Link" value="{!! old('tripadvisor_link') !!}" autofocus>
-                                                @if ($errors->has('tripadvisor_link'))
-                                                <span class="help-block">{!! $errors->first('tripadvisor_link') !!}</span>
-                                                @endif
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group @if ($errors->has('instagram_link')) has-error @endif">
-                                                <label>Instagram</label>
-                                                <input type="text" name="instagram_link" class="form-control" placeholder="Instagram Link" value="{!! old('instagram_link') !!}" autofocus>
-                                                @if ($errors->has('instagram_link'))
-                                                <span class="help-block">{!! $errors->first('instagram_link') !!}</span>
-                                                @endif
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group @if ($errors->has('googleplus_link')) has-error @endif">
-                                                <label>Google+</label>
-                                                <input type="text" name="googleplus_link" class="form-control" placeholder="Google+ Link" value="{!! old('googleplus_link') !!}" autofocus>
-                                                @if ($errors->has('googleplus_link'))
-                                                    <span class="help-block">{!! $errors->first('googleplus_link') !!}</span>
-                                                @endif
-                                            </div>
-                                        </div>
+                                        @endforeach
+
                                     </div>
+
                                     <div class="col-md-12">
                                         <div class="form-group col-md-12">
                                             <button type="submit" class="btn btn-sm sbold green">Save</button>

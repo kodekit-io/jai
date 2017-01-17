@@ -132,4 +132,17 @@ if (! function_exists('get_meta_description')) {
             return \Illuminate\Support\Str::words(strip_tags($words), $line);
         }
     }
+
+    if (! function_exists('get_jai_setting')) {
+        function get_jai_setting($key) {
+            $setting = new Models\Setting();
+            $query = $setting->where('key', $key);
+            if ($query->exists()) {
+                $result = $query->first();
+                return $result->value;
+            }
+
+            return '';
+        }
+    }
 }
