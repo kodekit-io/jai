@@ -44,7 +44,7 @@
                                 $price = '';
                                 if ($galasysProduct->IsMonday == 'true') {
                                     $price .= 'Weekday :<br>';
-                                    $price .= '<span class="ja-bold">IDR '. number_format($galasysProduct->BasePrice, 0) . '</span>';
+                                    $price .= '<span class="ja-bold">IDR '. number_format($galasysProduct->BasePrice, 0) . '</span><br>';
                                 }
                                 if ($galasysProduct->IsSunday == 'true') {
                                     $price .= 'Weekend :<br>';
