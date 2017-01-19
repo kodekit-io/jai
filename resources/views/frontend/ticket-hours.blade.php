@@ -91,7 +91,7 @@
                             <h5 class="uk-margin-bottom-remove">Terms &amp; Conditions <span>(<a href="#!">read</a>)</span></h5>
                             <p class="uk-margin-top-remove">
                                 <input name="agree" type="checkbox" class="ja-check" required>
-                                <label class="no-style" for="agree">I have read and accepted the Terms and Conditions of Use.</label>
+                                <label class="no-style" for="agree">I have read and accepted the Terms and Conditions.</label>
                             </p>
                         </div>
 

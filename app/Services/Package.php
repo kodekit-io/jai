@@ -225,6 +225,8 @@ class Package
         $visitDate = Carbon::createFromFormat('l, d-m-Y', $visitDateRequest)->format('Y-m-d');
         $isHoliday = $this->isHoliday($visitDate);
         $galasysProducts = $this->galasys->getProducts();
+        $galasysProducts = $this->sortByPrice($galasysProducts);
+
         $packages = '';
         $colors = [
             'cyan darken-1',
@@ -293,5 +295,19 @@ class Package
         }
 
         return false;
+    }
+
+    private function sortByPrice($products)
+    {
+        usort($products, function($a, $b) {
+            if ($a->BasePrice == $b->BasePrice) return 0;
+            if ($a->BasePrice > $b->BasePrice) {
+                return 1;
+            } else {
+                return -1;
+            }
+        });
+
+        return $products;
     }
 }
