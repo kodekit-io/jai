@@ -1512,6 +1512,9 @@ label.error {
 	.ja-lang_side li {
 		margin-top: -2px;
 	}
+	.ja-home-section .ja-lang_side.uk-active {
+		top: 80px !important;
+	}
 	#themoment ul li a>*, #themoment ul li a>*>* {
 		font-size: inherit !important;
 	}
