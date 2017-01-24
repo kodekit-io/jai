@@ -7,8 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
+    use Sluggable;
 
-    protected $fillable = ['title', 'slug', 'content', 'post_type_id', 'status', 'publish_date', 'created_by'];
+//    protected $fillable = ['title', 'slug', 'content', 'post_type_id', 'status', 'publish_date', 'created_by'];
+    protected $guarded = ['id'];
 
     public function categories()
     {

@@ -7,7 +7,7 @@
 							<li><a href="{!! lang_url('career') !!}" title="">Career with Us</a></li>
 							<li><a href="{!! lang_url('media-room') !!}" title="">Media Room</a></li>
 							<li><a href="{!! lang_url('privacy-policy') !!}" title="">Privacy Policy</a></li>
-							<li><a href="{!! lang_url('term-use') !!}" title="">Term of Use</a></li>
+							<li><a href="{!! lang_url('terms-and-conditions') !!}" title="">Terms and Conditions</a></li>
 						</ul>
 						<p class="uk-margin-remove">Copyright &copy; <?php echo date('Y'); ?> Jakarta Aquarium Indonesia. All Rights Reserved.</p>
 					</div>

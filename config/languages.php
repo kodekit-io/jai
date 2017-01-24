@@ -19,6 +19,11 @@ return [
                 'days' => [
                     '1' => 'Minggu', '2' => 'Senin', '3' => 'Selasa', '4' => 'Rabu', '5' => 'Kamis', '6' => 'Jumat', '7' => 'Sabtu'
                 ]
+            ],
+            'zh' => [
+                'code' => 'zh',
+                'title' => 'Mandarin',
+                'flag' => 'zh.jpg'
             ]
         ]
 ];

@@ -61,7 +61,7 @@
                     @if(isset($newsContent->file_name))
                         <a class="ja-news__img" href="{!! lang_url('news/' . $newsContent->slug) !!}" title="Learn More"><img  class="uk-responsive-width" src="{!! url('images/newsSlider/' . $newsContent->file_name) !!}" /></a>
                     @endif
-                    <p>{!! $newsContent->content !!}</p>
+                    <p>{!! excerpt($newsContent->content, 50) !!}</p>
                     <a href="{!! lang_url('news/' . $newsContent->slug) !!}" class="uk-button ja-button amber darken-1 light-blue-text text-darken-4" title="Learn More">Learn More <i class="uk-margin-small-left uk-icon-chevron-right"></i></a>
                 </div>
             @endforeach

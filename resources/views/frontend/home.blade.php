@@ -7,7 +7,7 @@
 	@include('includes.sidebanner')
 	<div class="uk-container uk-container-center">
 		<h3 class="ja-title ja-title__blue light-blue-text text-darken-4 uk-margin-large-bottom">What's On</h3>
-		<?php //Whatson Posts ?>
+        {{--Whatson Posts--}}
 		<ul class="uk-list uk-list-space">
 			@foreach($whatsOnContents as $whatsOn)
 			<li class="ja-post uk-margin-bottom">
@@ -44,91 +44,59 @@
 			<li class="uk-width-1-2">
 				{!! ( isset($secondBox->meta_value) ? $secondBox->meta_value : '' ) !!}
 			</li>
-			<?php /*
-			<li class="uk-width-2-5">
-				{!! ( isset($thirdBox->meta_value) ? $thirdBox->meta_value : '' ) !!}
-			</li>
-			<li class="uk-width-1-2">
-				{!! ( isset($fourthBox->meta_value) ? $fourthBox->meta_value : '' ) !!}
-			</li>
-			*/ ?>
+
+			{{--<li class="uk-width-2-5">--}}
+				{{--{!! ( isset($thirdBox->meta_value) ? $thirdBox->meta_value : '' ) !!}--}}
+			{{--</li>--}}
+			{{--<li class="uk-width-1-2">--}}
+				{{--{!! ( isset($fourthBox->meta_value) ? $fourthBox->meta_value : '' ) !!}--}}
+			{{--</li>--}}
+
 		</ul>
 	</div>
 </section>
 <section id="themoment" class="ja-home-section">
 	<div class="uk-container uk-container-center">
 		<h3 class="ja-title ja-title__blue light-blue-text text-darken-4 uk-margin-large-bottom">The Moment</h3>
-		<?php //The Moments ?>
+		{{--The Moments--}}
 		<ul class="uk-grid uk-grid-collapse uk-grid-width-1-2 uk-grid-width-medium-1-3">
-			<li>
-				<a class="uk-vertical-align" style="background-image: url(/frontend/img/img-m1.png)">
-					<div class="uk-vertical-align-middle">
-						<div class="funfact uk-vertical-align">
-							<div class="uk-vertical-align-middle">
-								<h5 class="white-text">Otter Fun Fact</h5>
-								An Otter can remain under water for up to 4 minutes. They can also dive up to 300 feet in search of food.
-							</div>
-						</div>
-					</div>
-				</a>
-			</li>
-			<li>
-				<a class="uk-vertical-align" style="background-image: url()">
-					<div class="uk-vertical-align-middle">
-						Come to find out and enjoy your great moments at the aquarium!
-					</div>
-				</a>
-			</li>
-			<li>
-				<a class="uk-vertical-align" style="background-image: url(/frontend/img/img-m2.png)">
-					<div class="uk-vertical-align-middle">
-
-					</div>
-				</a>
-			</li>
-			<li>
-				<a href="https://www.instagram.com/explore/tags/jakartaaquarium/" target="_blank" class="uk-vertical-align" style="background-image: url()">
-					<div class="uk-vertical-align-middle">
-						<i class="uk-icon-instagram teal-text uk-icon-large uk-margin-bottom"></i><br>
-						#JAKARTAAQUARIUM<br>
-						Share your great moments with us on Instagram!
-					</div>
-				</a>
-			</li>
-
-			<li>
-				<a class="uk-vertical-align" style="background-image: url(/frontend/img/img-m4.png)">
-					<div class="uk-vertical-align-middle">
-
-					</div>
-				</a>
-			</li>
-			<li>
-				<a class="uk-vertical-align" style="background-image: url(/frontend/img/img-m3.png)">
-					<div class="uk-vertical-align-middle">
-						<div class="funfact uk-vertical-align">
-							<div class="uk-vertical-align-middle">
-								<h5 class="white-text">Penguin Fun Fact</h5>
-								Humboldt penguins are named after German scientist and explorer Alexander von Humboldt, who traveled through Central and South America from 1799 to 1804. 
-							</div>
-						</div>
-					</div>
-				</a>
-			</li>
-			<li>
-				<a class="uk-vertical-align" style="background-image: url(/frontend/img/img-m6.png)">
-					<div class="uk-vertical-align-middle">
-
-					</div>
-				</a>
-			</li>
-			<li>
-				<a class="uk-vertical-align" style="background-image: url(/frontend/img/img-m5.png)">
-					<div class="uk-vertical-align-middle">
-
-					</div>
-				</a>
-			</li>
+            @foreach($moments as $moment)
+                @if($loop->iteration == 2)
+                    <li>
+                        <a class="uk-vertical-align" style="background-image: url()">
+                            <div class="uk-vertical-align-middle">
+                                Come to find out and enjoy your great moments at the aquarium!
+                            </div>
+                        </a>
+                    </li>
+                @endif
+                @if($loop->iteration == 3)
+                    <li>
+                        <a href="https://www.instagram.com/explore/tags/jakartaaquarium/" target="_blank" class="uk-vertical-align" style="background-image: url()">
+                            <div class="uk-vertical-align-middle">
+                                <i class="uk-icon-instagram teal-text uk-icon-large uk-margin-bottom"></i><br>
+                                #JAKARTAAQUARIUM<br>
+                                Share your great moments with us on Instagram!
+                            </div>
+                        </a>
+                    </li>
+                @endif
+            <li>
+                <a class="uk-vertical-align"
+                   @if(isset($moment->file_name))style="background-image: url({!! asset('images/original/' . $moment->file_name) !!})"@endif>
+                    <div class="uk-vertical-align-middle">
+                        @if($moment->title != '')
+                        <div class="funfact uk-vertical-align">
+                            <div class="uk-vertical-align-middle">
+                                <h5 class="white-text">{!! $moment->title !!}</h5>
+                                {!! $moment->content !!}
+                            </div>
+                        </div>
+                        @endif
+                    </div>
+                </a>
+            </li>
+            @endforeach
 			<li>
 				<a class="uk-vertical-align" style="background-image: url()">
 					<div class="uk-vertical-align-middle">

@@ -28,6 +28,7 @@ if (! function_exists('getSlugOnModelByTitle')) {
      */
     function getSlugOnModelByTitle($title, $model, $iterator = 1)
     {
+        $title = ($title != '') ? $title : 'content';
         $tempTitle = $title;
 
         if ($iterator > 1) {

@@ -4,7 +4,7 @@
 <header class="ja-header-news uk-vertical-align">
     <div class="uk-vertical-align-middle uk-width-1-1">
         <div class="uk-container uk-container-center">
-            <h1 class="ja-title ja-title__curly light-blue-text text-darken-4 uk-float-left">Term of Use</h1>
+            <h1 class="ja-title ja-title__curly light-blue-text text-darken-4 uk-float-left"><p>{!! $page->title !!}</p></h1>
         </div>
     </div>
     @include('includes.sidebanner')

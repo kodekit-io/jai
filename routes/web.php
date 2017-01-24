@@ -163,6 +163,14 @@ Route::group(['prefix' => $backendUrl, 'middleware' => ['menu:backend','auth','a
     Route::post('/page/{id}/update', 'PageController@update')->name('page.edit');
     Route::get('/page/{id}/delete', 'PageController@destroy')->name('page.delete');
 
+    // Moment
+    Route::get('/moment', 'MomentController@index')->name('moment');
+    Route::get('/moment/add', 'MomentController@create')->name('moment.add');
+    Route::post('/moment/save', 'MomentController@store')->name('moment.add');
+    Route::get('/moment/{id}/edit', 'MomentController@edit')->name('moment.edit');
+    Route::post('/moment/{id}/update', 'MomentController@update')->name('moment.edit');
+    Route::get('/moment/{id}/delete', 'MomentController@destroy')->name('moment.delete');
+
     // General Setting
     Route::get('/general-setting', 'GeneralSettingController@index')->name('setting');
     Route::post('/general-setting', 'GeneralSettingController@save')->name('setting');
@@ -180,6 +188,7 @@ Route::group(['prefix' => $backendUrl, 'middleware' => ['auth']], function () {
     Route::get('/post-category-data/{postTypeId}', 'CategoryController@anyData')->name('post-category.data');
     Route::get('/post-data', 'PostController@anyData')->name('post.data');
     Route::get('/page-data', 'PageController@anyData')->name('page.data');
+    Route::get('/moment-data', 'MomentController@anyData')->name('moment.data');
     Route::get('/attraction-data', 'AttractionController@anyData')->name('attraction.data');
     Route::get('/media-room-data', 'MediaRoomController@anyData')->name('media-room.data');
     Route::get('/package-data', 'PackageController@anyData')->name('package.data');
@@ -222,7 +231,7 @@ Route::group(['middleware' => ['lang', 'menu:frontend']], function () {
     Route::get('/{lang?}/media-room', 'MediaRoomFrontEndController@mediaRoom');
     Route::get('/{lang?}/media-room/{slug}', 'MediaRoomFrontEndController@mediaRoomDetails');
     Route::get('/{lang?}/privacy-policy', 'FrontEndController@privacy');
-    Route::get('/{lang?}/term-use', 'FrontEndController@term');
+    Route::get('/{lang?}/terms-and-conditions', 'FrontEndController@term');
     Route::post('/{lang?}/search-result', 'FrontEndController@search');
     Route::get('/{lang?}/promo', 'FrontEndController@promo');
     Route::get('/{lang?}/promo/{slug}', 'FrontEndController@promoDetail');

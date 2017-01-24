@@ -33,13 +33,13 @@
                 @endforeach
             </div>
         </div>
-        <a href="#!" class="uk-button uk-button-large amber darken-1 light-blue-text text-darken-4 uk-margin-large-bottom" title="Apply Now">Apply Now</a>
+        <a href="mailto:hrm@jakarta-aquarium.com" target="_blank" class="uk-button uk-button-large amber darken-1 light-blue-text text-darken-4 uk-margin-large-bottom" title="Apply Now">Apply Now</a>
         @else
             <h4 class="text-darken-4  uk-margin-large-bottom ">{!! trans('messages.no-job', [], '', $lang) !!}</h4>
         @endif
 
     </div>
-    <div class="ja-career-footer uk-cover-background" style="background-image: url({!! asset('frontend/img/img-career.jpg') !!})"></div>
+    {{--<div class="ja-career-footer uk-cover-background" style="background-image: url({!! asset('frontend/img/img-career.jpg') !!})"></div>--}}
 </main>
 
 @endsection
