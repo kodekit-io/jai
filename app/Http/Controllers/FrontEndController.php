@@ -95,7 +95,7 @@ class FrontEndController extends Controller
     {
         $params = [
             'status' => 'publish',
-            'post_type_id' => self::POST_ID,
+            'post_type_id' => self::NEWS_ID,
             'lang' => $lang,
             'meta' => [
                 'key' => 'whats_on',
