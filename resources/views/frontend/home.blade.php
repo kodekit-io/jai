@@ -7,20 +7,22 @@
 	@include('includes.sidebanner')
 	<div class="uk-container uk-container-center">
 		<h3 class="ja-title ja-title__blue light-blue-text text-darken-4 uk-margin-large-bottom">What's On</h3>
-		<?php //Whatson Posts ?>
+        {{--Whatson Posts--}}
 		<ul class="uk-list uk-list-space">
 			@foreach($whatsOnContents as $whatsOn)
 			<li class="ja-post uk-margin-bottom">
 				<div class="uk-grid">
 					<div class="uk-width-medium-1-2">
-                        <?php $imagePath = getMediaByPostId($whatsOn->id)->file_name; ?>
-						<a href="#!" class="ja-post--img" style="background-image: url('{!! url('images/whatsOn/' . $imagePath) !!}')">Learn more</a>
+						@if (isset(getMediaByPostId($whatsOn->id)->file_name))
+                        	<?php $imagePath = getMediaByPostId($whatsOn->id)->file_name; ?>
+							<a href="{!! lang_url('news/' . $whatsOn->slug) !!}" class="ja-post--img" style="background-image: url('{!! url('images/whatsOn/' . $imagePath) !!}')">Learn more</a>
+						@endif
 					</div>
 					<div class="uk-width-medium-1-2">
 						<div class="ja-post--content">
-							<h5 class="ja-post--title"><a href="#!" title="{!! $whatsOn->title !!}">{!! $whatsOn->title !!}</a></h5>
-							<p class="uk-margin-remove">{!! $whatsOn->content !!}</p>
-							<a class="ja-post--link"><i class="uk-icon-chevron-right"></i></a>
+							<h5 class="ja-post--title"><a href="{!! lang_url('news/' . $whatsOn->slug) !!}" title="{!! $whatsOn->title !!}">{!! $whatsOn->title !!}</a></h5>
+							<p class="uk-margin-remove">{!! excerpt($whatsOn->content, 30) !!}</p>
+							<a href="{!! lang_url('news/' . $whatsOn->slug) !!}" class="ja-post--link"><i class="uk-icon-chevron-right"></i></a>
 						</div>
 					</div>
 				</div>
@@ -33,7 +35,7 @@
 	<div class="uk-overlay-background ja-overlay"></div>
 	<div class="uk-container uk-container-center white-text">
 		<h3 class="ja-title ja-title__orange uk-margin-large-bottom white-text">Highlight</h3>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidale laborum et dolorem magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation autem.</p>
+		<p>{!! $sightseeingContent !!}</p>
 
 		<ul class="uk-grid uk-grid-collapse">
 			<li class="uk-width-2-5">
@@ -42,93 +44,59 @@
 			<li class="uk-width-1-2">
 				{!! ( isset($secondBox->meta_value) ? $secondBox->meta_value : '' ) !!}
 			</li>
-			<?php /*
-			<li class="uk-width-2-5">
-				{!! ( isset($thirdBox->meta_value) ? $thirdBox->meta_value : '' ) !!}
-			</li>
-			<li class="uk-width-1-2">
-				{!! ( isset($fourthBox->meta_value) ? $fourthBox->meta_value : '' ) !!}
-			</li>
-			*/ ?>
+
+			{{--<li class="uk-width-2-5">--}}
+				{{--{!! ( isset($thirdBox->meta_value) ? $thirdBox->meta_value : '' ) !!}--}}
+			{{--</li>--}}
+			{{--<li class="uk-width-1-2">--}}
+				{{--{!! ( isset($fourthBox->meta_value) ? $fourthBox->meta_value : '' ) !!}--}}
+			{{--</li>--}}
+
 		</ul>
 	</div>
 </section>
 <section id="themoment" class="ja-home-section">
 	<div class="uk-container uk-container-center">
 		<h3 class="ja-title ja-title__blue light-blue-text text-darken-4 uk-margin-large-bottom">The Moment</h3>
-		<?php //The Moments ?>
+		{{--The Moments--}}
 		<ul class="uk-grid uk-grid-collapse uk-grid-width-1-2 uk-grid-width-medium-1-3">
-			<li>
-				<a class="uk-vertical-align" style="background-image: url(/frontend/img/img-m1.png)">
-					<div class="uk-vertical-align-middle">
-						<div class="funfact uk-vertical-align">
-							<div class="uk-vertical-align-middle">
-								<h5 class="white-text">Otter Fun Fact</h5>
-								An Otter can remain under water for up to 4 minutes. They can also dive up to 300 feet in search of food.
-							</div>
-						</div>
-					</div>
-				</a>
-
-			</li>
-			<li>
-				<a class="uk-vertical-align" style="background-image: url()">
-					<div class="uk-vertical-align-middle">
-						Come to find out and enjoy your great moments at the aquarium!
-					</div>
-
-				</a>
-			</li>
-			<li>
-				<a class="uk-vertical-align" style="background-image: url(/frontend/img/img-m2.png)">
-					<div class="uk-vertical-align-middle">
-
-					</div>
-				</a>
-			</li>
-			<li>
-				<a class="uk-vertical-align" style="background-image: url()">
-					<div class="uk-vertical-align-middle">
-						<i class="uk-icon-instagram teal-text uk-icon-large uk-margin-bottom"></i><br>
-						#JAKARTAAQUARIUM<br>
-						Share your great moments with us on Instagram!
-					</div>
-				</a>
-			</li>
-
-			<li>
-				<a class="uk-vertical-align" style="background-image: url(/frontend/img/img-m4.png)">
-					<div class="uk-vertical-align-middle">
-
-					</div>
-				</a>
-			</li>
-			<li>
-				<a class="uk-vertical-align" style="background-image: url(/frontend/img/img-m3.png)">
-					<div class="uk-vertical-align-middle">
-						<div class="funfact uk-vertical-align">
-							<div class="uk-vertical-align-middle">
-								<h5 class="white-text">Penguin Fun Fact</h5>
-								Humboldt penguins are named after German scientist and explorer Alexander von Humboldt, who traveled through Central and South America from 1799 to 1804. 
-							</div>
-						</div>
-					</div>
-				</a>
-			</li>
-			<li>
-				<a class="uk-vertical-align" style="background-image: url(/frontend/img/img-m6.png)">
-					<div class="uk-vertical-align-middle">
-
-					</div>
-				</a>
-			</li>
-			<li>
-				<a class="uk-vertical-align" style="background-image: url(/frontend/img/img-m5.png)">
-					<div class="uk-vertical-align-middle">
-
-					</div>
-				</a>
-			</li>
+            @foreach($moments as $moment)
+                @if($loop->iteration == 2)
+                    <li>
+                        <a class="uk-vertical-align" style="background-image: url()">
+                            <div class="uk-vertical-align-middle">
+                                Come to find out and enjoy your great moments at the aquarium!
+                            </div>
+                        </a>
+                    </li>
+                @endif
+                @if($loop->iteration == 3)
+                    <li>
+                        <a href="https://www.instagram.com/explore/tags/jakartaaquarium/" target="_blank" class="uk-vertical-align" style="background-image: url()">
+                            <div class="uk-vertical-align-middle">
+                                <i class="uk-icon-instagram teal-text uk-icon-large uk-margin-bottom"></i><br>
+                                #JAKARTAAQUARIUM<br>
+                                Share your great moments with us on Instagram!
+                            </div>
+                        </a>
+                    </li>
+                @endif
+            <li>
+                <a class="uk-vertical-align"
+                   @if(isset($moment->file_name))style="background-image: url({!! asset('images/original/' . $moment->file_name) !!})"@endif>
+                    <div class="uk-vertical-align-middle">
+                        @if($moment->title != '')
+                        <div class="funfact uk-vertical-align">
+                            <div class="uk-vertical-align-middle">
+                                <h5 class="white-text">{!! $moment->title !!}</h5>
+                                {!! $moment->content !!}
+                            </div>
+                        </div>
+                        @endif
+                    </div>
+                </a>
+            </li>
+            @endforeach
 			<li>
 				<a class="uk-vertical-align" style="background-image: url()">
 					<div class="uk-vertical-align-middle">
@@ -148,7 +116,7 @@
 			</div>
 			<div class="uk-width-2-3">
 				<h3 class="ja-title ja-title__blue light-blue-text text-darken-4 uk-margin-large-top uk-margin-bottom">Get The App <img src="{!! asset('frontend/img/coming-soon.png') !!}" alt="Coming Soon" /></h3>
-				<p>Download free Jakarta Aquarium app now! Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+				<p>{!! $getTheApp !!}</p>
 				<p><a href="#!" title="Download on The App Store"><img src="{!! asset('frontend/img/download-store.png') !!}" alt="Download on The App Store" /></a>
 				<a href="#!" title="Get it on Google Play"><img src="{!! asset('frontend/img/download-play.png') !!}" alt="Get it on Google Play" /></a></p>
 			</div>
@@ -163,17 +131,17 @@
 	<script src="{!! asset('frontend/js/components/slideshow.min.js') !!}"></script>
 	<script src="{!! asset('frontend/js/components/sticky.min.js') !!}"></script>
 	<script>
-	$(document).ready(function() {
-		var fw = $('#themoment ul li a').width(),
-		fh = $('#themoment ul li a').height();
-		$('#themoment ul li a .funfact').height(fh).width(fw);
-		$( "#themoment ul li a" ).hover(
-			function() {
-				$( this ).find('.funfact').show();
-			}, function() {
-				$( this ).find('.funfact').hide();
-			}
-		);
-	});
+		$(document).ready(function() {
+			var fw = $('#themoment ul li a').width(),
+				fh = $('#themoment ul li a').height();
+			$('#themoment ul li a .funfact').height(fh).width(fw);
+			$( "#themoment ul li a" ).hover(
+				function() {
+					$( this ).find('.funfact').show();
+				}, function() {
+					$( this ).find('.funfact').hide();
+				}
+			);
+		});
 	</script>
 @endsection

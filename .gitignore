@@ -3,6 +3,7 @@
 /public/uploads
 /vendor
 /.idea
+/public/uploads
 Homestead.json
 Homestead.yaml
 .env

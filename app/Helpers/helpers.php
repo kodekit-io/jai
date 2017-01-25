@@ -28,6 +28,7 @@ if (! function_exists('getSlugOnModelByTitle')) {
      */
     function getSlugOnModelByTitle($title, $model, $iterator = 1)
     {
+        $title = ($title != '') ? $title : 'content';
         $tempTitle = $title;
 
         if ($iterator > 1) {
@@ -125,5 +126,24 @@ if (! function_exists('get_meta_description')) {
 
         return '';
 
+    }
+
+    if (! function_exists('excerpt')) {
+        function excerpt($words, $line = 40) {
+            return \Illuminate\Support\Str::words(strip_tags($words), $line);
+        }
+    }
+
+    if (! function_exists('get_jai_setting')) {
+        function get_jai_setting($key) {
+            $setting = new Models\Setting();
+            $query = $setting->where('key', $key);
+            if ($query->exists()) {
+                $result = $query->first();
+                return $result->value;
+            }
+
+            return '';
+        }
     }
 }

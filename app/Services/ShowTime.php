@@ -58,11 +58,12 @@ class ShowTime
 
     public function store(array $inputs)
     {
-        $day = isset($inputs['day']) ? $inputs['day'] : '';
+        $day = isset($inputs['day']) ? $inputs['day'] : '0';
         $startDate = isset($inputs['start_date']) ? ($inputs['start_date'] == '' ? '1970-01-01' : Carbon::createFromFormat('m/d/Y', $inputs['start_date'])->format('Y-m-d')) : '1970-01-01';
         $endDate = isset($inputs['end_date']) ? ($inputs['end_date'] == '' ? '1970-01-01' : Carbon::createFromFormat('m/d/Y', $inputs['end_date'])->format('Y-m-d')) : '1970-01-01';
         $startTime = isset($inputs['start_time']) ? ($inputs['start_time'] == '' ? '00:00' : $inputs['start_time']) : '00:00';
 //        $endTime = isset($inputs['end_time']) ? ($inputs['end_time'] == '' ? '00:00:00' : $inputs['end_time']) : '00:00:00';
+        $particularShowtime = isset($inputs['particular_showtime']) ? $inputs['particular_showtime'] : '' ;
 
         $show = Show::create([
             'show_type' => $inputs['show_type'],
@@ -71,7 +72,8 @@ class ShowTime
             'start_date' => $startDate,
             'end_date' => $endDate,
             'start_time' => $startTime,
-            'end_time' => '00:00'
+            'end_time' => '00:00',
+            'particular_showtime' => $particularShowtime
         ]);
 
         foreach ($inputs['title'] as $lang => $title) {
@@ -100,10 +102,11 @@ class ShowTime
 
     public function update($id, array $inputs)
     {
-        $day = isset($inputs['day']) ? $inputs['day'] : '';
+        $day = isset($inputs['day']) ? $inputs['day'] : '0';
         $startDate = isset($inputs['start_date']) ? ($inputs['start_date'] == '' ? '1970-01-01' : Carbon::createFromFormat('m/d/Y', $inputs['start_date'])->format('Y-m-d')) : '1970-01-01';
         $endDate = isset($inputs['end_date']) ? ($inputs['end_date'] == '' ? '1970-01-01' : Carbon::createFromFormat('m/d/Y', $inputs['end_date'])->format('Y-m-d')) : '1970-01-01';
         $startTime = isset($inputs['start_time']) ? ($inputs['start_time'] == '' ? '00:00' : $inputs['start_time']) : '00:00';
+        $particularShowtime = isset($inputs['particular_showtime']) ? $inputs['particular_showtime'] : '' ;
 
         $show = Show::find($id);
         $show->show_type = $inputs['show_type'];
@@ -113,6 +116,7 @@ class ShowTime
         $show->end_date = $endDate;
         $show->start_time = $startTime;
         $show->end_time = '00:00';
+        $show->particular_showtime = $particularShowtime;
         $show->save();
 
         $show->details()->delete();

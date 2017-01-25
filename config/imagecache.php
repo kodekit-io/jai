@@ -60,7 +60,8 @@ return array(
         'featured' => 'App\Helpers\Featured',
         'whatsOn' => 'App\Helpers\WhatsOn',
         'newsSlider' => 'App\Helpers\NewsSlider',
-        'newsThumbnail' => 'App\Helpers\NewsThumbnail'
+        'newsThumbnail' => 'App\Helpers\NewsThumbnail',
+        'promo' => 'App\Helpers\Promo'
     ),
 
     /*

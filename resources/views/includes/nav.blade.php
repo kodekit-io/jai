@@ -21,17 +21,18 @@
 	    @include('includes.menu', array('items' => $menu->roots()))
     </ul>
 
-	<form class="ja-searchform cyan darken-1 ja-mobhide uk-hidden-small" action="{!! lang_url('search-result') !!}">
-		<input type="text" placeholder="Search">
+	<form class="ja-searchform cyan darken-1 ja-mobhide uk-hidden-small" method="post" action="{!! lang_url('search-result') !!}">
+		{!! csrf_field() !!}
+		<input type="text" name="search" placeholder="Search">
 		<input type="submit">
 	</form>
 	<div class="ja-socmed cyan darken-1 uk-text-center ja-mobhide uk-hidden-small">
-		<a href="https://www.facebook.com/JakartaAquarium/" target="_blank" class="uk-icon-facebook"></a>
-		<a href="#!" target="" class="uk-icon-twitter"></a>
-		<a href="https://www.tripadvisor.com/Attraction_Review-g294229-d11667626-Reviews-Jakarta_Aquarium-Jakarta_Java.html" target="_blank" class="uk-icon-tripadvisor"></a>
-		<a href="https://www.instagram.com/jakartaaquarium/" target="_blank" class="uk-icon-instagram"></a>
-		<a href="#!" target="" class="uk-icon-google-plus"></a>
-		<a href="#!" target="" class="uk-icon-linkedin"></a>
+		<a href="{!! get_jai_setting('facebook_link') !!}" target="_blank" class="uk-icon-facebook"></a>
+		<a href="{!! get_jai_setting('twitter_link') !!}" target="_blank" class="uk-icon-twitter"></a>
+		<a href="{!! get_jai_setting('tripadvisor_link') !!}" target="_blank" class="uk-icon-tripadvisor"></a>
+		<a href="{!! get_jai_setting('instagram_link') !!}" target="_blank" class="uk-icon-instagram"></a>
+		<a href="{!! get_jai_setting('googleplus_link') !!}" target="_blank" class="uk-icon-google-plus"></a>
+		<a href="{!! get_jai_setting('linkedin_link') !!}" target="_blank" class="uk-icon-linkedin"></a>
 	</div>
 	<div class="ja-info uk-hidden">
 		<p>Opening Hours</p>

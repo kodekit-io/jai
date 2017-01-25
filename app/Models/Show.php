@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Show extends Model
 {
-    protected $fillable = [ 'show_type', 'created_by', 'day', 'start_date', 'end_date', 'start_time', 'end_time' ];
+    protected $guarded = ['id'];
 
     public function details()
     {

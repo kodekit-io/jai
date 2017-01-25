@@ -75,8 +75,8 @@
     <!-- END CONTAINER -->
     <!-- BEGIN FOOTER -->
     <div class="page-footer">
-        <div class="page-footer-inner"> {!! date('Y') !!} &copy; Jakarta Aquarium Indonesia By
-            <a target="_blank" href="#">[K]odekit</a>
+        <div class="page-footer-inner"> {!! date('Y') !!} &copy; Jakarta Aquarium Indonesia
+            {{--By <a target="_blank" href="kleur.id">Kleur</a> --}}
         </div>
         <div class="scroll-to-top">
             <i class="icon-arrow-up"></i>

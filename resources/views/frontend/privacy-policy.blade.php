@@ -4,7 +4,7 @@
 <header class="ja-header-news uk-vertical-align">
     <div class="uk-vertical-align-middle uk-width-1-1">
         <div class="uk-container uk-container-center">
-            <h1 class="ja-title ja-title__curly light-blue-text text-darken-4 uk-float-left">Privacy Policy</h1>
+            <h1 class="ja-title ja-title__curly light-blue-text text-darken-4 uk-float-left">{!! $page->title !!}</h1>
         </div>
     </div>
     @include('includes.sidebanner')
@@ -13,7 +13,7 @@
     <div class="uk-container uk-container-center">
 
         <div class="ja-page__content uk-margin-large-bottom">
-            <h4 class="cyan-text text-darken-1">Jakarta Aquarium Privacy and Security Policy</h4>
+            {{--<h4 class="cyan-text text-darken-1">Jakarta Aquarium Privacy and Security Policy</h4>--}}
 
             <p>{!! $page->content !!}</p>
         </div>

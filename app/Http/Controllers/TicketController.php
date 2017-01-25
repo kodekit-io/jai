@@ -103,8 +103,11 @@ class TicketController extends Controller
         ];
         $packages = $this->packageService->getPackages($params);
 
+<<<<<<< HEAD
         $galasysProducts = $this->packageService->getAllPackages();
 
+=======
+>>>>>>> master
         $post = $this->postService->getPost(['id' => $pageId]);
         $openingHours = $post->metas()->where('meta_key', 'openingHours-' . $lang)->first();
 
@@ -123,9 +126,14 @@ class TicketController extends Controller
         $data['galasysProducts'] = $galasysProducts;
         $data['packages'] = $packages;
         $data['pageTitle'] = $postWithDetail->title;
+        $data['packages'] = $packages;
         $data['post'] = $postWithDetail;
         $data['openingHours'] = $openingHours;
+<<<<<<< HEAD
         $data['colors'] = $colors;
+=======
+        $data['lang'] = $lang;
+>>>>>>> master
 
         return view('frontend.ticket-hours', $data);
     }

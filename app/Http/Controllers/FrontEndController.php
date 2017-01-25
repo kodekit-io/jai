@@ -50,6 +50,15 @@ class FrontEndController extends Controller
      */
     private $orderService;
 
+    const POST_ID = 1;
+    const NEWS_ID = 2;
+    const ATTRACTION_ID = 3;
+    const MEDIAROOM_ID = 4;
+    const CAREER_ID = 5;
+    const PAGE_ID = 6;
+    const PROMO_ID = 7;
+    const MOMENT_ID = 8;
+
     /**
      * FrontEndController constructor.
      * @param Post $postService
@@ -86,7 +95,7 @@ class FrontEndController extends Controller
     {
         $params = [
             'status' => 'publish',
-            'post_type_id' => 2,
+            'post_type_id' => self::NEWS_ID,
             'lang' => $lang,
             'meta' => [
                 'key' => 'whats_on',
@@ -102,15 +111,36 @@ class FrontEndController extends Controller
         ];
         $sliders = $this->sliderService->getSliderWithItems($sliderParams);
 
-        $sightSeeing = $this->postService->getPost(['id' => config('misc.statics.sightseeing')]);
+        $momentParams = [
+            'status' => 'publish',
+            'post_type_id' => self::MOMENT_ID,
+            'lang' => $lang
+        ];
+        $moments = $this->postService->getPostsWithDetail($momentParams)->orderBy('publish_date', 'desc');
 
+        // manual content
+        switch ($lang) {
+            case 'en':
+                $data['getTheApp'] = 'Be the first to receive latest update from Jakarta Aquarium. Download the app';
+                break;
+            default:
+                $data['getTheApp'] = 'Jadilah orang pertama yang mendapatkan info terupdate dari Jakarta Aquarium. Download aplikasinya sekarang juga!';
+                break;
+        }
+
+        $sightSeeing = $this->postService->getPost(['id' => config('misc.statics.sightseeing')]);
+        $sightSeeingDetail = $sightSeeing->details()->where('lang', $lang)->first();
+        $data['sightseeingContent'] = isset($sightSeeingDetail->content) ? $sightSeeingDetail->content : '';
         $data['firstBox'] = $sightSeeing->metas()->where('meta_key', 'firstBox-' . $lang)->first();
         $data['secondBox'] = $sightSeeing->metas()->where('meta_key', 'secondBox-' . $lang)->first();
         $data['thirdBox'] = $sightSeeing->metas()->where('meta_key', 'thirdBox-' . $lang)->first();
         $data['fourthBox'] = $sightSeeing->metas()->where('meta_key', 'fourthBox-' . $lang)->first();
+        $data['moments'] = $moments->get();
+
         $data['whatsOnContents'] = $post->get();
         $data['sliders'] = $sliders;
         $data['pageTitle'] = 'Homepage';
+        $data['metaDesc'] = get_jai_setting('homepage_meta');
 
         return view('frontend.home', $data);
     }
@@ -131,7 +161,7 @@ class FrontEndController extends Controller
         $data['ourPhilosophy'] = $ourPhilosophy;
         $data['metaDesc'] = get_meta_description($post->id, $lang);
 
-        $data['pageTitle'] = $postWithDetail->title;
+        $data['pageTitle'] = isset($postWithDetail->title) ? $postWithDetail->title : '';
 
         return view('frontend.about-us', $data);
     }
@@ -150,14 +180,29 @@ class FrontEndController extends Controller
 
     public function showTime($lang)
     {
+        $pageParams = [
+            'lang' => $lang,
+            'id' => config('misc.statics.showtime')
+        ];
+        $postWithDetail = $this->postService->getPostsWithDetail($pageParams)->first();
+
+        $sliderParams = [
+            'id' => 7,
+            'lang' => $lang,
+        ];
+        $sliders = $this->sliderService->getSliderWithItems($sliderParams);
+
         $params = [
             'lang' => $lang
         ];
         $shows = $this->showTimeService->getShowsWithDetails($params)->get();
+
         $data['shows'] = $shows;
         $data['lang'] = $lang;
-
-        $data['pageTitle'] = 'Show Time';
+        $data['pageTitle'] = $postWithDetail->title;
+        $data['metaDesc'] = get_meta_description($postWithDetail->id, $lang);
+        $data['page'] = $postWithDetail;
+        $data['sliders'] = $sliders;
 
         return view('frontend.showtime', $data);
     }
@@ -174,20 +219,22 @@ class FrontEndController extends Controller
 
         $metaFields = [
             'afterMap',
-            'parkingTitle',
-            'parkingDesc',
-            'vipTitle',
-            'vipDesc',
+            'lockerTitle',
+            'lockerDesc',
+            'restroomTitle',
+            'restroomDesc',
             'wheelchairTitle',
             'wheelchairDesc',
-            'bikeRackTitle',
-            'bikeRackDesc',
-            'shuttleBusTitle',
-            'shuttleBusDesc',
-            'blueBirdTitle',
-            'blueBirdDesc',
-            'publicBusTitle',
-            'publicBusDesc'
+            'babyTitle',
+            'babyDesc',
+            'wifiTitle',
+            'wifiDesc',
+            'cafeTitle',
+            'cafeDesc',
+            'souvenirTitle',
+            'souvenirDesc',
+            'restaurantTitle',
+            'restaurantDesc'
         ];
 
         foreach ($metaFields as $metaField) {
@@ -196,6 +243,7 @@ class FrontEndController extends Controller
         }
 
         $data['pageTitle'] = $postWithDetail->title;
+        $data['metaDesc'] = get_meta_description($post->id, $lang);
         $data['post'] = $postWithDetail;
 
 
@@ -204,7 +252,25 @@ class FrontEndController extends Controller
 
     public function locationMap($lang)
     {
-        $data['pageTitle'] = 'Aquarium Map';
+        $pageParams = [
+            'lang' => $lang,
+            'id' => config('misc.statics.location-map')
+        ];
+        $postWithDetail = $this->postService->getPostsWithDetail($pageParams)->first();
+
+        // manual content
+        switch ($lang) {
+            case 'en':
+                $data['getTheApp'] = 'Be the first to receive latest update from Jakarta Aquarium. Download the app';
+                break;
+            default:
+                $data['getTheApp'] = 'Jadilah orang pertama yang mendapatkan info terupdate dari Jakarta Aquarium. Download aplikasinya sekarang juga !';
+                break;
+        }
+
+        $data['pageTitle'] = $postWithDetail->title;
+        $data['mapText'] = $postWithDetail->content;
+        $data['metaDesc'] = get_meta_description($postWithDetail->id, $lang);
 
         return view('frontend.location-map', $data);
     }
@@ -252,7 +318,7 @@ class FrontEndController extends Controller
     {
         $experienceParams = [
             'status' => 'publish',
-            'post_type_id' => 3,
+            'post_type_id' => self::ATTRACTION_ID,
             'lang' => $lang,
             'category_id' => 17
         ];
@@ -261,7 +327,7 @@ class FrontEndController extends Controller
 
         $showParams = [
             'status' => 'publish',
-            'post_type_id' => 3,
+            'post_type_id' => self::ATTRACTION_ID,
             'lang' => $lang,
             'category_id' => 18
         ];
@@ -270,7 +336,7 @@ class FrontEndController extends Controller
 
         $diningParams = [
             'status' => 'publish',
-            'post_type_id' => 3,
+            'post_type_id' => self::ATTRACTION_ID,
             'lang' => $lang,
             'category_id' => 19
         ];
@@ -294,8 +360,10 @@ class FrontEndController extends Controller
         $careers = $this->careerService->getCareerWithDetails($params)->get();
         $data['careers'] = $careers;
         $data['posts'] = $careers;
+        $data['lang'] = $lang;
 
         $data['pageTitle'] = 'Career with Us';
+        $data['metaDesc'] = get_meta_description($data['page']->id, $lang);
 
         return view('frontend.career', $data);
     }
@@ -309,7 +377,8 @@ class FrontEndController extends Controller
         $post = $this->postService->getPostsWithDetail($params);
         $data['page'] = $post->first();
 
-        $data['pageTitle'] = 'Privacy Policy';
+        $data['pageTitle'] = $data['page']->title;
+        $data['metaDesc'] = get_meta_description($data['page']->id, $lang);
 
         return view('frontend.privacy-policy', $data);
     }
@@ -323,13 +392,16 @@ class FrontEndController extends Controller
         $post = $this->postService->getPostsWithDetail($params);
         $data['page'] = $post->first();
 
-        $data['pageTitle'] = 'Term of Use';
+        $data['pageTitle'] = $data['page']->title;
+        $data['metaDesc'] = get_meta_description($data['page']->id, $lang);
 
         return view('frontend.term-use', $data);
     }
 
-    public function search($lang)
+    public function search(Request $request, $lang)
     {
+        $searchResults = $this->postService->search($lang, $request->get('search'));
+        $data['searchResults'] = $searchResults;
         $data['pageTitle'] = 'Search Result';
 
         return view('frontend.search-result', $data);
@@ -349,15 +421,44 @@ class FrontEndController extends Controller
 
     public function promo($lang)
     {
+        $promoParams = [
+            'post_type_id' => self::PROMO_ID,
+            'lang' => $lang,
+            'status' => 'publish'
+        ];
+        $promos = $this->postService->getPostsWithDetail($promoParams);
+
+//        $promoPaginated = $promos->paginate(6);
+//        $promoPaginated->setPath('promo');
+        $promos = $promos->get();
+        $data['promos'] =$promos;
+
         $data['pageTitle'] = 'Promotions';
 
         return view('frontend.promo', $data);
     }
+
 
     public function orderCompleted($lang)
     {
         $data['pageTitle'] = 'Order Confirmation';
 
         return view('emails.order-completed', $data);
+    }
+
+    public function promoDetail($lang, $slug)
+    {
+        $post = $this->postService->getPostsWithDetail(['lang' => $lang, 'slug' => $slug]);
+        if (! $post->count() > 0) {
+            abort(404);
+        }
+        $post = $post->first();
+
+        $data['post'] = $post;
+        $data['metaDesc'] = get_meta_description($post->id, $lang);
+
+        $data['pageTitle'] = $post->title;
+
+        return view('frontend.promo-details', $data);
     }
 }

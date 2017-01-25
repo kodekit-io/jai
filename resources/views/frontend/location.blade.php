@@ -31,14 +31,14 @@
             <p>{!! $afterMap !!}</p>
             <ul class="uk-list uk-list-space">
                 <li>
-                    <i class="uk-icon-large ja-icon-facility park"></i>
-                    <h5 class="uk-margin-small-top uk-margin-bottom-remove">{!! $parkingTitle !!}</h5>
-                    {!! $parkingDesc !!}
+                    <i class="uk-icon-large ja-icon-facility locker"></i>
+                    <h5 class="uk-margin-small-top uk-margin-bottom-remove">{!! $lockerTitle !!}</h5>
+                    {!! $lockerDesc !!}
                 </li>
                 <li>
-                    <i class="uk-icon-large ja-icon-facility vip"></i>
-                    <h5 class="uk-margin-small-top uk-margin-bottom-remove">{!! $vipTitle !!}</h5>
-                    {!! $vipDesc !!}
+                    <i class="uk-icon-large ja-icon-facility restroom"></i>
+                    <h5 class="uk-margin-small-top uk-margin-bottom-remove">{!! $restroomTitle !!}</h5>
+                    {!! $restroomDesc !!}
                 </li>
                 <li>
                     <i class="uk-icon-large ja-icon-facility wheelchair"></i>
@@ -46,24 +46,29 @@
                     {!! $wheelchairDesc !!}
                 </li>
                 <li>
-                    <i class="uk-icon-large ja-icon-facility bike"></i>
-                    <h5 class="uk-margin-small-top uk-margin-bottom-remove">{!! $bikeRackTitle !!}</h5>
-                    {!! $bikeRackDesc !!}
+                    <i class="uk-icon-large ja-icon-facility baby"></i>
+                    <h5 class="uk-margin-small-top uk-margin-bottom-remove">{!! $babyTitle !!}</h5>
+                    {!! $babyDesc !!}
                 </li>
                 <li>
-                    <i class="uk-icon-large ja-icon-facility shuttle"></i>
-                    <h5 class="uk-margin-small-top uk-margin-bottom-remove">{!! $shuttleBusTitle !!}</h5>
-                    {!! $shuttleBusDesc !!}
+                    <i class="uk-icon-large ja-icon-facility wifi"></i>
+                    <h5 class="uk-margin-small-top uk-margin-bottom-remove">{!! $wifiTitle !!}</h5>
+                    {!! $wifiDesc !!}
                 </li>
                 <li>
-                    <i class="uk-icon-large ja-icon-facility taxi"></i>
-                    <h5 class="uk-margin-small-top uk-margin-bottom-remove">{!! $blueBirdTitle !!}</h5>
-                    {!! $blueBirdDesc !!}
+                    <i class="uk-icon-large ja-icon-facility cafetaria"></i>
+                    <h5 class="uk-margin-small-top uk-margin-bottom-remove">{!! $cafeTitle !!}</h5>
+                    {!! $cafeDesc !!}
                 </li>
                 <li>
-                    <i class="uk-icon-large ja-icon-facility bus"></i>
-                    <h5 class="uk-margin-small-top uk-margin-bottom-remove">{!! $publicBusTitle !!}</h5>
-                    {!! $publicBusDesc !!}
+                    <i class="uk-icon-large ja-icon-facility souvenir"></i>
+                    <h5 class="uk-margin-small-top uk-margin-bottom-remove">{!! $souvenirTitle !!}</h5>
+                    {!! $souvenirDesc !!}
+                </li>
+                <li>
+                    <i class="uk-icon-large ja-icon-facility restaurant"></i>
+                    <h5 class="uk-margin-small-top uk-margin-bottom-remove">{!! $restaurantTitle !!}</h5>
+                    {!! $restaurantDesc !!}
                 </li>
             </ul>
         </div>

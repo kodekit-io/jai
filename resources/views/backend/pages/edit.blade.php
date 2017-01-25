@@ -43,6 +43,10 @@
                                         {{--main form--}}
                                         <div class="col-md-8">
                                             @include('backend.pages.content')
+                                            <div class="form-group">
+                                                <label>Slug</label>
+                                                <input type="text" name="slug" value="{!! $post->slug !!}" class="form-control" />
+                                            </div>
                                         </div>
                                         {{--end of main form--}}
 
@@ -119,7 +123,7 @@
 //                    'template paste textcolor colorpicker imagetools code' ],
 //                toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
 //                toolbar2: 'print preview media | forecolor backcolor | code',
-                plugins: [ 'table code' ],
+                plugins: [ 'table code lists advlist' ],
                 toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link code',
                 image_advtab: true,
                 menubar: false,

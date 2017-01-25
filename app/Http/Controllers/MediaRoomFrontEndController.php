@@ -30,18 +30,21 @@ class MediaRoomFrontEndController extends Controller
 
     public function mediaRoom($lang)
     {
+        $years = $this->postService->getAvailableMediaYears();
+
         $params = [
             'lang' => $lang,
             'post_type_id' => 4,
             'status' => 'PUBLISH'
         ];
         $mediaRooms = $this->postService->getPostsWithDetail($params)->get();
-        $categoryParams = [
-            'post_type_id' => 4
-        ];
-        $categories = $this->categoryService->getCategories($categoryParams);
+//        $categoryParams = [
+//            'post_type_id' => 4
+//        ];
+//        $categories = $this->categoryService->getCategories($categoryParams);
         $data['mediaRooms'] = $mediaRooms;
-        $data['categories'] = $categories;
+//        $data['categories'] = $categories;
+        $data['years'] = $years;
 
         $data['pageTitle'] = 'Media Room';
 

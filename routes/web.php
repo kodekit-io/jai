@@ -19,9 +19,11 @@ $backendUrl = config('misc.backend.url');
 Auth::routes();
 
 Route::group(['prefix' => $backendUrl, 'middleware' => ['menu:backend','auth','authorize']], function () {
-    Route::get('/', function ()    {
-        return view('backend.dashboard');
-    })->name('dashboard');
+//    Route::get('/', function ()    {
+//        return view('backend.dashboard');
+//    })->name('dashboard');
+
+    Route::get('/', 'HomeController@index')->name('dashboard');
 
     // User
     Route::get('/user', 'UserController@index')->name('user');
@@ -105,6 +107,14 @@ Route::group(['prefix' => $backendUrl, 'middleware' => ['menu:backend','auth','a
     Route::post('/news/{id}/update', 'NewsController@update')->name('news.edit');
     Route::get('/news/{id}/delete', 'NewsController@destroy')->name('news.delete');
 
+    // Promo
+    Route::get('/promo', 'PromoController@index')->name('promo');
+    Route::get('/promo/add', 'PromoController@create')->name('promo.add');
+    Route::post('/promo/save', 'PromoController@store')->name('promo.add');
+    Route::get('/promo/{id}/edit', 'PromoController@edit')->name('promo.edit');
+    Route::post('/promo/{id}/update', 'PromoController@update')->name('promo.edit');
+    Route::get('/promo/{id}/delete', 'PromoController@destroy')->name('promo.delete');
+
     // Package
     Route::get('/package', 'PackageController@index')->name('package');
     Route::get('/package/add', 'PackageController@create')->name('package.add');
@@ -153,9 +163,18 @@ Route::group(['prefix' => $backendUrl, 'middleware' => ['menu:backend','auth','a
     Route::post('/page/{id}/update', 'PageController@update')->name('page.edit');
     Route::get('/page/{id}/delete', 'PageController@destroy')->name('page.delete');
 
+
     // Order
     Route::get('/order', 'OrderController@index')->name('order');
     Route::get('/order/{id}/detail', 'OrderController@detail')->name('order');
+
+    // Moment
+    Route::get('/moment', 'MomentController@index')->name('moment');
+    Route::get('/moment/add', 'MomentController@create')->name('moment.add');
+    Route::post('/moment/save', 'MomentController@store')->name('moment.add');
+    Route::get('/moment/{id}/edit', 'MomentController@edit')->name('moment.edit');
+    Route::post('/moment/{id}/update', 'MomentController@update')->name('moment.edit');
+    Route::get('/moment/{id}/delete', 'MomentController@destroy')->name('moment.delete');
 
     // General Setting
     Route::get('/general-setting', 'GeneralSettingController@index')->name('setting');
@@ -174,10 +193,12 @@ Route::group(['prefix' => $backendUrl, 'middleware' => ['auth']], function () {
     Route::get('/post-category-data/{postTypeId}', 'CategoryController@anyData')->name('post-category.data');
     Route::get('/post-data', 'PostController@anyData')->name('post.data');
     Route::get('/page-data', 'PageController@anyData')->name('page.data');
+    Route::get('/moment-data', 'MomentController@anyData')->name('moment.data');
     Route::get('/attraction-data', 'AttractionController@anyData')->name('attraction.data');
     Route::get('/media-room-data', 'MediaRoomController@anyData')->name('media-room.data');
     Route::get('/package-data', 'PackageController@anyData')->name('package.data');
     Route::get('/news-data', 'NewsController@anyData')->name('news.data' );
+    Route::get('/promo-data', 'PromoController@anyData')->name('promo.data' );
     Route::get('/slider-data', 'SliderController@anyData')->name('slider.data');
     Route::get('/post-type-data', 'PostTypeController@anyData')->name('post-type.data');
     Route::get('/order-data', 'OrderController@anyData')->name('order.data');
@@ -216,9 +237,10 @@ Route::group(['middleware' => ['lang', 'menu:frontend']], function () {
     Route::get('/{lang?}/media-room', 'MediaRoomFrontEndController@mediaRoom');
     Route::get('/{lang?}/media-room/{slug}', 'MediaRoomFrontEndController@mediaRoomDetails');
     Route::get('/{lang?}/privacy-policy', 'FrontEndController@privacy');
-    Route::get('/{lang?}/term-use', 'FrontEndController@term');
-    Route::get('/{lang?}/search-result', 'FrontEndController@search');
+    Route::get('/{lang?}/terms-and-conditions', 'FrontEndController@term');
+    Route::post('/{lang?}/search-result', 'FrontEndController@search');
     Route::get('/{lang?}/promo', 'FrontEndController@promo');
+    Route::get('/{lang?}/promo/{slug}', 'FrontEndController@promoDetail');
 
     Route::get('/{lang?}/thank-you', 'FrontEndController@thankYou');
     Route::get('/{lang?}/test-print', 'FrontEndController@testPrint');

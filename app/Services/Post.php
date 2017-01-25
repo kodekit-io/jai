@@ -4,6 +4,7 @@ namespace App\Service;
 
 
 use App\Models\Post as PostModel;
+use App\Models\Traits\Sluggable;
 use App\Service\Traits\DatatableParameters;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -14,8 +15,22 @@ use Illuminate\Support\Str;
 class Post
 {
     use DatatableParameters;
+    use Sluggable;
 
     protected $baseUrl = '';
+    /**
+     * @var Language
+     */
+    private $languageService;
+
+    /**
+     * Post constructor.
+     */
+    public function __construct()
+    {
+        $languageService = new Language();
+        $this->languageService = $languageService;
+    }
 
     public function datatableData($postType = 1, $baseUrl = 'post')
     {
@@ -86,24 +101,27 @@ class Post
 
     public function store($postTypeId = 1, array $inputs)
     {
-        // var_dump($inputs); exit;
         $categories = isset($inputs['categories']) ? $inputs['categories'] : [];
         $mediaId = isset($inputs['featured_image_id']) ? $inputs['featured_image_id'] : '' ;
         $whatsOn = isset($inputs['whats_on']) ? true : false ;
         $featured = isset($inputs['featured']) ? true : false ;
+        $defaultLang = $this->languageService->getDefaultLanguage();
+        $defaultTitle = $inputs['title'][$defaultLang];
+        $slug = getSlugOnModelByTitle($defaultTitle, 'Post');
 
         $post = PostModel::create([
             'post_type_id' => $postTypeId,
             'status' => strtoupper($inputs['status']),
+            'slug' => $slug,
             'created_by' => Auth::user()->id,
-            'publish_date' => Carbon::createFromFormat('d-F-Y - H:i', $inputs['publish_date'])->format('Y-m-d H:i')
+            'publish_date' => Carbon::createFromFormat('d-F-Y - H:i', $inputs['publish_date'])->format('Y-m-d H:i:s')
         ]);
 
         foreach ($inputs['title'] as $lang => $title) {
             $content = $inputs['content'][$lang];
             $post->details()->create([
                 'title' => $title,
-                'slug' => getSlugOnModelByTitle($title, 'PostDetail'),
+//                'slug' => getSlugOnModelByTitle($title, 'PostDetail'),
                 'content' => $content,
                 'lang' => $lang
             ]);
@@ -140,12 +158,18 @@ class Post
         }
     }
 
-    public function update($id, Request $request)
+    public function update($id, $request)
     {
         $inputs = $request->except(['_token']);
+
+        $defaultLang = $this->languageService->getDefaultLanguage();
+        $defaultTitle = ($inputs['slug'] != '') ? $inputs['slug'] : $inputs['title'][$defaultLang];
+        $slug = getSlugOnModelByTitle($defaultTitle, 'Post');
+
         $post = PostModel::find($id);
         $post->publish_date = Carbon::createFromFormat('d-F-Y - H:i', $inputs['publish_date'])->format('Y-m-d H:i');
         $post->status = strtoupper($inputs['status']);
+        $post->slug = $slug;
         $post->save();
 
         $post->details()->delete();
@@ -154,7 +178,7 @@ class Post
             $post->details()->create([
                 'lang' => $lang,
                 'title' => $title,
-                'slug' => getSlugOnModelByTitle($title, 'PostDetail'),
+//                'slug' => getSlugOnModelByTitle($title, 'PostDetail'),
                 'content' => $content,
             ]);
 
@@ -349,7 +373,7 @@ class Post
 
         // by slug
         if (isset($params['slug'])) {
-            $query = $query->where('post_details.slug', $params['slug']);
+            $query = $query->where('posts.slug', $params['slug']);
         }
 
         // var_dump($query->toSql()); exit;
@@ -406,13 +430,25 @@ class Post
         return $params;
     }
 
+    public function search($lang, $searchText)
+    {
+        $query = $this->getBaseQuery()
+            ->whereIn('post_type_id', [2,3,4,7])
+            ->where('post_details.lang', $lang)
+            ->where(function ($query) use ($searchText) {
+            $query->where('post_details.title', 'like', '%' . $searchText . '%')
+                ->orWhere('post_details.content', 'like', '%' . $searchText . '%');
+            });
+        return $query->get();
+    }
+
     private function getBaseQuery()
     {
         return DB::table('posts')
             ->join('post_details', 'posts.id', '=', 'post_details.post_id')
             ->leftJoin('post_has_medias', 'posts.id', '=', 'post_has_medias.post_id')
             ->leftJoin('media', 'post_has_medias.media_id', '=', 'media.id')
-            ->select('posts.*', 'post_details.title', 'post_details.slug', 'post_details.content', 'media.file_name');
+            ->select('posts.*', 'post_details.title', 'post_details.slug as detail_slug', 'post_details.content', 'media.file_name');
     }
 
     public function updateSightSeeing($post, $inputs)
@@ -461,6 +497,16 @@ class Post
         }
     }
 
+    public function getAvailableMediaYears()
+    {
+        return DB::table('posts')
+            ->select(DB::raw('YEAR(publish_date) AS the_year'))
+            ->distinct()
+            ->where('post_type_id', 4)
+            ->where('status', 'publish')
+            ->get();
+    }
+
     private function updateLocation($post, array $inputs)
     {
         $fields = $this->getLocationMetaFields();
@@ -479,20 +525,22 @@ class Post
     {
         return [
             'afterMap',
-            'parkingTitle',
-            'parkingDesc',
-            'vipTitle',
-            'vipDesc',
+            'lockerTitle',
+            'lockerDesc',
+            'restroomTitle',
+            'restroomDesc',
             'wheelchairTitle',
             'wheelchairDesc',
-            'bikeRackTitle',
-            'bikeRackDesc',
-            'shuttleBusTitle',
-            'shuttleBusDesc',
-            'blueBirdTitle',
-            'blueBirdDesc',
-            'publicBusTitle',
-            'publicBusDesc'
+            'babyTitle',
+            'babyDesc',
+            'wifiTitle',
+            'wifiDesc',
+            'cafeTitle',
+            'cafeDesc',
+            'souvenirTitle',
+            'souvenirDesc',
+            'restaurantTitle',
+            'restaurantDesc'
         ];
     }
 

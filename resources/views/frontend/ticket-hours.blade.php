@@ -24,98 +24,164 @@
                 {{--<h3 class="">ADMISSION PACKAGE</h3>--}}
                 <div class="">
                     <p>{!! $post->content !!}</p>
-
-                    <form id="bookForm" class="uk-form uk-margin-top uk-margin-bottom" method="post" action="{!! lang_url('book-detail') !!}">
-                        {!! csrf_field() !!}
-                        <div class="uk-form-row">
-                            <label for="visit_date"><i class="uk-icon-calendar"></i>Visit Date :</label>
-                            <input id="visit_date" name="visit_date" type="text" data-uk-datepicker="{format:'dddd, DD-MM-YYYY', minDate:'{!! $minDate !!}'}" required readonly>
-                        </div>
-                        <div class="uk-form-row">
-                            <h4 class="cyan-text text-darken-1">Admission Package</h4>
-                            <div class="all-packages">
-                            @foreach($galasysProducts as $galasysProduct)
-                                <?php
-                                $title = $galasysProduct->Name;
-                                $description = $galasysProduct->Description;
-                                $itemCode = $galasysProduct->ItemCode;
-                                $ticketId = $galasysProduct->TicketID;
-                                $isPackage = $galasysProduct->IsPackage;
-                                $price = '';
-                                if ($galasysProduct->IsMonday == 'true') {
-                                    $price .= 'Weekday :<br>';
-                                    $price .= '<span class="ja-bold">IDR '. number_format($galasysProduct->BasePrice, 0) . '</span><br>';
-                                }
-                                if ($galasysProduct->IsSunday == 'true') {
-                                    $price .= 'Weekend :<br>';
-                                    $price .= '<span class="ja-bold">IDR '. number_format($galasysProduct->WeekendPrice, 0) . '</span>';
-                                }
-                                ?>
-                                <div class="uk-panel uk-panel-box {!! $colors[$loop->index] !!} white-text noborder uk-margin-bottom">
-                                    <div class="uk-grid">
-                                        <div class="uk-width-medium-2-3">
-                                            <h4 class="white-text">{!! strtoupper($title) !!}</h4>
-                                            <p>{!! $description !!}</p>
-                                        </div>
-                                        <div class="uk-width-medium-1-3">
-                                            {{--Monday - Friday (Weekday):<br>--}}
-                                            {{--<span class="ja-bold">IDR {!! number_format($price, 0) !!}</span>--}}
-                                            {!! $price !!}
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
+                    <div class="uk-panel uk-panel-box cyan darken-1 white-text noborder uk-margin-bottom">
+                        <div class="uk-grid">
+                            <div class="uk-width-medium-2-3">
+                                <h4 class="white-text">REGULAR</h4>
+                                Aquarium Admission
                             </div>
+                            <div class="uk-width-medium-1-3">
+                                {!! trans('messages.weekday', [], '', $lang) !!}:<br><span class="ja-bold">IDR 220.000</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="uk-panel uk-panel-box grey darken-1 white-text noborder uk-margin-bottom">
+                        <div class="uk-grid">
+                            <div class="uk-width-medium-2-3">
+                                <h4 class="white-text">EXCLUSIVE</h4>
+                                Aquarium Admission and 5D Theater.
+                            </div>
+                            <div class="uk-width-medium-1-3">
+                                {!! trans('messages.weekday', [], '', $lang) !!}:<br><span class="ja-bold">IDR 275.000</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="uk-panel uk-panel-box amber darken-2 white-text noborder uk-margin-bottom">
+                        <div class="uk-grid">
+                            <div class="uk-width-medium-2-3">
+                                <h4 class="white-text">PREMIUM</h4>
+                                Aquarium Admission and 5D Theater.
+                            </div>
+                            <div class="uk-width-medium-1-3">
+                                {!! trans('messages.weekend', [], '', $lang) !!}:<br><span class="ja-bold">IDR 290.000</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="uk-panel uk-panel-box light-blue darken-4 white-text noborder uk-margin-bottom">
+                        <div class="uk-grid">
+                            <div class="uk-width-medium-2-3">
+                                <h4 class="white-text">ULTIMATE</h4>
+                                Aquarium Admission, 5D Theater, Merchandise, Sea Trek OR Diving, Multiple Entry within Four Hours.
+                            </div>
+                            <div class="uk-width-medium-1-3">
+                                {{--{!! trans('messages.all-day', [], '', $lang) !!}:<br>--}}
+                                {!! trans('messages.weekday', [], '', $lang) !!}: <span class="ja-bold"><br>IDR 550.000</span><br><br>
+                                {!! trans('messages.weekend', [], '', $lang) !!}:<br><span class="ja-bold">IDR 600.000</span>
+                            </div>
+                        </div>
+                    </div>
 
-                            <div class="uk-grid uk-grid-small uk-grid-match packages" data-uk-grid-match data-uk-grid-margin></div>
-                        </div>
+                    {{--<form id="bookForm" class="uk-form uk-margin-top uk-margin-bottom" method="post" action="{!! lang_url('book-detail') !!}">--}}
+                        {{--{!! csrf_field() !!}--}}
+                        {{--<div class="uk-form-row">--}}
+                            {{--<label for="visit_date"><i class="uk-icon-calendar"></i>Visit Date</label>--}}
+                            {{--<input id="visit_date" name="visit_date" type="text" data-uk-datepicker="{format:'dddd, DD-MM-YYYY'}" required>--}}
+                        {{--</div>--}}
+                        {{--<div class="uk-form-row">--}}
+                            {{--<h4 class="cyan-text text-darken-1">Admission Package</h4>--}}
+                            {{--<div class="uk-grid uk-grid-small uk-grid-match packages" data-uk-grid-match data-uk-grid-margin>--}}
+                                {{--@foreach($generalPackages as $package)--}}
+                                {{--<div class="uk-width-medium-1-3">--}}
+                                    {{--<div class="uk-panel-box {!! $package->color !!} white-text">--}}
+                                        {{--<h4 class="white-text uk-margin-remove">{!! $package->title !!}</h4>--}}
+                                        {{--<div class="jai-submission-info">{!! $package->content !!}</div>--}}
+                                        {{--<div class="jai-submission-price">--}}
+                                            {{--Weekday IDR {!! number_format($package->normal_price, 0) !!}--}}
+                                            {{--Weekend IDR {!! number_format($package->weekend_price, 0) !!}--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                    {{--<div class="uk-panel-box jai-submission-order white uk-text-right">--}}
+                                        {{--<input type="number" name="packages[{!! $package->id !!}]" class="right" value="0">--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                                {{--@endforeach--}}
+                                {{--<div class="uk-width-medium-1-3">--}}
+                                    {{--<div class="uk-panel-box light-blue darken-4 white-text">--}}
+                                        {{--<h4 class="white-text uk-margin-remove">Premium Admission</h4>--}}
+                                        {{--<div class="jai-submission-info">Aquarium Tour, 5D Theater and Printed Photo Souvenir.</div>--}}
+                                        {{--<div class="jai-submission-price">Weekday IDR 265.000</div>--}}
+                                    {{--</div>--}}
+                                    {{--<div class="uk-panel-box jai-submission-order white uk-text-right">--}}
+                                        {{--<input type="number" class="right" value="0">--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                                {{--<div class="uk-width-medium-1-3">--}}
+                                    {{--<div class="uk-panel-box amber darken-1 white-text">--}}
+                                        {{--<h4 class="white-text uk-margin-remove">Exclusive Admission</h4>--}}
+                                        {{--<div class="jai-submission-info">Aquarium Tour, 5D Theater, Shark/Piranha Feeding, Seatrek/Dive and Printed Photo Souvenir.</div>--}}
+                                        {{--<div class="jai-submission-price">Weekday IDR 550.000</div>--}}
+                                    {{--</div>--}}
+                                    {{--<div class="uk-panel-box jai-submission-order white uk-text-right">--}}
+                                        {{--<input type="number" class="right" value="0">--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
 
-                        <div class="uk-form-row infant-info uk-hidden">
-                            <h4>* Admissions for infants under 2 years old is free</h4>
-                        </div>
+                        {{--<div class="uk-form-row infant-info uk-hidden">--}}
+                            {{--<h4>* Admissions for infants under 2 years old is free</h4>--}}
+                        {{--</div>--}}
 
-                        <h4 class="cyan-text text-darken-1">Personal Identification</h4>
-                        <div class="uk-form-row uk-margin-remove">
-                            <label for="order_name">Full Name</label>
-                            <input id="" type="text" value="" name="order_name" placeholder="Input your name" required>
-                        </div>
-                        <div class="uk-form-row uk-margin-remove">
-                            <label for="order_email">Email</label>
-                            <input id="" type="text" value="" name="order_email" placeholder="Input your email" required>
-                        </div>
-                        <div class="uk-form-row uk-margin-remove">
-                            <label for="order_phone">Phone Number</label>
-                            <input id="" type="text" value="" name="order_phone" placeholder="Input your phone" required>
-                        </div>
-                        <div class="uk-form-row agree">
-                            <h5 class="uk-margin-bottom-remove">Terms &amp; Conditions <span>(<a href="#!">read</a>)</span></h5>
-                            <p class="uk-margin-top-remove">
-                                <input name="agree" type="checkbox" class="ja-check" required>
-                                <label class="no-style" for="agree">I have read and accepted the Terms and Conditions.</label>
-                            </p>
-                        </div>
+                        {{--<div class="uk-form-row">--}}
+                            {{--<label for="promo"><i class="uk-icon-tag"></i>Promo</label>--}}
+                            {{--<input id="promo" type="text" placeholder="Coupon code / membership code">--}}
+                        {{--</div>--}}
 
-                        <div class="uk-form-row">
-                            <button type="submit" class="uk-button uk-button-large amber darken-1 light-blue-text text-darken-4">Book Now</button>
-                        </div>
-                    </form>
+                        {{--<h4 class="cyan-text text-darken-1">Personal Identification</h4>--}}
+                        {{--<div class="uk-form-row uk-margin-remove">--}}
+                            {{--<label for="order_name">Full Name</label>--}}
+                            {{--<input id="" type="text" value="" name="order_name" placeholder="Input your name" required>--}}
+                        {{--</div>--}}
+                        {{--<div class="uk-form-row uk-margin-remove">--}}
+                            {{--<label for="order_email">Email</label>--}}
+                            {{--<input id="" type="text" value="" name="order_email" placeholder="Input your email" required>--}}
+                        {{--</div>--}}
+                        {{--<div class="uk-form-row uk-margin-remove">--}}
+                            {{--<label for="order_phone">Phone Number</label>--}}
+                            {{--<input id="" type="text" value="" name="order_phone" placeholder="Input your phone" required>--}}
+                        {{--</div>--}}
+                        {{--<div class="uk-form-row uk-margin-remove">--}}
+                            {{--<label for="">Address</label>--}}
+                            {{--<input id="" type="text" value="" name="order_address" placeholder="Input your address">--}}
+                        {{--</div>--}}
+                        {{--<div class="uk-form-row uk-margin-remove">--}}
+                            {{--<label for="">City</label>--}}
+                            {{--<input id="" type="text" value="" name="order_city" placeholder="Input your city">--}}
+                        {{--</div>--}}
+                        {{--<div class="uk-form-row uk-margin-remove">--}}
+                            {{--<label for="">Country</label>--}}
+                            {{--<input id="" type="text" value="" name="order_country" placeholder="Input your country">--}}
+                        {{--</div>--}}
+                        {{--<div class="uk-form-row agree">--}}
+                            {{--<h5 class="uk-margin-bottom-remove">Terms &amp; Conditions <span>(<a href="#!">read</a>)</span></h5>--}}
+                            {{--<p class="uk-margin-top-remove">--}}
+                                {{--<input name="agree" type="checkbox" class="ja-check" required>--}}
+                                {{--<label class="no-style" for="agree">I have read and accepted the Terms and Conditions of Use.</label>--}}
+                            {{--</p>--}}
+                        {{--</div>--}}
+
+                        {{--<div class="uk-form-row">--}}
+                            {{--<button type="submit" class="uk-button uk-button-large amber darken-1 light-blue-text text-darken-4">Book Now</button>--}}
+                        {{--</div>--}}
+                    {{--</form>--}}
                 </div>
 
             </div>
 
         </div>
 
+
         @if (count($packages) > 0)
             @foreach($packages as $package)
-            <div class="ja-ticket__content uk-margin-large-bottom">
-                <h3 class="light-blue-text text-darken-4">{!! $package->title !!}</h3>
-                {!! $package->content !!}
-            </div>
+                <div class="ja-ticket__content uk-margin-bottom">
+                    <h3 class="light-blue-text text-darken-4">{!! $package->title !!}</h3>
+                    {!! $package->content !!}
+                </div>
             @endforeach
         @endif
 
         <div class="ja-ticket__content uk-margin-large-bottom">
-            <h3 class="light-blue-text text-darken-4">OPENING HOURS</h3>
+            <h3 class="light-blue-text text-darken-4">{!! trans('messages.opening-hours', [], '', $lang) !!}</h3>
             {!! $openingHours->meta_value !!}
         </div>
     </div>
