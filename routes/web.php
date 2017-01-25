@@ -222,6 +222,7 @@ Route::group(['prefix' => $backendUrl, 'middleware' => ['auth']], function () {
 Route::group(['middleware' => ['lang', 'menu:frontend']], function () {
     Route::get('/{lang?}/about-us', 'FrontEndController@aboutUs');
     Route::get('/{lang?}/ticket-hours', 'TicketController@ticket');
+    Route::get('/{lang?}/ticket-booking', 'TicketController@ticketBooking');
     Route::post('/{lang?}/book-detail', 'TicketController@bookTicket');
     Route::get('/{lang?}/book-detail/{orderId?}', 'TicketController@bookTicket');
     Route::get('/{lang?}/special-packages', 'FrontEndController@specialPackages');

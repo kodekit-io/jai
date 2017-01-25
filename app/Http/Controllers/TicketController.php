@@ -87,7 +87,7 @@ class TicketController extends Controller
         return $packages;
     }
 
-    public function ticket($lang)
+    public function ticketBooking($lang)
     {
         $pageId = config('misc.statics.ticket-hours');
         $params = [
@@ -103,11 +103,8 @@ class TicketController extends Controller
         ];
         $packages = $this->packageService->getPackages($params);
 
-<<<<<<< HEAD
         $galasysProducts = $this->packageService->getAllPackages();
 
-=======
->>>>>>> master
         $post = $this->postService->getPost(['id' => $pageId]);
         $openingHours = $post->metas()->where('meta_key', 'openingHours-' . $lang)->first();
 
@@ -129,11 +126,55 @@ class TicketController extends Controller
         $data['packages'] = $packages;
         $data['post'] = $postWithDetail;
         $data['openingHours'] = $openingHours;
-<<<<<<< HEAD
         $data['colors'] = $colors;
-=======
         $data['lang'] = $lang;
->>>>>>> master
+
+        return view('frontend.ticket-hours-payment', $data);
+    }
+
+    public function ticket($lang)
+    {
+        $pageId = config('misc.statics.ticket-hours');
+        $params = [
+            'lang' => $lang,
+            'id' => $pageId
+        ];
+        $postWithDetail = $this->postService->getPostsWithDetail($params)->first();
+
+        $params = [
+            'package_type_id' => 2,
+            'lang' => $lang,
+            'is_general_admission' => 1,
+        ];
+        $packages = $this->packageService->getPackages($params);
+
+
+        $galasysProducts = $this->packageService->getAllPackages();
+
+        $post = $this->postService->getPost(['id' => $pageId]);
+        $openingHours = $post->metas()->where('meta_key', 'openingHours-' . $lang)->first();
+
+        $colors = [
+            'cyan darken-1',
+            'grey darken-1',
+            'light-blue darken-4',
+            'amber darken-1',
+            'cyan darken-1',
+            'grey darken-1',
+            'light-blue darken-4',
+            'amber darken-1'
+        ];
+
+        $data['minDate'] = Carbon::today()->addDays(7)->format('d-m-Y');
+        $data['galasysProducts'] = $galasysProducts;
+        $data['packages'] = $packages;
+        $data['pageTitle'] = $postWithDetail->title;
+        $data['packages'] = $packages;
+        $data['post'] = $postWithDetail;
+        $data['openingHours'] = $openingHours;
+
+        $data['colors'] = $colors;
+        $data['lang'] = $lang;
 
         return view('frontend.ticket-hours', $data);
     }

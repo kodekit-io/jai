@@ -70,9 +70,9 @@
                                 <div class="uk-grid uk-grid-small uk-grid-match packages" data-uk-grid-match data-uk-grid-margin></div>
                             </div>
 
-                            {{--<div class="uk-form-row infant-info uk-hidden">--}}
-                            {{--<h4>* Admissions for infants under 2 years old is free</h4>--}}
-                            {{--</div>--}}
+                            <div class="uk-form-row infant-info uk-hidden">
+                                <h4>* Admissions for infants under 2 years old is free</h4>
+                            </div>
 
                             <h4 class="cyan-text text-darken-1">Personal Identification</h4>
                             <div class="uk-form-row uk-margin-remove">
@@ -95,9 +95,9 @@
                                 </p>
                             </div>
 
-                        {{--<div class="uk-form-row">--}}
-                        {{--<button type="submit" class="uk-button uk-button-large amber darken-1 light-blue-text text-darken-4">Book Now</button>--}}
-                        {{--</div>--}}
+                            <div class="uk-form-row">
+                                <button type="submit" class="uk-button uk-button-large amber darken-1 light-blue-text text-darken-4">Book Now</button>
+                            </div>
                         </form>
                     </div>
 
@@ -115,7 +115,7 @@
             @endif
 
             <div class="ja-ticket__content uk-margin-large-bottom">
-                <h3 class="light-blue-text text-darken-4">{!! trans('messages.opening-hours', [], '', $lang) !!}</h3>
+                <h3 class="light-blue-text text-darken-4">OPENING HOURS</h3>
                 {!! $openingHours->meta_value !!}
             </div>
         </div>
@@ -206,8 +206,6 @@
                             orderTotal = orderTotal + parseInt(value);
                         }
                     });
-
-                    console.log(orderTotal);
 
                     if (orderTotal < 1) {
                         $('.packages p').remove();
