@@ -87,6 +87,51 @@ class TicketController extends Controller
         return $packages;
     }
 
+    public function ticketBooking($lang)
+    {
+        $pageId = config('misc.statics.ticket-hours');
+        $params = [
+            'lang' => $lang,
+            'id' => $pageId
+        ];
+        $postWithDetail = $this->postService->getPostsWithDetail($params)->first();
+
+        $params = [
+            'package_type_id' => 2,
+            'lang' => $lang,
+            'is_general_admission' => 1,
+        ];
+        $packages = $this->packageService->getPackages($params);
+
+        $galasysProducts = $this->packageService->getAllPackages();
+
+        $post = $this->postService->getPost(['id' => $pageId]);
+        $openingHours = $post->metas()->where('meta_key', 'openingHours-' . $lang)->first();
+
+        $colors = [
+            'cyan darken-1',
+            'grey darken-1',
+            'light-blue darken-4',
+            'amber darken-1',
+            'cyan darken-1',
+            'grey darken-1',
+            'light-blue darken-4',
+            'amber darken-1'
+        ];
+
+        $data['minDate'] = Carbon::today()->addDays(7)->format('d-m-Y');
+        $data['galasysProducts'] = $galasysProducts;
+        $data['packages'] = $packages;
+        $data['pageTitle'] = $postWithDetail->title;
+        $data['packages'] = $packages;
+        $data['post'] = $postWithDetail;
+        $data['openingHours'] = $openingHours;
+        $data['colors'] = $colors;
+        $data['lang'] = $lang;
+
+        return view('frontend.ticket-hours-payment', $data);
+    }
+
     public function ticket($lang)
     {
         $pageId = config('misc.statics.ticket-hours');
@@ -103,13 +148,32 @@ class TicketController extends Controller
         ];
         $packages = $this->packageService->getPackages($params);
 
+
+        $galasysProducts = $this->packageService->getAllPackages();
+
         $post = $this->postService->getPost(['id' => $pageId]);
         $openingHours = $post->metas()->where('meta_key', 'openingHours-' . $lang)->first();
 
+        $colors = [
+            'cyan darken-1',
+            'grey darken-1',
+            'light-blue darken-4',
+            'amber darken-1',
+            'cyan darken-1',
+            'grey darken-1',
+            'light-blue darken-4',
+            'amber darken-1'
+        ];
+
+        $data['minDate'] = Carbon::today()->addDays(7)->format('d-m-Y');
+        $data['galasysProducts'] = $galasysProducts;
+        $data['packages'] = $packages;
         $data['pageTitle'] = $postWithDetail->title;
         $data['packages'] = $packages;
         $data['post'] = $postWithDetail;
         $data['openingHours'] = $openingHours;
+
+        $data['colors'] = $colors;
         $data['lang'] = $lang;
 
         return view('frontend.ticket-hours', $data);
@@ -142,6 +206,7 @@ class TicketController extends Controller
         $data['cimbUrl'] = $cimbUrl;
         $data['cimbParams'] = $cimbParams;
 
+        $data['visitDate'] = Carbon::createFromFormat('Y-m-d', $order->visit_date)->format('l, d-M-Y');
         $data['details'] = $order->details;
         $data['subTotal'] = $order->sub_total;
         $data['tax'] = $order->tax;
@@ -154,16 +219,49 @@ class TicketController extends Controller
 
     public function sendEmail()
     {
-        Mail::to('pasha.md5@gmail.com')->send(new OrderCompleted());
+        $order = $this->orderService->getOrderById(96);
+        Mail::to('jamal@kleur.id')->send(new OrderCompleted($order));
     }
 
     public function generatePdf()
     {
         $data['barcode'] = DNS1D::getBarcodePNGPath("1612190000211", "EAN13", 2.5, 40);
-        $pdf = PDF::loadView('emails.order-completed', $data);
+        $pdf = PDF::loadView('emails.e_ticket', $data);
         $pdf->setPaper('A4', 'landscape');
         return $pdf->stream('eticket.pdf');
         // return $pdf->download('eticket.pdf');
+    }
+
+    public function galasysOrder()
+    {
+        $orderDetails = $this->galasys->getTickets(83);
+        foreach ($orderDetails as $orderDetail) {
+            $tickets = $orderDetail->Tickets;
+            foreach ($tickets as $ticket) {
+                $barcode = $ticket->TicketBarcode;
+                $ticketName = $ticket->TicketName;
+                $code = $ticket->ItemCode;
+
+                echo $code.'---'.$ticketName.'---'.$barcode."<br>";
+            }
+        }
+    }
+
+    public function galasysHolidays()
+    {
+        var_dump($this->galasys->getHolidays()); exit();
+    }
+
+    public function emailTemplate()
+    {
+        $order = $this->orderService->getOrderById(96);
+        $data['orderId'] = $order->id;
+        $data['name'] = $order->name;
+        $data['details'] = $order->details;
+        $data['visitDate'] = Carbon::createFromFormat('Y-m-d', $order->visit_date)->format('l, d F Y');
+        $data['total'] = number_format($order->total_amount, 0, ',', '.');
+
+        return view('emails.order-completed', $data);
     }
 
 }

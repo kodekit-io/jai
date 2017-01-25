@@ -24,7 +24,6 @@
                 {{--<h3 class="">ADMISSION PACKAGE</h3>--}}
                 <div class="">
                     <p>{!! $post->content !!}</p>
-
                     <div class="uk-panel uk-panel-box cyan darken-1 white-text noborder uk-margin-bottom">
                         <div class="uk-grid">
                             <div class="uk-width-medium-2-3">
@@ -167,18 +166,10 @@
                     {{--</form>--}}
                 </div>
 
-                {{--<h3 class="uk-accordion-title">5D THEATER PACKAGE</h3>--}}
-                {{--<div class="uk-accordion-content">--}}
-                    {{--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>--}}
-                {{--</div>--}}
-
-                {{--<h3 class="uk-accordion-title">VIP, SCHOOL, AND BIRTHDAY TOUR</h3>--}}
-                {{--<div class="uk-accordion-content">--}}
-                    {{--<p>The aquarium is one of Indonesia's most unforgettable group activities! Groups of 10 or more people receive discounted admission to the aquarium! Pre-booking is required at least 7 days in advance as groups must be pre-qualified before receiving this rate. Please contact the booking office by call +62 212 3456 789 or email specialprograms@jakartaaquarium.org with the following information: Your name, your organization name and contact information, preferred date of visit, and number of people. Helping you to create the right experience is our goal.</p>--}}
-                {{--</div>--}}
-
             </div>
+
         </div>
+
 
         @if (count($packages) > 0)
             @foreach($packages as $package)
@@ -192,15 +183,6 @@
         <div class="ja-ticket__content uk-margin-large-bottom">
             <h3 class="light-blue-text text-darken-4">{!! trans('messages.opening-hours', [], '', $lang) !!}</h3>
             {!! $openingHours->meta_value !!}
-            {{--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor crasher malarki requiem predantia incididunt ut labore et dolore magna aliqua. Ut eni ad minim veniam, quisiom nostrud at autumn irure dor in reprehenderit exercitation.</p>--}}
-            {{--<ul class="uk-list">--}}
-                {{--<li>Weekday	(Monday - Thursday)	:  08.00 a.m. - 07.00 p.m.</li>--}}
-                {{--<li>Weekend (Friday - Sunday)	:  08.00 a.m. - 09.00 p.m.</li>--}}
-            {{--</ul>--}}
-            {{--<div class="uk-panel-box">--}}
-                {{--<h4 class="uk-margin-remove">Announcement:</h4>--}}
-                {{--<p class="uk-margin-remove">Jakarta Aquarium will close on 24th and 25th December for the Christmas holiday, and also on 31st December and 1st January for the New Year holiday.</p>--}}
-            {{--</div>--}}
         </div>
     </div>
 </main>
@@ -221,6 +203,7 @@
                     url: ajaxUrl,
                     data: { visit_date: visitDate, _token: "{!! csrf_token() !!}" },
                     beforeSend : function(xhr) {
+                        $('.all-packages').hide();
                         $('.packages').block({
                             message: '<img src="{!! asset('frontend/img/spinner.gif') !!}" class="preloader">',
                             css: { border: 'none', zIndex: 100, width: 50, height: 50 },
@@ -232,7 +215,33 @@
                     }
                 }).done(function (data) {
                     // console.log(data);
-                    jQuery('.packages').html(data);
+                    if (data == '0') {
+                        $('.all-packages').show();
+                        jQuery('.packages').html('<h4>Sorry, there is no ticket</h4>');
+                    } else {
+                        jQuery('.packages').html(data);
+                    }
+
+
+                    jQuery(function() {
+                        jQuery(".qtys").append('<a class="inc btn">+</a><a class="dec btn">-</a>');
+                        jQuery(".btn").on("click", function() {
+                            var btn = jQuery(this);
+                            var oldValue = btn.parent().find("input").val();
+                            if (btn.text() == "+") {
+                                var newVal = parseFloat(oldValue) + 1;
+                            } else {
+                                if (oldValue > 0) {
+                                    var newVal = parseFloat(oldValue) - 1;
+                                } else {
+                                    newVal = 0;
+                                }
+                            }
+                            btn.parent().find("input").val(newVal);
+                        });
+                    });
+
+
                 });
             }
             var errorCounter = 0;
@@ -243,7 +252,6 @@
 
             jQuery('#visit_date').change(function() {
                 visitDate = jQuery(this).val();
-                console.log(visitDate);
                 getAvailableProducts(visitDate);
             });
 
@@ -258,13 +266,14 @@
                     var orderTotal = 0;
                     $('input[name^=products]').each(function() {
                         var order = $(this).attr('type');
-                        if(order == 'number') {
-                            if (order == 'number') {
-                                var value = $(this).val();
-                                orderTotal = orderTotal + parseInt(value);
-                            }
+                        console.log(order);
+                        if (order == 'text') {
+                            var value = $(this).val();
+                            orderTotal = orderTotal + parseInt(value);
                         }
                     });
+
+                    console.log(orderTotal);
 
                     if (orderTotal < 1) {
                         $('.packages p').remove();
@@ -276,5 +285,7 @@
                 }
             });
         });
+
+
     </script>
 @endsection

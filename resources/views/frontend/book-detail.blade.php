@@ -35,7 +35,7 @@
             <form class="uk-form uk-margin-top">
             <div class="uk-form-row uk-margin-remove">
                 <label for="">Date of Visit</label>
-                <input id="" type="text" value="Tuesday, 01-11-2016" disabled="true">
+                <input id="" type="text" value="{!! $visitDate !!}" disabled="true">
             </div>
             <div class="uk-form-row uk-margin-remove">
                 <label for="">Admission</label>
@@ -84,10 +84,10 @@
                 {{--<input id="" type="text" value="-" disabled="true">--}}
             {{--</div>--}}
 
-            <div class="uk-form-row">
-                <label for="">Service + 10% PB1 Tax</label>
-                <input id="" type="text" value="IDR {!! number_format($tax) !!}" disabled="true">
-            </div>
+            {{--<div class="uk-form-row">--}}
+                {{--<label for="">Service + 10% PB1 Tax</label>--}}
+                {{--<input id="" type="text" value="IDR {!! number_format($tax) !!}" disabled="true">--}}
+            {{--</div>--}}
 
             <div class="uk-form-row">
                 <label for="">Grand Total</label>
@@ -101,12 +101,10 @@
                         <input name="payments" type="radio" id="pay1" value="doku" />
                         <label for="pay1" class="no-style"><img src="{!! asset('frontend/img/logo-doku.png') !!}" /></label>
                         <hr>
-                        <h3 class="uk-margin-bottom-remove">DOKU</h3>
-                        <ul class="uk-list uk-list-line">
-                            <li>Lorem ipsum dolor sit amet,</li>
-                            <li>consectetur adipisicing elit,</li>
-                            <li>sed do eiusmod tempor incididunt</li>
-                            <li>ut labore et dolore magna aliqua.</li>
+                        <ul class="uk-list uk-list-space">
+                            <li class="uk-margin-bottom">ATM<br><img src="{!! asset('frontend/img/doku-atm.png') !!}" /></li>
+                            <li class="uk-margin-bottom">Credit Card<br><img src="{!! asset('frontend/img/doku-cc.png') !!}" /></li>
+                            <li>DOKU Wallet<br><img src="{!! asset('frontend/img/doku-wallet.png') !!}" /></li>
                         </ul>
                     </div>
                 </div>
@@ -115,6 +113,7 @@
                         <input name="payments" type="radio" id="pay2" value="cimb" />
                         <label for="pay2" class="no-style"><img src="{!! asset('frontend/img/logo-cimb-click.png') !!}" /></label>
                         <hr>
+                        {{--
                         <h3 class="uk-margin-bottom-remove">CIMB Clicks</h3>
                         <ul class="uk-list uk-list-line">
                             <li>Lorem ipsum dolor sit amet,</li>
@@ -122,6 +121,7 @@
                             <li>sed do eiusmod tempor incididunt</li>
                             <li>ut labore et dolore magna aliqua.</li>
                         </ul>
+                        --}}
                     </div>
                 </div>
             </div>

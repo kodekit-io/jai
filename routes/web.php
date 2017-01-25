@@ -163,6 +163,11 @@ Route::group(['prefix' => $backendUrl, 'middleware' => ['menu:backend','auth','a
     Route::post('/page/{id}/update', 'PageController@update')->name('page.edit');
     Route::get('/page/{id}/delete', 'PageController@destroy')->name('page.delete');
 
+
+    // Order
+    Route::get('/order', 'OrderController@index')->name('order');
+    Route::get('/order/{id}/detail', 'OrderController@detail')->name('order');
+
     // Moment
     Route::get('/moment', 'MomentController@index')->name('moment');
     Route::get('/moment/add', 'MomentController@create')->name('moment.add');
@@ -196,6 +201,7 @@ Route::group(['prefix' => $backendUrl, 'middleware' => ['auth']], function () {
     Route::get('/promo-data', 'PromoController@anyData')->name('promo.data' );
     Route::get('/slider-data', 'SliderController@anyData')->name('slider.data');
     Route::get('/post-type-data', 'PostTypeController@anyData')->name('post-type.data');
+    Route::get('/order-data', 'OrderController@anyData')->name('order.data');
 
     Route::post('/get-slug/{model}', function(\Illuminate\Http\Request $request, $model) {
         $title = $request->input('title');
@@ -216,6 +222,7 @@ Route::group(['prefix' => $backendUrl, 'middleware' => ['auth']], function () {
 Route::group(['middleware' => ['lang', 'menu:frontend']], function () {
     Route::get('/{lang?}/about-us', 'FrontEndController@aboutUs');
     Route::get('/{lang?}/ticket-hours', 'TicketController@ticket');
+    Route::get('/{lang?}/ticket-booking', 'TicketController@ticketBooking');
     Route::post('/{lang?}/book-detail', 'TicketController@bookTicket');
     Route::get('/{lang?}/book-detail/{orderId?}', 'TicketController@bookTicket');
     Route::get('/{lang?}/special-packages', 'FrontEndController@specialPackages');
@@ -238,6 +245,7 @@ Route::group(['middleware' => ['lang', 'menu:frontend']], function () {
 
     Route::get('/{lang?}/thank-you', 'FrontEndController@thankYou');
     Route::get('/{lang?}/test-print', 'FrontEndController@testPrint');
+    Route::get('/{lang?}/order-completed', 'FrontEndController@orderCompleted');
 
     Route::get('/{lang?}', 'FrontEndController@homePage');
 //    Route::get('/{lang?}/news/{slug}', 'FrontEndController@homePage');
@@ -259,4 +267,8 @@ Route::get('galasys/products', 'GalasysController@products');
 Route::get('galasys/order', 'GalasysController@order');
 
 Route::get('tests/send-email', 'TicketController@sendEmail');
+Route::get('tests/email-template', 'TicketController@emailTemplate');
 Route::get('tests/get-pdf', 'TicketController@generatePdf');
+Route::get('tests/galasys-order', 'TicketController@galasysOrder');
+Route::get('tests/galasys-holidays', 'TicketController@galasysHolidays');
+Route::get('tests/cimb-status', 'PaymentController@cimbStatus');

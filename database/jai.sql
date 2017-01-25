@@ -32,6 +32,8 @@ CREATE TABLE `career_details` (
   CONSTRAINT `career_details_career_id_foreign` FOREIGN KEY (`career_id`) REFERENCES `careers` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+<<<<<<< HEAD
+=======
 /*Data for the table `career_details` */
 
 insert  into `career_details`(`id`,`career_id`,`lang`,`slug`,`position`,`description`) values 
@@ -42,6 +44,7 @@ insert  into `career_details`(`id`,`career_id`,`lang`,`slug`,`position`,`descrip
 (21,2,'en','programmers-en','Programmers (EN)','Programmers'),
 (22,2,'id','programmers-id','Programmers  (ID)','Be a programmers');
 
+>>>>>>> master
 /*Table structure for table `career_metas` */
 
 DROP TABLE IF EXISTS `career_metas`;
@@ -56,12 +59,15 @@ CREATE TABLE `career_metas` (
   CONSTRAINT `career_metas_career_id_foreign` FOREIGN KEY (`career_id`) REFERENCES `careers` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+<<<<<<< HEAD
+=======
 /*Data for the table `career_metas` */
 
 insert  into `career_metas`(`id`,`career_id`,`meta_key`,`meta_value`) values 
 (13,2,'meta_description-en','META (EN)'),
 (14,2,'meta_description-id','META (ID)');
 
+>>>>>>> master
 /*Table structure for table `careers` */
 
 DROP TABLE IF EXISTS `careers`;
@@ -76,6 +82,8 @@ CREATE TABLE `careers` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+<<<<<<< HEAD
+=======
 /*Data for the table `careers` */
 
 insert  into `careers`(`id`,`department`,`active_date`,`contact_person`,`created_at`,`updated_at`) values 
@@ -83,6 +91,7 @@ insert  into `careers`(`id`,`department`,`active_date`,`contact_person`,`created
 (3,'Biological Program','2016-11-22','Dodo','2016-11-15 00:19:05','2016-11-15 00:19:05'),
 (4,'Operation and Business Development','2016-11-30','Dodo','2016-11-15 00:39:02','2016-11-15 00:39:39');
 
+>>>>>>> master
 /*Table structure for table `categories` */
 
 DROP TABLE IF EXISTS `categories`;
@@ -99,6 +108,30 @@ CREATE TABLE `categories` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+<<<<<<< HEAD
+/*Table structure for table `cimb_checkouts` */
+
+DROP TABLE IF EXISTS `cimb_checkouts`;
+
+CREATE TABLE `cimb_checkouts` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `process_type` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `order_id` bigint(20) unsigned NOT NULL,
+  `payment_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `amount` double NOT NULL,
+  `currency` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `remark` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `trans_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `auth_code` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `status` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `error_desc` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `message` text COLLATE utf8_unicode_ci NOT NULL,
+  `signature` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+=======
 /*Data for the table `categories` */
 
 insert  into `categories`(`id`,`post_type_id`,`name`,`slug`,`description`,`created_at`,`updated_at`,`parent_id`) values 
@@ -114,6 +147,7 @@ insert  into `categories`(`id`,`post_type_id`,`name`,`slug`,`description`,`creat
 (23,4,'Event','event',NULL,NULL,NULL,0),
 (24,4,'Research','research',NULL,NULL,NULL,0),
 (25,4,'Leadership','leadership',NULL,NULL,NULL,0);
+>>>>>>> master
 
 /*Table structure for table `cimb_checkouts` */
 
@@ -216,7 +250,31 @@ CREATE TABLE `coupons` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*Data for the table `coupons` */
+/*Table structure for table `doku_checkouts` */
+
+DROP TABLE IF EXISTS `doku_checkouts`;
+
+CREATE TABLE `doku_checkouts` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `ip_address` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `process_type` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `order_id` int(11) NOT NULL,
+  `amount` double NOT NULL,
+  `response_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `status_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `result_msg` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `payment_datetime` datetime DEFAULT NULL,
+  `payment_channel` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `payment_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `words` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `session_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `bank` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `credit_card` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `message` text COLLATE utf8_unicode_ci,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Table structure for table `doku_checkouts` */
 
@@ -362,124 +420,23 @@ CREATE TABLE `doku_response_codes` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=117 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*Data for the table `doku_response_codes` */
+/*Table structure for table `galasys_tickets` */
 
-insert  into `doku_response_codes`(`id`,`code`,`origin`,`visa_description`,`master_description`,`general_description`,`actions`) values 
-(2,'0001','VISA/MASTER','Refer to card issuer','Refer to card issuer','','Tell Customer to contact the Bank Issuer of the card used.'),
-(3,'0002','VISA/MASTER','','Refer to card issuer, special condition','','Tell Customer to contact the Bank Issuer of the card used.'),
-(4,'0003','VISA/MASTER','Invalid Merchant','Invalid merchant or service provider','','Contact DOKU or BNI'),
-(5,'0004','VISA/MASTER','Capture card','Pickup card','','Should consider blocking the card temporarily or Block login ID'),
-(6,'0005','VISA/MASTER','Do Not Honor','Do Not Honor','','Tell Customer to contact the Bank Issuer of the card used.'),
-(7,'0006','VISA/MASTER','','Error','','Tell Customer to contact the Bank Issuer of the card used.'),
-(8,'0007','VISA/MASTER','','Pickup card, special condition (other than lost/stolen card)','','Should consider blocking the card'),
-(9,'0008','VISA/MASTER','Honor with ID','','','Tell Customer to contact the Bank Issuer of the card used.'),
-(10,'0010','VISA/MASTER','','Partial Approval - Private label','','Tell Customer to contact the Bank Issuer of the card used.'),
-(11,'0011','VISA/MASTER','','VIP Approval','','Tell Customer to contact the Bank Issuer of the card used.'),
-(12,'0012','VISA/MASTER','Invalid Transaction','Invalid Transaction','','Contact DOKU or BNI'),
-(13,'0013','VISA/MASTER','Invalid Amount','Invalid amount (currency conversion field overflow. Visa Cash - Invalid load mount)','','Contact DOKU or BNI'),
-(14,'0014','VISA/MASTER','Invalid Card Number','Invalid account number (no such number)','','Contact DOKU or BNI'),
-(15,'0015','VISA/MASTER','Invalid issuer','No such issuer','','Contact DOKU or BNI'),
-(16,'0019','VISA/MASTER','','Re-enter transaction','','Contact DOKU or BNI'),
-(17,'0021','VISA/MASTER','','No Action taken (unable to back out prior transaction)','','Contact DOKU or BNI'),
-(18,'0025','VISA/MASTER','','Unable to locate record in file, or account number is missing from inquiry','','Contact DOKU or BNI'),
-(19,'0028','VISA/MASTER','','File is temporarily unavailable','','Contact DOKU or BNI'),
-(20,'0030','VISA/MASTER','Format error','','','Contact DOKU or BNI'),
-(21,'0041','VISA/MASTER','Lost Card','Pickup card {lost card)','','Should consider blocking the card temporarily or Block login ID'),
-(22,'0043','VISA/MASTER','Stolen Card','Pickup card [stolen card)','','Should consider blocking the card temporarily or Block login ID'),
-(23,'0051','VISA/MASTER','Insufficient Funds/Over Credit limit','Insufficient funds','','Tell Customer to contact the Bank Issuer of the card used.'),
-(24,'0052','VISA/MASTER','','No checking account','','Tell Customer to contact the Bank Issuer of the card used.'),
-(25,'0053','VISA/MASTER','','non savings account','','Tell Customer to contact the Bank Issuer of the card used.'),
-(26,'0054','VISA/MASTER','Expired Card','Expired card','','Tell Customer to contact the Bank Issuer of the card used.'),
-(27,'0055','VISA/MASTER','Invalid PIN','Incorrect PIN (Visa cash - invalid or missing SI signature)','','Tell Customer to contact the Bank Issuer of the card used.'),
-(28,'0057','VISA/MASTER','Transaction not permitted to issuer/cardholder','Transaction not permitted to cardholder [Visa cash - incorrect routing, not a load request)','','Tell Customer to contact the Bank Issuer of the card used.'),
-(29,'0058','VISA/MASTER','Transaction not permitted to acquirer/terminal','Transaction not allowed at terminal','','Tell Customer to contact the Bank Issuer of the card used.'),
-(30,'0061','VISA/MASTER','Exceeds withdrawal amount limit','Activity amount limit exceeded','','Tell Customer to contact the Bank Issuer of the card used.'),
-(31,'0062','VISA/MASTER','Restricted Card','Restricted card (for example in country exclusion table)','','Tell Customer to contact the Bank Issuer of the card used.'),
-(32,'0063','VISA/MASTER','Security Violation','Security violation','','Contact DOKU or BNI'),
-(33,'0065','VISA/MASTER','Exceeds withdrawal count limit','Activity count limit exceeded','','Tell Customer to contact the Bank Issuer of the card used.'),
-(34,'0075','VISA/MASTER','Allowable number of PIN tries exceeded','Allowable number of PIN-entry tries exceeded','','Tell Customer to contact the Bank Issuer of the card used.'),
-(35,'0076','VISA/MASTER','Invalid/nonexistent \"To Account\" specified','Unable to locate previous message (no match on Retrieval Reference number)','','Contact DOKU or BNI'),
-(36,'0077','VISA/MASTER','Invalid/nonexistent \"From account\" specified','Previous message located for a repeat or reversal, but repeat or reversal data are inconsistent with original message','','Contact DOKU or BNI'),
-(37,'0078','VISA/MASTER','Invalid/nonexistent account specified (general)','','','Contact DOKU or BNI'),
-(38,'0080','VISA/MASTER','','invalid date (For use in private label card transactions and check acceptance transactions)','','Contact DOKU or BNI'),
-(39,'0081','VISA/MASTER','','PIN Cryptographic error found (error found by VIC security module during PIN decryption)','','Contact DOKU or BNI'),
-(40,'0082','VISA/MASTER','','Incorrect CW/1CW','','Tell Customer to contact the Bank Issuer of the card used.'),
-(41,'0083','VISA/MASTER','','Unable to verify PIN','','Tell Customer to contact the Bank Issuer of the card used.'),
-(42,'0084','VISA/MASTER','Invalid Authorization Life Cycle','','','Contact DOKU or BNI'),
-(43,'0085','VISA/MASTER','Not Decline Valid for AVS only, balance inquiry, or SET Cardholder certificate requests [VISA Only)','No reason to decline a request for account number verification or address verification','','Contact DOKU or BNI'),
-(44,'0091','VISA/MASTER','Authorization System or issuer system inoperative','Issuer unavailable or switch inoperative (STIP not applicable or available for this transaction)','','Contact DOKU or BNI'),
-(45,'0092','VISA/MASTER','Unable to route transaction','Destination cannot be found for routing','','Contact DOKU or BNI'),
-(46,'0093','VISA/MASTER','','Transaction cannot be completed; violation of law','','Contact DOKU or BNI'),
-(47,'0094','VISA/MASTER','Duplicate transmission detected','','','Contact DOKU or BNI'),
-(48,'0096','VISA/MASTER','System Error','System malfunction / System malfunction or certain field error conditions','','Contact DOKU or BNI'),
-(49,'00NO','VISA/MASTER','','Force STIP','','Contact DOKU or BNI'),
-(50,'00N3','VISA/MASTER','','Cash service not available','','Contact DOKU or BNI'),
-(51,'00N4','VISA/MASTER','','Cash request exceeds issuer limit','','Contact DOKU or BNI'),
-(52,'00N7','VISA/MASTER','','Decline for CW2 failure','','Contact DOKU or BNI'),
-(53,'00P2','VISA/MASTER','','Invalid biller information','','Contact DOKU or BNI'),
-(54,'00P5','VISA/MASTER','','PIN Change/Unblock request declined','','Contact DOKU or BNI'),
-(55,'00P6','VISA/MASTER','','Unsafe PIN','','Contact DOKU or BNI'),
-(56,'00TO','DOKU','Timeout /  Transaction’s response exceed time limit','Timeout / Transaction’s response exceed time limit','','Contact DOKU or BNI'),
-(57,'00UE','DOKU','Unknown Exception / PosServer not responding','Unknown Exception / PosServer not responding','','Contact DOKU or BNI'),
-(58,'0E01','DOKU WALLET','','','FAILED GET MERCHANT',''),
-(59,'0E02','DOKU WALLET','','','MASTER MERCHANT INACTIVE',''),
-(60,'0E03','DOKU WALLET','','','INVALID WORDS FROM MERCHANT',''),
-(61,'0E04','DOKU WALLET','','','INVALID MERCHANT',''),
-(62,'0E05','DOKU WALLET','','','FAILED TO PROCESS PAYMENT',''),
-(63,'0E06','DOKU WALLET','','','PAYMENT METHOD NOT DEFINE',''),
-(64,'0E07','DOKU WALLET','','','FAILED EXECUTE PRE AUTH PLUGINS',''),
-(65,'0E08','DOKU WALLET','','','FAILED EXECUTE POST AUTH PLUGINS',''),
-(66,'0E09','DOKU WALLET','','','INVALID PAY ID',''),
-(67,'0E10','DOKU WALLET','','','ERROR PAY ID',''),
-(68,'0E11','DOKU WALLET','','','FAILED EXECUTE PRE TRANS MIP PLUGINS',''),
-(69,'0E12','DOKU WALLET','','','VERIFY RESPONSE STOP FROM MERCHANT',''),
-(70,'0E13','DOKU WALLET','','','FAILED VERIFY TO MERCHANT',''),
-(71,'0E14','DOKU WALLET','','','FAILED SEND PAYMENT CASH WALLET',''),
-(72,'0E15','DOKU WALLET','','','NOTIFY RESPONSE STOP FROM MERCHANT',''),
-(73,'0E16','DOKU WALLET','','','FAILED NOTIFY TO MERCHANT',''),
-(74,'0E18','DOKU WALLET','','','FAILED EXECUTE POST TRANS MIP PLUGINS',''),
-(75,'0E19','DOKU WALLET','','','NOT ENOUGH CASH BALANCE AND DON’T HAVE CREDIT CARD',''),
-(76,'0E20','DOKU WALLET','','','SPENDER NO HAVE LINK TO CREDIT CARD',''),
-(77,'0E21','DOKU WALLET','','','ERROR CHECK 3D SECURE CREDIT CARD',''),
-(78,'0E22','DOKU WALLET','','','PIN/OTP IS NOT VALID',''),
-(79,'0E23','DOKU WALLET','','','PLEASE INPUT CVV2',''),
-(80,'0E24','DOKU WALLET','','','INVALID SESSION',''),
-(81,'0E25','DOKU WALLET','','','FAILED SEND LINK AUTHENTICATION TO CARD HOLDER',''),
-(82,'0E26','DOKU WALLET','','','INSUFFICIENT PARAMS',''),
-(83,'0E27','DOKU WALLET','','','FAILED EXECUTE PRE TRANS CIP PLUGINS',''),
-(84,'0E28','DOKU WALLET','','','FAILED EXECUTE POST TRANS CIP PLUGINS',''),
-(85,'0E29','DOKU WALLET','','','FAILED SEND PAYMENT MIP CREDIT CARD',''),
-(86,'0E30','DOKU WALLET','','','YOU DO NOT HAVE PIN',''),
-(87,'0E31','DOKU WALLET','','','DUPLICATE INVOICE NO',''),
-(88,'0E32','DOKU WALLET','','','URL NOT FOUND',''),
-(89,'0E33','DOKU WALLET','','','CUSTOMER NOT FOUND',''),
-(90,'0E34','DOKU WALLET','','','VOID PROCESS FAILED',''),
-(91,'0E35','DOKU WALLET','','','Failed Send ONE TIME PIN to your email',''),
-(92,'0E36','DOKU WALLET','','','Failed Send Link for create PIN to your email',''),
-(93,'0E37','DOKU WALLET','','','THIS SPENDER CAN\'T TRANSACT IN THIS MERCHANT',''),
-(94,'0E38','DOKU WALLET','','','You have reach your DOKU ID Transaction Limit',''),
-(95,'0E39','DOKU WALLET','','','Process MIP Transaction Failed',''),
-(96,'0E99','DOKU WALLET','','','ERROR SYSTEM',''),
-(97,'5555','GENERAL',NULL,NULL,'Undefined error',NULL),
-(98,'5501','GENERAL',NULL,NULL,'Payment channel not registered',NULL),
-(99,'5502','GENERAL',NULL,NULL,'Merchant is disabled',NULL),
-(100,'5503','GENERAL',NULL,NULL,'Maximum attempt 3 times',NULL),
-(101,'5504','GENERAL',NULL,NULL,'Words not match',NULL),
-(102,'5505','GENERAL',NULL,NULL,'Invalid parameter',NULL),
-(103,'5506','GENERAL',NULL,NULL,'Notify failed',NULL),
-(104,'5507','GENERAL',NULL,NULL,'Invalid parameter detected / Customer click cancel process',NULL),
-(105,'5508','GENERAL',NULL,NULL,'Re-enter transaction',NULL),
-(106,'5509','GENERAL',NULL,NULL,'Payment code already expired',NULL),
-(107,'5510','GENERAL',NULL,NULL,'Cancel by Customer',NULL),
-(108,'5511','GENERAL',NULL,NULL,'Not an error, payment code has not been paid by Customer',NULL),
-(109,'5512','GENERAL',NULL,NULL,'Insufficient Parameter',NULL),
-(110,'5514','GENERAL',NULL,NULL,'Reject by Fraud System',NULL),
-(111,'5515','GENERAL',NULL,NULL,'Duplicate PNR',NULL),
-(112,'5516','GENERAL',NULL,NULL,'Transaction Not Found',NULL),
-(113,'5517','GENERAL',NULL,NULL,'Error in Authorization process',NULL),
-(114,'5518','GENERAL',NULL,NULL,'Error parsing XML',NULL),
-(115,'5519','GENERAL',NULL,NULL,'Customer stop at 3D Secure page',NULL),
-(116,'2015','DOKU WALLET',NULL,NULL,'General Error',NULL);
+DROP TABLE IF EXISTS `galasys_tickets`;
+
+CREATE TABLE `galasys_tickets` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `order_id` bigint(20) unsigned NOT NULL,
+  `code` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `barcode` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `e_ticket` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `galasys_tickets_order_id_foreign` (`order_id`),
+  CONSTRAINT `galasys_tickets_order_id_foreign` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=86 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Table structure for table `galasys_tickets` */
 
@@ -558,6 +515,23 @@ CREATE TABLE `holidays` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+<<<<<<< HEAD
+/*Table structure for table `jobs` */
+
+DROP TABLE IF EXISTS `jobs`;
+
+CREATE TABLE `jobs` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `queue` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `attempts` tinyint(3) unsigned NOT NULL,
+  `reserved_at` int(10) unsigned DEFAULT NULL,
+  `available_at` int(10) unsigned NOT NULL,
+  `created_at` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `jobs_queue_reserved_at_index` (`queue`,`reserved_at`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+=======
 /*Data for the table `holidays` */
 
 insert  into `holidays`(`id`,`title`,`date`,`description`,`created_by`,`created_at`,`updated_at`) values 
@@ -568,6 +542,7 @@ insert  into `holidays`(`id`,`title`,`date`,`description`,`created_by`,`created_
 (7,'Lebaran Misalnya','2016-10-19','Lebaran sebentar lagi',3,'2016-10-28 07:07:42','2016-10-28 07:07:42'),
 (8,'Lebaran Misalnya','2016-10-20','Lebaran sebentar lagi',3,'2016-10-28 07:07:42','2016-10-28 07:07:42'),
 (9,'Lebaran Misalnya','2016-10-21','Lebaran sebentar lagi',3,'2016-10-28 07:07:42','2016-10-28 07:07:42');
+>>>>>>> master
 
 /*Table structure for table `media` */
 
@@ -583,6 +558,8 @@ CREATE TABLE `media` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=114 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+<<<<<<< HEAD
+=======
 /*Data for the table `media` */
 
 insert  into `media`(`id`,`title`,`file_name`,`description`,`created_at`,`updated_at`) values 
@@ -599,6 +576,7 @@ insert  into `media`(`id`,`title`,`file_name`,`description`,`created_at`,`update
 (112,'Attraction Images-09.jpg','Attraction Images-09.jpg',NULL,'2017-01-12 23:37:04','2017-01-12 23:37:04'),
 (113,'showtime-header.jpg','showtime-header.jpg',NULL,'2017-01-13 00:05:37','2017-01-13 00:05:37');
 
+>>>>>>> master
 /*Table structure for table `media_sizes` */
 
 DROP TABLE IF EXISTS `media_sizes`;
@@ -615,8 +593,6 @@ CREATE TABLE `media_sizes` (
   KEY `media_sizes_media_id_foreign` (`media_id`),
   CONSTRAINT `media_sizes_media_id_foreign` FOREIGN KEY (`media_id`) REFERENCES `media` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-/*Data for the table `media_sizes` */
 
 /*Table structure for table `menus` */
 
@@ -638,6 +614,8 @@ CREATE TABLE `menus` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+<<<<<<< HEAD
+=======
 /*Data for the table `menus` */
 
 insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon_class`,`description`,`created_at`,`updated_at`,`order`,`menu_type`) values 
@@ -688,6 +666,7 @@ insert  into `menus`(`id`,`name`,`display`,`link`,`parent_id`,`permission`,`icon
 (51,'general-setting','General Setting','jai-backend/general-setting',4,'setting',NULL,NULL,NULL,NULL,50,'backend'),
 (52,'promo','Promo','jai-backend/promo',0,'promo','fa fa-star',NULL,'2016-01-11 07:41:00','2016-01-11 07:41:00',850,'backend');
 
+>>>>>>> master
 /*Table structure for table `migrations` */
 
 DROP TABLE IF EXISTS `migrations`;
@@ -697,6 +676,8 @@ CREATE TABLE `migrations` (
   `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+<<<<<<< HEAD
+=======
 /*Data for the table `migrations` */
 
 insert  into `migrations`(`migration`,`batch`) values 
@@ -734,6 +715,7 @@ insert  into `migrations`(`migration`,`batch`) values
 ('2016_11_14_125111_create_careers_table',30),
 ('2016_11_24_154312_add_color_on_package',31);
 
+>>>>>>> master
 /*Table structure for table `order_details` */
 
 DROP TABLE IF EXISTS `order_details`;
@@ -750,6 +732,9 @@ CREATE TABLE `order_details` (
   PRIMARY KEY (`id`),
   KEY `order_details_order_id_foreign` (`order_id`),
   CONSTRAINT `order_details_order_id_foreign` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE
+<<<<<<< HEAD
+) ENGINE=InnoDB AUTO_INCREMENT=169 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+=======
 ) ENGINE=InnoDB AUTO_INCREMENT=127 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `order_details` */
@@ -848,6 +833,7 @@ insert  into `order_details`(`id`,`order_id`,`product_id`,`galasys_product_id`,`
 (124,145,4019,'o1dpc','Premium',275000,2,550000),
 (125,146,4019,'o1dpc','Premium',290000,2,580000),
 (126,147,4019,'o1dpc','Premium',290000,2,580000);
+>>>>>>> master
 
 /*Table structure for table `orders` */
 
@@ -867,6 +853,9 @@ CREATE TABLE `orders` (
   `status` int(11) NOT NULL DEFAULT '0',
   `status_description` text COLLATE utf8_unicode_ci,
   PRIMARY KEY (`id`)
+<<<<<<< HEAD
+) ENGINE=InnoDB AUTO_INCREMENT=89 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+=======
 ) ENGINE=InnoDB AUTO_INCREMENT=148 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `orders` */
@@ -947,6 +936,7 @@ insert  into `orders`(`id`,`visit_date`,`email`,`name`,`phone_number`,`sub_total
 (145,'2017-02-18','ameliaceldy@gmail.com','elfitri amelia','081218258650',550000,0,550000,'2017-01-11 05:29:58','2017-01-11 05:29:58',0,NULL),
 (146,'2017-01-22','aass@aamail.com','aas','08121932764',580000,0,580000,'2017-01-12 03:56:46','2017-01-12 03:56:46',0,NULL),
 (147,'2017-01-21','edwina.trianinda@redspace.asia','Edwina Trianinda','081294054353',580000,0,580000,'2017-01-12 06:41:27','2017-01-12 06:41:27',0,NULL);
+>>>>>>> master
 
 /*Table structure for table `package_details` */
 
@@ -964,6 +954,8 @@ CREATE TABLE `package_details` (
   CONSTRAINT `package_details_package_id_foreign` FOREIGN KEY (`package_id`) REFERENCES `packages` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+<<<<<<< HEAD
+=======
 /*Data for the table `package_details` */
 
 insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`) values 
@@ -980,6 +972,7 @@ insert  into `package_details`(`id`,`package_id`,`lang`,`title`,`slug`,`content`
 (65,5,'en','School, Coorporate and Birthday Package','school-coorporate-and-birthday-package','Jakarta Aquarium provides a wide range of interesting activity for your company or school group.<br /><br />Get a special rate and activity package for your group in Jakarta Aquarium. For a group consist of more than 30 people, place a reservation at least 7 days in advance.<br /><br /><br />Contact Us :<br />T. 021 2920 9072<br />E. sales@jakarta-aquarium.com'),
 (66,5,'id','Paket Sekolah, Korporasi dan Ulang Tahun','paket-sekolah-korporasi-dan-ulang-tahun','Jakarta Aquarium menyediakan beragam paket aktivitas menarik untuk grup perusahaan atau grup sekolah.<br /><br />Dapatkan harga khusus hanya untuk grup Anda. Untuk group lebih dari 30 orang silahkan melakukan reservasi 7 hari sebelumnya.<br /><br />Hubungi tim kami di :<br />T. 021 2920 9072<br />E. sales@jakarta-aquarium.com');
 
+>>>>>>> master
 /*Table structure for table `package_has_coupons` */
 
 DROP TABLE IF EXISTS `package_has_coupons`;
@@ -992,8 +985,6 @@ CREATE TABLE `package_has_coupons` (
   CONSTRAINT `package_has_coupons_coupon_id_foreign` FOREIGN KEY (`coupon_id`) REFERENCES `coupons` (`id`) ON DELETE CASCADE,
   CONSTRAINT `package_has_coupons_package_id_foreign` FOREIGN KEY (`package_id`) REFERENCES `packages` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-/*Data for the table `package_has_coupons` */
 
 /*Table structure for table `package_has_medias` */
 
@@ -1008,13 +999,6 @@ CREATE TABLE `package_has_medias` (
   CONSTRAINT `package_has_medias_package_id_foreign` FOREIGN KEY (`package_id`) REFERENCES `packages` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*Data for the table `package_has_medias` */
-
-insert  into `package_has_medias`(`id`,`package_id`,`media_id`) values 
-(4,6,53),
-(5,5,55),
-(6,7,54);
-
 /*Table structure for table `package_metas` */
 
 DROP TABLE IF EXISTS `package_metas`;
@@ -1028,12 +1012,6 @@ CREATE TABLE `package_metas` (
   KEY `package_metas_package_id_foreign` (`package_id`),
   CONSTRAINT `package_metas_package_id_foreign` FOREIGN KEY (`package_id`) REFERENCES `packages` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-/*Data for the table `package_metas` */
-
-insert  into `package_metas`(`id`,`package_id`,`meta_key`,`meta_value`) values 
-(9,1,'meta_description-en','META (ENG)'),
-(10,1,'meta_description-id','META (ID)');
 
 /*Table structure for table `packages` */
 
@@ -1055,6 +1033,8 @@ CREATE TABLE `packages` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+<<<<<<< HEAD
+=======
 /*Data for the table `packages` */
 
 insert  into `packages`(`id`,`package_type_id`,`normal_price`,`weekend_price`,`holiday_price`,`created_by`,`is_general_admission`,`created_at`,`updated_at`,`color`,`order`,`galasys_product_id`) values 
@@ -1065,6 +1045,7 @@ insert  into `packages`(`id`,`package_type_id`,`normal_price`,`weekend_price`,`h
 (6,2,0,0,0,3,0,'2016-11-01 05:00:47','2016-11-01 05:00:47','cyan',0,NULL),
 (7,2,0,0,0,3,0,'2016-11-01 05:02:02','2016-11-01 05:02:02','cyan',0,NULL);
 
+>>>>>>> master
 /*Table structure for table `password_resets` */
 
 DROP TABLE IF EXISTS `password_resets`;
@@ -1077,11 +1058,14 @@ CREATE TABLE `password_resets` (
   KEY `password_resets_token_index` (`token`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+<<<<<<< HEAD
+=======
 /*Data for the table `password_resets` */
 
 insert  into `password_resets`(`email`,`token`,`created_at`) values 
 ('trianinda.edwina@gmail.com','5117d3b8a75506a04a5b3b0b472aa0dd5bdbf2c4b28dfeb97ca923662357cb90','2017-01-06 07:42:25');
 
+>>>>>>> master
 /*Table structure for table `permissions` */
 
 DROP TABLE IF EXISTS `permissions`;
@@ -1095,6 +1079,8 @@ CREATE TABLE `permissions` (
   UNIQUE KEY `permissions_name_unique` (`name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+<<<<<<< HEAD
+=======
 /*Data for the table `permissions` */
 
 insert  into `permissions`(`id`,`name`,`created_at`,`updated_at`) values 
@@ -1170,6 +1156,7 @@ insert  into `permissions`(`id`,`name`,`created_at`,`updated_at`) values
 (74,'promo.edit','2017-01-11 07:42:32','2017-01-11 07:42:32'),
 (75,'promo.delete','2017-01-11 07:42:35','2017-01-11 07:42:35');
 
+>>>>>>> master
 /*Table structure for table `post_details` */
 
 DROP TABLE IF EXISTS `post_details`;
@@ -1184,6 +1171,8 @@ CREATE TABLE `post_details` (
   CONSTRAINT `post_details_post_id_foreign` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+<<<<<<< HEAD
+=======
 /*Data for the table `post_details` */
 
 insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values 
@@ -1244,6 +1233,7 @@ insert  into `post_details`(`post_id`,`lang`,`title`,`slug`,`content`) values
 (104,'en','Aquarium Map','aquarium-map','Jakarta Aquarium consists of two floors and twelve zones that show a variety of unique, lovable, and beautiful animals in its habitat. Explore every corner of Jakarta Aquarium to find new fun experience with your friends and family.'),
 (104,'id','Aquarium Map','aquarium-map-2','Jakarta Aquarium terdiri dari dua lantai dan dua belas zona yang menampilkan beraneka ragam satwa unik, lucu, dan indah dalam habitatnya. Jelajahi setiap sudut Jakarta Aquarium untuk menemukan pengalaman seru baru bersama teman dan keluarga Anda.');
 
+>>>>>>> master
 /*Table structure for table `post_has_categories` */
 
 DROP TABLE IF EXISTS `post_has_categories`;
@@ -1257,6 +1247,8 @@ CREATE TABLE `post_has_categories` (
   CONSTRAINT `post_has_categories_post_id_foreign` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+<<<<<<< HEAD
+=======
 /*Data for the table `post_has_categories` */
 
 insert  into `post_has_categories`(`post_id`,`category_id`) values 
@@ -1273,6 +1265,7 @@ insert  into `post_has_categories`(`post_id`,`category_id`) values
 (84,19),
 (85,19);
 
+>>>>>>> master
 /*Table structure for table `post_has_medias` */
 
 DROP TABLE IF EXISTS `post_has_medias`;
@@ -1287,6 +1280,8 @@ CREATE TABLE `post_has_medias` (
   CONSTRAINT `post_has_medias_post_id_foreign` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+<<<<<<< HEAD
+=======
 /*Data for the table `post_has_medias` */
 
 insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values 
@@ -1303,6 +1298,7 @@ insert  into `post_has_medias`(`post_id`,`media_id`,`media_type`) values
 (98,113,'featured'),
 (102,102,'featured');
 
+>>>>>>> master
 /*Table structure for table `post_metas` */
 
 DROP TABLE IF EXISTS `post_metas`;
@@ -1315,6 +1311,9 @@ CREATE TABLE `post_metas` (
   PRIMARY KEY (`id`),
   KEY `post_metas_post_id_foreign` (`post_id`),
   CONSTRAINT `post_metas_post_id_foreign` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE
+<<<<<<< HEAD
+) ENGINE=InnoDB AUTO_INCREMENT=204 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+=======
 ) ENGINE=InnoDB AUTO_INCREMENT=625 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `post_metas` */
@@ -1374,6 +1373,7 @@ insert  into `post_metas`(`id`,`post_id`,`meta_key`,`meta_value`) values
 (622,97,'restaurantDesc-id','Restoran dengan konsep American seafood and grill yang terletak di lantai LG.'),
 (623,102,'whats_on','1'),
 (624,102,'featured','1');
+>>>>>>> master
 
 /*Table structure for table `post_types` */
 
@@ -1388,6 +1388,8 @@ CREATE TABLE `post_types` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+<<<<<<< HEAD
+=======
 /*Data for the table `post_types` */
 
 insert  into `post_types`(`id`,`name`,`slug`,`created_at`,`updated_at`) values 
@@ -1399,6 +1401,7 @@ insert  into `post_types`(`id`,`name`,`slug`,`created_at`,`updated_at`) values
 (6,'Page','page','2016-11-21 09:00:00','2016-11-21 09:00:00'),
 (7,'Promo','promo','2016-01-11 07:41:00','2016-01-11 07:41:00');
 
+>>>>>>> master
 /*Table structure for table `posts` */
 
 DROP TABLE IF EXISTS `posts`;
@@ -1414,6 +1417,8 @@ CREATE TABLE `posts` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=105 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+<<<<<<< HEAD
+=======
 /*Data for the table `posts` */
 
 insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`publish_date`,`created_by`) values 
@@ -1446,6 +1451,7 @@ insert  into `posts`(`id`,`post_type_id`,`created_at`,`updated_at`,`status`,`pub
 (103,7,'2017-01-11 07:46:19','2017-01-11 08:00:16','PUBLISH','2017-01-11 07:45:00',1),
 (104,6,'2017-01-17 08:20:27','2017-01-17 08:20:27','PUBLISH','2017-01-17 08:19:00',1);
 
+>>>>>>> master
 /*Table structure for table `role_has_permissions` */
 
 DROP TABLE IF EXISTS `role_has_permissions`;
@@ -1459,6 +1465,8 @@ CREATE TABLE `role_has_permissions` (
   CONSTRAINT `role_has_permissions_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+<<<<<<< HEAD
+=======
 /*Data for the table `role_has_permissions` */
 
 insert  into `role_has_permissions`(`permission_id`,`role_id`) values 
@@ -1598,6 +1606,7 @@ insert  into `role_has_permissions`(`permission_id`,`role_id`) values
 (74,4),
 (75,4);
 
+>>>>>>> master
 /*Table structure for table `roles` */
 
 DROP TABLE IF EXISTS `roles`;
@@ -1611,6 +1620,8 @@ CREATE TABLE `roles` (
   UNIQUE KEY `roles_name_unique` (`name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+<<<<<<< HEAD
+=======
 /*Data for the table `roles` */
 
 insert  into `roles`(`id`,`name`,`created_at`,`updated_at`) values 
@@ -1618,6 +1629,7 @@ insert  into `roles`(`id`,`name`,`created_at`,`updated_at`) values
 (3,'Author','2016-10-12 05:11:37','2016-10-12 05:11:37'),
 (4,'Semi Admin','2016-10-13 02:34:12','2016-10-13 02:34:12');
 
+>>>>>>> master
 /*Table structure for table `sessions` */
 
 DROP TABLE IF EXISTS `sessions`;
@@ -1632,6 +1644,8 @@ CREATE TABLE `sessions` (
   UNIQUE KEY `sessions_id_unique` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+<<<<<<< HEAD
+=======
 /*Data for the table `sessions` */
 
 insert  into `sessions`(`id`,`user_id`,`ip_address`,`user_agent`,`payload`,`last_activity`) values 
@@ -1639,6 +1653,7 @@ insert  into `sessions`(`id`,`user_id`,`ip_address`,`user_agent`,`payload`,`last
 ('fREBlz0goWDRsToCYbBXweNI2XGPJbepl9tdnjVd',NULL,'192.168.10.1','Mozilla/5.0 (Windows NT 6.3; WOW64; rv:50.0) Gecko/20100101 Firefox/50.0','YTo1OntzOjY6Il90b2tlbiI7czo0MDoiQmJIRW9NYzQwUnN2N1lVR2U0N2RBWXRiaHQwRzMxU3BnekthV0x6NSI7czo0OiJsYW5nIjtzOjI6ImVuIjtzOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czoyNzoiaHR0cDovL2phaS5kZXYvZW4vc2hvdy10aW1lIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfc2YyX21ldGEiO2E6Mzp7czoxOiJ1IjtpOjE0ODQ2Mzg4NTY7czoxOiJjIjtpOjE0ODQ2MzA4MDE7czoxOiJsIjtzOjE6IjAiO319',1484638856),
 ('NS08gaI2oLpH0wzWdgspqa203wRNSm19CBXW1FSj',NULL,'192.168.10.1','Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36','YTo1OntzOjY6Il90b2tlbiI7czo0MDoiQ1JmUXFTZGFReklQVGVMRzZObWF2MUdqSFV1RGxMUThPM1Y3VDIxMiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzQ6Imh0dHA6Ly9wYXltZW50LmphaS9lbi90aWNrZXQtaG91cnMiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjQ6ImxhbmciO3M6MjoiZW4iO3M6OToiX3NmMl9tZXRhIjthOjM6e3M6MToidSI7aToxNDg0NjMxMjA2O3M6MToiYyI7aToxNDg0NjIzNjQ0O3M6MToibCI7czoxOiIwIjt9fQ==',1484631207);
 
+>>>>>>> master
 /*Table structure for table `settings` */
 
 DROP TABLE IF EXISTS `settings`;
@@ -1650,6 +1665,8 @@ CREATE TABLE `settings` (
   PRIMARY KEY (`id`,`key`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
+<<<<<<< HEAD
+=======
 /*Data for the table `settings` */
 
 insert  into `settings`(`id`,`key`,`value`) values 
@@ -1660,6 +1677,7 @@ insert  into `settings`(`id`,`key`,`value`) values
 (10,'instagram_link','https://www.instagram.com/jakartaaquarium/'),
 (11,'googleplus_link','https://plus.google.com/115041976414559325070');
 
+>>>>>>> master
 /*Table structure for table `show_details` */
 
 DROP TABLE IF EXISTS `show_details`;
@@ -1676,6 +1694,8 @@ CREATE TABLE `show_details` (
   CONSTRAINT `show_details_show_id_foreign` FOREIGN KEY (`show_id`) REFERENCES `shows` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+<<<<<<< HEAD
+=======
 /*Data for the table `show_details` */
 
 insert  into `show_details`(`id`,`show_id`,`title`,`slug`,`lang`,`content`) values 
@@ -1686,6 +1706,7 @@ insert  into `show_details`(`id`,`show_id`,`title`,`slug`,`lang`,`content`) valu
 (65,14,'asdfasdf','asdfasdf','en','<p>asdfadsfa</p>'),
 (66,14,'asdfasdf','asdfasdf-2','id','<p>asdfadsf</p>');
 
+>>>>>>> master
 /*Table structure for table `show_has_medias` */
 
 DROP TABLE IF EXISTS `show_has_medias`;
@@ -1702,8 +1723,11 @@ CREATE TABLE `show_has_medias` (
   CONSTRAINT `show_has_medias_show_id_foreign` FOREIGN KEY (`show_id`) REFERENCES `shows` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+<<<<<<< HEAD
+=======
 /*Data for the table `show_has_medias` */
 
+>>>>>>> master
 /*Table structure for table `show_metas` */
 
 DROP TABLE IF EXISTS `show_metas`;
@@ -1718,8 +1742,11 @@ CREATE TABLE `show_metas` (
   CONSTRAINT `show_metas_show_id_foreign` FOREIGN KEY (`show_id`) REFERENCES `shows` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+<<<<<<< HEAD
+=======
 /*Data for the table `show_metas` */
 
+>>>>>>> master
 /*Table structure for table `show_types` */
 
 DROP TABLE IF EXISTS `show_types`;
@@ -1729,8 +1756,6 @@ CREATE TABLE `show_types` (
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-/*Data for the table `show_types` */
 
 /*Table structure for table `shows` */
 
@@ -1751,6 +1776,8 @@ CREATE TABLE `shows` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+<<<<<<< HEAD
+=======
 /*Data for the table `shows` */
 
 insert  into `shows`(`id`,`show_type`,`created_by`,`created_at`,`updated_at`,`day`,`start_date`,`end_date`,`start_time`,`end_time`,`particular_showtime`) values 
@@ -1758,6 +1785,7 @@ insert  into `shows`(`id`,`show_type`,`created_by`,`created_at`,`updated_at`,`da
 (13,1,1,'2017-01-09 09:14:50','2017-01-17 11:56:10',0,'1970-01-01','1970-01-01','10:00:00','00:00:00',NULL),
 (14,2,1,'2017-01-17 11:52:18','2017-01-17 14:15:42',0,'1970-01-01','1970-01-01','10:00:00','00:00:00','<h5 class=\"grey-text uk-margin-remove\">Monday - Friday</h5>\r\n03:00 PM\r\n<h5 class=\"grey-text uk-margin-remove\">Saturday - Sunday</h5>\r\n01:00 PM<br />04:00 PM<br />07:00 PM');
 
+>>>>>>> master
 /*Table structure for table `slider_items` */
 
 DROP TABLE IF EXISTS `slider_items`;
@@ -1773,6 +1801,8 @@ CREATE TABLE `slider_items` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+<<<<<<< HEAD
+=======
 /*Data for the table `slider_items` */
 
 insert  into `slider_items`(`id`,`slider_id`,`lang`,`content`,`link`,`file_name`,`order`) values 
@@ -1787,6 +1817,7 @@ insert  into `slider_items`(`id`,`slider_id`,`lang`,`content`,`link`,`file_name`
 (15,6,'en','','','homeslide_otter.jpg',3),
 (16,6,'id','','','homeslide_otter.jpg',3);
 
+>>>>>>> master
 /*Table structure for table `sliders` */
 
 DROP TABLE IF EXISTS `sliders`;
@@ -1801,12 +1832,15 @@ CREATE TABLE `sliders` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+<<<<<<< HEAD
+=======
 /*Data for the table `sliders` */
 
 insert  into `sliders`(`id`,`title`,`user_id`,`publish_date`,`created_at`,`updated_at`) values 
 (6,'Homeslider',3,'2016-10-26 19:05:00','2016-10-25 04:08:43','2017-01-12 23:31:04'),
 (7,'PEARL OF THE SOUTH SEA',1,'2017-01-05 17:02:00','2017-01-05 10:03:49','2017-01-13 00:06:26');
 
+>>>>>>> master
 /*Table structure for table `tags` */
 
 DROP TABLE IF EXISTS `tags`;
@@ -1819,8 +1853,6 @@ CREATE TABLE `tags` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-/*Data for the table `tags` */
 
 /*Table structure for table `user_has_permissions` */
 
@@ -1835,8 +1867,6 @@ CREATE TABLE `user_has_permissions` (
   CONSTRAINT `user_has_permissions_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*Data for the table `user_has_permissions` */
-
 /*Table structure for table `user_has_roles` */
 
 DROP TABLE IF EXISTS `user_has_roles`;
@@ -1849,13 +1879,6 @@ CREATE TABLE `user_has_roles` (
   CONSTRAINT `user_has_roles_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE,
   CONSTRAINT `user_has_roles_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-/*Data for the table `user_has_roles` */
-
-insert  into `user_has_roles`(`role_id`,`user_id`) values 
-(1,1),
-(1,3),
-(4,3);
 
 /*Table structure for table `users` */
 
@@ -1873,12 +1896,15 @@ CREATE TABLE `users` (
   UNIQUE KEY `users_email_unique` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+<<<<<<< HEAD
+=======
 /*Data for the table `users` */
 
 insert  into `users`(`id`,`name`,`email`,`password`,`remember_token`,`created_at`,`updated_at`) values 
 (1,'Pasha Mahardika','me@pashamahardika.com','$2y$10$Ys8gQPnelcFYGY7vVzKe/OHSzXBLNyqPGz9DTHFp9MZGzRa7djpb.','C5K7qps5sNJSAIuWpPXZ0SDC8zYN3AYNb6pZQ3U51tdZYLHj5PHSZQcKRA1y','2016-10-11 12:35:26','2017-01-17 10:04:15'),
 (3,'Edwina Trianinda','trianinda.edwina@gmail.com','$2y$10$iWVk/vWv/R3oa1ipa.pVgem6ypOZvDLW.F4jnbxEVODJFxbKgKHRa','c5jCFR3VIoX6rKN8nyVbudjeOTbPFH95N2Mkld6uLF3cTL0TRbVHrGvSE2s8','2016-10-11 16:41:14','2016-11-18 22:48:45');
 
+>>>>>>> master
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
