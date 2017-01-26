@@ -2,12 +2,18 @@
 
 namespace App\Service;
 
+use App\Models\GalasysTicket;
 use App\Models\Order as OrderModel;
 use App\Models\Package as PackageModel;
+use App\Service\Traits\DatatableParameters;
 use Carbon\Carbon;
 
 class Order
 {
+
+    use DatatableParameters;
+
+    protected $baseUrl;
 
     public function getOrderDetails($request, $lang)
     {
@@ -30,22 +36,8 @@ class Order
             $subTotal += $price;
         }
 
-//        foreach ($packages as $packageId => $value) {
-//            $package = PackageModel::find($packageId);
-//            $packageDetail = $package->details()->where('lang', $lang)->first();
-//            $price = $value * $package->normal_price;
-//            $orders['orders'][] = [
-//                'packageId' => $package->id,
-//                'galasysProductId' => $packageDetail->galasys_product_id,
-//                'packageName' => $packageDetail->title,
-//                'qty' => $value,
-//                'price' => $package->normal_price,
-//                'total' => $price
-//            ];
-//            $subTotal += $price;
-//        }
-
-        $tax = 0.1 * $subTotal;
+        // $tax = 0.1 * $subTotal;
+        $tax = 0;
         $orders['subTotal'] = $subTotal;
         $orders['tax'] = $tax;
         $orders['grandTotal'] = $subTotal + $tax;
@@ -90,9 +82,21 @@ class Order
         return OrderModel::find($orderId);
     }
 
+    public function getOrderStatus($orderId)
+    {
+        $order = OrderModel::find($orderId);
+        if ($order) {
+            return $order->status;
+        }
+        return '';
+    }
+
     public function updateStatus($orderId, $statusDesc)
     {
         switch ($statusDesc) {
+            case 'open':
+                $status = 0;
+                break;
             case 'completed':
                 $status = 1;
                 break;
@@ -101,6 +105,12 @@ class Order
                 break;
             case 'pending':
                 $status = 3;
+                break;
+            case 'barcode-generated':
+                $status = 4;
+                break;
+            case 'email-sent':
+                $status = 5;
                 break;
             case 'cancelled':
                 $status = 9;
@@ -112,4 +122,42 @@ class Order
         $order->status_description = $statusDesc;
         $order->save();
     }
+
+    public function getPaidOrder()
+    {
+        return OrderModel::where('status', 1)->get();
+    }
+
+    public function datatableData($baseUrl)
+    {
+        $this->baseUrl = $baseUrl;
+
+        $orders = $this->getOrders();
+        $actions = $this->actionParameters(['detail']);
+
+        return (new DatatableGenerator($orders))
+            ->addActions($actions)
+            ->addColumn('user', function($post) {
+                return $post->name;
+            })
+            ->addColumn('order_date', function($post) {
+                return Carbon::createFromFormat('Y-m-d H:i:s', $post->created_at)->format('d-M-y H:i:s');
+            })
+            ->addColumn('visit_date', function($post) {
+                return Carbon::createFromFormat('Y-m-d', $post->visit_date)->format('l, d M Y');
+            })
+            ->addColumn('total', function($post) {
+                return $post->total_amount;
+            })
+            ->addColumn('status', function($post) {
+                return $post->status_description;
+            })
+            ->generate();
+    }
+
+    private function getOrders()
+    {
+        return OrderModel::all();
+    }
+
 }

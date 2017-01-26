@@ -66,6 +66,11 @@ main {
 	width: 100%;
 	height: 100%;
 	text-indent: -999em;
+        image-rendering: -moz-crisp-edges;         /* Firefox */
+        image-rendering:   -o-crisp-edges;         /* Opera */
+        image-rendering: -webkit-optimize-contrast;/* Webkit */
+        image-rendering: crisp-edges;
+        -ms-interpolation-mode: nearest-neighbor;  /* IE */
 }
 .ja-nav-main {
 	color: #fff;
@@ -261,6 +266,7 @@ main {
 .ja-lang_side li {
 	margin-top: 0;
 }
+
 .ja-lang_side .uk-active a {
 	color: #005da6;
 }
@@ -771,13 +777,52 @@ h2.ja-slide-title {
 }
 .ja-ticket .jai-submission-order {
 	background: url(../img/i-user.png) no-repeat 1em center;
-	padding-top: 0.5em;
-	padding-bottom: 0.5em;
+	padding-top: 5px;
+	padding-bottom: 5px;
 	margin-bottom: 2em;
+	height: auto;
 }
 .ja-ticket .jai-submission-order input[type="number"] {
 	width: 50%;
 }
+.qtys {
+	width: 50%;
+	float: right;
+	position: relative;
+}
+.qtys input[type=text] {
+	border: none !important;
+	height: 30px !important;
+	padding: 0 !important;
+	line-height: 32px !important;
+	width: 50%;
+	left: 25%;
+	text-align: center;
+	z-index: 0;
+	position: relative;
+}
+.qtys .btn {
+	width: 20px;
+	height: 20px;
+	display: block;
+	position: absolute;
+	z-index: 1;
+	cursor: pointer;
+	text-align: center;
+	line-height: 25px;
+	background-color: #00acc1;
+	color: #fff;
+	border-radius: 10px;
+	font-size: 1.8em;
+	top: 5px;
+}
+.qtys .inc.btn {
+	right: 0;
+}
+.qtys .dec.btn {
+	left: 0;
+}
+
 .packages > div {
 	position: relative;
 	background: none;
@@ -1306,6 +1351,7 @@ label.error {
 .noborder {
 	border: none !important;
 }
+
 @media (max-width: 768px) {
 	header {
 		margin-top: 110px;
@@ -1335,6 +1381,11 @@ label.error {
 		width: 100%;
 		height: 100%;
 		text-indent: -999em;
+		image-rendering: -moz-crisp-edges;         /* Firefox */
+		image-rendering:   -o-crisp-edges;         /* Opera */
+		image-rendering: -webkit-optimize-contrast;/* Webkit */
+		image-rendering: crisp-edges;
+		-ms-interpolation-mode: nearest-neighbor;  /* IE */		
 	}
 	.ja-mobmenu {
 		display: block;
