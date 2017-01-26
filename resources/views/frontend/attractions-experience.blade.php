@@ -30,7 +30,7 @@
                     <li class="ja-post uk-margin-bottom">
         				<div class="uk-grid uk-grid-collapse uk-grid-match" data-uk-grid-match>
         					<div class="uk-width-medium-2-5">
-                                <div class="ja-post--imgcover uk-cover-background" style="background-image:url('{!! url('images/whatsOn/' . $imagePath) !!}')"></div>
+                                <div class="ja-post--imgcover uk-cover-background" style="background-image:url('{!! url('images/original/' . $imagePath) !!}')"></div>
         					</div>
         					<div class="uk-width-medium-3-5">
         						<div class="ja-post--content_wide">
@@ -51,7 +51,7 @@
                     <li class="ja-post uk-margin-bottom">
         				<div class="uk-grid uk-grid-collapse uk-grid-match" data-uk-grid-match>
         					<div class="uk-width-medium-2-5">
-                                <div class="ja-post--imgcover uk-cover-background" style="background-image:url('{!! url('images/whatsOn/' . $imagePath) !!}')"></div>
+                                <div class="ja-post--imgcover uk-cover-background" style="background-image:url('{!! url('images/original/' . $imagePath) !!}')"></div>
         					</div>
         					<div class="uk-width-medium-3-5">
         						<div class="ja-post--content_wide">
@@ -72,7 +72,7 @@
                     <li class="ja-post uk-margin-bottom">
         				<div class="uk-grid uk-grid-collapse uk-grid-match" data-uk-grid-match>
         					<div class="uk-width-medium-2-5">
-                                <div class="ja-post--imgcover uk-cover-background" style="background-image:url('{!! url('images/whatsOn/' . $imagePath) !!}')"></div>
+                                <div class="ja-post--imgcover uk-cover-background" style="background-image:url('{!! url('images/original/' . $imagePath) !!}')"></div>
         					</div>
         					<div class="uk-width-medium-3-5">
         						<div class="ja-post--content_wide">

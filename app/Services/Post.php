@@ -114,7 +114,7 @@ class Post
             'status' => strtoupper($inputs['status']),
             'slug' => $slug,
             'created_by' => Auth::user()->id,
-            'publish_date' => Carbon::createFromFormat('d-F-Y - H:i', $inputs['publish_date'])->format('Y-m-d H:i')
+            'publish_date' => Carbon::createFromFormat('d-F-Y - H:i', $inputs['publish_date'])->format('Y-m-d H:i:s')
         ]);
 
         foreach ($inputs['title'] as $lang => $title) {
