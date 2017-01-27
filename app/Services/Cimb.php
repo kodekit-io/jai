@@ -7,22 +7,13 @@ use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Log;
 
-class Cimb
+class Cimb extends Payment
 {
-    const CANCELLED = 'cancelled';
-    const PENDING = 'pending';
-    const COMPLETED = 'completed';
-    const HOLD = 'on-hold';
-
     protected $redirectUrl;
     protected $requeryUrl;
     protected $merchantCode;
     protected $merchantKey;
     protected $backendUrl;
-    /**
-     * @var Order
-     */
-    private $orderService;
 
     /**
      * Cimb constructor.
@@ -30,7 +21,7 @@ class Cimb
      */
     public function __construct(Order $orderService)
     {
-        $this->orderService = $orderService;
+        $this->orderService= $orderService;
         $this->merchantCode = config('payments.cimb.merchant_code');
         $this->merchantKey = config('payments.cimb.merchant_key');
         $this->redirectUrl = config('payments.cimb.redirect_url');
@@ -205,11 +196,5 @@ class Cimb
 
         CimbCheckout::create($data);
     }
-
-    private function updateOrderStatus($orderId, $status)
-    {
-        $this->orderService->updateStatus($orderId, $status);
-    }
-
 
 }
