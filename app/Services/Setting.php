@@ -58,6 +58,7 @@ class Setting
         if ($setting->exists()) {
             $setting = $setting->first();
             $setting->value = $value;
+            $setting->save();
         } else {
             $this->store($key, $value);
         }

@@ -165,7 +165,7 @@ class Doku extends Payment
         }
     }
 
-    public function dokuRedirect(Request $request)
+    public function redirectResult(Request $request)
     {
         // var_dump($request->all()); exit();
         if (count($request->all()) < 1) {

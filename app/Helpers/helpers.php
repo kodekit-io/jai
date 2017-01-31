@@ -146,4 +146,10 @@ if (! function_exists('get_meta_description')) {
             return '';
         }
     }
+
+    if (! function_exists('amount_formatting')) {
+        function amount_formatting($amount, $digit = 0, $decimalSeparator = ',', $separator = '.') {
+            return number_format($amount, $digit, $decimalSeparator, $separator);
+        }
+    }
 }

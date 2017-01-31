@@ -21,7 +21,7 @@ class Cimb extends Payment
      */
     public function __construct(Order $orderService)
     {
-        $this->orderService= $orderService;
+        parent::__construct($orderService);
         $this->merchantCode = config('payments.cimb.merchant_code');
         $this->merchantKey = config('payments.cimb.merchant_key');
         $this->redirectUrl = config('payments.cimb.redirect_url');
@@ -62,7 +62,7 @@ class Cimb extends Payment
         return $params;
     }
 
-    public function cimbRedirect(Request $request)
+    public function redirectResult(Request $request)
     {
         $trx['paymentId'] = ( $request->has('PaymentId') ? $request->input('PaymentId') : '' );
         $trx['orderId'] = ( $request->has('RefNo') ? $request->input('RefNo') : '' );

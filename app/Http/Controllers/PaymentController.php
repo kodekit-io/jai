@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Service\Cimb;
+use App\Service\CimbCreditCard;
 use App\Service\Doku;
 use App\Service\Galasys;
 use App\Service\Order;
@@ -34,6 +35,10 @@ class PaymentController extends Controller
      * @var Ticket
      */
     private $ticketService;
+    /**
+     * @var CimbCreditCard
+     */
+    private $cimbCreditService;
 
 
     /**
@@ -41,14 +46,16 @@ class PaymentController extends Controller
      * @param Order $orderService
      * @param Doku $dokuService
      * @param Cimb $cimbService
+     * @param CimbCreditCard $cimbCreditService
      * @param Ticket $ticketService
      */
-    public function __construct(Order $orderService, Doku $dokuService, Cimb $cimbService, Ticket $ticketService)
+    public function __construct(Order $orderService, Doku $dokuService, Cimb $cimbService, CimbCreditCard $cimbCreditService, Ticket $ticketService)
     {
         $this->orderService = $orderService;
         $this->dokuService = $dokuService;
         $this->cimbService = $cimbService;
         $this->ticketService = $ticketService;
+        $this->cimbCreditService = $cimbCreditService;
     }
 
     /**
@@ -57,7 +64,7 @@ class PaymentController extends Controller
      */
     public function dokuResult(Request $request)
     {
-        $result = $this->dokuService->dokuRedirect($request);
+        $result = $this->dokuService->redirectResult($request);
         if ($result['orderStatus'] == 'completed' || $result['orderStatus'] == 'on-hold') {
             return view('frontend.thank-you', $result);
         } else {
@@ -82,7 +89,7 @@ class PaymentController extends Controller
 
     public function cimbResult(Request $request)
     {
-        $result = $this->cimbService->cimbRedirect($request);
+        $result = $this->cimbService->redirectResult($request);
         if ($result['orderStatus'] == 'completed') {
             return view('frontend.thank-you', $result);
         } else {
@@ -101,6 +108,17 @@ class PaymentController extends Controller
         $trx['amount'] = 20000000;
         $status = $this->cimbService->checkStatus($trx);
         var_dump($status); exit();
+    }
+
+    // CIMB CREDIT CARD
+    public function cimbCreditResult(Request $request)
+    {
+        $result = $this->cimbCreditService->redirectResult($request);
+        if ($result['orderStatus'] == 'completed') {
+            return view('frontend.thank-you', $result);
+        } else {
+            return view('frontend.transaction-failed', $result);
+        }
     }
 
 }

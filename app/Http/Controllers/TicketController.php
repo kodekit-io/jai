@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\OrderCompleted;
 use App\Service\Cimb;
+use App\Service\CimbCreditCard;
 use App\Service\Doku;
 use App\Service\Galasys;
 use App\Service\Holiday;
@@ -49,6 +50,10 @@ class TicketController extends Controller
      * @var Cimb
      */
     private $cimbService;
+    /**
+     * @var CimbCreditCard
+     */
+    private $cimbCreditService;
 
     /**
      * TicketController constructor.
@@ -59,6 +64,7 @@ class TicketController extends Controller
      * @param Doku $dokuService
      * @param Cimb $cimbService
      * @param Post $postService
+     * @param CimbCreditCard $cimbCreditService
      */
     public function __construct(
         Galasys $galasys,
@@ -67,7 +73,8 @@ class TicketController extends Controller
         Order $orderService,
         Doku $dokuService,
         Cimb $cimbService,
-        Post $postService
+        Post $postService,
+        CimbCreditCard $cimbCreditService
     )
     {
         $this->galasys = $galasys;
@@ -77,6 +84,7 @@ class TicketController extends Controller
         $this->postService = $postService;
         $this->dokuService = $dokuService;
         $this->cimbService = $cimbService;
+        $this->cimbCreditService = $cimbCreditService;
     }
 
     public function getAvailablePackages(Request $request)
@@ -205,6 +213,12 @@ class TicketController extends Controller
         $cimbUrl = config('payments.cimb.api_url');
         $data['cimbUrl'] = $cimbUrl;
         $data['cimbParams'] = $cimbParams;
+
+        //cimb credit card
+        $cimbCreditUrl = config('payments.cimb_cc.api_url');
+        $cimbCreditParams = $this->cimbCreditService->getCimbCreditCardParameters($order->id);
+        $data['cimbCreditUrl'] = $cimbCreditUrl;
+        $data['cimbCreditParams'] = $cimbCreditParams;
 
         $data['visitDate'] = Carbon::createFromFormat('Y-m-d', $order->visit_date)->format('l, d-M-Y');
         $data['details'] = $order->details;

@@ -65,7 +65,7 @@ class Slider
             foreach ($availableLanguages as $lang => $config) {
                 $itemImage = isset($item['image-' . $lang]) ? $item['image-' . $lang] : '' ;
                 $content = isset($item['title-' . $lang]) ? $item['title-' . $lang] : '' ;
-                $link = $item['link-' . $lang];
+                $link = isset($item['link-' . $lang]) ? $item['link-' . $lang] : '';
 
                 // store the uploaded image
                 $imageName = $itemImage != '' ? $this->uploadSliderImage($itemImage) : $itemImage;
@@ -128,7 +128,7 @@ class Slider
             foreach ($availableLanguages as $lang => $config) {
                 $itemImage = isset($item['image-' . $lang]) ? $item['image-' . $lang] : '' ;
                 $content = isset($item['title-' . $lang]) ? $item['title-' . $lang] : '' ;
-                $link = $item['link-' . $lang];
+                $link = isset($item['link-' . $lang]) ? $item['link-' . $lang] : '';
 
                 // store the uploaded image
                 $imageName = $itemImage != '' ? $this->uploadSliderImage($itemImage) : $itemImage;

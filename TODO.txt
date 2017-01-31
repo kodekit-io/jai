@@ -99,7 +99,6 @@
 ------ After MAP
 ------ Dynamic Legend
 
-
 -- Menu link, multilang support
 
 -- Advanced search on post, news
@@ -113,3 +112,10 @@
 
 ---- Check IP for security reason
 ---- batch to check the unpaid orders
+
+
+==== 2017 ====
+-- CIMB CC
+-- Send notification to admin if there any order & payment
+-- Meta keywords
+-- Google sitemap generator

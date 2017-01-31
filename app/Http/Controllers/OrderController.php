@@ -36,6 +36,11 @@ class OrderController extends Controller
     public function detail($id)
     {
         $order = $this->orderService->getOrderById($id);
-        var_dump($id); exit();
+        $orderDetails = $order->details;
+
+        $data['order'] = $order;
+        $data['orderDetails'] = $orderDetails;
+
+        return view('backend.orders.detail', $data);
     }
 }
