@@ -9,24 +9,15 @@ use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
-class Doku
+class Doku extends Payment
 {
     protected $sharedKey;
     protected $mallId;
-    /**
-     * @var Order
-     */
-    private $orderService;
+
     /**
      * @var DokuResponseCode
      */
     private $dokuResponseCode;
-
-    const OPEN = 'open';
-    const CANCELLED = 'cancelled';
-    const PENDING = 'pending';
-    const COMPLETED = 'completed';
-    const HOLD = 'on-hold';
 
     /**
      * Doku constructor.
@@ -35,7 +26,7 @@ class Doku
      */
     public function __construct(Order $orderService, DokuResponseCode $dokuResponseCode)
     {
-        $this->orderService = $orderService;
+        parent::__construct($orderService);
         $this->mallId = config('payments.doku.mall_id');
         $this->sharedKey = config('payments.doku.shared_key');
         $this->dokuResponseCode = $dokuResponseCode;
@@ -174,7 +165,7 @@ class Doku
         }
     }
 
-    public function dokuRedirect(Request $request)
+    public function redirectResult(Request $request)
     {
         // var_dump($request->all()); exit();
         if (count($request->all()) < 1) {
@@ -497,8 +488,4 @@ class Doku
         }
     }
 
-    private function updateOrderStatus($orderId, $status)
-    {
-        $this->orderService->updateStatus($orderId, $status);
-    }
 }

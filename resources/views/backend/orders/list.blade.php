@@ -59,6 +59,7 @@
                 processing: true,
                 serverSide: true,
                 ajax: '{!! route('order.data') !!}',
+                order: [[ 0, "desc" ]],
                 columns: [
                     { data: 'id', name: 'id', "width": "50px" },
                     { data: 'user', name: 'user', "width": "150px" },

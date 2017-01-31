@@ -32,6 +32,12 @@
                 @endforeach
             </form>
 
+            <form class="uk-form uk-margin-top" action="{!! $cimbCreditUrl !!}" id="cimb-credit" method="post">
+                @foreach($cimbCreditParams as $key => $value)
+                    <input type="hidden" name="{!! $key !!}" value="{!! $value !!}">
+                @endforeach
+            </form>
+
             <form class="uk-form uk-margin-top">
             <div class="uk-form-row uk-margin-remove">
                 <label for="">Date of Visit</label>
@@ -96,7 +102,7 @@
 
             <h3 class="light-blue-text text-darken-4 uk-text-uppercase uk-margin-large-top">Choose Your Payment</h3>
             <div class="uk-grid uk-grid-medium uk-margin-large-bottom uk-grid-match" data-uk-grid-match="{target:'.uk-panel'}" data-uk-grid-margin>
-                <div class="uk-width-medium-1-2">
+                <div class="uk-width-medium-1-3">
                     <div class="uk-panel uk-panel-box white">
                         <input name="payments" type="radio" id="pay1" value="doku" />
                         <label for="pay1" class="no-style"><img src="{!! asset('frontend/img/logo-doku.png') !!}" /></label>
@@ -108,9 +114,25 @@
                         </ul>
                     </div>
                 </div>
-                <div class="uk-width-medium-1-2">
+                <div class="uk-width-medium-1-3">
                     <div class="uk-panel uk-panel-box white">
                         <input name="payments" type="radio" id="pay2" value="cimb" />
+                        <label for="pay2" class="no-style"><img src="{!! asset('frontend/img/logo-cimb-click.png') !!}" /></label>
+                        <hr>
+                        {{--
+                        <h3 class="uk-margin-bottom-remove">CIMB Clicks</h3>
+                        <ul class="uk-list uk-list-line">
+                            <li>Lorem ipsum dolor sit amet,</li>
+                            <li>consectetur adipisicing elit,</li>
+                            <li>sed do eiusmod tempor incididunt</li>
+                            <li>ut labore et dolore magna aliqua.</li>
+                        </ul>
+                        --}}
+                    </div>
+                </div>
+                <div class="uk-width-medium-1-3">
+                    <div class="uk-panel uk-panel-box white">
+                        <input name="payments" type="radio" id="pay2" value="cimb-credit" />
                         <label for="pay2" class="no-style"><img src="{!! asset('frontend/img/logo-cimb-click.png') !!}" /></label>
                         <hr>
                         {{--

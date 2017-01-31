@@ -12,17 +12,17 @@
                     <div class="portlet-title">
                         <div class="caption font-dark">
                             <i class="fa fa-shopping-cart font-dark"></i>
-                            <span class="caption-subject bold uppercase"> Order Details: #9816</span>
+                            <span class="caption-subject bold uppercase"> Order Details: #{!! $order->id !!}</span>
                         </div>
                         <div class="pull-right">
-                            <a href="javascript:history.back()" class="btn btn-default"><i class="fa fa-arrow-left"></i> BACK</a>
+                            <a href="{!! backendUrl('order') !!}" class="btn btn-default"><i class="fa fa-arrow-left"></i> BACK</a>
                         </div>
                     </div>
                     <div class="portlet-body">
                         <div class="row">
                             <div class="col-md-12">
                                 <h6 class="bold">STATUS :</h6>
-                                <span class="label label-success bold">PAID</span>
+                                <span class="label label-success bold">{!! $order->status_description != '' ? $order->status_description : 'open' !!}</span>
                                 {{--
                                 <span class="label label-default bold">Default</span>
                                 <span class="label label-primary bold">Primary</span>
@@ -40,35 +40,35 @@
                                 <ul class="list-group">
                                     <li class="list-group-item">
                                         Name
-                                        <span class="pull-right">Pasha Mahardika</span>
+                                        <span class="pull-right">{!! $order->name !!}</span>
                                     </li>
                                     <li class="list-group-item">
                                         Email
-                                        <span class="pull-right">email@email</span>
+                                        <span class="pull-right">{!! $order->email !!}</span>
                                     </li>
                                     <li class="list-group-item">
                                         Phone
-                                        <span class="pull-right">08123456789</span>
+                                        <span class="pull-right">{!! $order->phone_number !!}</span>
                                     </li>
                                 </ul>
                             </div>
-                            <div class="col-md-6">
-                                <h6 class="bold">PAYMENT</h6>
-                                <ul class="list-group">
-                                    <li class="list-group-item">
-                                        Payment Type
-                                        <span class="pull-right">DOKU</span>
-                                    </li>
-                                    <li class="list-group-item">
-                                        Payment Date
-                                        <span class="pull-right">13/13/13</span>
-                                    </li>
-                                    <li class="list-group-item">
-                                        Payment Channel
-                                        <span class="pull-right">Credit Card</span>
-                                    </li>
-                                </ul>
-                            </div>
+                            {{--<div class="col-md-6">--}}
+                                {{--<h6 class="bold">PAYMENT</h6>--}}
+                                {{--<ul class="list-group">--}}
+                                    {{--<li class="list-group-item">--}}
+                                        {{--Payment Type--}}
+                                        {{--<span class="pull-right">DOKU</span>--}}
+                                    {{--</li>--}}
+                                    {{--<li class="list-group-item">--}}
+                                        {{--Payment Date--}}
+                                        {{--<span class="pull-right">13/13/13</span>--}}
+                                    {{--</li>--}}
+                                    {{--<li class="list-group-item">--}}
+                                        {{--Payment Channel--}}
+                                        {{--<span class="pull-right">Credit Card</span>--}}
+                                    {{--</li>--}}
+                                {{--</ul>--}}
+                            {{--</div>--}}
                         </div>
                         <div class="row">
                             <div class="col-md-12">
@@ -84,20 +84,17 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Premium</td>
-                                            <td>2</td>
-                                            <td class="text-right">300000</td>
-                                            <th class="text-right">600000</th>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Ultimate</td>
-                                            <td>1</td>
-                                            <td class="text-right">500000</td>
-                                            <th class="text-right">500000</th>
-                                        </tr>
+                                    @if(count($orderDetails) > 0)
+                                        @foreach($orderDetails as $detail)
+                                            <tr>
+                                                <th scope="row">1</th>
+                                                <td>{!! $detail->product_name !!}</td>
+                                                <td>{!! $detail->qty !!}</td>
+                                                <td class="text-right">{!! amount_formatting($detail->price) !!}</td>
+                                                <th class="text-right">{!! amount_formatting($detail->total_price) !!}</th>
+                                            </tr>
+                                        @endforeach
+                                    @endif
                                     </tbody>
                                     <tfoot>
                                         <tr>
@@ -108,7 +105,7 @@
                                             </td>
                                             <td class="text-right"
                                                 style="padding-right:8px;border-top:1px solid #999;">
-                                                1100000
+                                                {!! amount_formatting($order->total_amount) !!}
                                             </td>
                                         </tr>
                                     </tfoot>

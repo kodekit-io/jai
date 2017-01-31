@@ -261,6 +261,8 @@ Route::group(['middleware' => ['menu:frontend']], function () {
 
     Route::any('cimb/result', 'PaymentController@cimbResult');
     Route::any('cimb/backend', 'PaymentController@cimbBackend');
+
+    Route::any('cimb-credit-card/result', 'PaymentController@cimbCreditResult');
 });
 
 Route::get('galasys/products', 'GalasysController@products');
@@ -272,3 +274,38 @@ Route::get('tests/get-pdf', 'TicketController@generatePdf');
 Route::get('tests/galasys-order', 'TicketController@galasysOrder');
 Route::get('tests/galasys-holidays', 'TicketController@galasysHolidays');
 Route::get('tests/cimb-status', 'PaymentController@cimbStatus');
+
+Route::get('tests/cimb-cc-signature', function() {
+    $number = 50;
+    echo number_format($number, 2, '.', '') . '<br>';
+    $basicWord = '123456' . '001010100998' . 'A001' . '50.25';
+    $word = $basicWord;
+    echo $basicWord . '<br>';
+    echo md5($word);
+//    echo md5($word);
+});
+
+Route::get('tests/cimb-cc-secure-signature', function() {
+    $word = 'RfsyYTMe030883Cust001-1-1.00.0020161102_1701430APPROVED OR COMPLETED02-11-2016 17:00:281064602-11-2016 17:01:46S';
+    echo hash('sha512', $word);
+});
+
+Route::get('tests/cimb-cc-sort-param', function () {
+    $params = [
+        'TRANSACTION_ID',
+        'TXN_STATUS',
+        'TXN_SIGNATURE',
+        'SECURE_SIGNATURE',
+        'AUTH_ID',
+        'TRAN_DATE',
+        'SALES_DATE',
+        'RESPONSE_CODE',
+        'RESPONSE_DESC',
+        'MERCHANT_TRANID',
+        'RESPONSE_DESC',
+        'FR_LEVEL',
+        'FR_SCORE',
+    ];
+    asort($params);
+    var_dump($params);
+});

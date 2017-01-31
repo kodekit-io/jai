@@ -20,6 +20,14 @@ return [
         'requery_url' => 'https://sandbox.e2pay.co.id/epayment/enquiry.asp',
         'redirect_url' => 'cimb/result',
         'backend_url' => 'cimb/backend'
+    ],
+
+    'cimb_cc' => [
+        'merchant_acc_no' => '00080091009057289293101',
+        'txn_password' => '3nXtgITq',
+        'api_url' => 'https://ipg.cimbniaga.co.id/BPG/admin/payment/PaymentWindow.jsp',
+        //'requery_url' => 'https://sandbox.e2pay.co.id/epayment/enquiry.asp',
+        'return_url' => 'cimb-credit-card/result',
     ]
 
 ];
