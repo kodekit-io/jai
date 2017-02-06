@@ -49,11 +49,17 @@ class Language
 
         // lang is exists ??
         if (! $this->languageService->isLanguageExists($lang)) {
-            $segments[0] = $defaultLanguage;
+            $newSegments[] = $defaultLanguage;
             $redirectUrl = url('');
+
             foreach ($segments as $segment) {
-                $redirectUrl .= '/' . $segment;
+                $newSegments[] = $segment;
             }
+
+            foreach ($newSegments as $newSegment) {
+                $redirectUrl .= '/' . $newSegment;
+            }
+
             return redirect($redirectUrl);
         }
 

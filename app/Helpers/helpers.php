@@ -85,6 +85,15 @@ if (! function_exists('lang_url')) {
 
 }
 
+if (! function_exists('secure_lang_url')) {
+
+    function secure_lang_url($url) {
+        $currentLang = session('lang');
+        return url($currentLang . '/' . $url, [], true);
+    }
+
+}
+
 if (! function_exists('get_day_from_number')) {
 
     function get_day_from_number($number, $lang) {

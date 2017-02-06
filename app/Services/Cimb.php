@@ -57,7 +57,7 @@ class Cimb extends Payment
         $trx['process_type'] = 'REQUEST';
         $trx['message'] = 'Transaction request start';
 
-        $this->saveCimbCheckout($trx);
+        // $this->saveCimbCheckout($trx);
 
         return $params;
     }
