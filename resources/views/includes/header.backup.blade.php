@@ -10,7 +10,17 @@
 
 		<!-- Homescreen Icons -->
 		<meta name="mobile-web-app-capable" content="yes">
-		<link rel="shortcut icon" href="{!! asset('frontend/img/favicons/favicon.png') !!}">
+		<link rel="icon" sizes="192x192" href="{!! asset('frontend/img/favicons/android-chrome-192x192.png') !!}">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="apple-mobile-web-app-title" content="Jakarta Aquarium">
+		<link rel="apple-touch-icon-precomposed" href="{!! asset('frontend/img/favicons/apple-touch-icon-precomposed.png') !!}">
+		<link rel="apple-touch-icon" sizes="180x180" href="{!! asset('frontend/img/favicons/apple-touch-icon.png') !!}">
+
+		<link rel="icon" type="image/png" href="{!! asset('frontend/img/favicons/favicon-32x32.png') !!}" sizes="32x32">
+		<link rel="icon" type="image/png" href="{!! asset('frontend/img/favicons/favicon-16x16.png') !!}" sizes="16x16">
+		<link rel="shortcut icon" href="{!! asset('frontend/img/favicons/favicon.ico') !!}">
 
 		<link rel="manifest" href="{!! asset('frontend/img/favicons/manifest.json') !!}">
 		<link rel="mask-icon" href="{!! asset('frontend/img/favicons/safari-pinned-tab.svg') !!}" color="#005da6">
