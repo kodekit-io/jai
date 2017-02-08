@@ -39,6 +39,13 @@ class Language
         }
 
         $segments = $request->segments();
+        if (! $this->languageService->isLanguageExists($lang)) {
+            if (session('lang')) {
+                $lang = session('lang');
+            } else {
+                $lang = $defaultLanguage;
+            }
+        }
 
         // set lang session
         session(['lang' => $lang]);
