@@ -255,7 +255,7 @@ Route::group(['middleware' => ['lang', 'menu:frontend']], function () {
 
 Route::post('get-package-by-date', 'TicketController@getAvailablePackages');
 
-Route::group(['middleware' => ['lang', 'menu:frontend']], function () {
+Route::group(['middleware' => ['lang:sessionOnly', 'menu:frontend']], function () {
     Route::any('doku/result', 'PaymentController@dokuResult');
     Route::any('doku/notify', 'PaymentController@dokuNotify');
     Route::any('doku/review', 'PaymentController@dokuReview');

@@ -28,7 +28,7 @@ class Language
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, $whenBlank = 'redirect')
     {
         $lang = $request->segment(1);
         $defaultLanguage = $this->languageService->getDefaultLanguage();
@@ -70,7 +70,7 @@ class Language
         // as google recommendation
         // https://support.google.com/webmasters/answer/182192?hl=en&ref_topic=2370587
 
-        if ($redirectUrl != '') {
+        if ($redirectUrl != '' && $whenBlank == 'redirect') {
             return redirect($redirectUrl);
         }
 
