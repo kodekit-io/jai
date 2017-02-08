@@ -17,6 +17,9 @@ class VerifyCsrfToken extends BaseVerifier
         'doku/review',
         'doku/identify',
 
+        'cimb/result',
+        'cimb/backend',
+
         '*/cimb/result',
         '*/cimb/backend',
 
