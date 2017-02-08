@@ -46,7 +46,7 @@ class CimbCreditCard extends Payment
             'TRANSACTION_TYPE' => 2,
             'TXN_SIGNATURE' => $signature,
             'RESPONSE_TYPE' => 'HTTP',
-            'RETURN_URL' => secure_lang_url($this->returnUrl),
+            'RETURN_URL' => secure_url($this->returnUrl),
             'TXN_DESC' => 'Jakarta Aquarium Ticket'
         ];
 

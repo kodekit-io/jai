@@ -248,8 +248,6 @@ Route::group(['middleware' => ['lang', 'menu:frontend']], function () {
     Route::get('/{lang?}/order-completed', 'FrontEndController@orderCompleted');
 
     Route::get('/{lang?}', 'FrontEndController@homePage');
-
-    Route::any('{lang?}/cimb-credit-card/result', 'PaymentController@cimbCreditResult');
 //    Route::get('/{lang?}/news/{slug}', 'FrontEndController@homePage');
 });
 
@@ -263,6 +261,8 @@ Route::group(['middleware' => ['lang:sessionOnly', 'menu:frontend']], function (
 
     Route::any('cimb/result', 'PaymentController@cimbResult');
     Route::any('cimb/backend', 'PaymentController@cimbBackend');
+
+    Route::any('cimb-credit-card/result', 'PaymentController@cimbCreditResult');
 });
 
 Route::get('galasys/products', 'GalasysController@products');
