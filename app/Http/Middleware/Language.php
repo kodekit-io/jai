@@ -46,18 +46,8 @@ class Language
             } else {
                 $lang = $defaultLanguage;
             }
-        }
 
-        // set lang session
-        session(['lang' => $lang]);
-
-        $langSwitcher = $this->languageService->generateLangSwitcher($lang, $segments);
-
-        View::share('gLangSwitcher', $langSwitcher);
-
-        // lang is exists ??
-        if (! $this->languageService->isLanguageExists($lang)) {
-            $newSegments[] = $defaultLanguage;
+            $newSegments[] = $lang;
             $redirectUrl = url('');
 
             foreach ($segments as $segment) {
@@ -67,13 +57,22 @@ class Language
             foreach ($newSegments as $newSegment) {
                 $redirectUrl .= '/' . $newSegment;
             }
-
-            return redirect($redirectUrl);
         }
+
+        // set lang session
+        session(['lang' => $lang]);
+
+        $langSwitcher = $this->languageService->generateLangSwitcher($lang, $segments);
+
+        View::share('gLangSwitcher', $langSwitcher);
 
         // send alternative language to the view
         // as google recommendation
         // https://support.google.com/webmasters/answer/182192?hl=en&ref_topic=2370587
+
+        if ($redirectUrl != '') {
+            return redirect($redirectUrl);
+        }
 
         return $next($request);
     }
