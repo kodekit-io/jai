@@ -32,10 +32,11 @@ class Language
     {
         $lang = $request->segment(1);
         $defaultLanguage = $this->languageService->getDefaultLanguage();
+        $redirectUrl = '';
 
         // lang is blank ??
         if ($lang == '') {
-            return redirect('/' . $defaultLanguage);
+            $redirectUrl = redirect('/' . $defaultLanguage);
         }
 
         $segments = $request->segments();
@@ -49,8 +50,6 @@ class Language
 
         // set lang session
         session(['lang' => $lang]);
-
-        echo $lang; exit();
 
         $langSwitcher = $this->languageService->generateLangSwitcher($lang, $segments);
 
