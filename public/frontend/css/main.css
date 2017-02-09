@@ -1385,7 +1385,7 @@ label.error {
 		image-rendering:   -o-crisp-edges;         /* Opera */
 		image-rendering: -webkit-optimize-contrast;/* Webkit */
 		image-rendering: crisp-edges;
-		-ms-interpolation-mode: nearest-neighbor;  /* IE */		
+		-ms-interpolation-mode: nearest-neighbor;  /* IE */
 	}
 	.ja-mobmenu {
 		display: block;
@@ -1576,5 +1576,22 @@ label.error {
 		text-align: left !important;
 		margin-left: 15px;
 		margin-bottom: 1em;
+	}
+	.ja-ticket label {
+		min-width: 150px;
+		width: calc(100% - 2em - 2px);
+		border-right: 1px solid #00acc1;
+
+	}
+	.ja-ticket label[for="agree"] {
+		min-width: 150px;
+		width: auto;
+		border-right: none;
+		line-height: normal;
+		display: inline;
+	}
+	.ja-ticket input[type="text"] {
+		width: 100%;
+		border-top: none;
 	}
 }
