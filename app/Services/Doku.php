@@ -104,29 +104,35 @@ class Doku extends Payment
     public function dokuNotify(Request $request)
     {
         Log::warning('NOTIFYING');
+
+        // get the parameters
+        $trx['words'] = ( $request->has('WORDS') ? $request->get('WORDS') : '' );
+        $trx['amount'] = ( $request->has('AMOUNT') ? $request->get('AMOUNT') : '' );
+        $trx['orderId'] = ( $request->has('TRANSIDMERCHANT') ? $request->get('TRANSIDMERCHANT') : '' );
+        $trx['resultMessage'] = ( $request->has('RESULTMSG') ? $request->get('RESULTMSG') : '' );
+        $trx['verifyStatus'] = ( $request->has('VERIFYSTATUS') ? $request->get('VERIFYSTATUS') : '' );
+        $trx['sessionId'] = ( $request->has('SESSIONID') ? $request->get('SESSIONID') : '' );
+        $trx['ipAddress'] = $request->ip();
+
         // check IP first
         if ($this->checkDokuIP($request)) {
-            // get the parameters
-            $trx['words'] = ( $request->has('WORDS') ? $request->get('WORDS') : '' );
-            $trx['amount'] = ( $request->has('AMOUNT') ? $request->get('AMOUNT') : '' );
-            $trx['orderId'] = ( $request->has('TRANSIDMERCHANT') ? $request->get('TRANSIDMERCHANT') : '' );
-            $trx['resultMessage'] = ( $request->has('RESULTMSG') ? $request->get('RESULTMSG') : '' );
-            $trx['verifyStatus'] = ( $request->has('VERIFYSTATUS') ? $request->get('VERIFYSTATUS') : '' );
-
+            Log::warning('NOTIFYING -- IP PASSED');
             $wordsGenerated = sha1($trx['amount'] . $this->mallId . $this->sharedKey . $trx['orderId'] . $trx['resultMessage'] . $trx['verifyStatus']);
 
             if ($trx['words'] == $wordsGenerated) {
+                Log::warning('NOTIFYING -- WORD PASSED');
                 $trx['responseCode'] = ( $request->has('RESPONSECODE') ? $request->get('RESPONSECODE') : '' );
                 $trx['approvalCode'] = ( $request->has('APPROVALCODE') ? $request->get('APPROVALCODE') : '' );
                 $trx['paymentChannel'] = ( $request->has('PAYMENTCHANNEL') ? $request->get('PAYMENTCHANNEL') : '' );
                 $trx['paymentCode'] = ( $request->has('PAYMENTCODE') ? $request->get('PAYMENTCODE') : '' );
-                $trx['sessionId'] = ( $request->has('SESSIONID') ? $request->get('SESSIONID') : '' );
                 $trx['bank'] = ( $request->has('BANK') ? $request->get('BANK') : '' );
                 $trx['creditCard'] = ( $request->has('MCN') ? $request->get('MCN') : '' );
                 $trx['paymentDateTime'] = ( $request->has('PAYMENTDATETIME') ? $request->get('PAYMENTDATETIME') : '' );
                 $trx['verifyId'] = ( $request->has('VERIFYID') ? $request->get('VERIFYID') : '' );
                 $trx['verifyScore'] = ( $request->has('VERIFYSCORE') ? $request->get('VERIFYSCORE') : '' );
                 $trx['notifyType'] = ( $request->has('STATUSTYPE') ? $request->get('STATUSTYPE') : '' );
+
+                Log::warning('NOTIFYING -- TRX => ' . \GuzzleHttp\json_encode($trx));
 
                 if ($this->checkTransaction($trx) > 0) {
                     if ( $trx['resultMessage'] == "SUCCESS"
@@ -149,20 +155,25 @@ class Doku extends Payment
                         $trx['message'] = "Notify process message come from DOKU, use default rule : canceled";
                         $status = self::CANCELLED;
                     }
-                    $trx['processType'] = 'NOTIFY';
-                    $this->saveDokuCheckout($trx);
+//                    $trx['processType'] = 'NOTIFY';
+//                    $this->saveDokuCheckout($trx);
                     // update status, send email, etc
                     $this->updateOrderStatus($trx['orderId'], $status);
-                    return 'Continue';
+                    $word = 'Continue';
                 } else {
-                    return 'Stop : Invalid Request';
+                    $word = 'Stop : Invalid Request';
                 }
             } else {
-                return 'Stop : Wrong signature';
+                $word = 'Stop : Wrong signature';
             }
         } else {
-            return "Stop : IP Not Allowed";
+            $word = "Stop : IP Not Allowed";
         }
+
+        $trx['processType'] = 'NOTIFY';
+        $this->saveDokuCheckout($trx);
+
+        return $word;
     }
 
     public function redirectResult(Request $request)
@@ -425,7 +436,7 @@ class Doku extends Payment
         return ['5', '05', '14', '21', '22'];
     }
 
-    private function checkStatus($trx)
+    public function checkStatus($trx)
     {
         $checkStatusUrl = config('payments.doku.url_check_status');
         $mallId = $this->mallId;
@@ -451,6 +462,7 @@ class Doku extends Payment
 
         if ($curl_errno > 0)
         {
+            Log::warning("DOKU CHECK STATUS ==> connection error");
             #return "Stop : Connection Error";
         }
 

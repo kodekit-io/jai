@@ -275,6 +275,8 @@ Route::get('tests/galasys-order', 'TicketController@galasysOrder');
 Route::get('tests/galasys-holidays', 'TicketController@galasysHolidays');
 Route::get('tests/cimb-status', 'PaymentController@cimbStatus');
 
+Route::get('tests/doku-check-status', 'PaymentController@dokuCheckStatus');
+
 Route::get('tests/cimb-cc-signature', function() {
     $number = 50;
     echo number_format($number, 2, '.', '') . '<br>';
