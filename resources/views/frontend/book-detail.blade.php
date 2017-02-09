@@ -135,6 +135,7 @@
                         <input name="payments" type="radio" id="pay3" value="cimb_credit" />
                         <label for="pay3" class="no-style"><img src="{!! asset('frontend/img/logo-cimb-click.png') !!}" /></label>
                         <hr>
+                        <h3 class="uk-margin-bottom-remove">CIMB Credit Card</h3>
                         {{--
                         <h3 class="uk-margin-bottom-remove">CIMB Clicks</h3>
                         <ul class="uk-list uk-list-line">
