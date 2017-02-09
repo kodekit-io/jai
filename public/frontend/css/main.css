@@ -1594,4 +1594,14 @@ label.error {
 		width: 100%;
 		border-top: none;
 	}
+	.ja-ticket .qtys input[type="text"] {
+		width: 50%;
+	}
+	.ja-ticket .ja-sub {
+		width: calc(100% - 2em - 2px);
+	}
+	.ja-ticket input[name="payments"] + label {
+		border-right: none;
+		max-width: 80%;
+	}
 }
