@@ -32,7 +32,7 @@
                 @endforeach
             </form>
 
-            <form class="uk-form uk-margin-top" action="{!! $cimbCreditUrl !!}" id="cimb-credit" method="post">
+            <form class="uk-form uk-margin-top" action="{!! $cimbCreditUrl !!}" id="cimb_credit" method="post">
                 @foreach($cimbCreditParams as $key => $value)
                     <input type="hidden" name="{!! $key !!}" value="{!! $value !!}">
                 @endforeach
@@ -132,8 +132,8 @@
                 </div>
                 <div class="uk-width-medium-1-3">
                     <div class="uk-panel uk-panel-box white">
-                        <input name="payments" type="radio" id="pay2" value="cimb-credit" />
-                        <label for="pay2" class="no-style"><img src="{!! asset('frontend/img/logo-cimb-click.png') !!}" /></label>
+                        <input name="payments" type="radio" id="pay3" value="cimb_credit" />
+                        <label for="pay3" class="no-style"><img src="{!! asset('frontend/img/logo-cimb-click.png') !!}" /></label>
                         <hr>
                         {{--
                         <h3 class="uk-margin-bottom-remove">CIMB Clicks</h3>

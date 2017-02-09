@@ -31,7 +31,9 @@ class CimbCreditCard extends Payment
     public function getCimbCreditCardParameters($orderId)
     {
         $order = $this->orderService->getOrderById($orderId);
-        $grandTotal = number_format($order->total_amount, 2, '.', '');
+//        $amount = $order->total_amount;
+        $amount = 1000;
+        $grandTotal = number_format($amount, 2, '.', '');
 
         $word = $this->txnPassword . $this->merchantAccNo . $orderId . $grandTotal;
         $signature = $this->generateTxnSignature($word);
@@ -53,16 +55,9 @@ class CimbCreditCard extends Payment
 
     public function redirectResult($request)
     {
+//        var_dump($request->all());
         // check the mandatory fields
-        if ($request->has('TRANSACTION_ID') && $request->has('TXN_STATUS')
-            && $request->has('TXN_SIGNATURE') && $request->has('SECURE_SIGNATURE')
-            && $request->has('AUTH_ID') && $request->has('TRAN_DATE') && $request->has('SALES_DATE')
-            && $request->has('RESPONSE_CODE') && $request->has('MERCHANT_TRANID')) {
-                $trx['orderStatus'] = self::CANCELLED;
-                $trx['message'] = 'Unknown error';
-                $trx['errorMessage'] = 'Unknown error';
-                return $trx;
-        } else {
+        if ($request->has('TXN_STATUS') && $request->has('TXN_SIGNATURE') && $request->has('SECURE_SIGNATURE') && $request->has('RESPONSE_CODE') && $request->has('MERCHANT_TRANID')) {
             $trx['transaction_id'] = $request->get('TRANSACTION_ID');
             $trx['txn_status'] = $request->get('TXN_STATUS');
             $trx['auth_id'] = $request->get('AUTH_ID');
@@ -79,12 +74,12 @@ class CimbCreditCard extends Payment
             $trx['txn_signature'] = $request->get('TXN_SIGNATURE');
             $trx['secure_signature'] = $request->get('SECURE_SIGNATURE');
             if ($secureSignature == $trx['secure_signature']) {
-                if ($trx['txn_status'] == 'S') {
+                if ($trx['response_code'] == '0' && $trx['txn_status'] == 'S') {
                     $trx['orderStatus'] = self::COMPLETED;
                     $trx['message'] = 'Transaction completed';
                 } else {
                     $trx['message'] = 'Transaction is Failed';
-                    $trx['errorMessage'] = 'Transaction is Failed';
+                    $trx['errorMessage'] = $trx['response_desc'];
                     $trx['orderStatus'] = self::CANCELLED;
                 }
             } else {
@@ -92,22 +87,42 @@ class CimbCreditCard extends Payment
                 $trx['errorMessage'] = 'Invalid signature. Transaction is Failed';
                 $trx['orderStatus'] = self::CANCELLED;
             }
+        } else {
+            $trx['orderStatus'] = self::CANCELLED;
+            $trx['message'] = 'Unknown error';
+            $trx['errorMessage'] = 'Unknown error';
         }
         $trx['process_type'] = 'REDIRECT';
         $trx['order_id'] = $request->get('MERCHANT_TRANID');
-        $this->updateOrderStatus($trx['merchant_tranid'], $trx['orderStatus']);
+        $this->updateOrderStatus($trx['order_id'], $trx['orderStatus']);
         $this->saveCimbCreditCardCheckout($trx);
-        var_dump($request->all()); exit();
+
+        return $trx;
     }
 
     private function secureSignatureWord($trx)
     {
-        ksort($trx);
-        $word = '';
+        /**
+         * take out transaction_id, tran_date and txn_status,
+         * there is a problem with _ vs alphabetical sort
+         * transaction_id is bigger than tran_date
+         */
+        $sortedArray = [];
         foreach ($trx as $key => $value) {
+            if (! in_array($key, ['transaction_id', 'tran_date', 'txn_status'])) {
+                $sortedArray[$key] = $value;
+            }
+        }
+        // sort by key
+        ksort($sortedArray);
+        // add txn_password in the first position
+        $word = $this->txnPassword;
+        // generate the word
+        foreach ($sortedArray as $key => $value) {
             $word .= $value;
         }
-
+        // add additional word
+        $word = $word . $trx['transaction_id'] . $trx['tran_date'] . $trx['txn_status'];
         return $word;
     }
 

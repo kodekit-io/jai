@@ -28,17 +28,36 @@ class Language
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, $whenBlank = 'redirect')
     {
         $lang = $request->segment(1);
         $defaultLanguage = $this->languageService->getDefaultLanguage();
+        $redirectUrl = '';
 
         // lang is blank ??
         if ($lang == '') {
-            return redirect('/' . $defaultLanguage);
+            $redirectUrl = redirect('/' . $defaultLanguage);
         }
 
         $segments = $request->segments();
+        if (! $this->languageService->isLanguageExists($lang)) {
+            if (session('lang')) {
+                $lang = session('lang');
+            } else {
+                $lang = $defaultLanguage;
+            }
+
+            $newSegments[] = $lang;
+            $redirectUrl = url('');
+
+            foreach ($segments as $segment) {
+                $newSegments[] = $segment;
+            }
+
+            foreach ($newSegments as $newSegment) {
+                $redirectUrl .= '/' . $newSegment;
+            }
+        }
 
         // set lang session
         session(['lang' => $lang]);
@@ -47,19 +66,13 @@ class Language
 
         View::share('gLangSwitcher', $langSwitcher);
 
-        // lang is exists ??
-        if (! $this->languageService->isLanguageExists($lang)) {
-            $segments[0] = $defaultLanguage;
-            $redirectUrl = url('');
-            foreach ($segments as $segment) {
-                $redirectUrl .= '/' . $segment;
-            }
-            return redirect($redirectUrl);
-        }
-
         // send alternative language to the view
         // as google recommendation
         // https://support.google.com/webmasters/answer/182192?hl=en&ref_topic=2370587
+
+        if ($redirectUrl != '' && $whenBlank == 'redirect') {
+            return redirect($redirectUrl);
+        }
 
         return $next($request);
     }

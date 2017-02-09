@@ -253,7 +253,7 @@ Route::group(['middleware' => ['lang', 'menu:frontend']], function () {
 
 Route::post('get-package-by-date', 'TicketController@getAvailablePackages');
 
-Route::group(['middleware' => ['menu:frontend']], function () {
+Route::group(['middleware' => ['lang:sessionOnly', 'menu:frontend']], function () {
     Route::any('doku/result', 'PaymentController@dokuResult');
     Route::any('doku/notify', 'PaymentController@dokuNotify');
     Route::any('doku/review', 'PaymentController@dokuReview');
@@ -283,29 +283,4 @@ Route::get('tests/cimb-cc-signature', function() {
     echo $basicWord . '<br>';
     echo md5($word);
 //    echo md5($word);
-});
-
-Route::get('tests/cimb-cc-secure-signature', function() {
-    $word = 'RfsyYTMe030883Cust001-1-1.00.0020161102_1701430APPROVED OR COMPLETED02-11-2016 17:00:281064602-11-2016 17:01:46S';
-    echo hash('sha512', $word);
-});
-
-Route::get('tests/cimb-cc-sort-param', function () {
-    $params = [
-        'TRANSACTION_ID',
-        'TXN_STATUS',
-        'TXN_SIGNATURE',
-        'SECURE_SIGNATURE',
-        'AUTH_ID',
-        'TRAN_DATE',
-        'SALES_DATE',
-        'RESPONSE_CODE',
-        'RESPONSE_DESC',
-        'MERCHANT_TRANID',
-        'RESPONSE_DESC',
-        'FR_LEVEL',
-        'FR_SCORE',
-    ];
-    asort($params);
-    var_dump($params);
 });

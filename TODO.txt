@@ -119,3 +119,4 @@
 -- Send notification to admin if there any order & payment
 -- Meta keywords
 -- Google sitemap generator
+-- Forgot pass

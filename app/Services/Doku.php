@@ -342,8 +342,13 @@ class Doku extends Payment
             $paymentChannel = ( $request->has('PAYMENTCHANNEL') ? $request->get('PAYMENTCHANNEL') : '' );
             $sessionId = ( $request->has('SESSIONID') ? $request->get('SESSIONID') : '' );
 
-            // set session maybe ?
-            Log::warning('IDENTIFYING');
+            $trx['amount'] = $amount;
+            $trx['orderId'] = $orderId;
+            $trx['paymentChannel'] = $paymentChannel;
+            $trx['sessionId'] = $sessionId;
+            $trx['processType'] = 'IDENTIFYING';
+
+            $this->saveDokuCheckout($trx);
         }
     }
 
