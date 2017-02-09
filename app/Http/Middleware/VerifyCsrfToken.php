@@ -23,6 +23,7 @@ class VerifyCsrfToken extends BaseVerifier
         '*/cimb/result',
         '*/cimb/backend',
 
+        'cimb-credit-card/result',
         '*/cimb-credit-card/result',
     ];
 }

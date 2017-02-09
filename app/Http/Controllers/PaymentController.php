@@ -65,6 +65,7 @@ class PaymentController extends Controller
     public function dokuResult(Request $request)
     {
         $result = $this->dokuService->redirectResult($request);
+        $result['lang'] = session('lang');
         if ($result['orderStatus'] == 'completed' || $result['orderStatus'] == 'on-hold') {
             return view('frontend.thank-you', $result);
         } else {
@@ -90,6 +91,7 @@ class PaymentController extends Controller
     public function cimbResult(Request $request)
     {
         $result = $this->cimbService->redirectResult($request);
+        $result['lang'] = session('lang');
         if ($result['orderStatus'] == 'completed') {
             return view('frontend.thank-you', $result);
         } else {
@@ -114,6 +116,7 @@ class PaymentController extends Controller
     public function cimbCreditResult(Request $request)
     {
         $result = $this->cimbCreditService->redirectResult($request);
+        $result['lang'] = session('lang');
         if ($result['orderStatus'] == 'completed') {
             return view('frontend.thank-you', $result);
         } else {
