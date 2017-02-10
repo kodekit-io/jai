@@ -124,4 +124,13 @@ class PaymentController extends Controller
         }
     }
 
+    public function dokuCheckStatus()
+    {
+        $trx['orderId'] = '188';
+        $trx['sessionId'] = 'zaw15Zh0yYK8lgs2iomSG7fkVlwT20NzYgg9wlZI';
+
+        $res = $this->dokuService->checkStatus($trx);
+        var_dump($res);
+    }
+
 }
