@@ -277,6 +277,16 @@ Route::get('tests/cimb-status', 'PaymentController@cimbStatus');
 
 Route::get('tests/doku-check-status', 'PaymentController@dokuCheckStatus');
 
+Route::get('tests/cimb-signature', function () {
+    $mKey = 'I5I4RTEike';
+    $mCode = 'IF00087';
+    $refNo = '197';
+    $amount = '1000000';
+    $curr = 'IDR';
+    $signatureWord = $mKey . $mCode . $refNo . $amount . $curr;
+    echo base64_encode(sha1($signatureWord, true));
+});
+
 Route::get('tests/cimb-cc-signature', function() {
     $number = 50;
     echo number_format($number, 2, '.', '') . '<br>';

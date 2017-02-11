@@ -38,6 +38,12 @@
                 @endforeach
             </form>
 
+            <form class="uk-form uk-margin-top" action="{!! $cimbRekPonselUrl !!}" id="cimb_credit" method="post">
+                @foreach($cimbRekPonselParams as $key => $value)
+                    <input type="hidden" name="{!! $key !!}" value="{!! $value !!}">
+                @endforeach
+            </form>
+
             <form class="uk-form uk-margin-top">
             <div class="uk-form-row uk-margin-remove">
                 <label for="">Date of Visit</label>
@@ -136,6 +142,23 @@
                         <label for="pay3" class="no-style"><img src="{!! asset('frontend/img/logo-cimb-click.png') !!}" /></label>
                         <hr>
                         <h3 class="uk-margin-bottom-remove">CIMB Credit Card</h3>
+                        {{--
+                        <h3 class="uk-margin-bottom-remove">CIMB Clicks</h3>
+                        <ul class="uk-list uk-list-line">
+                            <li>Lorem ipsum dolor sit amet,</li>
+                            <li>consectetur adipisicing elit,</li>
+                            <li>sed do eiusmod tempor incididunt</li>
+                            <li>ut labore et dolore magna aliqua.</li>
+                        </ul>
+                        --}}
+                    </div>
+                </div>
+                <div class="uk-width-medium-1-3">
+                    <div class="uk-panel uk-panel-box white">
+                        <input name="payments" type="radio" id="pay4" value="cimb_credit" />
+                        <label for="pay4" class="no-style"><img src="{!! asset('frontend/img/logo-cimb-click.png') !!}" /></label>
+                        <hr>
+                        <h3 class="uk-margin-bottom-remove">CIMB Rek Ponsel</h3>
                         {{--
                         <h3 class="uk-margin-bottom-remove">CIMB Clicks</h3>
                         <ul class="uk-list uk-list-line">

@@ -161,12 +161,15 @@ class Doku extends Payment
                     $this->updateOrderStatus($trx['orderId'], $status);
                     $word = 'Continue';
                 } else {
+                    Log::warning('NOTIFYING -- INVLID REQUEST');
                     $word = 'Stop : Invalid Request';
                 }
             } else {
+                Log::warning('NOTIFYING -- WORD FAILED');
                 $word = 'Stop : Wrong signature';
             }
         } else {
+            Log::warning('NOTIFYING -- IP FAILED');
             $word = "Stop : IP Not Allowed";
         }
 
@@ -494,7 +497,7 @@ class Doku extends Payment
             # Insert transaction check status to table onecheckout
             $this->saveDokuCheckout($trx);
 
-            if (! in_array($trx['paymentChannel'], ['01','15'])  )
+            if (! in_array($trx['paymentChannel'], ['01', '15', '04'])  )
             {
                 return "NOT SUPPORT";
             }

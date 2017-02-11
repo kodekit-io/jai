@@ -16,6 +16,8 @@ return [
     'cimb' => [
         'merchant_code' => 'IF00087',
         'merchant_key' => 'I5I4RTEike',
+        'merchant_code_rp' => 'IF00087_S0001',
+        'merchat_key_rp' => 'BvarC1lbRe',
         'api_url' => 'https://sandbox.e2pay.co.id/epayment/entry.asp',
         'requery_url' => 'https://sandbox.e2pay.co.id/epayment/enquiry.asp',
         'redirect_url' => 'cimb/result',

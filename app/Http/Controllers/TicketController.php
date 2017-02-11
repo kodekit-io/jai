@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\OrderCompleted;
 use App\Service\Cimb;
 use App\Service\CimbCreditCard;
+use App\Service\CimbRekPonsel;
 use App\Service\Doku;
 use App\Service\Galasys;
 use App\Service\Holiday;
@@ -54,6 +55,10 @@ class TicketController extends Controller
      * @var CimbCreditCard
      */
     private $cimbCreditService;
+    /**
+     * @var CimbRekPonsel
+     */
+    private $cimbRekPonsel;
 
     /**
      * TicketController constructor.
@@ -65,6 +70,7 @@ class TicketController extends Controller
      * @param Cimb $cimbService
      * @param Post $postService
      * @param CimbCreditCard $cimbCreditService
+     * @param CimbRekPonsel $cimbRekPonsel
      */
     public function __construct(
         Galasys $galasys,
@@ -74,7 +80,8 @@ class TicketController extends Controller
         Doku $dokuService,
         Cimb $cimbService,
         Post $postService,
-        CimbCreditCard $cimbCreditService
+        CimbCreditCard $cimbCreditService,
+        CimbRekPonsel $cimbRekPonsel
     )
     {
         $this->galasys = $galasys;
@@ -85,6 +92,7 @@ class TicketController extends Controller
         $this->dokuService = $dokuService;
         $this->cimbService = $cimbService;
         $this->cimbCreditService = $cimbCreditService;
+        $this->cimbRekPonsel = $cimbRekPonsel;
     }
 
     public function getAvailablePackages(Request $request)
@@ -219,6 +227,12 @@ class TicketController extends Controller
         $cimbCreditParams = $this->cimbCreditService->getCimbCreditCardParameters($order->id);
         $data['cimbCreditUrl'] = $cimbCreditUrl;
         $data['cimbCreditParams'] = $cimbCreditParams;
+
+        // cimb rek ponsel
+        $cimbParams = $this->cimbRekPonsel->getCimbParameters($order->id);
+        $cimbUrl = config('payments.cimb.api_url');
+        $data['cimbRekPonselUrl'] = $cimbUrl;
+        $data['cimbRekPonselParams'] = $cimbParams;
 
         $data['visitDate'] = Carbon::createFromFormat('Y-m-d', $order->visit_date)->format('l, d-M-Y');
         $data['details'] = $order->details;
