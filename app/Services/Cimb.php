@@ -104,7 +104,7 @@ class Cimb extends Payment
             $trx['orderStatus'] = self::CANCELLED;
         }
 
-        $this->updateOrderStatus($trx['orderId'], $trx['orderStatus']);
+        $this->updateOrderStatus($trx['orderId'], $trx['orderStatus'], 'CIMB CLICK');
         $this->saveCimbCheckout($trx);
 
         return $trx;
@@ -152,7 +152,7 @@ class Cimb extends Payment
                 $trx['errorMessage'] = 'Invalid signature. Transaction is Failed';
                 $trx['orderStatus'] = self::CANCELLED;
             }
-            $this->updateOrderStatus($trx['orderId'], $trx['orderStatus']);
+            $this->updateOrderStatus($trx['orderId'], $trx['orderStatus'], 'CIMB CLICK');
             $this->saveCimbCheckout($trx);
         }
 

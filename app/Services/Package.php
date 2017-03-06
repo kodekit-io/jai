@@ -222,34 +222,36 @@ class Package
 
     public function getAvailablePackages($visitDateRequest)
     {
-        $visitDate = Carbon::createFromFormat('l, d-m-Y', $visitDateRequest)->format('Y-m-d');
-        $isHoliday = $this->isHoliday($visitDate);
-        $galasysProducts = $this->galasys->getProducts();
-        $galasysProducts = $this->sortByPrice($galasysProducts);
-
         $packages = '';
-        $colors = [
-            'cyan darken-1',
-            'grey darken-1',
-            'light-blue darken-4',
-            'amber darken-1',
-            'cyan darken-1',
-            'grey darken-1',
-            'light-blue darken-4',
-            'amber darken-1'
-        ];
-        $x = 0;
-        foreach ($galasysProducts as $galasysProduct) {
-            $price = ($isHoliday ? $galasysProduct->WeekendPrice : $galasysProduct->BasePrice);
-            $title = $galasysProduct->Name;
-            $description = $galasysProduct->Description;
-            $itemCode = $galasysProduct->ItemCode;
-            $ticketId = $galasysProduct->TicketID;
-            $isPackage = $galasysProduct->IsPackage;
-            $today = Carbon::createFromFormat('l, d-m-Y', $visitDateRequest)->format('l');
-            $checkAvailabilityWord = 'Is'.$today;
-            if ($galasysProduct->$checkAvailabilityWord == 'true') {
-                $packages .= '<div class="uk-width-medium-1-3">
+
+        if (isset($visitDateRequest)) {
+            $visitDate = Carbon::createFromFormat('l, d-m-Y', $visitDateRequest)->format('Y-m-d');
+            $isHoliday = $this->isHoliday($visitDate);
+            $galasysProducts = $this->galasys->getProducts();
+            $galasysProducts = $this->sortByPrice($galasysProducts);
+
+            $colors = [
+                'cyan darken-1',
+                'grey darken-1',
+                'light-blue darken-4',
+                'amber darken-1',
+                'cyan darken-1',
+                'grey darken-1',
+                'light-blue darken-4',
+                'amber darken-1'
+            ];
+            $x = 0;
+            foreach ($galasysProducts as $galasysProduct) {
+                $price = ($isHoliday ? $galasysProduct->WeekendPrice : $galasysProduct->BasePrice);
+                $title = $galasysProduct->Name;
+                $description = $galasysProduct->Description;
+                $itemCode = $galasysProduct->ItemCode;
+                $ticketId = $galasysProduct->TicketID;
+                $isPackage = $galasysProduct->IsPackage;
+                $today = Carbon::createFromFormat('l, d-m-Y', $visitDateRequest)->format('l');
+                $checkAvailabilityWord = 'Is'.$today;
+                if ($galasysProduct->$checkAvailabilityWord == 'true') {
+                    $packages .= '<div class="uk-width-medium-1-3">
                                 <div class="uk-panel-box white-text '. $colors[$x] .'">
                                     <h4 class="white-text">' . $title . '</h4>
                                     <div class="jai-submission-info">
@@ -270,8 +272,9 @@ class Package
                                     </div>
                                 </div>
                             </div>';
+                }
+                $x++;
             }
-            $x++;
         }
 
         if ($packages == '') {

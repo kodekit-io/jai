@@ -94,7 +94,7 @@ class CimbCreditCard extends Payment
         }
         $trx['process_type'] = 'REDIRECT';
         $trx['order_id'] = $request->get('MERCHANT_TRANID');
-        $this->updateOrderStatus($trx['order_id'], $trx['orderStatus']);
+        $this->updateOrderStatus($trx['order_id'], $trx['orderStatus'], 'CIMB CC');
         $this->saveCimbCreditCardCheckout($trx);
 
         return $trx;

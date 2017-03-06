@@ -117,7 +117,7 @@
         }
         .disclaimer {
             position: absolute;
-            top: 75mm;
+            top: 70mm;
             left: 5mm;
             z-index: 10;
             text-transform: uppercase;
@@ -182,7 +182,7 @@
             <table>
                 <tr>
                     <td class="eticket">
-                        <img src="{!! url('frontend/img/eticket/eticket.png') !!}" class="bgticket" />
+                        <img src="public_html/frontend/img/eticket/eticket.png" class="bgticket" />
                         <div class="title">ETICKET</div>
                         <div class="date-order">ordered on {!! $orderDate !!}</div>
                         <div class="name">
@@ -195,29 +195,27 @@
                             <p class="date">{!! $visitDate !!}</p>
                         </div>
                         <div class="disclaimer">
-                            THE RIGHT TO REFUSE ENTRY RESERVED.<br>
-                            THIS E-TICKET IS NON-TRANSFERABLE.<br>
-                            VISIT WWW.JAKARTA-AQUARIUM.COM
+                            {!! trans('payment.eticket_cant_resold', [], '', $lang) !!}
                         </div>
                         <div class="barcode">
                             @if (isset($galasysBarcode))
-                                <img src="{!! url($galasysBarcode) !!}">
+                                <img src="{!! substr($galasysBarcode, 1) !!}">
                             @endif
                         </div>
                     </td>
                     <td class="info">
                         <p class="title-info">PROTECT THIS TICKET</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                        <table class="ad">
-                            <tr>
-                                <td><div class="ad-content">ad here 50mmx75mm</div></td>
-                                <td><div class="ad-content">ad here 50mmx75mm</div></td>
-                            </tr>
-                            <tr>
-                                <td><div class="ad-content">ad here 50mmx75mm</div></td>
-                                <td><div class="ad-content">ad here 50mmx75mm</div></td>
-                            </tr>
-                        </table>
+                        <p>{!! trans('payment.eticket_toc', [], '', $lang) !!}</p>
+                        {{--<table class="ad">--}}
+                            {{--<tr>--}}
+                                {{--<td><div class="ad-content">ad here 50mmx75mm</div></td>--}}
+                                {{--<td><div class="ad-content">ad here 50mmx75mm</div></td>--}}
+                            {{--</tr>--}}
+                            {{--<tr>--}}
+                                {{--<td><div class="ad-content">ad here 50mmx75mm</div></td>--}}
+                                {{--<td><div class="ad-content">ad here 50mmx75mm</div></td>--}}
+                            {{--</tr>--}}
+                        {{--</table>--}}
                     </td>
                 </tr>
             </table>

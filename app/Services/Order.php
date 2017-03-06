@@ -55,7 +55,8 @@ class Order
             'phone_number' => $personalData['order_phone'],
             'sub_total' => $details['subTotal'],
             'tax' => $details['tax'],
-            'total_amount' => $details['grandTotal']
+            'total_amount' => $details['grandTotal'],
+            'lang' => $personalData['lang']
         ]);
 
         foreach ($details['orders'] as $orderDetail) {
@@ -91,7 +92,7 @@ class Order
         return '';
     }
 
-    public function updateStatus($orderId, $statusDesc)
+    public function updateStatus($orderId, $statusDesc, $paymentType = '')
     {
         switch ($statusDesc) {
             case 'open':
@@ -120,12 +121,20 @@ class Order
         $order = $this->getOrderById($orderId);
         $order->status = $status;
         $order->status_description = $statusDesc;
+        if ($paymentType != '') {
+            $order->payment_type = $paymentType;
+        }
         $order->save();
     }
 
     public function getPaidOrder()
     {
-        return OrderModel::where('status', 1)->get();
+        return $this->getOrderByStatus(1)->get();
+    }
+
+    public function getHoldOrder()
+    {
+        return $this->getOrderByStatus(2)->get();
     }
 
     public function datatableData($baseUrl)
@@ -158,6 +167,11 @@ class Order
     private function getOrders()
     {
         return OrderModel::all();
+    }
+
+    private function getOrderByStatus($status)
+    {
+        return OrderModel::where('status', $status);
     }
 
 }

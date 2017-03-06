@@ -27,8 +27,8 @@ class Payment
         $this->orderService = $orderService;
     }
 
-    protected function updateOrderStatus($orderId, $status)
+    protected function updateOrderStatus($orderId, $status, $paymentType = '')
     {
-        $this->orderService->updateStatus($orderId, $status);
+        $this->orderService->updateStatus($orderId, $status, $paymentType);
     }
 }

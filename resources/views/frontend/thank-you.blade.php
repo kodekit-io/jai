@@ -46,7 +46,7 @@
                 </h3>
                 {{--<h5>You will receive an email shortly which will contain the details of this transaction</h5>--}}
                 <p>
-                    {!! trans('payment.success_content', ['email' => ''], '', $lang) !!}
+                    {!! trans('payment.success_content', [], '', $lang) !!}
                 </p>
                 <a href="{!! lang_url('') !!}" class="uk-button uk-button-large amber darken-1 light-blue-text text-darken-4">Back to Homepage</a>
             @elseif($orderStatus == 'on-hold')
@@ -66,7 +66,7 @@
                     {{--<span class="uk-text-large red-text">03 Days: 04 Hours: 15 Mins: 28 Secs</span>--}}
                 {{--</p>--}}
 
-                <p>{!! trans('payment.on-hold_content', ['payment_code' => $paymentCode, 'email' => ''], '', $lang) !!}</p>
+                <p>{!! trans('payment.on-hold_content', ['payment_code' => $paymentCode], '', $lang) !!}</p>
                 {{--<ol>--}}
                     {{--<li>Sed ut perspiciatis unde omnis iste natus del error sit voluptatem accusantium 				doloremque laudantium doredo.</li>--}}
                     {{--<li>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed 				consequuntur magni dolores eos qui ratione.</li>--}}

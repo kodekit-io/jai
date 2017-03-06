@@ -18,7 +18,7 @@
     <div class="uk-container uk-container-center">
         <div class="ja-ticket__content uk-margin-large-bottom">
             <h3 class="light-blue-text text-darken-4">BOOKING DETAILS</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor crasher malarki requiem predantia incididunt ut labore et dolore magna aliqua. Ut eni ad minim veniam, quisiom nostrud at autumn irure dor in reprehenderit exercitation.</p>
+            <p>{!! trans('payment.booking-detail', [], '', $lang) !!}</p>
 
             <form class="uk-form uk-margin-top" action="{!! $dokuUrl !!}" id="doku" method="post">
                 @foreach($dokuParams as $key => $value)
@@ -125,6 +125,9 @@
                         <input name="payments" type="radio" id="pay2" value="cimb" />
                         <label for="pay2" class="no-style"><img src="{!! asset('frontend/img/logo-cimb-click.png') !!}" /></label>
                         <hr>
+                        <p>
+                            {!! trans('payment-box_cimb', [], '', $lang) !!}
+                        </p>
                         {{--
                         <h3 class="uk-margin-bottom-remove">CIMB Clicks</h3>
                         <ul class="uk-list uk-list-line">
@@ -173,7 +176,7 @@
             </div>
             <div class="uk-form-row">
                 <button type="button" class="uk-button uk-button-large amber darken-1 light-blue-text text-darken-4" id="proceed-button">
-                    Proceed Payment
+                    {!! trans('payment.booking-detail_button', [], '', $lang) !!}
                 </button>
             </div>
         </div>

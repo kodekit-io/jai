@@ -9,6 +9,7 @@ use App\Service\Galasys;
 use App\Service\Order;
 use App\Service\Payment;
 use App\Service\Ticket;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -127,11 +128,51 @@ class PaymentController extends Controller
 
     public function dokuCheckStatus()
     {
-        $trx['orderId'] = '188';
-        $trx['sessionId'] = 'zaw15Zh0yYK8lgs2iomSG7fkVlwT20NzYgg9wlZI';
+        $trx['orderId'] = '192';
+        $trx['sessionId'] = 'L6jVvPsjBnZydQMfk4EZVxLIwWAdJjZDTX75T686';
 
         $res = $this->dokuService->checkStatus($trx);
         var_dump($res);
+    }
+
+    public function checkDokuAtmPayment()
+    {
+        $expiredInHours = 12;
+        $now = Carbon::now();
+        $minDateTime = $now->subHours($expiredInHours - 1);
+        $holdOrders = $this->orderService->getHoldOrder();
+
+        foreach ($holdOrders as $holdOrder) {
+            $transactionDate = Carbon::createFromFormat('Y-m-d H:i:s', $holdOrder->created_at);
+
+            $dokuRequest = $this->dokuService->getDokuCheckoutByOrderIdAndType($holdOrder->id, 'REQUEST');
+            if ($dokuRequest) {
+                $trx['orderId'] = $holdOrder->id;
+                $trx['sessionId'] = $dokuRequest->session_id;
+                Log::warning(\GuzzleHttp\json_encode($trx));
+                $statusResult = $this->dokuService->checkStatus($trx, 'array');
+
+                if ($statusResult['statusMessage'] == 'SUCCESS') {
+                    $trx['processType'] = 'ATM BATCH';
+                    $trx['message'] = 'Check Status Success.';
+                    $this->dokuService->saveDokuCheckout($trx);
+                    $this->orderService->updateStatus($holdOrder->id, 'completed', 'DOKU');
+                } elseif ($statusResult['statusMessage'] == 'VOIDED') {
+                    $trx['processType'] = 'ATM BATCH';
+                    $trx['message'] = 'Transaction Voided.';
+                    $this->dokuService->saveDokuCheckout($trx);
+                    $this->orderService->updateStatus($holdOrder->id, 'cancelled', 'DOKU');
+                } else {
+                    if ($transactionDate->lte($minDateTime)) {
+                        // cancel
+                        $trx['processType'] = 'ATM BATCH';
+                        $trx['message'] = 'Payment Expired (Timeout)';
+                        $this->dokuService->saveDokuCheckout($trx);
+                        $this->orderService->updateStatus($holdOrder->id, 'cancelled', 'DOKU');
+                    }
+                }
+            }
+        }
     }
 
 }

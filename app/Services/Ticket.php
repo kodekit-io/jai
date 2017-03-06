@@ -68,11 +68,17 @@ class Ticket
 //        Log::warning('PDF generated started');
         $order = $this->orderService->getOrderById($orderId);
         $data['galasysBarcode'] = $galasysBarcode;
+        Log::warning('public_path ==> ' . public_path(''));
+        Log::warning('barcode ==> ' . $galasysBarcode);
+        Log::warning('url ==> ' . url('frontend/img/eticket/eticket.png'));
+//        Log::warning('url ===> ' . url('/'));
         $data['visitDate'] = Carbon::createFromFormat('Y-m-d', $order->visit_date)->format('l, d F Y');
         $data['orderDate'] = Carbon::createFromFormat('Y-m-d H:i:s', $order->created_at)->format('d M Y');
         $data['ticketName'] = $ticketName;
         $data['visitorName'] = $order->name;
         $data['visitorEmail'] = $order->email;
+        $data['lang'] = $order->lang;
+
         $pdf = PDF::loadView('emails.e_ticket', $data);
         $pdf->setPaper('A4', 'landscape');
         $eTicketFileName = 'uploads/e-tickets/' . str_slug($ticketName) .'-'. $barcode .'.pdf';

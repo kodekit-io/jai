@@ -158,7 +158,7 @@ class Doku extends Payment
 //                    $trx['processType'] = 'NOTIFY';
 //                    $this->saveDokuCheckout($trx);
                     // update status, send email, etc
-                    $this->updateOrderStatus($trx['orderId'], $status);
+                    $this->updateOrderStatus($trx['orderId'], $status, 'DOKU');
                     $word = 'Continue';
                 } else {
                     Log::warning('NOTIFYING -- INVLID REQUEST');
@@ -264,7 +264,7 @@ class Doku extends Payment
             }
         }
 
-        $this->updateOrderStatus($trx['orderId'], $trx['orderStatus']);
+        $this->updateOrderStatus($trx['orderId'], $trx['orderStatus'], 'DOKU');
         $this->saveDokuCheckout($trx);
 
         return $trx;
@@ -374,17 +374,17 @@ class Doku extends Payment
         return ( substr($ipAddress,0,strlen($ipRange)) == $ipRange );
     }
 
-    private function saveDokuCheckout(array $datas)
+    public function saveDokuCheckout(array $datas)
     {
         $data['ip_address'] = ( isset($datas['ipAddress']) ? $datas['ipAddress'] : '' );
         $data['process_type'] = ( isset($datas['processType']) ? $datas['processType'] : '' );
-        $data['order_id'] = ( isset($datas['orderId']) ? $datas['orderId'] : '' );
-        $data['amount'] = ( isset($datas['amount']) ? $datas['amount'] : '' );
+        $data['order_id'] = ( isset($datas['orderId']) ? ($datas['orderId'] == '' ? 0 : $datas['orderId']) : 0);
+        $data['amount'] = ( isset($datas['amount']) ? ($datas['amount'] == '' ? 0 : $datas['amount'])  : '0');
         $data['response_code'] = ( isset($datas['responseCode']) ? $datas['responseCode'] : '' );
         $data['status_code'] = ( isset($datas['statusCode']) ? $datas['statusCode'] : '' );
         $data['result_msg'] = ( isset($datas['resultMsg']) ? $datas['resultMsg'] : '' );
         $data['payment_channel'] = ( isset($datas['paymentChannel']) ? $datas['paymentChannel'] : '' );
-        $data['payment_datetime'] = ( isset($datas['paymentDateTime']) ? $datas['paymentDateTime'] : NULL );
+        $data['payment_datetime'] = ( isset($datas['paymentDateTime']) ? ($datas['paymentDateTime'] == '' ? NULL : $datas['paymentDateTime']) : NULL );
         $data['payment_code'] = ( isset($datas['paymentCode']) ? $datas['paymentCode'] : '' );
         $data['words'] = ( isset($datas['words']) ? $datas['words'] : '' );
         $data['session_id'] = ( isset($datas['sessionId']) ? $datas['sessionId'] : '' );
@@ -439,7 +439,7 @@ class Doku extends Payment
         return ['5', '05', '14', '21', '22'];
     }
 
-    public function checkStatus($trx)
+    public function checkStatus($trx, $returnType = 'status')
     {
         $checkStatusUrl = config('payments.doku.url_check_status');
         $mallId = $this->mallId;
@@ -462,6 +462,9 @@ class Doku extends Payment
         $curl_errno = curl_errno($ch);
         $curl_error = curl_error($ch);
         curl_close($ch);
+
+
+        $status = 'failed';
 
         if ($curl_errno > 0)
         {
@@ -497,15 +500,28 @@ class Doku extends Payment
             # Insert transaction check status to table onecheckout
             $this->saveDokuCheckout($trx);
 
+            $trx['statusMessage'] = (string) $xml->RESULTMSG;
+
             if (! in_array($trx['paymentChannel'], ['01', '15', '04'])  )
             {
-                return "NOT SUPPORT";
+                $status = "NOT SUPPORT";
             }
 
-            return (string) $xml->RESULTMSG;
+            $status = $trx['statusMessage'];
         } else {
-            return 'Failed';
+            $trx['statusMessage'] = 'Unknown Error';
         }
+
+        if ($returnType == 'string') {
+            return $status;
+        } else {
+            return $trx;
+        }
+    }
+
+    public function getDokuCheckoutByOrderIdAndType($orderId, $type)
+    {
+        return DokuCheckout::where('order_id', $orderId)->where('process_type', $type)->first();
     }
 
 }

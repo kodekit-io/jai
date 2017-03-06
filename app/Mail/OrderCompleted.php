@@ -36,6 +36,9 @@ class OrderCompleted extends Mailable
     {
         $data['orderId'] = $this->order->id;
         $data['name'] = $this->order->name;
+        $lang = $this->order->lang;
+        $data['title'] = trans('payment.email_title', [], '', $lang);
+        $data['content'] = trans('payment.email_content', [], '', $lang);
         $data['visitDate'] = Carbon::createFromFormat('Y-m-d', $this->order->visit_date)->format('l, d F Y');
         $data['total'] = number_format($this->order->total_amount, 0, ',', '.');
         $data['details'] = $this->order->details;

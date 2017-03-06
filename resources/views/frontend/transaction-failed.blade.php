@@ -24,7 +24,7 @@
                 </h3>
                 <h5>{!! $errorMessage !!}</h5>
                 <p>
-                    {!! trans('payment.failed_content', ['customer_service' => ''], '', $lang) !!}
+                    {!! trans('payment.failed_content', [], '', $lang) !!}<a href="mailto:info@jakartaaquarium.com">info@jakartaaquarium.com</a>
                 </p>
                 <a href="{!! lang_url('') !!}" class="uk-button uk-button-large amber darken-1 light-blue-text text-darken-4">Back to Homepage</a>
             </div>

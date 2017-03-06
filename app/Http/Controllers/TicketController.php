@@ -13,6 +13,7 @@ use App\Service\Order;
 use App\Service\Package;
 use App\Service\Payment;
 use App\Service\Post;
+use App\Service\Ticket;
 use DNS1D;
 use GuzzleHttp\Client;
 use PDF;
@@ -59,6 +60,10 @@ class TicketController extends Controller
      * @var CimbRekPonsel
      */
     private $cimbRekPonsel;
+    /**
+     * @var Ticket
+     */
+    private $ticketService;
 
     /**
      * TicketController constructor.
@@ -81,7 +86,8 @@ class TicketController extends Controller
         Cimb $cimbService,
         Post $postService,
         CimbCreditCard $cimbCreditService,
-        CimbRekPonsel $cimbRekPonsel
+        CimbRekPonsel $cimbRekPonsel,
+        Ticket $ticketService
     )
     {
         $this->galasys = $galasys;
@@ -93,6 +99,7 @@ class TicketController extends Controller
         $this->cimbService = $cimbService;
         $this->cimbCreditService = $cimbCreditService;
         $this->cimbRekPonsel = $cimbRekPonsel;
+        $this->ticketService = $ticketService;
     }
 
     public function getAvailablePackages(Request $request)
@@ -206,6 +213,7 @@ class TicketController extends Controller
             }
             $details = $this->orderService->getOrderDetails($request->only(['products']), $lang);
             $personalData = $request->only(['visit_date', 'order_name', 'order_email', 'order_phone']);
+            $personalData['lang'] = $lang;
 
             $order = $this->orderService->saveOrder($personalData, $details);
         }
@@ -239,16 +247,25 @@ class TicketController extends Controller
         $data['subTotal'] = $order->sub_total;
         $data['tax'] = $order->tax;
         $data['grandTotal'] = $order->total_amount;
+        $data['lang'] = $lang;
 
         $data['pageTitle'] = 'Ticket Details';
 
         return view('frontend.book-detail', $data);
     }
 
-    public function sendEmail()
+    public function sendEmail($orderId)
     {
-        $order = $this->orderService->getOrderById(96);
-        Mail::to('jamal@kleur.id')->send(new OrderCompleted($order));
+        $order = $this->orderService->getOrderById($orderId);
+        Mail::to('pasha.md5@gmail.com')->send(new OrderCompleted($order));
+    }
+
+    public function checkingOrder()
+    {
+        $paidOrders = $this->orderService->getPaidOrder();
+        foreach ($paidOrders as $paidOrder) {
+            $this->ticketService->process($paidOrder->id);
+        }
     }
 
     public function generatePdf()

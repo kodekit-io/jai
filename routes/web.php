@@ -265,15 +265,20 @@ Route::group(['middleware' => ['lang:sessionOnly', 'menu:frontend']], function (
     Route::any('cimb-credit-card/result', 'PaymentController@cimbCreditResult');
 });
 
+Route::get('batch/check-order', 'TicketController@checkingOrder');
+Route::get('batch/check-doku-payment-via-atm', 'PaymentController@checkDokuAtmPayment');
+
 Route::get('galasys/products', 'GalasysController@products');
 Route::get('galasys/order', 'GalasysController@order');
 
-Route::get('tests/send-email', 'TicketController@sendEmail');
+Route::get('tests/send-email/{orderId}', 'TicketController@sendEmail');
 Route::get('tests/email-template', 'TicketController@emailTemplate');
 Route::get('tests/get-pdf', 'TicketController@generatePdf');
 Route::get('tests/galasys-order', 'TicketController@galasysOrder');
 Route::get('tests/galasys-holidays', 'TicketController@galasysHolidays');
 Route::get('tests/cimb-status', 'PaymentController@cimbStatus');
+
+
 
 Route::get('tests/doku-check-status', 'PaymentController@dokuCheckStatus');
 

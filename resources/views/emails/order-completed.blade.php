@@ -151,7 +151,7 @@
 																		<table border="0" cellpadding="0" cellspacing="0" width="210" style="max-width: 100%;">
 																			<tr>
 																				<td align="left" class="textContent">
-																					<img src="{!! asset('frontend/img/email/logo.jpg') !!}" />
+																					<img src="{!! url('frontend/img/email/logo.jpg') !!}" />
 																				</td>
 																			</tr>
 																		</table>
@@ -177,7 +177,7 @@
                                                                 <tr>
                                                                     <td align="left" valign="top" class="textContent" style="text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:14px;margin-bottom:0;color:#5F5F5F;line-height:135%;">
                                                                         <h6 style="font-family:Helvetica,Arial,sans-serif;font-size:14px;font-weight:bold;">Hi {!! $name !!},</h6>
-                                                                        <p>Thank you for booking online ticket at Jakarta Aquarium.</p>
+                                                                        <p>{!! $title !!}</p>
 
                                                                         <table align="left" border="1" bordercolor="#ff9900" cellpadding="10" cellspacing="0" width="100%" style="margin-bottom:20px;">
                                                                             <tr>
@@ -228,17 +228,17 @@
                                                                                 </td>
                                                                             </tr>
                                                                         </table>
-                                                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat <span style="color:#2559a4;">+6281637816829</span> cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                                                        <p>{!! $content !!} <a href="mailto:info@jakartaaquarium.com">info@jakartaaquarium.com</a></p>
                                                                         <p>Signature,<br>
                                                                         <b>Jakarta Aquarium</b></p>
 
-                                                                        <table align="left" border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-top:30px;">
-                                                                            <tr>
-                                                                                <td align="left" valign="top"><img src="{!! asset('frontend/img/email/ad.jpg') !!}" /></td>
-                                                                                <td align="left" valign="top"><img src="{!! asset('frontend/img/email/ad.jpg') !!}" /></td>
-                                                                                <td align="left" valign="top"><img src="{!! asset('frontend/img/email/ad.jpg') !!}" /></td>
-                                                                            </tr>
-                                                                        </table>
+                                                                        {{--<table align="left" border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-top:30px;">--}}
+                                                                            {{--<tr>--}}
+                                                                                {{--<td align="left" valign="top"><img src="{!! url('frontend/img/email/ad.jpg') !!}" /></td>--}}
+                                                                                {{--<td align="left" valign="top"><img src="{!! url('frontend/img/email/ad.jpg') !!}" /></td>--}}
+                                                                                {{--<td align="left" valign="top"><img src="{!! url('frontend/img/email/ad.jpg') !!}" /></td>--}}
+                                                                            {{--</tr>--}}
+                                                                        {{--</table>--}}
 
                                                                     </td>
                                                                 </tr>
@@ -264,22 +264,22 @@
                                     <table border="0" cellpadding="0" cellspacing="0" style="margin-top:5px;">
             							<tr>
             								<td align="left" valign="top">
-                                                <a href="#"><img src="{!! asset('frontend/img/email/fb.jpg') !!}" /></a>
+                                                <a href="#"><img src="{!! url('frontend/img/email/fb.jpg') !!}" /></a>
             								</td>
                                             <td align="left" valign="top">
-                                                <a href="#"><img src="{!! asset('frontend/img/email/tw.jpg') !!}" /></a>
+                                                <a href="#"><img src="{!! url('frontend/img/email/tw.jpg') !!}" /></a>
             								</td>
                                             <td align="left" valign="top">
-                                                <a href="#"><img src="{!! asset('frontend/img/email/ta.jpg') !!}" /></a>
+                                                <a href="#"><img src="{!! url('frontend/img/email/ta.jpg') !!}" /></a>
             								</td>
                                             <td align="left" valign="top">
-                                                <a href="#"><img src="{!! asset('frontend/img/email/ig.jpg') !!}" /></a>
+                                                <a href="#"><img src="{!! url('frontend/img/email/ig.jpg') !!}" /></a>
             								</td>
                                             <td align="left" valign="top">
-                                                <a href="#"><img src="{!! asset('frontend/img/email/gp.jpg') !!}" /></a>
+                                                <a href="#"><img src="{!! url('frontend/img/email/gp.jpg') !!}" /></a>
             								</td>
                                             <td align="left" valign="top">
-                                                <a href="#"><img src="{!! asset('frontend/img/email/li.jpg') !!}" /></a>
+                                                <a href="#"><img src="{!! url('frontend/img/email/li.jpg') !!}" /></a>
             								</td>
             							</tr>
             						</table>
