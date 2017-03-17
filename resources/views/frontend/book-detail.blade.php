@@ -126,7 +126,7 @@
                         <label for="pay2" class="no-style"><img src="{!! asset('frontend/img/logo-cimb-click.png') !!}" /></label>
                         <hr>
                         <p>
-                            {!! trans('payment-box_cimb', [], '', $lang) !!}
+                            {!! trans('payments.payment-box_cimb', [], '', $lang) !!}
                         </p>
                         {{--
                         <h3 class="uk-margin-bottom-remove">CIMB Clicks</h3>

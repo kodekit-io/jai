@@ -226,7 +226,8 @@ class Package
 
         if (isset($visitDateRequest)) {
             $visitDate = Carbon::createFromFormat('l, d-m-Y', $visitDateRequest)->format('Y-m-d');
-            // $isHoliday = $this->isHoliday($visitDate);
+            $isHoliday = $this->isHoliday($visitDate);
+            $isWeekend = $this->isWeekend($visitDate);
             $galasysProducts = $this->galasys->getProducts();
             // $galasysProducts = $this->sortByPrice($galasysProducts);
 
@@ -250,20 +251,16 @@ class Package
             ];
             $x = 0;
             foreach ($galasysProducts as $galasysProduct) {
-                // $price = ($isHoliday ? $galasysProduct->WeekendPrice : $galasysProduct->BasePrice);
-                $price = $galasysProduct['Money'];
+                $price = ($isHoliday ? $galasysProduct['HolidayMoney'] : $galasysProduct['Money']);
+                // $price = $galasysProduct['Money'];
                 $title = $galasysProduct['TKName'];
                 $description = $galasysProduct['TKName'];
                 $itemCode = $galasysProduct['TKcode'];
                 $ticketId = $galasysProduct['TKcode'];
-                // $isPackage = $galasysProduct->IsPackage;
                 $isPackage = false;
-                $today = Carbon::createFromFormat('l, d-m-Y', $visitDateRequest)->format('l');
-                $checkAvailabilityWord = 'Is'.$today;
-//                if ($galasysProduct->$checkAvailabilityWord == 'true') {
-//
-//                }
-                $packages .= '<div class="uk-width-medium-1-3">
+                if ($isWeekend) {
+                    if ($galasysProduct['nisholiday'] == '1') {
+                        $packages .= '<div class="uk-width-medium-1-3">
                                 <div class="uk-panel-box white-text '. $colors[$x] .'">
                                     <h4 class="white-text">' . $title . '</h4>
                                     <div class="jai-submission-info">
@@ -284,6 +281,30 @@ class Package
                                     </div>
                                 </div>
                             </div>';
+                    }
+                } else {
+                    $packages .= '<div class="uk-width-medium-1-3">
+                                <div class="uk-panel-box white-text '. $colors[$x] .'">
+                                    <h4 class="white-text">' . $title . '</h4>
+                                    <div class="jai-submission-info">
+                                        <p>' . $description . '</p>
+                                    </div>
+                                    <div class="jai-submission-price">
+                                        IDR '. number_format($price, 0) .'
+                                    </div>
+                                </div>
+                                <div class="uk-panel-box jai-submission-order white uk-text-right ">
+                                    <input type="hidden" name="products[' . $itemCode . '][id]" value="' . $ticketId .'">
+                                    <input type="hidden" name="products[' . $itemCode . '][name]" value="' . $title .'">
+                                    <input type="hidden" name="products[' . $itemCode . '][price]" value="' . $price .'">
+                                    <input type="hidden" name="products[' . $itemCode . '][isPackage]" value="' . $isPackage .'">
+
+                                    <div class="qtys">
+                                        <input type="text" min="0" name="products[' . $itemCode . '][qty]" class="" value="0" readonly>
+                                    </div>
+                                </div>
+                            </div>';
+                }
                 $x++;
             }
         }
@@ -368,6 +389,29 @@ class Package
     }
 
     public function isHoliday($date)
+    {
+        if ($this->isWeekend($date)) {
+            return true;
+        }
+
+        if ($this->holidayService->isHoliday($date)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    private function isWeekend($date)
+    {
+        $visitDate = Carbon::createFromFormat('Y-m-d', $date);
+        if ($visitDate->isWeekend($date)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public function isHolidayOld($date)
     {
         $visitDate = Carbon::createFromFormat('Y-m-d', $date);
         if ($visitDate->isWeekend()) {
