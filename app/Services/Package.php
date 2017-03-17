@@ -226,11 +226,94 @@ class Package
 
         if (isset($visitDateRequest)) {
             $visitDate = Carbon::createFromFormat('l, d-m-Y', $visitDateRequest)->format('Y-m-d');
+            // $isHoliday = $this->isHoliday($visitDate);
+            $galasysProducts = $this->galasys->getProducts();
+            // $galasysProducts = $this->sortByPrice($galasysProducts);
+
+            $colors = [
+                'cyan darken-1',
+                'grey darken-1',
+                'light-blue darken-4',
+                'amber darken-1',
+                'cyan darken-1',
+                'grey darken-1',
+                'light-blue darken-4',
+                'amber darken-1',
+                'cyan darken-1',
+                'grey darken-1',
+                'light-blue darken-4',
+                'amber darken-1',
+                'cyan darken-1',
+                'grey darken-1',
+                'light-blue darken-4',
+                'amber darken-1'
+            ];
+            $x = 0;
+            foreach ($galasysProducts as $galasysProduct) {
+                // $price = ($isHoliday ? $galasysProduct->WeekendPrice : $galasysProduct->BasePrice);
+                $price = $galasysProduct['Money'];
+                $title = $galasysProduct['TKName'];
+                $description = $galasysProduct['TKName'];
+                $itemCode = $galasysProduct['TKcode'];
+                $ticketId = $galasysProduct['TKcode'];
+                // $isPackage = $galasysProduct->IsPackage;
+                $isPackage = false;
+                $today = Carbon::createFromFormat('l, d-m-Y', $visitDateRequest)->format('l');
+                $checkAvailabilityWord = 'Is'.$today;
+//                if ($galasysProduct->$checkAvailabilityWord == 'true') {
+//
+//                }
+                $packages .= '<div class="uk-width-medium-1-3">
+                                <div class="uk-panel-box white-text '. $colors[$x] .'">
+                                    <h4 class="white-text">' . $title . '</h4>
+                                    <div class="jai-submission-info">
+                                        <p>' . $description . '</p>
+                                    </div>
+                                    <div class="jai-submission-price">
+                                        IDR '. number_format($price, 0) .'
+                                    </div>
+                                </div>
+                                <div class="uk-panel-box jai-submission-order white uk-text-right ">
+                                    <input type="hidden" name="products[' . $itemCode . '][id]" value="' . $ticketId .'">
+                                    <input type="hidden" name="products[' . $itemCode . '][name]" value="' . $title .'">
+                                    <input type="hidden" name="products[' . $itemCode . '][price]" value="' . $price .'">
+                                    <input type="hidden" name="products[' . $itemCode . '][isPackage]" value="' . $isPackage .'">
+
+                                    <div class="qtys">
+                                        <input type="text" min="0" name="products[' . $itemCode . '][qty]" class="" value="0" readonly>
+                                    </div>
+                                </div>
+                            </div>';
+                $x++;
+            }
+        }
+
+        if ($packages == '') {
+            $packages = '0';
+        }
+
+        return $packages;
+    }
+
+    public function getAvailablePackagesOld($visitDateRequest)
+    {
+        $packages = '';
+
+        if (isset($visitDateRequest)) {
+            $visitDate = Carbon::createFromFormat('l, d-m-Y', $visitDateRequest)->format('Y-m-d');
             $isHoliday = $this->isHoliday($visitDate);
             $galasysProducts = $this->galasys->getProducts();
             $galasysProducts = $this->sortByPrice($galasysProducts);
 
             $colors = [
+                'cyan darken-1',
+                'grey darken-1',
+                'light-blue darken-4',
+                'amber darken-1',
+                'cyan darken-1',
+                'grey darken-1',
+                'light-blue darken-4',
+                'amber darken-1',
                 'cyan darken-1',
                 'grey darken-1',
                 'light-blue darken-4',

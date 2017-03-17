@@ -36,6 +36,28 @@ class Ticket
     {
         // Generate e-tickets
         $orderDetails = $this->galasysService->getTickets($orderId);
+        $tickets = $orderDetails['tickets']['ticket'];
+        foreach ($tickets as $ticket) {
+            $barcode = $ticket['barcode'];
+            $ticketName = $ticket['ticketname'];
+            $code = $ticket['tkid'];
+            $eTicketFileName = $this->generateTicket($orderId, $barcode, $ticketName);
+            $this->galasysService->saveGalasysTicket($orderId, $code, $ticketName, $barcode, $eTicketFileName);
+        }
+
+        // update status
+        $this->orderService->updateStatus($orderId, 'barcode-generated');
+
+        // Send email
+        $order = $this->orderService->getOrderById($orderId);
+        Mail::to($order->email)->send(new OrderCompleted($order));
+        $this->orderService->updateStatus($orderId, 'email-sent');
+    }
+
+    public function processOld($orderId)
+    {
+        // Generate e-tickets
+        $orderDetails = $this->galasysService->getTickets($orderId);
 
         foreach ($orderDetails as $orderDetail) {
             $tickets = $orderDetail->Tickets;
@@ -49,7 +71,7 @@ class Ticket
         }
 
         // update status
-         $this->orderService->updateStatus($orderId, 'barcode-generated');
+        $this->orderService->updateStatus($orderId, 'barcode-generated');
 
         // Send email
         $order = $this->orderService->getOrderById($orderId);

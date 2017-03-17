@@ -199,7 +199,11 @@
                         </div>
                         <div class="barcode">
                             @if (isset($galasysBarcode))
-                                <img src="{!! substr($galasysBarcode, 1) !!}">
+                                {{--@php--}}
+                                {{--\Log::warning('Galasys barcode ===>' . substr($galasysBarcode, 1))--}}
+                                {{--@endphp--}}
+                                {{--<img src="{!! substr($galasysBarcode, 1) !!}">--}}
+                                <img src="{!! url($galasysBarcode) !!}">
                             @endif
                         </div>
                     </td>

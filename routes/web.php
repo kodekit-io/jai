@@ -301,3 +301,7 @@ Route::get('tests/cimb-cc-signature', function() {
     echo md5($word);
 //    echo md5($word);
 });
+
+
+Route::get('/tests/new-galasys/products', 'TestController@galasysTicket');
+Route::get('/tests/new-galasys/barcode', 'TestController@galasysGetBarcode');

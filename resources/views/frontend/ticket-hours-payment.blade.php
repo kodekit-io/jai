@@ -36,25 +36,31 @@
                                 <div class="all-packages">
                                     @foreach($galasysProducts as $galasysProduct)
                                         <?php
-                                        $title = $galasysProduct->Name;
-                                        $description = $galasysProduct->Description;
-                                        $itemCode = $galasysProduct->ItemCode;
-                                        $ticketId = $galasysProduct->TicketID;
-                                        $isPackage = $galasysProduct->IsPackage;
+//                                        $title = $galasysProduct->Name;
+//                                        $description = $galasysProduct->Description;
+//                                        $itemCode = $galasysProduct->ItemCode;
+//                                        $ticketId = $galasysProduct->TicketID;
+//                                        $isPackage = $galasysProduct->IsPackage;
                                         $price = '';
-                                        if ($galasysProduct->IsMonday == 'true') {
+//                                        if ($galasysProduct->IsMonday == 'true') {
+//                                            $price .= 'Weekday :<br>';
+//                                            $price .= '<span class="ja-bold">IDR '. number_format($galasysProduct->BasePrice, 0) . '</span><br>';
+//                                        }
+//                                        if ($galasysProduct->IsSunday == 'true') {
+//                                            $price .= 'Weekend :<br>';
+//                                            $price .= '<span class="ja-bold">IDR '. number_format($galasysProduct->WeekendPrice, 0) . '</span>';
+//                                        }
+                                            $title = $galasysProduct['TKName'];
+                                            $description = $galasysProduct['TKName'];
                                             $price .= 'Weekday :<br>';
-                                            $price .= '<span class="ja-bold">IDR '. number_format($galasysProduct->BasePrice, 0) . '</span><br>';
-                                        }
-                                        if ($galasysProduct->IsSunday == 'true') {
+                                            $price .= '<span class="ja-bold">IDR '. number_format($galasysProduct['Money'], 0) . '</span><br>';
                                             $price .= 'Weekend :<br>';
-                                            $price .= '<span class="ja-bold">IDR '. number_format($galasysProduct->WeekendPrice, 0) . '</span>';
-                                        }
+                                            $price .= '<span class="ja-bold">IDR '. number_format($galasysProduct['HolidayMoney'], 0) . '</span>';
                                         ?>
-                                        <div class="uk-panel uk-panel-box {!! $colors[$loop->index] !!} white-text noborder uk-margin-bottom">
+                                        <div class="uk-panel uk-panel-box light-blue darken-4 white-text noborder uk-margin-bottom">
                                             <div class="uk-grid">
                                                 <div class="uk-width-medium-2-3">
-                                                    <h4 class="white-text">{!! strtoupper($title) !!}</h4>
+                                                    <h4 class="white-text">{!! $title !!}</h4>
                                                     <p>{!! $description !!}</p>
                                                 </div>
                                                 <div class="uk-width-medium-1-3">
