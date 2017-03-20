@@ -40,6 +40,7 @@ class CimbRekPonsel extends Payment
         $trx['currency'] = 'IDR';
         $trx['orderId'] = $orderId;
         $signatureWord = $this->merchantKey . $this->merchantCode . $trx['orderId'] . $trx['amount'] . $trx['currency'];
+        \Illuminate\Support\Facades\Log::warning('CIMB RP Signature ==> ' . $signatureWord);
         $trx['signature'] = base64_encode(sha1($signatureWord, true));
         $params = [
             'MerchantCode' => $this->merchantCode,

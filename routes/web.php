@@ -305,3 +305,6 @@ Route::get('tests/cimb-cc-signature', function() {
 
 Route::get('/tests/new-galasys/products', 'TestController@galasysTicket');
 Route::get('/tests/new-galasys/barcode', 'TestController@galasysGetBarcode');
+
+
+Route::get('/tests/rp-form', 'TestController@rekPonsel');

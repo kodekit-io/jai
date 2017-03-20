@@ -58,4 +58,10 @@ class TestController extends Controller
         // $tickets = $array['ticketini'];
         dd($array['tickets']);
     }
+
+
+    public function rekPonsel()
+    {
+        return view('tests.rek-ponsel');
+    }
 }
