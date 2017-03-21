@@ -248,6 +248,7 @@ Route::group(['middleware' => ['lang', 'menu:frontend']], function () {
     Route::get('/{lang?}/order-completed', 'FrontEndController@orderCompleted');
 
     Route::get('/{lang?}', 'FrontEndController@homePage');
+    Route::get('/{lang?}/tests/ticket-dummy', 'TicketController@ticketDummy');
 //    Route::get('/{lang?}/news/{slug}', 'FrontEndController@homePage');
 });
 
