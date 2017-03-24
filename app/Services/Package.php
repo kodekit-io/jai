@@ -258,7 +258,7 @@ class Package
                 $itemCode = $galasysProduct['TKcode'];
                 $ticketId = $galasysProduct['TKcode'];
                 $isPackage = false;
-                if ($isWeekend) {
+                if ($isHoliday) {
                     if ($galasysProduct['nisholiday'] == '1') {
                         $packages .= '<div class="uk-width-medium-1-3">
                                 <div class="uk-panel-box white-text '. $colors[$x] .'">
