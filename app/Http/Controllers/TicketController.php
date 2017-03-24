@@ -139,6 +139,14 @@ class TicketController extends Controller
             'cyan darken-1',
             'grey darken-1',
             'light-blue darken-4',
+            'amber darken-1',
+            'cyan darken-1',
+            'grey darken-1',
+            'light-blue darken-4',
+            'amber darken-1',
+            'cyan darken-1',
+            'grey darken-1',
+            'light-blue darken-4',
             'amber darken-1'
         ];
 

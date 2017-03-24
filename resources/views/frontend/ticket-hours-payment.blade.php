@@ -51,13 +51,13 @@
 //                                            $price .= '<span class="ja-bold">IDR '. number_format($galasysProduct->WeekendPrice, 0) . '</span>';
 //                                        }
                                             $title = $galasysProduct['TKName'];
-                                            $description = $galasysProduct['TKName'];
+                                            $description = $galasysProduct['sprintdescch'];
                                             $price .= 'Weekday :<br>';
                                             $price .= '<span class="ja-bold">IDR '. number_format($galasysProduct['Money'], 0) . '</span><br>';
                                             $price .= 'Weekend :<br>';
                                             $price .= '<span class="ja-bold">IDR '. number_format($galasysProduct['HolidayMoney'], 0) . '</span>';
                                         ?>
-                                        <div class="uk-panel uk-panel-box light-blue darken-4 white-text noborder uk-margin-bottom">
+                                        <div class="uk-panel uk-panel-box {!! $colors[$loop->index] !!} white-text noborder uk-margin-bottom">
                                             <div class="uk-grid">
                                                 <div class="uk-width-medium-2-3">
                                                     <h4 class="white-text">{!! $title !!}</h4>

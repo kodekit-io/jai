@@ -254,7 +254,7 @@ class Package
                 $price = ($isHoliday ? $galasysProduct['HolidayMoney'] : $galasysProduct['Money']);
                 // $price = $galasysProduct['Money'];
                 $title = $galasysProduct['TKName'];
-                $description = $galasysProduct['TKName'];
+                $description = $galasysProduct['sprintdescch'];
                 $itemCode = $galasysProduct['TKcode'];
                 $ticketId = $galasysProduct['TKcode'];
                 $isPackage = false;
@@ -283,27 +283,29 @@ class Package
                             </div>';
                     }
                 } else {
-                    $packages .= '<div class="uk-width-medium-1-3">
-                                <div class="uk-panel-box white-text '. $colors[$x] .'">
+                    if ($galasysProduct['nisholiday'] == '0') {
+                        $packages .= '<div class="uk-width-medium-1-3">
+                                <div class="uk-panel-box white-text ' . $colors[$x] . '">
                                     <h4 class="white-text">' . $title . '</h4>
                                     <div class="jai-submission-info">
                                         <p>' . $description . '</p>
                                     </div>
                                     <div class="jai-submission-price">
-                                        IDR '. number_format($price, 0) .'
+                                        IDR ' . number_format($price, 0) . '
                                     </div>
                                 </div>
                                 <div class="uk-panel-box jai-submission-order white uk-text-right ">
-                                    <input type="hidden" name="products[' . $itemCode . '][id]" value="' . $ticketId .'">
-                                    <input type="hidden" name="products[' . $itemCode . '][name]" value="' . $title .'">
-                                    <input type="hidden" name="products[' . $itemCode . '][price]" value="' . $price .'">
-                                    <input type="hidden" name="products[' . $itemCode . '][isPackage]" value="' . $isPackage .'">
+                                    <input type="hidden" name="products[' . $itemCode . '][id]" value="' . $ticketId . '">
+                                    <input type="hidden" name="products[' . $itemCode . '][name]" value="' . $title . '">
+                                    <input type="hidden" name="products[' . $itemCode . '][price]" value="' . $price . '">
+                                    <input type="hidden" name="products[' . $itemCode . '][isPackage]" value="' . $isPackage . '">
 
                                     <div class="qtys">
                                         <input type="text" min="0" name="products[' . $itemCode . '][qty]" class="" value="0" readonly>
                                     </div>
                                 </div>
                             </div>';
+                    }
                 }
                 $x++;
             }
