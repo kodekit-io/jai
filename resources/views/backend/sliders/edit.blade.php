@@ -78,6 +78,7 @@
                 $(this).slideDown();
             },
             hide: function (deleteElement) {
+                console.log(deleteElement);
                 if(confirm('Are you sure you want to delete this element?')) {
                     $(this).slideUp(deleteElement);
                 }

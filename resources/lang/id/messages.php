@@ -14,8 +14,8 @@ return [
     */
 
     'no-job' => 'Maaf, tidak ada lowongan pekerjaan di Jakarta Aquarium saat ini.',
-    'weekday' => 'Senin - Jumat (Weekday)',
-    'weekend' => 'Sabtu - Minggu & Hari Libur Nasional (Weekend)',
+    'weekday' => 'Senin - Jumat',
+    'weekend' => 'Sabtu - Minggu & Hari Libur Nasional',
     'all-day' => 'Senin - Minggu',
     'opening-hours' => 'JAM OPERASIONAL',
 

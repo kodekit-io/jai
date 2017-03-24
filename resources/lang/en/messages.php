@@ -14,8 +14,8 @@ return [
     */
 
     'no-job' => 'Sorry, there\'s no vancancy in Jakarta Aquarium right now.',
-    'weekday' => 'Monday - Friday (Weekday)',
-    'weekend' => 'Saturday - Sunday & Public Holiday (Weekend)',
+    'weekday' => 'Monday - Friday',
+    'weekend' => 'Saturday - Sunday & Public Holiday',
     'all-day' => 'Monday - Sunday',
     'opening-hours' => 'OPENING HOURS',
 

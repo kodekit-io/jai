@@ -89,7 +89,10 @@ class Slider
 
     private function uploadSliderImage($itemImage)
     {
-        $imageName = $itemImage->getClientOriginalName();
+        $originalName = $itemImage->getClientOriginalName();
+//        $imageName = explode('.', $originalName);
+//        $imageName = str_slug($imageName[0]) . '.' . $imageName[1];
+        $imageName = str_replace(' ', '_', $originalName);
         $folder = 'uploads/sliders/';
         if (! File::exists(public_path($folder))) {
             File::makeDirectory(public_path($folder), 0775, true, true);
@@ -122,7 +125,6 @@ class Slider
                 }
             }
         }
-
 
         foreach ($items as $key => $item) {
             foreach ($availableLanguages as $lang => $config) {
