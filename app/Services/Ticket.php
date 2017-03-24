@@ -37,13 +37,21 @@ class Ticket
         // Generate e-tickets
         $orderDetails = $this->galasysService->getTickets($orderId);
         $tickets = $orderDetails['tickets']['ticket'];
-        foreach ($tickets as $ticket) {
-            $barcode = $ticket['barcode'];
-            $ticketName = $ticket['ticketname'];
-            $code = $ticket['tkid'];
-            $eTicketFileName = $this->generateTicket($orderId, $barcode, $ticketName);
-            $this->galasysService->saveGalasysTicket($orderId, $code, $ticketName, $barcode, $eTicketFileName);
+
+        if (isset($tickets['ticketname'])) {
+            $barcode = $tickets['barcode'];
+            $ticketName = $tickets['ticketname'];
+            $code = $tickets['tkid'];
+        } else {
+            foreach ($tickets as $ticket) {
+                $barcode = $ticket['barcode'];
+                $ticketName = $ticket['ticketname'];
+                $code = $ticket['tkid'];
+            }
         }
+
+        $eTicketFileName = $this->generateTicket($orderId, $barcode, $ticketName);
+        $this->galasysService->saveGalasysTicket($orderId, $code, $ticketName, $barcode, $eTicketFileName);
 
         // update status
         $this->orderService->updateStatus($orderId, 'barcode-generated');

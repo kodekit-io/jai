@@ -7,6 +7,7 @@ use App\Models\GalasysTicket;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request;
+use Illuminate\Support\Facades\Log;
 
 /**
  * @property Client client
@@ -68,6 +69,8 @@ class Galasys
         $details .= '</tickets>';
 
         $requestBody = '<body><action>saleticket</action><id>192.168.1.110</id><paymode>3</paymode>' . $details . '<begindate>' . $visitDate . '</begindate><sign>D41D8CD98F00B204E9800998ECF8427E</sign></body>';
+
+
 
         $response = $this->client->request('GET', '/entrance.aspx', [
             'query' => [
