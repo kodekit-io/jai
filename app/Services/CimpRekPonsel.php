@@ -118,7 +118,7 @@ class CimbRekPonsel extends Payment
             $trx['orderStatus'] = self::CANCELLED;
         }
 
-        $this->updateOrderStatus($trx['orderId'], $trx['orderStatus']);
+        $this->updateOrderStatus($trx['orderId'], $trx['orderStatus'], 'CIMB REK PONSEL');
         $this->saveCimbCheckout($trx);
 
         return $trx;
@@ -166,7 +166,7 @@ class CimbRekPonsel extends Payment
                 $trx['errorMessage'] = 'Invalid signature. Transaction is Failed';
                 $trx['orderStatus'] = self::CANCELLED;
             }
-            $this->updateOrderStatus($trx['orderId'], $trx['orderStatus']);
+            $this->updateOrderStatus($trx['orderId'], $trx['orderStatus'], 'CIMB REK PONSEL');
             $this->saveCimbCheckout($trx);
         }
 

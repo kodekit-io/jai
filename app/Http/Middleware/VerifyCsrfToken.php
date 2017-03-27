@@ -19,6 +19,8 @@ class VerifyCsrfToken extends BaseVerifier
 
         'cimb/result',
         'cimb/backend',
+        'cimb-rp/result',
+        'cimb-rp/backend',
 
         '*/cimb/result',
         '*/cimb/backend',
