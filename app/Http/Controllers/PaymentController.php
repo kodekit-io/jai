@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Service\Cimb;
 use App\Service\CimbCreditCard;
+use App\Service\CimbRekPonsel;
 use App\Service\Doku;
 use App\Service\Galasys;
 use App\Service\Order;
@@ -40,6 +41,10 @@ class PaymentController extends Controller
      * @var CimbCreditCard
      */
     private $cimbCreditService;
+    /**
+     * @var CimbRekPonsel
+     */
+    private $cimbRekPonsel;
 
 
     /**
@@ -50,14 +55,14 @@ class PaymentController extends Controller
      * @param CimbCreditCard $cimbCreditService
      * @param Ticket $ticketService
      */
-    public function __construct(Order $orderService, Doku $dokuService, Cimb $cimbService, CimbCreditCard $cimbCreditService, Ticket $ticketService)
+    public function __construct(Order $orderService, Doku $dokuService, Cimb $cimbService, CimbRekPonsel $cimbRekPonsel, CimbCreditCard $cimbCreditService, Ticket $ticketService)
     {
         $this->orderService = $orderService;
         $this->dokuService = $dokuService;
         $this->cimbService = $cimbService;
         $this->ticketService = $ticketService;
         $this->cimbCreditService = $cimbCreditService;
-
+        $this->cimbRekPonsel = $cimbRekPonsel;
     }
 
     /**
@@ -104,6 +109,22 @@ class PaymentController extends Controller
     public function cimbBackend(Request $request)
     {
         return $this->cimbService->cimbBackend($request);
+    }
+
+    public function cimbRekPonselResult(Request $request)
+    {
+        $result = $this->cimbRekPonsel->redirectResult($request);
+        $result['lang'] = session('lang');
+        if ($result['orderStatus'] == 'completed') {
+            return view('frontend.thank-you', $result);
+        } else {
+            return view('frontend.transaction-failed', $result);
+        }
+    }
+
+    public function cimbRekPonselBackend(Request $request)
+    {
+        return $this->cimbRekPonsel->cimbBackend($request);
     }
 
     public function cimbStatus()

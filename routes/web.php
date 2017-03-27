@@ -262,6 +262,8 @@ Route::group(['middleware' => ['lang:sessionOnly', 'menu:frontend']], function (
 
     Route::any('cimb/result', 'PaymentController@cimbResult');
     Route::any('cimb/backend', 'PaymentController@cimbBackend');
+    Route::any('cimb-rp/result', 'PaymentController@cimbRekPonselResult');
+    Route::any('cimb-rp/backend', 'PaymentController@cimbRekPonselBackend');
 
     Route::any('cimb-credit-card/result', 'PaymentController@cimbCreditResult');
 });

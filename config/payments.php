@@ -21,7 +21,9 @@ return [
         'api_url' => 'https://sandbox.e2pay.co.id/epayment/entry.asp',
         'requery_url' => 'https://sandbox.e2pay.co.id/epayment/enquiry.asp',
         'redirect_url' => 'cimb/result',
-        'backend_url' => 'cimb/backend'
+        'backend_url' => 'cimb/backend',
+        'redirect_url_rp' => 'cimb-rp/result',
+        'backend_url_rp' => 'cimb-rp/backend'
     ],
 
     'cimb_cc' => [

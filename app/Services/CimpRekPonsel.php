@@ -24,9 +24,9 @@ class CimbRekPonsel extends Payment
         parent::__construct($orderService);
         $this->merchantCode = config('payments.cimb.merchant_code_rp');
         $this->merchantKey = config('payments.cimb.merchant_key_rp');
-        $this->redirectUrl = config('payments.cimb.redirect_url');
+        $this->redirectUrl = config('payments.cimb.redirect_url_rp');
+        $this->backendUrl = config('payments.cimb.backend_url_rp');
         $this->requeryUrl = config('payments.cimb.requery_url');
-        $this->backendUrl = config('payments.cimb.backend_url');
     }
 
     /**
@@ -77,8 +77,21 @@ class CimbRekPonsel extends Payment
         $trx['signature'] = ( $request->has('Signature') ? $request->input('Signature') : '' );
         $trx['processType'] = 'REDIRECT';
 
+        Log::warning(\GuzzleHttp\json_encode($request->all()));;
+        Log::warning('merchant key ==> ' . $this->merchantKey);
+        Log::warning('merchant code ==> ' . $this->merchantCode);
+        Log::warning('payment id ==> ' . $trx['paymentId']);
+        Log::warning('ref no ==> ' . $trx['orderId']);
+        Log::warning('amount ==> ' . $trx['amount']);
+        Log::warning('currency ==> ' . $trx['currency']);
+        Log::warning('status ==> ' . $trx['status']);
+
         $signatureWord = $this->merchantKey . $this->merchantCode . $trx['paymentId'] . $trx['orderId'] . $trx['amount'] . $trx['currency'] . $trx['status'];
         $generatedSignature = base64_encode(sha1($signatureWord, true));
+
+        Log::warning('sugnature word ==> ' . $signatureWord);
+        Log::warning('generated signature ==> ' . $generatedSignature);
+        Log::warning('signature ==> ' . $trx['signature']);
 
         if ($generatedSignature == $trx['signature']) {
             if ($trx['status'] == '1') {
