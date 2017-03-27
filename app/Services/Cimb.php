@@ -88,6 +88,10 @@ class Cimb extends Payment
         $signatureWord = $this->merchantKey . $this->merchantCode . $trx['paymentId'] . $trx['orderId'] . $trx['amount'] . $trx['currency'] . $trx['status'];
         $generatedSignature = base64_encode(sha1($signatureWord, true));
 
+        Log::warning('sugnature word ==> ' . $signatureWord);
+        Log::warning('generated signature ==> ' . $generatedSignature);
+        Log::warning('signature ==> ' . $trx['signature']);
+
         if ($generatedSignature == $trx['signature']) {
             if ($trx['status'] == '1') {
                 // check the status for security purpose
