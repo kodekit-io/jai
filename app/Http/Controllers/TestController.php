@@ -46,7 +46,7 @@ class TestController extends Controller
         $client = new Client(['base_uri' => env('GLS_BASE_URL')]);
         $response = $client->request('GET', '/entrance.aspx', [
             'query' => [
-                'body' => '<body><action>saleticket</action><id>192.168.1.110</id><paymode>3</paymode><tickets>3324,2,290000</tickets><begindate>2015-08-30</begindate><sign>D41D8CD98F00B204E9800998ECF8427E</sign></body>'
+                'body' => '<body><action>saleticket</action><id>192.168.1.110</id><paymode>3</paymode><tickets>3323,2,220000|3325,1,550000</tickets><begindate>2017-04-28</begindate><sign>D41D8CD98F00B204E9800998ECF8427E</sign></body>'
             ]
         ]);
         $body = $response->getBody();

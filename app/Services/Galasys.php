@@ -70,7 +70,7 @@ class Galasys
 
         $requestBody = '<body><action>saleticket</action><id>192.168.1.110</id><paymode>3</paymode>' . $details . '<begindate>' . $visitDate . '</begindate><sign>D41D8CD98F00B204E9800998ECF8427E</sign></body>';
 
-
+        Log::warning($requestBody);
 
         $response = $this->client->request('GET', '/entrance.aspx', [
             'query' => [

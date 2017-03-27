@@ -76,6 +76,15 @@ class Cimb extends Payment
         $trx['signature'] = ( $request->has('Signature') ? $request->input('Signature') : '' );
         $trx['processType'] = 'REDIRECT';
 
+        Log::warning(\GuzzleHttp\json_encode($request->all()));;
+        Log::warning('merchant key ==> ' . $this->merchantKey);
+        Log::warning('merchant code ==> ' . $this->merchantCode);
+        Log::warning('payment id ==> ' . $trx['paymentId']);
+        Log::warning('ref no ==> ' . $trx['orderId']);
+        Log::warning('amount ==> ' . $trx['amount']);
+        Log::warning('currency ==> ' . $trx['currency']);
+        Log::warning('status ==> ' . $trx['status']);
+
         $signatureWord = $this->merchantKey . $this->merchantCode . $trx['paymentId'] . $trx['orderId'] . $trx['amount'] . $trx['currency'] . $trx['status'];
         $generatedSignature = base64_encode(sha1($signatureWord, true));
 
