@@ -1352,7 +1352,7 @@ label.error {
 	border: none !important;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1020px) {
 	header {
 		margin-top: 110px;
 		padding-top: 0 !important;
@@ -1404,7 +1404,9 @@ label.error {
 		margin: 0;
 		border-top: 1px solid rgba(255, 255, 255, 0.5);
 	}
-
+	.ja-header-banner {
+		top: calc(100vh - 250px);
+	}
 	.ja-icon-attract {
 		background: url(../img/i-attract.png) no-repeat left 5px;
 	}
