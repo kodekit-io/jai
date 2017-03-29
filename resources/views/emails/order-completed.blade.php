@@ -259,7 +259,7 @@
                         <table bgcolor="#17aebf" border="0" cellpadding="0" cellspacing="0" width="500" style="margin-top:20px;">
 							<tr>
 								<td align="left" valign="top" style="font-size:12px;color:#ffffff;">
-                                    Explore our udpate at:<br/>
+                                    Explore our update at:<br/>
                                     <a href="http://jakarta-aquarium.com" style="color:#ffffff;">www.jakarta-aquarium.com</a><br/>
                                     <table border="0" cellpadding="0" cellspacing="0" style="margin-top:5px;">
             							<tr>
