@@ -1351,7 +1351,12 @@ label.error {
 .noborder {
 	border: none !important;
 }
-
+@media (max-width: 768px) {
+	#getapp {
+		padding: 2em 0;
+		text-align: center;
+	}
+}
 @media (max-width: 1020px) {
 	header {
 		margin-top: 110px;
@@ -1454,27 +1459,19 @@ label.error {
 		padding: 0;
 	}
 	.ja-side-banner {
-		position: relative !important;
-		right: auto;
-		top: -2em;
-		width: 100% !important;
+		right: 0;
+		top: auto;
 		margin-top: 0;
+		bottom: 0;
+		position: fixed !important;
 	}
-	.ja-side-banner a {
-		width: 100%;
-		background: #f8b31d;
-		display: block;
-		text-align: center;
-	}
-	.ja-side-banner li {
-		border-top: 1px solid rgba(255, 255, 255, 0.25);
-	}
+	/*
 	.ja-side-banner.uk-visible-small {
 		display: none !important;
 	}
 	.ja-home-section .ja-side-banner.uk-visible-small {
 		display: block !important;
-	}
+	}*/
 
 	#whatson ul {
 		margin-bottom: 0 !important;
@@ -1514,7 +1511,7 @@ label.error {
 		text-align: center;
 	}
 	#getapp {
-		padding: 2em 0;
+		padding: 2em 0 0;
 		text-align: center;
 	}
 
