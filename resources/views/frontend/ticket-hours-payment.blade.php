@@ -51,7 +51,7 @@
 //                                            $price .= '<span class="ja-bold">IDR '. number_format($galasysProduct->WeekendPrice, 0) . '</span>';
 //                                        }
                                             $title = $galasysProduct['TKName'];
-                                            $description = $galasysProduct['sprintdescch'];
+                                            $description = is_array($galasysProduct['sprintdescch']) ? '' : $galasysProduct['sprintdescch'];
                                             $price .= 'Weekday :<br>';
                                             $price .= '<span class="ja-bold">IDR '. number_format($galasysProduct['Money'], 0) . '</span><br>';
                                             $price .= 'Weekend :<br>';

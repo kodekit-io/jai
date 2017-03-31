@@ -254,7 +254,7 @@ class Package
                 $price = ($isHoliday ? $galasysProduct['HolidayMoney'] : $galasysProduct['Money']);
                 // $price = $galasysProduct['Money'];
                 $title = $galasysProduct['TKName'];
-                $description = $galasysProduct['sprintdescch'];
+                $description = is_array($galasysProduct['sprintdescch']) ? '' : $galasysProduct['sprintdescch'];
                 $itemCode = $galasysProduct['TKcode'];
                 $ticketId = $galasysProduct['TKcode'];
                 $isPackage = false;
