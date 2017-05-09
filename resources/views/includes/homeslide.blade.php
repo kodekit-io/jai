@@ -13,6 +13,17 @@
 				</div>
 			</li>
             @endforeach
+
+			{{-- sample --}}
+			<li>
+				<iframe src="//www.youtube.com/embed/bjepsM2CeME?autoplay=1&amp;controls=0&amp;showinfo=0&amp;rel=0&amp;loop=1&amp;modestbranding=1&amp;wmode=transparent" frameborder="0" allowfullscreen></iframe>
+				<div class="uk-overlay-panel uk-overlay-fade uk-overlay-background">
+					<div class="uk-container uk-container-center">
+						<h2 class="ja-slide-title">Title</h2>
+						<a href="#" class="uk-button ja-button-outline" title="Learn More" style="z-index:5;position:relative;">Learn More <i class="uk-margin-small-left uk-icon-chevron-right"></i></a>
+					</div>
+				</div>
+			</li>
 		</ul>
 		<div class="ja-slideshow-nav">
 			<div class="uk-container uk-container-center">
@@ -20,6 +31,8 @@
                     @foreach($sliders as $slider)
 					<li data-uk-slideshow-item="{!! $loop->index !!}"><a href=""></a></li>
                     @endforeach
+					{{-- sample --}}
+					<li data-uk-slideshow-item="4"><a href=""></a></li>
 				</ul>
 			</div>
 		</div>
