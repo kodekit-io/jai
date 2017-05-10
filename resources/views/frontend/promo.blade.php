@@ -11,16 +11,18 @@
 </header>
 <main class="ja-page">
     <div class="uk-container uk-container-center">
-        <ul class="uk-grid uk-grid-width-medium-1-2 uk-margin-large-bottom" data-uk-grid-margin>
+        <ul class="uk-grid uk-grid-width-medium-1-2 uk-margin-large-bottom uk-grid-match" data-uk-grid-margin="" data-uk-grid-match="{target:'.white'}">
             @if (count($promos) > 0)
                 @foreach($promos as $promo)
                     <li>
-                        @if (isset($promo->file_name))
-                            <a href="#" title=""><img src="{!! url('images/original/' . $promo->file_name) !!}" /></a>
-                        @endif
-                        <div class="uk-panel uk-panel-box noborder white">
-                            <h4><a href="{!! lang_url('promo/' . $promo->slug) !!}">{!! $promo->title !!}</a></h4>
-                            <p>{!! $promo->content !!}</p>
+                        <div class="white">
+                            @if (isset($promo->file_name))
+                                <a href="#" title=""><img src="{!! url('images/original/' . $promo->file_name) !!}" /></a>
+                            @endif
+                            <div class="uk-panel uk-panel-box noborder white">
+                                <h4><a href="{!! lang_url('promo/' . $promo->slug) !!}">{!! $promo->title !!}</a></h4>
+                                <p>{!! $promo->content !!}</p>
+                            </div>
                         </div>
                     </li>
                 @endforeach
